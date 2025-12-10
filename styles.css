@@ -309,5 +309,15 @@ a {
   margin-top: 0.75rem;
   font-size: 0.8rem;
   color: var(--muted);
-}
+  }
+  .ku-freebie-link {
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 600;
+  }
+
+.ku-freebie-link:hover {
+  color: #facc15; /* slightly brighter accent */
+  text-decoration: underline;
+  }
 }
