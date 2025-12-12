@@ -7,7 +7,7 @@
   --text-main: #333333;
   --text-soft: #555555;
   --text-muted: #888888;
-  --navy: #006400;
+  --forest: #006400;
   --gold: #ffd700;
   --emerald: #50c878;
   --burgundy: #800020;
@@ -103,7 +103,7 @@ main {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--burgundy);
 }
 
 .ku-brand-tagline {
@@ -175,7 +175,7 @@ main {
 }
 
 .ku-menu-dropdown a:hover {
-  color: var(--navy);
+  color: var(--forest);
 }
 
 /* Hero */
@@ -269,7 +269,7 @@ main {
 
 .ku-hero-card-link {
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--forest);
   font-weight: 500;
 }
 
@@ -288,9 +288,9 @@ main {
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Solid navy CTA with gold hover outline */
+/* Solid forest CTA with gold hover outline */
 .btn-primary {
-  background: var(--navy);
+  background: var(--forest);
   color: #ffffff;
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
@@ -304,7 +304,7 @@ main {
 /* Secondary / ghost button */
 .btn-ghost {
   background: #ffffff;
-  color: var(--navy);
+  color: var(--forest);
   border-color: var(--border-subtle);
 }
 
@@ -442,7 +442,7 @@ main {
 .ku-price-tag {
   font-weight: 700;
   font-size: 1rem;
-  color: var(--navy);
+  color: var(--forest);
 }
 
 /* optional: gold currency feel */
@@ -454,7 +454,7 @@ main {
 
 .ku-text-link {
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--forest);
 }
 
 /* Starter pack */
@@ -509,7 +509,7 @@ main {
 
 /* Freebie links */
 .ku-freebie-link {
-  color: var(--navy);
+  color: var(--forest);
   font-weight: 500;
   text-decoration: underline;
 }
