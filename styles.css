@@ -61,7 +61,7 @@ main {
 .ku-header-inner {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 0.75rem 1.25rem;
+  padding: 0.8rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,13 +80,15 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   background: var(--gold);
   color: #000000;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .ku-brand-text {
@@ -95,8 +97,11 @@ main {
 }
 
 .ku-brand-name {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--navy);
 }
 
 .ku-brand-tagline {
@@ -106,13 +111,15 @@ main {
 
 .ku-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
   font-size: 0.85rem;
 }
 
 .ku-nav a {
-  color: var(--text-main);
+  color: var(--text-soft);
   font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -555,7 +562,9 @@ main {
   .ku-cols {
     grid-template-columns: minmax(0,1fr);
   }
-  /* Pillar tags */
+}
+
+/* Pillar tags */
 .ku-tag-utility {
   background: var(--emerald);
   color: #ffffff;
@@ -578,4 +587,4 @@ main {
 .section-creative {
   background: linear-gradient(to right, rgba(128,0,32,0.04), #ffffff);
 }
-}
+
