@@ -2,152 +2,255 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kynar Universe – Digital Tools for Creators</title>
+  <title>Kynar Universe – Tools for Organised Creativity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Digital tools that simplify life, ignite creativity, and accelerate productivity." />
+  <meta name="description" content="Simple digital tools to organise your life, finish creative projects, and learn faster." />
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Fixed Glowing Navbar (Upgrade #3) -->
-  <nav class="ku-navbar">
-    <div class="ku-logo">KU</div>
-    <div class="ku-title">
-      <h1>Kynar Universe</h1>
-      <p>Digital tools for creators</p>
+  <!-- Minimal top bar -->
+  <header class="ku-header">
+    <div class="ku-header-inner">
+      <a href="#top" class="ku-brand">
+        <span class="ku-brand-mark">KU</span>
+        <span class="ku-brand-text">
+          <span class="ku-brand-name">Kynar Universe</span>
+          <span class="ku-brand-tagline">Tools for organised creativity</span>
+        </span>
+      </a>
+      <nav class="ku-nav">
+        <a href="#products">Products</a>
+        <a href="#starter-pack">Starter pack</a>
+        <a href="#about">About</a>
+      </nav>
     </div>
-    <nav class="ku-nav">
-      <a href="#products">Products</a>
-      <a href="#freebies">Freebies</a>
-      <a href="#about">About</a>
-    </nav>
-  </nav>
+  </header>
 
-  <!-- Hero Section with Gradient (Upgrade #1) -->
-  <section class="ku-hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">Kynar Universe</h1>
-      <p class="hero-subtitle">Digital tools that simplify life, ignite creativity, and accelerate productivity</p>
-      <div class="ku-hero-buttons">
-        <a href="https://kynaruniverse.gumroad.com/l/notion-daily-life-system" class="btn-primary" target="_blank" rel="noopener">Get the Notion Life OS – £10</a>
-        <a href="#freebies" class="btn-secondary">Try the free mini dashboard</a>
+  <main id="top">
+    <!-- Hero: simple, personal -->
+    <section class="ku-hero">
+      <div class="ku-hero-layout">
+        <div class="ku-hero-text">
+          <p class="ku-pill">Solo studio • Built in the UK</p>
+          <h1>Simple systems for a less chaotic creative life.</h1>
+          <p class="ku-hero-sub">
+            Kynar Universe builds small, practical tools – Notion dashboards, printables, Python cheatsheets – to help you organise your days and finish the projects that matter.
+          </p>
+          <div class="ku-hero-actions">
+            <a href="https://kynaruniverse.gumroad.com/l/notion-daily-life-system" class="btn-primary" target="_blank" rel="noopener">
+              Get the Notion Life OS – £10
+            </a>
+            <a href="#starter-pack" class="btn-ghost">
+              Grab the free starter pack
+            </a>
+          </div>
+          <p class="ku-hero-note">
+            No subscriptions. Just a tiny library of tools you can actually use.
+          </p>
+        </div>
+        <aside class="ku-hero-card" aria-label="Preview of Notion Life OS">
+          <h2>Notion Daily Life System</h2>
+          <p>Daily dashboard for tasks, habits, goals, and notes – all in one clean view.</p>
+          <ul>
+            <li>Today view for tasks and habits</li>
+            <li>Linked projects and goals</li>
+            <li>Weekly review templates</li>
+          </ul>
+          <a href="https://kynaruniverse.gumroad.com/l/notion-daily-life-system"
+             class="ku-hero-card-link"
+             target="_blank"
+             rel="noopener">
+            View on Gumroad →
+          </a>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Featured Products with Floating Cards (Upgrade #2) -->
-  <section id="products" class="ku-section">
-    <h2>Featured Products</h2>
-    <div class="ku-grid">
-      <article class="ku-card featured">
-        <div class="product-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-          <span class="product-emoji">📊</span>
+    <!-- What you’ll find here -->
+    <section class="ku-section ku-three-cols">
+      <h2>What you’ll find here</h2>
+      <div class="ku-cols">
+        <article class="ku-col">
+          <h3>Organise</h3>
+          <p>Notion systems, planners, and checklists to keep your head and calendar clear.</p>
+        </article>
+        <article class="ku-col">
+          <h3>Automate</h3>
+          <p>Python basics and scripts so repetitive work happens in the background, not in your brain.</p>
+        </article>
+        <article class="ku-col">
+          <h3>Create</h3>
+          <p>Worldbuilding tools and content planners to turn half‑ideas into finished stories and posts.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="ku-section">
+      <div class="ku-section-head">
+        <h2>Current products</h2>
+        <p>Start with the flagship Life OS, then add on bundles as you grow.</p>
+      </div>
+
+      <div class="ku-product-grid">
+        <article class="ku-product-card ku-product-featured">
+          <p class="ku-product-label">Flagship</p>
+          <h3>Notion Daily Life System</h3>
+          <p class="ku-product-text">
+            Run your entire life from one Notion dashboard for tasks, habits, goals, and notes.
+          </p>
+          <ul class="ku-product-list">
+            <li>Life dashboard with “Today”, “Week”, and “Thinking space” views</li>
+            <li>Linked databases for tasks, projects, goals, habits, notes, and resources</li>
+            <li>Built‑in daily, weekly, and monthly review templates</li>
+          </ul>
+          <div class="ku-product-footer">
+            <span class="ku-price-tag">£10</span>
+            <a href="https://kynaruniverse.gumroad.com/l/notion-daily-life-system"
+               class="btn-primary btn-small"
+               target="_blank"
+               rel="noopener">
+              Get the Life OS
+            </a>
+          </div>
+        </article>
+
+        <article class="ku-product-card">
+          <p class="ku-product-label">Prompt bundle</p>
+          <h3>AI Prompt Master Pack</h3>
+          <p class="ku-product-text">
+            50+ prompts for planning, writing, brainstorming, and automation with AI.
+          </p>
+          <p class="ku-coming-note">Launching soon – placeholder link for now.</p>
+          <a href="YOUR_GUMROAD_LINK_2" class="ku-text-link">View on Gumroad →</a>
+        </article>
+
+        <article class="ku-product-card">
+          <p class="ku-product-label">Planning</p>
+          <h3>Creator Content Planner</h3>
+          <p class="ku-product-text">
+            Simple system for batching ideas and scheduling posts across your favourite platforms.
+          </p>
+          <p class="ku-coming-note">Launching soon – placeholder link for now.</p>
+          <a href="YOUR_GUMROAD_LINK_3" class="ku-text-link">View on Gumroad →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Starter pack (all freebies together) -->
+    <section id="starter-pack" class="ku-section ku-starter">
+      <div class="ku-section-head">
+        <h2>Free starter pack</h2>
+        <p>Five small tools to test the vibe before you buy anything.</p>
+      </div>
+
+      <div class="ku-starter-main">
+        <div class="ku-starter-copy">
+          <h3>What you get</h3>
+          <ul>
+            <li>Mini Notion Life OS – 1‑page daily dashboard.</li>
+            <li>10 AI prompts for focus and creativity (PDF).</li>
+            <li>Printable daily planner (A4 PDF).</li>
+            <li>Python basics cheatsheet (A4 PDF).</li>
+            <li>Worldbuilding checklist for fiction (A4 PDF).</li>
+          </ul>
+          <p class="ku-starter-note">
+            No fluff, no pitch decks – just pages you can print or duplicate into your own tools.
+          </p>
         </div>
-        <h3>Notion Daily Life System</h3>
-        <p>Run your entire life from one Notion dashboard for tasks, habits, goals, and notes.</p>
-        <p class="ku-price">£10</p>
-        <a href="https://kynaruniverse.gumroad.com/l/notion-daily-life-system" class="btn-primary">Get the Life OS</a>
-      </article>
 
-      <article class="ku-card">
-        <div class="product-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-          <span class="product-emoji">🤖</span>
+        <div class="ku-starter-links">
+          <h3>Download links</h3>
+          <ul>
+            <li>
+              <strong>Mini Notion Life OS dashboard</strong> –
+              <a class="ku-freebie-link"
+                 href="https://palm-wizard-7c2.notion.site/Mini-Life-OS-Daily-Dashboard-2c55209b14c2807ea3ebf9dc0c7d5e77?source=copy_link"
+                 target="_blank"
+                 rel="noopener">
+                open the 1‑page daily control centre
+              </a>
+            </li>
+            <li>
+              <strong>10 AI prompts for focus &amp; creativity</strong> –
+              <a class="ku-freebie-link"
+                 href="assets/10-ai-prompts.pdf"
+                 download
+                 target="_blank"
+                 rel="noopener">
+                download the PDF
+              </a>
+            </li>
+            <li>
+              <strong>Printable daily planner</strong> –
+              <a class="ku-freebie-link"
+                 href="assets/kynar-daily-planner.pdf"
+                 download
+                 target="_blank"
+                 rel="noopener">
+                download the 1‑page planner
+              </a>
+            </li>
+            <li>
+              <strong>Python basics cheatsheet</strong> –
+              <a class="ku-freebie-link"
+                 href="assets/python-basic-cheatsheet.pdf"
+                 download
+                 target="_blank"
+                 rel="noopener">
+                download the quick‑reference PDF
+              </a>
+            </li>
+            <li>
+              <strong>Worldbuilding checklist</strong> –
+              <a class="ku-freebie-link"
+                 href="assets/worldbuilding-checklist.pdf"
+                 download
+                 target="_blank"
+                 rel="noopener">
+                download the 1‑page worldbuilding guide
+              </a>
+            </li>
+          </ul>
+
+          <div class="ku-email-form">
+            <p class="ku-email-intro">Prefer everything in one email?</p>
+            <script async data-uid="755c21d10f" src="https://kynar-universe.kit.com/755c21d10f/index.js"></script>
+            <p class="ku-email-note">
+              If you don’t see the email in a few minutes, check Spam or Promotions and move it to your main inbox, then add kynaruniverse@gmail.com to your contacts.
+            </p>
+          </div>
         </div>
-        <h3>AI Prompt Bundle</h3>
-        <p>50+ prompts for productivity, content, brainstorming, and automation.</p>
-        <p class="ku-price">£7</p>
-        <a href="YOUR_GUMROAD_LINK_2" class="btn-primary">View on Gumroad</a>
-      </article>
+      </div>
+    </section>
 
-      <article class="ku-card">
-        <div class="product-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-          <span class="product-emoji">📱</span>
+    <!-- About -->
+    <section id="about" class="ku-section ku-about">
+      <h2>About Kynar Universe</h2>
+      <div class="ku-about-body">
+        <p>
+          Kynar Universe is a tiny digital studio experimenting with simple tools for everyday life – especially for students, solo creators, and worldbuilders who want structure without bloat.
+        </p>
+        <p>
+          Everything is built from real workflows: managing a full‑time life, side projects, and learning to code from scratch.
+        </p>
+        <div class="ku-about-meta">
+          <div>
+            <h3>Built with</h3>
+            <p>Notion, Python, Canva, a battered phone, and a stubborn love of tidy systems.</p>
+          </div>
+          <div>
+            <h3>What’s next</h3>
+            <p>Polished Python automation scripts, a deeper worldbuilding kit, and a tiny course on building your own Life OS.</p>
+          </div>
         </div>
-        <h3>Creator Content Planner</h3>
-        <p>Social media calendars, idea banks, and templates for consistent posting.</p>
-        <p class="ku-price">£8</p>
-        <a href="YOUR_GUMROAD_LINK_3" class="btn-primary">View on Gumroad</a>
-      </article>
-    </div>
-
-    <!-- Trust Badges (Upgrade #4) -->
-    <div class="ku-trust">
-      <div>⚡ Instant Access</div>
-      <div>🔄 Lifetime Updates</div>
-      <div>💯 30-Day Guarantee</div>
-    </div>
-  </section>
-
-  <section id="freebies" class="ku-section ku-freebies">
-    <h2>Free Resources</h2>
-    <p>Start with these free tools and mini systems.</p>
-    <ul>
-      <li>
-        <strong>Mini Notion Life OS dashboard</strong> – 
-        <a class="ku-freebie-link"
-     href="https://palm-wizard-7c2.notion.site/Mini-Life-OS-Daily-Dashboard-2c55209b14c2807ea3ebf9dc0c7d5e77?source=copy_link"
-     target="_blank" rel="noopener">
-    open the 1-page daily control centre
-       </a>.
-      </li>
-      <li>
-  <strong>10 AI prompts for focus & creativity</strong> – 
-  <a class="ku-freebie-link"
-     href="assets/10-ai-prompts.pdf"
-     download
-     target="_blank"
-     rel="noopener">
-    download the PDF
-  </a>.
-</li>
-      <li>
-  <strong>Printable daily planner</strong> – 
-  <a class="ku-freebie-link"
-     href="assets/kynar-daily-planner.pdf"
-     download
-     target="_blank"
-     rel="noopener">
-    download the 1-page planner
-  </a>.
-</li>
-      <li>
-    <strong>Python basics cheatsheet</strong> –
-    <a class="ku-freebie-link"
-       href="assets/python-basic-cheatsheet.pdf"
-       download
-       target="_blank"
-       rel="noopener">
-      download the quick-reference PDF
-    </a>.
-  </li>
-        <li>
-    <strong>Worldbuilding checklist</strong> –
-    <a class="ku-freebie-link"
-       href="assets/worldbuilding-checklist.pdf"
-       download
-       target="_blank"
-       rel="noopener">
-      download the 1-page worldbuilding guide
-    </a>.
-  </li>
-    </ul>
-    <!-- Email signup form -->
-<div class="ku-email-form">
-  <script async data-uid="755c21d10f" src="https://kynar-universe.kit.com/755c21d10f/index.js"></script>
-  <p class="ku-email-note">
-      If you don’t see the email in a few minutes, check Spam or Promotions and move it to your main inbox, then add kynaruniverse@gmail.com to your contacts.
-    </p>
-</div>
-</section>
-
-  <section id="about" class="ku-section">
-    <h2>About Kynar Universe</h2>
-    <p>Kynar Universe is a digital product studio helping students, creators, and small businesses organize their world, build projects faster, and unlock creativity. Products include Notion systems, AI prompt bundles, Python automation scripts, printables, and worldbuilding kits – all crafted to be simple, beautiful, and practical.</p>
-  </section>
+      </div>
+    </section>
+  </main>
 
   <footer class="ku-footer">
-    <p>© Kynar Universe – Digital tools for productivity, AI, coding, and creativity. 2025</p>
+    <p>© Kynar Universe – Digital tools for productivity, coding, and creativity. 2025</p>
   </footer>
 </body>
 </html>
