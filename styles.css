@@ -58,11 +58,11 @@ main {
 .ku-header-inner {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 0.8rem 1.25rem;
+  padding: 0.4rem 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
 .ku-brand {
@@ -71,6 +71,7 @@ main {
   gap: 0.75rem;
   color: var(--text-main);
   text-decoration: none;
+  padding: 0 1.25rem;
 }
 
 .ku-brand-mark {
@@ -113,7 +114,7 @@ main {
   scrollbar-width: none;
   background: var(--emerald); /* emerald strip */
   border-radius: 0;
-  width: 100%;
+  width: 100;
 }
 
 .ku-nav::-webkit-scrollbar {
