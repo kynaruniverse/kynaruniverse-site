@@ -23,7 +23,7 @@
 
 body {
   font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-  background: radial-gradient(circle at top left, #1f2937 0, #020617 55%, #020617 100%);
+  background: var(--bg);
   color: var(--text-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -46,8 +46,8 @@ main {
   left: 0;
   right: 0;
   backdrop-filter: blur(14px);
-  background: rgba(15,23,42,0.92);
-  border-bottom: 1px solid rgba(148,163,184,0.25);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-subtle);
   z-index: 20;
 }
 
@@ -65,7 +65,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #e5e7eb;
+  color: var(--text-soft);
 }
 
 .ku-brand-mark {
@@ -75,7 +75,7 @@ main {
   width: 32px;
   height: 32px;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #facc15 100%);
   color: white;
   font-weight: 700;
   font-size: 0.9rem;
@@ -116,6 +116,7 @@ main {
 /* Hero */
 .ku-hero {
   padding: 3.5rem 1.25rem 3rem;
+  background: linear-gradient(to bottom, #fffbeb 0%, #f5f5f7 40%, #f5f5f7 100%)
 }
 
 .ku-hero-layout {
@@ -128,7 +129,7 @@ main {
 }
 
 .ku-hero-text {
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 .ku-pill {
@@ -137,9 +138,9 @@ main {
   padding: 0.2rem 0.7rem;
   border-radius: 999px;
   font-size: 0.7rem;
-  color: #cbd5f5;
-  background: rgba(37,99,235,0.2);
-  border: 1px solid rgba(191,219,254,0.4);
+  color: #92400e;
+  background: #fef3c7;
+  border: 1px solid #facc15;
   margin-bottom: 0.9rem;
 }
 
@@ -152,7 +153,7 @@ main {
 
 .ku-hero-sub {
   font-size: 0.98rem;
-  color: #cbd5f5;
+  color: var(--text-soft);
   max-width: 34rem;
   margin-bottom: 1.6rem;
 }
@@ -166,15 +167,15 @@ main {
 
 .ku-hero-note {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--text-soft);
 }
 
 /* Hero card */
 .ku-hero-card {
-  background: #f9fafb;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 1.5rem 1.6rem;
-  box-shadow: 0 18px 45px rgba(15,23,42,0.4);
+  box-shadow: 0 10px 30px rgba(15,23,42,0.08);
   border: 1px solid var(--border-subtle);
 }
 
@@ -225,12 +226,12 @@ main {
 .btn-primary {
   background: var(--accent);
   color: #111827;
-  box-shadow: 0 10px 30px rgba(15,23,42,0.4);
+  box-shadow: 0 6px 16px rgba(254,158,11,0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 40px rgba(15,23,42,0.55);
+  box-shadow: 0 10px 24px rgba(254,158,11,0.55);
 }
 
 .btn-primary.btn-small {
@@ -241,11 +242,11 @@ main {
 .btn-ghost {
   background: transparent;
   color: #e5e7eb;
-  border-color: rgba(148,163,184,0.7);
+  border-color: var(--border-subtle);
 }
 
 .btn-ghost:hover {
-  background: rgba(15,23,42,0.7);
+  background: #f3f4f6;
 }
 
 /* Sections */
@@ -262,7 +263,7 @@ main {
 .ku-section h2 {
   font-size: 1.5rem;
   text-align: left;
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 .ku-section-head {
@@ -290,21 +291,21 @@ main {
 }
 
 .ku-col {
-  background: rgba(15,23,42,0.7);
+  background: #ffffff;
   border-radius: 0.9rem;
   padding: 1.1rem 1.2rem;
-  border: 1px solid rgba(148,163,184,0.35);
+  border: 1px solid var(--border-subtle);
 }
 
 .ku-col h3 {
   font-size: 1rem;
   margin-bottom: 0.4rem;
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 .ku-col p {
   font-size: 0.85rem;
-  color: #cbd5f5;
+  color: var(--text-soft);
 }
 
 /* Products */
@@ -427,14 +428,18 @@ main {
   list-style: none;
   padding-left: 0;
   font-size: 0.88rem;
-  background: rgba(15,23,42,0.75);
+  background: #fff7ed;
   border-radius: 0.9rem;
   padding: 0.9rem 1rem;
-  border: 1px solid rgba(148,163,184,0.4);
+  border: 1px solid #fed7aa;
+  color: var(--text-soft);
 }
 
-.ku-starter-links li + li {
-  margin-top: 0.5rem;
+.ku-starter-links li {
+  color: var(--text-main);
+}
+.ku-starter-links li strong {
+  color: #92400e; /* deep gold-brown for labels */
 }
 
 /* Freebie links */
