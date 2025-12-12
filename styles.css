@@ -49,13 +49,10 @@ main {
 
 /* Header */
 .ku-header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: static;
   background: #ffffff;
   border-bottom: 1px solid var(--border-subtle);
-  z-index: 50;
+  z-index: 10;
 }
 
 .ku-header-inner {
@@ -111,16 +108,34 @@ main {
 
 .ku-nav {
   display: flex;
-  gap: 1.75rem;
-  font-size: 0.85rem;
+  gap: 0.75rem;
+  font-size: 0.7rem;              /* smaller text */
+  overflow-x: auto;               /* horizontal scroll */
+  padding: 0.25rem 0;
+  scrollbar-width: none;          /* hide scrollbar Firefox */
+}
+
+.ku-nav::-webkit-scrollbar {
+  display: none;                  /* hide scrollbar WebKit */
 }
 
 .ku-nav a {
+  flex: 0 0 auto;                 /* keep each as its own pill */
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: #f5f5f5;
   color: var(--text-soft);
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;            /* no wrapping */
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.ku-nav a:hover {
+  background: var(--navy);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .ku-nav a:hover {
