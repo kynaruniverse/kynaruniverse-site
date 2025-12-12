@@ -112,7 +112,7 @@ main {
   overflow-x: auto;
   padding: 0.35rem 1.25rem;
   scrollbar-width: none;
-  background: var(--emerald); /* emerald strip */
+  background: transparent; /* emerald strip */
   border-radius: 0;
   width: 100;
 }
@@ -132,6 +132,13 @@ main {
   text-transform: uppercase;
   white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+/* full-width nav background */
+.ku-header-nav-wrap {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%); /* stretch to screen edges */
+  background: var(--emerald);
 }
 
 .ku-nav a:hover {
