@@ -52,7 +52,7 @@ a {
 /* Layout helpers */
 main {
   /* Taller fixed header (top bar + nav strip) */
-  padding-top: 6.5rem;
+  padding-top: 5rem;
 }
 
 /* Header */
@@ -705,8 +705,51 @@ main {
 @media (max-width: 720px) {
   .ku-header-inner {
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start; /* Aligns items to the left */
+    gap: 0.75rem; /* Reduced gap */
+    height: auto; /* Allow height to adjust */
+    padding-bottom: 0.5rem; /* Add padding at the bottom for stacking */
   }
+    /* --- Mobile Layout Adjustments --- */
+
+  .ku-header-inner .ku-brand {
+    padding-top: 0.2rem;
+    padding-left: 0.5rem; /* Slightly adjust logo position */
+  }
+
+  /* 1. Force Search Bar to a new line and full width */
+  .ku-header-search {
+    order: 3; /* Push search to the third position */
+    width: 100%;
+    max-width: 100%;
+    margin: 0.2rem 0.5rem 0.5rem 0.5rem; /* Margin for breathing room */
+  }
+
+  /* 2. Hide account links on the main bar for a cleaner mobile look */
+  .ku-account-links {
+    display: none; 
+    /* The core Amazon design often places a dedicated icon (person/cart) on the top bar. 
+       We will hide the text links for simplicity for now. */
+  }
+
+  /* 3. Adjust the main content padding for the new mobile header height */
+  main {
+    padding-top: 10rem; /* Increased padding to clear the taller mobile header */
+  }
+
+  /* 4. Fix Nav Strip alignment */
+  .ku-header-nav-wrap {
+    /* Ensure the nav strip below the search bar is full width */
+    margin: 0;
+  }
+
+  .ku-nav {
+    /* Adjust nav padding to match header inner */
+    padding: 0 0.5rem;
+    overflow-x: auto; /* Keep scrolling for nav links */
+  }
+}
+
 
   .ku-nav {
     gap: 1rem;
@@ -715,7 +758,6 @@ main {
   .ku-cols {
     grid-template-columns: minmax(0,1fr);
   }
-}
 
 /* Pillar tags */
 .ku-tag-utility {
