@@ -51,7 +51,7 @@ main {
 .ku-header {
   position: relative;
   background: linear-gradient(
-    to bottom,
+    to right,
     #006400 0%,    /* dark/forest green */
     #008000 35%,   /* standard green */
     #00a86b 65%,   /* jade green */
