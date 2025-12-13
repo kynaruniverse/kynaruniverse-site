@@ -8,17 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <header class="top-header">
-        
-        <div class="logo-area">
-            <div class="custom-burger menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <div class="site-title-container">
+    <!-- TOP HEADER SECTION -->
+    <div class="header-wrapper">
+        <header class="top-header">
+            <div class="logo-area">
+                <div class="custom-burger menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
                 <div class="site-title">
                     <h1 class="main-title">KYNAR</h1>
                     <h2 class="sub-title">UNIVERSE.CO.UK</h2>
@@ -31,128 +30,141 @@
                     </p>
                 </div>
             </div>
-        </div>
 
-        <div class="slogan-header">
-            Unlock the Universe of Digital Goods
-        </div>
+            <div class="slogan-header">
+                Unlock the Universe of Digital Goods
+            </div>
 
-        <div class="account-area">
-            <div class="custom-lock-icon"></div>
-            <a href="#" class="sign-in-link">
-                <span>SIGN IN</span>
-            </a>
-        </div>
-    </header>
+            <div class="account-area">
+                <div class="custom-lock-icon">
+                    <img src="assets/icons/images/log-in-icon.png" alt="Sign In" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fas fa-lock fallback-icon" style="display:none; font-size: 40px; color: #490101;"></i>
+                </div>
+                <a href="#" class="sign-in-link">
+                    <span>SIGN IN</span>
+                </a>
+            </div>
+        </header>
 
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#">MARKETPLACE</a></li>
-            <li><a href="#">JOURNAL</a></li>
-            <li><a href="#">COMMUNITY</a></li>
-            <li><a href="#">MY ACCOUNT/DASHBOARD</a></li>
-            <li><a href="#">ABOUT</a></li>
-        </ul>
-    </nav>
+        <!-- NAVIGATION BAR -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">MARKETPLACE</a></li>
+                <li><a href="#">JOURNAL</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                <li><a href="#">MY ACCOUNT/DASHBOARD</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
 
-    <main class="main-content-container">
-
+        <!-- SEARCH & SUBSCRIBE BAR -->
         <section class="search-subscribe-bar">
             <div class="search-box">
                 <input type="text" placeholder="SEARCH KYNARUNIVERSE.CO.UK">
-                <button type="submit" class="search-button">
+                <button type="button" class="search-button">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
             <a href="#" class="subscribe-button">SUBSCRIBE</a>
         </section>
+    </div>
 
+    <!-- MAIN CONTENT -->
+    <main class="main-content-container">
+        <!-- SLOGAN BOX -->
         <section class="sole-creator-slogan">
-            <p><strong>SOLE CREATOR MARKETPLACE</strong></p>
-            <p>&mdash; Made by One, Shared with All.</p>
-            <p>Authentic digital products designed to inspire your projects and daily life.</p>
+            <p class="slogan-title">SOLE CREATOR MARKETPLACE</p>
+            <p class="slogan-tagline">— Made by One, Shared with All.</p>
+            <p class="slogan-description">Authentic digital products<br>designed to inspire your projects<br>and daily life.</p>
         </section>
 
+        <!-- CATEGORY CARDS -->
         <section class="category-cards-section">
-            
+            <!-- CREATIVE & DESIGN CARD -->
             <div class="category-card creative-design-card">
                 <h2>CREATIVE & DESIGN</h2>
                 <div class="asset-grid">
-                    
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box ebook-icon-box">
-                            <i class="fas fa-book-open"></i> 
+                            <img src="assets/icons/ebook-icon.png" alt="Ebooks" onerror="this.style.display='none'">
+                            <i class="fas fa-book-open fallback-icon"></i>
                         </div>
                         <span>Ebooks</span>
                     </a>
                     
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box digital-art-icon-box">
-                            <i class="fas fa-paint-brush"></i>
+                            <img src="assets/icons/digital-art-icon.png" alt="Digital Art" onerror="this.style.display='none'">
+                            <i class="fas fa-paint-brush fallback-icon"></i>
                         </div>
                         <span>Digital Art</span>
                     </a>
 
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box social-icon-box">
-                            <i class="fas fa-desktop"></i>
+                            <img src="assets/icons/social-media-icon.png" alt="Social Media" onerror="this.style.display='none'">
+                            <i class="fas fa-desktop fallback-icon"></i>
                         </div>
-                        <span>Social Media Templates</span>
+                        <span>Social Media<br>Templates</span>
                     </a>
                     
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box wallpaper-icon-box">
-                            <i class="fas fa-image"></i>
+                            <img src="assets/icons/wallpaper-icon.png" alt="Wallpapers" onerror="this.style.display='none'">
+                            <i class="fas fa-image fallback-icon"></i>
                         </div>
-                        <span>Wallpapers/Backgrounds</span>
+                        <span>Wallpapers/<br>Backgrounds</span>
                     </a>
-
                 </div>
                 <a href="#" class="browse-button">Browse Assets</a>
             </div>
 
+            <!-- PRODUCTIVITY & BUSINESS CARD -->
             <div class="category-card productivity-business-card">
-                <h2>PRODUCTIVITY & BUISNESS</h2>
+                <h2>PRODUCTIVITY & BUSINESS</h2>
                 <div class="asset-grid">
-                    
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box guide-icon-box">
-                            <i class="fas fa-book"></i>
+                            <img src="assets/icons/guide-icon.png" alt="Guides" onerror="this.style.display='none'">
+                            <i class="fas fa-book fallback-icon"></i>
                         </div>
                         <span>Guides</span>
                     </a>
                     
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box notion-icon-box">
-                            <i class="fas fa-file-alt"></i>
+                            <img src="assets/icons/notion-icon.png" alt="Notion" onerror="this.style.display='none'">
+                            <i class="fas fa-file-alt fallback-icon"></i>
                         </div>
-                        <span>Notion Templates & Dashboards</span>
+                        <span>Notion Templates &<br>Dashboards</span>
                     </a>
 
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box calendar-icon-box">
-                            <i class="fas fa-calendar-alt"></i>
+                            <img src="assets/icons/calendar-icon.png" alt="Calendars" onerror="this.style.display='none'">
+                            <i class="fas fa-calendar-alt fallback-icon"></i>
                         </div>
-                        <span>Calendars & Schedules</span>
+                        <span>Calendars &<br>Schedules</span>
                     </a>
                     
                     <a href="#" class="asset-item">
                         <div class="asset-icon-box planner-icon-box">
-                            <i class="fas fa-clipboard-list"></i>
+                            <img src="assets/icons/planner-icon.png" alt="Planners" onerror="this.style.display='none'">
+                            <i class="fas fa-clipboard-list fallback-icon"></i>
                         </div>
-                        <span>Planners & Trackers</span>
+                        <span>Planners &<br>Trackers</span>
                     </a>
                 </div>
                 <a href="#" class="browse-button">Explore Tools</a>
             </div>
         </section>
 
+        <!-- BOTTOM BROWSE BUTTON -->
         <section class="bottom-browse-section">
             <a href="#" class="browse-marketplace-button">BROWSE MARKETPLACE</a>
         </section>
-
     </main>
-    
+
     <script src="script.js"></script>
 </body>
 </html>

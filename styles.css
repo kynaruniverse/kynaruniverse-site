@@ -1,272 +1,298 @@
-/* --- 1. CSS Variables & Reset --- */
+/* ===== CSS VARIABLES ===== */
 :root {
-    /* Color Palette based on the image */
-    --color-main-gold: #b39b6e;
-    --color-dark-text: #0a0a0a;
-    --color-light-bg: #f5f5f5;
-    --color-star-red: #490101; 
-    --color-card-border-red: #85406d; 
-    --color-card-border-green: #739d91; 
-    --color-icon-bg-pink: #fbe6ec; 
-    --color-icon-bg-darkpink: #e8c0cc;
-    --color-icon-bg-lightgreen: #e9f0e8;
-    --color-icon-bg-darkgreen: #c4d7d3;
-    --color-slogan-bg: #f7f3f0; /* Off-white/light beige */
-    --color-search-bg: #0b4e3e; /* Dark green for search bar area */
-    --color-subscribe-text: #d1b18c; /* Lighter/Gold text color for Subscribe button */
+    --color-main-gold: #a99369;
+    --color-dark-text: #000000;
+    --color-light-bg: #d3d3d3;
+    --color-star-red: #490101;
+    --color-card-border-red: #85406d;
+    --color-card-border-green: #5c8074;
+    --color-icon-bg-pink: #e6c5cf;
+    --color-icon-bg-darkpink: #d4adb9;
+    --color-icon-bg-lightgreen: #b5cdc4;
+    --color-icon-bg-darkgreen: #9db9ad;
+    --color-slogan-bg: #9d8f6e;
+    --color-search-bg: #1a5449;
+    --color-header-bg: #c4c4c4;
 }
 
+/* ===== GLOBAL RESET ===== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
     background-color: var(--color-light-bg);
+    min-height: 100vh;
 }
 
-.main-content-container {
-    max-width: 100%; /* Full width on mobile */
-    margin: 0 auto;
-    padding: 0 10px;
+/* ===== HEADER WRAPPER (Contains everything in top box) ===== */
+.header-wrapper {
+    background-color: var(--color-header-bg);
+    border-bottom: 4px solid #888;
+    margin-bottom: 30px;
 }
 
-/* --- 2. MOBILE-FIRST HEADER STYLES --- */
+/* ===== TOP HEADER ===== */
 .top-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: white;
-    border-bottom: 2px solid var(--color-main-gold);
+    padding: 15px 25px;
+    background-color: var(--color-header-bg);
 }
 
-/* Logo Area: Uses Flexbox to align the Burger/Logo side-by-side */
+/* LOGO AREA (Left side) */
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 12px;
 }
 
-/* 1. Kynar / Universe.co.uk Stacked Title */
-.site-title-container {
-    display: flex; 
-    align-items: center;
-}
-
-.site-title {
-    line-height: 1; /* Tighten up the lines of text */
-}
-
-.site-title .main-title {
-    font-size: 16px; /* Larger text: KYNAR */
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: var(--color-dark-text);
-}
-
-.site-title .sub-title {
-    font-size: 10px; /* Smaller text: UNIVERSE.CO.UK */
-    font-weight: normal;
-    text-transform: uppercase;
-    color: var(--color-dark-text);
-}
-
-/* 2. Custom Burger Icon Styling (Mimics the three-line icon) */
 .custom-burger {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 20px;
-    height: 16px;
+    width: 30px;
+    height: 22px;
     cursor: pointer;
-    /* menu-icon class is also on this element for JS to work */
 }
 
 .custom-burger span {
     display: block;
     width: 100%;
-    height: 3px;
-    background-color: var(--color-main-gold); /* Gold color for the lines */
-    border-radius: 1px;
+    height: 4px;
+    background-color: var(--color-main-gold);
+    border-radius: 2px;
 }
 
-/* The Stars: Adjusted size and spacing */
-.stars {
-    font-size: 7px;
+.site-title {
     line-height: 1;
-    margin-top: 2px;
+}
+
+.site-title .main-title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--color-dark-text);
+    margin: 0;
+}
+
+.site-title .sub-title {
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--color-dark-text);
+    letter-spacing: 0.5px;
+    margin: 2px 0 0 0;
+}
+
+.stars {
+    font-size: 10px;
+    line-height: 1;
+    margin-top: 4px;
 }
 
 .stars .fas {
-    color: var(--color-star-red); 
-    margin: 0 1px; /* Closer spacing between stars */
+    color: var(--color-star-red);
+    margin: 0 1px;
 }
 
+/* SLOGAN (Center) */
 .slogan-header {
-    /* Hidden on Mobile to save space */
-    display: none; 
+    font-style: italic;
+    font-size: 18px;
+    color: #1a5449;
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 20px;
+    display: none;
 }
 
-/* --- Sign In Area (Custom Lock and Key) --- */
+/* ACCOUNT AREA (Right side) */
 .account-area {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-/* This targets the div that holds your custom image */
 .custom-lock-icon {
-    width: 45px; /* Set dimensions for the image */
-    height: 45px;
-    /* CORRECTED PATH to your image */
-    background-image: url('assets/icons/images/log-in-icon.png'); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-dark-text);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.custom-lock-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .sign-in-link {
     text-decoration: none;
     color: var(--color-dark-text);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
-    line-height: 1.2;
+    text-align: center;
 }
 
-/* --- 3. MOBILE NAVIGATION (Hidden by default, will be revealed by JS) --- */
+/* ===== NAVIGATION BAR ===== */
 .main-nav {
     background-color: var(--color-main-gold);
-    /* Initially hidden on mobile view */
-    display: none; 
+    padding: 15px 0;
+    display: none;
+}
+
+.main-nav.active-menu {
+    display: block;
 }
 
 .main-nav ul {
     list-style: none;
     display: flex;
-    flex-direction: column; /* Stacked links on mobile */
-    padding: 10px 0;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
 }
 
 .main-nav ul li a {
     display: block;
-    padding: 10px 20px;
+    padding: 15px 30px;
     text-decoration: none;
     color: var(--color-dark-text);
     font-size: 14px;
     font-weight: bold;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
 }
 
-/* Removes the border from the very last link on mobile navigation */
 .main-nav ul li:last-child a {
     border-bottom: none;
 }
 
-/* --- CSS additions for JavaScript functionality --- */
-.main-nav.active-menu {
-    display: block;
-}
-
-/* --- 4. MOBILE SEARCH & SUBSCRIBE --- */
+/* ===== SEARCH & SUBSCRIBE BAR ===== */
 .search-subscribe-bar {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    padding: 10px 0;
-    background-color: var(--color-search-bg); /* Dark green background */
+    padding: 20px 15px;
+    background-color: var(--color-search-bg);
+    gap: 12px;
 }
 
-/* Search Box: Now rounded and colored */
 .search-box {
     display: flex;
-    border: 2px solid var(--color-main-gold);
-    background-color: white;
-    width: 90%; 
-    max-width: 400px;
-    height: 40px;
-    margin-bottom: 10px;
-    border-radius: 20px; /* Rounded Corners */
-    overflow: hidden; 
+    background-color: var(--color-search-bg);
+    width: 95%;
+    max-width: 550px;
+    height: 45px;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 3px solid var(--color-main-gold);
 }
 
 .search-box input {
     flex-grow: 1;
     border: none;
-    padding: 0 15px;
-    font-size: 14px;
+    padding: 0 20px;
+    font-size: 13px;
     outline: none;
     color: var(--color-dark-text);
+    background-color: var(--color-search-bg);
 }
 
 .search-box input::placeholder {
-    color: #666; 
+    color: var(--color-main-gold);
+    font-weight: bold;
 }
 
 .search-button {
-    /* Magnifying glass button styling */
-    background-color: transparent; 
+    background-color: transparent;
     border: none;
-    color: var(--color-main-gold); /* Gold magnifying glass color */
-    padding: 0 15px;
+    color: var(--color-main-gold);
+    padding: 0 20px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 22px;
 }
 
-
-/* Subscribe Button: Dark red/maroon with lighter text, neon glow effect */
 .subscribe-button {
-    background-color: var(--color-star-red); /* Dark red background */
-    color: var(--color-subscribe-text); /* Lighter/Gold text color */
+    background-color: var(--color-star-red);
+    color: #ffcc00;
     text-decoration: none;
-    padding: 8px 20px;
-    width: 90%;
+    padding: 12px 40px;
+    width: 95%;
+    max-width: 300px;
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-    border: 2px solid #ffcc00; /* Simulated neon glow border */
-    border-radius: 5px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
-    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
-    margin-left: 0;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border: 3px solid #ffcc00;
+    border-radius: 10px;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
 }
 
-/* --- 5. MOBILE SLOGAN BOX --- */
+/* ===== MAIN CONTENT ===== */
+.main-content-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ===== SLOGAN BOX ===== */
 .sole-creator-slogan {
-    background-color: var(--color-slogan-bg); 
-    border: 1px solid var(--color-main-gold);
+    background-color: var(--color-slogan-bg);
+    border: 3px solid var(--color-dark-text);
+    border-radius: 25px;
     width: 90%;
-    padding: 15px;
-    margin: 0 auto 20px;
-    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    padding: 30px;
     text-align: center;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-.sole-creator-slogan p:first-child {
+.slogan-title {
     font-weight: 800;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--color-dark-text);
 }
 
-/* --- 6. MOBILE CATEGORY CARDS --- */
+.slogan-tagline {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--color-dark-text);
+}
+
+.slogan-description {
+    font-size: 15px;
+    color: var(--color-dark-text);
+}
+
+/* ===== CATEGORY CARDS ===== */
 .category-cards-section {
     display: flex;
-    flex-direction: column; /* Stack the two cards vertically */
-    gap: 20px;
+    flex-direction: column;
+    gap: 30px;
     padding: 0 10px;
+    margin-bottom: 40px;
 }
 
 .category-card {
     background-color: white;
     width: 100%;
-    padding: 15px;
+    padding: 25px;
     text-align: center;
-    border: 2px solid; 
-    border-radius: 5px;
+    border: 4px solid;
+    border-radius: 20px;
 }
 
 .creative-design-card {
@@ -278,214 +304,267 @@ body {
 }
 
 .category-card h2 {
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: var(--color-dark-text);
+    font-weight: bold;
 }
 
 .asset-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Keep the 2x2 grid for assets */
-    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     margin-bottom: 30px;
 }
 
 .asset-item {
     text-decoration: none;
     color: var(--color-dark-text);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    font-style: italic;
 }
 
 .asset-icon-box {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 40px;
+    border: 3px solid;
+    position: relative;
+    transition: transform 0.2s;
 }
 
-/* Specific icon background styles (to mimic the image colors) */
-.ebook-icon-box, .social-icon-box {
+.asset-icon-box img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    position: absolute;
+}
+
+.asset-icon-box .fallback-icon {
+    display: none;
+    position: absolute;
+}
+
+.asset-icon-box img:not([src]),
+.asset-icon-box img[src=""] {
+    display: none;
+}
+
+.asset-item:hover .asset-icon-box {
+    transform: scale(1.05);
+}
+
+/* Icon Background Colors */
+.ebook-icon-box {
     background-color: var(--color-icon-bg-pink);
     border-color: var(--color-card-border-red);
 }
 
-.digital-art-icon-box, .wallpaper-icon-box {
+.digital-art-icon-box {
     background-color: var(--color-icon-bg-darkpink);
     border-color: var(--color-card-border-red);
 }
 
-.guide-icon-box, .calendar-icon-box {
+.social-icon-box {
+    background-color: var(--color-icon-bg-pink);
+    border-color: var(--color-card-border-red);
+}
+
+.wallpaper-icon-box {
+    background-color: var(--color-icon-bg-darkpink);
+    border-color: var(--color-card-border-red);
+}
+
+.guide-icon-box {
     background-color: var(--color-icon-bg-lightgreen);
     border-color: var(--color-card-border-green);
 }
 
-.notion-icon-box, .planner-icon-box {
+.notion-icon-box {
     background-color: var(--color-icon-bg-darkgreen);
     border-color: var(--color-card-border-green);
 }
 
-.notion-icon-box .fas {
-    border: 2px solid var(--color-dark-text);
-    padding: 2px 5px;
-    font-size: 18px;
-    font-weight: bold;
+.calendar-icon-box {
+    background-color: var(--color-icon-bg-lightgreen);
+    border-color: var(--color-card-border-green);
 }
 
+.planner-icon-box {
+    background-color: var(--color-icon-bg-darkgreen);
+    border-color: var(--color-card-border-green);
+}
 
-/* --- 7. BROWSE BUTTON STYLES (inside cards and at the bottom) --- */
+/* ===== BROWSE BUTTONS ===== */
 .browse-button {
-    width: 90%;
     background-color: var(--color-main-gold);
     color: var(--color-dark-text);
     text-decoration: none;
-    padding: 10px 30px;
+    padding: 15px 40px;
     font-weight: bold;
-    font-size: 14px;
-    border-radius: 5px;
+    font-size: 16px;
+    font-style: italic;
+    border-radius: 15px;
     display: inline-block;
-    margin-top: 10px;
-    border: 1px solid var(--color-main-gold);
+    width: 85%;
+    border: 2px solid var(--color-dark-text);
+    transition: all 0.3s;
 }
 
-/* --- 7. MOBILE BOTTOM BUTTON --- */
-.browse-marketplace-button {
-    width: 90%;
-    margin: 20px auto;
-    display: block;
+.browse-button:hover {
+    background-color: var(--color-dark-text);
+    color: var(--color-main-gold);
+}
+
+.bottom-browse-section {
     text-align: center;
+    margin: 50px 0 60px;
+}
+
+.browse-marketplace-button {
     background-color: var(--color-main-gold);
     color: var(--color-dark-text);
     text-decoration: none;
-    font-size: 16px;
-    padding: 15px 0;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    padding: 18px 60px;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 90%;
+    max-width: 550px;
+    border: 3px solid var(--color-dark-text);
+    transition: all 0.3s;
 }
 
-/* ========================================================= */
-/* --- 8. DESKTOP STYLES (Min-width: 768px) --- */
-/* ========================================================= */
+.browse-marketplace-button:hover {
+    background-color: var(--color-dark-text);
+    color: var(--color-main-gold);
+}
+
+/* ===== DESKTOP RESPONSIVE (768px and up) ===== */
 @media (min-width: 768px) {
-
     .main-content-container {
-        max-width: 1000px; /* Constrain width on desktop */
-        padding: 0 10px;
+        max-width: 1200px;
     }
 
-    /* --- Desktop Header --- */
     .top-header {
-        padding: 15px 20px;
+        padding: 20px 40px;
     }
-    
-    .logo-area {
-        width: 25%;
+
+    .custom-burger {
+        display: none;
     }
-    
+
     .site-title .main-title {
-        font-size: 18px;
+        font-size: 28px;
     }
 
     .site-title .sub-title {
-        font-size: 12px;
-    }
-    
-    .custom-burger {
-        /* The Hamburger Menu is hidden on desktop */
-        display: none; 
+        font-size: 14px;
     }
 
     .slogan-header {
-        /* Visible on desktop */
-        display: block; 
-        flex-grow: 1;
-        text-align: center;
-        font-style: italic;
-        font-size: 16px;
+        display: block;
+        font-size: 20px;
     }
 
-    .account-area {
-        width: 25%;
-        justify-content: flex-end; /* Align elements to the right */
+    .custom-lock-icon {
+        width: 60px;
+        height: 60px;
     }
 
-    /* --- Desktop Navigation --- */
+    .sign-in-link {
+        font-size: 12px;
+    }
+
     .main-nav {
-        /* Always visible on desktop */
-        display: block; 
+        display: block;
     }
-    
+
     .main-nav ul {
-        flex-direction: row; /* Horizontal links on desktop */
+        flex-direction: row;
         justify-content: center;
-        gap: 30px;
+        gap: 15px;
     }
 
     .main-nav ul li a {
-        padding: 5px 10px;
+        padding: 12px 20px;
         border-bottom: none;
-    }
-    
-    .main-nav ul li a:hover {
-        color: white; 
+        font-size: 13px;
     }
 
-    /* --- Desktop Search & Subscribe --- */
+    .main-nav ul li a:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
     .search-subscribe-bar {
-        flex-direction: row; /* Horizontal layout on desktop */
-        justify-content: flex-start; /* Aligns elements to the left */
-        align-items: center;
-        padding: 15px 10px;
+        flex-direction: row;
+        justify-content: center;
+        padding: 25px;
+        gap: 25px;
     }
 
     .search-box {
-        width: 60%;
-        max-width: 500px;
-        margin-bottom: 0;
-        margin-left: 20px; 
-    }
-    
-    .subscribe-button {
-        width: auto;
-        padding: 8px 25px;
-        margin-left: 15px;
-    }
-    
-    /* --- Desktop Slogan Box --- */
-    .sole-creator-slogan {
-        width: 65%;
+        width: 50%;
         max-width: 600px;
-        padding: 25px;
-        margin: 0 auto 40px;
-        font-size: 16px;
     }
 
-    /* --- Desktop Category Cards --- */
+    .subscribe-button {
+        width: auto;
+        max-width: none;
+        padding: 12px 50px;
+    }
+
+    .sole-creator-slogan {
+        width: 65%;
+        padding: 35px;
+    }
+
+    .slogan-title {
+        font-size: 20px;
+    }
+
     .category-cards-section {
-        flex-direction: row; /* Side-by-side cards */
-        gap: 30px;
-        padding: 0;
+        flex-direction: row;
+        gap: 35px;
+        justify-content: center;
     }
 
     .category-card {
         width: 45%;
-        padding: 20px;
+        max-width: 500px;
     }
 
-    /* --- Desktop Bottom Button --- */
+    .category-card h2 {
+        font-size: 22px;
+    }
+
+    .asset-grid {
+        gap: 25px;
+    }
+
+    .asset-icon-box {
+        width: 120px;
+        height: 120px;
+        font-size: 50px;
+    }
+
+    .asset-item {
+        font-size: 14px;
+    }
+
     .browse-marketplace-button {
         width: 50%;
-        margin: 0 auto 40px;
-        font-size: 16px;
-        padding: 15px 0;
+        font-size: 20px;
     }
-
 }
