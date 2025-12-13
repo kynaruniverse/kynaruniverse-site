@@ -57,7 +57,7 @@ a {
 
 /* Layout helpers */
 main {
-  padding-top: 9.5rem; /* topbar + nav + search strip */
+  padding-top: 11rem; /* topbar + nav + search strip */
 }
 
 /* Top brand strip */
@@ -147,7 +147,7 @@ main {
 /* Gold nav bar */
 .ku-header {
   position: fixed;
-  top: 2.4rem; /* height of topbar */
+  top: 2.8rem; /* height of topbar */
   left: 0;
   width: 100%;
   background: var(--nav-gold);
@@ -178,7 +178,7 @@ main {
 /* Teal search strip */
 .ku-search-strip {
   position: fixed;
-  top: 3.8rem;
+  top: 4.9rem;
   left: 0;
   width: 100%;
   background: var(--header-strip);
@@ -239,7 +239,7 @@ main {
 /* Dropdown menu using new toggle button */
 .ku-menu-dropdown {
   position: absolute;
-  top: 2.4rem; /* drop from topbar on mobile when needed */
+  top: 2.8rem; /* drop from topbar on mobile when needed */
   left: 1.25rem;
   background: #ffffff;
   border-radius: 0.75rem;
@@ -830,7 +830,7 @@ main {
   }
 
   main {
-    padding-top: 10rem; /* allow for taller stacked header */
+    padding-top: 11.5rem; /* allow for taller stacked header */
   }
 }
 
