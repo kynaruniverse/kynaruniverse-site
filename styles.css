@@ -12,6 +12,8 @@
     --color-icon-bg-lightgreen: #e9f0e8;
     --color-icon-bg-darkgreen: #c4d7d3;
     --color-slogan-bg: #f7f3f0; /* Off-white/light beige */
+    --color-search-bg: #0b4e3e; /* Dark green for search bar area */
+    --color-subscribe-text: #d1b18c; /* Lighter/Gold text color for Subscribe button */
 }
 
 * {
@@ -41,20 +43,66 @@ body {
     border-bottom: 2px solid var(--color-main-gold);
 }
 
-/* Logo Area: Stacked vertically on mobile */
+/* Logo Area: Uses Flexbox to align the Burger/Logo side-by-side */
 .logo-area {
     display: flex;
     align-items: center;
+    gap: 10px; 
 }
 
-.menu-icon {
-    font-size: 24px;
-    margin-right: 10px;
+/* 1. Kynar / Universe.co.uk Stacked Title */
+.site-title-container {
+    display: flex; 
+    align-items: center;
 }
 
-.site-title h1 {
-    font-size: 12px;
-    letter-spacing: 1px;
+.site-title {
+    line-height: 1; /* Tighten up the lines of text */
+}
+
+.site-title .main-title {
+    font-size: 16px; /* Larger text: KYNAR */
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--color-dark-text);
+}
+
+.site-title .sub-title {
+    font-size: 10px; /* Smaller text: UNIVERSE.CO.UK */
+    font-weight: normal;
+    text-transform: uppercase;
+    color: var(--color-dark-text);
+}
+
+/* 2. Custom Burger Icon Styling (Mimics the three-line icon) */
+.custom-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 16px;
+    cursor: pointer;
+    /* menu-icon class is also on this element for JS to work */
+}
+
+.custom-burger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-main-gold); /* Gold color for the lines */
+    border-radius: 1px;
+}
+
+/* The Stars: Adjusted size and spacing */
+.stars {
+    font-size: 7px;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.stars .fas {
+    color: var(--color-star-red); 
+    margin: 0 1px; /* Closer spacing between stars */
 }
 
 .slogan-header {
@@ -62,19 +110,30 @@ body {
     display: none; 
 }
 
-/* Sign In Area */
-.sign-in-link {
-    display: flex; /* Change to flex-row to fit better on mobile */
+/* --- Sign In Area (Custom Lock and Key) --- */
+.account-area {
+    display: flex;
     align-items: center;
+    gap: 5px;
+}
+
+/* This targets the div that holds your custom image */
+.custom-lock-icon {
+    width: 45px; /* Set dimensions for the image */
+    height: 45px;
+    /* CORRECTED PATH to your image */
+    background-image: url('assets/icons/images/log-in-icon.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.sign-in-link {
     text-decoration: none;
     color: var(--color-dark-text);
     font-size: 10px;
     font-weight: bold;
-}
-
-.sign-in-icon {
-    font-size: 20px;
-    margin-right: 5px;
+    line-height: 1.2;
 }
 
 /* --- 3. MOBILE NAVIGATION (Hidden by default, will be revealed by JS) --- */
@@ -100,49 +159,97 @@ body {
     font-weight: bold;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 /* Removes the border from the very last link on mobile navigation */
 .main-nav ul li:last-child a {
     border-bottom: none;
 }
 
 /* --- CSS additions for JavaScript functionality --- */
-
-/* This rule overrides the 'display: none' set earlier for mobile navigation. 
-   It is only applied when the 'active-menu' class is present. */
 .main-nav.active-menu {
-    display: block; 
+    display: block;
 }
-
 
 /* --- 4. MOBILE SEARCH & SUBSCRIBE --- */
 .search-subscribe-bar {
     display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-direction: column; 
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0;
+    background-color: var(--color-search-bg); /* Dark green background */
 }
 
+/* Search Box: Now rounded and colored */
 .search-box {
-    width: 90%; /* Take up most of the screen width */
+    display: flex;
+    border: 2px solid var(--color-main-gold);
+    background-color: white;
+    width: 90%; 
+    max-width: 400px;
     height: 40px;
     margin-bottom: 10px;
+    border-radius: 20px; /* Rounded Corners */
+    overflow: hidden; 
 }
 
+.search-box input {
+    flex-grow: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 14px;
+    outline: none;
+    color: var(--color-dark-text);
+}
+
+.search-box input::placeholder {
+    color: #666; 
+}
+
+.search-button {
+    /* Magnifying glass button styling */
+    background-color: transparent; 
+    border: none;
+    color: var(--color-main-gold); /* Gold magnifying glass color */
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* Subscribe Button: Dark red/maroon with lighter text, neon glow effect */
 .subscribe-button {
-    background-color: var(--color-star-red);
+    background-color: var(--color-star-red); /* Dark red background */
+    color: var(--color-subscribe-text); /* Lighter/Gold text color */
+    text-decoration: none;
+    padding: 8px 20px;
     width: 90%;
     text-align: center;
-    padding: 10px 0;
+    font-weight: bold;
     font-size: 14px;
+    letter-spacing: 1px;
+    border: 2px solid #ffcc00; /* Simulated neon glow border */
+    border-radius: 5px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
     margin-left: 0;
 }
 
 /* --- 5. MOBILE SLOGAN BOX --- */
 .sole-creator-slogan {
+    background-color: var(--color-slogan-bg); 
+    border: 1px solid var(--color-main-gold);
     width: 90%;
     padding: 15px;
     margin: 0 auto 20px;
     font-size: 14px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+}
+
+.sole-creator-slogan p:first-child {
+    font-weight: 800;
+    margin-bottom: 5px;
 }
 
 /* --- 6. MOBILE CATEGORY CARDS --- */
@@ -154,28 +261,118 @@ body {
 }
 
 .category-card {
+    background-color: white;
     width: 100%;
     padding: 15px;
+    text-align: center;
+    border: 2px solid; 
+    border-radius: 5px;
+}
+
+.creative-design-card {
+    border-color: var(--color-card-border-red);
+}
+
+.productivity-business-card {
+    border-color: var(--color-card-border-green);
+}
+
+.category-card h2 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: var(--color-dark-text);
 }
 
 .asset-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr; /* Keep the 2x2 grid for assets */
     gap: 15px;
+    margin-bottom: 30px;
 }
 
+.asset-item {
+    text-decoration: none;
+    color: var(--color-dark-text);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.asset-icon-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Specific icon background styles (to mimic the image colors) */
+.ebook-icon-box, .social-icon-box {
+    background-color: var(--color-icon-bg-pink);
+    border-color: var(--color-card-border-red);
+}
+
+.digital-art-icon-box, .wallpaper-icon-box {
+    background-color: var(--color-icon-bg-darkpink);
+    border-color: var(--color-card-border-red);
+}
+
+.guide-icon-box, .calendar-icon-box {
+    background-color: var(--color-icon-bg-lightgreen);
+    border-color: var(--color-card-border-green);
+}
+
+.notion-icon-box, .planner-icon-box {
+    background-color: var(--color-icon-bg-darkgreen);
+    border-color: var(--color-card-border-green);
+}
+
+.notion-icon-box .fas {
+    border: 2px solid var(--color-dark-text);
+    padding: 2px 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* --- 7. BROWSE BUTTON STYLES (inside cards and at the bottom) --- */
 .browse-button {
     width: 90%;
+    background-color: var(--color-main-gold);
+    color: var(--color-dark-text);
+    text-decoration: none;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid var(--color-main-gold);
 }
 
 /* --- 7. MOBILE BOTTOM BUTTON --- */
 .browse-marketplace-button {
     width: 90%;
     margin: 20px auto;
+    display: block;
+    text-align: center;
+    background-color: var(--color-main-gold);
+    color: var(--color-dark-text);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 0;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* ========================================================= */
 /* --- 8. DESKTOP STYLES (Min-width: 768px) --- */
-/* These styles override the mobile styles when the screen is larger than 768px */
 /* ========================================================= */
 @media (min-width: 768px) {
 
@@ -193,11 +390,15 @@ body {
         width: 25%;
     }
     
-    .site-title h1 {
-        font-size: 14px;
+    .site-title .main-title {
+        font-size: 18px;
     }
 
-    .menu-icon {
+    .site-title .sub-title {
+        font-size: 12px;
+    }
+    
+    .custom-burger {
         /* The Hamburger Menu is hidden on desktop */
         display: none; 
     }
@@ -207,20 +408,13 @@ body {
         display: block; 
         flex-grow: 1;
         text-align: center;
+        font-style: italic;
+        font-size: 16px;
     }
 
     .account-area {
         width: 25%;
-    }
-    
-    .sign-in-link {
-        /* Stacked text/icon on desktop */
-        flex-direction: column; 
-    }
-
-    .sign-in-icon {
-        font-size: 30px;
-        margin-right: 0;
+        justify-content: flex-end; /* Align elements to the right */
     }
 
     /* --- Desktop Navigation --- */
@@ -241,24 +435,27 @@ body {
     }
     
     .main-nav ul li a:hover {
-        color: white; /* Hover effect added */
+        color: white; 
     }
 
     /* --- Desktop Search & Subscribe --- */
     .search-subscribe-bar {
         flex-direction: row; /* Horizontal layout on desktop */
-        padding: 20px 0;
+        justify-content: flex-start; /* Aligns elements to the left */
+        align-items: center;
+        padding: 15px 10px;
     }
 
     .search-box {
         width: 60%;
         max-width: 500px;
         margin-bottom: 0;
+        margin-left: 20px; 
     }
     
     .subscribe-button {
         width: auto;
-        padding: 10px 25px;
+        padding: 8px 25px;
         margin-left: 15px;
     }
     
