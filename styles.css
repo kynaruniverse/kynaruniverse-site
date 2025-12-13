@@ -350,16 +350,6 @@ body {
     position: absolute;
 }
 
-.asset-icon-box .fallback-icon {
-    display: none;
-    position: absolute;
-}
-
-.asset-icon-box img:not([src]),
-.asset-icon-box img[src=""] {
-    display: none;
-}
-
 .asset-item:hover .asset-icon-box {
     transform: scale(1.05);
 }
