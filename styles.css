@@ -100,6 +100,19 @@ body {
     font-weight: bold;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+/* Removes the border from the very last link on mobile navigation */
+.main-nav ul li:last-child a {
+    border-bottom: none;
+}
+
+/* --- CSS additions for JavaScript functionality --- */
+
+/* This rule overrides the 'display: none' set earlier for mobile navigation. 
+   It is only applied when the 'active-menu' class is present. */
+.main-nav.active-menu {
+    display: block; 
+}
+
 
 /* --- 4. MOBILE SEARCH & SUBSCRIBE --- */
 .search-subscribe-bar {
