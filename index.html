@@ -1,275 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>The Innovator's Vault – Digital Product Marketplace</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Innovator's Vault is a curated digital marketplace for utility and creative tools – Notion systems, planners, scripts, art assets, and learning resources." />
-  <link rel="stylesheet" href="styles.css" />
-  <link
-  
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-      <link
-    rel="stylesheet"
-    
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYNAR Universe - Digital Goods Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <!-- Top brand strip -->
-  <div class="ku-topbar">
-    <div class="ku-topbar-inner">
-      <button class="ku-topbar-menu" id="ku-menu-toggle" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
 
-      <a href="index.html" class="ku-topbar-logo">
-        <span class="ku-logo-word">KYNAR</span>
-        <span class="ku-logo-sub">UNIVERSE.CO.UK</span>
-      </a>
+    <header class="top-header">
+        <div class="logo-area">
+            <i class="fas fa-bars menu-icon"></i>
+            <div class="site-title">
+                <h1>KYNAR UNIVERSE.CO.UK</h1>
+                <p class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </p>
+            </div>
+        </div>
 
-      <p class="ku-topbar-tagline">Unlock the Universe of Digital Goods</p>
+        <div class="slogan-header">
+            Unlock the Universe of Digital Goods
+        </div>
 
-      <a href="#" class="ku-topbar-signin">
-        <span class="ku-signin-icon"></span>
-        <span class="ku-signin-text">Sign in</span>
-      </a>
-    </div>
-  </div>
+        <div class="account-area">
+            <a href="#" class="sign-in-link">
+                <i class="fas fa-lock sign-in-icon"></i>
+                <span>SIGN IN</span>
+            </a>
+        </div>
+    </header>
 
-  <!-- Gold navigation bar -->
-  <header class="ku-header">
-    <nav class="ku-nav-main">
-      <a href="products.html">Marketplace</a>
-      <a href="blog.html">Journal</a>
-      <a href="#community">Community</a>
-      <a href="#account">My Account/Dashboard</a>
-      <a href="#about">About</a>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#">MARKETPLACE</a></li>
+            <li><a href="#">JOURNAL</a></li>
+            <li><a href="#">COMMUNITY</a></li>
+            <li><a href="#">MY ACCOUNT/DASHBOARD</a></li>
+            <li><a href="#">ABOUT</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <!-- Teal search + subscribe strip -->
-  <div class="ku-search-strip">
-    <button class="ku-search-pill">
-      <span>Search kynaruniverse.co.uk</span>
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-    <a href="freebies.html" class="ku-subscribe-btn">
-      SUBSCRIBE
-    </a>
+    <main class="main-content-container">
 
-    <div class="ku-menu-dropdown" id="ku-menu-dropdown">
-      <a href="index.html">Home</a>
-      <a href="products.html">Marketplace</a>
-      <a href="freebies.html">Free Starter Kit</a>
-      <a href="blog.html">Journal</a>
-      <a href="index.html#about">About</a>
-    </div>
-  </div>
-  
-      <main id="top">
-    <!-- Gold hero card -->
-    <section class="ku-hero-main">
-      <div class="ku-hero-main-inner">
-        <h1>SOLE CREATOR MARKETPLACE</h1>
-        <p>Made by one, shared with all.</p>
-        <p>Authentic digital products designed to inspire your projects and daily life.</p>
-      </div>
-    </section>
+        <section class="search-subscribe-bar">
+            <div class="search-box">
+                <input type="text" placeholder="SEARCH KYNARUNIVERSE.CO.UK">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <a href="#" class="subscribe-button">SUBSCRIBE</a>
+        </section>
 
-        <!-- Twin pillar panels -->
-    <section class="ku-pillars">
-      <div class="ku-pillar ku-pillar-creative">
-        <h2>Creative &amp; Design</h2>
-        
-        <div class="ku-pillar-grid">
-          <article class="ku-pillar-tile ku-tile-creative">
-            <h3>Ebooks</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-creative">
-            <h3>Digital Art</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-creative">
-            <h3>Social Media Templates</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-creative">
-            <h3>Wallpapers &amp; Backgrounds</h3>
-          </article>
-        </div>
-        
-        <a href="products.html#creative" class="ku-pillar-cta">Browse Assets</a>
-      </div>
-      
-      <div class="ku-pillar ku-pillar-productivity">
-        <h2>Productivity &amp; Business</h2>
-        
-        <div class="ku-pillar-grid">
-          <article class="ku-pillar-tile ku-tile-productivity">
-            <h3>Guides</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-productivity">
-            <h3>Notion Templates &amp; Dashboards</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-productivity">
-            <h3>Calendars &amp; Schedules</h3>
-          </article>
-          <article class="ku-pillar-tile ku-tile-productivity">
-            <h3>Planners &amp; Trackers</h3>
-          </article>
-        </div>
-        
-        <a href="products.html#utility" class="ku-pillar-cta">Explore Tools</a>
-      </div>
-    </section>
-    
-    <!-- Bottom Browse Marketplace bar -->
-    <section class="ku-bottom-bar">
-      <a href="products.html" class="ku-bottom-bar-link">
-        Browse Marketplace
-      </a>
-    </section>
+        <section class="sole-creator-slogan">
+            <p><strong>SOLE CREATOR MARKETPLACE</strong></p>
+            <p>&mdash; Made by One, Shared with All.</p>
+            <p>Authentic digital products designed to inspire your projects and daily life.</p>
+        </section>
 
-    <section id="freebie" class="ku-section ku-starter">
-      <div class="ku-section-head">
-        <h2>Get the Ultimate Digital Creator Quick‑Start Kit</h2>
-        <p>A bundled entry point that mixes one Utility system with one Creative toolkit, plus extra supporting freebies.</p>
-      </div>
+        <section class="category-cards-section">
+            
+            <div class="category-card creative-design-card">
+                <h2>CREATIVE & DESIGN</h2>
+                <div class="asset-grid">
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box ebook-icon-box">
+                            <i class="fas fa-book-open"></i> 
+                        </div>
+                        <span>Ebooks</span>
+                    </a>
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box digital-art-icon-box">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <span>Digital Art</span>
+                    </a>
 
-      <div class="ku-starter-main">
-        <div class="ku-starter-copy">
-          <h3>What’s included</h3>
-          <ul>
-            <li><strong>Utility (Emerald):</strong> Mini Notion Life OS – 1‑page daily dashboard or One‑Page Annual Planner.</li>
-            <li><strong>Creative (Burgundy):</strong> 5 Signature Procreate Brushes or equivalent digital creative starter.</li>
-            <li>10 AI prompts for focus &amp; creativity (PDF).</li>
-            <li>Printable daily planner (A4 PDF).</li>
-            <li>Python basics cheatsheet (A4 PDF).</li>
-            <li>Worldbuilding checklist for fiction (A4 PDF).</li>
-          </ul>
-          <p class="ku-starter-note">
-            Use everything separately or together as a compact “starter stack” for your digital life.
-          </p>
-        </div>
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box social-icon-box">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>Social Media Templates</span>
+                    </a>
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box wallpaper-icon-box">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <span>Wallpapers/Backgrounds</span>
+                    </a>
 
-        <div class="ku-starter-links">
-          <h3>Instant download links</h3>
-          <ul>
-            <li>
-              <strong>Mini Notion Life OS dashboard</strong> –
-              <a
-                class="ku-freebie-link"
-                href="https://palm-wizard-7c2.notion.site/Mini-Life-OS-Daily-Dashboard-2c55209b14c2807ea3ebf9dc0c7d5e77?source=copy_link"
-                target="_blank"
-                rel="noopener">
-                open the 1‑page daily control centre
-              </a>
-            </li>
-            <li>
-              <strong>10 AI prompts for focus &amp; creativity</strong> –
-              <a
-                class="ku-freebie-link"
-                href="assets/10-ai-prompts.pdf"
-                download
-                target="_blank"
-                rel="noopener">
-                download the PDF
-              </a>
-            </li>
-            <li>
-              <strong>Printable daily planner</strong> –
-              <a
-                class="ku-freebie-link"
-                href="assets/kynar-daily-planner.pdf"
-                download
-                target="_blank"
-                rel="noopener">
-                download the 1‑page planner
-              </a>
-            </li>
-            <li>
-              <strong>Python basics cheatsheet</strong> –
-              <a
-                class="ku-freebie-link"
-                href="assets/python-basic-cheatsheet.pdf"
-                download
-                target="_blank"
-                rel="noopener">
-                download the quick‑reference PDF
-              </a>
-            </li>
-            <li>
-              <strong>Worldbuilding checklist</strong> –
-              <a
-                class="ku-freebie-link"
-                href="assets/worldbuilding-checklist.pdf"
-                download
-                target="_blank"
-                rel="noopener">
-                download the 1‑page worldbuilding guide
-              </a>
-            </li>
-          </ul>
+                </div>
+                <a href="#" class="browse-button">Browse Assets</a>
+            </div>
 
-          <div class="ku-email-form">
-            <p class="ku-email-intro">Prefer everything in one email?</p>
-            <script async data-uid="755c21d10f" src="https://kynar-universe.kit.com/755c21d10f/index.js"></script>
-            <p class="ku-email-note">
-              If you don’t see the email in a few minutes, check Spam or Promotions and move it to your main inbox, then add kynaruniverse@gmail.com to your contacts.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+            <div class="category-card productivity-business-card">
+                <h2>PRODUCTIVITY & BUISNESS</h2>
+                <div class="asset-grid">
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box guide-icon-box">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <span>Guides</span>
+                    </a>
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box notion-icon-box">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span>Notion Templates & Dashboards</span>
+                    </a>
 
-    <section id="about" class="ku-section ku-about">
-      <h2>About The Innovator's Vault</h2>
-      <div class="ku-about-body">
-        <p>
-          The Innovator’s Vault is a high‑end, single‑creator marketplace for digital tools that sit at the intersection of Utility and Creativity.
-        </p>
-        <p>
-          Each product starts as a real workflow inside Kynar Universe – then gets refined into templates, scripts, and assets that anyone can plug into their own life.
-        </p>
-        <div class="ku-about-meta">
-          <div>
-            <h3>Utility pillar</h3>
-            <p>Life OS systems, planners, automation, and financial tools focused on efficiency, clarity, and stability.</p>
-          </div>
-          <div>
-            <h3>Creative pillar</h3>
-            <p>Brushes, presets, branding kits, and learning resources built to expand your visual style and storytelling.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box calendar-icon-box">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <span>Calendars & Schedules</span>
+                    </a>
+                    
+                    <a href="#" class="asset-item">
+                        <div class="asset-icon-box planner-icon-box">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <span>Planners & Trackers</span>
+                    </a>
+                </div>
+                <a href="#" class="browse-button">Explore Tools</a>
+            </div>
+        </section>
 
-  <footer class="ku-footer">
-    <p>© The Innovator's Vault • Part of Kynar Universe. Digital tools for utility and creative work. 2025</p>
-  </footer>
-  <script>
-  const toggle = document.getElementById('ku-menu-toggle');
-  const menu = document.getElementById('ku-menu-dropdown');
+        <section class="bottom-browse-section">
+            <a href="#" class="browse-marketplace-button">BROWSE MARKETPLACE</a>
+        </section>
 
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const isOpen = menu.style.display === 'flex';
-      menu.style.display = isOpen ? 'none' : 'flex';
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && e.target !== toggle) {
-        menu.style.display = 'none';
-      }
-    });
-  }
-</script>
+    </main>
 </body>
 </html>
