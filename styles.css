@@ -487,11 +487,11 @@ body {
     }
     
     /* Branding */
-    .site-branding .main-title {
+    .site-title .main-title {
         font-size: 32px;
     }
     
-    .site-branding .sub-title {
+    .site-title .sub-title {
         font-size: 14px;
     }
     
