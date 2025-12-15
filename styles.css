@@ -179,6 +179,7 @@ body {
 /* ===== NAVIGATION BAR ===== */
 .main-nav {
     background-color: var(--color-main-gold);
+    overflow-x: auto;
     padding: 12px 0;
     border-top: 1px solid rgba(0,0,0,0.12);
     border-bottom: 1px solid rgba(0,0,0,0.12);
@@ -192,6 +193,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 32px;
+    min-width: max-content;
 }
 
 .main-nav ul li a {
