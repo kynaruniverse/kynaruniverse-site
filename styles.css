@@ -169,6 +169,7 @@ body {
 
 /* Stars */
 .stars {
+    font-family: 'bantayog', var(--font-family-body);
     font-size: 7px;
     line-height: 1;
     margin-top: 1px;
@@ -225,6 +226,7 @@ body {
     transition: color 0.2s ease;
     text-decoration: none;
     color: var(--color-dark-text);
+    font-family: 'bantayog', var(--font-family-body);
     font-size: var(--font-size-small);
     font-weight: bold;
     text-align: center;
@@ -259,6 +261,7 @@ body {
     padding: 6px 20px;
     text-decoration: none;
     color: var(--color-dark-text);
+    font-family: 'bantayog', var(--font-family-body);
     font-size: 14px;
     letter-spacing: 0.12em;
     font-weight: 700;
@@ -304,6 +307,7 @@ body {
     border: none;
     padding: 0 20px;
     font-size: 14px;
+    font-family: 'bantayog', var(--font-family-body);
     font-weight: 600;
     outline: none;
     color: #ffffff;
@@ -327,6 +331,7 @@ body {
     color: #d3b36d;
     padding: 0 20px;
     cursor: pointer;
+    font-family: 'bantayog', var(--font-family-body);
     font-size: 22px;
 }
 
@@ -382,6 +387,7 @@ body {
 
 .slogan-title {
     font-weight: 800;
+    font-family: 'bantayog', var(--font-family-body);
     font-size: var(--font-size-hero-title);
     margin: 6px 0 10px;
     color: var(--color-dark-text);
