@@ -298,7 +298,7 @@ body {
 }
 
 .subscribe-button {
-    background-color: black;
+    background-color: darkred;
     color: #ffcc00;
     text-decoration: none;
     flex: 0 1 20%;
