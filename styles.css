@@ -8,6 +8,15 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Jimmy Flashcard';
+    src: url('fonts/Jimmy Flashcard.woff2') format('woff2'),
+         url('fonts/Jimmy Flashcard.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* Colors */
     --color-main-gold: #a99369;
@@ -182,6 +191,7 @@ body {
 
 /* SLOGAN (Center desktop only) */
 .slogan-header {
+    font-family: 'Jimmy Flashcard', var(--font-family-body);
     font-style: italic;
     font-size: 12px;
     color: var(--color-search-bg);
