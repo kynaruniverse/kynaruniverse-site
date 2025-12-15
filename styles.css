@@ -179,9 +179,20 @@ body {
 /* Stars */
 .stars {
     font-family: 'bantayog', var(--font-family-body);
-    font-size: 7px;
+    font-size: 8px;
+    letter-spacing: 0.35em;
     line-height: 1;
-    margin-top: 1px;
+    margin-top: 2px;
+    background: linear-gradient(
+        to right,
+        #a99369,   /* gold */
+        #004833,   /* forest green */
+        #490101    /* burgundy red */
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .stars .fas {
