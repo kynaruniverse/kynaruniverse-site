@@ -54,14 +54,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 12px 20px;
-    background-color: var(--color-header-bg);
+    background-color: transparent;
 }
 
 /* LOGO AREA (Left side) */
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
 .custom-burger {
@@ -82,7 +82,7 @@ body {
 }
 
 .site-title {
-    line-height: 1.1;
+    line-height: 1.05;
 }
 
 .site-title .main-title {
@@ -97,10 +97,10 @@ body {
 
 .site-title .sub-title {
     font-family: 'Bantayog', Arial, sans-serif;
-    font-size: 11px;
+    font-size: 9px;
     font-weight: normal;
     color: var(--color-dark-text);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     opacity: 0.85;
     margin: 2px 0 0 0;
@@ -174,8 +174,9 @@ body {
 /* ===== NAVIGATION BAR ===== */
 .main-nav {
     background-color: var(--color-main-gold);
-    padding: 15px 0;
-    display: none;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
 }
 
 .main-nav.active-menu {
@@ -183,11 +184,9 @@ body {
 }
 
 .main-nav ul {
-    list-style: none;
     display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
+    justify-content: center;
+    gap: 32px;
 }
 
 .main-nav ul li a {
@@ -196,7 +195,8 @@ body {
     text-decoration: none;
     color: var(--color-dark-text);
     font-size: 14px;
-    font-weight: bold;
+    letter-spacing: 0.12em;
+    font-weight: 700;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -215,22 +215,23 @@ body {
 /* ===== SEARCH & SUBSCRIBE BAR ===== */
 .search-subscribe-bar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding: 20px 15px;
+    justify-content: center;
+    gap: 16px;
+    padding: 14px 15px 20px;
     background-color: var(--color-search-bg);
-    gap: 12px;
 }
 
 .search-box {
     display: flex;
-    background-color: #ffffff;
+    background-color: #004833;
     width: 95%;
     max-width: 550px;
     height: 45px;
     border-radius: 999px;
     overflow: hidden;
-    border: 2px solid var(--color-main-gold);
+    border: 0;
 }
 
 .search-box input {
@@ -239,19 +240,19 @@ body {
     padding: 0 20px;
     font-size: 13px;
     outline: none;
-    color: var(--color-dark-text);
+    color: #ffffff;
     background-color: transparent;
 }
 
 .search-box input::placeholder {
-    color: var(--color-main-gold);
-    font-weight: bold;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
 }
 
 .search-button {
     background-color: transparent;
     border: none;
-    color: var(--color-main-gold);
+    color: #d3b36d;
     padding: 0 20px;
     cursor: pointer;
     font-size: 22px;
@@ -262,7 +263,7 @@ body {
 }
 
 .subscribe-button {
-    background-color: var(--color-star-red);
+    background-color: transparent;
     color: #ffcc00;
     text-decoration: none;
     padding: 12px 40px;
@@ -272,10 +273,10 @@ body {
     font-weight: bold;
     font-size: 16px;
     letter-spacing: 2px;
-    border: 3px solid #ffcc00;
+    border: 2px solid #ffcc00;
     border-radius: 999px;
     text-shadow: none;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0px 8px rgba(255, 204, 0, 0.85);
 }
 
 /* ===== MAIN CONTENT ===== */
