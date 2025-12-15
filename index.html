@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KYNAR Universe: The Sole Creator Marketplace for authentic digital goods, including e‑books, art, templates, and productivity tools.">
-    <title>KYNAR Universe - Digital Goods Marketplace</title>
+    <meta name="description"
+          content="KYNAR Universe: The Sole Creator Marketplace for authentic digital goods, including e‑books, art, templates, and productivity tools.">
+    <title>KYNAR Universe – Digital Goods Marketplace</title>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           crossorigin="anonymous">
 </head>
 <body>
-    
+
+    <!-- Header band: logo, nav, search -->
     <div class="header-wrapper">
-        
+
+        <!-- Top bar: burger, logo, slogan, sign-in -->
         <header class="top-header">
             <div class="logo-area">
-                <button class="menu-icon custom-burger" aria-label="Toggle navigation menu" type="button">
+                <button class="menu-icon custom-burger"
+                        type="button"
+                        aria-label="Toggle navigation menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                
+
                 <div class="site-title">
                     <a href="/" class="site-title-link" aria-label="KYNAR Universe homepage">
                         <h1 class="main-title">Kynar</h1>
                         <p class="sub-title">UNIVERSE.CO.UK</p>
                     </a>
-                    <figure class="stars" role="img" aria-label="Five star rating">
+
+                    <figure class="stars" aria-label="Five star rating">
                         <i class="fas fa-star" aria-hidden="true"></i>
                         <i class="fas fa-star" aria-hidden="true"></i>
                         <i class="fas fa-star" aria-hidden="true"></i>
@@ -46,13 +53,14 @@
                     <span class="custom-lock-icon">
                         <img src="log-in-icon.png" alt="User sign in">
                     </span>
-                    <span class="sign-in-text">SIGN IN</span>
+                    <span class="sign-in-text">Sign in</span>
                 </a>
             </div>
         </header>
 
+        <!-- Primary navigation -->
         <nav class="main-nav" aria-label="Primary site navigation">
-            <ul role="list">
+            <ul>
                 <li><a href="#">Marketplace</a></li>
                 <li><a href="#">Journal</a></li>
                 <li><a href="#">Community</a></li>
@@ -61,6 +69,7 @@
             </ul>
         </nav>
 
+        <!-- Search + subscribe row -->
         <section class="search-subscribe-bar" aria-label="Search and subscription">
             <form class="search-box" role="search" aria-label="Site search">
                 <input
@@ -72,11 +81,14 @@
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </button>
             </form>
+
             <a href="#" class="subscribe-button">Subscribe</a>
         </section>
     </div>
 
+    <!-- Main content -->
     <main class="main-content-container">
+        <!-- Hero / slogan -->
         <section class="sole-creator-slogan" aria-label="Sole Creator Marketplace slogan">
             <p class="slogan-title">Sole Creator Marketplace</p>
             <p class="slogan-tagline">Digital goods, crafted by one, shared with all.</p>
@@ -85,20 +97,21 @@
             </p>
         </section>
 
+        <!-- Category cards -->
         <section class="category-cards-section" aria-labelledby="category-cards-heading">
-            <h2 id="category-cards-heading" class="visually-hidden">Product categories</h2> 
-            
-            <div class="category-card creative-design-card">
+            <h2 id="category-cards-heading" class="visually-hidden">Product categories</h2>
+
+            <article class="category-card creative-design-card">
                 <h3>Creative &amp; Design Assets</h3>
+
                 <div class="asset-grid">
-                    
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box ebook-icon-box">
-                            <img src="assets/icons/ebook-icon.jpeg" alt="Ebooks">
+                            <img src="ebook-icon.jpeg" alt="Ebooks">
                         </figure>
                         <span>Ebooks</span>
                     </a>
-                    
+
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box digital-art-icon-box">
                             <img src="digital-art-icon.png" alt="Digital art">
@@ -112,7 +125,7 @@
                         </figure>
                         <span>Social Media Templates</span>
                     </a>
-                    
+
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box wallpaper-icon-box">
                             <img src="wallpaper-icon.png" alt="Wallpapers and backgrounds">
@@ -120,20 +133,21 @@
                         <span>Wallpapers &amp; Backgrounds</span>
                     </a>
                 </div>
-                <a href="#" class="browse-button">Browse Creative Assets</a>
-            </div>
 
-            <div class="category-card productivity-business-card">
+                <a href="#" class="browse-button">Browse Creative Assets</a>
+            </article>
+
+            <article class="category-card productivity-business-card">
                 <h3>Productivity &amp; Business Tools</h3>
+
                 <div class="asset-grid">
-                    
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box guide-icon-box">
                             <img src="guide-icon.png" alt="Guides">
                         </figure>
                         <span>Guides</span>
                     </a>
-                    
+
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box notion-icon-box">
                             <img src="notion-icon.png" alt="Notion templates and dashboards">
@@ -147,7 +161,7 @@
                         </figure>
                         <span>Calendars &amp; Schedules</span>
                     </a>
-                    
+
                     <a href="#" class="asset-item">
                         <figure class="asset-icon-box planner-icon-box">
                             <img src="planner-icon.png" alt="Planners and trackers">
@@ -155,15 +169,18 @@
                         <span>Planners &amp; Trackers</span>
                     </a>
                 </div>
+
                 <a href="#" class="browse-button">Explore Productivity Tools</a>
-            </div>
+            </article>
         </section>
 
+        <!-- Primary CTA -->
         <section class="bottom-browse-section">
             <a href="#" class="browse-marketplace-button">Browse Marketplace</a>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer" aria-label="Site footer">
         <p>© 2025 KYNAR Universe. All rights reserved.</p>
         <nav aria-label="Footer navigation">
