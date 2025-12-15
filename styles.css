@@ -452,22 +452,51 @@ body {
 }
 
 .category-card {
-    background-color: white;
     width: 100%;
     padding: 25px;
     text-align: center;
-    border: 2px solid;
+    border: none;
     border-radius: var(--radius-card);
     flex: 0 0 80%;
     scroll-snap-align: start;
+    
+    /* raised / 3D effect */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+    transform: translateY(0);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.creative-design-card {
-    border-color: var(--color-card-border-red);
+/* Per‑card background colours */
+.planning-productivity-card {
+    background: #f8ecda;            /* soft gold/beige */
 }
 
-.productivity-business-card {
-    border-color: var(--color-card-border-green);
+.printables-homeschool-card {
+    background: #e3f0e7;            /* soft green */
+}
+
+.colouring-creativity-card {
+    background: #f7e5f0;            /* soft pink */
+}
+
+.templates-systems-card {
+    background: #e4e6f7;            /* soft indigo */
+}
+
+.prompts-content-card {
+    background: #f6f2e3;            /* soft cream */
+}
+
+.audio-focus-card {
+    background: #e2f3f5;            /* soft teal */
+}
+
+.code-automation-card {
+    background: #e7e8ed;            /* soft grey‑blue */
+}
+
+.resource-libraries-card {
+    background: #f0ebe5;            /* warm neutral */
 }
 
 .category-card h3 {
