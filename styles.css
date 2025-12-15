@@ -129,7 +129,7 @@ body {
 
 /* Logo text */
 .site-title {
-    line-height: 1px;
+    line-height: 1;
 }
 
 .site-title-link {
@@ -159,7 +159,7 @@ body {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     opacity: 0.85;
-    margin-top: 1px;
+    margin-top: -2px;
 }
 
 /* Stars */
