@@ -90,6 +90,12 @@ body {
     border-radius: 3px;
 }
 
+.menu-icon {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
 .site-title {
     line-height: 1.05;
 }
