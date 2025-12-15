@@ -249,7 +249,6 @@ body {
 .sign-in-link:hover {
     color: var(--color-star-red);
 }
-
 /* ===== NAVIGATION BAR ===== */
 .main-nav {
     background-color: var(--color-main-gold);
@@ -348,7 +347,7 @@ body {
     background-color: transparent;
     border: none;
     color: #d3b36d;
-    padding: 0 20px;
+    padding: 0 10px;
     cursor: pointer;
     font-family: 'bantayog', var(--font-family-body);
     font-size: 22px;
