@@ -240,6 +240,8 @@ body {
 .main-nav {
     background-color: var(--color-main-gold);
     overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     padding: 2px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -268,7 +270,7 @@ body {
     font-size: 12px;
     letter-spacing: 0.12em;
     font-weight: 700;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: none;
     text-transform: uppercase;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -665,6 +667,10 @@ body {
         background-color: rgba(0, 0, 0, 0.06);
         color: var(--color-star-red);
     }
+    
+    .main-nav::-webkit-scrollbar {
+    display: none;            /* Chrome, Safari, Opera */
+}
 
     /* Search + subscribe (desktop) */
     .search-subscribe-bar {
