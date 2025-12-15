@@ -302,8 +302,8 @@ body {
 .search-subscribe-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-sm);
+    justify-content: flex-start;
+    gap: 10px;
     padding: 8px 3% 10px;
     background-color: var(--color-header-bg);
 }
@@ -312,8 +312,8 @@ body {
 .search-box {
     display: flex;
     background-color: #004833;
-    flex: 0 1 70%;
-    max-width: 70%;
+    flex: 1 1 auto;
+    max-width: none;
     height: 35px;
     border-radius: var(--radius-pill);
     overflow: hidden;
@@ -372,7 +372,8 @@ body {
     background-color: darkred;
     color: #ffcc00;
     text-decoration: none;
-    flex: 0 1 20%;
+    flex: 0 0 auto;
+    margin-left: 8px;
     max-width: 20%;
     padding: 8px 0;
     text-align: center;
