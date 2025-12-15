@@ -443,13 +443,16 @@ body {
 /* ===== CATEGORY CARDS ===== */
 .category-cards-section {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 0 10px;
-    margin-bottom: 40px;
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 0 10px 20px;
+    scroll-snap-type: x mandatory;
 }
 
 .category-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
     background-color: white;
     width: 100%;
     padding: 25px;
@@ -746,12 +749,14 @@ body {
     /* Category cards */
     .category-cards-section {
         flex-direction: row;
+        overflow-x: visible;
         gap: 35px;
         justify-content: center;
         padding: 0;
     }
 
     .category-card {
+        flex: 1 1 0;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
         border-radius: 18px;
         width: 45%;
