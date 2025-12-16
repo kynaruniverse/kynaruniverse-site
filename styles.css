@@ -458,12 +458,13 @@ body {
 }
 
 .category-card {
-    width: 100%;
+    width: 85%;
+    max-width: 320px;
     padding: 25px;
     text-align: center;
     border: none;
     border-radius: var(--radius-card);
-    flex: 0 0 80%;
+    flex: 0 0 auto;
     scroll-snap-align: start;
 
     /* make card a flex column */
