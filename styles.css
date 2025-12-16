@@ -428,7 +428,7 @@ body {
     font-weight: 800;
     font-family: 'Bantayog', var(--font-family-body);
     font-size: var(--font-size-hero-title);
-    margin: 6px 0 10px;
+    margin: 3px 0 10px;
     color: var(--color-dark-text);
 }
 
