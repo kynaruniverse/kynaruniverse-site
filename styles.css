@@ -384,8 +384,8 @@ body {
 
 /* Subscribe button */
 .subscribe-button {
-    background-color: darkred;
-    color: #ffcc00;
+    background-color: var(--color-star-red);
+    color: var(--color-main-gold);
     text-decoration: none;
     flex: 0 0 auto;
     max-width: none;
@@ -394,14 +394,14 @@ body {
     font-weight: bold;
     font-size: 6px;
     letter-spacing: 0.22em;
-    border: 2px solid #ffcc00;
+    border: 2px solid var(--color-main-gold);
     border-radius: var(--radius-pill);
     text-shadow: none;
-    box-shadow: 0 0 8px rgba(255, 204, 0, 0.85);
+    box-shadow: 0 0 8px var(--color-slogan-bg);
 }
 
 .subscribe-button:hover {
-    box-shadow: 0 0 12px rgba(255, 204, 0, 0.95);
+    box-shadow: 0 0 12px var(--color-main-gold);
 }
 
 /* ===== MAIN CONTENT WRAPPER ===== */
