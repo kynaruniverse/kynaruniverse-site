@@ -545,10 +545,12 @@ body {
     background: rgba(255,255,255,0.65);
     border: 1px solid rgba(0, 0, 0, 0.08);
     max-width: 100%;
+    white-space: normal;
+    text-align: center;
 }
 
 .asset-item span {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 /* ===== CTA BUTTONS ===== */
