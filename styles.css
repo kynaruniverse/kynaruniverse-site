@@ -32,12 +32,6 @@
     --color-dark-text: #111111;
     --color-light-bg: #d3d3d3;
     --color-star-red: #490101;
-    --color-card-border-red: #85406d;
-    --color-card-border-green: #5c8074;
-    --color-icon-bg-pink: #e6c5cf;
-    --color-icon-bg-darkpink: #d4adb9;
-    --color-icon-bg-lightgreen: #b5cdc4;
-    --color-icon-bg-darkgreen: #9db9ad;
     --color-slogan-bg: #9d8f6e;
     --color-search-bg: #1a5449;
     --color-header-bg: #c4c4c4;
@@ -534,6 +528,7 @@ body {
     gap: 8px 10px;
     justify-content: center;
     margin-bottom: 20px;
+    flex: 1;
 }
 
 .asset-item {
@@ -546,79 +541,13 @@ body {
     font-weight: 600;
     padding: 6px 10px;
     border-radius: 999px;
-    background: rgba (255,255,255,0.65);
+    background: rgba(255,255,255,0.65);
     border: 1px solid rgba(0, 0, 0, 0.08);
     max-width: 100%;
 }
 
 .asset-item span {
     white-space: nowrap;
-}
-
-/* Asset icons */
-.asset-icon-box {
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius-card);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    border: 3px solid;
-    position: relative;
-    transition: transform 0.2s;
-}
-
-.asset-icon-box img {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    position: absolute;
-}
-
-.asset-item:hover .asset-icon-box {
-    transform: scale(1.05);
-}
-
-/* Icon Background Colors */
-.ebook-icon-box {
-    background-color: var(--color-icon-bg-pink);
-    border-color: var(--color-card-border-red);
-}
-
-.digital-art-icon-box {
-    background-color: var(--color-icon-bg-darkpink);
-    border-color: var(--color-card-border-red);
-}
-
-.social-icon-box {
-    background-color: var(--color-icon-bg-pink);
-    border-color: var(--color-card-border-red);
-}
-
-.wallpaper-icon-box {
-    background-color: var(--color-icon-bg-darkpink);
-    border-color: var(--color-card-border-red);
-}
-
-.guide-icon-box {
-    background-color: var(--color-icon-bg-lightgreen);
-    border-color: var(--color-card-border-green);
-}
-
-.notion-icon-box {
-    background-color: var(--color-icon-bg-darkgreen);
-    border-color: var(--color-card-border-green);
-}
-
-.calendar-icon-box {
-    background-color: var(--color-icon-bg-lightgreen);
-    border-color: var(--color-card-border-green);
-}
-
-.planner-icon-box {
-    background-color: var(--color-icon-bg-darkgreen);
-    border-color: var(--color-card-border-green);
 }
 
 /* ===== CTA BUTTONS ===== */
@@ -764,8 +693,8 @@ body {
     }
     
     .main-nav::-webkit-scrollbar {
-    display: none;            /* Chrome, Safari, Opera */
-}
+    display: none;
+    }
 
     /* Search + subscribe (desktop) */
     .search-subscribe-bar {
@@ -820,12 +749,10 @@ body {
       flex: 1 1 0;
       width: 45%;
       max-width: 500px;
-
-      display: flex;              /* NEW */
-      flex-direction: column;     /* NEW */
-      justify-content: space-between; /* NEW */
+      display: flex;             
+      flex-direction: column;
+      justify-content: space-between;
     }
-
 
     .category-card h3 {
         font-size: 20px;
@@ -835,12 +762,6 @@ body {
 
     .asset-grid {
         gap: 25px;
-    }
-
-    .asset-icon-box {
-        width: 120px;
-        height: 120px;
-        font-size: 50px;
     }
 
     .asset-item {
