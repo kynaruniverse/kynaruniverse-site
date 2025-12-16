@@ -454,6 +454,7 @@ body {
     padding: 0 10px 20px;
     margin-bottom: 40px;
     overflow-x: auto;
+    overflow-y: visible;
     scroll-snap-type: x mandatory;
 }
 
