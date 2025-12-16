@@ -425,7 +425,7 @@ body {
     
     box-shadow:
         /* subtle gold glow */
-        0 0 20px rgba(169, 147, 105, 0.45),
+        0 0 32px 6px rgba(169, 147, 105, 0.85),
         /* drop shadow for depth */
         0 10px 24px rgba(0, 0, 0, 0.35),
         /* embossed / neumorphic edges */
