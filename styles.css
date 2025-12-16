@@ -33,7 +33,6 @@
     --color-light-bg: #d3d3d3;
     --color-star-red: #490101;
     --color-slogan-bg: #9d8f6e;
-    --color-search-bg: #1a5449;
     --color-header-bg: #c4c4c4;
     --color-search-bg-deep: #004833;
     --color-hero-shadow: rgba(0, 0, 0, 0.08);
@@ -210,7 +209,7 @@ body {
     font-family: 'Jimmy Flashcard', var(--font-family-body);
     font-style: italic;
     font-size: 12px;
-    color: var(--color-search-bg);
+    color: var(--color-search-bg-deep);
     flex-grow: 1;
     text-align: center;
     padding: 0 20px;
@@ -467,49 +466,46 @@ body {
     border-radius: var(--radius-card);
     flex: 0 0 auto;
     scroll-snap-align: start;
-
-    /* make card a flex column */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    /* raised / 3D effect */
+            /* 3D Effect */
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
     transform: translateY(0);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Per‑card background colours */
+/* Card Background */
 .planning-productivity-card {
-    background: #f8ecda;            /* soft gold/beige */
+    background: #f8ecda;
 }
 
 .printables-homeschool-card {
-    background: #e3f0e7;            /* soft green */
+    background: #e3f0e7;
 }
 
 .colouring-creativity-card {
-    background: #f7e5f0;            /* soft pink */
+    background: #f7e5f0;
 }
 
 .templates-systems-card {
-    background: #e4e6f7;            /* soft indigo */
+    background: #e4e6f7;
 }
 
 .prompts-content-card {
-    background: #f6f2e3;            /* soft cream */
+    background: #f6f2e3;
 }
 
 .audio-focus-card {
-    background: #e2f3f5;            /* soft teal */
+    background: #e2f3f5;
 }
 
 .code-automation-card {
-    background: #e7e8ed;            /* soft grey‑blue */
+    background: #e7e8ed;
 }
 
 .resource-libraries-card {
-    background: #f0ebe5;            /* warm neutral */
+    background: #f0ebe5;
 }
 
 .category-card:hover {
@@ -571,8 +567,6 @@ body {
     display: inline-block;
     width: auto;
     border: none;
-    margin-top: 6px;
-    align-self: center;
     /*3D raised effect*/
     box-shadow:
         0 8px 0 rgba(0, 0, 0, 0.45),          /* hard drop shadow (ledge) */
@@ -600,13 +594,6 @@ body {
         0 3px 0 rgba(0, 0, 0, 0.5),
         0 6px 10px rgba(0, 0, 0, 0.35),
         inset 0 2px 4px rgba(0, 0, 0, 0.35);
-}
-
-.browse-button:hover {
-    transform: translateY(-2px);
-    background-color: var(--color-dark-text);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    color: var(--color-main-gold);
 }
 
 .bottom-browse-section {
