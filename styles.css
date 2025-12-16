@@ -526,9 +526,9 @@ body {
 .asset-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 10px;
+    gap: 6px 10px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     flex: 1;
 }
 
@@ -557,17 +557,17 @@ body {
     color: var(--color-dark-text);
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    padding: 15px 40px;
+    letter-spacing: 0.12em;
+    padding: 10px 26px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 13px;
     font-style: italic;
     border-radius: var(--radius-pill);
     display: inline-block;
-    width: 85%;
+    width: auto;
     border: 2px solid var(--color-dark-text);
     transition: all 0.3s;
-    margin-top: 10px;
+    margin-top: 6px;
     align-self: center;
 }
 
