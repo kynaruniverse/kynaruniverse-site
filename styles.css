@@ -519,6 +519,7 @@ body {
 
 .category-card h3 {
     font-size: var(--font-size-heading-card);
+    font-family: 'Bantayog', var(--font-family-body);
     letter-spacing: 1px;
     margin-bottom: 30px;
     color: var(--color-dark-text);
@@ -541,6 +542,7 @@ body {
     text-decoration: none;
     color: var(--color-dark-text);
     font-size: 11px;
+    font-family: 'Glacial Indifference', var(--font-family-body);
     font-weight: 600;
     padding: 6px 10px;
     border-radius: 999px;
