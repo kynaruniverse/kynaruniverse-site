@@ -35,6 +35,7 @@
     --color-slogan-bg: #9d8f6e;
     --color-search-bg: #1a5449;
     --color-header-bg: #c4c4c4;
+    --color-search-bg-deep: #004833;
     --color-hero-shadow: rgba(0, 0, 0, 0.08);
 
     /* Radii */
@@ -182,7 +183,7 @@ body {
 
 /* Stars */
 .stars {
-    font-family: 'bantayog', var(--font-family-body);
+    font-family: 'Bantayog', var(--font-family-body);
     font-size: 5px;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -251,7 +252,7 @@ body {
     transition: color 0.2s ease;
     text-decoration: none;
     color: var(--color-dark-text);
-    font-family: 'bantayog', var(--font-family-body);
+    font-family: 'Bantayog', var(--font-family-body);
     font-size: 10px;
     font-weight: bold;
     text-align: center;
@@ -294,7 +295,7 @@ body {
     padding: 8px 14px;
     text-decoration: none;
     color: var(--color-dark-text);
-    font-family: 'bantayog', var(--font-family-body);
+    font-family: 'Bantayog', var(--font-family-body);
     font-size: 12px;
     letter-spacing: 0.12em;
     font-weight: 700;
@@ -326,7 +327,7 @@ body {
 /* Search box */
 .search-box {
     display: flex;
-    background-color: #004833;
+    background-color: var(--color-search-bg-deep);
     flex: 1 1 auto;
     max-width: none;
     height: 35px;
@@ -340,7 +341,7 @@ body {
     border: none;
     padding: 0 20px;
     font-size: 14px;
-    font-family: 'bantayog', var(--font-family-body);
+    font-family: 'Bantayog', var(--font-family-body);
     font-weight: 600;
     outline: none;
     color: #ffffff;
@@ -426,7 +427,7 @@ body {
 
 .slogan-title {
     font-weight: 800;
-    font-family: 'bantayog', var(--font-family-body);
+    font-family: 'Bantayog', var(--font-family-body);
     font-size: var(--font-size-hero-title);
     margin: 6px 0 10px;
     color: var(--color-dark-text);
