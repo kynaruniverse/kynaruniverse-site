@@ -98,6 +98,25 @@
     console.log('KYNAR Universe website scripts initialized.');
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.custom-burger');
+    const nav = document.querySelector('.main-nav');
+
+    // Toggle menu on burger click
+    burger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nav.classList.toggle('active-menu');
+    });
+
+    // Close menu when clicking anywhere else on the screen
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && nav.classList.contains('active-menu')) {
+            nav.classList.remove('active-menu');
+        }
+    });
+});
+
+
 
 /**
  * Optional: Smooth scroll for anchor links

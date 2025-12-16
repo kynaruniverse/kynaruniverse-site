@@ -275,10 +275,6 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.main-nav.active-menu {
-    display: block;
-}
-
 .main-nav ul {
     list-style: none;
     margin: 0;
@@ -687,6 +683,48 @@ body {
     text-decoration: underline;
 }
 
+.asset-item {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.asset-item:hover {
+    background-color: var(--color-main-gold);
+    color: #ffffff;
+}
+
+
+@media (max-width: 767px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px; /* Drawer width */
+        height: 100vh;
+        z-index: 9999;
+        transform: translateX(-100%); /* Start hidden */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        display: block; 
+        padding-top: 60px;
+    }
+
+    .main-nav.active-menu {
+        transform: translateX(0); /* Slide in */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        min-width: 100%;
+    }
+
+    .main-nav ul li a {
+        padding: 18px 25px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+}
+
+
 /* ===== DESKTOP (768px and up) ===== */
 @media (min-width: 768px) {
 
@@ -742,8 +780,12 @@ body {
 
     /* Nav */
     .main-nav {
-        display: block;
-        padding: 0;
+        transform: none; /* Force visible on desktop */
+        position: relative;
+        height: auto;
+        width: 100%;
+        box-shadow: none;
+        padding-top: 0;
     }
 
     .main-nav ul {
@@ -819,21 +861,22 @@ body {
 
     /* Category cards */
     .category-cards-section {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+        grid-template-rows: repeat(4, auto);   /* 4 Rows */
         gap: 35px;
-        justify-content: center;
-        padding: 0;
-        overflow-x: visible;
+        padding: 20px;
+        overflow-x: visible; /* Disable mobile scroll */
+        max-width: 1200px;
+        margin: 0 auto 40px;
     }
 
     .category-card {
-      flex: 1 1 0;
-      width: 45%;
-      max-width: 500px;
-      display: flex;             
-      flex-direction: column;
-      justify-content: space-between;
+        width: 100%; 
+        max-width: none;
+        flex: unset; /* Break the mobile flex-shrink behavior */
     }
+}
 
     .category-card h3 {
         font-size: 20px;
