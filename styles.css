@@ -660,6 +660,33 @@ body {
         -3px -3px 8px rgba(255, 255, 255, 0.65);
 }
 
+.site-footer {
+    background-color: transparent;   /* or a color if you want */
+    padding: 16px 0;                 /* smaller height */
+    text-align: center;              /* center all text */
+    font-size: 11px;
+    color: var(--color-dark-text);
+}
+
+.site-footer p {
+    margin-bottom: 6px;              /* small gap above links */
+}
+
+.site-footer nav {
+    display: inline-flex;            /* keep links in one line */
+    gap: 12px;                       /* space between links */
+}
+
+.site-footer nav a {
+    color: var(--color-dark-text);
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.site-footer nav a:hover {
+    text-decoration: underline;
+}
+
 /* ===== DESKTOP (768px and up) ===== */
 @media (min-width: 768px) {
 
