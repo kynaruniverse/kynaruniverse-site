@@ -348,6 +348,85 @@
     <li><a href="/resources">Resource Library</a></li>
     <li><a href="/account">Account</a></li>
   </ul>
-</nav>    
-</body>
+</nav>
+
+    <!-- Auth modal -->
+    <div class="auth-modal" id="auth-modal" aria-hidden="true">
+      <div class="auth-modal-backdrop"></div>
+      <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+        <button class="auth-modal-close" type="button" aria-label="Close login form">✕</button>
+
+        <h2 id="auth-modal-title" class="auth-modal-heading">Sign in to KYNAR Universe</h2>
+
+        <form id="auth-form">
+          <label class="auth-label">
+            <span>Email</span>
+            <input type="email" id="auth-email" required autocomplete="email">
+          </label>
+
+          <label class="auth-label">
+            <span>Password</span>
+            <input type="password" id="auth-password" required autocomplete="current-password">
+          </label>
+
+          <button type="submit" class="auth-primary-btn" id="auth-submit-btn">
+            Sign in
+          </button>
+
+          <button type="button" class="auth-secondary-btn" id="auth-toggle-mode">
+            Need an account? Sign up
+          </button>
+
+          <p class="auth-message" id="auth-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Your main JS -->
+    <script src="script.js" defer></script>
+
+    <!-- Firebase SDK + config -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        signOut
+      } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
+        authDomain: "kynar-universe-official.firebaseapp.com",
+        projectId: "kynar-universe-official",
+        storageBucket: "kynar-universe-official.firebasestorage.app",
+        messagingSenderId: "1089722386738",
+        appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
+      };
+
+      const app  = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      window._firebaseAuth               = auth;
+      window._firebaseOnAuthStateChanged = onAuthStateChanged;
+      window._firebaseSignIn             = signInWithEmailAndPassword;
+      window._firebaseSignUp             = createUserWithEmailAndPassword;
+      window._firebaseSignOut            = signOut;
+    </script>
+
+    <!-- Auth UI logic -->
+    <script src="auth-ui.js" type="module"></script>
+
+    <!-- Slide‑in drawer panel -->
+    <nav class="side-drawer" aria-hidden="true">
+      <button class="drawer-close" type="button">Close ✕</button>
+      <ul>
+        <li><a href="/marketplace">Marketplace</a></li>
+        <li><a href="/journal">Journal</a></li>
+        <li><a href="/resources">Resource Library</a></li>
+        <li><a href="/account">Account</a></li>
+      </ul>
+    </nav>
+  </body>
 </html>
