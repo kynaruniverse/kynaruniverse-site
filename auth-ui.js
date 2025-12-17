@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const form          = document.getElementById('auth-form');
   const emailInput    = document.getElementById('auth-email');
   const passInput     = document.getElementById('auth-password');
+  const displayNameRow= document.querySelector('.auth-display-name-row');
+  const displayNameInput = document.getElementById('auth-display-name');
   const submitBtn     = document.getElementById('auth-submit-btn');
   const toggleModeBtn = document.getElementById('auth-toggle-mode');
   const messageEl     = document.getElementById('auth-message');
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mode === 'signin') {
         await signInFirebase(auth, email, pass);
       } else {
-        await signUpFirebase(auth, email, pass);
+        await signUpFirebase(auth, email, pass, displayName);
       }
       window.location.href = 'account.html';
     } catch (err) {

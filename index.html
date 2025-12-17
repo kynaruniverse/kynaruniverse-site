@@ -366,8 +366,14 @@
 
           <label class="auth-label">
             <span>Password</span>
-            <input type="password" id="auth-password" required autocomplete="current-password">
-          </label>
+            <input type="password" id="auth-password"
+            type="password" required minlength="6">
+            </label>
+            
+            <label class="auth-label auth-display-name-row" style="display:none;">
+              Display name
+            <input id="auth-display-name" type="text" maxlength="40" autocomplete="nickname">
+             </label>
 
           <button type="submit" class="auth-primary-btn" id="auth-submit-btn">
             Sign in
@@ -407,12 +413,29 @@
 
       const app  = initializeApp(firebaseConfig);
       const auth = getAuth(app);
+      const db   = 
+      getFirestore(app);
 
       window._firebaseAuth               = auth;
       window._firebaseOnAuthStateChanged = onAuthStateChanged;
       window._firebaseSignIn             = signInWithEmailAndPassword;
-      window._firebaseSignUp             = createUserWithEmailAndPassword;
+      window._firebaseSignUp             = async (auth, email, pass, displayName) => {
+        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        const uid = cred.user.uid;
+    const userDocRef = doc(db, "users", uid);
+    const now = new Date().toISOString();
+
+    await setDoc(userDocRef, {
+      email,
+      displayName: displayName || "",
+      createdAt: now,
+      updatedAt: now
+    }, { merge: true });
+
+    return cred;
+  };
       window._firebaseSignOut            = signOut;
+      window._firebaseDb = db;
     </script>
 
     <!-- Auth UI logic -->
