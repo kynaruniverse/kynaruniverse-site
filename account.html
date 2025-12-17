@@ -81,62 +81,59 @@
   </div>
 
   <!-- Main account content -->
-  <main class="main-content-container">
+    <main class="main-content-container">
 
-    <!-- Top account hero -->
-    <section class="sole-creator-slogan">
-      <h1 class="slogan-title">Your KYNAR Universe account</h1>
-      <p class="slogan-tagline">
-        Welcome back, <span id="account-user-email"></span>
-      </p>
-      <p class="slogan-description">
+    <!-- Simple account heading area -->
+    <section class="account-header-section">
+      <h1 class="account-page-title">Your KYNAR Universe account</h1>
+      <h2 class="account-page-subtitle">Welcome back</h2>
+
+      <div class="account-identity-pill">
+        <span id="account-user-email"></span>
+      </div>
+
+      <div class="account-intro-panel">
         From here you can manage your profile, access your Gumroad library, and update how KYNAR Universe keeps in touch with you.
-      </p>
+      </div>
     </section>
 
-    <!-- Account dashboard tabs -->
-    <section class="category-cards-section" aria-label="Account dashboard sections">
+    <!-- Structured account sections -->
+    <section class="account-sections">
+
       <!-- Overview -->
-      <article class="category-card planning-productivity-card">
-        <h3>Overview</h3>
-        <div class="asset-grid">
-          <div class="asset-item"><span>Signed in as <span id="overview-email-inline"></span></span></div>
-          <div class="asset-item"><span>Quick access to your tools</span></div>
-          <div class="asset-item"><span>Future: stats & activity</span></div>
-        </div>
-        <a href="index.html" class="browse-button">Browse Marketplace</a>
-      </article>
+      <section class="account-section-block" aria-labelledby="account-overview-heading">
+        <h3 id="account-overview-heading" class="account-section-title">Overview</h3>
+        <ul class="account-section-list">
+          <li>Signed in as <span id="overview-email-inline"></span></li>
+          <li>Quick link back to the marketplace to keep browsing.</li>
+        </ul>
+        <a href="index.html" class="account-section-cta">Browse marketplace</a>
+      </section>
 
-      <!-- Library (Gumroad) -->
-      <article class="category-card code-automation-card">
-        <h3>My Library</h3>
-        <div class="asset-grid">
-          <div class="asset-item">
-            <span>Your purchases are managed securely via Gumroad.</span>
-          </div>
-          <div class="asset-item">
-            <span>Re‑download your files anytime from your Gumroad Library.</span>
-          </div>
-          <div class="asset-item">
-            <span>Use the same email you used to buy products.</span>
-          </div>
-        </div>
-        <!-- TODO: replace URL with your actual Gumroad profile/library link -->
-        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="browse-button">
-          Open Gumroad Library
+      <!-- My Library -->
+      <section class="account-section-block" aria-labelledby="account-library-heading">
+        <h3 id="account-library-heading" class="account-section-title">My library</h3>
+        <ul class="account-section-list">
+          <li>Your purchases are delivered and stored via Gumroad.</li>
+          <li>Re‑download files anytime from your Gumroad Library.</li>
+          <li>Use the same email you use for KYNAR Universe and Gumroad.</li>
+        </ul>
+        <!-- Replace URL with your real Gumroad library/profile link -->
+        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="account-section-cta">
+          Open Gumroad library
         </a>
-      </article>
+      </section>
 
-      <!-- Settings -->
-      <article class="category-card templates-systems-card">
-        <h3>Account Settings</h3>
-        <div class="asset-grid">
-          <div class="asset-item"><span>Change password (coming soon)</span></div>
-          <div class="asset-item"><span>Email preferences (coming soon)</span></div>
-          <div class="asset-item"><span>Manage newsletters and product updates</span></div>
-        </div>
-        <button id="logout-btn" class="browse-button">Log out</button>
-      </article>
+      <!-- Account settings -->
+      <section class="account-section-block" aria-labelledby="account-settings-heading">
+        <h3 id="account-settings-heading" class="account-section-title">Account settings</h3>
+        <ul class="account-section-list">
+          <li>Change password (coming soon).</li>
+          <li>Email preferences for newsletters and product updates (coming soon).</li>
+        </ul>
+        <button id="logout-btn" class="account-section-cta account-section-cta-secondary">Log out</button>
+      </section>
+
     </section>
   </main>
 
