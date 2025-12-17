@@ -81,59 +81,66 @@
   </div>
 
   <!-- Main account content -->
-    <main class="main-content-container">
-
-    <!-- Simple account heading area -->
-    <section class="account-header-section">
-      <h1 class="account-page-title">Your KYNAR Universe account</h1>
-      <h2 class="account-page-subtitle">Welcome back</h2>
-
-      <div class="account-identity-pill">
-        <span id="account-user-email"></span>
-      </div>
-
-      <div class="account-intro-panel">
-        From here you can manage your profile, access your Gumroad library, and update how KYNAR Universe keeps in touch with you.
-      </div>
-    </section>
-
-    <!-- Structured account sections -->
-    <section class="account-sections">
-
-      <!-- Overview -->
-      <section class="account-section-block" aria-labelledby="account-overview-heading">
-        <h3 id="account-overview-heading" class="account-section-title">Overview</h3>
-        <ul class="account-section-list">
-          <li>Signed in as <span id="overview-email-inline"></span></li>
-          <li>Quick link back to the marketplace to keep browsing.</li>
-        </ul>
-        <a href="index.html" class="account-section-cta">Browse marketplace</a>
+      <!-- Main account content -->
+  <main class="main-content-container">
+    <section class="account-dashboard">
+      
+      <!-- Welcome banner -->
+      <header class="welcome-banner">
+        <h1 class="welcome-title">
+          Welcome back, <span id="welcome-name"></span>!
+        </h1>
+        <p class="welcome-meta">Member since December 2025</p>
+      </header>
+      
+      <!-- Stats cards row -->
+      <section class="stats-row" aria-label="Account summary stats">
+        <div class="stat-card">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Products owned</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Wishlist items</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">0</span>
+          <span class="stat-label">Downloads</span>
+        </div>
       </section>
-
-      <!-- My Library -->
-      <section class="account-section-block" aria-labelledby="account-library-heading">
-        <h3 id="account-library-heading" class="account-section-title">My library</h3>
-        <ul class="account-section-list">
-          <li>Your purchases are delivered and stored via Gumroad.</li>
-          <li>Re‑download files anytime from your Gumroad Library.</li>
-          <li>Use the same email you use for KYNAR Universe and Gumroad.</li>
-        </ul>
-        <!-- Replace URL with your real Gumroad library/profile link -->
-        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="account-section-cta">
-          Open Gumroad library
+      
+      <!-- Recent purchases (static for now) -->
+      <section class="dashboard-panel" aria-labelledby="recent-purchases-heading">
+        <div class="dashboard-panel-header">
+          <h2 id="recent-purchases-heading" class="dashboard-panel-title">
+            Recent purchases
+          </h2>
+        </div>
+        <div class="purchase-list">
+          <p class="purchase-empty">
+            Your recent purchases will appear here once you’ve bought something.
+          </p>
+        </div>
+        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="dashboard-link">
+          View all purchases on Gumroad →
         </a>
       </section>
-
-      <!-- Account settings -->
-      <section class="account-section-block" aria-labelledby="account-settings-heading">
-        <h3 id="account-settings-heading" class="account-section-title">Account settings</h3>
-        <ul class="account-section-list">
-          <li>Change password (coming soon).</li>
-          <li>Email preferences for newsletters and product updates (coming soon).</li>
+      
+      <!-- Quick actions -->
+      <section class="dashboard-panel" aria-labelledby="quick-actions-heading">
+        <div class="dashboard-panel-header">
+          <h2 id="quick-actions-heading" class="dashboard-panel-title">
+            Quick actions
+          </h2>
+        </div>
+        <ul class="quick-actions-list">
+          <li><a href="index.html#marketplace">🛒 Continue shopping</a></li>
+          <li><a href="https://gumroad.com/library" target="_blank" rel="noopener">📚 Open my Gumroad library</a></li>
+          <li><a href="#settings">⚙️ Account settings (coming soon)</a></li>
+          <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact support</a></li>
         </ul>
-        <button id="logout-btn" class="account-section-cta account-section-cta-secondary">Log out</button>
       </section>
-
+      
     </section>
   </main>
 
@@ -167,21 +174,19 @@
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    const emailSpanTop   = document.getElementById('account-user-email');
-    const emailSpanInline= document.getElementById('overview-email-inline');
-    const logoutBtn      = document.getElementById('logout-btn');
-    const signInText     = document.querySelector('.sign-in-text');
+    const welcomeNameEl = document.getElementById('welcome-name');
+const logoutBtn = document.getElementById('logout-btn');
+const signInText = document.querySelector('.sign-in-text');
 
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.href = "index.html";
-      } else {
-        const email = user.email || '';
-        if (emailSpanTop)    emailSpanTop.textContent = email;
-        if (emailSpanInline) emailSpanInline.textContent = email;
-        if (signInText)      signInText.textContent = 'Log out';
-      }
-    });
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "index.html";
+  } else {
+    const email = user.email || '';
+    if (welcomeNameEl) welcomeNameEl.textContent = email; // later swap to first name
+    if (signInText) signInText.textContent = 'Log out';
+  }
+});
 
     if (logoutBtn) {
       logoutBtn.addEventListener('click', () => {

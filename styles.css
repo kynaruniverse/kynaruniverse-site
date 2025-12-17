@@ -962,6 +962,130 @@ body.drawer-open {
   color: var(--color-main-gold);
 }
 
+/* ===== ACCOUNT DASHBOARD OVERVIEW ===== */
+.account-dashboard {
+  padding: 24px 12px 40px;
+}
+
+/* Welcome banner */
+.welcome-banner {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.welcome-title {
+  font-family: 'Bantayog', var(--font-family-body);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-dark-text);
+  margin-bottom: 4px;
+}
+
+.welcome-meta {
+  font-family: 'Glacial Indifference', var(--font-family-body);
+  font-size: 12px;
+  color: rgba(17,17,17,0.7);
+}
+
+/* Stats cards row */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  flex: 1 1 0;
+  border-radius: 14px;
+  background-color: #fdfbf7;
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Bantayog', var(--font-family-body);
+  font-size: 18px;
+  margin-bottom: 2px;
+  color: var(--color-dark-text);
+}
+
+.stat-label {
+  display: block;
+  font-family: 'Glacial Indifference', var(--font-family-body);
+  font-size: 11px;
+  color: rgba(17,17,17,0.8);
+}
+
+/* Panels (recent purchases, quick actions) */
+.dashboard-panel {
+  border-radius: 16px;
+  background-color: #fdfbf7;
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 12px 12px 10px;
+  margin-bottom: 14px;
+}
+
+.dashboard-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.dashboard-panel-title {
+  font-family: 'Bantayog', var(--font-family-body);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dark-text);
+}
+
+.purchase-empty {
+  font-family: 'Glacial Indifference', var(--font-family-body);
+  font-size: 12px;
+  color: rgba(17,17,17,0.8);
+  margin-bottom: 6px;
+}
+
+/* Quick actions list */
+.quick-actions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 6px;
+}
+
+.quick-actions-list li + li {
+  margin-top: 4px;
+}
+
+.quick-actions-list a {
+  font-family: 'Glacial Indifference', var(--font-family-body);
+  font-size: 13px;
+  color: var(--color-dark-text);
+  text-decoration: none;
+}
+
+.quick-actions-list a:hover {
+  text-decoration: underline;
+}
+
+/* Panel footer link */
+.dashboard-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: 'Glacial Indifference', var(--font-family-body);
+  font-size: 12px;
+  color: var(--color-star-red);
+  text-decoration: none;
+}
+
+.dashboard-link:hover {
+  text-decoration: underline;
+}
+
 /* ===== DESKTOP (768px and up) ===== */
 @media (min-width: 768px) {
 
