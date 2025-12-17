@@ -50,13 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
   signInLink.addEventListener('click', (e) => {
   e.preventDefault();
   if (auth.currentUser) {
-    // If logged in, clicking acts as log out
-    signOutFirebase(auth)
-      .then(() => {
-        // Optional: force refresh so UI updates everywhere
+    try {
+      await
+  signOutFirebase(auth);
         window.location.href = 'index.html';
-      })
-      .catch(console.error);
+    } catch(err) {
+      console.error('error signing out', err);
+      
+    } 
   } else {
     mode = 'signin';
     updateModeUI();
