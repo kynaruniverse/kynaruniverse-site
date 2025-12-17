@@ -687,6 +687,62 @@ body {
     text-decoration: underline;
 }
 
+/* Base drawer styles (all breakpoints) */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  max-width: 80%;
+  height: 100vh;
+  background-color: var(--color-header-bg);
+  box-shadow: 5px 0 18px rgba(0,0,0,0.4);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 10000;
+  padding: 70px 20px 20px; /* space for header */
+}
+
+/* When open */
+.side-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* Drawer content */
+.side-drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.side-drawer li + li {
+  margin-top: 14px;
+}
+
+.side-drawer a {
+  text-decoration: none;
+  color: var(--color-dark-text);
+  font-family: 'Bantayog', var(--font-family-body);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drawer-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  color: var(--color-dark-text);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+body.drawer-open {
+  overflow: hidden; /* stop background scrolling when drawer is open */
+}
+
 /* ===== DESKTOP (768px and up) ===== */
 @media (min-width: 768px) {
 
