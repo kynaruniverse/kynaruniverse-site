@@ -361,7 +361,7 @@ body {
 .search-button {
     background: transparent;
     border: none;
-    padding: 0 4px;      /* tweak for left/right position */
+    padding: 0 1px;      /* tweak for left/right position */
     cursor: pointer;
     display: flex;
     align-items: center;
