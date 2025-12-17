@@ -4,14 +4,159 @@
   <meta charset="UTF-8">
   <title>KYNAR – My Account</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="KYNAR Universe account dashboard: manage your profile, access your Gumroad library, and update your settings.">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous">
 </head>
 <body>
-  <p>Loading…</p>
 
+  <!-- Header band: same as index -->
+  <div class="header-wrapper">
+
+    <header class="top-header">
+      <div class="logo-area">
+        <button class="menu-icon custom-burger"
+                type="button"
+                aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="site-title">
+          <a href="/" class="site-title-link" aria-label="KYNAR Universe homepage">
+            <p class="main-title">Kynar</p>
+            <p class="sub-title">Universe.co.uk</p>
+          </a>
+
+          <figure class="stars" aria-label="Decorative star accent">
+           ✶ , * ✦ , * ✶ , ✶ * , ✦ * , ✶
+          </figure>
+        </div>
+      </div>
+
+      <p class="slogan-header">
+        Digital tools for every corner of your life.
+      </p>
+
+      <div class="account-area">
+        <a href="#" class="sign-in-link">
+          <span class="custom-lock-icon">
+            <img src="log-in-icon.png" alt="User sign in">
+          </span>
+          <span class="sign-in-text">Log out</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Primary navigation -->
+    <nav class="main-nav" aria-label="Primary site navigation">
+      <ul>
+        <li><a href="index.html#marketplace">Marketplace</a></li>
+        <li><a href="index.html#journal">Journal</a></li>
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="account.html" id="account-nav-link">Account</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Search + subscribe row (optional on account page) -->
+    <section class="search-subscribe-bar" aria-label="Search and subscription">
+      <form class="search-box" role="search" aria-label="Site search">
+        <input
+          type="text"
+          name="site-search"
+          placeholder="Search Kynaruniverse.co.uk"
+          aria-label="Search Kynaruniverse.co.uk">
+        <button class="search-button" type="submit">
+          <img src="/images/search-button.svg" alt="Search" class="search-icon">
+        </button>
+      </form>
+
+      <a href="#" class="subscribe-button">Subscribe</a>
+    </section>
+  </div>
+
+  <!-- Main account content -->
+  <main class="main-content-container">
+
+    <!-- Top account hero -->
+    <section class="sole-creator-slogan">
+      <h1 class="slogan-title">Your KYNAR Universe account</h1>
+      <p class="slogan-tagline">
+        Welcome back, <span id="account-user-email"></span>
+      </p>
+      <p class="slogan-description">
+        From here you can manage your profile, access your Gumroad library, and update how KYNAR Universe keeps in touch with you.
+      </p>
+    </section>
+
+    <!-- Account dashboard tabs -->
+    <section class="category-cards-section" aria-label="Account dashboard sections">
+      <!-- Overview -->
+      <article class="category-card planning-productivity-card">
+        <h3>Overview</h3>
+        <div class="asset-grid">
+          <div class="asset-item"><span>Signed in as <span id="overview-email-inline"></span></span></div>
+          <div class="asset-item"><span>Quick access to your tools</span></div>
+          <div class="asset-item"><span>Future: stats & activity</span></div>
+        </div>
+        <a href="index.html" class="browse-button">Browse Marketplace</a>
+      </article>
+
+      <!-- Library (Gumroad) -->
+      <article class="category-card code-automation-card">
+        <h3>My Library</h3>
+        <div class="asset-grid">
+          <div class="asset-item">
+            <span>Your purchases are managed securely via Gumroad.</span>
+          </div>
+          <div class="asset-item">
+            <span>Re‑download your files anytime from your Gumroad Library.</span>
+          </div>
+          <div class="asset-item">
+            <span>Use the same email you used to buy products.</span>
+          </div>
+        </div>
+        <!-- TODO: replace URL with your actual Gumroad profile/library link -->
+        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="browse-button">
+          Open Gumroad Library
+        </a>
+      </article>
+
+      <!-- Settings -->
+      <article class="category-card templates-systems-card">
+        <h3>Account Settings</h3>
+        <div class="asset-grid">
+          <div class="asset-item"><span>Change password (coming soon)</span></div>
+          <div class="asset-item"><span>Email preferences (coming soon)</span></div>
+          <div class="asset-item"><span>Manage newsletters and product updates</span></div>
+        </div>
+        <button id="logout-btn" class="browse-button">Log out</button>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" aria-label="Site footer">
+    <p>© 2025 KYNAR Universe. All rights reserved.</p>
+    <nav aria-label="Footer navigation">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
+    </nav>
+  </footer>
+
+  <!-- Normal drawer JS -->
+  <script src="script.js" defer></script>
+
+  <!-- Firebase protection for account page -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
@@ -25,21 +170,40 @@
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    const emailSpanTop   = document.getElementById('account-user-email');
+    const emailSpanInline= document.getElementById('overview-email-inline');
+    const logoutBtn      = document.getElementById('logout-btn');
+    const signInText     = document.querySelector('.sign-in-text');
+
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        // not logged in → send back home
         window.location.href = "index.html";
       } else {
-        document.body.innerHTML = `
-          <h1>My account</h1>
-          <p>Signed in as ${user.email}</p>
-          <button id="logout-btn">Log out</button>
-        `;
-        document.getElementById('logout-btn').addEventListener('click', () => {
-          auth.signOut();
-        });
+        const email = user.email || '';
+        if (emailSpanTop)    emailSpanTop.textContent = email;
+        if (emailSpanInline) emailSpanInline.textContent = email;
+        if (signInText)      signInText.textContent = 'Log out';
       }
     });
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        signOut(auth).then(() => {
+          window.location.href = "index.html";
+        });
+      });
+    }
   </script>
+
+  <!-- Slide‑in drawer panel -->
+  <nav class="side-drawer" aria-hidden="true">
+    <button class="drawer-close" type="button">Close ✕</button>
+    <ul>
+      <li><a href="/marketplace">Marketplace</a></li>
+      <li><a href="/journal">Journal</a></li>
+      <li><a href="/resources">Resource Library</a></li>
+      <li><a href="/account">Account</a></li>
+    </ul>
+  </nav>
 </body>
 </html>
