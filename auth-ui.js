@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const authModal     = document.getElementById('auth-modal');
 
   if (!auth || !signInLink || !authModal) return;
+  
+    const accountPanel   = document.getElementById('account-panel');
+  const accountEmailEl = document.getElementById('account-email-text');
+  const accountLogout  = document.getElementById('account-logout-btn');
 
   const backdrop      = authModal.querySelector('.auth-modal-backdrop');
   const closeBtn      = authModal.querySelector('.auth-modal-close');
@@ -61,6 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
       openModal();
     }
   });
+  
+    // Log out from account panel button
+  if (accountLogout) {
+    accountLogout.addEventListener('click', () => {
+      signOutFirebase(auth).catch(console.error);
+    });
+  }
 
   // Toggle sign in / sign up
   toggleModeBtn.addEventListener('click', () => {
@@ -102,11 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Keep header text in sync with auth state
-  onAuthChange(auth, (user) => {
+    onAuthChange(auth, (user) => {
     if (user) {
       signInText.textContent = 'Account';
+      if (accountPanel && accountEmailEl) {
+        accountEmailEl.textContent = user.email || '';
+        accountPanel.hidden = false;
+      }
     } else {
       signInText.textContent = 'Sign in';
+      if (accountPanel) {
+        accountPanel.hidden = true;
+      }
     }
   });
 });
