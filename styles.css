@@ -326,6 +326,7 @@ body {
 /* Search box */
 .search-box {
     display: flex;
+    align-items: center;
     background-color: var(--color-search-bg-deep);
     flex: 1 1 auto;
     max-width: none;
@@ -338,7 +339,7 @@ body {
 .search-box input {
     flex-grow: 1;
     border: none;
-    padding: 0 6px;
+    padding: 0 10px;
     font-size: 14px;
     font-family: 'Bantayog', var(--font-family-body);
     font-weight: 600;
@@ -361,7 +362,9 @@ body {
 .search-button {
     background: transparent;
     border: none;
-    padding: 0 1px;      /* tweak for left/right position */
+    padding: 0;
+    width: 32px;
+    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -369,8 +372,8 @@ body {
 }
 
 .search-button .search-icon {
-    width: 22px;         /* icon size */
-    height: 22px;
+    width: 18px;
+    height: 18px;
     display: block;
 }
 
