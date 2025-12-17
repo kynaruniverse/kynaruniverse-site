@@ -9,6 +9,7 @@ const signOutFirebase  = window._firebaseSignOut;
 document.addEventListener('DOMContentLoaded', () => {
   const signInLink    = document.querySelector('.sign-in-link');
   const signInText    = document.querySelector('.sign-in-text');
+    const accountNavLink = document.getElementById('account-nav-link');
   const authModal     = document.getElementById('auth-modal');
 
   if (!auth || !signInLink || !authModal) return;
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         await signUpFirebase(auth, email, pass);
       }
-      closeModal();
+      window.location.href = 'account.html';
     } catch (err) {
       console.error(err);
       messageEl.textContent = (err.message || 'Error').replace('Firebase: ', '');
@@ -113,17 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Keep header text in sync with auth state
-    onAuthChange(auth, (user) => {
+      onAuthChange(auth, (user) => {
     if (user) {
-      signInText.textContent = 'Account';
-      if (accountPanel && accountEmailEl) {
-        accountEmailEl.textContent = user.email || '';
-        accountPanel.hidden = false;
+      signInText.textContent = 'Log out';
+      if (accountNavLink) {
+        accountNavLink.style.pointerEvents = 'auto';
+        accountNavLink.style.opacity = '1';
       }
     } else {
       signInText.textContent = 'Sign in';
-      if (accountPanel) {
-        accountPanel.hidden = true;
+      if (accountNavLink) {
+        accountNavLink.style.pointerEvents = 'none'; // looks there but not clickable
+        accountNavLink.style.opacity = '0.5';
       }
     }
   });

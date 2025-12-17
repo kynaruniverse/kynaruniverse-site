@@ -843,40 +843,6 @@ body.drawer-open {
   min-height: 14px;
 }
 
-.account-panel {
-  max-width: 600px;
-  margin: 0 auto 40px;
-  padding: 18px 20px;
-  border-radius: 16px;
-  background: #f6f2e3;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-  font-family: 'Glacial Indifference', var(--font-family-body);
-}
-
-.account-panel-heading {
-  font-family: 'Bantayog', var(--font-family-body);
-  font-size: 16px;
-  margin-bottom: 8px;
-  color: var(--color-dark-text);
-}
-
-.account-email {
-  font-size: 13px;
-  margin-bottom: 12px;
-}
-
-.account-logout-btn {
-  border: none;
-  border-radius: var(--radius-pill);
-  padding: 8px 18px;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--color-star-red);
-  color: var(--color-main-gold);
-  cursor: pointer;
-}
-
 /* ===== DESKTOP (768px and up) ===== */
 @media (min-width: 768px) {
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KYNAR – My Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <p>Loading…</p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
+      authDomain: "kynar-universe-official.firebaseapp.com",
+      projectId: "kynar-universe-official",
+      storageBucket: "kynar-universe-official.firebasestorage.app",
+      messagingSenderId: "1089722386738",
+      appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // not logged in → send back home
+        window.location.href = "index.html";
+      } else {
+        document.body.innerHTML = `
+          <h1>My account</h1>
+          <p>Signed in as ${user.email}</p>
+          <button id="logout-btn">Log out</button>
+        `;
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          auth.signOut();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
