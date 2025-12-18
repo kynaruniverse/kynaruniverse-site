@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const signInLink     = document.querySelector('.sign-in-link');
   const signInText     = document.querySelector('.sign-in-text');
   const accountNavLink = document.getElementById('account-nav-link');
+  const accountNavLinks = document.querySelectorAll('#account-nav-link, #account-nav-mobile');
   const authModal      = document.getElementById('auth-modal');
   
   if (!signInLink) return;
