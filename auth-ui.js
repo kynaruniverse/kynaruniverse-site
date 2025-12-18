@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const accountNavLink = document.getElementById('account-nav-link');
   const authModal      = document.getElementById('auth-modal');
 
-  if (!signInLink || !signInText || !authModal) return;
+  if (!signInLink || !signInText) return;
   
   const backdrop = authModal.querySelector('.auth-modal-backdrop');
   const closeBtn = authModal.querySelector('.auth-modal-close');
@@ -28,19 +28,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let mode = 'signin'; // 'signin' or 'signup'
   
   function openModal() {
+    if (!authModal) return;
+    
     authModal.classList.add('is-open');
     authModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('drawer-open'); // reuse scroll lock
+    document.body.classList.add('drawer-open');
     if (emailInput) emailInput.focus();
   }
   
-  function closeModal() {
+    function closeModal() {
+    if (!authModal) return;
+
     authModal.classList.remove('is-open');
     authModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('drawer-open');
     if (form) form.reset();
     if (messageEl) messageEl.textContent = '';
   }
+
+  // Close modal events
+  if (closeBtn)   closeBtn.addEventListener('click', closeModal);
+  if (backdrop)   backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && authModal && authModal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
   
   function updateModeUI() {
     if (!submitBtn || !toggleModeBtn) return;
