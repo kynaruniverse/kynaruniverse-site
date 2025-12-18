@@ -50,6 +50,11 @@
                         <img src="/images/log-in-icon.png" alt="User sign in">
                     </span>
                     <span class="sign-in-text">Sign in</span>
+                    <script>
+  if (localStorage.getItem('kynar_auth_state') === 'logged_in') {
+    document.currentScript.previousElementSibling.textContent = 'Sign out';
+  }
+</script>
                 </a>
             </div>
         </header>

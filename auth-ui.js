@@ -147,12 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Auth State UI Updates ---
+    // --- Auth State UI Updates ---
   onAuthChange(auth, (user) => {
-    if (signInText) signInText.textContent = !!user ? 'Sign out' : 'Sign in';
+    const isLoggedIn = !!user;
+    
+    localStorage.setItem('kynar_auth_state', isLoggedIn ? 'logged_in' : 'logged_out');
+
+    // 2. Update the text as usual
+    if (signInText) signInText.textContent = isLoggedIn ? 'Sign out' : 'Sign in';
+    
     accountNavLinks.forEach(link => {
       link.style.opacity = '1';
       link.style.pointerEvents = 'auto';
     });
   });
+
 });
