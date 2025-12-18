@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Header icon: Sign in / Log out
+  // Header icon: Sign in / Sign out
   signInLink.addEventListener('click', async (e) => {
     e.preventDefault();
     
     const label = signInText ? signInText.textContent.trim().toLowerCase() : '';
     
-    if (label === 'log out') {
-      // Treat as logout whenever the label says "Log out"
+    if (label === 'sign out') {
+      // Treat as signout whenever the label says "Sign out"
       try {
         await signOutFirebase(auth);
         window.location.href = 'index.html'; // refresh UI
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error signing out', err);
       }
     } else {
-      // Treat as login when label says "Sign in"
+      // Treat as signin when label says "Sign in"
       mode = 'signin';
       updateModeUI();
       openModal();
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!signInText) return;
     
     if (user) {
-      signInText.textContent = 'Log out';
+      signInText.textContent = 'Sign out';
       if (accountNavLink) {
         accountNavLink.style.pointerEvents = 'auto';
         accountNavLink.style.opacity = '1';

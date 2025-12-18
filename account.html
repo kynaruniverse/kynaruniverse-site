@@ -43,18 +43,21 @@
       </p>
 
       <div class="account-area">
-        <a href="#" class="sign-in-link">
-          <span class="custom-lock-icon">
-            <img src="/images/log-in-icon.png" alt="User sign in">
+        <a href="#" 
+      class="sign-in-link">
+          <span 
+      class="custom-lock-icon">
+            <img src="/images/log-in-icon.png" 
+      alt="User sign in">
           </span>
-          <span class="sign-in-text">Log out</span>
+          <span class="sign-in-text">Sign out</span>
         </a>
       </div>
     </header>
 
     <!-- Primary navigation -->
     <nav class="main-nav" aria-label="Primary site navigation">
-      <ul>
+      <ul>class=""
         <li><a href="index.html#marketplace">Marketplace</a></li>
         <li><a href="index.html#journal">Journal</a></li>
         <li><a href="index.html#community">Community</a></li>
@@ -203,7 +206,7 @@
       }
 
       if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
-      if (signInText) signInText.textContent = 'Log out';
+      if (signInText) signInText.textContent = 'Sign out';
     });
   </script>
 
@@ -217,5 +220,9 @@
       <li><a href="/account">Account</a></li>
     </ul>
   </nav>
+  
+  <!-- Auth UI logic (same as homepage) -->
+<script src="auth-ui.js" type="module"></script>
+
 </body>
 </html>
