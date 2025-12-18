@@ -6,7 +6,6 @@ const signUpFirebase  = window._firebaseSignUp;
 const signOutFirebase = window._firebaseSignOut;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
   const signInLink     = document.querySelector('.sign-in-link');
   const signInText     = document.querySelector('.sign-in-text');
   const accountNavLink = document.getElementById('account-nav-link');
@@ -26,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageEl      = document.getElementById('auth-message');
   
   let mode = 'signin'; 
-
-  // --- UI Helpers ---
 
   const openModal = () => {
     authModal.classList.add('is-open');
@@ -51,26 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (displayNameRow) displayNameRow.style.display = isSignIn ? 'none' : '';
   };
 
-  // --- Event Listeners ---
+  // --- Listeners ---
 
-  // Handle Header Click (Sign In OR Sign Out)
   signInLink.addEventListener('click', async (e) => {
     e.preventDefault();
-    
-    // Check actual auth state instead of button text
     if (auth.currentUser) {
       try {
         await signOutFirebase(auth);
         window.location.reload(); 
-      } catch (err) {
-        console.error('Logout failed:', err);
-      }
+      } catch (err) { console.error('Logout failed:', err); }
     } else {
       mode = 'signin';
       updateModeUI();
       openModal();
     }
   });
+
+  // NEW INTERCEPTOR
+  if (accountNavLink) {
+    accountNavLink.addEventListener('click', (e) => {
+      if (!auth.currentUser) {
+        e.preventDefault();
+        mode = 'signin';
+        updateModeUI();
+        openModal();
+      }
+    });
+  }
 
   if (toggleModeBtn) {
     toggleModeBtn.addEventListener('click', () => {
@@ -79,47 +83,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Close Events (Consolidated)
   [closeBtn, backdrop].forEach(el => el?.addEventListener('click', closeModal));
   
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && authModal.classList.contains('is-open')) closeModal();
   });
 
-  // Form Submission
+    // Updated Form Submission with Success Messages
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (messageEl) messageEl.textContent = '';
+    if (messageEl) {
+      messageEl.textContent = '';
+      messageEl.style.color = ''; // Reset color from potential previous errors
+    }
     submitBtn.disabled = true;
 
     try {
       const email = emailInput.value.trim();
       const pass = passInput.value.trim();
       
+      let successMessage = "";
+
       if (mode === 'signin') {
         await signInFirebase(auth, email, pass);
+        successMessage = "Welcome back! Redirecting...";
       } else {
         const dName = displayNameInput.value.trim();
         await signUpFirebase(auth, email, pass, dName);
+        successMessage = "Account created! Welcome to the Universe.";
       }
-      
-      closeModal();
-      window.location.href = 'account.html';
+
+      // Show success feedback
+      if (messageEl) {
+        messageEl.textContent = successMessage;
+        messageEl.style.color = "#28a745"; // Success green
+      }
+
+      // Brief delay so they can actually read the message
+      setTimeout(() => {
+        closeModal();
+        window.location.href = 'account.html';
+      }, 1500);
+
     } catch (err) {
-      if (messageEl) messageEl.textContent = err.message.replace('Firebase: ', '');
-    } finally {
-      submitBtn.disabled = false;
+      submitBtn.disabled = false; // Re-enable only on error
+      if (messageEl) {
+        messageEl.textContent = err.message.replace('Firebase: ', '');
+        messageEl.style.color = "#dc3545"; // Error red
+      }
     }
   });
 
-  // Auth State Observer
+
   onAuthChange(auth, (user) => {
-    const isLoggedIn = !!user;
-    if (signInText) signInText.textContent = isLoggedIn ? 'Sign out' : 'Sign in';
-    
+    if (signInText) signInText.textContent = !!user ? 'Sign out' : 'Sign in';
     if (accountNavLink) {
-      accountNavLink.style.pointerEvents = isLoggedIn ? 'auto' : 'none';
-      accountNavLink.style.opacity = isLoggedIn ? '1' : '0.5';
+      accountNavLink.style.opacity = '1';
+      accountNavLink.style.pointerEvents = 'auto';
     }
   });
 
