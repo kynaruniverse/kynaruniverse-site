@@ -976,6 +976,8 @@ body.drawer-open {
 .welcome-title {
   font-family: 'Bantayog', var(--font-family-body);
   font-size: 18px;
+  margin-top: 10px;
+  word-wrap: break-word;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-dark-text);

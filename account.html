@@ -200,29 +200,42 @@
 
   // 1. AUTH STATE OBSERVER (Only for UI updates and protection)
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = "index.html";
-      return;
-    }
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
 
-    let nameToShow = user.email;
+  // 1. IMMEDIATE BACKUP: Use email so it's not empty while we wait for Firestore
+  let nameToShow = user.email.split('@')[0]; // Shows "username" from "username@mail.com"
+  welcomeNameEl.textContent = nameToShow;
+  initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
-    try {
-      const userDocRef = doc(db, "users", user.uid);
-      const snap = await getDoc(userDocRef);
-      if (snap.exists()) {
-        const data = snap.data();
-        if (data.displayName) nameToShow = data.displayName;
-        
-        if (data.createdAt) {
-          const date = new Date(data.createdAt);
-          const options = { month: 'long', year: 'numeric' };
-          document.querySelector('.welcome-meta').textContent = `Member since ${date.toLocaleDateString(undefined, options)}`;
-        }
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userDocRef);
+    
+    if (snap.exists()) {
+      const data = snap.data();
+      
+      // 2. PREFERRED DATA: If Firestore name exists, override the email
+      if (data.displayName && data.displayName.trim() !== "") {
+        nameToShow = data.displayName;
+        welcomeNameEl.textContent = nameToShow;
+        initialEl.textContent = nameToShow.charAt(0).toUpperCase();
       }
-    } catch (err) {
-      console.error("Error fetching user data:", err);
+      
+      // 3. SET DATE: Make sure the member date is correct
+      if (data.createdAt) {
+        const date = new Date(data.createdAt);
+        const options = { month: 'long', year: 'numeric' };
+        document.querySelector('.welcome-meta').textContent = `Member since ${date.toLocaleDateString(undefined, options)}`;
+      }
     }
+  } catch (err) {
+    console.error("Error fetching user data:", err);
+  }
+});
+
 
     if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
     if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
