@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // NEW INTERCEPTOR
-  if (accountNavLink) {
-    accountNavLink.addEventListener('click', (e) => {
+    // NEW INTERCEPTOR - Works for both Desktop and Mobile links
+  accountNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
       if (!auth.currentUser) {
         e.preventDefault();
         mode = 'signin';
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal();
       }
     });
-  }
+  });
 
   if (toggleModeBtn) {
     toggleModeBtn.addEventListener('click', () => {
@@ -138,12 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  onAuthChange(auth, (user) => {
+    onAuthChange(auth, (user) => {
     if (signInText) signInText.textContent = !!user ? 'Sign out' : 'Sign in';
-    if (accountNavLink) {
-      accountNavLink.style.opacity = '1';
-      accountNavLink.style.pointerEvents = 'auto';
-    }
+    accountNavLinks.forEach(link => {
+      link.style.opacity = '1';
+      link.style.pointerEvents = 'auto';
+    });
   });
 
   updateModeUI();
