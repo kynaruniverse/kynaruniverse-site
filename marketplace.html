@@ -11,58 +11,84 @@
 
     <main class="main-content-container">
         <section class="featured-products">
-            <h2 class="section-title">Featured Tools</h2>
-            <div class="category-cards-section">
-                <article class="category-card">
-                    <div class="product-badge">Best Seller</div>
-                    <h3>Undated Planner</h3>
-                    <p class="product-price">£12.00</p>
-                    <div class="asset-grid">
-                        <span class="asset-item">Includes Notion & PDF</span>
-                    </div>
-                    <a href="#" class="browse-button">View Product</a>
-                </article>
-                </div>
-        </section>
+    <h2 class="section-title">Featured Creations</h2>
+    <div class="category-cards-section">
+        
+        <article class="category-card">
+            <div class="product-badge">Top Pick</div>
+            <h3>Ultimate Life Planner</h3>
+            <div class="asset-grid">
+                <a href="#" class="asset-item"><span>Notion Template</span></a>
+                <a href="#" class="asset-item"><span>Digital PDF</span></a>
+            </div>
+            <div class="product-footer">
+                <span class="price-tag">£15.00</span>
+                <a href="#" class="browse-button">Buy Now</a>
+            </div>
+        </article>
 
-        <div class="shop-container">
-            <aside class="filter-sidebar">
-                <h3>Filter by</h3>
-                
-                <div class="filter-group">
-                    <h4>Category</h4>
-                    <label><input type="checkbox" value="productivity"> Productivity</label>
-                    <label><input type="checkbox" value="homeschool"> Homeschool</label>
-                    <label><input type="checkbox" value="creative"> Creative</label>
-                </div>
-
-                <div class="filter-group">
-                    <h4>Price</h4>
-                    <label><input type="radio" name="price" value="free"> Free Items</label>
-                    <label><input type="radio" name="price" value="paid"> Paid Items</label>
-                </div>
-            </aside>
-
-            <section class="product-feed">
-                <div class="feed-controls">
-                    <span>Showing all products</span>
-                    <select id="sort-options">
-                        <option value="newest">Newest First</option>
-                        <option value="price-low">Price: Low to High</option>
-                    </select>
-                </div>
-
-                <div class="feed-grid">
-                    <div class="feed-item">
-                        <div class="item-info">
-                            <h4>Notion Habit Tracker</h4>
-                            <p>Productivity • £5.00</p>
-                        </div>
-                        <a href="#" class="buy-link">Get it ➔</a>
-                    </div>
-                </div>
-            </section>
+        <article class="category-card">
+            <div class="product-badge">New</div>
+            <h3>ADHD Focus Guide</h3>
+            <div class="asset-grid">
+                <a href="#" class="asset-item"><span>E-Book</span></a>
+                <a href="#" class="asset-item"><span>Worksheets</span></a>
+            </div>
+            <div class="product-footer">
+                <span class="price-tag">£9.00</span>
+                <a href="#" class="browse-button">Buy Now</a>
+            </div>
+        </article>
+        
         </div>
+</section>
+
+
+        <div class="shop-layout">
+    <aside class="marketplace-filters">
+        <div class="filter-header">
+            <h3>Filter & Sort</h3>
+            <button id="clear-filters">Reset</button>
+        </div>
+
+        <div class="filter-group">
+            <h4>Category</h4>
+            <label class="filter-label"><input type="checkbox"> Productivity</label>
+            <label class="filter-label"><input type="checkbox"> Homeschool</label>
+            <label class="filter-label"><input type="checkbox"> Creative</label>
+        </div>
+
+        <div class="filter-group">
+            <h4>Price Range</h4>
+            <label class="filter-label"><input type="radio" name="price"> Free</label>
+            <label class="filter-label"><input type="radio" name="price"> Under £10</label>
+            <label class="filter-label"><input type="radio" name="price"> £10+</label>
+        </div>
+        
+        <div class="filter-group">
+            <h4>Sort By</h4>
+            <select class="sort-dropdown">
+                <option>Newest First</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+            </select>
+        </div>
+    </aside>
+
+    <section class="scrollable-product-list">
+        <div class="list-item">
+            <div class="item-details">
+                <h4>Homeschool Math Bundle</h4>
+                <p>Printable PDF • 40 Pages</p>
+            </div>
+            <div class="item-action">
+                <span class="item-price">£5.00</span>
+                <a href="#" class="buy-link">Details ➔</a>
+            </div>
+        </div>
+        </section>
+</div>
+
     </main>
 
     <script src="script.js" defer></script>
