@@ -114,15 +114,24 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           await signUpFirebase(auth, email, pass, displayName);
         }
-        window.location.href = 'account.html';
-      } catch (err) {
-        console.error(err);
-        if (messageEl) {
-          messageEl.textContent = (err.message || 'Error').replace('Firebase: ', '');
-        }
-      } finally {
-        submitBtn.disabled = false;
+        if (authModal) {
+    authModal.classList.remove('is-open');
+    authModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('drawer-open');
       }
+
+  // Then navigate to account page
+      setTimeout(() => {
+        window.location.href = 'account.html';
+        }, 100);
+} catch (err) {
+  console.error(err);
+  if (messageEl) {
+    messageEl.textContent = (err.message || 'Error').replace('Firebase: ', '');
+  }
+} finally {
+  submitBtn.disabled = false;
+}
     });
   }
   
