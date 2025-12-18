@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         accountNavLink.style.opacity = '1';
       }
     } else {
-      signInText.textContent = 'Sign In';
+      signInText.textContent = 'Sign in';
       if (accountNavLink) {
         accountNavLink.style.pointerEvents = 'none';
         accountNavLink.style.opacity = '0.5';
