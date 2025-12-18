@@ -988,6 +988,62 @@ body.drawer-open {
   color: rgba(17,17,17,0.7);
 }
 
+/* ===== ACCOUNT DASHBOARD POLISH ===== */
+
+/* Profile Initial Circle */
+.profile-placeholder {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-main-gold);
+  color: var(--color-dark-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bantayog', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Stats Row Responsiveness */
+@media (max-width: 480px) {
+  .stats-row {
+    flex-direction: column; /* Stack cards on very small phones */
+    gap: 8px;
+  }
+  
+  .stat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    text-align: left;
+  }
+
+  .stat-number {
+    margin-bottom: 0;
+    order: 2; /* Move number to the right */
+  }
+}
+
+/* Tablet/Desktop Grid for Panels */
+@media (min-width: 768px) {
+  .account-dashboard {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two column layout */
+    gap: 20px;
+  }
+
+  .welcome-banner, .stats-row {
+    grid-column: span 2; /* Full width for top section */
+  }
+}
+
+
 /* Stats cards row */
 .stats-row {
   display: flex;
