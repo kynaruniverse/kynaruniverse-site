@@ -302,6 +302,11 @@ body {
     text-transform: uppercase;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
+.main-nav ul li a i {
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
 
 .main-nav ul li a:hover,
 .main-nav ul li a:focus {
