@@ -301,7 +301,7 @@ body {
     align-items: center;
     padding: 12px 15px;
     text-decoration: none;
-    line-height: 1;
+    line-height: 1.1;
     color: var(--color-dark-text);
     font-family: 'Bantayog', var(--font-family-body);
     font-size: 12px;
@@ -312,8 +312,11 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .main-nav ul li a i {
-    font-size: 1.1rem;
-    vertical-align: middle;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
 }
 
 
