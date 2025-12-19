@@ -155,41 +155,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- AUTH STATE UI UPDATES ---
   onAuthChange(auth, (user) => {
     const isLoggedIn = !!user;
+    
     localStorage.setItem('kynar_auth_state', isLoggedIn ? 'logged_in' : 'logged_out');
     
     if (isLoggedIn) {
-      // 1. Update text to show "Account" or User's First Name
       if (signInText) {
         const displayName = user.displayName ? user.displayName.split(' ')[0] : 'Account';
         signInText.textContent = displayName;
       }
       
-      // 2. Change Login Icon to User Initial Circle
-      if (lockIconContainer) {
-        const initial = user.displayName ? user.displayName.charAt(0).toUpperCase() :
-          user.email ? user.email.charAt(0).toUpperCase() : 'U';
-        
-        lockIconContainer.innerHTML = `
-          <div style="
-            width: 100%; 
-            height: 100%; 
-            background-color: var(--color-main-gold); 
-            border-radius: 5px;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-family: 'Bantayog', sans-serif;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--color-dark-text);
-          ">${initial}</div>
-        `;
-      }
     } else {
-      // 1. Revert to "Sign in" text
       if (signInText) signInText.textContent = 'Sign in';
       
-      // 2. Revert to Login Icon Image
       if (lockIconContainer) {
         lockIconContainer.innerHTML = `<img src="/images/log-in-icon.png" alt="User sign in" style="width: 100%; height: 100%; object-fit: contain;">`;
       }

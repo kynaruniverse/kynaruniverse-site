@@ -1029,17 +1029,6 @@ body.drawer-open {
     order: 2; /* Move number to the right */
   }
 }
-
-/* Prevent Header Icon Flickering */
-[data-auth-state="logged_in"] .custom-lock-icon img {
-    display: none;
-}
-
-[data-auth-state="logged_in"] .sign-in-text {
-    visibility: hidden;
-}
-
-
 /* Tablet/Desktop Grid for Panels */
 @media (min-width: 768px) {
   .account-dashboard {
