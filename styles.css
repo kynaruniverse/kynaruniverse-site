@@ -233,6 +233,8 @@ body {
     border: 2px solid var(--color-dark-text);
     border-radius: 5px;
     background-color: white;
+    padding: 4px;
+    overflow: hidden;
 }
 
 .custom-lock-icon img {
@@ -359,7 +361,7 @@ body {
 }
 
 /* Search button */
-.search-button {
+.search-submit {
     background: transparent;
     border: none;
     padding: 0;
@@ -371,17 +373,17 @@ body {
     justify-content: center;
 }
 
-.search-button .search-icon {
+.search-submit .search-icon {
     width: 18px;
     height: 18px;
     display: block;
 }
 
-.search-button i {
+.search-submit {
     transform: translateY(1px);
 }
 
-.search-button:hover {
+.search-submit:hover {
     background-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -1252,7 +1254,7 @@ body.drawer-open {
         font-weight: 600;
     }
 
-    .search-button i {
+    .search-submit {
         transform: translateY(1px);
     }
 

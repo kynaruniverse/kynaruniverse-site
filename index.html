@@ -50,11 +50,6 @@
                         <img src="/images/log-in-icon.png" alt="User sign in">
                     </span>
                     <span class="sign-in-text">Sign in</span>
-                    <script>
-  if (localStorage.getItem('kynar_auth_state') === 'logged_in') {
-    document.currentScript.previousElementSibling.textContent = 'Sign out';
-  }
-</script>
                 </a>
             </div>
         </header>
@@ -65,7 +60,7 @@
                 <li><a href="marketplace.html">Marketplace</a></li>
                 <li><a href="#">Journal</a></li>
                 <li><a href="#">Community</a></li>
-                <li><a href="account.html" id="account-nav-link">Account</a></li>
+                <li><a href="account.html" class="account-nav-link" id="account-nav-link">Account</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </nav>
@@ -78,7 +73,7 @@
                     name="site-search"
                     placeholder="Search Kynaruniverse.co.uk"
                     aria-label="Search Kynaruniverse.co.uk">
-                <button class="search-button" type="submit">
+                <button class="search-submit" type="submit">
                 <img src="/images/search-button.svg" alt="Search" class="search-icon">
                 </button>
             </form>
@@ -470,10 +465,12 @@
     <nav class="side-drawer" aria-hidden="true">
   <button class="drawer-close" type="button">Close ✕</button>
   <ul>
+    <li><a href="index.html">Home</a></li>
     <li><a href="marketplace.html">Marketplace</a></li>
     <li><a href="#">Journal</a></li>
     <li><a href="#">Community</a></li>
-    <li><a href="account.html" id="account-nav-mobile">Account</a></li>
+    <li><a href="account.html" class="account-nav-link" id="account-nav-mobile">Account</a></li>
+
   </ul>
 </nav>
 

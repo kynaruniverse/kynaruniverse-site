@@ -42,27 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- Sign In / Sign Out Button Logic ---
-  signInLink.addEventListener('click', async (e) => {
-    // If user is logged in, clicking the "Account/Sign Out" area 
-    // on the Marketplace/Home should take them to their account page
-    // unless you specifically want them to sign out immediately.
-    if (auth.currentUser) {
-       // Optional: Redirect to account instead of auto-logout
-       // window.location.href = 'account.html'; 
-       // return;
-       
-       // Current Logic: Logout
-       if(confirm("Do you want to sign out?")) {
-         try {
-            await signOutFirebase(auth);
-            window.location.reload(); 
-          } catch (err) { console.error('Logout failed:', err); }
-       }
+    // --- Helper: Open/Close Logic ---
+  signInLink.addEventListener('click', (e) => {
+    const user = auth.currentUser;
+    if (user) {
+      // If logged in, let the browser follow the link to account.html
+      window.location.href = 'account.html';
     } else {
+      // If NOT logged in, stop the link and open the login modal
       e.preventDefault();
       openLogin();
     }
   });
+
 
   // --- Interceptors (Account Links) ---
   accountNavLinks.forEach(link => {
