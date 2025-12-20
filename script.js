@@ -5,125 +5,80 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    /* ===== 1. SIDE DRAWER & NAVIGATION ===== */
+    /* ===== 1. CORE ELEMENTS ===== */
     const burger = document.querySelector('.custom-burger');
     const drawer = document.querySelector('.side-drawer');
-    const closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
     const overlay = document.querySelector('.drawer-overlay');
-    
-    function openDrawer() {
-        if (!drawer || !overlay) return;
-        drawer.classList.add('is-open');
+    const filterSidebar = document.getElementById('filter-sidebar');
+    const filterToggle = document.getElementById('mobile-filter-toggle');
+    const applyFiltersBtn = document.getElementById('apply-filters-btn');
+
+    /* ===== 2. DRAWER & SIDEBAR LOGIC ===== */
+    function openDrawer(element) {
+        if (!element || !overlay) return;
+        element.classList.add('is-open');
         overlay.classList.add('is-visible');
         document.body.classList.add('drawer-open');
-        drawer.setAttribute('aria-hidden', 'false');
-        if (burger) burger.setAttribute('aria-expanded', 'true');
     }
     
-    function closeDrawer() {
-        if (!drawer || !overlay) return;
-        drawer.classList.remove('is-open');
-        overlay.classList.remove('is-visible');
+    function closeAllDrawers() {
+        if (drawer) drawer.classList.remove('is-open');
+        if (filterSidebar) filterSidebar.classList.remove('is-open');
+        if (overlay) overlay.classList.remove('is-visible');
         document.body.classList.remove('drawer-open');
-        drawer.setAttribute('aria-hidden', 'true');
-        if (burger) burger.setAttribute('aria-expanded', 'false');
     }
     
-    if (burger && drawer && overlay) {
-        burger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = drawer.classList.contains('is-open');
-            isOpen ? closeDrawer() : openDrawer();
+    // Burger Menu click
+    if (burger) {
+        burger.addEventListener('click', () => openDrawer(drawer));
+    }
+
+    // Filter Mobile Toggle click
+    if (filterToggle) {
+        filterToggle.addEventListener('click', () => openDrawer(filterSidebar));
+    }
+
+    // Apply & Close Button
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', () => {
+            closeAllDrawers();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeDrawer();
-            });
-        }
-        
-        overlay.addEventListener('click', closeDrawer);
     }
-    
-    // Function to close the marketplace filter sidebar
-const filterSidebar = document.getElementById('filter-sidebar');
-const applyFiltersBtn = document.getElementById('apply-filters-btn');
-const drawerOverlay = document.getElementById('drawer-overlay');
 
-if (applyFiltersBtn && filterSidebar) {
-    applyFiltersBtn.addEventListener('click', () => {
-        // 1. Remove the active class (the one that makes it visible/slide in)
-        filterSidebar.classList.remove('is-open'); // Adjust class name to match your sidebar's "open" class
-        
-        // 2. Hide the dark background overlay
-        if (drawerOverlay) {
-            drawerOverlay.classList.remove('is-active');
-        }
-        
-        // 3. Re-enable scrolling on the main page
-        document.body.classList.remove('drawer-open');
-        
-        // Optional: Smooth scroll user back to top of product list
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Close on overlay click or X button
+    if (overlay) overlay.addEventListener('click', closeAllDrawers);
+    document.querySelectorAll('.drawer-close').forEach(btn => {
+        btn.addEventListener('click', closeAllDrawers);
     });
-}
 
-
-    /* ===== 2. AUTH MODAL LOGIC ===== */
+    /* ===== 3. AUTH MODAL LOGIC ===== */
     const authTriggers = document.querySelectorAll('.sign-in-link');
     const authModal = document.querySelector('.auth-modal');
-    const authClose = document.querySelector('.auth-modal-close');
-    const authBackdrop = document.querySelector('.auth-modal-backdrop');
-
-    function openAuth() {
-        if (authModal) authModal.classList.add('is-open');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
-    }
-
-    function closeAuth() {
-        if (authModal) authModal.classList.remove('is-open');
-        document.body.style.overflow = ''; 
-    }
-
+    
     if (authTriggers.length > 0 && authModal) {
         authTriggers.forEach(trigger => trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeDrawer(); // Close mobile menu if open
-            openAuth();
+            if (!auth.currentUser) { // Only open if NOT logged in
+                e.preventDefault();
+                closeAllDrawers();
+                authModal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
         }));
-
-        if (authClose) authClose.addEventListener('click', closeAuth);
-        if (authBackdrop) authBackdrop.addEventListener('click', closeAuth);
     }
-    
-    /* ===== 3. GLOBAL SEARCH & MARKETPLACE ENGINE ===== */
+
+    /* ===== 4. MARKETPLACE ENGINE ===== */
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const filterToggle = document.getElementById('mobile-filter-toggle');
-    const filterSidebar = document.getElementById('filter-sidebar');
     const resultCountText = document.getElementById('result-count');
     const emptyState = document.getElementById('empty-state');
-    const productContainer = document.getElementById('product-container');
     const sortDropdown = document.querySelector('.sort-dropdown');
-    const resetBtn = document.getElementById('clear-filters');
 
-    // --- A. Mobile Toggle ---
-    if (filterToggle && filterSidebar) {
-        filterToggle.addEventListener('click', () => {
-            filterSidebar.classList.toggle('active');
-            // Change button text or icon if needed
-            const isShowing = filterSidebar.classList.contains('active');
-            filterToggle.textContent = isShowing ? 'Close Filters' : 'Filter Creations';
-        });
-    }
-
-    // --- B. The "Master" Filter Function ---
     function runAllFilters() {
         const products = document.querySelectorAll('.list-item');
-        if (products.length === 0) return; // Exit if not on marketplace page
+        if (products.length === 0) return;
 
-        const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+        const query = searchInput?.value.trim().toLowerCase() || "";
         const activeCats = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);
         const activeTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
         const priceFilter = document.querySelector('input[name="price"]:checked')?.value || 'all';
@@ -153,85 +108,43 @@ if (applyFiltersBtn && filterSidebar) {
             }
         });
 
-        // Update UI
-        if (resultCountText) {
-            resultCountText.textContent = `Showing ${visibleCount} creation${visibleCount === 1 ? '' : 's'}`;
-        }
-        if (emptyState) {
-            emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-        }
+        if (resultCountText) resultCountText.textContent = `Showing ${visibleCount} creation${visibleCount === 1 ? '' : 's'}`;
+        if (emptyState) emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // --- C. Event Listeners ---
+    // Search Redirection logic
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const currentPath = window.location.pathname;
-            // Check if we are NOT on the marketplace page
-            if (!currentPath.includes('marketplace')) {
+            if (!window.location.pathname.includes('marketplace')) {
+                e.preventDefault();
                 window.location.href = `marketplace.html?search=${encodeURIComponent(searchInput.value)}`;
             } else {
+                e.preventDefault();
                 runAllFilters();
             }
         });
     }
 
-    // Live search refinement as user types
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            if (window.location.pathname.includes('marketplace')) {
-                runAllFilters();
-            }
-        });
-    }
-
-    document.querySelectorAll('.cat-filter, .type-filter, input[name="price"]').forEach(el => {
+    // Re-run filters on any change
+    document.querySelectorAll('.cat-filter, .type-filter, input[name="price"], .sort-dropdown').forEach(el => {
         el.addEventListener('change', runAllFilters);
     });
 
-    if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            document.querySelectorAll('.cat-filter, .type-filter').forEach(c => c.checked = false);
-            const allPrice = document.querySelector('input[name="price"][value="all"]');
-            if (allPrice) allPrice.checked = true;
-            if (searchInput) searchInput.value = '';
-            runAllFilters();
-        });
-    }
-
-    if (sortDropdown && productContainer) {
-        sortDropdown.addEventListener('change', () => {
-            const productsArr = Array.from(document.querySelectorAll('.list-item'));
-            const sortBy = sortDropdown.value;
-            
-            productsArr.sort((a, b) => {
-                const priceA = parseFloat(a.getAttribute('data-price')) || 0;
-                const priceB = parseFloat(b.getAttribute('data-price')) || 0;
-                return sortBy === 'low-high' ? priceA - priceB : priceB - priceA;
-            });
-            
-            productsArr.forEach(p => productContainer.appendChild(p));
-        });
-    }
-
-    /* ===== 4. ESCAPE KEY & GLOBAL CLOSE ===== */
+    // ESCAPE KEY
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeDrawer();
-            closeAuth();
-            if (filterSidebar) filterSidebar.classList.remove('active');
+            closeAllDrawers();
+            if (authModal) authModal.classList.remove('is-open');
         }
     });
 
-    /* ===== 5. INITIAL LOAD CHECK (URL Params) ===== */
+    // Check URL on load
     const urlParams = new URLSearchParams(window.location.search);
-    const searchParam = urlParams.get('search');
-    const catParam = urlParams.get('category');
-
-    if (searchParam || catParam) {
-        if (searchInput && searchParam) searchInput.value = searchParam;
-        if (catParam) {
-            const cb = document.querySelector(`.cat-filter[value="${catParam}"]`);
+    if (urlParams.get('search') || urlParams.get('category')) {
+        if (searchInput) searchInput.value = urlParams.get('search') || "";
+        const cat = urlParams.get('category');
+        if (cat) {
+            const cb = document.querySelector(`.cat-filter[value="${cat}"]`);
             if (cb) cb.checked = true;
         }
         runAllFilters();
