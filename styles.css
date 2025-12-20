@@ -1592,6 +1592,17 @@ body.drawer-open {
     }
 }
 
+/* Fix: This ensures the menu actually appears when the JS triggers it */
+@media (max-width: 768px) {
+    .marketplace-filters.is-open {
+        display: block !important;
+        overflow-y: auto;
+        /* Slide up animation */
+        animation: slideUp 0.3s ease-out;
+    }
+}
+
+
 .filter-group h4 {
     font-family: var(--font-display);
     color: var(--color-star-red);
@@ -1714,11 +1725,13 @@ body.drawer-open {
     .filter-actions-mobile {
         position: sticky;
         bottom: 0;
-        background: white;
-        margin-left: -20px; /* Counteracts parent padding if necessary */
-        margin-right: -20px;
-        padding: 20px !important;
+        background: #fdfbf7;
+        margin-left: -25px;
+        margin-right: -25px;
+        padding: 15px 25px !important;
         z-index: 5;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -1729,4 +1742,19 @@ body.drawer-open {
 #apply-filters-btn:active {
     transform: scale(0.98);
 }
+
+/* Adds a divider between Featured and the Filterable list */
+.featured-products {
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+/* Ensure Featured cards don't shrink too much on desktop */
+@media (min-width: 768px) {
+    .featured-products .category-card {
+        flex: 0 1 450px; /* Make featured cards slightly larger than regular items */
+    }
+}
+
 
