@@ -1,6 +1,6 @@
 /* ============================================================
    KYNAR UNIVERSE - GLOBAL JAVASCRIPT
-   Handles: Navigation, Side Drawer, Marketplace Filters, and Search
+   Handles: Navigation, Side Drawer, Auth Modals, Marketplace Engine
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('is-visible');
         document.body.classList.add('drawer-open');
         drawer.setAttribute('aria-hidden', 'false');
-        burger.setAttribute('aria-expanded', 'true');
+        if (burger) burger.setAttribute('aria-expanded', 'true');
     }
     
     function closeDrawer() {
@@ -26,35 +26,54 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('is-visible');
         document.body.classList.remove('drawer-open');
         drawer.setAttribute('aria-hidden', 'true');
-        burger.setAttribute('aria-expanded', 'false');
+        if (burger) burger.setAttribute('aria-expanded', 'false');
     }
     
-    if (burger && drawer && closeBtn && overlay) {
-        // Open/close via burger
+    if (burger && drawer && overlay) {
         burger.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = drawer.classList.contains('is-open');
             isOpen ? closeDrawer() : openDrawer();
         });
         
-        // Close via "X" button
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeDrawer();
-        });
-        
-        // Close via overlay click
-        overlay.addEventListener('click', closeDrawer);
-        
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 closeDrawer();
-            }
-        });
+            });
+        }
+        
+        overlay.addEventListener('click', closeDrawer);
+    }
+
+    /* ===== 2. AUTH MODAL LOGIC ===== */
+    const authTriggers = document.querySelectorAll('.sign-in-link');
+    const authModal = document.querySelector('.auth-modal');
+    const authClose = document.querySelector('.auth-modal-close');
+    const authBackdrop = document.querySelector('.auth-modal-backdrop');
+
+    function openAuth() {
+        if (authModal) authModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    }
+
+    function closeAuth() {
+        if (authModal) authModal.classList.remove('is-open');
+        document.body.style.overflow = ''; 
+    }
+
+    if (authTriggers.length > 0 && authModal) {
+        authTriggers.forEach(trigger => trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeDrawer(); // Close mobile menu if open
+            openAuth();
+        }));
+
+        if (authClose) authClose.addEventListener('click', closeAuth);
+        if (authBackdrop) authBackdrop.addEventListener('click', closeAuth);
     }
     
-        /* ===== 2. GLOBAL SEARCH & MARKETPLACE ENGINE ===== */
+    /* ===== 3. GLOBAL SEARCH & MARKETPLACE ENGINE ===== */
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
     const filterToggle = document.getElementById('mobile-filter-toggle');
@@ -68,13 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- A. Mobile Toggle ---
     if (filterToggle && filterSidebar) {
         filterToggle.addEventListener('click', () => {
-            filterSidebar.classList.toggle('active'); // Matches the CSS we wrote
+            filterSidebar.classList.toggle('active');
+            // Change button text or icon if needed
+            const isShowing = filterSidebar.classList.contains('active');
+            filterToggle.textContent = isShowing ? 'Close Filters' : 'Filter Creations';
         });
     }
 
     // --- B. The "Master" Filter Function ---
     function runAllFilters() {
         const products = document.querySelectorAll('.list-item');
+        if (products.length === 0) return; // Exit if not on marketplace page
+
         const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
         const activeCats = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);
         const activeTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
@@ -83,25 +107,20 @@ document.addEventListener('DOMContentLoaded', () => {
         let visibleCount = 0;
 
         products.forEach(product => {
-            // Get data
             const title = product.querySelector('h4')?.textContent.toLowerCase() || '';
             const category = product.getAttribute('data-category') || '';
             const type = product.getAttribute('data-type') || '';
             const price = parseFloat(product.getAttribute('data-price')) || 0;
 
-            // Check Search
             const matchesSearch = !query || title.includes(query);
-            // Check Category
             const matchesCat = activeCats.length === 0 || activeCats.includes(category);
-            // Check Type
             const matchesType = activeTypes.length === 0 || activeTypes.includes(type);
-            // Check Price
+            
             let matchesPrice = true;
             if (priceFilter === '0') matchesPrice = (price === 0);
             else if (priceFilter === 'under10') matchesPrice = (price > 0 && price < 10);
             else if (priceFilter === 'over10') matchesPrice = (price >= 10);
 
-            // Final Decision
             if (matchesSearch && matchesCat && matchesType && matchesPrice) {
                 product.style.display = 'flex';
                 visibleCount++;
@@ -110,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update UI (Count and Empty State)
+        // Update UI
         if (resultCountText) {
             resultCountText.textContent = `Showing ${visibleCount} creation${visibleCount === 1 ? '' : 's'}`;
         }
@@ -123,7 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (!window.location.pathname.includes('marketplace')) {
+            const currentPath = window.location.pathname;
+            // Check if we are NOT on the marketplace page
+            if (!currentPath.includes('marketplace')) {
                 window.location.href = `marketplace.html?search=${encodeURIComponent(searchInput.value)}`;
             } else {
                 runAllFilters();
@@ -131,12 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Listen for any checkbox/radio change
+    // Live search refinement as user types
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            if (window.location.pathname.includes('marketplace')) {
+                runAllFilters();
+            }
+        });
+    }
+
     document.querySelectorAll('.cat-filter, .type-filter, input[name="price"]').forEach(el => {
         el.addEventListener('change', runAllFilters);
     });
 
-    // Reset logic
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             document.querySelectorAll('.cat-filter, .type-filter').forEach(c => c.checked = false);
@@ -147,27 +175,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sort Logic (Stays separate as it reorders elements)
-    if (sortDropdown) {
+    if (sortDropdown && productContainer) {
         sortDropdown.addEventListener('change', () => {
             const productsArr = Array.from(document.querySelectorAll('.list-item'));
             const sortBy = sortDropdown.value;
+            
             productsArr.sort((a, b) => {
                 const priceA = parseFloat(a.getAttribute('data-price')) || 0;
                 const priceB = parseFloat(b.getAttribute('data-price')) || 0;
                 return sortBy === 'low-high' ? priceA - priceB : priceB - priceA;
             });
+            
             productsArr.forEach(p => productContainer.appendChild(p));
         });
     }
 
-    // Initial Load Check (URL Params)
+    /* ===== 4. ESCAPE KEY & GLOBAL CLOSE ===== */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeDrawer();
+            closeAuth();
+            if (filterSidebar) filterSidebar.classList.remove('active');
+        }
+    });
+
+    /* ===== 5. INITIAL LOAD CHECK (URL Params) ===== */
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('search') || urlParams.get('category')) {
-        if (searchInput) searchInput.value = urlParams.get('search') || '';
-        const cat = urlParams.get('category');
-        if (cat) {
-            const cb = document.querySelector(`.cat-filter[value="${cat}"]`);
+    const searchParam = urlParams.get('search');
+    const catParam = urlParams.get('category');
+
+    if (searchParam || catParam) {
+        if (searchInput && searchParam) searchInput.value = searchParam;
+        if (catParam) {
+            const cb = document.querySelector(`.cat-filter[value="${catParam}"]`);
             if (cb) cb.checked = true;
         }
         runAllFilters();
