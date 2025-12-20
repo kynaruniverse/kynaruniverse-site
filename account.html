@@ -1,305 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Account | KYNAR Universe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Manage your KYNAR Universe profile and access your creations.">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Auth Check at Top - ADDED -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>My Account | KYNAR Universe</title>
+    <meta name="description" content="Manage your KYNAR Universe profile and access your digital tools.">
     
-    const firebaseConfig = {
-      apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-      authDomain: "kynar-universe-official.firebaseapp.com",
-      projectId: "kynar-universe-official",
-      storageBucket: "kynar-universe-official.firebasestorage.app",
-      messagingSenderId: "1089722386738",
-      appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    
-    // Show loading state
-    document.documentElement.style.opacity = '0';
-    
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.href = "index.html";
-      } else {
-        document.documentElement.style.opacity = '1';
-      }
-    });
-  </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
+            authDomain: "kynar-universe-official.firebaseapp.com",
+            projectId: "kynar-universe-official",
+            storageBucket: "kynar-universe-official.firebasestorage.app",
+            messagingSenderId: "1089722386738",
+            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        document.documentElement.style.visibility = 'hidden';
+        
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.replace("index.html");
+            } else {
+                document.documentElement.style.visibility = 'visible';
+            }
+        });
+    </script>
 </head>
-<body>
 
-  <!-- Drawer Overlay (ADDED) -->
-  <div class="drawer-overlay" aria-hidden="true"></div>
+<body class="account-page protected-route">
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
-  <div class="header-wrapper">
-    <header class="top-header">
-      <div class="logo-area">
-        <button class="menu-icon custom-burger" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+    <div class="header-wrapper">
+        <header class="top-header">
+            <div class="logo-area">
+                <button class="menu-icon custom-burger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="side-drawer">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="site-title">
+                    <a href="index.html" class="site-title-link">
+                        <p class="main-title">Kynar</p>
+                        <p class="sub-title">Universe.co.uk</p>
+                    </a>
+                    <figure class="stars" aria-hidden="true">✶ , * ✦ , * ✶ , ✶ * , ✦ * , ✶</figure>
+                </div>
+            </div>
+            <p class="slogan-header">Digital tools for every corner of your life.</p>
+            <div class="account-area">
+                <button id="sign-out-btn" class="sign-in-link" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <div class="custom-lock-icon">
+                        <img src="images/log-in-icon.png" alt="Sign out" width="60" height="60">
+                    </div>
+                    <span class="sign-in-text">Sign out</span>
+                </button>
+            </div>
+        </header>
 
-        <div class="site-title">
-          <a href="index.html" class="site-title-link">
-            <p class="main-title">Kynar</p>
-            <p class="sub-title">Universe.co.uk</p>
-          </a>
-          <figure class="stars">✶ , * ✦ , * ✶ , ✶ * , ✦ * , ✶</figure>
-        </div>
-      </div>
+        <nav class="main-nav" aria-label="Account navigation">
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="#">Guides</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="account.html" style="color: var(--color-star-red);">Dashboard</a></li>
+            </ul>
+        </nav>
 
-      <p class="slogan-header">Digital tools for every corner of your life.</p>
-
-      <div class="account-area">
-        <button id="sign-out-btn" class="sign-in-link" style="border: none; background: transparent; cursor: pointer;">
-          <div class="custom-lock-icon">
-            <img src="/images/log-in-icon.png" alt="Sign out">
-          </div>
-          <span class="sign-in-text">Sign out</span>
-        </button>
-      </div>
-    </header>
-
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html" aria-label="Home"><i class="fa-solid fa-house"></i></a></li>
-        <li><a href="marketplace.html">Marketplace</a></li>
-        <li><a href="#">Guides</a></li>
-        
-        <li><a href="#">Community</a></li>
-        <li><a href="#">About</a></li>
-    </ul>
-</nav>
-      </ul>
-    </nav>
-
-    <section class="search-subscribe-bar">
-      <form class="search-box" id="search-form">
-        <input type="text" id="search-input" placeholder="Search the Universe...">
-        <button class="search-submit" type="submit">
-          <img src="/images/search-button.svg" alt="Search" class="search-icon">
-        </button>
-      </form>
-      <a href="#" class="subscribe-button">Subscribe</a>
-    </section>
-  </div>
-
-  <main class="main-content-container">
-    <section class="account-dashboard">
-      
-      <header class="welcome-banner">
-        <div id="user-initial" class="profile-placeholder">-</div>
-        <h1 class="welcome-title">
-          Welcome back, <span id="welcome-name">...</span>!
-        </h1>
-        <p class="welcome-meta">Loading member status...</p>
-      </header>
-      
-      <section class="stats-row">
-        <div class="stat-card">
-          <span class="stat-number">0</span>
-          <span class="stat-label">Products owned</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">0</span>
-          <span class="stat-label">Wishlist items</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">0</span>
-          <span class="stat-label">Downloads</span>
-        </div>
-      </section>
-      
-      <section class="dashboard-panel">
-        <div class="dashboard-panel-header">
-          <h2 class="dashboard-panel-title">Recent purchases</h2>
-        </div>
-        <div class="purchase-list">
-          <p class="purchase-empty">Your recent purchases will appear here once you've bought something.</p>
-        </div>
-        <a href="https://gumroad.com/library" target="_blank" rel="noopener" class="dashboard-link">
-          View all purchases on Gumroad →
-        </a>
-      </section>
-      
-      <section class="dashboard-panel">
-        <div class="dashboard-panel-header">
-          <h2 class="dashboard-panel-title">Quick actions</h2>
-        </div>
-        <ul class="quick-actions-list">
-          <li><a href="marketplace.html">🛒 Continue shopping</a></li>
-          <li><a href="https://gumroad.com/library" target="_blank" rel="noopener">📚 Open my Gumroad library</a></li>
-          <li><a href="#settings" id="open-settings">⚙️ Edit Profile Name</a></li>
-          <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact support</a></li>
-        </ul>
-      </section>
-      
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2025 KYNAR Universe. All rights reserved.</p>
-    <nav>
-      <a href="#">Terms</a>
-      <a href="#">Privacy</a>
-      <a href="#">Contact</a>
-    </nav>
-  </footer>
-
-  <div class="auth-modal" id="settings-modal" aria-hidden="true">
-    <div class="auth-modal-backdrop" id="settings-backdrop"></div>
-    <div class="auth-modal-dialog">
-      <button class="auth-modal-close" id="settings-close" type="button">✕</button>
-      <h2 class="auth-modal-heading">Account Settings</h2>
-      <form id="settings-form">
-        <label class="auth-label">
-          <span>Update Display Name</span>
-          <input id="settings-display-name" type="text" maxlength="40" placeholder="Your name">
-        </label>
-        <button type="submit" class="auth-primary-btn" id="settings-submit-btn">Save Changes</button>
-        <p class="auth-message" id="settings-message"></p>
-      </form>
+        <section class="search-subscribe-bar">
+            <form class="search-box" id="search-form">
+                <input type="text" id="search-input" placeholder="Search the Universe...">
+                <button class="search-submit" type="submit">
+                    <img src="images/search-button.svg" alt="Search" class="search-icon">
+                </button>
+            </form>
+            <a href="#" class="subscribe-button">Subscribe</a>
+        </section>
     </div>
-  </div>
 
-  <nav class="side-drawer" aria-hidden="true">
-    <button class="drawer-close" type="button">Close ✕</button>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="marketplace.html">Marketplace</a></li>
-      <li><a href="#">Guides</a></li>
-      <li><a href="#">Community</a></li>
-      <li><a href="account.html">Account</a></li>
-    </ul>
-  </nav>
+    <main class="main-content-container">
+        <section class="account-dashboard">
+            <header class="welcome-banner" style="text-align: center; margin-bottom: 40px;">
+                <div id="user-initial" class="profile-placeholder" style="width: 80px; height: 80px; background: var(--color-main-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-family: var(--font-display); margin: 0 auto 15px;">-</div>
+                <h1 class="welcome-title" style="font-family: var(--font-display); font-size: 28px; text-transform: uppercase;">
+                    Welcome, <span id="welcome-name" style="color: var(--color-star-red);">...</span>!
+                </h1>
+                <p id="user-meta" class="welcome-meta" style="font-family: var(--font-glacial); font-size: 14px; opacity: 0.6;">Loading member profile...</p>
+            </header>
 
-  <script src="script.js" defer></script>
-  <script src="auth-ui.js" type="module"></script>
+            <section class="stats-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;">
+                <div class="stat-card" style="text-align: center; padding: 20px; background: white; border-radius: 15px;">
+                    <span id="owned-count" class="stat-number" style="display: block; font-family: var(--font-display); font-size: 24px;">0</span>
+                    <span class="stat-label" style="font-size: 11px; text-transform: uppercase;">Owned</span>
+                </div>
+                <div class="stat-card" style="text-align: center; padding: 20px; background: white; border-radius: 15px;">
+                    <span id="wishlist-count" class="stat-number" style="display: block; font-family: var(--font-display); font-size: 24px;">0</span>
+                    <span class="stat-label" style="font-size: 11px; text-transform: uppercase;">Wishlist</span>
+                </div>
+                <div class="stat-card" style="text-align: center; padding: 20px; background: white; border-radius: 15px;">
+                    <span id="download-count" class="stat-number" style="display: block; font-family: var(--font-display); font-size: 24px;">0</span>
+                    <span class="stat-label" style="font-size: 11px; text-transform: uppercase;">Downloads</span>
+                </div>
+            </section>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+            <section class="dashboard-panel" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px;">
+                <h2 style="font-family: var(--font-display); font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Recent Purchases</h2>
+                <div id="purchase-list"><p style="font-size: 13px; color: #999; padding: 20px 0;">No recent purchases found.</p></div>
+                <a href="https://gumroad.com/library" target="_blank" class="dashboard-link" style="color: var(--color-star-red); font-size: 12px; font-weight: bold;">Gumroad Library ➔</a>
+            </section>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-      authDomain: "kynar-universe-official.firebaseapp.com",
-      projectId: "kynar-universe-official",
-      storageBucket: "kynar-universe-official.firebasestorage.app",
-      messagingSenderId: "1089722386738",
-      appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-    };
+            <section class="dashboard-panel" style="background: white; border-radius: 20px; padding: 25px;">
+                <h2 style="font-family: var(--font-display); font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Quick Actions</h2>
+                <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;"><a href="marketplace.html">🛒 Continue Shopping</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#" id="open-settings">⚙️ Edit Profile Name</a></li>
+                    <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact Support</a></li>
+                </ul>
+            </section>
+        </section>
+    </main>
 
-    const app  = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db   = getFirestore(app);
+    <footer class="site-footer" style="padding: 40px 20px; text-align: center;">
+        <p>© 2025 KYNAR UNIVERSE</p>
+    </footer>
 
-    // Globals for auth-ui.js consistency
-    window._firebaseAuth = auth;
-    window._firebaseOnAuthStateChanged = onAuthStateChanged;
-    window._firebaseSignOut = signOut; 
+    <div class="auth-modal" id="settings-modal" aria-hidden="true">
+        <div class="auth-modal-backdrop" id="settings-backdrop"></div>
+        <div class="auth-modal-dialog">
+            <button class="auth-modal-close" id="settings-close">✕</button>
+            <h2 class="auth-modal-heading">Settings</h2>
+            <form id="settings-form">
+                <label class="auth-label">
+                    <span>Update Display Name</span>
+                    <input id="settings-display-name" type="text" maxlength="40">
+                </label>
+                <button type="submit" class="auth-primary-btn" id="settings-submit-btn">Save</button>
+                <p id="settings-message" class="auth-message"></p>
+            </form>
+        </div>
+    </div>
 
-    const welcomeNameEl = document.getElementById('welcome-name');
-    const initialEl     = document.getElementById('user-initial');
-    const welcomeMetaEl = document.querySelector('.welcome-meta');
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <button class="drawer-close">✕</button>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+    </nav>
 
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "index.html";
-        return;
-      }
+    <script src="script.js" defer></script>
+    <script src="auth-ui.js" type="module"></script>
 
-      // Initial Placeholder
-      let nameToShow = user.displayName || user.email.split('@')[0];
-      welcomeNameEl.textContent = nameToShow;
-      initialEl.textContent = nameToShow.charAt(0).toUpperCase();
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-      try {
-        const userDocRef = doc(db, "users", user.uid);
-        const snap = await getDoc(userDocRef);
-        
-        if (snap.exists()) {
-          const data = snap.data();
-          if (data.displayName) {
-            welcomeNameEl.textContent = data.displayName;
-            initialEl.textContent = data.displayName.charAt(0).toUpperCase();
-          }
-          if (data.createdAt) {
-            const date = new Date(data.createdAt);
-            welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}`;
-          }
-        } else {
-          welcomeMetaEl.textContent = "New Member";
-        }
-      } catch (err) {
-        console.error("Firestore error:", err);
-      }
-    });
+        const firebaseConfig = {
+            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
+            authDomain: "kynar-universe-official.firebaseapp.com",
+            projectId: "kynar-universe-official",
+            storageBucket: "kynar-universe-official.firebasestorage.app",
+            messagingSenderId: "1089722386738",
+            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
+        };
 
-    // Sign Out Button (ADDED)
-    document.getElementById('sign-out-btn').addEventListener('click', async () => {
-      try {
-        await signOut(auth);
-        window.location.href = 'index.html';
-      } catch (err) {
-        console.error('Sign out error:', err);
-        alert('Error signing out. Please try again.');
-      }
-    });
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    // Settings Modal Logic
-    const settingsModal = document.getElementById('settings-modal');
-    const settingsInput = document.getElementById('settings-display-name');
-    const settingsMsg   = document.getElementById('settings-message');
+        const welcomeNameEl = document.getElementById('welcome-name');
+        const initialEl = document.getElementById('user-initial');
+        const welcomeMetaEl = document.getElementById('user-meta');
 
-    document.getElementById('open-settings').addEventListener('click', (e) => {
-      e.preventDefault();
-      settingsModal.classList.add('is-open');
-      settingsInput.value = welcomeNameEl.textContent;
-    });
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                let nameToShow = user.displayName || user.email.split('@')[0];
+                welcomeNameEl.textContent = nameToShow;
+                initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
-    const closeSettings = () => settingsModal.classList.remove('is-open');
-    document.getElementById('settings-close').addEventListener('click', closeSettings);
-    document.getElementById('settings-backdrop').addEventListener('click', closeSettings);
+                try {
+                    const snap = await getDoc(doc(db, "users", user.uid));
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        if (data.displayName) {
+                            welcomeNameEl.textContent = data.displayName;
+                            initialEl.textContent = data.displayName.charAt(0).toUpperCase();
+                        }
+                        const date = new Date(data.createdAt);
+                        welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}`;
+                    }
+                } catch (err) { console.error(err); }
+            }
+        });
 
-    document.getElementById('settings-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const user = auth.currentUser;
-      const newName = settingsInput.value.trim();
-      const btn = document.getElementById('settings-submit-btn');
+        document.getElementById('sign-out-btn').addEventListener('click', () => {
+            signOut(auth).then(() => window.location.replace('index.html'));
+        });
 
-      if (!user || !newName) return;
+        // Settings Logic
+        const settingsModal = document.getElementById('settings-modal');
+        document.getElementById('open-settings').addEventListener('click', (e) => {
+            e.preventDefault();
+            settingsModal.classList.add('is-open');
+            document.getElementById('settings-display-name').value = welcomeNameEl.textContent;
+        });
 
-      btn.disabled = true;
-      settingsMsg.textContent = "Updating...";
+        const closeSettings = () => settingsModal.classList.remove('is-open');
+        document.getElementById('settings-close').addEventListener('click', closeSettings);
+        document.getElementById('settings-backdrop').addEventListener('click', closeSettings);
 
-      try {
-        const userDocRef = doc(db, "users", user.uid);
-        await updateDoc(userDocRef, { displayName: newName, updatedAt: new Date().toISOString() });
-        
-        welcomeNameEl.textContent = newName;
-        initialEl.textContent = newName.charAt(0).toUpperCase();
-        
-        settingsMsg.style.color = "green";
-        settingsMsg.textContent = "Success!";
-        setTimeout(closeSettings, 1000);
-      } catch (err) {
-        settingsMsg.style.color = "red";
-        settingsMsg.textContent = "Error updating.";
-      } finally {
-        btn.disabled = false;
-      }
-    });
-  </script>
+        document.getElementById('settings-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newName = document.getElementById('settings-display-name').value.trim();
+            const msg = document.getElementById('settings-message');
+            if (!newName) return;
+            try {
+                await updateDoc(doc(db, "users", auth.currentUser.uid), { displayName: newName });
+                welcomeNameEl.textContent = newName;
+                initialEl.textContent = newName.charAt(0).toUpperCase();
+                msg.style.color = "green";
+                msg.textContent = "Saved!";
+                setTimeout(closeSettings, 1000);
+            } catch (err) { msg.textContent = "Error saving."; }
+        });
+    </script>
 </body>
 </html>
