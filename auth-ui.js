@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (signInText) signInText.textContent = 'Sign in';
       
       if (lockIconContainer) {
-        lockIconContainer.innerHTML = `<img src="/images/log-in-icon.png" alt="User sign in" style="width: 100%; height: 100%; object-fit: contain;">`;
+        lockIconContainer.innerHTML = `<img src="images/log-in-icon.png" alt="User sign in" style="width: 100%; height: 100%; object-fit: contain;">`;
       }
     }
     
