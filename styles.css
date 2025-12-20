@@ -1162,13 +1162,19 @@ body.drawer-open {
 }
 
 .stat-card {
-    flex:1;
+    flex:0 1 120px;
     border-radius:14px;
     background-color:#fdfbf7;
     border:1px solid rgba(0,0,0,.1);
     padding:15px 10px;
     text-align:center;
     transition:transform .2s ease;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  transition: transform 0.2s ease;
 }
 
 .stat-card:hover {
@@ -1179,9 +1185,10 @@ body.drawer-open {
     display:block;
     font-family:var(--font-display);
     font-size:20px;
-    margin-bottom:4px;
+    margin-bottom:0;
     color:var(--color-dark-text);
     font-weight:bold;
+    line-height: 1;
 }
 
 .stat-label {
@@ -1192,6 +1199,8 @@ body.drawer-open {
     letter-spacing:.05em;
     font-weight:700;
     color:rgba(17,17,17,.6);
+    line-height: 1;
+    margin-top: 4px;
 }
 
 /* DASHBOARD PANELS & 
