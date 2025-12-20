@@ -1155,8 +1155,10 @@ body.drawer-open {
 /* STATS ROW */
 
 .stats-row {
-    display:flex;gap:12px;
+    display:flex;
+    gap:12px;
     margin-bottom:20px;
+    justify-content: center;
 }
 
 .stat-card {
@@ -1417,8 +1419,10 @@ QUICK ACTIONS */
 @media (max-width:480px) {
     
     .stats-row {
-        flex-direction:column;gap:10px;
+        flex-direction:column;
+        gap:10px;
         padding:0 5px;
+        justify-content: center;
     }
     
 .stat-card {
