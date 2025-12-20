@@ -36,6 +36,17 @@
     --color-header-bg: #c4c4c4;
     --color-search-bg-deep: #004833;
     --color-hero-shadow: rgba(0, 0, 0, 0.08);
+    
+        /* Category Card Colors */
+    --cat-planning: #f8ecda;
+    --cat-homeschool: #e3f0e7;
+    --cat-creativity: #f7e5f0;
+    --cat-systems: #e4e6f7;
+    --cat-content: #f6f2e3;
+    --cat-audio: #e2f3f5;
+    --cat-code: #e7e8ed;
+    --cat-resource: #f0ebe5;
+
 
     /* Radii */
     --radius-pill: 999px;
@@ -147,7 +158,7 @@ body {
     width: 100%;
     height: 5px;
     background-color: var(--color-main-gold);
-    transition: all 0.3s ease; /* Prepared for potential "X" animation later */
+    transition: 0.3s;
 }
 
 .custom-burger:focus-visible {
@@ -367,7 +378,7 @@ body {
     text-transform: uppercase;
     font-weight: bold;
     border-radius: var(--radius-pill);
-    transition: all 0.2s ease; /* Consolidates your transform and box-shadow transitions */
+    transition: 0.2s ease;
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -403,13 +414,13 @@ body {
     display: flex;
     align-items: center;
     background-color: var(--color-search-bg-deep);
-    flex: 1 1 auto;
+    flex: 1;
     max-width: none;
     height: 35px;
     border-radius: var(--radius-pill);
     overflow: hidden;
     border: 0;
-    transition: box-shadow 0.2s ease;
+    transition: 0.2s;
 }
 
 .search-box input {
@@ -474,7 +485,7 @@ body {
     font-size: 10px;
     letter-spacing: 0.18em;
     box-shadow: 0 0 6px var(--color-slogan-bg);
-    flex: 0 0 auto;
+    flex: none;
 }
 
 .subscribe-button:hover {
@@ -585,14 +596,16 @@ body {
 }
 
 /* Card Backgrounds - Preserved exactly as sent */
-.planning-productivity-card { background: #f8ecda; }
-.printables-homeschool-card { background: #e3f0e7; }
-.colouring-creativity-card { background: #f7e5f0; }
-.templates-systems-card { background: #e4e6f7; }
-.prompts-content-card { background: #f6f2e3; }
-.audio-focus-card { background: #e2f3f5; }
-.code-automation-card { background: #e7e8ed; }
-.resource-libraries-card { background: #f0ebe5; }
+.planning-productivity-card { background: var(--cat-planning); }
+.printables-homeschool-card { background: var(--cat-homeschool); }
+.colouring-creativity-card { background: var(--cat-creativity); }
+.templates-systems-card { background: var(--cat-systems); }
+.prompts-content-card,
+.account-intro-panel
+{ background: var(--cat-content); }
+.audio-focus-card { background: var(--cat-audio); }
+.code-automation-card { background: var(--cat-code); }
+.resource-libraries-card { background: var(--cat-resource); }
 
 .category-card:hover {
     transform: translateY(-6px);
@@ -852,7 +865,7 @@ body.drawer-open {
 .auth-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: #000000a6;
     backdrop-filter: blur(2px);
 }
 
@@ -1197,334 +1210,9 @@ body.drawer-open {
 }
 
 
-/* ===== MARKETPLACE MOBILE FILTERS ===== */
-@media (max-width: 768px) {
-    .mobile-filter-btn { 
-        display: block; /* Shows the gold button we defined in Block 17 */
-    }
-    
-    /* Shortened Marketplace Mobile Overlay */
-.marketplace-filters {
-    display: none; 
-    position: fixed;
-    inset: 0; /* Shorthand for top, left, width, height: 100% */
-    z-index: 12000;
-    box-sizing: border-box;
-    /* Background and padding are now in the DNA group */
-}
-
-.marketplace-filters.active {
-    display: block;
-    overflow-y: auto;
-    animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-}
-
-/* ===== STATS ROW RESPONSIVENESS ===== */
-@media (max-width: 480px) {
-  .stats-row {
-    flex-direction: column; /* Stack cards on very small phones */
-    gap: 10px;
-    padding: 0 5px;
-  }
-  
-  .stat-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 20px;
-    text-align: left;
-    background-color: #fdfbf7;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-  }
-
-  .stat-number {
-    margin-bottom: 0;
-    order: 2; /* Number moves to the right side */
-    font-size: 16px;
-    color: var(--color-star-red);
-  }
-
-  .stat-label {
-    order: 1; /* Label stays on the left */
-    font-family: var(--font-glacial);
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--color-dark-text);
-  }
-}
-
-/* ===== DASHBOARD GRID (Tablet/Desktop) ===== */
-@media (min-width: 768px) {
-  .account-dashboard {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    /* Clean two-column split */
-    grid-template-columns: 1fr 1fr; 
-    gap: 24px;
-    align-items: start;
-  }
-
-  /* Span full width for the introductory sections */
-  .welcome-banner, 
-  .stats-row {
-    grid-column: span 2; 
-  }
-}
-
-/* ===== STATS CARDS ROW ===== */
-.stats-row {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.stat-card {
-  flex: 1;
-  border-radius: 14px;
-  background-color: #fdfbf7;
-  border: 1px solid rgba(0,0,0,0.1);
-  padding: 15px 10px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-2px);
-}
-
-.stat-number {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 20px;
-  margin-bottom: 4px;
-  color: var(--color-dark-text);
-  font-weight: bold;
-}
-
-.stat-label {
-  display: block;
-  font-family: var(--font-glacial);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-  color: rgba(17,17,17,0.6);
-}
-
-/* ==== DASHBOARD PANELS ==== */
-.dashboard-panel {
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-
-.dashboard-panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.dashboard-panel-title {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-dark-text);
-}
-
-
-.purchase-empty {
-  font-family: var(--font-glacial);
-  font-size: 13px;
-  color: rgba(17,17,17,0.7);
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-/* Quick Actions List */
-.quick-actions-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 10px;
-}
-
-.quick-actions-list li + li {
-  margin-top: 8px;
-}
-
-.quick-actions-list a {
-  font-family: var(--font-glacial);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-dark-text);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.2s ease;
-}
-
-.quick-actions-list a:hover {
-  color: var(--color-star-red);
-  text-decoration: underline;
-}
-
-/* Panel Footer Link */
-.dashboard-link {
-  display: inline-block;
-  margin-top: 8px;
-  font-family: var(--font-glacial);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-star-red);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.dashboard-link:hover {
-  text-decoration: underline;
-}
-
-/* ===== DESKTOP (768px and up) ===== */
-@media (min-width: 768px) {
-
-    /* Center header band content */
-    .header-wrapper {
-        padding-inline: 0;
-    }
-
-    .top-header,
-    .main-nav,
-    .search-subscribe-bar {
-        max-width: 1200px;
-        margin-inline: auto;
-    }
-
-    .main-content-container {
-        max-width: 100%;
-        margin: 20px auto 0;
-        padding: 0 15px;
-    }
-
-    .top-header {
-        padding: 20px 40px;
-    }
-
-    .custom-burger {
-        display: none;
-    }
-
-    /* Branding Scaled for Desktop */
-    .site-title .main-title {
-        font-size: 32px;
-    }
-
-    .site-title .sub-title {
-        font-size: 14px;
-    }
-
-    .slogan-header {
-        display: block;
-        font-size: 18px; /* Balanced for desktop */
-    }
-
-    /* Account area */
-    .custom-lock-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .sign-in-link {
-        font-size: 12px;
-    }
-
-    /* Desktop Navigation Bar */
-    .main-nav {
-        display: block;
-        padding: 0;
-        background-color: var(--color-main-gold);
-    }
-
-    .main-nav ul {
-        flex-direction: row;
-        justify-content: center;
-        gap: 0;
-        padding: 0;
-    }
-
-    .main-nav ul li a {
-        padding: 15px 25px;
-        border-bottom: none;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        font-size: 13px;
-    }
-
-    .main-nav ul li:first-child a {
-        border-left: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    /* Search + Subscribe Bar Desktop */
-    .search-subscribe-bar {
-        justify-content: center;
-        padding: 15px 24px;
-        gap: 25px;
-    }
-
-    .search-box {
-        flex: 0 1 50%;
-        max-width: 600px;
-        height: 42px;
-    }
-
-    .subscribe-button {
-        padding: 10px 35px;
-        font-size: 11px;
-    }
-
-    /* Hero Slogan Desktop */
-    .sole-creator-slogan {
-        width: 65%;
-        padding: 45px;
-        margin-top: 40px;
-    }
-
-    .slogan-title {
-        font-size: 24px;
-    }
-
-    /* Category Cards Grid */
-    .category-cards-section {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 25px;
-        justify-content: center;
-        padding: 20px 0;
-        overflow-x: visible;
-    }
-
-    .category-card {
-        flex: 0 1 calc(33.333% - 25px); /* 3 cards per row */
-        max-width: 350px;
-    }
-
-    .asset-item {
-        font-size: 13px;
-    }
-}
-
-/* ===== MARKETPLACE PAGE LAYOUT (GLOBAL) ===== */
+/* ============================================================
+   SECTION 1: GLOBAL DASHBOARD & MARKETPLACE LAYOUTS
+   ============================================================ */
 .shop-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -1532,208 +1220,136 @@ body.drawer-open {
     margin-top: 30px;
 }
 
-/* Desktop Filters */
-.marketplace-filters {
+.stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    border-radius: 14px;
+    background-color: #fdfbf7;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 15px 10px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.stat-card:hover { transform: translateY(-2px); }
+
+.stat-number {
     display: block;
-    position: sticky;
-    top: 20px;
-    height: fit-content;
-}
-
-
-/* Shortened Desktop Filters */
-@media (min-width: 900px) {
-    .shop-layout {
-        grid-template-columns: 280px 1fr;
-        gap: 40px;
-        padding: 0 24px;
-    }
-    .marketplace-filters {
-        display: block; /* Ensures it's visible as a sidebar */
-        position: sticky;
-        top: 20px;
-        height: fit-content;
-    }
-}
-
-
-/* Shortened Mobile Filter Toggle */
-@media (max-width: 768px) {
-    .marketplace-filters.is-open {
-        display: block !important;
-        overflow-y: auto;
-        animation: slideUp 0.3s ease-out;
-    }
-}
-
-
-.filter-group h4 {
     font-family: var(--font-display);
-    color: var(--color-star-red);
-    margin: 20px 0 12px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.filter-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-glacial);
-    margin-bottom: 12px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.filter-label:hover {
-    color: var(--color-star-red);
-}
-
-/* Product List Items */
-.scrollable-product-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px;
-    background: #fdfbf7;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.list-item:hover {
-    border-color: var(--color-main-gold);
-    transform: translateX(8px);
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.05);
-}
-
-.item-details h4 {
-    font-family: var(--font-display);
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 4px;
     color: var(--color-dark-text);
-    margin: 0;
-}
-
-.item-price {
-    font-family: var(--font-glacial);
     font-weight: bold;
-    color: var(--color-star-red);
-    font-size: 16px;
 }
 
-/* Individual Dashboard Polish */
-#welcome-name {
-    color: var(--color-star-red);
-    text-transform: capitalize;
-}
-
-#user-initial {
+.stat-label {
+    display: block;
+    font-family: var(--font-glacial);
+    font-size: 11px;
     text-transform: uppercase;
-    background-color: var(--color-main-gold);
-    color: var(--color-dark-text);
-    font-family: var(--font-display);
+    font-weight: 700;
+    color: rgba(17,17,17,0.6);
 }
 
-/* ===== MARKETPLACE BADGE & CARD===== */
-
-/* 1.Card shift */
-.category-card.featured-card {
-    position: relative !important; 
-    overflow: visible !important;
-    padding-top: 50px !important; 
-}
-
-/* 2. Product Badge Position */
-.product-badge {
-    position: absolute !important;
-    top: 10px !important;    
-    left: 10px !important;   
-    z-index: 10;
-    overflow: hidden;
-    box-shadow: 2px 4px 12px rgba(0,0,0,0.2);
-    align-self: auto !important;
-}
-
-/* Product Badge Shimmer */
-@keyframes shimmer {
-    0% { transform: translateX(-150%) skewX(-20deg); }
-    100% { transform: translateX(150%) skewX(-20deg); }
-}
-
-.product-badge::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.4) 50%, 
-        rgba(255, 255, 255, 0) 100%
-    );
-    animation: shimmer 3s infinite;
-}
-
-/* Ensure the button looks great on mobile */
-@media (max-width: 768px) {
-    .filter-actions-mobile {
-        position: sticky;
-        bottom: 0;
-        background: #fdfbf7;
-        margin-left: -25px;
-        margin-right: -25px;
-        padding: 15px 25px !important;
-        z-index: 5;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* Base styling for the Apply button */
 #apply-filters-btn {
     width: 100%; 
     background-color: var(--color-star-red); 
     color: white; 
     padding: 15px; 
     font-size: 13px; 
-    letter-spacing: 0.1em; 
     margin-top: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Your existing hover/active effects work perfectly with the block above */
-#apply-filters-btn:hover {
-    filter: brightness(1.1);
-}
+/* ============================================================
+   SECTION 2: MOBILE MASTER BLOCK (768px and below)
+   ============================================================ */
+@media (max-width: 768px) {
+    .marketplace-filters {
+        display: none; 
+        position: fixed;
+        inset: 0;
+        z-index: 12000;
+        background: #fdfbf7;
+        padding: 40px 20px;
+    }
 
-#apply-filters-btn:active {
-    transform: scale(0.98);
-}
+    .marketplace-filters.is-open {
+        display: block !important;
+        overflow-y: auto;
+        animation: slideUp 0.3s ease-out;
+    }
 
+    .filter-actions-mobile {
+        position: sticky;
+        bottom: 0;
+        background: #fdfbf7;
+        margin: 0 -25px;
+        padding: 15px 25px !important;
+        z-index: 5;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
+    }
 
-/* Adds a divider between Featured and the Filterable list */
-.featured-products {
-    border-bottom: 2px solid rgba(0,0,0,0.05);
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-}
-
-/* Ensure Featured cards don't shrink too much on desktop */
-@media (min-width: 768px) {
-    .featured-products .category-card {
-        flex: 0 1 450px; /* Make featured cards slightly larger than regular items */
+    /* Stats Row for small phones */
+    @media (max-width: 480px) {
+        .stats-row { flex-direction: column; }
+        .stat-card {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 20px;
+            text-align: left;
+        }
+        .stat-number { order: 2; margin: 0; }
+        .stat-label { order: 1; }
     }
 }
 
+/* ============================================================
+   SECTION 3: DESKTOP MASTER BLOCK (768px and up)
+   ============================================================ */
+@media (min-width: 768px) {
+    /* Main Layout Grid */
+    .header-wrapper { padding-inline: 0; }
+    .top-header, .main-nav, .search-subscribe-bar { 
+        max-width: 1200px; 
+        margin-inline: auto; 
+    }
 
+    /* Dashboard Two-Column Grid */
+    .account-dashboard {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 24px;
+    }
+    .welcome-banner, .stats-row { grid-column: span 2; }
+
+    /* Shop/Marketplace Sticky Sidebar */
+    .shop-layout {
+        grid-template-columns: 280px 1fr;
+        gap: 40px;
+    }
+    
+    .marketplace-filters {
+        display: block;
+        position: sticky;
+        top: 20px;
+    }
+
+    /* Desktop Navigation */
+    .custom-burger { display: none; }
+    .main-nav { display: block; }
+    .main-nav ul { display: flex; justify-content: center; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
 }
