@@ -155,6 +155,7 @@
 
             <form id="newsletter-form" action="https://formspree.io/f/mbdrkbve" method="POST" 
             class="community-inline-form">
+                <input type="text" name="_gotcha" style="display:none" />
                 <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required>
                 <button type="submit" class="browse-button">Subscribe</button>
             </form>
@@ -174,9 +175,10 @@
                     <label
             for="feedback-name">Your Name</label>
                     <input type="text" 
-            id="feedback-name" name="name" 
-            required>
+            id="feedback-name" name="name" required>
                 </div>
+                
+                <input type="text" name="_gotcha" style="display:none" />
 
                 <div class="form-group">
                     <label
@@ -230,6 +232,8 @@
         <p>&copy; 2025 KYNAR UNIVERSE</p>
         <p style="font-size: 11px; opacity: 0.7;">Digital tools for a creative life.</p>
     </footer>
+    
+    <script src="community.js"></script>
 
     </body>
 </html>
