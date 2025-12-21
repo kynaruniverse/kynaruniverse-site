@@ -65,118 +65,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ===== STORY SUBMISSION FORM =====
-    const storyForm = document.getElementById('story-form');
-    const storyMessage = document.getElementById('story-message-feedback');
-    const charCount = document.getElementById('char-count');
-    const storyTextarea = document.getElementById('story-message');
+    // ===== FEEDBACK SUBMISSION FORM (SENDS TO EMAIL) =====
+    const feedbackForm = document.getElementById('feedback-form');
+    const feedbackResponse = document.getElementById('feedback-message-response');
     
-    // Character counter
-    if (storyTextarea && charCount) {
-        storyTextarea.addEventListener('input', () => {
-            const length = storyTextarea.value.length;
-            charCount.textContent = `${length} / 200`;
-            
-            if (length > 180) {
-                charCount.style.color = '#dc3545';
-            } else {
-                charCount.style.color = 'rgba(17,17,17,0.5)';
-            }
-        });
-    }
-    
-    if (storyForm) {
-        storyForm.addEventListener('submit', async (e) => {
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const nameInput = document.getElementById('story-name');
-            const emailInput = document.getElementById('story-email');
-            const productInput = document.getElementById('story-product');
-            const messageInput = document.getElementById('story-message');
-            const submitBtn = storyForm.querySelector('button[type="submit"]');
+            const nameInput = document.getElementById('feedback-name');
+            const emailInput = document.getElementById('feedback-email');
+            const typeInput = document.getElementById('feedback-type');
+            const messageInput = document.getElementById('feedback-message');
+            const submitBtn = feedbackForm.querySelector('button[type="submit"]');
             
             const formData = {
                 name: nameInput.value.trim(),
                 email: emailInput.value.trim(),
-                product: productInput.value.trim(),
-                story: messageInput.value.trim()
+                type: typeInput.value,
+                message: messageInput.value.trim()
             };
             
             // Disable button during submission
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
+            submitBtn.textContent = 'Sending...';
             
             // Show loading message
-            storyMessage.style.color = '#666';
-            storyMessage.textContent = 'Sending your story...';
+            feedbackResponse.style.color = '#666';
+            feedbackResponse.textContent = 'Sending your feedback...';
             
-            // Simulate API call (replace with your actual submission endpoint)
+            // Create mailto link with feedback details
+            const subject = `KYNAR Universe Feedback: ${typeInput.options[typeInput.selectedIndex].text}`;
+            const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AType: ${typeInput.options[typeInput.selectedIndex].text}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(formData.message)}`;
+            const mailtoLink = `mailto:Kynaruniverse@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            
+            // Open mailto link
+            window.location.href = mailtoLink;
+            
+            // Show success message
             setTimeout(() => {
-                // Success
-                storyMessage.style.color = '#28a745';
-                storyMessage.textContent = '✓ Thank you! Your story has been submitted for review.';
+                feedbackResponse.style.color = '#28a745';
+                feedbackResponse.textContent = '✓ Email client opened! Your feedback will be sent via email.';
                 
                 // Clear form
                 nameInput.value = '';
                 emailInput.value = '';
-                productInput.value = '';
+                typeInput.value = '';
                 messageInput.value = '';
-                charCount.textContent = '0 / 200';
                 
-                submitBtn.textContent = 'Submit Story';
+                submitBtn.textContent = 'Send Feedback';
                 submitBtn.disabled = false;
                 
                 // Clear message after 5 seconds
                 setTimeout(() => {
-                    storyMessage.textContent = '';
+                    feedbackResponse.textContent = '';
                 }, 5000);
-                
-                // TODO: Integrate with actual submission service
-                // Options: Google Forms, Airtable, Firebase, email service
-                console.log('Story submission:', formData);
-            }, 1500);
+            }, 1000);
         });
     }
     
-    // ===== SOCIAL CARD ANIMATIONS =====
-    const socialCards = document.querySelectorAll('.social-card');
+    // ===== REMOVE OLD STORY FORM CODE =====
+    // (The character counter and story submission code is removed)
     
-    socialCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-6px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-    
-    // ===== ANIMATED COUNTER (Optional Enhancement) =====
-    const memberCountEl = document.getElementById('member-count');
-    
-    if (memberCountEl) {
-        // Animate count on page load
-        const targetCount = 2500;
-        let currentCount = 0;
-        const duration = 2000; // 2 seconds
-        const steps = 60;
-        const increment = targetCount / steps;
-        const stepDuration = duration / steps;
-        
-        const counter = setInterval(() => {
-            currentCount += increment;
-            if (currentCount >= targetCount) {
-                memberCountEl.textContent = '2,500+';
-                clearInterval(counter);
-            } else {
-                memberCountEl.textContent = Math.floor(currentCount).toLocaleString() + '+';
-            }
-        }, stepDuration);
-    }
+    // ===== REMOVE ANIMATED COUNTER =====
+    // (The member count animation is removed since we don't have stats yet)
     
     // ===== SMOOTH SCROLL TO SECTIONS =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
             // Don't prevent default for empty hash or just "#"
