@@ -21,9 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // ===== NEWSLETTER FORM (FORMSPREE AJAX) =====
+            // ===== NEWSLETTER FORM (PROFESSIONAL VERSION) =====
     const newsletterForm = document.getElementById('newsletter-form');
     const newsletterMessage = document.getElementById('newsletter-message');
+    const newsletterSuccess = document.getElementById('newsletter-success');
     
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', async (e) => {
@@ -33,20 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = newsletterForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.textContent;
 
-            // --- VALIDATION BLOCK START ---
+            // Simple validation
             if (emailInput.value.trim().length < 5) {
                 newsletterMessage.style.color = 'var(--color-star-red)';
                 newsletterMessage.textContent = 'Please enter a valid email address.';
-                return; // Stops the function here
+                return;
             }
-            // --- VALIDATION BLOCK END ---
             
-            // Visual feedback (Only runs if validation passes)
+            // RECOMMENDATION #2: Show Spinner
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Subscribing...';
-            
-            newsletterMessage.style.color = 'rgba(17,17,17,0.6)';
-            newsletterMessage.textContent = 'Processing your subscription...';
+            submitBtn.innerHTML = '<span class="spinner"></span> Subscribing...';
             
             const formData = new FormData(newsletterForm);
 
@@ -58,28 +55,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    newsletterMessage.style.color = '#28a745';
-                    newsletterMessage.textContent = '✓ Success! Check your email to confirm.';
-                    newsletterForm.reset(); 
+                    // RECOMMENDATION #1: Switch to Success State
+                    newsletterForm.style.display = 'none';
+                    newsletterSuccess.style.display = 'block';
                 } else {
+                    // IF THERE IS AN ERROR:
                     const data = await response.json();
+                    
+                    // DO NOT hide the form here! Keep it visible so they can fix the error.
                     newsletterMessage.style.color = 'var(--color-star-red)';
                     newsletterMessage.textContent = data.errors ? data.errors[0].message : "Submission failed.";
+                    
+                    // Reset button so they can try again
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
                 }
             } catch (error) {
                 newsletterMessage.style.color = 'var(--color-star-red)';
                 newsletterMessage.textContent = "Connection error. Please try again.";
-            } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
-                setTimeout(() => { newsletterMessage.textContent = ''; }, 5000);
             }
         });
     }
+
     
-    // ===== FEEDBACK FORM (FORMSPREE AJAX INTEGRATION) =====
+    // ===== FEEDBACK FORM (PROFESSIONAL VERSION) =====
     const feedbackForm = document.getElementById('feedback-form');
     const feedbackResponse = document.getElementById('feedback-message-response');
+    const feedbackSuccess = document.getElementById('feedback-success');
 
     if (feedbackForm) {
         feedbackForm.addEventListener('submit', async (e) => {
@@ -89,19 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageInput = document.getElementById('feedback-message');
             const emailInput = document.getElementById('feedback-email');
 
-            // --- VALIDATION BLOCK START ---
-            // Checking if email is valid and message isn't too short
             if (emailInput.value.trim().length < 5 || messageInput.value.trim().length < 10) {
-                feedbackResponse.style.color = '#490101'; // Your star-red
+                feedbackResponse.style.color = '#490101';
                 feedbackResponse.textContent = 'Please provide a valid email and a detailed message.';
-                return; // Stops the function here
+                return;
             }
-            // --- VALIDATION BLOCK END ---
             
+            // RECOMMENDATION #2: Show Spinner
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            feedbackResponse.style.color = '#666';
-            feedbackResponse.textContent = 'Submitting your feedback...';
+            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
 
             const formData = new FormData(feedbackForm);
 
@@ -113,24 +113,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    feedbackResponse.style.color = '#28a745';
-                    feedbackResponse.textContent = '✓ Thank you! Your feedback has been sent.';
-                    feedbackForm.reset();
+                    // RECOMMENDATION #1: Switch to Success State
+                    feedbackForm.style.display = 'none';
+                    feedbackSuccess.style.display = 'block';
                 } else {
                     const data = await response.json();
                     feedbackResponse.style.color = '#490101';
                     feedbackResponse.textContent = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! There was a problem.";
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Feedback';
                 }
             } catch (error) {
                 feedbackResponse.style.color = '#490101';
                 feedbackResponse.textContent = "Oops! Problem connecting to the server.";
-            } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send Feedback';
-                setTimeout(() => { feedbackResponse.textContent = ''; }, 6000);
             }
         });
     }
+
     
     // ===== SMOOTH SCROLL TO SECTIONS =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

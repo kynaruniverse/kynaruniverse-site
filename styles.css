@@ -21,6 +21,26 @@
     font-weight:normal;
     font-style:normal;
     font-display:swap}
+    
+    /* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-main-gold);
+    border-radius: 20px;
+    border: 3px solid #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #8e7a55;
+}
+
 
 :root {
     --color-main-gold:#a99369;
@@ -2121,7 +2141,7 @@ QUICK ACTIONS */
 .faq-question i {
     font-size: 14px;
     color: var(--color-main-gold);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .faq-item.active .faq-question i {
@@ -2328,3 +2348,71 @@ QUICK ACTIONS */
     font-size: 12px;
     min-height: 18px;
 }
+
+.form-success-content {
+    display: none; /* Hidden by default */
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeInSuccess 0.5s ease forwards;
+}
+
+.form-success-content i {
+    font-size: 50px;
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.form-success-content h3 {
+    font-family: 'Bantayog', sans-serif;
+    color: var(--color-dark-text);
+    margin-bottom: 10px;
+}
+
+@keyframes fadeInSuccess {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.coming-soon-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.coming-soon-card::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.0) 100%,
+        rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 3s infinite;
+    z-index: 2;
+}
+
+@keyframes shimmer {
+    100% { transform: translateX(100%); }
+}
+
+
+
