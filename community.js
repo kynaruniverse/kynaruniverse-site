@@ -1,160 +1,168 @@
-/* ============================================================
-   KYNAR UNIVERSE - COMMUNITY PAGE JAVASCRIPT
-   Handles: FAQ Accordion, Newsletter, Story Submissions
-   ============================================================ */
+/**
+ * KYNAR UNIVERSE - Community Page Module
+ * Handles: FAQ Accordion, Formspree Submissions, Scroll interactions
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
+const CommunityPage = (() => {
+
+    // --- 1. UTILITIES ---
     
-    // ===== FAQ ACCORDION =====
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    // Simple Email Regex for client-side validation
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    // Generic Form Handler for Formspree
+    const handleFormSubmission = async (config) => {
+        const { formId, successId, responseId, btnText } = config;
         
-        question.addEventListener('click', () => {
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            item.classList.toggle('active');
-        });
-    });
-    
-    // ===== NEWSLETTER FORM =====
-    const newsletterForm = document.getElementById('newsletter-form');
-    const newsletterMessage = document.getElementById('newsletter-message');
-    const newsletterSuccess = document.getElementById('newsletter-success');
-    
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async (e) => {
+        const form = document.getElementById(formId);
+        const successMsg = document.getElementById(successId);
+        const responseMsg = document.getElementById(responseId); // Optional error container
+        
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const emailInput = document.getElementById('newsletter-email');
-            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-
-            // Simple validation
-            if (emailInput.value.trim().length < 5) {
-                if (newsletterMessage) {
-                    newsletterMessage.style.color = 'var(--color-star-red)';
-                    newsletterMessage.textContent = 'Please enter a valid email address.';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const emailInput = form.querySelector('input[type="email"]');
+            
+            // 1. Validation
+            if (emailInput && !isValidEmail(emailInput.value)) {
+                if (responseMsg) {
+                    responseMsg.textContent = "Please enter a valid email address.";
+                    responseMsg.style.color = "var(--color-star-red)";
+                } else {
+                    alert("Please enter a valid email address.");
                 }
                 return;
             }
-            
-            // Show Spinner
+
+            // 2. Loading State
+            const originalText = submitBtn.innerText;
+            submitBtn.classList.add('btn-loading'); // Uses CSS spinner
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span> Subscribing...';
-            
-            const formData = new FormData(newsletterForm);
+
+            // 3. Prepare Data
+            const formData = new FormData(form);
 
             try {
-                const response = await fetch(newsletterForm.action, {
+                const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-                
+
                 if (response.ok) {
-                    // Switch to Success State
-                    newsletterForm.style.display = 'none';
-                    if (newsletterSuccess) newsletterSuccess.style.display = 'block';
-                } else {
-                    // IF THERE IS AN ERROR:
-                    const data = await response.json();
-                    if (newsletterMessage) {
-                        newsletterMessage.style.color = 'var(--color-star-red)';
-                        newsletterMessage.textContent = data.errors ? data.errors[0].message : "Submission failed.";
+                    // 4. Success
+                    form.reset();
+                    form.style.display = 'none';
+                    if (successMsg) {
+                        successMsg.style.display = 'block';
+                        successMsg.focus(); // Accessibility focus
                     }
-                    
-                    // Reset button so they can try again
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
+                } else {
+                    // 5. Error from Server
+                    const data = await response.json();
+                    throw new Error(data.errors ? data.errors.map(err => err.message).join(", ") : "Submission failed");
                 }
             } catch (error) {
-                if (newsletterMessage) {
-                    newsletterMessage.style.color = 'var(--color-star-red)';
-                    newsletterMessage.textContent = "Connection error. Please try again.";
+                // 6. Handle Network/API Errors
+                console.error('Form Error:', error);
+                if (responseMsg) {
+                    responseMsg.textContent = "Error: " + error.message;
+                    responseMsg.style.color = "var(--color-star-red)";
+                } else {
+                    alert("Something went wrong. Please try again.");
                 }
+            } finally {
+                // 7. Reset Button State
+                submitBtn.classList.remove('btn-loading');
                 submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
             }
         });
-    }
+    };
 
+    // --- 2. FAQ LOGIC ---
     
-    // ===== FEEDBACK FORM =====
-    const feedbackForm = document.getElementById('feedback-form');
-    const feedbackResponse = document.getElementById('feedback-message-response');
-    const feedbackSuccess = document.getElementById('feedback-success');
-
-    if (feedbackForm) {
-        feedbackForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); 
+    const initFAQ = () => {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const questionBtn = item.querySelector('.faq-question');
+            const answerPanel = item.querySelector('.faq-answer');
             
-            const submitBtn = feedbackForm.querySelector('button[type="submit"]');
-            const messageInput = document.getElementById('feedback-message');
-            const emailInput = document.getElementById('feedback-email');
+            if (!questionBtn || !answerPanel) return;
 
-            if (emailInput.value.trim().length < 5 || messageInput.value.trim().length < 10) {
-                if (feedbackResponse) {
-                    feedbackResponse.style.color = '#490101';
-                    feedbackResponse.textContent = 'Please provide a valid email and a detailed message.';
-                }
-                return;
-            }
-            
-            // Show Spinner
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+            // Set initial ARIA states
+            questionBtn.setAttribute('aria-expanded', 'false');
+            answerPanel.setAttribute('aria-hidden', 'true');
 
-            const formData = new FormData(feedbackForm);
+            questionBtn.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
 
-            try {
-                const response = await fetch(feedbackForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                // Close all others (Accordion behavior)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherBtn = otherItem.querySelector('.faq-question');
+                        const otherPanel = otherItem.querySelector('.faq-answer');
+                        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                        if (otherPanel) otherPanel.setAttribute('aria-hidden', 'true');
+                    }
                 });
-                
-                if (response.ok) {
-                    // Switch to Success State
-                    feedbackForm.style.display = 'none';
-                    if (feedbackSuccess) feedbackSuccess.style.display = 'block';
-                } else {
-                    const data = await response.json();
-                    if (feedbackResponse) {
-                        feedbackResponse.style.color = '#490101';
-                        feedbackResponse.textContent = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! There was a problem.";
-                    }
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Feedback';
-                }
-            } catch (error) {
-                if (feedbackResponse) {
-                    feedbackResponse.style.color = '#490101';
-                    feedbackResponse.textContent = "Oops! Problem connecting to the server.";
-                }
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Feedback';
-            }
-        });
-    }
 
-    
-    // ===== SMOOTH SCROLL TO SECTIONS =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href === '') return;
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+                // Toggle current
+                item.classList.toggle('active');
+                questionBtn.setAttribute('aria-expanded', !isActive);
+                answerPanel.setAttribute('aria-hidden', isActive); // If was active, now hidden
+            });
         });
-    });
+    };
+
+    // --- 3. INIT ---
     
-    console.log('✅ Community page loaded successfully');
-});
+    const init = () => {
+        // Initialize FAQ
+        initFAQ();
+
+        // Initialize Newsletter Form
+        handleFormSubmission({
+            formId: 'newsletter-form',
+            successId: 'newsletter-success',
+            responseId: 'newsletter-message', // Note: You might need to add this <p> to your HTML if you want inline errors
+            btnText: 'Subscribe'
+        });
+
+        // Initialize Feedback Form
+        handleFormSubmission({
+            formId: 'feedback-form',
+            successId: 'feedback-success',
+            responseId: 'feedback-message-response',
+            btnText: 'Send Feedback'
+        });
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || !targetId) return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        console.log('✨ Community Module Loaded');
+    };
+
+    return { init };
+
+})();
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', CommunityPage.init);

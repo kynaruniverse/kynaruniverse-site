@@ -151,3 +151,36 @@ if (typeof window !== 'undefined') {
     window.deactivateFocusTrap = deactivateFocusTrap;
     window.refreshFocusTrap = refreshFocusTrap;
 }
+
+/**
+ * COMPONENT LOADER
+ * Automatically fetches and injects HTML components
+ */
+async function loadComponents() {
+    const includes = document.querySelectorAll('[data-include]');
+    
+    const loadPromises = Array.from(includes).map(async (el) => {
+        const file = el.dataset.include;
+        try {
+            const resp = await fetch(file);
+            if (resp.ok) {
+                const content = await resp.text();
+                // Replace the <div data-include="..."> with the actual content
+                el.outerHTML = content;
+            } else {
+                console.error(`Failed to load ${file}: ${resp.status}`);
+            }
+        } catch (err) {
+            console.error(`Error loading component ${file}:`, err);
+        }
+    });
+
+    // Wait for all HTML to be injected
+    await Promise.all(loadPromises);
+
+    // Dispatch event so other scripts know HTML is ready
+    document.dispatchEvent(new Event('componentsLoaded'));
+}
+
+// Start loading immediately
+document.addEventListener('DOMContentLoaded', loadComponents);

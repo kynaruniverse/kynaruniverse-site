@@ -12,37 +12,37 @@ const firebaseConfig = {
     appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Expose services globally for other non-module scripts (like auth-ui.js)
-window._firebaseAuth = auth;
-window._firebaseOnAuthStateChanged = onAuthStateChanged;
-window._firebaseSignIn = signInWithEmailAndPassword;
-
-window._firebaseSignUp = async (auth, email, pass, displayName) => {
-    const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-    const uid = userCred.user.uid;
+/**
+ * Custom Sign Up Function
+ * Handles Auth creation + Profile Update + Firestore User Document
+ */
+const registerUser = async (email, password, displayName) => {
+    // 1. Create Auth User
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCred.user;
     
-    // 1. Update Auth Profile
-    await updateProfile(userCred.user, { displayName: displayName || "" });
+    // 2. Update Auth Profile (Display Name)
+    await updateProfile(user, { displayName: displayName || "Creator" });
     
-    // 2. Create Firestore Document
-    const userDocRef = doc(db, "users", uid);
+    // 3. Create Firestore Document
     const now = new Date().toISOString();
-    
-    await setDoc(userDocRef, {
-        email,
-        displayName: displayName || "",
+    await setDoc(doc(db, "users", user.uid), {
+        email: email,
+        displayName: displayName || "Creator",
         createdAt: now,
-        updatedAt: now
+        updatedAt: now,
+        purchases: [], // Initialize empty arrays
+        wishlist: []
     }, { merge: true });
-    
-    return userCred;
+
+    return user;
 };
 
-window._firebaseSignOut = signOut;
-window._firebaseDb = db;
-
-console.log('✅ Firebase initialized successfully');
+// Export services and helpers for other modules to use
+export { auth, db, registerUser, signInWithEmailAndPassword, signOut, onAuthStateChanged };
+console.log('✅ Firebase Module Initialized');

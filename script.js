@@ -1,7 +1,7 @@
 /**
  * KYNAR UNIVERSE - Core Application Logic
- * Architecture: Modular (IIFE)
- * Standards: ES6+, Vanilla JS, Accessible
+ * Architecture: Modular
+ * Standards: ES6+, Vanilla JS
  */
 
 const KynarApp = (() => {
@@ -9,119 +9,114 @@ const KynarApp = (() => {
     // --- 1. STATE & CONFIG ---
     const state = {
         isDrawerOpen: false,
-        activeTrap: null,
         searchDebounce: null
     };
 
-    // --- 2. ACCESSIBILITY UTILITIES ---
-    
-    // robust focus trap to keep keyboard users inside modals/drawers
-    const FocusTrap = {
-        focusableSelector: 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        
+    // --- 2. ACCESSIBILITY / TRAP MANAGER ---
+    // Interfaces with the robust FocusTrap in utilities.js
+    const TrapManager = {
         activate(element) {
-            const focusableContent = element.querySelectorAll(this.focusableSelector);
-            const firstFocusable = focusableContent[0];
-            const lastFocusable = focusableContent[focusableContent.length - 1];
-
-            state.activeTrap = (e) => {
-                const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
-                if (!isTabPressed) return;
-
-                if (e.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstFocusable) {
-                        lastFocusable.focus();
-                        e.preventDefault();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastFocusable) {
-                        firstFocusable.focus();
-                        e.preventDefault();
-                    }
-                }
-            };
-
-            document.addEventListener('keydown', state.activeTrap);
-            // Focus the first element immediately for better UX
-            if (firstFocusable) firstFocusable.focus();
+            if (typeof window.activateFocusTrap === 'function') {
+                window.activateFocusTrap(element, 'main-ui-trap');
+            }
         },
-
         deactivate() {
-            if (state.activeTrap) {
-                document.removeEventListener('keydown', state.activeTrap);
-                state.activeTrap = null;
+            if (typeof window.deactivateFocusTrap === 'function') {
+                window.deactivateFocusTrap('main-ui-trap');
             }
         }
     };
 
-    // --- 3. UI MODULE (Drawers, Modals, Navigation) ---
+    // --- 3. UI MODULE ---
     const UI = {
         elements: {
-            burger: document.querySelector('.custom-burger'),
-            sideDrawer: document.getElementById('side-drawer'),
-            overlay: document.getElementById('drawer-overlay'),
-            filterSidebar: document.getElementById('filter-sidebar'), // If it exists
-            authModal: document.getElementById('auth-modal'),
-            signupModal: document.getElementById('signup-modal'),
-            closeButtons: document.querySelectorAll('.drawer-close, .drawer-close-btn, .auth-modal-close'),
-            mobileFilterBtn: document.querySelector('.mobile-filter-btn')
+            // These are getters because elements might be injected dynamically
+            get burger() { return document.querySelector('.custom-burger'); },
+            get sideDrawer() { return document.getElementById('side-drawer'); },
+            get overlay() { return document.getElementById('drawer-overlay'); },
+            get closeButtons() { return document.querySelectorAll('.drawer-close, .drawer-close-btn, .auth-modal-close'); },
+            get mobileFilterBtn() { return document.querySelector('.mobile-filter-btn'); },
+            get authModal() { return document.getElementById('auth-modal'); },
+            get signupModal() { return document.getElementById('signup-modal'); }
         },
 
         init() {
             this.bindEvents();
-            this.handleScrollHeader();
+            this.highlightActiveLink();
+            this.setupAuthTriggers();
+        },
+
+        highlightActiveLink() {
+            // Automatically underline the current page in the nav
+            const path = window.location.pathname;
+            const page = path.split("/").pop() || "index.html";
+            
+            // Desktop Nav
+            const links = document.querySelectorAll('.main-nav a');
+            links.forEach(link => {
+                // Strip href to just filename
+                const href = link.getAttribute('href');
+                if (href === page) {
+                    link.style.color = "var(--color-star-red)";
+                } else {
+                    link.style.color = ""; // Reset
+                }
+            });
         },
 
         bindEvents() {
-            const { burger, overlay, closeButtons, mobileFilterBtn } = this.elements;
+            // Delegated listener for static + dynamic elements
+            document.body.addEventListener('click', (e) => {
+                // Burger Click
+                if (e.target.closest('.custom-burger')) {
+                    this.toggleDrawer('main');
+                }
+                
+                // Close Buttons
+                if (e.target.closest('.drawer-close') || e.target.closest('.drawer-close-btn') || e.target.closest('.auth-modal-close')) {
+                    this.closeAll();
+                }
 
-            // Toggle Main Drawer
-            if (burger) {
-                burger.addEventListener('click', () => this.toggleDrawer('main'));
-            }
+                // Overlay Click
+                if (e.target.classList.contains('drawer-overlay') || e.target.classList.contains('auth-modal-backdrop')) {
+                    this.closeAll();
+                }
 
-            // Mobile Filter Sidebar (if on marketplace)
-            if (mobileFilterBtn) {
-                mobileFilterBtn.addEventListener('click', () => this.toggleDrawer('filter'));
-            }
-
-            // Close actions
-            if (overlay) overlay.addEventListener('click', () => this.closeAll());
-            closeButtons.forEach(btn => btn.addEventListener('click', () => this.closeAll()));
+                // Mobile Filter Toggle
+                if (e.target.closest('.mobile-filter-btn') || e.target.id === 'mobile-filter-toggle') {
+                    this.toggleDrawer('filter');
+                }
+            });
 
             // Global Escape Key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') this.closeAll();
             });
-
-            // Auth Triggers
-            this.setupAuthTriggers();
         },
 
         toggleDrawer(type) {
             const target = type === 'filter' ? document.getElementById('filter-sidebar') : this.elements.sideDrawer;
             if (!target) return;
-
             this.open(target);
         },
 
         open(element) {
             this.closeAll(); // Ensure clean slate
-            
             element.classList.add('is-open');
             element.setAttribute('aria-hidden', 'false');
-            this.elements.overlay.classList.add('is-visible');
+            
+            // Show overlay
+            if (this.elements.overlay) {
+                this.elements.overlay.classList.add('is-visible');
+            }
             
             document.body.classList.add('drawer-open');
             state.isDrawerOpen = true;
-
-            // Trap Focus inside the active element
-            FocusTrap.activate(element);
+            TrapManager.activate(element);
         },
 
         closeAll() {
             const openElements = document.querySelectorAll('.is-open');
-            
             openElements.forEach(el => {
                 el.classList.remove('is-open');
                 el.setAttribute('aria-hidden', 'true');
@@ -133,120 +128,103 @@ const KynarApp = (() => {
 
             document.body.classList.remove('drawer-open');
             state.isDrawerOpen = false;
-
-            // Remove Focus Trap
-            FocusTrap.deactivate();
+            TrapManager.deactivate();
         },
 
         setupAuthTriggers() {
-            // Logic: If user is NOT logged in, open modal. 
-            // If logged in, let the link go to account page.
-            // Note: Actual auth check logic relies on AuthUI module or global state.
-            
-            const triggers = document.querySelectorAll('.sign-in-link, [href="#login"]');
-            
-            triggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    const isLoggedIn = document.body.classList.contains('user-logged-in'); // Assumes AuthUI adds this class
-                    
+            // Handle "Sign in" clicks
+            document.body.addEventListener('click', (e) => {
+                const trigger = e.target.closest('.sign-in-link') || e.target.closest('[href="#login"]');
+                if (trigger) {
+                    const isLoggedIn = document.body.classList.contains('user-logged-in');
                     if (!isLoggedIn) {
                         e.preventDefault();
-                        this.open(this.elements.authModal);
+                        const modal = this.elements.authModal;
+                        if(modal) this.open(modal);
                     }
-                });
-            });
-
-            // Toggle between Sign In and Sign Up
-            const toggleModeBtn = document.getElementById('auth-toggle-mode');
-            const backToLoginBtn = document.getElementById('back-to-login');
-
-            if (toggleModeBtn) {
-                toggleModeBtn.addEventListener('click', () => {
-                    this.elements.authModal.classList.remove('is-open');
-                    this.open(this.elements.signupModal);
-                });
-            }
-
-            if (backToLoginBtn) {
-                backToLoginBtn.addEventListener('click', () => {
-                    this.elements.signupModal.classList.remove('is-open');
-                    this.open(this.elements.authModal);
-                });
-            }
-        },
-
-        handleScrollHeader() {
-            // Optional: Add shadow to header on scroll
-            const header = document.querySelector('.header-wrapper');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 10) {
-                    header.classList.add('is-scrolled');
-                } else {
-                    header.classList.remove('is-scrolled');
                 }
-            }, { passive: true });
+
+                // Toggle between Login and Signup
+                if (e.target.id === 'auth-toggle-mode') {
+                    if (this.elements.authModal) this.elements.authModal.classList.remove('is-open');
+                    if (this.elements.signupModal) this.open(this.elements.signupModal);
+                }
+
+                if (e.target.id === 'back-to-login') {
+                    if (this.elements.signupModal) this.elements.signupModal.classList.remove('is-open');
+                    if (this.elements.authModal) this.open(this.elements.authModal);
+                }
+            });
         }
     };
 
-    // --- 4. MARKETPLACE MODULE (Filters, Sort, Search) ---
+    // --- 4. MARKETPLACE MODULE ---
     const Marketplace = {
-        container: document.getElementById('product-container'),
-        elements: {
-            searchInput: document.getElementById('search-input'),
-            sortDropdown: document.querySelector('.sort-dropdown'),
-            countDisplay: document.getElementById('result-count'),
-            emptyState: document.getElementById('empty-state'),
-            clearBtn: document.getElementById('clear-filters')
-        },
+        get container() { return document.getElementById('product-container'); },
         
         init() {
-            // Only run if we are on the marketplace page
-            if (!this.container) return; 
+            if (!this.container) return; // Not on marketplace page
             
-            this.bindEvents();
+            this.setupFilters();
             this.parseUrlParams();
-            this.filter(); // Initial run
+            // Initial filter run
+            this.filter(); 
         },
 
-        bindEvents() {
-            // Debounced Search
-            if (this.elements.searchInput) {
-                this.elements.searchInput.addEventListener('input', (e) => {
+        setupFilters() {
+            const searchInput = document.getElementById('search-input');
+            const sortDropdown = document.querySelector('.sort-dropdown');
+            const clearBtn = document.getElementById('clear-filters');
+            const applyBtn = document.getElementById('apply-filters-btn');
+
+            // Search input (Debounced)
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
                     clearTimeout(state.searchDebounce);
                     state.searchDebounce = setTimeout(() => this.filter(), 300);
                 });
             }
 
-            // Filters (Delegation or direct attach)
-            const filters = document.querySelectorAll('.cat-filter, .type-filter, input[name="price"]');
-            filters.forEach(f => f.addEventListener('change', () => this.filter()));
+            // Checkboxes & Radios
+            document.body.addEventListener('change', (e) => {
+                if (e.target.matches('.cat-filter, .type-filter, input[name="price"]')) {
+                    this.filter();
+                }
+                if (e.target.matches('.sort-dropdown')) {
+                    this.filter();
+                }
+            });
 
-            // Sort
-            if (this.elements.sortDropdown) {
-                this.elements.sortDropdown.addEventListener('change', () => this.filter());
+            // Clear Button
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                    document.querySelectorAll('input[name="price"]').forEach(r => r.checked = (r.value === 'all'));
+                    if(searchInput) searchInput.value = '';
+                    if(sortDropdown) sortDropdown.value = 'newest';
+                    this.filter();
+                });
             }
-
-            // Clear All
-            if (this.elements.clearBtn) {
-                this.elements.clearBtn.addEventListener('click', () => this.resetFilters());
+            
+            // Mobile "Apply" Button (Just closes drawer)
+            if (applyBtn) {
+                applyBtn.addEventListener('click', () => UI.closeAll());
             }
         },
 
         filter() {
             const products = Array.from(this.container.children).filter(el => el.classList.contains('list-item'));
-            if (products.length === 0) return;
+            if (!products.length) return;
 
-            // Get current filter states
-            const query = this.elements.searchInput?.value.trim().toLowerCase() || "";
+            const query = document.getElementById('search-input')?.value.trim().toLowerCase() || "";
             const activeCats = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);
             const activeTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
             const priceFilter = document.querySelector('input[name="price"]:checked')?.value || 'all';
-            const sortBy = this.elements.sortDropdown?.value || 'newest';
+            const sortBy = document.querySelector('.sort-dropdown')?.value || 'newest';
 
             let visibleCount = 0;
             let visibleProducts = [];
 
-            // 1. Filter Visibility
             products.forEach(product => {
                 const title = product.querySelector('h4')?.textContent.toLowerCase() || '';
                 const cat = product.dataset.category || '';
@@ -262,11 +240,8 @@ const KynarApp = (() => {
                 if (priceFilter === 'over10') matchesPrice = price >= 10;
                 if (priceFilter === '0') matchesPrice = price === 0;
 
-                const isVisible = matchesSearch && matchesCat && matchesType && matchesPrice;
-                
-                // Toggle visibility efficiently
-                if (isVisible) {
-                    product.style.display = 'flex'; // Restore flex layout
+                if (matchesSearch && matchesCat && matchesType && matchesPrice) {
+                    product.style.display = 'flex';
                     visibleProducts.push(product);
                     visibleCount++;
                 } else {
@@ -274,85 +249,64 @@ const KynarApp = (() => {
                 }
             });
 
-            // 2. Sort Visible Items
             this.sort(visibleProducts, sortBy);
-
-            // 3. Update UI
-            this.updateUI(visibleCount);
+            
+            // Update "Showing X results"
+            const countDisplay = document.getElementById('result-count');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (countDisplay) countDisplay.textContent = `Showing ${visibleCount} creation${visibleCount !== 1 ? 's' : ''}`;
+            if (emptyState) emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
         },
 
         sort(products, method) {
-            // We use Flexbox order or DOM re-appending. 
-            // Re-appending is more robust for screen readers.
-            
-            const sorted = products.sort((a, b) => {
+            products.sort((a, b) => {
                 const priceA = parseFloat(a.dataset.price || 0);
                 const priceB = parseFloat(b.dataset.price || 0);
-                // Assume data-date exists or fallback to index
-                const dateA = parseInt(a.dataset.date || 0); 
-                const dateB = parseInt(b.dataset.date || 0);
+                // For "Newest", we need data-date. If missing, we default to DOM order (0)
+                const dateA = new Date(a.dataset.date || 0).getTime();
+                const dateB = new Date(b.dataset.date || 0).getTime();
 
                 if (method === 'low-high') return priceA - priceB;
                 if (method === 'high-low') return priceB - priceA;
-                if (method === 'newest') return dateB - dateA; // Descending
+                if (method === 'newest') return dateB - dateA;
                 return 0;
             });
 
-            // Re-append sorted elements to container (moves them visually)
+            // Re-append sorted
             const fragment = document.createDocumentFragment();
-            sorted.forEach(el => fragment.appendChild(el));
-            this.container.prepend(fragment); // Prepend so they appear at top
-        },
-
-        updateUI(count) {
-            if (this.elements.countDisplay) {
-                this.elements.countDisplay.textContent = `Showing ${count} creation${count !== 1 ? 's' : ''}`;
-            }
-            if (this.elements.emptyState) {
-                this.elements.emptyState.style.display = count === 0 ? 'block' : 'none';
-            }
-        },
-
-        resetFilters() {
-            // Uncheck all boxes
-            document.querySelectorAll('.cat-filter, .type-filter').forEach(cb => cb.checked = false);
-            const priceAll = document.querySelector('input[name="price"][value="all"]');
-            if (priceAll) priceAll.checked = true;
-            
-            if (this.elements.searchInput) this.elements.searchInput.value = '';
-            if (this.elements.sortDropdown) this.elements.sortDropdown.value = 'newest';
-
-            this.filter();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            products.forEach(el => fragment.appendChild(el));
+            this.container.prepend(fragment);
         },
 
         parseUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const cat = urlParams.get('category');
-            const search = urlParams.get('search');
-
             if (cat) {
                 const cb = document.querySelector(`.cat-filter[value="${cat}"]`);
                 if (cb) cb.checked = true;
             }
-            if (search && this.elements.searchInput) {
-                this.elements.searchInput.value = search;
-            }
         }
     };
 
-    // --- 5. INITIALIZATION ---
     return {
         init: () => {
             UI.init();
             Marketplace.init();
-            
-            // Log for debugging
-            console.log('✨ KYNAR Universe Loaded');
+            console.log('✨ KYNAR Universe Engine Started');
         }
     };
-
 })();
 
-// Start the engine
-document.addEventListener('DOMContentLoaded', KynarApp.init);
+// Wait for components (header/footer) to be injected before starting
+document.addEventListener('componentsLoaded', () => {
+    KynarApp.init();
+});
+
+// Fallback safety net (in case event missed)
+setTimeout(() => {
+    if (!window.kynarAppStarted) {
+        window.kynarAppStarted = true;
+        KynarApp.init();
+    }
+}, 800);

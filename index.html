@@ -30,72 +30,10 @@
         <div class="loading-spinner"></div>
     </div>
 
-    <div class="header-wrapper">
-        <header class="top-header">
-            <div class="logo-area">
-                <button class="menu-icon custom-burger"
-                        type="button"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded="false"
-                        aria-controls="side-drawer">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <div class="site-title">
-                    <a href="index.html" class="site-title-link" aria-label="KYNAR Universe homepage">
-                        <span class="main-title">Kynar</span>
-                        <span class="sub-title">Universe.co.uk</span>
-                    </a>
-
-                    <figure class="stars" aria-hidden="true">
-                     ✶ , * ✦ , * ✶ , ✶ * , ✦ * , ✶
-                    </figure>
-                </div>
-            </div>
-
-            <p class="slogan-header">
-                Digital tools for every corner of your life.
-            </p>
-
-            <div class="account-area">
-                <a href="#" class="sign-in-link" role="button" aria-label="Sign in to your account">
-                    <span class="custom-lock-icon">
-                        <img src="images/log-in-icon.png" alt="" width="60" height="60">
-                    </span>
-                    <span class="sign-in-text">Sign in</span>
-                </a>
-            </div>
-        </header>
-
-        <nav class="main-nav" aria-label="Primary site navigation">
-            <ul>
-                <li><a href="index.html" aria-label="Home"><i class="fa-solid fa-house" aria-hidden="true"></i></a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="guides.html">Guides</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="account.html" class="account-nav-link" id="account-nav-link">Account</a></li>
-            </ul>
-        </nav>
-
-        <section class="search-subscribe-bar" aria-label="Search and subscription">
-            <form class="search-box" role="search" aria-label="Site search" id="search-form">
-                <label for="search-input" class="visually-hidden">Search Kynar Universe</label>
-                <input
-                    type="text"
-                    id="search-input"
-                    placeholder="Search creations..."
-                    aria-label="Search Kynaruniverse.co.uk"
-                    autocomplete="off">
-                <button class="search-submit" type="submit" aria-label="Submit Search">
-                    <img src="images/search-button.svg" alt="" class="search-icon" aria-hidden="true">
-                </button>
-            </form>
-
-            <a href="#subscribe" class="btn btn-secondary btn-sm">Subscribe</a>
-        </section>
+        <div class="header-wrapper">
+        <div data-include="components/header.html"></div>
     </div>
+
 
     <main id="main-content" class="main-content-container container">
         
@@ -233,75 +171,9 @@
 
     </main>
 
-    <footer class="site-footer" aria-label="Site footer">
-        <div class="container footer-content">
-            <p class="footer-copyright">
-                © 2025 KYNAR UNIVERSE
-            </p>
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Contact</a>
-            </nav>
-            <div class="footer-socials">
-                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-            </div>
-        </div>
-    </footer>
+    <div data-include="components/footer.html"></div>dash
+    <div data-include="components/auth-modals.html"></div>
 
-    <div class="auth-modal" id="auth-modal" aria-hidden="true">
-        <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
-            <button class="auth-modal-close" type="button" aria-label="Close login form">✕</button>
-            <h2 id="auth-modal-title" class="auth-modal-heading">Sign in to KYNAR Universe</h2>
-            
-            <form id="auth-form">
-                <label class="auth-label">
-                    <span>Email</span>
-                    <input type="email" id="auth-email" required autocomplete="email" placeholder="email@example.com">
-                </label>
-                <label class="auth-label">
-                    <span>Password</span>
-                    <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="••••••••">
-                </label>
-                <button type="submit" 
-                class="btn btn-primary btn-md btn-full-width" id="auth-submit-btn">Sign In</button>
-                <button type="button" 
-                class="btn btn-secondary btn-md btn-full-width" 
-                id="auth-toggle-mode" style="margin-top: 10px;">Need an account? Sign up</button>
-
-                <p class="auth-message" id="auth-message" aria-live="polite"></p>
-            </form>
-        </div>
-    </div>
-    
-    <div class="auth-modal" id="signup-modal" aria-hidden="true">
-        <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-            <button class="auth-modal-close" id="signup-close" type="button" aria-label="Close signup form">✕</button>
-            <h2 id="signup-title" class="auth-modal-heading">Create Account</h2>
-            
-            <form id="signup-form">
-                <label class="auth-label">
-                    <span>Display Name</span>
-                    <input type="text" id="reg-name" required placeholder="How should we address you?">
-                </label>
-                <label class="auth-label">
-                    <span>Email Address</span>
-                    <input type="email" id="reg-email" required placeholder="email@example.com" autocomplete="email">
-                </label>
-                <label class="auth-label">
-                    <span>Password (Min 6 characters)</span>
-                    <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
-                </label>
-                <button type="submit" class="btn btn-primary btn-md btn-full-width" id="reg-submit-btn">Create Universe Account</button>
-                <button type="button" class="btn btn-secondary btn-md btn-full-width" id="back-to-login" style="margin-top: 10px;">Already have an account? Sign in</button>
-                <p class="auth-message" id="reg-message" aria-live="polite"></p>
-            </form>
-        </div>
-    </div>
 
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
         <div class="drawer-header">
@@ -325,6 +197,5 @@
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="auth-ui.js" type="module"></script>
-    <script src="firebase-config.js" type="module"></script>
 </body>
 </html>

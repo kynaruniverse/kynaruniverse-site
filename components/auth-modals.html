@@ -1,0 +1,47 @@
+<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog">
+    <div class="auth-modal-backdrop"></div>
+    <div class="auth-modal-dialog">
+        <button class="auth-modal-close" aria-label="Close Login Modal">&times;</button>
+        <h2 class="auth-modal-heading">Sign In</h2>
+        <p style="font-family: var(--font-glacial); font-size: 13px; text-align: center; margin-bottom: 20px; color: rgba(17,17,17,0.6);">Welcome back.</p>
+        <form id="auth-form">
+            <label class="auth-label">
+                <span>Email Address</span>
+                <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email">
+            </label>
+            <label class="auth-label">
+                <span>Password</span>
+                <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password">
+            </label>
+            <button type="submit" class="btn btn-primary btn-md" style="width: 100%;">Login</button>
+            <button type="button" class="btn btn-secondary btn-md" id="auth-toggle-mode" style="width: 100%; margin-top: 10px;">Need an account? Sign up</button>
+            <p class="auth-message" style="text-align:center; margin-top:10px; font-size:12px;"></p>
+        </form>
+    </div>
+</div>
+
+<div class="auth-modal" id="signup-modal" aria-hidden="true" role="dialog">
+    <div class="auth-modal-backdrop"></div>
+    <div class="auth-modal-dialog">
+        <button class="auth-modal-close" aria-label="Close Signup Modal">&times;</button>
+        <h2 class="auth-modal-heading">Create Account</h2>
+        <p style="font-family: var(--font-glacial); font-size: 13px; text-align: center; margin-bottom: 20px; color: rgba(17,17,17,0.6);">Join the community.</p>
+        <form id="signup-form">
+            <label class="auth-label">
+                <span>Display Name</span>
+                <input type="text" id="reg-name" required placeholder="Your Name" autocomplete="name">
+            </label>
+            <label class="auth-label">
+                <span>Email Address</span>
+                <input type="email" id="reg-email" required placeholder="you@example.com" autocomplete="email">
+            </label>
+            <label class="auth-label">
+                <span>Password</span>
+                <input type="password" id="reg-password" required placeholder="Min 6 characters" autocomplete="new-password">
+            </label>
+            <button type="submit" class="btn btn-primary btn-md" style="width: 100%;">Join Kynar Universe</button>
+            <button type="button" class="btn btn-secondary btn-md" id="back-to-login" style="width: 100%; margin-top: 10px;">Already have an account? Login</button>
+            <p class="auth-message" style="text-align:center; margin-top:10px; font-size:12px;"></p>
+        </form>
+    </div>
+</div>

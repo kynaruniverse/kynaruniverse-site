@@ -1878,3 +1878,96 @@ body.drawer-open { overflow: hidden; }
     .welcome-banner, .stats-row { grid-column: span 2; }
 }
 
+/* --- 4. UTILITY CLASSES (ADDED IN UPGRADE) --- */
+
+/* Account & Dashboard Layouts */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card-clean {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.05); /* Added subtle border for consistency */
+}
+
+.dashboard-panel-clean {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Soft shadow added */
+}
+
+.panel-heading {
+    font-family: var(--font-display);
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* List Items in Dashboard */
+.purchase-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.purchase-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.purchase-date {
+    font-family: var(--font-glacial);
+    font-size: 11px;
+    color: #999;
+    margin: 4px 0 0;
+}
+
+/* Quick Actions Menu */
+.action-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.action-list li {
+    margin-bottom: 10px;
+}
+
+.action-list a {
+    text-decoration: none;
+    color: var(--color-dark-text);
+    font-family: var(--font-glacial);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.action-list a:hover {
+    color: var(--color-star-red);
+}
+
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr); /* Expands on desktop */
+    }
+}
+
+

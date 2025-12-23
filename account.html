@@ -17,36 +17,28 @@
     
     <script src="auth-ui.js" type="module"></script>
 
-    <script type="module">
-        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        <script type="module">
+        import { auth, onAuthStateChanged } from "./firebase-config.js";
         
         // Hide content immediately
         document.documentElement.style.visibility = 'hidden';
         
-        // Wait for Firebase to initialize from firebase-config.js
-        const initProtection = () => {
-            if (window._firebaseAuth) {
-                onAuthStateChanged(window._firebaseAuth, (user) => {
-                    if (!user) {
-                        window.location.replace("index.html");
-                    } else {
-                        // Reveal page with fade-in
-                        document.documentElement.style.visibility = 'visible'; 
-                        document.body.style.opacity = '0'; 
-                        setTimeout(() => {     
-                            document.body.style.transition = 'opacity 0.4s ease';     
-                            document.body.style.opacity = '1'; 
-                        }, 10);
-                    }
-                });
+        // Wait for Auth Check
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.replace("index.html");
             } else {
-                // Retry if config hasn't loaded yet
-                setTimeout(initProtection, 50);
+                // Reveal page
+                document.documentElement.style.visibility = 'visible'; 
+                document.body.style.opacity = '0'; 
+                setTimeout(() => {     
+                    document.body.style.transition = 'opacity 0.4s ease';     
+                    document.body.style.opacity = '1'; 
+                }, 10);
             }
-        };
-        
-        initProtection();
+        });
     </script>
+
 </head>
 
 <body class="account-page protected-route">
@@ -109,34 +101,44 @@
                 <p id="user-meta" class="welcome-meta" style="font-family: var(--font-glacial); font-size: 14px; opacity: 0.6;">Loading member profile...</p>
             </header>
 
-            <section class="stats-row" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;">
-                <div class="stat-card" style="text-align: center; padding: 20px; background: white; border-radius: 15px;">
-                    <span id="owned-count" class="stat-number" style="display: block; font-family: var(--font-display); font-size: 24px;">...</span>
-                    <span class="stat-label" style="font-size: 11px; text-transform: uppercase;">Owned</span>
-                </div>
-                <div class="stat-card" style="text-align: center; padding: 20px; background: white; border-radius: 15px;">
-                    <span id="wishlist-count" class="stat-number" style="display: block; font-family: var(--font-display); font-size: 24px;">...</span>
-                    <span class="stat-label" style="font-size: 11px; text-transform: uppercase;">Wishlist</span>
-                </div>
-            </section>
+            <section class="stats-grid">
+    <div class="stat-card-clean">
+        <span id="owned-count" class="stat-number">...</span>
+        <span class="stat-label">Owned</span>
+    </div>
+    <div class="stat-card-clean">
+        <span id="wishlist-count" class="stat-number">...</span>
+        <span class="stat-label">Wishlist</span>
+    </div>
+</section>
 
-            <section class="dashboard-panel" style="background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px;">
-                <h2 style="font-family: var(--font-display); font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Recent Purchases</h2>
-                <div id="purchase-list"><p style="font-size: 13px; color: #999; padding: 20px 0;">Loading purchases...</p></div>
-                
-                <div style="margin-top: 20px;">     
-                    <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-block;">Gumroad Library ➔</a> 
-                </div>
-            </section>
 
-            <section class="dashboard-panel" style="background: white; border-radius: 20px; padding: 25px;">
-                <h2 style="font-family: var(--font-display); font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Quick Actions</h2>
-                <ul style="list-style: none; padding: 0; margin-top: 15px;">
-                    <li style="margin-bottom: 10px;"><a href="marketplace.html">🛒 Continue Shopping</a></li>
-                    <li style="margin-bottom: 10px;"><a href="#" id="open-settings">⚙️ Edit Profile Name</a></li>
-                    <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact Support</a></li>
-                </ul>
-            </section>
+            <section class="dashboard-panel-clean">
+    <h2 class="panel-heading">Recent Purchases</h2>
+    <div id="purchase-list">
+        <p style="font-size: 13px; color: #999; padding: 20px 0;">Loading purchases...</p>
+    </div>
+    
+    <div style="margin-top: 20px;">     
+        <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm">Gumroad Library ➔</a> 
+    </div>
+</section>
+
+<section class="dashboard-panel-clean">
+    <h2 class="panel-heading">Quick Actions</h2>
+    <ul class="action-list">
+        <li><a href="marketplace.html">🛒 Continue Shopping</a></li>
+        <li><a href="#" id="open-settings">⚙️ Edit Profile Name</a></li>
+        <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact Support</a></li>
+        <li style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+            <a href="#" id="sign-out-btn" style="color: var(--color-star-red);">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+            </a>
+        </li>
+    </ul>
+</section>
+
+
         </section>
     </main>
 
@@ -145,21 +147,8 @@
         <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Manage your digital universe.</p>
     </footer>
 
-    <div class="auth-modal" id="settings-modal" aria-hidden="true">
-        <div class="auth-modal-backdrop" id="settings-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" id="settings-close">✕</button>
-            <h2 class="auth-modal-heading">Settings</h2>
-            <form id="settings-form">
-                <label class="auth-label">
-                    <span>Update Display Name</span>
-                    <input id="settings-display-name" type="text" maxlength="40">
-                </label>
-                <button type="submit" class="btn btn-primary btn-md" id="settings-submit-btn" style="width: 100%;">Save Changes</button>
-                <p id="settings-message" class="auth-message"></p>
-            </form>
-        </div>
-    </div>
+        <div data-include="components/auth-modals.html"></div>
+
 
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
         <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">

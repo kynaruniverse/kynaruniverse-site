@@ -18,56 +18,10 @@
     
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
-    <div class="header-wrapper">
-        <header class="top-header">
-            <div class="logo-area">
-                <button class="menu-icon custom-burger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="side-drawer">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <div class="site-title">
-                    <a href="index.html" class="site-title-link">
-                        <h1 class="main-title">Kynar</h1>
-                        <p class="sub-title">Universe.co.uk</p>
-                    </a>
-                    <figure class="stars" aria-hidden="true">✶ , * ✦ , * ✶ , ✶ * , ✦ *</figure>
-                </div>
-            </div>
+        <div class="header-wrapper">
+        <div data-include="components/header.html"></div>
+    </div>
 
-            <p class="slogan-header">Digital tools for every corner of your life.</p>
-
-            <div class="account-area">
-                <a href="#" class="sign-in-link" role="button">
-                    <div class="custom-lock-icon">
-                        <img src="images/log-in-icon.png" alt="User sign in icon" width="60" height="60">
-                    </div>
-                    <span class="sign-in-text">Sign in</span>
-                </a>
-            </div>
-        </header>
-
-        <nav class="main-nav" aria-label="Primary site navigation">
-    <ul>
-        <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-        <li><a href="marketplace.html" style="color: var(--color-star-red);">Marketplace</a></li>
-        <li><a href="guides.html">Guides</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="account.html" class="account-nav-link" id="account-nav-link">Account</a></li>
-    </ul>
-</nav>
-
-        <div class="search-subscribe-bar">
-            <form class="search-box" id="search-form" role="search">
-                <label for="search-input" class="visually-hidden">Search creations</label>
-                <input type="text" id="search-input" placeholder="Search creations..." autocomplete="off">
-                <button type="submit" class="search-submit" aria-label="Submit search">
-                    <img src="images/search-button.svg" alt="" class="search-icon" aria-hidden="true">
-                </button>
-            </form>
-            <a href="#subscribe" class="btn btn-secondary btn-sm">SUBSCRIBE</a>
-        </div>
     </div> <main id="main-marketplace-content" class="main-content-container">
         
        <section class="featured-products" aria-labelledby="featured-heading">
@@ -211,59 +165,7 @@
 
         </section>
     </div> </main>
-    <div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog">
-        <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" aria-label="Close Login Modal">&times;</button>
-            
-            <h2 class="auth-modal-heading">Sign In</h2>
-            <p style="font-family: var(--font-glacial); font-size: 13px; text-align: center; margin-bottom: 20px; color: rgba(17,17,17,0.6);">Welcome back to the Universe.</p>
-            
-            <form id="auth-form">
-                <label class="auth-label">
-                    <span>Email Address</span>
-                    <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email">
-                </label>
-                <label class="auth-label">
-                    <span>Password</span>
-                    <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password">
-                </label>
-                
-                <button type="submit" class="btn btn-primary btn-md" id="auth-submit-btn" style="width: 100%;">Login to Kynar</button>
-                <button type="button" class="btn btn-secondary btn-md" id="auth-toggle-mode" style="width: 100%; margin-top: 10px;">Need an account? Sign up</button>
-
-            </form>
-        </div>
-    </div>
-
-    <div class="auth-modal" id="signup-modal" aria-hidden="true" role="dialog">
-        <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" aria-label="Close Signup Modal">&times;</button>
-            
-            <h2 class="auth-modal-heading">Create Account</h2>
-            <p style="font-family: var(--font-glacial); font-size: 13px; text-align: center; margin-bottom: 20px; color: rgba(17,17,17,0.6);">Join the creative community.</p>
-            
-            <form id="signup-form">
-                <label class="auth-label">
-                    <span>Display Name</span>
-                    <input type="text" id="reg-name" required placeholder="Your Name" autocomplete="name">
-                </label>
-                <label class="auth-label">
-                    <span>Email Address</span>
-                    <input type="email" id="reg-email" required placeholder="you@example.com" autocomplete="email">
-                </label>
-                <label class="auth-label">
-                    <span>Password</span>
-                    <input type="password" id="reg-password" required placeholder="Min 6 characters" autocomplete="new-password">
-                </label>
-                
-                <button type="submit" class="btn btn-primary btn-md" id="reg-submit-btn" style="width: 100%;">Join Kynar Universe</button>
-                <button type="button" class="btn btn-secondary btn-md" id="back-to-login" style="width: 100%; margin-top: 10px;">Already have an account? Login</button>
-
-            </form>
-        </div>
-    </div>
+        <div data-include="components/auth-modals.html"></div>
 
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
     <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
@@ -284,10 +186,8 @@
     </ul>
 </nav>
 
-    <footer class="site-footer" style="padding: 40px 20px; text-align: center; background: #fdfbf7; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 60px;">
-        <p style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 10px;">&copy; 2025 KYNAR UNIVERSE</p>
-        <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Digital tools for a creative life.</p>
-    </footer>
+    <div data-include="components/footer.html"></div>
+
     
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
