@@ -169,30 +169,67 @@ input, button, textarea, select { font: inherit; }
     padding: 10px 18px; position: relative;
 }
 
-/* Logo */
-.logo-area { display: flex; align-items: center; gap: 16px; margin-left: -4px; }
-.site-title .main-title {
-    font-family: var(--font-display); font-size: var(--fs-xl);
-    letter-spacing: .04em; line-height: 0.95; text-transform: uppercase;
-    color: var(--color-dark-text); text-wrap: balance;
+/* Logo Area: Centers the Burger and the Title Group vertically */
+.logo-area { 
+    display: flex; 
+    align-items: center; /* Vertically centers the whole group in the header */
+    gap: 16px; 
+    margin-left: -4px; 
+    height: 100%; /* Ensures it uses full header height */
 }
-.site-title .sub-title {
-    font-family: var(--font-display); font-size: 9px;
-    color: var(--color-dark-text); letter-spacing: .16em;
-    text-transform: uppercase; opacity: .85; margin-top: -2px;
-}
-.site-title-link { text-decoration: none; color: inherit; }
 
-/* Stars Decoration */
+/* The "Text Box" Container */
+.site-title {
+    display: flex;
+    flex-direction: column; /* Stacks Kynar, Universe, Stars vertically */
+    justify-content: center; /* Centers them inside this box */
+    align-items: center; /* Horizontally centers the text */
+    line-height: 1; /* Resets line height to prevent gaps */
+    transform: translateY(2px); /* Tiny visual correction for optical centering */
+}
+
+/* 1. KYNAR (Main Title) */
+.site-title .main-title {
+    font-family: var(--font-display); 
+    font-size: var(--fs-xl);
+    letter-spacing: .04em; 
+    line-height: 0.8; /* Very tight line height to pull bottom text up */
+    text-transform: uppercase;
+    color: var(--color-dark-text); 
+    margin: 0; 
+    padding: 0;
+}
+
+/* 2. Universe.co.uk (Sub Title) */
+.site-title .sub-title {
+    font-family: var(--font-display); 
+    font-size: 14px; 
+    color: var(--color-dark-text); 
+    letter-spacing: .16em;
+    text-transform: uppercase; 
+    opacity: .85; 
+    
+    /* Tightening: Pulls it closer to 'Kynar' */
+    margin-top: 4px; 
+    display: block;
+}
+
+/* 3. STARS (The Decoration) */
 .stars {
     font-family: var(--font-display); 
     font-size: 5px; 
     letter-spacing: .08em;
     
-    /* AetherCode Fix: Use transform for precise positioning */
-    display: inline-block; /* Ensures the transform pivot is accurate */
-    transform: translateX(10px); /* Pushes the stars 10px to the right */
+    /* Layout */
+    display: block; 
     
+    /* Tightening: Pulls it UP closer to 'Universe.co.uk' */
+    margin-top: -2px; 
+    
+    /* Nudge: Keeps your visual centering correction */
+    transform: translateX(8px); 
+
+    /* Color */
     background: linear-gradient(to right, var(--color-main-gold), #004833, var(--color-star-red));
     -webkit-background-clip: text; 
     background-clip: text;
@@ -200,6 +237,7 @@ input, button, textarea, select { font: inherit; }
     color: var(--color-main-gold);
 }
 
+.site-title-link { text-decoration: none; color: inherit; }
 
 /* Burger Menu */
 .custom-burger {
