@@ -71,9 +71,10 @@
     </div> <main id="main-marketplace-content" class="main-content-container">
         
        <section class="featured-products" aria-labelledby="featured-heading">
-        <h2 id="featured-heading" class="section-title" style="font-family: var(--font-display); text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.1em;">
-            Featured Creations
-        </h2>
+        <h2 id="featured-heading" class="section-title text-center uppercase tracking-wide mb-30">
+    Featured Creations
+</h2>
+
         
         <div class="category-cards-section">
             
@@ -292,59 +293,8 @@
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
 
-    <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, 
-             createUserWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-        authDomain: "kynar-universe-official.firebaseapp.com",
-        projectId: "kynar-universe-official",
-        storageBucket: "kynar-universe-official.firebasestorage.app",
-        messagingSenderId: "1089722386738",
-        appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // Expose to window for auth-ui.js
-    window._firebaseAuth = auth;
-    window._firebaseOnAuthStateChanged = onAuthStateChanged;
-    window._firebaseSignIn = signInWithEmailAndPassword;
-
-    // FIXED: Now properly updates BOTH Firestore AND Auth profile
-    window._firebaseSignUp = async (auth, email, pass, displayName) => {
-        const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-        const uid = userCred.user.uid;
-        
-        // Update Firebase Auth profile (CRITICAL FIX)
-        await updateProfile(userCred.user, { displayName: displayName || "" });
-        
-        // Also save to Firestore for additional data
-        const userDocRef = doc(db, "users", uid);
-        const now = new Date().toISOString();
-        
-        await setDoc(userDocRef, {
-            email,
-            displayName: displayName || "",
-            createdAt: now,
-            updatedAt: now
-        }, { merge: true });
-        
-        return userCred;
-    };
-
-    window._firebaseSignOut = signOut;
-    window._firebaseDb = db;
-
-    console.log('✅ Firebase initialized successfully');
-</script>
-
-<script src="auth-ui.js" type="module"></script>
+    <script src="firebase-config.js" type="module"></script>
+    <script src="auth-ui.js" type="module"></script>
 
 <!-- Loading overlay -->
     <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">

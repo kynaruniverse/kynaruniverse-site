@@ -63,7 +63,7 @@ class FocusTrap {
             const style = window.getComputedStyle(el);
             const isVisible = style.display !== 'none' 
                 && style.visibility !== 'hidden' 
-                && el.offsetParent !== null
+                && (el.offsetParent !== null || style.position === 'fixed')
                 && style.opacity !== '0';
             
             return isVisible && this.element.contains(el);

@@ -19,43 +19,34 @@
     <meta name="twitter:description" content="Connect with creators and shape the future of digital productivity.">
     <meta name="twitter:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
     
+    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 
-
-
 <body class="community-page">
     <a href="#main-content" class="visually-hidden">Skip to main content</a>
     
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    
-        <aside class="side-drawer" id="side-drawer" aria-label="Mobile menu">
-        <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="guides.html">Guides</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="account.html">My Account</a></li>
-            </ul>
-        </nav>
-    </aside>
-
+    <div class="loading-overlay" id="global-loading" aria-live="polite"><div class="loading-spinner"></div></div>
     
     <div class="header-wrapper">
         <header class="top-header">
             <div class="logo-area">
-                <button class="menu-icon custom-burger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="side-drawer">
+                <button class="menu-icon custom-burger" 
+                        type="button" 
+                        aria-label="Toggle navigation menu" 
+                        aria-expanded="false" 
+                        aria-controls="side-drawer">
                     <span></span><span></span><span></span>
                 </button>
                 
                 <div class="site-title">
                     <a href="index.html" class="site-title-link">
-                        <h1 class="main-title">Kynar</h1>
-                        <p class="sub-title">Universe.co.uk</p>
+                        <span class="main-title">Kynar</span>
+                        <span class="sub-title">Universe.co.uk</span>
                     </a>
                     <figure class="stars" aria-hidden="true">✶ , * ✦ , * ✶ , ✶ * , ✦ *</figure>
                 </div>
@@ -64,10 +55,10 @@
             <p class="slogan-header">Digital tools for every corner of your life.</p>
             
             <div class="account-area">
-                <a href="#" class="sign-in-link" role="button">
-                    <div class="custom-lock-icon">
-                        <img src="images/log-in-icon.png" alt="User sign in icon" width="60" height="60">
-                    </div>
+                <a href="#" class="sign-in-link" role="button" aria-label="Sign in">
+                    <span class="custom-lock-icon">
+                        <img src="images/log-in-icon.png" alt="" width="60" height="60">
+                    </span>
                     <span class="sign-in-text">Sign in</span>
                 </a>
             </div>
@@ -83,7 +74,7 @@
             </ul>
         </nav>
         
-        <div class="search-subscribe-bar">
+        <section class="search-subscribe-bar">
             <form class="search-box" id="search-form" role="search">
                 <label for="search-input" class="visually-hidden">Search</label>
                 <input type="text" id="search-input" placeholder="Search creations..." autocomplete="off">
@@ -92,10 +83,10 @@
                 </button>
             </form>
             <a href="#subscribe" class="btn btn-secondary btn-sm">SUBSCRIBE</a>
-        </div>
+        </section>
     </div>
     
-    <main id="main-content" class="main-content-container">
+    <main id="main-content" class="main-content-container container">
         
         <section class="sole-creator-slogan" aria-labelledby="community-hero-title">
             <h1 id="community-hero-title" class="slogan-title">Join Our Community</h1>
@@ -103,7 +94,7 @@
             <p class="slogan-description">
                 We're just getting started! Join us as we build a community of productivity enthusiasts, homeschoolers, and creative minds making the most of their digital tools.
             </p>
-            <div class="accent-divider"></div>
+            <hr class="accent-divider">
         </section>
         
         <section class="community-layout-narrow">
@@ -117,28 +108,28 @@
                     <div class="social-icon"><i class="fa-brands fa-instagram"></i></div>
                     <h3>Instagram</h3>
                     <p>Daily inspiration, tips, and behind-the-scenes content</p>
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-badge product-badge" style="position:static; display:inline-block; margin-top:10px;">Coming Soon</span>
                 </div>
                 
                 <div class="social-card pinterest-card coming-soon-card">
                     <div class="social-icon"><i class="fa-brands fa-pinterest"></i></div>
                     <h3>Pinterest</h3>
                     <p>Save ideas, tutorials, and creative inspiration boards</p>
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-badge product-badge" style="position:static; display:inline-block; margin-top:10px;">Coming Soon</span>
                 </div>
                 
                 <div class="social-card twitter-card coming-soon-card">
                     <div class="social-icon"><i class="fa-brands fa-x-twitter"></i></div>
                     <h3>X (Twitter)</h3>
                     <p>Quick tips, product updates, and community highlights</p>
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-badge product-badge" style="position:static; display:inline-block; margin-top:10px;">Coming Soon</span>
                 </div>
                 
                 <div class="social-card youtube-card coming-soon-card">
                     <div class="social-icon"><i class="fa-brands fa-youtube"></i></div>
                     <h3>YouTube</h3>
                     <p>Video tutorials, product walkthroughs, and how-tos</p>
-                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-badge product-badge" style="position:static; display:inline-block; margin-top:10px;">Coming Soon</span>
                 </div>
             </div>
             
@@ -150,29 +141,29 @@
             </div>
         </section>
         
-        <section class="community-story-panel">
+        <section class="community-story-panel" style="margin-bottom: 60px;">
             <h2 class="section-heading">Be Part of Our Story</h2>
             <p class="section-subtext">
                 As a founding member, you'll help shape KYNAR Universe from the ground up.
             </p>
             
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-star"></i></div>
-                    <h3>Founding Member</h3>
-                    <p>Be recognized as one of our first supporters with special perks and benefits</p>
+            <div class="social-grid">
+                <div class="community-stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+                    <h3 style="font-family: var(--font-display); margin-bottom: 10px;">Founding Member</h3>
+                    <p style="font-size: 14px;">Be recognized as one of our first supporters with special perks and benefits</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-comments"></i></div>
-                    <h3>Direct Input</h3>
-                    <p>Your feedback will directly shape new products and features</p>
+                <div class="community-stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3 style="font-family: var(--font-display); margin-bottom: 10px;">Direct Input</h3>
+                    <p style="font-size: 14px;">Your feedback will directly shape new products and features</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
-                    <h3>Early Access</h3>
-                    <p>Get first access to new products before official launch</p>
+                <div class="community-stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-gift"></i></div>
+                    <h3 style="font-family: var(--font-display); margin-bottom: 10px;">Early Access</h3>
+                    <p style="font-size: 14px;">Get first access to new products before official launch</p>
                 </div>
             </div>
         </section>
@@ -186,17 +177,16 @@
             <div id="newsletter-container">
                 <form id="newsletter-form" action="https://formspree.io/f/mbdrkbve" method="POST" class="community-inline-form">
                     <input type="text" name="_gotcha" style="display:none" />
-                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required autocomplete="email">
                     <button type="submit" class="btn btn-primary btn-md">Subscribe</button>
                 </form>
-                <div id="newsletter-success" class="form-success-content">
-                    <i class="fa-solid fa-circle-check"></i>
+                <div id="newsletter-success" class="form-success-content" aria-live="polite">
+                    <i class="fa-solid fa-circle-check" style="font-size: 30px; color: var(--color-search-deep); margin-bottom: 15px;"></i>
                     <h3>You're on the list</h3>
                     <p>Thanks for joining the KYNAR Universe newsletter.</p>
                 </div>
             </div>
         </section>
-        
         
         <section id="share-feedback" class="community-form-section feedback-bg">
             <h2 class="section-heading">Share Your Feedback</h2>
@@ -208,14 +198,14 @@
                 <form id="feedback-form" action="https://formspree.io/f/xykgpvle" method="POST" class="community-vertical-form">
                     <div class="form-group">
                         <label for="feedback-name">Your Name</label>
-                        <input type="text" id="feedback-name" name="name" required>
+                        <input type="text" id="feedback-name" name="name" required autocomplete="name">
                     </div>
                     
                     <input type="text" name="_gotcha" style="display:none" />
                     
                     <div class="form-group">
                         <label for="feedback-email">Email Address</label>
-                        <input type="email" id="feedback-email" name="email" required>
+                        <input type="email" id="feedback-email" name="email" required autocomplete="email">
                     </div>
                     
                     <div class="form-group">
@@ -233,12 +223,12 @@
                         <textarea id="feedback-message" name="message" rows="5" required placeholder="Tell us what's on your mind..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary btn-md" style="width: 100%;">Send Feedback</button>
+                    <button type="submit" class="btn btn-primary btn-md btn-full-width">Send Feedback</button>
                     <p id="feedback-message-response" class="form-response-msg"></p>
                 </form>
                 
-                <div id="feedback-success" class="form-success-content">
-                    <i class="fa-solid fa-paper-plane"></i>
+                <div id="feedback-success" class="form-success-content" aria-live="polite">
+                    <i class="fa-solid fa-paper-plane" style="font-size: 30px; color: var(--color-main-gold); margin-bottom: 15px;"></i>
                     <h3>Message Sent!</h3>
                     <p>We'll review your feedback and get back to you soon.</p>
                 </div>
@@ -262,80 +252,96 @@
         
     </main>
     
-    <footer class="site-footer" style="padding: 40px 20px; text-align: center; background: #fdfbf7; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 60px;">
-    <p style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 10px;">&copy; 2025 KYNAR UNIVERSE</p>
-    <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Digital tools for a creative life.</p>
-</footer>
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="container footer-content">
+            <p class="footer-copyright">
+                © 2025 KYNAR UNIVERSE
+            </p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    <div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog">
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <span class="drawer-title">Navigation</span>
+            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="drawer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="guides.html">Guides</a></li>
+            <li><a href="community.html" class="active-drawer-link">Community</a></li>
+            <li class="drawer-divider">
+                <a href="account.html" class="account-nav-link" id="account-nav-mobile">
+                    <i class="fa-regular fa-circle-user"></i> My Account
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="auth-modal" id="auth-modal" aria-hidden="true">
         <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" aria-label="Close Login Modal">&times;</button>
-            <h2 class="auth-modal-heading">Sign In</h2>
-            <p style="font-family: var(--font-glacial); font-size: 13px; text-align: center; margin-bottom: 20px; color: rgba(17,17,17,0.6);">Welcome back to the Universe.</p>
+        <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+            <button class="auth-modal-close" type="button" aria-label="Close login form">✕</button>
+            <h2 id="auth-modal-title" class="auth-modal-heading">Sign in to KYNAR Universe</h2>
+            
             <form id="auth-form">
-                <label class="auth-label"><span>Email Address</span><input type="email" id="auth-email" required placeholder="you@example.com"></label>
-                <label class="auth-label"><span>Password</span><input type="password" id="auth-password" required placeholder="••••••••"></label>
-                <button type="submit" class="btn btn-primary btn-md" id="auth-submit-btn" style="width: 100%;">Login to Kynar</button>
-                <button type="button" class="btn btn-secondary btn-md" id="auth-toggle-mode" style="width: 100%; margin-top: 10px;">Need an account? Sign up</button>
+                <label class="auth-label">
+                    <span>Email</span>
+                    <input type="email" id="auth-email" required autocomplete="email" placeholder="email@example.com">
+                </label>
+                <label class="auth-label">
+                    <span>Password</span>
+                    <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="••••••••">
+                </label>
+                <button type="submit" class="btn btn-primary btn-md btn-full-width" id="auth-submit-btn">Sign In</button>
+                <button type="button" class="btn btn-secondary btn-md btn-full-width" id="auth-toggle-mode" style="margin-top: 10px;">Need an account? Sign up</button>
+                <p class="auth-message" id="auth-message" aria-live="polite"></p>
             </form>
         </div>
     </div>
 
-    <div class="auth-modal" id="signup-modal" aria-hidden="true" role="dialog">
+    <div class="auth-modal" id="signup-modal" aria-hidden="true">
         <div class="auth-modal-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" aria-label="Close Signup Modal">&times;</button>
-            <h2 class="auth-modal-heading">Create Account</h2>
+        <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+            <button class="auth-modal-close" id="signup-close" type="button" aria-label="Close signup form">✕</button>
+            <h2 id="signup-title" class="auth-modal-heading">Create Account</h2>
+            
             <form id="signup-form">
-                <label class="auth-label"><span>Display Name</span><input type="text" id="reg-name" required placeholder="Your Name"></label>
-                <label class="auth-label"><span>Email Address</span><input type="email" id="reg-email" required placeholder="you@example.com"></label>
-                <label class="auth-label"><span>Password</span><input type="password" id="reg-password" required placeholder="Min 6 characters"></label>
-                <button type="submit" class="btn btn-primary btn-md" id="reg-submit-btn" style="width: 100%;">Join Kynar Universe</button>
-                <button type="button" class="btn btn-secondary btn-md" id="back-to-login" style="width: 100%; margin-top: 10px;">Already have an account? Login</button>
+                <label class="auth-label">
+                    <span>Display Name</span>
+                    <input type="text" id="reg-name" required placeholder="How should we address you?">
+                </label>
+                <label class="auth-label">
+                    <span>Email Address</span>
+                    <input type="email" id="reg-email" required placeholder="email@example.com" autocomplete="email">
+                </label>
+                <label class="auth-label">
+                    <span>Password (Min 6 characters)</span>
+                    <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
+                </label>
+                <button type="submit" class="btn btn-primary btn-md btn-full-width" id="reg-submit-btn">Create Universe Account</button>
+                <button type="button" class="btn btn-secondary btn-md btn-full-width" id="back-to-login" style="margin-top: 10px;">Already have an account? Sign in</button>
+                <p class="auth-message" id="reg-message" aria-live="polite"></p>
             </form>
         </div>
     </div>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
-    <script src="script.js" defer></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-            authDomain: "kynar-universe-official.firebaseapp.com",
-            projectId: "kynar-universe-official",
-            storageBucket: "kynar-universe-official.firebasestorage.app",
-            messagingSenderId: "1089722386738",
-            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window._firebaseAuth = auth;
-        window._firebaseOnAuthStateChanged = onAuthStateChanged;
-        window._firebaseSignIn = signInWithEmailAndPassword;
-        window._firebaseSignUp = async (auth, email, pass, displayName) => {
-            const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-            await updateProfile(userCred.user, { displayName });
-            await setDoc(doc(db, "users", userCred.user.uid), { email, displayName, createdAt: new Date().toISOString() });
-            return userCred;
-        };
-        window._firebaseSignOut = signOut;
-        window._firebaseDb = db;
-    </script>
+    <script src="script.js" defer></script> 
+    <script src="community.js" defer></script>
+    <script src="firebase-config.js" type="module"></script>
     <script src="auth-ui.js" type="module"></script>
-    <div class="loading-overlay" id="global-loading" aria-live="polite"><div class="loading-spinner"></div></div>
 
-    
-    <script src="community.js"></script>
-    
 </body>
-
 </html>

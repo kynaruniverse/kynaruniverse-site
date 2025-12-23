@@ -101,10 +101,6 @@ function initAuthUI() {
         btn.addEventListener('click', closeAllModals);
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAllModals();
-    });
-
     // 5. FORM SUBMISSION HANDLER (Combined Logic)
     const handleAuthForm = async (formId, actionFunc, msgId, btnId, isSignup = false) => {
         const form = document.getElementById(formId);
@@ -171,8 +167,9 @@ function initAuthUI() {
             // Update Icon with Initial
             if (lockIconContainer) {
                 const initial = user.displayName ? user.displayName.charAt(0).toUpperCase() : 'U';
-                lockIconContainer.innerHTML = `<span style="font-family:var(--font-display); font-weight:bold; font-size:1.1rem; color:var(--color-main-gold);">${initial}</span>`;
-                lockIconContainer.style.borderColor = 'var(--color-main-gold)';
+                lockIconContainer.innerHTML = `<span class="user-initial">${initial}</span>`;
+                lockIconContainer.classList.add('active-user');
+                lockIconContainer.style.borderColor = ''; // Clear inline styles
             }
 
             if (burger) burger.setAttribute('aria-label', `Menu for ${user.displayName || 'user'}`);
@@ -181,6 +178,7 @@ function initAuthUI() {
             if (signInText) signInText.textContent = 'Sign in';
             if (lockIconContainer) {
                 lockIconContainer.innerHTML = `<img src="images/log-in-icon.png" alt="Sign in" style="width: 100%; height: 100%; object-fit: contain;">`;
+                lockIconContainer.classList.remove('active-user');
                 lockIconContainer.style.borderColor = '';
             }
             if (burger) burger.setAttribute('aria-label', 'Toggle navigation menu');

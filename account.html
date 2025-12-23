@@ -12,33 +12,40 @@
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
+    
+    <script src="firebase-config.js" type="module"></script>
+    
     <script src="auth-ui.js" type="module"></script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
         
-        const firebaseConfig = {
-            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-            authDomain: "kynar-universe-official.firebaseapp.com",
-            projectId: "kynar-universe-official",
-            storageBucket: "kynar-universe-official.firebasestorage.app",
-            messagingSenderId: "1089722386738",
-            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        
+        // Hide content immediately
         document.documentElement.style.visibility = 'hidden';
         
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                window.location.replace("index.html");
+        // Wait for Firebase to initialize from firebase-config.js
+        const initProtection = () => {
+            if (window._firebaseAuth) {
+                onAuthStateChanged(window._firebaseAuth, (user) => {
+                    if (!user) {
+                        window.location.replace("index.html");
+                    } else {
+                        // Reveal page with fade-in
+                        document.documentElement.style.visibility = 'visible'; 
+                        document.body.style.opacity = '0'; 
+                        setTimeout(() => {     
+                            document.body.style.transition = 'opacity 0.4s ease';     
+                            document.body.style.opacity = '1'; 
+                        }, 10);
+                    }
+                });
             } else {
-                document.documentElement.style.visibility = 'visible'; document.body.style.opacity = '0'; setTimeout(() => {     document.body.style.transition = 'opacity 0.4s ease';     document.body.style.opacity = '1'; }, 10);
+                // Retry if config hasn't loaded yet
+                setTimeout(initProtection, 50);
             }
-        });
+        };
+        
+        initProtection();
     </script>
 </head>
 
@@ -71,15 +78,14 @@
         </header>
 
         <nav class="main-nav" aria-label="Primary site navigation">
-    <ul>
-        <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-        <li><a href="marketplace.html">Marketplace</a></li>
-        <li><a href="guides.html">Guides</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="account.html" style="color: var(--color-star-red);"
-        class="account-nav-link" id="account-nav-link">Account</a></li>
-    </ul>
-</nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="guides.html">Guides</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="account.html" style="color: var(--color-star-red);" class="account-nav-link" id="account-nav-link">Account</a></li>
+            </ul>
+        </nav>
 
         <section class="search-subscribe-bar">
             <form class="search-box" id="search-form">
@@ -88,14 +94,15 @@
                     <img src="images/search-button.svg" alt="Search" class="search-icon">
                 </button>
             </form>
-            <a href="#" class="btn btn-secondary btn-sm">Subscribe</a>
+            <a href="#subscribe" class="btn btn-secondary btn-sm">Subscribe</a>
         </section>
     </div>
 
     <main class="main-content-container">
         <section class="account-dashboard">
             <header class="welcome-banner" style="text-align: center; margin-bottom: 40px;">
-                <div id="user-initial" class="profile-placeholder" style="width: 80px; height: 80px; background: var(--color-main-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-family: var(--font-display); margin: 0 auto 15px;">-</div>
+                <div id="user-initial" class="profile-placeholder" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 15px;">-</div>
+                
                 <h1 class="welcome-title" style="font-family: var(--font-display); font-size: 28px; text-transform: uppercase;">
                     Welcome, <span id="welcome-name" style="color: var(--color-star-red);">...</span>!
                 </h1>
@@ -117,7 +124,9 @@
                 <h2 style="font-family: var(--font-display); font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Recent Purchases</h2>
                 <div id="purchase-list"><p style="font-size: 13px; color: #999; padding: 20px 0;">Loading purchases...</p></div>
                 
-                <div style="margin-top: 20px;">     <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-block;">Gumroad Library ➔</a> </div>
+                <div style="margin-top: 20px;">     
+                    <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm" style="display: inline-block;">Gumroad Library ➔</a> 
+                </div>
             </section>
 
             <section class="dashboard-panel" style="background: white; border-radius: 20px; padding: 25px;">
@@ -132,10 +141,9 @@
     </main>
 
     <footer class="site-footer" style="padding: 40px 20px; text-align: center; background: transparent; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px;">
-    <p style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 5px;">&copy; 2025 KYNAR UNIVERSE</p>
-    <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Manage your digital universe.</p>
-</footer>
-
+        <p style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 5px;">&copy; 2025 KYNAR UNIVERSE</p>
+        <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Manage your digital universe.</p>
+    </footer>
 
     <div class="auth-modal" id="settings-modal" aria-hidden="true">
         <div class="auth-modal-backdrop" id="settings-backdrop"></div>
@@ -154,159 +162,149 @@
     </div>
 
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-    <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">Navigation</span>
-        <button class="drawer-close" type="button" aria-label="Close menu" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
-    </div>
-    <ul style="list-style: none; padding: 20px 0;">
-        
-        <li><a href="index.html" >Home</a></li>
-        <li><a href="marketplace.html">Marketplace</a></li>
-        <li><a href="guides.html">Guides</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
-            <a href="account.html" style="color: var(--color-star-red);"
-            class="account-nav-link" id="account-nav-mobile">
-                <i class="fa-regular fa-circle-user"></i> My Account
-            </a>
-        </li>
-    </ul>
-</nav>
+        <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">Navigation</span>
+            <button class="drawer-close" type="button" aria-label="Close menu" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+        </div>
+        <ul style="list-style: none; padding: 20px 0;">
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="guides.html">Guides</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+                <a href="account.html" style="color: var(--color-star-red);" class="account-nav-link" id="account-nav-mobile">
+                    <i class="fa-regular fa-circle-user"></i> My Account
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-   
-
-    <!-- ✅ REPLACE THIS ENTIRE SECTION WITH PURCHASE TRACKING -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+        import { signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+        import { doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-            authDomain: "kynar-universe-official.firebaseapp.com",
-            projectId: "kynar-universe-official",
-            storageBucket: "kynar-universe-official.firebasestorage.app",
-            messagingSenderId: "1089722386738",
-            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
+        // Wait for Shared Firebase Instance
+        const waitForConfig = () => {
+            if (window._firebaseAuth && window._firebaseDb) {
+                initAccountLogic(window._firebaseAuth, window._firebaseDb);
+            } else {
+                setTimeout(waitForConfig, 50);
+            }
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        function initAccountLogic(auth, db) {
+            const welcomeNameEl = document.getElementById('welcome-name');
+            const initialEl = document.getElementById('user-initial');
+            const welcomeMetaEl = document.getElementById('user-meta');
 
-        const welcomeNameEl = document.getElementById('welcome-name');
-        const initialEl = document.getElementById('user-initial');
-        const welcomeMetaEl = document.getElementById('user-meta');
-
-        // ========== PURCHASE TRACKING FUNCTIONS ==========
-        async function getUserPurchases(userId) {
-            try {
-                const userDoc = await getDoc(doc(db, "users", userId));
-                if (userDoc.exists()) {
-                    const data = userDoc.data();
-                    return {
-                        purchases: data.purchases || [],
-                        wishlist: data.wishlist || []
-                    };
-                }
-                return { purchases: [], wishlist: [] };
-            } catch (error) {
-                console.error("Error fetching purchases:", error);
-                return { purchases: [], wishlist: [] };
-            }
-        }
-
-        async function addPurchase(userId, productData) {
-            try {
-                const userRef = doc(db, "users", userId);
-                await updateDoc(userRef, {
-                    purchases: arrayUnion({
-                        id: productData.id,
-                        title: productData.title,
-                        price: productData.price,
-                        purchaseDate: new Date().toISOString(),
-                        downloadUrl: productData.downloadUrl || ""
-                    }),
-                    updatedAt: new Date().toISOString()
-                });
-                return true;
-            } catch (error) {
-                console.error("Error adding purchase:", error);
-                return false;
-            }
-        }
-
-        async function addToWishlist(userId, productData) {
-            try {
-                const userRef = doc(db, "users", userId);
-                await updateDoc(userRef, {
-                    wishlist: arrayUnion({
-                        id: productData.id,
-                        title: productData.title,
-                        price: productData.price,
-                        addedDate: new Date().toISOString()
-                    }),
-                    updatedAt: new Date().toISOString()
-                });
-                return true;
-            } catch (error) {
-                console.error("Error adding to wishlist:", error);
-                return false;
-            }
-        }
-
-        // ========== LOAD ACCOUNT DATA WITH PURCHASES ==========
-        async function loadAccountData(user) {
-            const ownedCountEl = document.getElementById('owned-count');
-            const wishlistCountEl = document.getElementById('wishlist-count');
-            const purchaseListEl = document.getElementById('purchase-list');
-            
-            if (!user) return;
-            
-            // Get purchase data
-            const { purchases, wishlist } = await getUserPurchases(user.uid);
-            
-            // Update counts
-            if (ownedCountEl) ownedCountEl.textContent = purchases.length;
-            if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
-            
-            // Display recent purchases
-            if (purchaseListEl) {
-                if (purchases.length > 0) {
-                    const recentPurchases = purchases.slice(-3).reverse(); // Last 3 purchases
-                    purchaseListEl.innerHTML = recentPurchases.map(purchase => `
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                            <div>
-                                <p style="font-family: var(--font-display); font-size: 14px; margin: 0; font-weight: 600;">${purchase.title}</p>
-                                <p style="font-family: var(--font-glacial); font-size: 11px; color: #999; margin: 4px 0 0;">
-                                    ${new Date(purchase.purchaseDate).toLocaleDateString()}
-                                </p>
-                            </div>
-                            ${purchase.downloadUrl ? `<a href="${purchase.downloadUrl}" target="_blank" class="btn btn-primary btn-sm">
-    Download
-</a>
-                            ` : ''}
-                        </div>
-                    `).join('');
-                } else {
-                    purchaseListEl.innerHTML = '<p style="font-size: 13px; color: #999; padding: 20px 0;">No recent purchases found.</p>';
+            // ========== PURCHASE TRACKING FUNCTIONS ==========
+            async function getUserPurchases(userId) {
+                try {
+                    const userDoc = await getDoc(doc(db, "users", userId));
+                    if (userDoc.exists()) {
+                        const data = userDoc.data();
+                        return {
+                            purchases: data.purchases || [],
+                            wishlist: data.wishlist || []
+                        };
+                    }
+                    return { purchases: [], wishlist: [] };
+                } catch (error) {
+                    console.error("Error fetching purchases:", error);
+                    return { purchases: [], wishlist: [] };
                 }
             }
-        }
 
-        // ========== AUTH STATE & USER DATA ==========
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // Load purchase data
-                await loadAccountData(user);
+            async function addPurchase(userId, productData) {
+                try {
+                    const userRef = doc(db, "users", userId);
+                    await updateDoc(userRef, {
+                        purchases: arrayUnion({
+                            id: productData.id,
+                            title: productData.title,
+                            price: productData.price,
+                            purchaseDate: new Date().toISOString(),
+                            downloadUrl: productData.downloadUrl || ""
+                        }),
+                        updatedAt: new Date().toISOString()
+                    });
+                    return true;
+                } catch (error) {
+                    console.error("Error adding purchase:", error);
+                    return false;
+                }
+            }
+
+            async function addToWishlist(userId, productData) {
+                try {
+                    const userRef = doc(db, "users", userId);
+                    await updateDoc(userRef, {
+                        wishlist: arrayUnion({
+                            id: productData.id,
+                            title: productData.title,
+                            price: productData.price,
+                            addedDate: new Date().toISOString()
+                        }),
+                        updatedAt: new Date().toISOString()
+                    });
+                    return true;
+                } catch (error) {
+                    console.error("Error adding to wishlist:", error);
+                    return false;
+                }
+            }
+
+            // ========== LOAD ACCOUNT DATA ==========
+            async function loadAccountData(user) {
+                const ownedCountEl = document.getElementById('owned-count');
+                const wishlistCountEl = document.getElementById('wishlist-count');
+                const purchaseListEl = document.getElementById('purchase-list');
                 
-                // Update welcome section
+                if (!user) return;
+                
+                // Get purchase data
+                const { purchases, wishlist } = await getUserPurchases(user.uid);
+                
+                // Update counts
+                if (ownedCountEl) ownedCountEl.textContent = purchases.length;
+                if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
+                
+                // Display recent purchases
+                if (purchaseListEl) {
+                    if (purchases.length > 0) {
+                        const recentPurchases = purchases.slice(-3).reverse(); // Last 3 purchases
+                        purchaseListEl.innerHTML = recentPurchases.map(purchase => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <div>
+                                    <p style="font-family: var(--font-display); font-size: 14px; margin: 0; font-weight: 600;">${purchase.title}</p>
+                                    <p style="font-family: var(--font-glacial); font-size: 11px; color: #999; margin: 4px 0 0;">
+                                        ${new Date(purchase.purchaseDate).toLocaleDateString()}
+                                    </p>
+                                </div>
+                                ${purchase.downloadUrl ? `<a href="${purchase.downloadUrl}" target="_blank" class="btn btn-primary btn-sm">Download</a>` : ''}
+                            </div>
+                        `).join('');
+                    } else {
+                        purchaseListEl.innerHTML = '<p style="font-size: 13px; color: #999; padding: 20px 0;">No recent purchases found.</p>';
+                    }
+                }
+            }
+
+            // ========== USER DATA OBSERVER ==========
+            // Note: We don't use onAuthStateChanged here because the <head> script already handles redirection.
+            // We just grab the current user if they exist.
+            if (auth.currentUser) {
+                const user = auth.currentUser;
+                
+                // 1. Initial UI Set
                 let nameToShow = user.displayName || user.email.split('@')[0];
                 if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
                 if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
-                try {
-                    const snap = await getDoc(doc(db, "users", user.uid));
+                // 2. Load Firestore Data
+                loadAccountData(user);
+                
+                getDoc(doc(db, "users", user.uid)).then(snap => {
                     if (snap.exists()) {
                         const data = snap.data();
                         if (data.displayName) {
@@ -319,57 +317,64 @@
                             welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}`;
                         }
                     }
-                } catch (err) { 
-                    console.error("Error loading user data:", err); 
-                }
-            } else {
-                window.location.replace("index.html");
+                }).catch(err => console.error("Error loading user data:", err));
             }
-        });
 
-        // ========== SIGN OUT ==========
-        document.getElementById('sign-out-btn').addEventListener('click', () => {
-            signOut(auth).then(() => window.location.replace('index.html'));
-        });
-
-        // ========== SETTINGS MODAL ==========
-        const settingsModal = document.getElementById('settings-modal');
-        document.getElementById('open-settings').addEventListener('click', (e) => {
-            e.preventDefault();
-            settingsModal.classList.add('is-open');
-            document.getElementById('settings-display-name').value = welcomeNameEl.textContent;
-        });
-
-        const closeSettings = () => settingsModal.classList.remove('is-open');
-        document.getElementById('settings-close').addEventListener('click', closeSettings);
-        document.getElementById('settings-backdrop').addEventListener('click', closeSettings);
-
-        document.getElementById('settings-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const newName = document.getElementById('settings-display-name').value.trim();
-            const msg = document.getElementById('settings-message');
-            if (!newName) return;
-            try {
-                await updateDoc(doc(db, "users", auth.currentUser.uid), { displayName: newName });
-                welcomeNameEl.textContent = newName;
-                initialEl.textContent = newName.charAt(0).toUpperCase();
-                msg.style.color = "green";
-                msg.textContent = "Saved!";
-                setTimeout(closeSettings, 1000);
-            } catch (err) { 
-                msg.style.color = "#dc3545";
-                msg.textContent = "Error saving."; 
+            // ========== SIGN OUT ==========
+            const signOutBtn = document.getElementById('sign-out-btn');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', () => {
+                    signOut(auth).then(() => window.location.replace('index.html'));
+                });
             }
-        });
 
-        // ========== EXPOSE PURCHASE FUNCTIONS GLOBALLY ==========
-        window.kynarPurchases = {
-            addPurchase,
-            addToWishlist,
-            getUserPurchases
-        };
+            // ========== SETTINGS MODAL ==========
+            const settingsModal = document.getElementById('settings-modal');
+            const openSettingsBtn = document.getElementById('open-settings');
+            
+            if (openSettingsBtn && settingsModal) {
+                openSettingsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    settingsModal.classList.add('is-open');
+                    document.getElementById('settings-display-name').value = welcomeNameEl.textContent;
+                });
 
-        console.log('✅ Account page loaded with purchase tracking');
+                const closeSettings = () => settingsModal.classList.remove('is-open');
+                document.getElementById('settings-close')?.addEventListener('click', closeSettings);
+                document.getElementById('settings-backdrop')?.addEventListener('click', closeSettings);
+
+                document.getElementById('settings-form')?.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const newName = document.getElementById('settings-display-name').value.trim();
+                    const msg = document.getElementById('settings-message');
+                    if (!newName) return;
+                    
+                    try {
+                        await updateDoc(doc(db, "users", auth.currentUser.uid), { displayName: newName });
+                        welcomeNameEl.textContent = newName;
+                        initialEl.textContent = newName.charAt(0).toUpperCase();
+                        msg.style.color = "green";
+                        msg.textContent = "Saved!";
+                        setTimeout(closeSettings, 1000);
+                    } catch (err) { 
+                        msg.style.color = "#dc3545";
+                        msg.textContent = "Error saving."; 
+                    }
+                });
+            }
+
+            // ========== EXPOSE PURCHASE FUNCTIONS GLOBALLY ==========
+            window.kynarPurchases = {
+                addPurchase: (productData) => addPurchase(auth.currentUser.uid, productData),
+                addToWishlist: (productData) => addToWishlist(auth.currentUser.uid, productData),
+                getUserPurchases: () => getUserPurchases(auth.currentUser.uid)
+            };
+
+            console.log('✅ Account page initialized with shared config');
+        }
+
+        // Start waiting
+        waitForConfig();
     </script>
 </body>
 </html>

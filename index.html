@@ -7,28 +7,30 @@
     <title>KYNAR Universe – Digital Goods Marketplace</title>
     
     <meta property="og:title" content="KYNAR Universe | Community Hub">
-<meta property="og:description" content="Explore digital tools for productivity and creativity. Join our community.">
-<meta property="og:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
-<meta property="og:url" content="https://kynaruniverse.co.uk/index.html">
-<meta property="og:type" content="website">
+    <meta property="og:description" content="Explore digital tools for productivity and creativity. Join our community.">
+    <meta property="og:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
+    <meta property="og:url" content="https://kynaruniverse.co.uk/index.html">
+    <meta property="og:type" content="website">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yourdomain.com/images/social-share.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
 
+    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="styles.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
-
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body class="home-page">
+    
     <a href="#main-content" class="visually-hidden">Skip to main content</a>
 
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading content">
+        <div class="loading-spinner"></div>
+    </div>
 
     <div class="header-wrapper">
-
         <header class="top-header">
             <div class="logo-area">
                 <button class="menu-icon custom-burger"
@@ -43,8 +45,8 @@
 
                 <div class="site-title">
                     <a href="index.html" class="site-title-link" aria-label="KYNAR Universe homepage">
-                        <p class="main-title">Kynar</p>
-                        <p class="sub-title">Universe.co.uk</p>
+                        <span class="main-title">Kynar</span>
+                        <span class="sub-title">Universe.co.uk</span>
                     </a>
 
                     <figure class="stars" aria-hidden="true">
@@ -58,19 +60,18 @@
             </p>
 
             <div class="account-area">
-                <a href="#" class="sign-in-link" role="button">
+                <a href="#" class="sign-in-link" role="button" aria-label="Sign in to your account">
                     <span class="custom-lock-icon">
-                        <img src="images/log-in-icon.png" alt="User sign in icon" width="60" height="60">
+                        <img src="images/log-in-icon.png" alt="" width="60" height="60">
                     </span>
                     <span class="sign-in-text">Sign in</span>
                 </a>
             </div>
         </header>
 
-
         <nav class="main-nav" aria-label="Primary site navigation">
             <ul>
-                <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="index.html" aria-label="Home"><i class="fa-solid fa-house" aria-hidden="true"></i></a></li>
                 <li><a href="marketplace.html">Marketplace</a></li>
                 <li><a href="guides.html">Guides</a></li>
                 <li><a href="community.html">Community</a></li>
@@ -96,7 +97,7 @@
         </section>
     </div>
 
-        <main id="main-content" class="main-content-container">
+    <main id="main-content" class="main-content-container container">
         
         <section class="sole-creator-slogan" aria-labelledby="hero-title">
             <h1 id="hero-title" class="slogan-title">
@@ -112,11 +113,10 @@
                 Browse planners, printables, Notion setups, homeschool resources, prompts, and more—ready to plug straight into your projects and daily routines.
             </p>
             
-            <div style="width: 50px; height: 2px; background: var(--color-main-gold); margin: 20px auto 0; opacity: 0.5;"></div>
+            <hr class="accent-divider">
         </section>
 
-
-                <section class="category-cards-section" aria-labelledby="category-cards-heading">
+        <section class="category-cards-section" aria-labelledby="category-cards-heading">
             <h2 id="category-cards-heading" class="visually-hidden">Product Categories</h2>
 
             <article class="category-card planning-productivity-card">
@@ -224,34 +224,34 @@
             </article>
         </section>
 
-                <section class="bottom-browse-section" style="padding: 60px 20px; text-align: center;">
-            <a href="marketplace.html" class="btn btn-primary btn-lg">Browse Full Marketplace
-</a>
-            <p style="font-family: var(--font-glacial); font-size: 14px; margin-top: 20px; color: rgba(17,17,17,0.6);">
+        <section class="bottom-browse-section flex-center" style="flex-direction: column; margin-top: 40px;">
+            <a href="marketplace.html" class="btn btn-primary btn-lg">Browse Full Marketplace</a>
+            <p class="browse-subtext section-subtext" style="margin-top: 15px;">
                 Join thousands of creators simplifying their digital lives.
             </p>
         </section>
+
     </main>
 
     <footer class="site-footer" aria-label="Site footer">
-        <div class="footer-content" style="max-width: 1200px; margin: 0 auto;">
-            <p style="font-family: var(--font-display); letter-spacing: 0.1em; margin-bottom: 15px;">
+        <div class="container footer-content">
+            <p class="footer-copyright">
                 © 2025 KYNAR UNIVERSE
             </p>
-            <nav aria-label="Footer navigation" style="display: flex; justify-content: center; gap: 20px;">
-                <a href="#" style="font-family: var(--font-glacial); font-size: 12px; text-decoration: none; color: inherit; opacity: 0.7;">Terms of Service</a>
-                <a href="#" style="font-family: var(--font-glacial); font-size: 12px; text-decoration: none; color: inherit; opacity: 0.7;">Privacy Policy</a>
-                <a href="#" style="font-family: var(--font-glacial); font-size: 12px; text-decoration: none; color: inherit; opacity: 0.7;">Contact</a>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
             </nav>
-            <div class="footer-socials" style="margin-top: 20px; font-size: 18px; display: flex; justify-content: center; gap: 15px; opacity: 0.6;">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
             </div>
         </div>
     </footer>
 
-        <div class="auth-modal" id="auth-modal" aria-hidden="true">
+    <div class="auth-modal" id="auth-modal" aria-hidden="true">
         <div class="auth-modal-backdrop"></div>
         <div class="auth-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
             <button class="auth-modal-close" type="button" aria-label="Close login form">✕</button>
@@ -267,10 +267,10 @@
                     <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="••••••••">
                 </label>
                 <button type="submit" 
-                class="btn btn-primary btn-md" id="auth-submit-btn" style="width: 100%;">Sign In</button>
+                class="btn btn-primary btn-md btn-full-width" id="auth-submit-btn">Sign In</button>
                 <button type="button" 
-                class="btn btn-secondary btn-md" 
-                id="auth-toggle-mode" style="width: 100%; margin-top: 10px;">Need an account? Sign up</button>
+                class="btn btn-secondary btn-md btn-full-width" 
+                id="auth-toggle-mode" style="margin-top: 10px;">Need an account? Sign up</button>
 
                 <p class="auth-message" id="auth-message" aria-live="polite"></p>
             </form>
@@ -296,25 +296,24 @@
                     <span>Password (Min 6 characters)</span>
                     <input type="password" id="reg-password" required minlength="6" placeholder="••••••••" autocomplete="new-password">
                 </label>
-                <button type="submit" class="btn btn-primary btn-md" id="reg-submit-btn" style="width: 100%;">Create Universe Account</button>
-                <button type="button" class="btn btn-secondary btn-md" id="back-to-login" style="width: 100%; margin-top: 10px;">Already have an account? Sign in</button>
+                <button type="submit" class="btn btn-primary btn-md btn-full-width" id="reg-submit-btn">Create Universe Account</button>
+                <button type="button" class="btn btn-secondary btn-md btn-full-width" id="back-to-login" style="margin-top: 10px;">Already have an account? Sign in</button>
                 <p class="auth-message" id="reg-message" aria-live="polite"></p>
             </form>
         </div>
     </div>
 
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">Navigation</span>
-            <button class="drawer-close" type="button" aria-label="Close menu" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+        <div class="drawer-header">
+            <span class="drawer-title">Navigation</span>
+            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
         </div>
-        <ul style="list-style: none; padding: 20px 0;">
-            
-            <li><a href="index.html" style="color: var(--color-star-red);">Home</a></li>
+        <ul class="drawer-list">
+            <li><a href="index.html" class="active-drawer-link">Home</a></li>
             <li><a href="marketplace.html">Marketplace</a></li>
             <li><a href="guides.html">Guides</a></li>
             <li><a href="community.html">Community</a></li>
-            <li style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+            <li class="drawer-divider">
                 <a href="account.html" class="account-nav-link" id="account-nav-mobile">
                     <i class="fa-regular fa-circle-user"></i> My Account
                 </a>
@@ -326,58 +325,6 @@
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="auth-ui.js" type="module"></script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, 
-                 createUserWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
-            authDomain: "kynar-universe-official.firebaseapp.com",
-            projectId: "kynar-universe-official",
-            storageBucket: "kynar-universe-official.firebasestorage.app",
-            messagingSenderId: "1089722386738",
-            appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window._firebaseAuth = auth;
-        window._firebaseOnAuthStateChanged = onAuthStateChanged;
-        window._firebaseSignIn = signInWithEmailAndPassword;
-
-        window._firebaseSignUp = async (auth, email, pass, displayName) => {
-            const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-            const uid = userCred.user.uid;
-            
-            await updateProfile(userCred.user, { displayName: displayName || "" });
-            
-            const userDocRef = doc(db, "users", uid);
-            const now = new Date().toISOString();
-            
-            await setDoc(userDocRef, {
-                email,
-                displayName: displayName || "",
-                createdAt: now,
-                updatedAt: now
-            }, { merge: true });
-            
-            return userCred;
-        };
-
-        window._firebaseSignOut = signOut;
-        window._firebaseDb = db;
-
-        console.log('✅ Firebase initialized successfully');
-    </script>
-
-    <!-- Loading overlay -->
-    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">
-        <div class="loading-spinner"></div>
-    </div>
+    <script src="firebase-config.js" type="module"></script>
 </body>
 </html>

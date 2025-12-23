@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-            // ===== NEWSLETTER FORM (PROFESSIONAL VERSION) =====
+    // ===== NEWSLETTER FORM =====
     const newsletterForm = document.getElementById('newsletter-form');
     const newsletterMessage = document.getElementById('newsletter-message');
     const newsletterSuccess = document.getElementById('newsletter-success');
@@ -36,12 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Simple validation
             if (emailInput.value.trim().length < 5) {
-                newsletterMessage.style.color = 'var(--color-star-red)';
-                newsletterMessage.textContent = 'Please enter a valid email address.';
+                if (newsletterMessage) {
+                    newsletterMessage.style.color = 'var(--color-star-red)';
+                    newsletterMessage.textContent = 'Please enter a valid email address.';
+                }
                 return;
             }
             
-            // RECOMMENDATION #2: Show Spinner
+            // Show Spinner
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Subscribing...';
             
@@ -53,26 +55,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-
+                
                 if (response.ok) {
-                    // RECOMMENDATION #1: Switch to Success State
+                    // Switch to Success State
                     newsletterForm.style.display = 'none';
-                    newsletterSuccess.style.display = 'block';
+                    if (newsletterSuccess) newsletterSuccess.style.display = 'block';
                 } else {
                     // IF THERE IS AN ERROR:
                     const data = await response.json();
-                    
-                    // DO NOT hide the form here! Keep it visible so they can fix the error.
-                    newsletterMessage.style.color = 'var(--color-star-red)';
-                    newsletterMessage.textContent = data.errors ? data.errors[0].message : "Submission failed.";
+                    if (newsletterMessage) {
+                        newsletterMessage.style.color = 'var(--color-star-red)';
+                        newsletterMessage.textContent = data.errors ? data.errors[0].message : "Submission failed.";
+                    }
                     
                     // Reset button so they can try again
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalBtnText;
                 }
             } catch (error) {
-                newsletterMessage.style.color = 'var(--color-star-red)';
-                newsletterMessage.textContent = "Connection error. Please try again.";
+                if (newsletterMessage) {
+                    newsletterMessage.style.color = 'var(--color-star-red)';
+                    newsletterMessage.textContent = "Connection error. Please try again.";
+                }
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalBtnText;
             }
@@ -80,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    // ===== FEEDBACK FORM (PROFESSIONAL VERSION) =====
+    // ===== FEEDBACK FORM =====
     const feedbackForm = document.getElementById('feedback-form');
     const feedbackResponse = document.getElementById('feedback-message-response');
     const feedbackSuccess = document.getElementById('feedback-success');
@@ -94,12 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailInput = document.getElementById('feedback-email');
 
             if (emailInput.value.trim().length < 5 || messageInput.value.trim().length < 10) {
-                feedbackResponse.style.color = '#490101';
-                feedbackResponse.textContent = 'Please provide a valid email and a detailed message.';
+                if (feedbackResponse) {
+                    feedbackResponse.style.color = '#490101';
+                    feedbackResponse.textContent = 'Please provide a valid email and a detailed message.';
+                }
                 return;
             }
             
-            // RECOMMENDATION #2: Show Spinner
+            // Show Spinner
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
 
@@ -111,21 +117,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-
+                
                 if (response.ok) {
-                    // RECOMMENDATION #1: Switch to Success State
+                    // Switch to Success State
                     feedbackForm.style.display = 'none';
-                    feedbackSuccess.style.display = 'block';
+                    if (feedbackSuccess) feedbackSuccess.style.display = 'block';
                 } else {
                     const data = await response.json();
-                    feedbackResponse.style.color = '#490101';
-                    feedbackResponse.textContent = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! There was a problem.";
+                    if (feedbackResponse) {
+                        feedbackResponse.style.color = '#490101';
+                        feedbackResponse.textContent = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! There was a problem.";
+                    }
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Send Feedback';
                 }
             } catch (error) {
-                feedbackResponse.style.color = '#490101';
-                feedbackResponse.textContent = "Oops! Problem connecting to the server.";
+                if (feedbackResponse) {
+                    feedbackResponse.style.color = '#490101';
+                    feedbackResponse.textContent = "Oops! Problem connecting to the server.";
+                }
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send Feedback';
             }
