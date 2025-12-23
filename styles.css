@@ -185,10 +185,15 @@ input, button, textarea, select { font: inherit; }
 
 /* Stars */
 .stars {
-    font-family: var(--font-display); font-size: 5px; letter-spacing: .08em;
+    font-family: var(--font-display); 
+    font-size: 5px; 
+    letter-spacing: .08em;
+    margin-left: 3px;
     background: linear-gradient(to right, var(--color-main-gold), #004833, var(--color-star-red));
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: var(--color-main-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    color: var(--color-main-gold);
 }
 
 /* Burger Menu */
