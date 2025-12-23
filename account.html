@@ -8,362 +8,246 @@
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script src="utilities.js"></script>
-    <script src="loading-state.js"></script>
-    <script src="script.js" defer></script>
-    
-    <script src="firebase-config.js" type="module"></script>
-    
-    <script src="auth-ui.js" type="module"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 
-        <script type="module">
+    <script type="module">
         import { auth, onAuthStateChanged } from "./firebase-config.js";
         
-        // Hide content immediately
+        // Hide content immediately to prevent flashing
         document.documentElement.style.visibility = 'hidden';
         
-        // Wait for Auth Check
         onAuthStateChanged(auth, (user) => {
             if (!user) {
                 window.location.replace("index.html");
             } else {
-                // Reveal page
+                // User is logged in, reveal page
                 document.documentElement.style.visibility = 'visible'; 
                 document.body.style.opacity = '0'; 
                 setTimeout(() => {     
                     document.body.style.transition = 'opacity 0.4s ease';     
                     document.body.style.opacity = '1'; 
-                }, 10);
+                }, 50);
             }
         });
     </script>
-
 </head>
 
-<body class="account-page protected-route">
+<body class="account-page">
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <div class="header-wrapper">
-        <header class="top-header">
-            <div class="logo-area">
-                <button class="menu-icon custom-burger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="side-drawer">
-                    <span></span><span></span><span></span>
-                </button>
-                <div class="site-title">
-                    <a href="index.html" class="site-title-link">
-                        <p class="main-title">Kynar</p>
-                        <p class="sub-title">Universe.co.uk</p>
-                    </a>
-                    <figure class="stars" aria-hidden="true">✶ , * ✦ , * ✶ , ✶ * , ✦ * , ✶</figure>
-                </div>
-            </div>
-            <p class="slogan-header">Digital tools for every corner of your life.</p>
-            <div class="account-area">
-                <button id="sign-out-btn" class="sign-in-link" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                    <div class="custom-lock-icon">
-                        <img src="images/log-in-icon.png" alt="Sign out" width="60" height="60">
-                    </div>
-                    <span class="sign-in-text">Sign out</span>
-                </button>
-            </div>
-        </header>
-
-        <nav class="main-nav" aria-label="Primary site navigation">
-            <ul>
-                <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-                <li><a href="marketplace.html">Marketplace</a></li>
-                <li><a href="guides.html">Guides</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="account.html" style="color: var(--color-star-red);" class="account-nav-link" id="account-nav-link">Account</a></li>
-            </ul>
-        </nav>
-
-        <section class="search-subscribe-bar">
-            <form class="search-box" id="search-form">
-                <input type="text" id="search-input" placeholder="Search creations..." autocomplete="off">
-                <button class="search-submit" type="submit">
-                    <img src="images/search-button.svg" alt="Search" class="search-icon">
-                </button>
-            </form>
-            <a href="#subscribe" class="btn btn-secondary btn-sm">Subscribe</a>
-        </section>
+        <div data-include="components/header.html"></div>
     </div>
 
     <main class="main-content-container">
         <section class="account-dashboard">
+            
             <header class="welcome-banner" style="text-align: center; margin-bottom: 40px;">
-                <div id="user-initial" class="profile-placeholder" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 15px;">-</div>
+                <div id="user-initial" class="profile-placeholder" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 15px; display:flex; align-items:center; justify-content:center; background:var(--color-main-gold); color:white; border-radius:50%;">
+                    <i class="fa-regular fa-user"></i>
+                </div>
                 
                 <h1 class="welcome-title" style="font-family: var(--font-display); font-size: 28px; text-transform: uppercase;">
-                    Welcome, <span id="welcome-name" style="color: var(--color-star-red);">...</span>!
+                    Welcome, <span id="welcome-name" style="color: var(--color-star-red);">Friend</span>!
                 </h1>
                 <p id="user-meta" class="welcome-meta" style="font-family: var(--font-glacial); font-size: 14px; opacity: 0.6;">Loading member profile...</p>
             </header>
 
             <section class="stats-grid">
-    <div class="stat-card-clean">
-        <span id="owned-count" class="stat-number">...</span>
-        <span class="stat-label">Owned</span>
-    </div>
-    <div class="stat-card-clean">
-        <span id="wishlist-count" class="stat-number">...</span>
-        <span class="stat-label">Wishlist</span>
-    </div>
-</section>
-
+                <div class="stat-card-clean">
+                    <span id="owned-count" class="stat-number" style="font-family:var(--font-display); font-size:24px; display:block;">0</span>
+                    <span class="stat-label" style="font-size:11px; text-transform:uppercase;">Owned</span>
+                </div>
+                <div class="stat-card-clean">
+                    <span id="wishlist-count" class="stat-number" style="font-family:var(--font-display); font-size:24px; display:block;">0</span>
+                    <span class="stat-label" style="font-size:11px; text-transform:uppercase;">Wishlist</span>
+                </div>
+            </section>
 
             <section class="dashboard-panel-clean">
-    <h2 class="panel-heading">Recent Purchases</h2>
-    <div id="purchase-list">
-        <p style="font-size: 13px; color: #999; padding: 20px 0;">Loading purchases...</p>
-    </div>
-    
-    <div style="margin-top: 20px;">     
-        <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm">Gumroad Library ➔</a> 
-    </div>
-</section>
+                <h2 class="panel-heading">Recent Purchases</h2>
+                <div id="purchase-list">
+                    <p style="font-size: 13px; color: #999; padding: 20px 0;">Loading purchases...</p>
+                </div>
+                
+                <div style="margin-top: 20px;">     
+                    <a href="https://gumroad.com/library" target="_blank" class="btn btn-secondary btn-sm">Gumroad Library ➔</a> 
+                </div>
+            </section>
 
-<section class="dashboard-panel-clean">
-    <h2 class="panel-heading">Quick Actions</h2>
-    <ul class="action-list">
-        <li><a href="marketplace.html">🛒 Continue Shopping</a></li>
-        <li><a href="#" id="open-settings">⚙️ Edit Profile Name</a></li>
-        <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact Support</a></li>
-        <li style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-            <a href="#" id="sign-out-btn" style="color: var(--color-star-red);">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
-            </a>
-        </li>
-    </ul>
-</section>
-
+            <section class="dashboard-panel-clean">
+                <h2 class="panel-heading">Quick Actions</h2>
+                <ul class="action-list">
+                    <li><a href="marketplace.html">🛒 Continue Shopping</a></li>
+                    <li><a href="#" id="open-settings">⚙️ Edit Profile Name</a></li>
+                    <li><a href="mailto:support@kynaruniverse.co.uk">💬 Contact Support</a></li>
+                    <li style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                        <a href="#" id="account-sign-out" style="color: var(--color-star-red);">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </section>
 
         </section>
     </main>
 
-    <footer class="site-footer" style="padding: 40px 20px; text-align: center; background: transparent; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px;">
-        <p style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; margin-bottom: 5px;">&copy; 2025 KYNAR UNIVERSE</p>
-        <p style="font-family: var(--font-glacial); font-size: 11px; color: #888;">Manage your digital universe.</p>
-    </footer>
-
-        <div data-include="components/auth-modals.html"></div>
-
-
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">Navigation</span>
-            <button class="drawer-close" type="button" aria-label="Close menu" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/auth-modals.html"></div>
+    
+    <div class="auth-modal" id="settings-modal" aria-hidden="true">
+        <div class="auth-modal-backdrop" id="settings-backdrop"></div>
+        <div class="auth-modal-dialog">
+            <button class="auth-modal-close" id="settings-close">✕</button>
+            <h2 class="auth-modal-heading">Settings</h2>
+            <form id="settings-form">
+                <label class="auth-label">
+                    <span>Update Display Name</span>
+                    <input id="settings-display-name" type="text" maxlength="40">
+                </label>
+                <button type="submit" class="btn btn-primary btn-md" style="width: 100%;">Save Changes</button>
+                <p id="settings-message" class="auth-message"></p>
+            </form>
         </div>
-        <ul style="list-style: none; padding: 20px 0;">
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Guides</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
-                <a href="account.html" style="color: var(--color-star-red);" class="account-nav-link" id="account-nav-mobile">
-                    <i class="fa-regular fa-circle-user"></i> My Account
-                </a>
-            </li>
-        </ul>
-    </nav>
+    </div>
+
+    <script src="utilities.js"></script>
+    <script src="loading-state.js"></script>
+    <script src="script.js" defer></script>
+    <script src="auth-ui.js" type="module"></script>
 
     <script type="module">
-        import { signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-        import { doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+        import { auth, db, signOut, onAuthStateChanged } from "./firebase-config.js";
+        import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-        // Wait for Shared Firebase Instance
-        const waitForConfig = () => {
-            if (window._firebaseAuth && window._firebaseDb) {
-                initAccountLogic(window._firebaseAuth, window._firebaseDb);
-            } else {
-                setTimeout(waitForConfig, 50);
-            }
-        };
+        // Main Logic Wrapper
+        function initAccountLogic(user) {
+            console.log("Initializing Account for:", user.displayName);
 
-        function initAccountLogic(auth, db) {
             const welcomeNameEl = document.getElementById('welcome-name');
             const initialEl = document.getElementById('user-initial');
             const welcomeMetaEl = document.getElementById('user-meta');
 
-            // ========== PURCHASE TRACKING FUNCTIONS ==========
-            async function getUserPurchases(userId) {
-                try {
-                    const userDoc = await getDoc(doc(db, "users", userId));
-                    if (userDoc.exists()) {
-                        const data = userDoc.data();
-                        return {
-                            purchases: data.purchases || [],
-                            wishlist: data.wishlist || []
-                        };
-                    }
-                    return { purchases: [], wishlist: [] };
-                } catch (error) {
-                    console.error("Error fetching purchases:", error);
-                    return { purchases: [], wishlist: [] };
-                }
-            }
+            // 1. Initial UI Set from Auth Data (Fastest)
+            // Use 'Friend' if displayName is null for some reason
+            let nameToShow = user.displayName || "Friend"; 
+            if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
+            if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
-            async function addPurchase(userId, productData) {
-                try {
-                    const userRef = doc(db, "users", userId);
-                    await updateDoc(userRef, {
-                        purchases: arrayUnion({
-                            id: productData.id,
-                            title: productData.title,
-                            price: productData.price,
-                            purchaseDate: new Date().toISOString(),
-                            downloadUrl: productData.downloadUrl || ""
-                        }),
-                        updatedAt: new Date().toISOString()
-                    });
-                    return true;
-                } catch (error) {
-                    console.error("Error adding purchase:", error);
-                    return false;
-                }
-            }
+            // 2. Load Extra Data from Firestore (Slower, but more complete)
+            loadAccountData(user.uid);
 
-            async function addToWishlist(userId, productData) {
-                try {
-                    const userRef = doc(db, "users", userId);
-                    await updateDoc(userRef, {
-                        wishlist: arrayUnion({
-                            id: productData.id,
-                            title: productData.title,
-                            price: productData.price,
-                            addedDate: new Date().toISOString()
-                        }),
-                        updatedAt: new Date().toISOString()
-                    });
-                    return true;
-                } catch (error) {
-                    console.error("Error adding to wishlist:", error);
-                    return false;
-                }
-            }
-
-            // ========== LOAD ACCOUNT DATA ==========
-            async function loadAccountData(user) {
-                const ownedCountEl = document.getElementById('owned-count');
-                const wishlistCountEl = document.getElementById('wishlist-count');
-                const purchaseListEl = document.getElementById('purchase-list');
-                
-                if (!user) return;
-                
-                // Get purchase data
-                const { purchases, wishlist } = await getUserPurchases(user.uid);
-                
-                // Update counts
-                if (ownedCountEl) ownedCountEl.textContent = purchases.length;
-                if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
-                
-                // Display recent purchases
-                if (purchaseListEl) {
-                    if (purchases.length > 0) {
-                        const recentPurchases = purchases.slice(-3).reverse(); // Last 3 purchases
-                        purchaseListEl.innerHTML = recentPurchases.map(purchase => `
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                <div>
-                                    <p style="font-family: var(--font-display); font-size: 14px; margin: 0; font-weight: 600;">${purchase.title}</p>
-                                    <p style="font-family: var(--font-glacial); font-size: 11px; color: #999; margin: 4px 0 0;">
-                                        ${new Date(purchase.purchaseDate).toLocaleDateString()}
-                                    </p>
-                                </div>
-                                ${purchase.downloadUrl ? `<a href="${purchase.downloadUrl}" target="_blank" class="btn btn-primary btn-sm">Download</a>` : ''}
-                            </div>
-                        `).join('');
-                    } else {
-                        purchaseListEl.innerHTML = '<p style="font-size: 13px; color: #999; padding: 20px 0;">No recent purchases found.</p>';
-                    }
-                }
-            }
-
-            // ========== USER DATA OBSERVER ==========
-            // Note: We don't use onAuthStateChanged here because the <head> script already handles redirection.
-            // We just grab the current user if they exist.
-            if (auth.currentUser) {
-                const user = auth.currentUser;
-                
-                // 1. Initial UI Set
-                let nameToShow = user.displayName || user.email.split('@')[0];
-                if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
-                if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
-
-                // 2. Load Firestore Data
-                loadAccountData(user);
-                
-                getDoc(doc(db, "users", user.uid)).then(snap => {
-                    if (snap.exists()) {
-                        const data = snap.data();
-                        if (data.displayName) {
-                            nameToShow = data.displayName;
-                            if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
-                            if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
-                        }
-                        if (data.createdAt && welcomeMetaEl) {
-                            const date = new Date(data.createdAt);
-                            welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}`;
-                        }
-                    }
-                }).catch(err => console.error("Error loading user data:", err));
-            }
-
-            // ========== SIGN OUT ==========
-            const signOutBtn = document.getElementById('sign-out-btn');
-            if (signOutBtn) {
-                signOutBtn.addEventListener('click', () => {
-                    signOut(auth).then(() => window.location.replace('index.html'));
-                });
-            }
-
-            // ========== SETTINGS MODAL ==========
-            const settingsModal = document.getElementById('settings-modal');
-            const openSettingsBtn = document.getElementById('open-settings');
+            // 3. Settings Form Logic
+            setupSettingsForm(user);
             
-            if (openSettingsBtn && settingsModal) {
-                openSettingsBtn.addEventListener('click', (e) => {
+            // 4. Setup Local Sign Out
+            const localSignOut = document.getElementById('account-sign-out');
+            if (localSignOut) {
+                localSignOut.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    settingsModal.classList.add('is-open');
-                    document.getElementById('settings-display-name').value = welcomeNameEl.textContent;
-                });
-
-                const closeSettings = () => settingsModal.classList.remove('is-open');
-                document.getElementById('settings-close')?.addEventListener('click', closeSettings);
-                document.getElementById('settings-backdrop')?.addEventListener('click', closeSettings);
-
-                document.getElementById('settings-form')?.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const newName = document.getElementById('settings-display-name').value.trim();
-                    const msg = document.getElementById('settings-message');
-                    if (!newName) return;
-                    
-                    try {
-                        await updateDoc(doc(db, "users", auth.currentUser.uid), { displayName: newName });
-                        welcomeNameEl.textContent = newName;
-                        initialEl.textContent = newName.charAt(0).toUpperCase();
-                        msg.style.color = "green";
-                        msg.textContent = "Saved!";
-                        setTimeout(closeSettings, 1000);
-                    } catch (err) { 
-                        msg.style.color = "#dc3545";
-                        msg.textContent = "Error saving."; 
+                    if(confirm('Sign out of your account?')) {
+                        await signOut(auth);
+                        window.location.href = "index.html";
                     }
                 });
             }
-
-            // ========== EXPOSE PURCHASE FUNCTIONS GLOBALLY ==========
-            window.kynarPurchases = {
-                addPurchase: (productData) => addPurchase(auth.currentUser.uid, productData),
-                addToWishlist: (productData) => addToWishlist(auth.currentUser.uid, productData),
-                getUserPurchases: () => getUserPurchases(auth.currentUser.uid)
-            };
-
-            console.log('✅ Account page initialized with shared config');
         }
 
-        // Start waiting
-        waitForConfig();
+        async function loadAccountData(uid) {
+            const ownedCountEl = document.getElementById('owned-count');
+            const wishlistCountEl = document.getElementById('wishlist-count');
+            const purchaseListEl = document.getElementById('purchase-list');
+            const welcomeMetaEl = document.getElementById('user-meta');
+
+            try {
+                const userDoc = await getDoc(doc(db, "users", uid));
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    
+                    // Update Name if Firestore is more recent than Auth
+                    if (data.displayName) {
+                        const welcomeNameEl = document.getElementById('welcome-name');
+                        if (welcomeNameEl) welcomeNameEl.textContent = data.displayName;
+                        const initialEl = document.getElementById('user-initial');
+                        if (initialEl) initialEl.textContent = data.displayName.charAt(0).toUpperCase();
+                    }
+
+                    // Update Meta
+                    if (data.createdAt && welcomeMetaEl) {
+                         const date = new Date(data.createdAt);
+                         welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}`;
+                    }
+
+                    // Update Counts
+                    const purchases = data.purchases || [];
+                    const wishlist = data.wishlist || [];
+                    
+                    if (ownedCountEl) ownedCountEl.textContent = purchases.length;
+                    if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
+
+                    // Update List
+                    if (purchaseListEl) {
+                        if (purchases.length > 0) {
+                            const recent = purchases.slice(-3).reverse();
+                            purchaseListEl.innerHTML = recent.map(p => `
+                                <div class="purchase-item">
+                                    <div>
+                                        <p class="purchase-title">${p.title}</p>
+                                        <p class="purchase-date">${new Date(p.purchaseDate).toLocaleDateString()}</p>
+                                    </div>
+                                    ${p.downloadUrl ? `<a href="${p.downloadUrl}" target="_blank" class="btn btn-primary btn-sm">Download</a>` : ''}
+                                </div>
+                            `).join('');
+                        } else {
+                            purchaseListEl.innerHTML = '<p style="font-size: 13px; color: #999; padding: 20px 0;">No purchases yet.</p>';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading profile:", error);
+            }
+        }
+
+        function setupSettingsForm(user) {
+            const settingsModal = document.getElementById('settings-modal');
+            const openBtn = document.getElementById('open-settings');
+            const closeBtn = document.getElementById('settings-close');
+            const form = document.getElementById('settings-form');
+
+            if (openBtn && settingsModal) {
+                openBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    settingsModal.classList.add('is-open');
+                    document.getElementById('settings-display-name').value = user.displayName || "";
+                });
+
+                // Close logic
+                const close = () => settingsModal.classList.remove('is-open');
+                closeBtn.addEventListener('click', close);
+                document.getElementById('settings-backdrop').addEventListener('click', close);
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const newName = document.getElementById('settings-display-name').value.trim();
+                    if (!newName) return;
+
+                    try {
+                        // Update Firestore
+                        await updateDoc(doc(db, "users", user.uid), { displayName: newName });
+                        // Simple reload to reflect changes
+                        window.location.reload();
+                    } catch (err) {
+                        console.error(err);
+                        alert("Failed to update name");
+                    }
+                });
+            }
+        }
+
+        // Initialize when Auth is ready
+        onAuthStateChanged(auth, (user) => {
+            if (user) initAccountLogic(user);
+        });
     </script>
 </body>
 </html>
