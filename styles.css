@@ -489,68 +489,121 @@ input, button, textarea, select { font: inherit; }
 .action-list a:hover { color: var(--color-star-red); }
 
 
-/*--- 9. GUIDES & COMMUNITY ---*/
-.guide-card, .filter-tab { cursor: pointer; transition: all .2s ease; }
-.guide-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); }
-.filter-tab:hover { filter: brightness(1.05); transform: translateY(-1px); }
-.guides-filters { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 60px; }
+/*--- GUIDES PAGE MODULE ---*/
 
-/* Community Grid */
-.social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-.social-card {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 35px 25px; background: #fdfbf7; border-radius: 18px;
-    border: 2px solid transparent; text-decoration: none; color: inherit;
-    transition: all 0.3s ease;
+/* Filter Tabs Container */
+.guides-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+    padding: 0 15px;
 }
-.social-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
-.social-icon {
-    width: 70px; height: 70px; margin-bottom: 20px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 32px;
-    background: #ccc; color: white; transition: transform 0.3s;
-}
-.social-card:hover .social-icon { transform: scale(1.1); }
 
-/* Brand Colors */
-.instagram-card:hover { border-color: #E1306C; }
-.instagram-card .social-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.pinterest-card:hover { border-color: #E60023; }
-.pinterest-card .social-icon { background: #E60023; }
-.twitter-card:hover { border-color: #000; }
-.twitter-card .social-icon { background: #000; }
-.youtube-card:hover { border-color: #F00; }
-.youtube-card .social-icon { background: #F00; }
-
-/* Community Stats */
-.community-stat-card {
-    background: #fdfbf7; border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 15px; padding: 30px 20px; text-align: center;
-    transition: all 0.2s ease;
+/* Grid Layout */
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 0 10px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.community-stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-.community-stat-card .stat-icon {
-    width: 60px; height: 60px; margin: 0 auto 15px; background: var(--color-main-gold);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px;
-}
-.community-stat-card .stat-number { font: bold 32px var(--font-display); color: var(--color-star-red); margin-bottom: 8px; }
-.community-stat-card .stat-text { font: 600 13px var(--font-glacial); color: rgba(17,17,17,0.7); text-transform: uppercase; }
 
-/* FAQ */
-.faq-accordion { display: flex; flex-direction: column; gap: 15px; }
-.faq-item { background: #fdfbf7; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden; }
-.faq-question {
-    width: 100%; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;
-    background: transparent; border: none; font: 700 15px var(--font-display);
-    text-transform: uppercase; cursor: pointer;
+/* Card Base Styles */
+.guide-card {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
 }
-.faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; }
-.faq-item.active .faq-answer { max-height: 500px; padding: 0 25px 20px; }
-.faq-item.active .faq-question i { transform: rotate(180deg); }
 
-/* Forms */
-.community-form-section { max-width: 700px; margin: 0 auto 60px; padding: 40px 30px; border-radius: 20px; }
-.newsletter-bg { background: #f8ecda; }
-.feedback-bg { background: #e4e6f7; }
+.guide-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+}
+
+/* Card Typography */
+.guide-card h3 {
+    font: 18px var(--font-display);
+    margin-bottom: 12px;
+    color: var(--color-dark-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.guide-card p {
+    font: 13px/1.6 var(--font-glacial);
+    color: rgba(17,17,17,0.8);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes footer to bottom */
+}
+
+/* Card Components */
+.guide-icon {
+    width: 50px; height: 50px;
+    background: var(--color-main-gold);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+}
+
+.guide-icon i {
+    font-size: 24px;
+    color: var(--color-dark-text);
+}
+
+.guide-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.read-time {
+    font: 600 11px var(--font-glacial);
+    color: rgba(17,17,17,0.6);
+    text-transform: uppercase;
+}
+
+/* Color Variants */
+.variant-cream       { background: #f8ecda; }
+.variant-mint        { background: #e3f0e7; }
+.variant-pink        { background: #f7e5f0; }
+.variant-periwinkle  { background: #e4e6f7; }
+.variant-light-cream { background: #f6f2e3; }
+.variant-blue        { background: #e2f3f5; }
+.variant-beige       { background: #f0ebe5; }
+.variant-grey        { background: #e7e8ed; }
+.variant-white       { background: #fdfbf7; }
+
+/* Bottom CTA */
+.guides-cta {
+    text-align: center;
+    padding: 40px 20px 60px;
+    background: #e3f0e7;
+    border-radius: 20px;
+    margin: 40px auto 60px;
+    max-width: 800px;
+}
+
+.guides-cta h2 {
+    font: 22px var(--font-display);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.guides-cta p {
+    font: 14px var(--font-glacial);
+    margin-bottom: 25px;
+    color: rgba(17,17,17,0.8);
+}
+
 
 /*--- 10. LOADING & SKELETONS ---*/
 .loading-overlay {
