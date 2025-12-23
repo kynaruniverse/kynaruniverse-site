@@ -288,11 +288,53 @@ const KynarApp = (() => {
             }
         }
     };
+    
+        // --- 5. GUIDES MODULE ---
+    const Guides = {
+        init() {
+            // Only run if we are on the guides page
+            if (!document.querySelector('.guides-page')) return;
+            
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const guideCards = document.querySelectorAll('.guide-card');
+
+            if (filterTabs.length === 0) return;
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.getAttribute('data-category');
+
+                    // 1. Update active state visuals
+                    filterTabs.forEach(t => { 
+                        t.classList.remove('btn-primary'); 
+                        t.classList.add('btn-secondary');
+                    });
+                    tab.classList.remove('btn-secondary');
+                    tab.classList.add('btn-primary');
+
+                    // 2. Filter cards
+                    guideCards.forEach(card => {
+                        const cardCat = card.getAttribute('data-category');
+                        if (category === 'all' || cardCat === category) {
+                            card.style.display = 'flex';
+                            // Optional: Add a fade-in animation
+                            card.style.opacity = '0';
+                            setTimeout(() => card.style.opacity = '1', 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+    };
+
 
     return {
         init: () => {
             UI.init();
             Marketplace.init();
+            Guides.init();
             console.log('✨ KYNAR Universe Engine Started');
         }
     };

@@ -229,7 +229,6 @@
     <!-- Modals and Drawer (same as other pages) -->
     <div data-include="components/auth-modals.html"></div>
 
-
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
     <div class="drawer-header" style="padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;">
         <span style="font-family: var(--font-display); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">Navigation</span>
@@ -302,36 +301,6 @@
     </script>
     
     <script src="auth-ui.js" type="module"></script>
-
-    <!-- Filter functionality for guide categories -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterTabs = document.querySelectorAll('.filter-tab');
-            const guideCards = document.querySelectorAll('.guide-card');
-
-            filterTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const category = tab.getAttribute('data-category');
-
-                    // Update active state
-                    filterTabs.forEach(t => { 
-                        t.classList.remove('btn-primary'); 
-                        t.classList.add('btn-secondary');
-            });
-            tab.classList.remove('btn-secondary');
-            tab.classList.add('btn-primary');
-
-                    // Filter cards
-                    guideCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-    </script>
 
     <!-- Loading overlay -->
     <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">
