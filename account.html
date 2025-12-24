@@ -10,27 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 
-    <script type="module">
+        <script type="module">
         import { auth, onAuthStateChanged } from "./firebase-config.js";
-        
-        // Hide content immediately
-        document.documentElement.style.visibility = 'hidden';
-        
+        // Auth check - logic handled in body to allow Skeleton UI
         onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                // Not logged in? Redirect.
-                window.location.replace("index.html");
-            } else {
-                // Logged in? Reveal page smoothly.
-                document.documentElement.style.visibility = 'visible'; 
-                document.body.style.opacity = '0'; 
-                setTimeout(() => {     
-                    document.body.style.transition = 'opacity 0.4s ease';     
-                    document.body.style.opacity = '1'; 
-                }, 50);
-            }
+            if (!user) window.location.replace("index.html");
         });
     </script>
+
 </head>
 
 <body class="account-page">
@@ -40,8 +27,25 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="main-content-container">
-        <section class="account-dashboard">
+        <main class="main-content-container">
+        
+        <div id="account-skeleton" class="account-dashboard">
+            <header class="welcome-banner" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="skeleton" style="width: 52px; height: 52px; border-radius: 50%; margin-bottom: 15px;"></div>
+                <div class="skeleton" style="width: 60%; height: 30px; margin-bottom: 10px; border-radius: 6px;"></div>
+                <div class="skeleton" style="width: 40%; height: 16px; border-radius: 4px;"></div>
+            </header>
+            
+            <section class="stats-grid" style="margin-top: 30px;">
+                <div class="stat-card-clean skeleton" style="height: 80px;"></div>
+                <div class="stat-card-clean skeleton" style="height: 80px;"></div>
+            </section>
+
+            <div class="dashboard-panel-clean skeleton-card" style="height: 200px; margin-bottom: 20px;"></div>
+            <div class="dashboard-panel-clean skeleton-card" style="height: 150px;"></div>
+        </div>
+
+        <section id="account-real-content" class="account-dashboard" style="display: none;">
             
             <header class="welcome-banner">
                 <div id="user-initial" class="profile-placeholder">
@@ -93,6 +97,7 @@
         </section>
     </main>
 
+
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
     
@@ -115,6 +120,8 @@
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
+    <script src="cart.js" defer></script>
+
     <script src="auth-ui.js" type="module"></script>
 
     <script type="module">
@@ -123,7 +130,7 @@
         import { doc, getDoc, updateDoc } from "./firebase-config.js";
 
 
-        // Main Logic Wrapper
+                // Main Logic Wrapper
         function initAccountLogic(user) {
             console.log("Initializing Account for:", user.displayName);
 
@@ -131,13 +138,24 @@
             const initialEl = document.getElementById('user-initial');
             const welcomeMetaEl = document.getElementById('user-meta');
 
-            // 1. Initial UI Set from Auth Data (Fastest)
+            // 1. Initial UI Set from Auth Data
             let nameToShow = user.displayName || "Friend"; 
             if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
             if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
             // 2. Load Extra Data from Firestore
-            loadAccountData(user.uid);
+            // Use .then() to wait for data before hiding skeleton
+            loadAccountData(user.uid).then(() => {
+                // SWAP: Hide Skeleton -> Show Content
+                const skeleton = document.getElementById('account-skeleton');
+                const content = document.getElementById('account-real-content');
+                
+                if (skeleton) skeleton.style.display = 'none';
+                if (content) {
+                    content.style.display = 'block';
+                    content.classList.add('reveal-on-scroll', 'is-visible'); // Add entry animation
+                }
+            });
 
             // 3. Settings Form Logic
             setupSettingsForm(user);
@@ -154,6 +172,7 @@
                 });
             }
         }
+
 
         async function loadAccountData(uid) {
             const ownedCountEl = document.getElementById('owned-count');

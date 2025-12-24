@@ -83,7 +83,13 @@
                     </div>
                     <div class="item-action" style="text-align: right;">
                         <div class="item-price">£12.00</div>
-                        <button class="btn btn-primary btn-sm" onclick="kynarPurchases.addToWishlist({id: 'p1', title: 'Ultimate Life Planner', price: 12})">Add</button>
+                        <button class="btn btn-primary btn-sm js-add-to-cart" 
+    data-id="p1" 
+    data-title="Ultimate Life Planner" 
+    data-price="12.00">
+    Add to Cart
+</button>
+
                     </div>
                 </article>
 
@@ -98,7 +104,13 @@
                     </div>
                     <div class="item-action" style="text-align: right;">
                         <div class="item-price">£5.00</div>
-                        <button class="btn btn-primary btn-sm" onclick="kynarPurchases.addToWishlist({id: 'p2', title: 'Preschool Math', price: 5})">Add</button>
+                        <button <button class="btn btn-primary btn-sm js-add-to-cart" 
+    data-id="p2" 
+    data-title="Preschool Math Bundle" 
+    data-price="5.00">
+    Add to Cart
+</button>
+
                     </div>
                 </article>
                 
@@ -110,7 +122,13 @@
                     </div>
                     <div class="item-action" style="text-align: right;">
                         <div class="item-price">Free</div>
-                         <button class="btn btn-primary btn-sm" onclick="kynarPurchases.addToWishlist({id: 'p3', title: 'Focus Beats', price: 0})">Get</button>
+                         <button <button class="btn btn-primary btn-sm js-add-to-cart" 
+    data-id="p3" 
+    data-title="Focus Binaural Beats" 
+    data-price="0.00">
+    Get Free
+</button>
+
                     </div>
                 </article>
 
@@ -147,6 +165,8 @@
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
+    <script src="cart.js" defer></script>
+
     <script src="auth-ui.js" type="module"></script>
 </body>
 </html>

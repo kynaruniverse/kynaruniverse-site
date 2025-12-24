@@ -154,23 +154,21 @@ const KynarApp = (() => {
             this.filter(); 
         },
 
-                setupFilters() {
+                        setupFilters() {
             // Unified Search: Look for the Header search bar
             const searchInput = document.getElementById('global-search-input');
-
-            
+            const pageSearchInput = document.getElementById('search-input'); // Defined to prevent ReferenceError
             const clearBtn = document.getElementById('clear-filters');
             const applyBtn = document.getElementById('apply-filters-btn');
 
-            // Listen to both search inputs if they exist
-            [searchInput, pageSearchInput].forEach(input => {
-                if (input) {
-                    input.addEventListener('input', () => {
-                        clearTimeout(state.searchDebounce);
-                        state.searchDebounce = setTimeout(() => this.filter(), 300);
-                    });
-                }
+            // Listen to both search inputs if they exist (filter nulls)
+            [searchInput, pageSearchInput].filter(input => input).forEach(input => {
+                input.addEventListener('input', () => {
+                    clearTimeout(state.searchDebounce);
+                    state.searchDebounce = setTimeout(() => this.filter(), 300);
+                });
             });
+
 
             // Change Event Delegation
             document.body.addEventListener('change', (e) => {
