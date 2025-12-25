@@ -102,17 +102,28 @@ const KynarApp = (() => {
             this.open(target);
         },
 
-                open(element) {
+                        open(element) {
             if (!element) return;
             this.closeAll(); 
+            
+            // 1. Force Reset Scroll to Top (Fixes the "Cut Off" bug)
+            element.scrollTop = 0;
+            
+            // 2. Show the Drawer
             element.classList.add('is-open');
             element.setAttribute('aria-hidden', 'false');
             
+            // 3. Show Overlay & Lock Body
             this.elements.overlay?.classList.add('is-visible');
             document.body.classList.add('drawer-open');
             state.isDrawerOpen = true;
-            TrapManager.activate(element);
+            
+            // 4. Trap Focus (Slight delay ensures scroll is reset first)
+            setTimeout(() => {
+                if(window.activateFocusTrap) window.activateFocusTrap(element);
+            }, 10);
         },
+
 
                 closeAll() {
             const openUI = document.querySelectorAll('.side-drawer.is-open, .marketplace-filters.is-open, .auth-modal.is-open');
