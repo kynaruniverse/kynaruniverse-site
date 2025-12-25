@@ -2,6 +2,7 @@
  * KYNAR UNIVERSE - Core Utilities
  * Architect: AetherCode
  * Description: Accessibility tools and Component Loader.
+ * Status: Fixed (Syntax Error Resolved)
  */
 
 /* --- 1. ACCESSIBILITY: FOCUS TRAP --- */
@@ -24,12 +25,10 @@ class FocusTrap {
 
         if (this.focusableElements.length === 0) {
             console.warn('FocusTrap: No focusable elements found in', this.element);
-            // Don't deactivate, just don't focus anything yet.
-            // Content might load async.
             return;
         }
 
-                if (this.firstFocusable) {
+        if (this.firstFocusable) {
             this.firstFocusable.focus();
         }
 
@@ -37,12 +36,11 @@ class FocusTrap {
         document.addEventListener('focusin', this.handleFocusIn, true);
     }
 
-
     refresh() {
         this.updateFocusableElements();
     }
 
-        deactivate() {
+    deactivate() {
         if (!this.isActive) return;
         this.isActive = false;
         this.element.removeEventListener('keydown', this.handleKeydown);
@@ -77,19 +75,24 @@ class FocusTrap {
         this.lastFocusable = this.focusableElements[this.focusableElements.length - 1];
     }
 
+    // --- Event Handlers (Fixed Structure) ---
+
+    handleFocusIn = (e) => {
+        if (this.isActive && !this.element.contains(e.target)) {
+            e.stopImmediatePropagation();
+            if (this.firstFocusable) {
+                this.firstFocusable.focus();
+            } else {
+                this.element.focus();
+            }
+        }
+    }
+
     handleKeydown = (e) => {
         if (e.key === 'Escape' && this.onEscape) {
             this.onEscape(e);
             return;
         }
-        
-        handleFocusIn = (e) => {
-        if (this.isActive && !this.element.contains(e.target)) {
-            e.stopImmediatePropagation();
-            this.firstFocusable ? this.firstFocusable.focus() : this.element.focus();
-        }
-    }
-
 
         if (e.key !== 'Tab' || this.focusableElements.length === 0) return;
 
@@ -147,6 +150,18 @@ window.refreshFocusTrap = refreshFocusTrap;
  * This fixes the issue where injected scripts don't run.
  */
 function executeScripts(container) {
+    // 1. Check if the container itself is a script
+    if (container.tagName === 'SCRIPT') {
+        const newScript = document.createElement("script");
+        Array.from(container.attributes).forEach((attr) => 
+            newScript.setAttribute(attr.name, attr.value)
+        );
+        newScript.appendChild(document.createTextNode(container.innerHTML));
+        container.parentNode.replaceChild(newScript, container);
+        return;
+    }
+
+    // 2. Check for nested scripts
     const scripts = container.querySelectorAll("script");
     scripts.forEach((oldScript) => {
         const newScript = document.createElement("script");
@@ -166,7 +181,7 @@ async function loadComponents() {
         const file = el.dataset.include;
         try {
             const resp = await fetch(file);
-                        if (resp.ok) {
+            if (resp.ok) {
                 const content = await resp.text();
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = content;
@@ -174,8 +189,10 @@ async function loadComponents() {
                 // Move children out of tempDiv to replace placeholder el
                 while (tempDiv.firstChild) {
                     const child = tempDiv.firstChild;
-                    if (child.nodeType === 1) executeScripts(child); // Fix for script tags
                     el.parentNode.insertBefore(child, el);
+                    
+                    // Run scripts AFTER insertion so they are in the DOM
+                    if (child.nodeType === 1) executeScripts(child); 
                 }
                 el.remove();
             }

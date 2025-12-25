@@ -56,7 +56,7 @@ const KynarApp = (() => {
             });
         },
 
-        bindEvents() {
+                bindEvents() {
             document.body.addEventListener('click', (e) => {
                 const target = e.target;
 
@@ -65,13 +65,18 @@ const KynarApp = (() => {
                     this.toggleDrawer('main');
                 }
                 
-                // B. Close Buttons (Generic)
-                if (target.closest('.drawer-close') || target.closest('.drawer-close-btn')) {
+                // B. Close Buttons (Drawers AND Auth Modals)
+                // ADDED: .auth-modal-close selector
+                if (target.closest('.drawer-close') || 
+                    target.closest('.drawer-close-btn') || 
+                    target.closest('.auth-modal-close')) {
                     this.closeAll();
                 }
 
-                // C. Overlay Click
-                if (target.classList.contains('drawer-overlay')) {
+                // C. Overlay Click (Close everything when clicking background)
+                if (target.classList.contains('drawer-overlay') || 
+                    target.classList.contains('auth-modal-backdrop') ||
+                    target.classList.contains('auth-modal')) {
                     this.closeAll();
                 }
 
@@ -86,6 +91,7 @@ const KynarApp = (() => {
                 if (e.key === 'Escape') this.closeAll();
             });
         },
+
 
         toggleDrawer(type) {
             const target = type === 'filter' 
