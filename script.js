@@ -37,40 +37,9 @@ const KynarApp = (() => {
 
         init() {
             this.bindEvents();
-            this.initTheme();
             this.highlightActiveLink();
         },
         
-                initTheme() {
-            const toggleBtn = document.getElementById('theme-toggle');
-            const icon = toggleBtn?.querySelector('i');
-            const body = document.body;
-            
-            // 1. Check Storage > System Preference
-            const savedTheme = localStorage.getItem('kynar_theme');
-            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-                body.classList.add('dark-mode');
-                if(icon) icon.className = 'fa-solid fa-sun'; // Switch to Sun icon
-            }
-
-            // 2. Click Handler
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', () => {
-                    body.classList.toggle('dark-mode');
-                    const isDark = body.classList.contains('dark-mode');
-                    
-                    // Update Icon
-                    if(icon) icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-                    
-                    // Save Preference
-                    localStorage.setItem('kynar_theme', isDark ? 'dark' : 'light');
-                });
-            }
-        },
-
-
         highlightActiveLink() {
             const path = window.location.pathname;
             const page = path.split("/").pop() || "index.html";

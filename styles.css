@@ -833,36 +833,98 @@ h1, h2, h3, .main-title, .slogan-title {
 }
 .filter-label:hover { color: var(--color-star-red); }
 
-/* Product List */
+/* Product List - Redesigned Layout */
 .scrollable-product-list { display: flex; flex-direction: column; gap: 15px; }
-.list-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 25px; background: #fdfbf7; border: 1px solid rgba(0,0,0,.08);
-    border-radius: 12px; transition: all .2s;
-}
-.list-item:hover {
-    border-color: var(--color-main-gold); transform: translateX(8px);
-    box-shadow: 4px 4px 15px rgba(0,0,0,.05);
-}
-.item-details h4 { font: 18px var(--font-display); margin: 0 0 5px; color: var(--color-dark-text); }
-.item-price { font: bold 16px var(--font-glacial); color: var(--color-star-red); }
 
-/* Marketplace Layout Hardening */
+.list-item {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; /* Vertically center everything */
+    padding: 15px; 
+    background: #fdfbf7; 
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 16px; 
+    transition: all .2s ease;
+    gap: 15px; /* Clean spacing between image, text, action */
+    position: relative;
+    overflow: hidden; /* Keeps everything inside the border */
+}
+
+.list-item:hover {
+    border-color: var(--color-main-gold); 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 1. Image Thumbnail */
 .item-visual {
-    width: 80px; height: 80px; 
+    width: 80px; 
+    height: 80px; 
     background: var(--color-track-bg); 
-    border-radius: 10px; 
-    flex-shrink: 0;
+    border-radius: 12px; 
+    flex-shrink: 0; /* Prevents squishing */
+    object-fit: cover;
 }
-.item-details { flex: 1; padding-inline: 1.25rem; }
-.item-details h4 { margin-block-end: 0.3rem; font-family: var(--font-display); }
-.sort-dropdown {
-    padding: 8px; 
-    border-radius: 8px; 
-    border: 1px solid var(--color-main-gold);
-    background: var(--color-light-bg);
-    color: var(--color-dark-text);
+
+/* 2. Center Details */
+.item-details { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0; /* Reset old padding */
+    min-width: 0; /* Fixes text truncation issues */
 }
+
+.item-details h4 { 
+    font: bold 15px var(--font-display); 
+    margin: 0 0 4px; 
+    color: var(--color-dark-text); 
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.item-details p {
+    font-size: 11px;
+    color: rgba(17,17,17,0.6);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 3. Right Action Area */
+.item-action { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align to right edge */
+    justify-content: center;
+    gap: 8px; /* Space between Price and Button */
+    min-width: 90px; /* Ensure consistent width */
+    text-align: right;
+}
+
+.item-price { 
+    font: bold 16px var(--font-display); 
+    color: var(--color-dark-text); 
+}
+
+/* Button Fix */
+.item-action .btn {
+    margin: 0; /* Remove weird margins */
+    width: 100%; /* Fill the action column width */
+    padding: 8px 0; /* Taller touch target */
+    font-size: 10px;
+    box-shadow: none; /* Cleaner look */
+    border-radius: 8px; /* Match card radius slightly */
+}
+
+/* Mobile Tweak for very small screens */
+@media (max-width: 360px) {
+    .item-visual { width: 60px; height: 60px; }
+    .item-action { min-width: 70px; }
+}
+
 
 
 
@@ -1650,97 +1712,6 @@ h1, h2, h3, .main-title, .slogan-title {
     .community-inline-form { flex-direction: column; }
     .community-inline-form button { width: 100%; }
 }
-
-/*--- 18. THEME TOGGLE & DARK MODE ENGINE ---*/
-
-/* Toggle Button Style */
-.btn-theme-toggle {
-    background: transparent;
-    border: 1px solid var(--color-dark-text);
-    color: var(--color-dark-text);
-    width: 35px; height: 35px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-}
-.btn-theme-toggle:hover {
-    background: var(--color-dark-text);
-    color: var(--color-light-bg);
-    transform: rotate(15deg);
-}
-
-/* --- UNIFIED DARK MODE OVERRIDES --- */
-/* Controlled by JS adding the .dark-mode class to <body> */
-
-body.dark-mode {
-    /* Re-map Variables */
-    --color-light-bg: #121212;
-    --color-dark-text: #f5f5f5;
-    --color-track-bg: #1e1e1e;
-    --color-header-bg: #1a1a1a;
-    --color-slogan-bg: #2a261d;
-    --color-hero-shadow: rgba(0, 0, 0, 0.4);
-    --shadow-3d: 0 8px 0 #000, 0 12px 20px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.1);
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
-}
-
-body.dark-mode img { 
-    filter: brightness(.9) contrast(1.1); 
-}
-
-body.dark-mode .search-box { 
-    background-color: var(--color-search-deep); 
-    opacity: 0.9; 
-}
-
-/* Component Overrides */
-body.dark-mode .planning-productivity-card, 
-body.dark-mode .printables-homeschool-card, 
-body.dark-mode .colouring-creativity-card,
-body.dark-mode .templates-systems-card,
-body.dark-mode .prompts-content-card,
-body.dark-mode .audio-focus-card,
-body.dark-mode .code-automation-card,
-body.dark-mode .resource-libraries-card {
-    background: var(--color-track-bg);
-    border: 1px solid rgba(169, 147, 105, 0.2);
-}
-
-body.dark-mode .category-card h3 { color: var(--color-main-gold); }
-body.dark-mode .asset-item { background: rgba(255, 255, 255, 0.05); color: #ccc; }
-
-/* Panels & Cards */
-body.dark-mode .checkout-form-panel, 
-body.dark-mode .order-summary-panel,
-body.dark-mode .social-card, 
-body.dark-mode .community-stat-card,
-body.dark-mode .guide-card, 
-body.dark-mode .dashboard-panel-clean, 
-body.dark-mode .stat-card-clean {
-    background: #1e1e1e;
-    border-color: rgba(255,255,255,0.1);
-}
-
-body.dark-mode .newsletter-bg, 
-body.dark-mode .feedback-bg { 
-    background: #1a1a1a; 
-    border: 1px solid rgba(255,255,255,0.1); 
-}
-
-    /* Dark Mode Aurora Adjustment */
-    .sole-creator-slogan {
-        background: linear-gradient(
-            135deg, 
-            #2a261d 0%, 
-            #3d362b 50%, 
-            #2a261d 100%
-        );
-        background-size: 200% 200%;
-        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
-        border: 1px solid rgba(169, 147, 105, 0.15);
-    }
 
 
 /* Custom Search SVG Sizing */
