@@ -490,6 +490,30 @@ h1, h2, h3, .main-title, .slogan-title {
     appearance: none; /* Removes native UI styling */
 }
 
+.search-submit {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    width: 40px; 
+    height: 100%;
+    padding: 0;
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    -webkit-appearance: none; /* Removes iOS/Android default button styling */
+    appearance: none;
+}
+
+/* Ensure the image inside doesn't inherit weirdness */
+.search-submit img {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
 /* Icon Resizing */
 .header-actions-group {
     display: flex;
@@ -660,9 +684,22 @@ h1, h2, h3, .main-title, .slogan-title {
 
 /*--- 7. HOME & MARKETPLACE ---*/
 
-/* Hero */
+/* Aurora Hero Section */
 .sole-creator-slogan {
-    background-color: var(--color-slogan-bg); 
+    /* Base Background (Fallback) */
+    background-color: var(--color-slogan-bg);
+    
+    /* Aurora Gradient Effect */
+    background: linear-gradient(
+        135deg, 
+        var(--color-slogan-bg) 0%, 
+        rgba(169, 147, 105, 0.4) 25%, 
+        var(--color-slogan-bg) 50%, 
+        rgba(169, 147, 105, 0.3) 75%, 
+        var(--color-slogan-bg) 100%
+    );
+    background-size: 200% 200%; /* Larger than box to allow movement */
+    
     border-radius: 1.5rem;
     width: min(90%, 37.5rem); 
     margin-inline: auto;
@@ -671,9 +708,26 @@ h1, h2, h3, .main-title, .slogan-title {
     padding-inline: 1.25rem;
     text-align: center; 
     line-height: 1.6;
-    box-shadow: 0 0 32px 6px rgba(169, 147, 105, 0.65), 0 10px 24px rgba(0,0,0,0.35);
+    
+    /* Glassmorphism & Depth */
+    box-shadow: 
+        0 10px 30px -5px rgba(0, 0, 0, 0.1),
+        inset 0 0 20px rgba(255, 255, 255, 0.2); /* Inner glow */
+    border: 1px solid rgba(255,255,255,0.1);
+    
     isolation: isolate;
+    
+    /* Animation Trigger */
+    animation: auroraFlow 15s ease infinite;
 }
+
+/* The Animation Definitions */
+@keyframes auroraFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 
 .slogan-title { font: 800 20px var(--font-display); margin: 3px 0 10px; text-transform: uppercase; }
 .slogan-title span { font-size: 16px; display: block; margin-top: 2px; }
@@ -1674,6 +1728,20 @@ body.dark-mode .feedback-bg {
     background: #1a1a1a; 
     border: 1px solid rgba(255,255,255,0.1); 
 }
+
+    /* Dark Mode Aurora Adjustment */
+    .sole-creator-slogan {
+        background: linear-gradient(
+            135deg, 
+            #2a261d 0%, 
+            #3d362b 50%, 
+            #2a261d 100%
+        );
+        background-size: 200% 200%;
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
+        border: 1px solid rgba(169, 147, 105, 0.15);
+    }
+
 
 /* Custom Search SVG Sizing */
 .search-icon-svg {
