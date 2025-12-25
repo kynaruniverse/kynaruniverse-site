@@ -179,5 +179,31 @@
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
     <script src="auth-ui.js" type="module"></script>
+    
+        <div id="quick-view-modal" class="quick-view-modal" aria-hidden="true">
+        <div class="quick-view-backdrop"></div>
+        
+        <div class="quick-view-panel">
+            <button class="quick-view-close" aria-label="Close">&times;</button>
+            
+            <div class="quick-view-grid">
+                <div class="quick-view-visual" id="qv-image"></div>
+                
+                <div class="quick-view-info">
+                    <span class="qv-tag" id="qv-category">Category</span>
+                    <h2 id="qv-title">Product Title</h2>
+                    <p id="qv-description">Product description goes here.</p>
+                    
+                    <div class="qv-footer">
+                        <div class="qv-price" id="qv-price">£0.00</div>
+                        <button id="qv-add-btn" class="btn btn-primary btn-md">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -149,25 +149,94 @@ const KynarApp = (() => {
         }
     };
 
-    // --- 4. MARKETPLACE MODULE ---
+        // --- 4. MARKETPLACE MODULE (With Quick View) ---
     const Marketplace = {
         get container() { return document.getElementById('product-container'); },
+        get modal() { return document.getElementById('quick-view-modal'); },
         
         init() {
-            if (!this.container) return; // Not on marketplace page
+            if (!this.container) return; 
             this.setupFilters();
-            this.parseUrlParams(); // Process ?search=... or ?category=...
+            this.parseUrlParams();
             this.filter(); 
+            this.setupQuickView(); // <--- NEW TRIGGER
         },
 
-                        setupFilters() {
+        setupQuickView() {
+            // Event Delegation: Listen for clicks on the visual part of the card
+            this.container.addEventListener('click', (e) => {
+                const card = e.target.closest('.list-item');
+                const isBtn = e.target.closest('.js-add-to-cart');
+                
+                // If clicked card but NOT the add button -> Open Quick View
+                if (card && !isBtn) {
+                    this.openQuickView(card);
+                }
+            });
+
+            // Close Logic
+            if (this.modal) {
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target.matches('.quick-view-close') || e.target.matches('.quick-view-backdrop')) {
+                        this.closeQuickView();
+                    }
+                });
+            }
+        },
+
+        openQuickView(card) {
+            // 1. Harvest Data
+            const data = card.dataset;
+            const imgSrc = card.querySelector('.item-visual').style.backgroundImage; // Assuming dynamic bg
+            const bgIndicated = card.querySelector('.item-visual').style.backgroundColor;
+            const desc = card.querySelector('.item-details p').textContent;
+            
+            // 2. Populate UI
+            const els = {
+                title: document.getElementById('qv-title'),
+                cat: document.getElementById('qv-category'),
+                desc: document.getElementById('qv-description'),
+                price: document.getElementById('qv-price'),
+                visual: document.getElementById('qv-image'),
+                btn: document.getElementById('qv-add-btn')
+            };
+
+            els.title.textContent = card.querySelector('h4').textContent;
+            els.cat.textContent = `${data.category} • ${data.type}`;
+            els.desc.textContent = desc; // In a real app, fetch full desc from ID
+            els.price.textContent = card.querySelector('.item-price').textContent;
+            
+            // Handle Visual (Color or Image)
+            els.visual.style.backgroundImage = imgSrc || 'none';
+            els.visual.style.backgroundColor = bgIndicated || '#e0e0e0';
+
+            // Setup Add Button Clone
+            els.btn.onclick = () => {
+                const originalBtn = card.querySelector('.js-add-to-cart');
+                originalBtn.click(); // Trigger the real logic
+                this.closeQuickView();
+            };
+
+            // 3. Show
+            this.modal.classList.add('is-active');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+            if(window.activateFocusTrap) window.activateFocusTrap(this.modal, 'qv-trap');
+        },
+
+        closeQuickView() {
+            this.modal.classList.remove('is-active');
+            document.body.style.overflow = '';
+            if(window.deactivateFocusTrap) window.deactivateFocusTrap('qv-trap');
+        },
+
+        setupFilters() {
+            // ... (Keep your existing setupFilters code here, unchanged) ...
             // Unified Search: Look for the Header search bar
             const searchInput = document.getElementById('global-search-input');
-            const pageSearchInput = document.getElementById('search-input'); // Defined to prevent ReferenceError
+            const pageSearchInput = document.getElementById('search-input');
             const clearBtn = document.getElementById('clear-filters');
             const applyBtn = document.getElementById('apply-filters-btn');
 
-            // Listen to both search inputs if they exist (filter nulls)
             [searchInput, pageSearchInput].filter(input => input).forEach(input => {
                 input.addEventListener('input', () => {
                     clearTimeout(state.searchDebounce);
@@ -175,15 +244,12 @@ const KynarApp = (() => {
                 });
             });
 
-
-            // Change Event Delegation
             document.body.addEventListener('change', (e) => {
                 if (e.target.matches('.cat-filter, .type-filter, input[name="price"], .sort-dropdown')) {
                     this.filter();
                 }
             });
 
-            // Clear Filters
             if (clearBtn) {
                 clearBtn.addEventListener('click', () => {
                     document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
@@ -205,13 +271,13 @@ const KynarApp = (() => {
         },
 
         filter() {
-            const products = Array.from(this.container.children).filter(el => el.classList.contains('list-item'));
+            // ... (Keep your existing filter code here, unchanged) ...
+             const products = Array.from(this.container.children).filter(el => el.classList.contains('list-item'));
             if (!products.length) return;
 
-            // Get query from either input
             const q1 = document.getElementById('global-search-input')?.value.trim().toLowerCase() || "";
             const q2 = document.getElementById('search-input')?.value.trim().toLowerCase() || "";
-            const query = q2 || q1; // Prefer page specific, fallback to global
+            const query = q2 || q1; 
 
             const activeCats = Array.from(document.querySelectorAll('.cat-filter:checked')).map(cb => cb.value);
             const priceFilter = document.querySelector('input[name="price"]:checked')?.value || 'all';
@@ -231,7 +297,7 @@ const KynarApp = (() => {
                 let matchesPrice = true;
                 if (priceFilter === 'under10') matchesPrice = price > 0 && price < 10;
                 if (priceFilter === 'over10') matchesPrice = price >= 10;
-                if (priceFilter === '0') matchesPrice = price === 0; // Free items
+                if (priceFilter === '0') matchesPrice = price === 0;
 
                 if (matchesSearch && matchesCat && matchesPrice) {
                     product.style.display = 'flex';
@@ -251,37 +317,32 @@ const KynarApp = (() => {
             if (emptyState) emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
         },
 
-                sort(products, method) {
+        sort(products, method) {
+             // ... (Keep existing sort code) ...
             products.sort((a, b) => {
                 const pA = parseFloat(a.dataset.price || 0), pB = parseFloat(b.dataset.price || 0);
                 const dA = new Date(a.dataset.date || 0).getTime(), dB = new Date(b.dataset.date || 0).getTime();
 
                 if (method === 'low-high') return pA - pB;
                 if (method === 'high-low') return pB - pA;
-                return dB - dA; // Default Newest
+                return dB - dA; 
             });
 
-                        // Use fragment to batch DOM updates for performance
             const fragment = document.createDocumentFragment();
             products.forEach(el => fragment.appendChild(el));
             this.container.appendChild(fragment);
-},
-
-
+        },
+        
         parseUrlParams() {
+             // ... (Keep existing parseUrlParams code) ...
             const urlParams = new URLSearchParams(window.location.search);
-            
-            // 1. Handle Category
             const cat = urlParams.get('category');
             if (cat) {
                 const cb = document.querySelector(`.cat-filter[value="${cat}"]`);
                 if (cb) cb.checked = true;
             }
-
-            // 2. Handle Search Query (From Header)
             const search = urlParams.get('search');
             if (search) {
-                // Populate the inputs so filter() sees them
                 const globalInput = document.getElementById('global-search-input');
                 const pageInput = document.getElementById('search-input');
                 if (globalInput) globalInput.value = search;
@@ -289,6 +350,7 @@ const KynarApp = (() => {
             }
         }
     };
+
 
     // --- 5. GUIDES MODULE ---
     const Guides = {

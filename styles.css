@@ -1779,5 +1779,130 @@ h1, h2, h3, .main-title, .slogan-title {
     transition: left 0.75s ease-in-out;
 }
 
+/* --- QUICK VIEW MODAL SYSTEM --- */
+
+.quick-view-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100; /* Above everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-view-modal.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Dark Overlay */
+.quick-view-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+/* The Glass Panel */
+.quick-view-panel {
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.quick-view-modal.is-active .quick-view-panel {
+    transform: translateY(0) scale(1);
+}
+
+/* Close Button */
+.quick-view-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.05);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+}
+.quick-view-close:hover { background: rgba(0,0,0,0.1); color: var(--color-star-red); }
+
+/* Layout Grid */
+.quick-view-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+}
+
+/* Visual Side */
+.quick-view-visual {
+    background: var(--color-track-bg);
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Info Side */
+.quick-view-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.qv-tag {
+    font: 600 11px var(--font-glacial);
+    text-transform: uppercase;
+    color: var(--color-main-gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+#qv-title {
+    font: 700 24px var(--font-display);
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+#qv-description {
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.qv-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.qv-price {
+    font: 700 20px var(--font-display);
+    color: var(--color-dark-text);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .quick-view-grid { grid-template-columns: 1fr; }
+    .quick-view-visual { height: 200px; min-height: auto; }
+    .quick-view-info { padding: 20px; }
+}
 
 
