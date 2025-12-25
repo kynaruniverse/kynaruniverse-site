@@ -1722,5 +1722,39 @@ h1, h2, h3, .main-title, .slogan-title {
     display: block;
 }
 
+/* --- HOLOGRAPHIC SHINE EFFECT --- */
+/* Applies to both Category Cards and Marketplace Items */
+
+.list-item {
+    position: relative;
+    overflow: hidden; /* Contains the shine */
+}
+
+/* The Beam of Light */
+.list-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start invisible to the left */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%, /* Bright White Center */
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Angled beam */
+    z-index: 1;
+    pointer-events: none; /* Let clicks pass through */
+    transition: none; /* Instant reset */
+}
+
+/* Hover Trigger */
+.list-item:hover::after {
+    left: 200%; /* Slide fully across to the right */
+    transition: left 0.75s ease-in-out;
+}
+
 
 
