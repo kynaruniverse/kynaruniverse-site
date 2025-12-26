@@ -1,11 +1,11 @@
 /*
-   KYNAR 2026 - REPAIR MASTER (Safe Mode)
-   Status: Stabilized / Platinum Theme
+   KYNAR UNIVERSE 2026 - OBSIDIAN HYBRID MASTER
+   Architecture: AetherCode (Restored)
+   Skin: Obsidian & Neon Gold (2026)
+   Status: Technical & Aesthetic Fusion
 */
 
-/* =========================================
-   1. CORE & TYPOGRAPHY
-   ========================================= */
+/*--- 1. CORE FOUNDATION & FONTS ---*/
 
 @font-face {
     font-family: 'Bantayog';
@@ -16,52 +16,174 @@
 }
 
 @font-face {
-    font-family: 'Glacial Indifference';
-    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'), url('fonts/GlacialIndifferenceRegular.woff') format('woff');
+    font-family: 'Jimmy Flashcard';
+    src: url('fonts/Jimmy Flashcard.woff2') format('woff2');
     font-weight: normal; font-style: normal; font-display: swap;
 }
 
-:root {
-    /* Platinum Palette */
-    --bg-body: #ffffff;
-    --bg-surface: #f9f9f9;
-    --text-main: #0a0a0a;
-    --text-muted: #666666;
-    
-    /* Accents */
-    --gold-main: #c5a059;
-    --line-color: #e5e5e5;
-    
-    /* Metrics */
-    --bento-gap: 20px;
-    --radius-lg: 16px; 
-    
-    /* Fonts */
-    --font-mega: 'Bantayog', sans-serif;
-    --font-tech: 'Glacial Indifference', sans-serif;
+@font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2');
+    font-weight: normal; font-style: normal; font-display: swap;
 }
 
+/* Modern Box Sizing Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    font-family: var(--font-tech);
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden; /* Prevents side-scroll from animations */
+html { scroll-behavior: smooth; font-size: 100%; -webkit-text-size-adjust: 100%; }
+
+/*--- 2. DESIGN TOKENS (THE 2026 PALETTE) ---*/
+:root {
+    /* Obsidian Palette */
+    --color-bg-body: #050505;
+    --color-bg-surface: #0f0f0f;
+    --color-bg-panel: #111111;
+    --color-text-main: #ffffff;
+    --color-text-muted: #888888;
+    
+    /* Neon Gold Accents */
+    --color-gold-neon: #D4AF37;
+    --color-gold-dim: #7a6845;
+    --color-gold-glow: rgba(212, 175, 55, 0.4);
+    
+    /* Glass System */
+    --glass-surface: rgba(255, 255, 255, 0.03);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+    
+    /* Spacing & Radii */
+    --radius-pill: 999px;
+    --radius-card: 20px;
+    --radius-header: 99px; /* Floating Dock Style */
+    
+    /* Fonts */
+    --font-display: 'Bantayog', sans-serif;
+    --font-accent: 'Jimmy Flashcard', cursive;
+    --font-body: 'Glacial Indifference', sans-serif;
+
+    /* Layer Management (Restored from your upload) */
+    --z-header: 100;
+    --z-overlay: 1900;
+    --z-drawer: 2000;
+    --z-modal: 2000;
+    --z-loading: 99999;
 }
 
+body {
+    background-color: var(--color-bg-body);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Subtle Grain Texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+body.drawer-open { overflow: hidden; }
+
 img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; transition: 0.2s; }
 
-/* =========================================
-   2. CRITICAL: COMPONENT HIDING (THE FIX)
-   ========================================= */
+/*--- 3. LAYOUT UTILITIES ---*/
+.container {
+    width: 100%; max-width: 1400px;
+    margin-inline: auto; padding-inline: 20px;
+}
 
-/* FORCE HIDE all interactive panels by default.
-   'display: none' ensures they take up ZERO space.
-*/
+/* Bento Grid Wrapper */
+.bento-grid-wrapper {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 20px; grid-auto-rows: minmax(180px, auto);
+}
+.span-12 { grid-column: span 12; }
+.span-8  { grid-column: span 8; }
+.span-4  { grid-column: span 4; }
+.span-2  { grid-column: span 2; }
+@media (max-width: 900px) {
+    .bento-grid-wrapper { display: flex; flex-direction: column; gap: 20px; }
+    .span-8, .span-4, .span-2 { width: 100%; }
+}
+
+/*--- 4. UI COMPONENTS ---*/
+
+/* The Obsidian Card */
+.bento-card {
+    background: var(--glass-surface);
+    border: var(--glass-border);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    color: white; /* Ensure text is visible */
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 12px 28px; border-radius: var(--radius-pill);
+    font-family: var(--font-display); text-transform: uppercase; font-weight: bold; letter-spacing: 0.1em;
+    font-size: 12px; cursor: pointer; border: none; text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--color-gold-neon); color: #000;
+    box-shadow: 0 0 15px var(--color-gold-glow);
+}
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--color-gold-glow); }
+
+.btn-secondary {
+    background: transparent; border: 1px solid white; color: white;
+}
+.btn-secondary:hover { background: white; color: black; }
+
+/* Inputs */
+input, select, textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white; padding: 12px 16px; border-radius: 12px; width: 100%;
+}
+
+/*--- 5. HEADER (THE GLASS DOCK) ---*/
+.header-wrapper {
+    position: sticky; top: 20px; z-index: var(--z-header);
+    margin: 0 20px;
+}
+
+.glass-dock {
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 99px;
+    padding: 10px 25px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-width: 1000px; margin: 0 auto;
+}
+
+.brand-text {
+    font-family: var(--font-display); font-size: 24px;
+    color: white; text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.desktop-nav { display: none; gap: 30px; }
+@media(min-width: 900px) {
+    .desktop-nav { display: flex; }
+    .custom-burger { display: none; }
+}
+
+/* Burger Menu */
+.custom-burger {
+    display: flex; flex-direction: column; justify-content: space-between;
+    width: 24px; height: 18px; background: none; border: none; cursor: pointer;
+}
+.custom-burger span {
+    display: block; width: 100%; height: 2px; background: white;
+}
+
+/*--- 6. CRITICAL COMPONENT HIDING (RESTORED) ---*/
+/* This ensures drawers don't stack at the bottom of the page */
 .auth-modal, 
 .modern-filter-modal, 
 .quick-view-modal, 
@@ -76,159 +198,81 @@ a { color: inherit; text-decoration: none; }
     z-index: 2000;
 }
 
-/* =========================================
-   3. UI COMPONENTS
-   ========================================= */
-
-/* The Bento Card */
-.bento-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--line-color);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Dark Cards (like Notion Life OS) need light text */
-.bento-card[style*="background: linear-gradient"], 
-.bento-card[style*="background: #"],
-.bg-dark {
-    color: white !important;
-}
-.bento-card[style*="background"] .text-muted {
-    color: rgba(255,255,255,0.7) !important;
-}
-
-/* Buttons */
-.btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 12px 24px; border-radius: 8px;
-    font-family: var(--font-tech); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-    font-size: 11px; cursor: pointer; border: none;
-    transition: 0.2s;
-}
-
-.btn-primary { background: var(--text-main); color: white; }
-.btn-secondary { background: transparent; border: 1px solid var(--line-color); color: var(--text-main); }
-
-/* Inputs */
-input, select, textarea {
-    background: white; border: 1px solid var(--line-color);
-    color: var(--text-main); padding: 12px; border-radius: 8px; width: 100%;
-}
-
-/* =========================================
-   4. LAYOUT
-   ========================================= */
-.container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-
-.bento-grid-wrapper {
-    display: grid; grid-template-columns: repeat(12, 1fr);
-    gap: var(--bento-gap);
-}
-
-.span-12 { grid-column: span 12; }
-.span-8  { grid-column: span 8; }
-.span-6  { grid-column: span 6; }
-.span-4  { grid-column: span 4; }
-.span-2  { grid-column: span 2; }
-
-@media (max-width: 900px) {
-    .bento-grid-wrapper { display: flex; flex-direction: column; gap: 20px; }
-    .span-8, .span-6, .span-4, .span-2 { width: 100%; }
-}
-
-/* =========================================
-   5. HEADER & FOOTER
-   ========================================= */
-.header-wrapper {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line-color);
-}
-.header-top-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 20px;
-}
-.brand-text { font-family: var(--font-mega); font-size: 24px; color: var(--text-main); }
-.header-nav-row { display: none; border-top: 1px solid var(--line-color); }
-@media (min-width: 900px) { .header-nav-row { display: block; } }
-
-.desktop-nav-list { display: flex; justify-content: center; gap: 40px; padding: 12px 0; list-style: none; }
-.desktop-nav-list a { font-size: 12px; text-transform: uppercase; font-weight: bold; }
-
-/* Mega Hero */
-.mega-hero-container {
-    position: relative; height: 60vh;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; text-align: center; border-bottom: 1px solid var(--line-color);
-}
-.mega-text {
-    font-family: var(--font-mega); font-size: 15vw; color: rgba(0,0,0,0.03);
-    position: absolute; z-index: 0; pointer-events: none;
-}
-.hero-foreground { z-index: 1; position: relative; padding: 20px; max-width: 600px; }
-
-/* Utilities */
-.text-gold { color: var(--gold-main); }
-.text-white { color: var(--text-main); } /* Default to dark text in light mode */
-.bg-dark { background: #111; color: white; }
-.bg-dark .text-white { color: white !important; }
-.bg-dark .text-muted { color: #888 !important; }
-
-/* =========================================
-   6. INTERACTIVE STATES (The Logic Fix)
-   ========================================= */
-
-/* A. Open Side Drawer (Left) */
+/* Active States */
 .side-drawer.is-open {
     display: block !important;
     position: fixed; top: 0; left: 0;
     width: 300px; height: 100vh;
-    background: white;
-    opacity: 1;
-    animation: slideInLeft 0.3s forwards;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+    background: var(--color-bg-panel); color: white;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    opacity: 1; animation: slideInLeft 0.3s forwards;
 }
 
-/* B. Open Cart Drawer (Right) */
 #cart-side-drawer.is-open, .cart-drawer.is-open {
-    display: flex !important; /* Cart needs flex */
+    display: flex !important;
     flex-direction: column;
     position: fixed; top: 0; right: 0;
-    width: 320px; height: 100vh;
-    background: white;
-    opacity: 1;
-    animation: slideInRight 0.3s forwards;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    width: 350px; height: 100vh;
+    background: var(--color-bg-panel); color: white;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    opacity: 1; animation: slideInRight 0.3s forwards;
 }
 
-/* C. Open Modals (Center) */
-.auth-modal.is-open, 
-.modern-filter-modal.is-open, 
-.quick-view-modal.is-open {
+.auth-modal.is-open, .modern-filter-modal.is-open, .quick-view-modal.is-open {
     display: flex !important;
     position: fixed; inset: 0;
     align-items: center; justify-content: center;
     opacity: 1;
 }
 
-/* D. Show Overlay */
 .drawer-overlay.is-visible, .auth-modal-backdrop.is-visible {
     display: block !important;
     position: fixed; inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
     opacity: 1;
-    z-index: 1999;
 }
 
-/* Prevent scrolling when menu is open */
-body.drawer-open { overflow: hidden; }
+/* Drawer Content Styling */
+.drawer-header {
+    padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+}
+.drawer-list { list-style: none; padding: 20px; }
+.drawer-list li { margin-bottom: 15px; }
+.drawer-list a { color: rgba(255,255,255,0.8); font-family: var(--font-display); text-transform: uppercase; }
 
-/* Animations */
+/*--- 7. MEGA HERO ---*/
+.mega-hero-container {
+    position: relative; height: 80vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; text-align: center;
+}
+.mega-text {
+    font-family: var(--font-display); font-size: clamp(60px, 18vw, 250px);
+    line-height: 0.8; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.15);
+    text-transform: uppercase; position: absolute; z-index: 0; pointer-events: none;
+}
+.hero-foreground {
+    z-index: 1; position: relative; max-width: 600px; padding: 40px;
+    background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);
+    border-radius: var(--radius-card); border: 1px solid rgba(255,255,255,0.1);
+}
+
+/*--- 8. UTILITIES ---*/
+.text-gold { color: var(--color-gold-neon); }
+.text-white { color: white; }
+.text-muted { color: var(--color-text-muted); }
+.bg-dark { background: var(--color-bg-body); }
+
+/* Animation Keyframes */
 @keyframes slideInLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1);
+    border-top-color: var(--color-gold-neon); border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
