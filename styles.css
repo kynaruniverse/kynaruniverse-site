@@ -1,6 +1,7 @@
 /*
-   KYNAR 2026 - PLATINUM & PAPER (Light Mode)
-   Style: Clean / Bento / High-Contrast
+   KYNAR 2026 - PLATINUM PLUS (Evolved)
+   Style: Tactile / Editorial / Textured
+   Architect: KynarForge Pro
 */
 
 /* =========================================
@@ -24,26 +25,41 @@
 :root {
     /* Platinum Palette */
     --bg-body: #ffffff;
-    --bg-surface: #f8f8f8;
-    --text-main: #050505;
+    --bg-surface: #f9f9f9;
+    --bg-panel: #ffffff;
+    
+    /* Typography Colors */
+    --text-main: #0a0a0a; /* Soft Black */
     --text-muted: #666666;
+    --text-light: #999999;
     
     /* Accents */
-    --gold-main: #c5a059; /* Darker gold for visibility on white */
-    --gold-light: #f4ecd8;
+    --gold-main: #c5a059;
+    --gold-hover: #b08d4a;
+    --gold-faint: rgba(197, 160, 89, 0.1);
     
-    /* Borders & Lines */
-    --line-color: #e5e5e5;
-    --line-strong: #000000;
+    /* Structural */
+    --line-faint: rgba(0,0,0,0.05);
+    --line-strong: rgba(0,0,0,0.12);
+    --glass-border: 1px solid rgba(255,255,255,0.4);
+    
+    /* Shadows (The Depth System) */
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.03);
+    --shadow-deep: 0 20px 40px rgba(0,0,0,0.08);
+    --shadow-gold: 0 10px 30px rgba(197, 160, 89, 0.2);
     
     /* Metrics */
-    --bento-gap: 20px;
-    --radius-lg: 16px; /* Slightly sharper corners for "Paper" feel */
-    --radius-sm: 8px;
+    --bento-gap: 24px;
+    --radius-lg: 16px; 
+    --radius-md: 12px;
+    --radius-pill: 999px;
     
     /* Fonts */
     --font-mega: 'Bantayog', sans-serif;
     --font-tech: 'Glacial Indifference', sans-serif;
+    
+    /* Texture (Base64 Noise) */
+    --texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,6 +68,7 @@ html { scroll-behavior: smooth; font-size: 100%; }
 
 body {
     background-color: var(--bg-body);
+    background-image: var(--texture-noise); /* Adds premium paper feel */
     color: var(--text-main);
     font-family: var(--font-tech);
     line-height: 1.6;
@@ -60,19 +77,25 @@ body {
 }
 
 img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; transition: 0.2s ease; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; border: 2px solid var(--bg-surface); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-main); }
 
 /* =========================================
-   2. UI COMPONENTS (CLEAN)
+   2. UI COMPONENTS (EVOLVED)
    ========================================= */
 
-/* The Bento Card (Paper Style) */
+/* The Bento Card - Now with Lift Physics */
 .bento-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--line-color);
+    background: var(--bg-panel);
+    border: 1px solid var(--line-faint);
     border-radius: var(--radius-lg);
     padding: 24px;
-    transition: all 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -80,112 +103,127 @@ a { color: inherit; text-decoration: none; }
 }
 
 .bento-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px) scale(1.005);
     border-color: var(--gold-main);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-deep);
+    z-index: 2;
 }
 
-/* Buttons */
+/* Buttons - "Haptic" Feedback */
 .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 12px 24px; border-radius: 6px;
-    font-family: var(--font-tech); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-    font-size: 12px; cursor: pointer; text-decoration: none;
-    transition: 0.3s; border: none;
+    padding: 12px 28px; border-radius: 8px;
+    font-family: var(--font-tech); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    font-size: 11px; cursor: pointer; text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    border: none;
+    position: relative;
+    overflow: hidden;
 }
+
+.btn:active { transform: scale(0.96); } /* Click effect */
 
 .btn-primary {
     background: var(--text-main);
     color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 .btn-primary:hover {
     background: var(--gold-main);
     color: white;
+    box-shadow: var(--shadow-gold);
 }
 
 .btn-secondary {
     background: transparent;
-    border: 1px solid var(--line-color);
+    border: 1px solid var(--line-strong);
     color: var(--text-main);
 }
 .btn-secondary:hover {
     border-color: var(--text-main);
     background: white;
+    box-shadow: var(--shadow-soft);
 }
 
-/* Inputs */
+/* Inputs - Focus Rings */
 input, select, textarea {
-    background: white;
-    border: 1px solid var(--line-color);
+    background: #fff;
+    border: 1px solid var(--line-strong);
     color: var(--text-main);
     font-family: var(--font-tech);
-    padding: 12px 16px; border-radius: 8px;
+    padding: 14px 18px; border-radius: var(--radius-md);
     width: 100%;
+    transition: border 0.3s, box-shadow 0.3s;
 }
-input:focus {
-    outline: none; border-color: var(--gold-main);
-    background: #fff;
+input:focus, select:focus, textarea:focus {
+    outline: none; 
+    border-color: var(--gold-main);
+    box-shadow: 0 0 0 3px var(--gold-faint);
 }
 
 /* =========================================
-   3. HEADER (STACKED LAYOUT)
+   3. HEADER (FROSTED ACRYLIC)
    ========================================= */
 .header-wrapper {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line-color);
+    background: rgba(255,255,255,0.85); /* More translucent */
+    backdrop-filter: blur(20px); /* Heavy blur */
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line-faint);
 }
 
 .header-top-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 20px;
+    padding: 15px 24px;
     max-width: 1400px; margin: 0 auto;
 }
 
 .brand-text {
-    font-family: var(--font-mega); font-size: 28px;
-    color: var(--text-main); text-transform: uppercase; letter-spacing: 0.05em;
+    font-family: var(--font-mega); font-size: 32px;
+    color: var(--text-main); text-transform: uppercase; letter-spacing: 0.02em;
     line-height: 1;
 }
 
+/* Desktop Nav - Refined */
 .header-nav-row {
-    border-top: 1px solid var(--line-color);
-    display: none; /* Hidden on mobile */
+    border-top: 1px solid var(--line-faint);
+    display: none;
 }
-
 @media (min-width: 900px) {
     .header-nav-row { display: block; }
 }
 
 .desktop-nav-list {
-    display: flex; justify-content: center; gap: 40px;
-    padding: 12px 0;
+    display: flex; justify-content: center; gap: 50px;
+    padding: 16px 0;
     list-style: none;
 }
 
 .desktop-nav-list a {
-    font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
-    font-weight: bold; color: var(--text-muted);
-    transition: 0.2s;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: var(--text-muted);
     position: relative;
+    padding-bottom: 5px;
 }
 
 .desktop-nav-list a:hover, .desktop-nav-list a.active-page {
     color: var(--text-main);
 }
-/* Underline effect */
-.desktop-nav-list a.active-page::after {
-    content: ''; position: absolute; bottom: -13px; left: 0; width: 100%; 
-    height: 2px; background: var(--text-main);
+/* Animated Underline */
+.desktop-nav-list a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0%; 
+    height: 2px; background: var(--gold-main); transition: width 0.3s;
+}
+.desktop-nav-list a:hover::after, .desktop-nav-list a.active-page::after {
+    width: 100%;
 }
 
 /* =========================================
-   4. LAYOUT GRID
+   4. LAYOUT: RESPONSIVE GRID
    ========================================= */
 .container {
     width: 100%; max-width: 1400px;
-    margin: 0 auto; padding: 0 20px;
+    margin: 0 auto; padding: 0 24px;
 }
 
 .bento-grid-wrapper {
@@ -197,64 +235,71 @@ input:focus {
 .span-8  { grid-column: span 8; }
 .span-6  { grid-column: span 6; }
 .span-4  { grid-column: span 4; }
+.span-3  { grid-column: span 3; }
+.span-2  { grid-column: span 2; }
 
 @media (max-width: 900px) {
     .bento-grid-wrapper { display: flex; flex-direction: column; gap: 20px; }
-    .span-8, .span-6, .span-4 { width: 100%; }
+    .span-8, .span-6, .span-4, .span-3, .span-2 { width: 100%; }
 }
 
 /* =========================================
-   5. MEGA HERO (LIGHT VERSION)
+   5. MEGA HERO (PAPER STYLE)
    ========================================= */
 .mega-hero-container {
-    position: relative; height: 70vh;
+    position: relative; height: 75vh;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; text-align: center;
-    background: #fdfdfd;
-    border-bottom: 1px solid var(--line-color);
+    background: #ffffff;
+    border-bottom: 1px solid var(--line-faint);
 }
 
 .mega-text {
     font-family: var(--font-mega);
-    font-size: clamp(60px, 18vw, 250px);
+    font-size: clamp(60px, 18vw, 300px);
     line-height: 0.8;
-    color: rgba(0,0,0,0.03); /* Very faint grey */
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.06); /* Outline style */
     text-transform: uppercase;
     position: absolute; z-index: 0; pointer-events: none;
 }
 
 .hero-foreground {
-    z-index: 1; position: relative; max-width: 600px; padding: 20px;
+    z-index: 1; position: relative; max-width: 600px; padding: 30px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    border-radius: var(--radius-lg);
 }
 
 /* =========================================
-   6. UTILITIES
+   6. UTILITIES & DARK MODE OVERRIDES
    ========================================= */
 .text-gold { color: var(--gold-main); }
-.text-white { color: var(--text-main); } /* Invert meaning for light mode or keep semantic */
+.text-white { color: var(--text-main); } /* Context dependent */
 .text-muted { color: var(--text-muted); }
 
-/* In Light Mode, 'text-white' usually means dark text on light bg, 
-   but specific components with dark backgrounds (like footer) need real white */
-.bg-dark { background: #111; color: white; }
+/* The "Anchor" Class - For Footer/Dark Sections */
+.bg-dark { 
+    background: #050505; 
+    color: white; 
+    position: relative;
+}
 .bg-dark .text-muted { color: #888; }
 .bg-dark .text-white { color: white; }
+.bg-dark a:hover { color: var(--gold-main); }
+/* Grain texture on dark mode too */
+.bg-dark::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: var(--texture-noise); opacity: 0.05; pointer-events: none;
+}
 
-/* Drawers & Modals (Light) */
+/* UI Surfaces (Drawers/Modals) */
 .side-drawer, .modern-filter-modal .filter-panel, .auth-modal-dialog, .quick-view-panel {
-    background: white;
+    background: #ffffff;
     color: var(--text-main);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1); /* Left shadow for drawer */
+    border-left: 1px solid var(--line-faint);
 }
-.drawer-header { border-bottom: 1px solid var(--line-color); }
-.drawer-list a { color: var(--text-main); }
-
-/* Animation */
-.reveal-on-scroll {
-    opacity: 0; transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Interactive States */
 .side-drawer.is-open, .modern-filter-modal.is-open, .quick-view-modal.is-open, .auth-modal.is-open {
@@ -265,7 +310,14 @@ input:focus {
 }
 body.drawer-open { overflow: hidden; }
 
-/* Loading Overlay */
-.loading-overlay { background: rgba(255,255,255,0.9); }
-.loading-spinner { border-color: rgba(0,0,0,0.1); border-top-color: var(--text-main); }
+/* Animation: Reveal */
+.reveal-on-scroll {
+    opacity: 0; transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Loading States */
+.loading-overlay { background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); }
+.loading-spinner { border-color: rgba(0,0,0,0.1); border-top-color: var(--gold-main); width: 50px; height: 50px; border-width: 4px; }
 .btn-loading::after { border-color: rgba(255,255,255,0.3); border-top-color: white; }
