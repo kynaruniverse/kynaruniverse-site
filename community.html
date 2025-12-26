@@ -3,168 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community | KYNAR Universe</title>
-    <meta name="description" content="Join our founding members. Digital tools for every corner of your life.">
+    <title>The Nexus | KYNAR Universe</title>
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kynaruniverse.co.uk/community.html">
-    <meta property="og:title" content="Join the KYNAR Universe Community">
-    <meta property="og:description" content="Connect with creators and shape the future of digital productivity.">
-    <meta property="og:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KYNAR Universe Community">
-    <meta name="twitter:description" content="Connect with creators and shape the future of digital productivity.">
-    <meta name="twitter:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
-    
-    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <style>
+        /* Special FAQ Styling for Dark Mode */
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; }
+        .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: white; font-family: var(--font-tech); font-size: 16px; cursor: pointer; text-align: left; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s ease; opacity: 0.7; font-size: 14px; margin-top: 0; }
+        .faq-item.active .faq-answer { max-height: 200px; margin-top: 15px; }
+        .faq-item.active .faq-question { color: var(--gold-neon); }
+        .faq-item.active i { transform: rotate(180deg); }
+    </style>
 </head>
 
 <body class="community-page">
-    
-    <a href="#main-content" class="visually-hidden">Skip to main content</a>
-    
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">
-        <div class="loading-spinner"></div>
-    </div>
     
     <div class="header-wrapper">
         <div data-include="components/header.html"></div>
     </div>
 
-        <main id="community-nexus" class="container main-content-container">
+    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
         
-        <section class="nexus-hero">
-            <span class="nexus-tag">EST. 2025</span>
-            <h1 class="nexus-title">Building the <span class="gold-text">Kynar Universe</span></h1>
-            <p class="nexus-sub">Join the architects of the next generation. We are building digital tools for every corner of your life, and we want you on the ground floor.</p>
-        </section>
+        <header style="text-align: center; margin-bottom: 60px; position: relative;">
+            <span class="text-gold" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;">Inner Circle</span>
+            <h1 class="mega-text" style="position: relative; font-size: 15vw; color: rgba(255,255,255,0.03); -webkit-text-stroke: 0px; margin-bottom: -50px;">NEXUS</h1>
+            <h2 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; position: relative; z-index: 2;">Join the<br>Architects</h2>
+        </header>
 
-        <section class="perk-grid">
-            <div class="perk-module">
-                <div class="perk-icon"><i class="fa-solid fa-crown"></i></div>
-                <h3>Founding Member</h3>
-                <p>Secure your status as an original supporter with lifetime legacy benefits.</p>
-            </div>
-            
-            <div class="perk-module">
-                <div class="perk-icon"><i class="fa-solid fa-comments"></i></div>
-                <h3>Direct Input</h3>
-                <p>Your voice shapes our roadmap. Vote on the next templates and tools.</p>
-            </div>
-            
-            <div class="perk-module">
-                <div class="perk-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Early Access</h3>
-                <p>Get beta access to new products weeks before the public launch.</p>
-            </div>
-        </section>
+        <div class="bento-grid-wrapper">
 
-        <section class="social-nexus">
-            <h2 class="section-label">Connect With Us</h2>
-            <div class="shard-grid">
-                <a href="#" class="social-shard instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                    <span>Instagram</span>
-                    <small>Daily Inspiration</small>
-                </a>
-                <a href="#" class="social-shard pinterest">
-                    <i class="fa-brands fa-pinterest"></i>
-                    <span>Pinterest</span>
-                    <small>Visual Boards</small>
-                </a>
-                <a href="#" class="social-shard twitter">
-                    <i class="fa-brands fa-x-twitter"></i>
-                    <span>X (Twitter)</span>
-                    <small>Live Updates</small>
-                </a>
-                <a href="#" class="social-shard youtube">
-                    <i class="fa-brands fa-youtube"></i>
-                    <span>YouTube</span>
-                    <small>Tutorials & Guides</small>
-                </a>
-            </div>
-        </section>
+            <article class="bento-card span-4" style="background: linear-gradient(135deg, #111, #1a1a1a);">
+                <i class="fa-solid fa-crown text-gold" style="font-size: 30px; margin-bottom: 20px;"></i>
+                <h3 class="text-white" style="font-family: var(--font-mega);">Founding Status</h3>
+                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Secure your legacy. Founding members receive lifetime badge verification.</p>
+            </article>
 
-        <div class="terminal-layout">
-            
-            <div class="vip-access-card">
-                <div class="vip-header">
-                    <h3>Join the Inner Circle</h3>
-                    <i class="fa-solid fa-envelope-open-text"></i>
+            <article class="bento-card span-4">
+                <i class="fa-solid fa-code-branch text-white" style="font-size: 30px; margin-bottom: 20px;"></i>
+                <h3 class="text-white" style="font-family: var(--font-mega);">Direct Input</h3>
+                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Vote on the roadmap. Your voice dictates the next tool we build.</p>
+            </article>
+
+            <article class="bento-card span-4">
+                <i class="fa-solid fa-bolt text-white" style="font-size: 30px; margin-bottom: 20px;"></i>
+                <h3 class="text-white" style="font-family: var(--font-mega);">Early Access</h3>
+                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Beta test new templates 14 days before the public drop.</p>
+            </article>
+
+            <section class="bento-card span-8" style="background: #0a0a0a; border: 1px solid var(--gold-dim);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <div>
+                        <h2 class="text-white" style="font-family: var(--font-mega);">VIP Terminal</h2>
+                        <p class="text-muted" style="font-size: 12px;">Input frequency for direct transmission.</p>
+                    </div>
+                    <i class="fa-solid fa-envelope-open-text text-gold" style="font-size: 24px;"></i>
                 </div>
-                <p>No spam. Just high-value assets, free drops, and community updates.</p>
-                <form class="vip-form">
-                    <input type="email" placeholder="Enter your email address..." required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                
+                <form class="vip-form" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="email" placeholder="Enter encrypted email..." required style="flex: 1; min-width: 200px;">
+                    <button type="submit" class="btn btn-primary">Initialize <i class="fa-solid fa-arrow-right"></i></button>
                 </form>
-            </div>
+            </section>
 
-            <div class="feedback-glass">
-                <h3>Share Feedback</h3>
-                <p>Tell us what to build next.</p>
+            <section class="bento-card span-4" style="background: rgba(255,255,255,0.03);">
+                <h3 class="text-white" style="margin-bottom: 15px; font-family: var(--font-mega);">Signal Report</h3>
                 <form class="feedback-mini-form">
-                    <select>
-                        <option>General Feedback</option>
-                        <option>Bug Report</option>
+                    <select style="margin-bottom: 10px;">
                         <option>Feature Request</option>
+                        <option>Bug Report</option>
+                        <option>General Comms</option>
                     </select>
-                    <textarea placeholder="Type your message..."></textarea>
-                    <button type="submit" class="btn btn-secondary btn-full-width">Send Message</button>
+                    <textarea placeholder="Message content..." rows="2" style="margin-bottom: 10px;"></textarea>
+                    <button type="submit" class="btn btn-secondary btn-full-width btn-sm">Transmit</button>
                 </form>
-            </div>
-        </div>
-        
-        <section class="nexus-faq">
-            <h2 class="section-label">Community FAQ</h2>
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        What will your social media accounts be live?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>We are currently prepping our launch content! Follow us now to be the first to see our opening campaign in late 2025.</p>
+            </section>
+
+            <div class="span-12" style="margin-top: 40px;">
+                <h2 class="text-white" style="font-family: var(--font-mega); margin-bottom: 20px;">Protocol FAQ</h2>
+                
+                <div class="bento-card" style="padding: 10px 30px;">
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                When is the official launch? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We are currently in Phase 1 (Alpha). The full public launch is scheduled for Late 2025.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                How do I access purchased files? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Files are instantly available in your "Command Center" (Account page) or via the secure email link sent after purchase.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Are updates included? <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes. All "Founding Member" purchases include lifetime updates for that specific version of the tool.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+
+        </div>
 
     </main>
 
-    
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-
+    
     <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header">
-            <span class="drawer-title">Navigation</span>
-            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
-        </div>
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
         <ul class="drawer-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Guides</a></li>
-            <li><a href="community.html" class="active-drawer-link">Community</a></li>
-            <li class="drawer-divider">
-                <a href="account.html" class="account-nav-link" id="account-nav-mobile">
-                    <i class="fa-regular fa-circle-user"></i> My Account
-                </a>
-            </li>
+            <li><a href="community.html">Nexus</a></li>
+            <li><a href="account.html">My Account</a></li>
         </ul>
     </nav>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
-
     <script src="community.js" defer></script>
-    <script src="auth-ui.js" type="module"></script>
+    <script type="module" src="auth-ui.js"></script>
 
 </body>
 </html>

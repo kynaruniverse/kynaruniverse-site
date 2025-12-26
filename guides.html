@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guides & Tutorials | KYNAR Universe</title>
-    <meta name="description" content="Learn how to make the most of your KYNAR Universe digital products with our comprehensive guides and tutorials.">
+    <title>The Academy | KYNAR Universe</title>
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -13,178 +13,133 @@
 
 <body class="guides-page">
     
-    <a href="#main-content" class="visually-hidden">Skip to main content</a>
-    
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">
-        <div class="loading-spinner"></div>
-    </div>
-
     <div class="header-wrapper">
         <div data-include="components/header.html"></div>
     </div>
-
-            <main id="knowledge-nexus" class="container main-content-container">
+    
+    <main id="knowledge-nexus" class="container" style="padding-top: 40px; padding-bottom: 100px;">
         
-        <section class="knowledge-hero">
-            <span class="nexus-tag">ACADEMY</span>
-            <h1 class="nexus-title">The <span class="gold-text">Library</span></h1>
-            <p class="nexus-sub">Master your digital tools. Search our archive or browse by category.</p>
+        <header style="text-align: center; margin-bottom: 60px; position: relative; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h1 class="mega-text" style="font-size: 18vw; top: 50%; transform: translateY(-50%); opacity: 0.5;">LIBRARY</h1>
             
-            <div class="knowledge-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="guide-search" placeholder="Search guides (e.g., 'Notion', 'Printing')...">
+            <div style="position: relative; z-index: 2; background: rgba(5,5,5,0.6); backdrop-filter: blur(5px); padding: 30px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.05);">
+                <span class="text-gold" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 10px;">Academy Access</span>
+                <h2 class="text-white" style="font-family: var(--font-mega); font-size: 2.5rem; line-height: 1; margin: 0;">Master Your Tools</h2>
             </div>
-        </section>
-
-        <div class="knowledge-filters">
-            <div class="filter-pills-container center-pills">
-                <button class="filter-pill active" data-category="all">All</button>
-                <button class="filter-pill" data-category="getting-started">Start Here</button>
-                <button class="filter-pill" data-category="tutorials">Tutorials</button>
-                <button class="filter-pill" data-category="tips">Pro Tips</button>
-                <button class="filter-pill" data-category="troubleshooting">Fixes</button>
+            
+            <div class="knowledge-search" style="position: relative; z-index: 3; margin-top: 30px; width: 100%; max-width: 500px;">
+                <i class="fa-solid fa-magnifying-glass text-gold" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);"></i>
+                <input type="text" id="guide-search" placeholder="Search data shards (ex: 'Notion')..." style="padding-left: 50px; background: #111; border-color: var(--gold-dim); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);">
             </div>
+        </header>
+        
+        <div class="knowledge-filters" style="margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <button class="filter-pill active btn btn-secondary btn-sm" data-category="all" style="border-radius: 99px;">All Signals</button>
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="getting-started" style="border-radius: 99px;">Initiation</button>
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="tutorials" style="border-radius: 99px;">Tactics</button>
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="troubleshooting" style="border-radius: 99px;">Diagnostics</button>
         </div>
-
-                <section class="guide-glass-grid" id="guides-grid">
+        
+        <div class="bento-grid-wrapper" id="guides-grid">
             
-            <article class="guide-tile reveal-on-scroll" data-category="getting-started">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <span class="tile-cat">Start Here</span>
+            <article class="guide-tile bento-card span-4" data-category="getting-started" style="border-left: 2px solid var(--gold-neon);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <i class="fa-solid fa-rocket text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
+                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Start Here</span>
                 </div>
-                <div class="tile-content">
-                    <h3>Quick Start Guide</h3>
-                    <p>How to download, unzip, and access your files instantly on any device.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">5 min read</span>
-                    <a href="guide-getting-started.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Quick Start</h3>
+                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Protocol for downloading, unzipping, and accessing your files instantly.</p>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-gold" style="font-size: 11px;">5 min read</span>
+                    <a href="guide-getting-started.html" class="btn-arrow-link text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
-            <article class="guide-tile reveal-on-scroll" data-category="getting-started">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-solid fa-download"></i></div>
-                    <span class="tile-cat">Basics</span>
+            
+            <article class="guide-tile bento-card span-4" data-category="getting-started">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <i class="fa-solid fa-download text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
+                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Basics</span>
                 </div>
-                <div class="tile-content">
-                    <h3>Downloading Files</h3>
-                    <p>Step-by-step instructions for accessing your digital purchases securely.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">3 min read</span>
-                    <a href="guide-download.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Retrieval</h3>
+                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Secure download procedures for all device types.</p>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-gold" style="font-size: 11px;">3 min read</span>
+                    <a href="guide-download.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
-            <article class="guide-tile reveal-on-scroll" data-category="tutorials">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <span class="tile-cat">Tutorial</span>
+            
+            <article class="guide-tile bento-card span-4" data-category="tutorials">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <i class="fa-brands fa-notion text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
+                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Deep Dive</span>
                 </div>
-                <div class="tile-content">
-                    <h3>Digital Planners</h3>
-                    <p>Master navigation, hyperlinks, and daily planning workflows in GoodNotes.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">8 min read</span>
-                    <a href="guide-digital-planners.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Notion Setup</h3>
+                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Importing and connecting databases in your workspace.</p>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-gold" style="font-size: 11px;">10 min read</span>
+                    <a href="guide-notion-setup.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
-            <article class="guide-tile reveal-on-scroll" data-category="tutorials">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-brands fa-notion"></i></div>
-                    <span class="tile-cat">Deep Dive</span>
+            
+            <article class="guide-tile bento-card span-4" data-category="tutorials">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <i class="fa-solid fa-calendar-days text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
+                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Tutorial</span>
                 </div>
-                <div class="tile-content">
-                    <h3>Notion Setup</h3>
-                    <p>Importing, customizing, and connecting databases in your new Notion workspace.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">10 min read</span>
-                    <a href="guide-notion-setup.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Digital Planners</h3>
+                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Hyperlink navigation and GoodNotes workflows.</p>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-gold" style="font-size: 11px;">8 min read</span>
+                    <a href="guide-digital-planners.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
-            <article class="guide-tile reveal-on-scroll" data-category="tips">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <span class="tile-cat">Strategy</span>
+            
+            <article class="guide-tile bento-card span-4" data-category="troubleshooting">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <i class="fa-solid fa-wrench text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
+                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Fixes</span>
                 </div>
-                <div class="tile-content">
-                    <h3>Productivity Hacks</h3>
-                    <p>10 proven strategies to maximize your efficiency using digital tools.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">12 min read</span>
-                    <a href="guide-productivity-hacks.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Diagnostics</h3>
+                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Solutions for unzipping and display errors.</p>
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-gold" style="font-size: 11px;">5 min read</span>
+                    <a href="guide-troubleshooting.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
-            <article class="guide-tile reveal-on-scroll" data-category="troubleshooting">
-                <div class="tile-top">
-                    <div class="tile-icon"><i class="fa-solid fa-wrench"></i></div>
-                    <span class="tile-cat">Support</span>
+            
+            <section class="bento-card span-8" style="background: linear-gradient(90deg, #111, #1a1a1a); display: flex; align-items: center; justify-content: space-between; padding: 40px;">
+                <div>
+                    <h2 class="text-white" style="font-family: var(--font-mega);">System Failure?</h2>
+                    <p class="text-muted" style="margin-top: 5px;">Our engineers are standing by on the secure channel.</p>
                 </div>
-                <div class="tile-content">
-                    <h3>Common Fixes</h3>
-                    <p>Quick solutions for unzipping, broken links, and display issues.</p>
-                </div>
-                <div class="tile-footer">
-                    <span class="read-time">5 min read</span>
-                    <a href="guide-troubleshooting.html" class="btn-arrow-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </article>
-
-        </section>
-
-
-        <section class="support-terminal">
-            <div class="terminal-content">
-                <i class="fa-solid fa-headset"></i>
-                <h2>Need Specialist Help?</h2>
-                <p>Our team is standing by to assist with technical issues.</p>
-                <a href="mailto:support@kynaruniverse.co.uk" class="btn btn-primary btn-md">Open Support Ticket</a>
-            </div>
-        </section>
-
+                <a href="mailto:support@kynaruniverse.co.uk" class="btn btn-primary">Open Ticket <i class="fa-solid fa-headset"></i></a>
+            </section>
+            
+        </div>
+        
     </main>
-
-
+    
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
     
-        <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header">
-            <span class="drawer-title">Navigation</span>
-            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
-        </div>
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
         <ul class="drawer-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html" class="active-drawer-link">Guides</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li class="drawer-divider">
-                <a href="account.html" class="account-nav-link" id="account-nav-mobile">
-                    <i class="fa-regular fa-circle-user"></i> My Account
-                </a>
-            </li>
+            <li><a href="guides.html">Academy</a></li>
+            <li><a href="community.html">Nexus</a></li>
+            <li><a href="account.html">My Account</a></li>
         </ul>
     </nav>
-
-        <script src="utilities.js"></script>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+    
+    <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
-    
-    <script type="module">
-        import './auth-ui.js';
-    </script>
-    
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
-
-
+    <script type="module" src="auth-ui.js"></script>
+    
 </body>
+
 </html>

@@ -3,211 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="KYNAR Universe: Premium digital goods marketplace for authentic e‑books, digital art, templates, and productivity tools. Created for the modern digital life.">
-    <title>KYNAR Universe – Digital Goods Marketplace</title>
+    <title>KYNAR Universe | Digital Cockpit</title>
     
-    <meta property="og:title" content="KYNAR Universe | Community Hub">
-    <meta property="og:description" content="Explore digital tools for productivity and creativity. Join our community.">
-    <meta property="og:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
-    <meta property="og:url" content="https://kynaruniverse.co.uk/index.html">
-    <meta property="og:type" content="website">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://kynaruniverse.co.uk/images/social-share.jpg">
-
-    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
-
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body class="home-page">
     
-    <a href="#main-content" class="skip-link visually-hidden">Skip to main content</a>
-
     <div class="header-wrapper">
-
         <div data-include="components/header.html"></div>
     </div>
 
-
-    <main id="main-content" class="main-content-container container">
+    <main id="main-content">
         
-        <section class="sole-creator-slogan" aria-labelledby="hero-title">
-            <h1 id="hero-title" class="slogan-title">
-                KYNAR Universe <br>
-                <span>Digital Marketplace</span>
-            </h1>
+        <section class="mega-hero-container">
+            <h1 class="mega-text">KYNAR<br>UNIVERSE</h1>
             
-            <p class="slogan-tagline">
-                Digital tools handcrafted by one creator, designed to organise, inspire, and simplify your life.
-            </p>
-            
-            <p class="slogan-description">
-                Browse planners, printables, Notion setups, homeschool resources, prompts, and more—ready to plug straight into your projects and daily routines.
-            </p>
-            
-            <hr class="accent-divider">
+            <div class="hero-foreground">
+                <p class="text-gold" style="font-family: var(--font-mega); letter-spacing: 0.2em; margin-bottom: 10px;">EST. 2025</p>
+                <h2 class="text-white" style="font-size: 2rem; margin-bottom: 20px; line-height: 1.1;">Architect Your<br>Digital Future.</h2>
+                <p class="text-muted" style="margin-bottom: 30px;">Premium tools, templates, and systems for the modern creator.</p>
+                
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="marketplace.html" class="btn btn-primary">Enter Market</a>
+                    <a href="community.html" class="btn btn-secondary">Join Nexus</a>
+                </div>
+            </div>
         </section>
 
-        <section class="category-cards-section" aria-labelledby="category-cards-heading">
-            <h2 id="category-cards-heading" class="visually-hidden">Product Categories</h2>
+        <div class="container" style="padding-bottom: 80px;">
+            <div class="bento-grid-wrapper">
+                
+                <article class="bento-card span-8 row-span-2" style="background: linear-gradient(135deg, #1a1a1a, #0d0d0d);">
+                    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <span class="text-gold" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;">Latest Drop</span>
+                        <h3 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; line-height: 1;">Notion<br>Life OS</h3>
+                        <p class="text-muted" style="margin-top: 10px; max-width: 80%;">The complete operating system for your brain. Organize tasks, goals, and knowledge in one obsidian interface.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="marketplace.html?category=productivity" class="btn btn-secondary btn-sm">Inspect System</a>
+                        </div>
+                    </div>
+                </article>
 
-            <article class="category-card planning-productivity-card">
-                <h3>Planning &amp; Productivity</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Undated Digital Planner</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Notion Productivity Dashboard</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Habit &amp; Goal Trackers</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>ADHD–Friendly Planner</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Time Blocking Planner</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Productivity Bundles</span></a>
-                </div>
-                <a href="marketplace.html?category=productivity" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
+                <article class="bento-card span-4">
+                    <i class="fa-solid fa-users-line text-gold" style="font-size: 24px; margin-bottom: 15px;"></i>
+                    <h4 class="text-white">Community Nexus</h4>
+                    <p class="text-muted" style="font-size: 12px;">Active Architects</p>
+                    <span class="text-white" style="font-family: var(--font-mega); font-size: 2rem;">1,240</span>
+                </article>
 
-            <article class="category-card printables-homeschool-card">
-                <h3>Printables &amp; Homeschool</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Preschool Learning Bundle</span></a>
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Homeschool Planner Pack</span></a>
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Alphabet &amp; Phonics Worksheets</span></a>
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Maths Mega Bundle</span></a>
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Routine &amp; Behavior Charts</span></a>
-                    <a href="marketplace.html?category=homeschool" class="asset-item"><span>Educational Colouring Bundle</span></a>
-                </div>
-                <a href="marketplace.html?category=homeschool" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
+                <article class="bento-card span-4" style="background: var(--gold-dim);">
+                    <i class="fa-solid fa-bolt text-white" style="font-size: 24px; margin-bottom: 15px;"></i>
+                    <h4 class="text-white">Flash Deals</h4>
+                    <p class="text-white" style="font-size: 12px; opacity: 0.8;">24h Remaining</p>
+                    <a href="marketplace.html" style="margin-top: auto; color: white; text-decoration: none; font-size: 12px; font-weight: bold;">View Offers →</a>
+                </article>
 
-            <article class="category-card colouring-creativity-card">
-                <h3>Colouring &amp; Mindful Creativity</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Stress-Relief Colouring Book</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Mindfulness Colouring Journal</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Aesthetic Niche Colouring Book</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Kids Colouring Mega Bundle</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>30-Day Doodle Challenge</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Affirmation Pages Pack</span></a>
-                </div>
-                <a href="marketplace.html?category=creative" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-
-            <article class="category-card templates-systems-card">
-                <h3>Templates &amp; Systems</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Notion Life OS System</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Client Management System</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Product Creation System</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Social Media System</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Small Business OS</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Budget &amp; Expense Tracker</span></a>
-                </div>
-                <a href="marketplace.html?category=productivity" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-
-            <article class="category-card prompts-content-card">
-                <h3>Prompts, Content &amp; Guides</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>AI Creation Prompt Pack</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>30-day Writing Challenge</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Content Calendar + Prompts</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Step-by-Step Guides</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Creative Art Prompt Pack</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Habit Tracker + Prompt Bundle</span></a>
-                </div>
-                <a href="marketplace.html?category=productivity" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-
-            <article class="category-card audio-focus-card">
-                <h3>Audio &amp; Focus</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Guided Meditation Audio</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Binaural Beats for Focus</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Sleep &amp; Relaxation Audio</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Daily Affirmations Pack</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Lo-Fi Study Music Pack</span></a>
-                    <a href="marketplace.html?category=creative" class="asset-item"><span>Nature &amp; Ambient Sounds</span></a>
-                </div>
-                <a href="marketplace.html?category=creative" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-
-            <article class="category-card code-automation-card">
-                <h3>Code &amp; Automation</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Python Automation Scripts</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Tasker Automation Pack</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Content Automation Scripts</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>AI Content Automation</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Google Sheets Templates</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Data Collection Scripts</span></a>
-                </div>
-                <a href="marketplace.html?category=productivity" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-
-            <article class="category-card resource-libraries-card">
-                <h3>Resource Libraries</h3>
-                <div class="asset-grid">
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>AI Tools Hub</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Digital Product Seller Hub</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Freelancer Resource Hub</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Social Media Hub</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>ADHD Productivity Hub</span></a>
-                    <a href="marketplace.html?category=productivity" class="asset-item"><span>Side Hustle Resource Hub</span></a>
-                </div>
-                <a href="marketplace.html?category=productivity" class="btn btn-primary btn-sm">Discover More</a>
-            </article>
-        </section>
-
-        <section class="bottom-browse-section flex-center" style="flex-direction: column; margin-top: 40px;">
-            <a href="marketplace.html" class="btn btn-primary btn-lg">Browse Full Marketplace</a>
-            <p class="browse-subtext section-subtext" style="margin-top: 15px;">
-                Join thousands of creators simplifying their digital lives.
-            </p>
-        </section>
+            </div>
+        </div>
 
     </main>
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-
-
-        <nav class="side-drawer" id="side-drawer" aria-hidden="true" aria-labelledby="drawer-nav-title">
+    
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
         <div class="drawer-header">
-            <span class="drawer-title" id="drawer-nav-title">Menu</span>
-
-            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
+            <span class="drawer-title">Command Menu</span>
+            <button class="drawer-close-btn" type="button">&times;</button>
         </div>
         <ul class="drawer-list">
-            <li><a href="index.html" class="active-drawer-link">Home</a></li>
+            <li><a href="index.html" style="color: var(--gold-neon);">Home</a></li>
             <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Guides</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li class="drawer-divider">
-                <a href="account.html" class="account-nav-link" id="account-nav-mobile">
-                    <i class="fa-regular fa-circle-user"></i> My Account
-                </a>
-            </li>
+            <li><a href="guides.html">Academy</a></li>
+            <li><a href="community.html">Nexus</a></li>
+            <li><a href="account.html">My Account</a></li>
         </ul>
     </nav>
-    
-        <script src="utilities.js"></script>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+
+    <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
-    
-    <script type="module">
-        import './firebase-config.js';
-        import './auth-ui.js';
-    </script>
-    
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth-ui.js"></script>
     <script src="script.js" defer></script>
-    
     <script src="cart.js" defer></script>
-
-    
-        <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading content">
-        <div class="loading-spinner"></div>
-    </div>
-
 
 </body>
 </html>

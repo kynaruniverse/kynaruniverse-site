@@ -1,56 +1,35 @@
-<div class="top-header">
+<div class="glass-dock">
     
-    <button class="custom-burger" id="mobile-menu-trigger" aria-label="Open menu">
+    <button class="custom-burger" id="mobile-menu-trigger" aria-label="Open Command Menu">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <a href="index.html" class="logo-area">
-        <div class="site-title">
-            <h1 class="main-title">KYNAR</h1>
-            <span class="sub-title">UNIVERSE.CO.UK</span>
-            <div class="stars">★★★★★</div>
-        </div>
+    <a href="index.html" class="brand-text">
+        KYNAR <span style="color: var(--gold-neon); font-size: 0.6em; vertical-align: top;">26</span>
     </a>
 
-    <div class="slogan-header">
-        Digital tools for every corner of your life.
-    </div>
+    <nav class="desktop-nav">
+        <a href="marketplace.html" class="btn btn-secondary btn-sm" style="border:none;">Marketplace</a>
+        <a href="guides.html" class="btn btn-secondary btn-sm" style="border:none;">Academy</a>
+        <a href="community.html" class="btn btn-secondary btn-sm" style="border:none;">Nexus</a>
+    </nav>
 
-    <div class="header-actions-group">
-        <a href="#" class="sign-in-link" id="auth-trigger" role="button">
-            <div class="custom-lock-icon">
-                <img src="assets/lock-icon.svg" alt="Sign In" width="16" height="16">
-            </div>
-        </a>
+    <div class="header-actions-group" style="display: flex; gap: 15px; align-items: center;">
         
-        <button class="btn-cart-icon" id="cart-toggle" aria-label="Open cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-badge" id="cart-count">0</span>
-        </button>
-    </div>
-</div>
-
-<div class="search-subscribe-bar">
-    <div class="search-box">
-        <input type="text" id="global-search-input" placeholder="Search creations...">
-        <button class="search-submit" aria-label="Search">
+        <button class="btn-icon-only" style="background: none; border: none; color: white; cursor: pointer;">
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-    </div>
-    
-    <button class="btn btn-primary btn-subscribe-mobile" onclick="window.location.href='community.html#vip-section'">
-        SUBSCRIBE
-    </button>
-</div>
 
-<nav class="main-nav">
-    <ul>
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="marketplace.html">Marketplace</a></li>
-        <li><a href="guides.html">Guides</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="account.html">Account</a></li>
-    </ul>
-</nav>
+        <a href="#" id="auth-trigger" style="color: white; text-decoration: none;">
+            <i class="fa-regular fa-circle-user" id="header-lock-icon" style="font-size: 1.2rem;"></i>
+        </a>
+        
+        <button id="cart-toggle" style="background: var(--gold-neon); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative;">
+            <i class="fa-solid fa-basket-shopping" style="color: black; font-size: 14px;"></i>
+            <span class="cart-badge" id="cart-count" style="position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 9px; width: 14px; height: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
+        </button>
+    </div>
+
+</div>

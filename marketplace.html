@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore the KYNAR Universe Marketplace - Premium templates, systems, and creative resources.">
     <title>Marketplace | KYNAR Universe</title>
     
     <link rel="stylesheet" href="styles.css">
@@ -13,257 +12,171 @@
 
 <body class="marketplace-page">
     
-    <a href="#main-marketplace-content" class="visually-hidden">Skip to content</a>
-    
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    <div class="loading-overlay" id="global-loading" aria-live="polite" aria-label="Loading">
-        <div class="loading-spinner"></div>
-    </div>
-
     <div class="header-wrapper">
         <div data-include="components/header.html"></div>
     </div>
 
-    <main id="main-marketplace-content" class="main-content-container container shop-layout">
+    <main id="main-marketplace-content" class="container" style="padding-top: 40px; padding-bottom: 100px;">
         
+        <header style="margin-bottom: 40px; display: flex; flex-direction: column; gap: 20px;">
+            <div style="text-align: center;">
+                <h1 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; letter-spacing: 0.1em; line-height: 1;">THE ARMORY</h1>
+                <p class="text-muted" style="margin-top: 5px;">Select your tools.</p>
+            </div>
 
-        <section class="product-feed">
-            <div class="feed-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <span id="result-count" style="font-family: var(--font-glacial); font-weight: bold;">Showing all creations</span>
+            <div class="bento-card" style="padding: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <span id="result-count" class="text-gold" style="font-family: var(--font-tech); font-weight: bold; font-size: 14px;">Initializing Feed...</span>
                 
-                <div class="sort-wrapper">
-                    <button class="mobile-filter-btn" id="mobile-filter-toggle">
-                        <i class="fa-solid fa-filter"></i> Filters
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-secondary btn-sm mobile-filter-btn" id="mobile-filter-toggle">
+                        <i class="fa-solid fa-filter"></i> <span style="font-size: 10px;">REFINE</span>
                     </button>
                     
-                    <select class="sort-dropdown" aria-label="Sort products" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc;">
-                        <option value="newest">Newest First</option>
+                    <select class="sort-dropdown" style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 8px 12px; border-radius: 99px; font-size: 12px;">
+                        <option value="newest">Latest Drop</option>
                         <option value="low-high">Price: Low to High</option>
                         <option value="high-low">Price: High to Low</option>
                     </select>
                 </div>
             </div>
+        </header>
 
-                        <div id="product-container" class="scrollable-product-list">
-                
-                <article class="list-item reveal-on-scroll" data-category="productivity" data-type="template" data-price="12">
-                    <div class="item-visual" style="background: #e6e2d3;">
-                        <div class="tags-overlay">
-                            <span class="tag-badge">Notion</span>
-                        </div>
-                    </div>
-                    
-                    <div class="item-details">
-                        <h4>Ultimate Life Planner</h4>
-                        <p>Complete life OS for Notion</p>
-                    </div>
-
-                    <div class="item-action">
-                        <div class="item-price">£12.00</div>
-                        <button class="btn btn-sm js-add-to-cart" 
-                            data-id="p1" 
-                            data-title="Ultimate Life Planner" 
-                            data-price="12.00">
-                            Add
-                        </button>
-                    </div>
-                </article>
-
-                <article class="list-item" data-category="homeschool" data-type="printable" data-price="5">
-                    <div class="item-visual" style="background: #e3f0e7;">
-                        <div class="tags-overlay">
-                            <span class="tag-badge">PDF</span>
-                            <span class="tag-badge">Kids</span>
-                        </div>
-                    </div>
-
-                    <div class="item-details">
-                        <h4>Preschool Math Bundle</h4>
-                        <p>Fun worksheets for ages 3-5</p>
-                    </div>
-
-                    <div class="item-action">
-                        <div class="item-price">£5.00</div>
-                        <button class="btn btn-sm js-add-to-cart" 
-                            data-id="p2" 
-                            data-title="Preschool Math Bundle" 
-                            data-price="5.00">
-                            Add
-                        </button>
-                    </div>
-                </article>
-                
-                <article class="list-item" data-category="creative" data-type="audio" data-price="0">
-                    <div class="item-visual" style="background: #f7e5f0;">
-                         <div class="tags-overlay">
-                            <span class="tag-badge">Audio</span>
-                            <span class="tag-badge">Free</span>
-                        </div>
-                    </div>
-
-                    <div class="item-details">
-                        <h4>Focus Binaural Beats</h4>
-                        <p>Deep work audio track</p>
-                    </div>
-
-                    <div class="item-action">
-                        <div class="item-price">Free</div>
-                        <button class="btn btn-sm js-add-to-cart" 
-                            data-id="p3" 
-                            data-title="Focus Binaural Beats" 
-                            data-price="0.00">
-                            Get
-                        </button>
-                    </div>
-                </article>
-
-            </div>
-
+        <div id="product-container" class="bento-grid-wrapper">
             
-            <div id="empty-state" style="display: none; text-align: center; padding: 40px;">
-                <p>No products match your filters.</p>
-                <button onclick="document.getElementById('clear-filters').click()" class="btn btn-secondary btn-sm">Clear Filters</button>
-            </div>
-        </section>
+            <article class="bento-card list-item span-8" data-category="productivity" data-type="template" data-price="12">
+                <div class="item-visual" style="height: 200px; background: linear-gradient(45deg, #111, #222); border-radius: var(--radius-sm); margin-bottom: 20px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <i class="fa-solid fa-brain" style="font-size: 80px; color: rgba(255,255,255,0.05);"></i>
+                    <div class="tags-overlay" style="position: absolute; top: 10px; left: 10px; display: flex; gap: 5px;">
+                        <span style="background: var(--gold-neon); color: black; padding: 4px 8px; border-radius: 4px; font-size: 9px; font-weight: bold;">NOTION</span>
+                    </div>
+                </div>
+                
+                <div class="item-details" style="flex: 1;">
+                    <h4 class="text-white" style="font-family: var(--font-mega); font-size: 1.5rem;">Ultimate Life OS</h4>
+                    <p class="text-muted" style="font-size: 13px; margin-top: 5px;">Complete neural architecture for your daily tasks.</p>
+                </div>
+
+                <div class="item-action" style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <div class="item-price text-gold" style="font-weight: bold;">£12.00</div>
+                    <button class="btn btn-primary btn-sm js-add-to-cart" data-id="p1" data-title="Ultimate Life OS" data-price="12.00">
+                        Acquire <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </article>
+
+            <article class="bento-card list-item span-4" data-category="homeschool" data-type="printable" data-price="5">
+                <div class="item-visual" style="height: 150px; background: linear-gradient(135deg, #0f2027, #203a43); border-radius: var(--radius-sm); margin-bottom: 15px; position: relative; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-shapes" style="font-size: 50px; color: rgba(255,255,255,0.05);"></i>
+                    <div class="tags-overlay" style="position: absolute; top: 10px; left: 10px;">
+                        <span style="border: 1px solid rgba(255,255,255,0.2); color: white; padding: 2px 6px; border-radius: 4px; font-size: 9px;">PDF</span>
+                    </div>
+                </div>
+
+                <div class="item-details">
+                    <h4 class="text-white" style="font-family: var(--font-mega);">Preschool Math</h4>
+                    <p class="text-muted" style="font-size: 12px;">Data ingestion for young minds.</p>
+                </div>
+
+                <div class="item-action" style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-price text-white">£5.00</div>
+                    <button class="btn btn-secondary btn-sm js-add-to-cart" data-id="p2" data-title="Preschool Math Bundle" data-price="5.00">
+                        Add
+                    </button>
+                </div>
+            </article>
+            
+            <article class="bento-card list-item span-4" data-category="creative" data-type="audio" data-price="0">
+                <div class="item-visual" style="height: 150px; background: linear-gradient(135deg, #23074d, #cc5333); border-radius: var(--radius-sm); margin-bottom: 15px; position: relative; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-wave-square" style="font-size: 50px; color: rgba(255,255,255,0.1);"></i>
+                    <div class="tags-overlay" style="position: absolute; top: 10px; left: 10px;">
+                         <span style="background: white; color: black; padding: 2px 6px; border-radius: 4px; font-size: 9px;">AUDIO</span>
+                    </div>
+                </div>
+
+                <div class="item-details">
+                    <h4 class="text-white" style="font-family: var(--font-mega);">Deep Focus</h4>
+                    <p class="text-muted" style="font-size: 12px;">Binaural frequency pack.</p>
+                </div>
+
+                <div class="item-action" style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="item-price text-gold">FREE</div>
+                    <button class="btn btn-secondary btn-sm js-add-to-cart" data-id="p3" data-title="Focus Binaural Beats" data-price="0.00">
+                        Download
+                    </button>
+                </div>
+            </article>
+
+        </div>
+
+        <div id="empty-state" style="display: none; text-align: center; padding: 60px;">
+            <i class="fa-solid fa-ghost" style="font-size: 40px; color: #333; margin-bottom: 20px;"></i>
+            <p class="text-muted">No assets found in this sector.</p>
+            <button onclick="document.getElementById('clear-filters-btn').click()" class="btn btn-secondary btn-sm" style="margin-top: 10px;">Reset Sensors</button>
+        </div>
+
     </main>
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
 
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header">
-            <span class="drawer-title">Navigation</span>
-            <button class="drawer-close-btn" type="button" aria-label="Close menu">&times;</button>
+    <div id="filter-modal" class="modern-filter-modal" aria-hidden="true">
+        <div class="filter-backdrop"></div>
+        <div class="filter-panel">
+            <div class="filter-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 class="text-white" style="font-family: var(--font-mega);">Refine Signal</h3>
+                <button class="filter-close-btn" style="background: none; border: none; color: white; font-size: 24px;">&times;</button>
+            </div>
+            
+            <div class="filter-body" style="display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <h4 class="text-muted" style="font-size: 10px; uppercase; letter-spacing: 1px; margin-bottom: 10px;">Category</h4>
+                    <div class="smart-tags-grid" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <label class="smart-tag"><input type="checkbox" class="cat-filter" value="productivity"><span style="color: black;">Productivity</span></label>
+                        <label class="smart-tag"><input type="checkbox" class="cat-filter" value="homeschool"><span style="color: black;">Homeschool</span></label>
+                        <label class="smart-tag"><input type="checkbox" class="cat-filter" value="creative"><span style="color: black;">Creative</span></label>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button id="clear-filters-btn" class="btn btn-secondary btn-full-width">Reset</button>
+                    <button id="apply-filters-btn" class="btn btn-primary btn-full-width">Scan</button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div id="quick-view-modal" class="quick-view-modal" aria-hidden="true">
+        <div class="quick-view-backdrop" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);"></div>
+        <div class="quick-view-panel bento-card" style="width: 90%; max-width: 500px; margin: auto; position: relative; z-index: 1000;">
+            <button class="quick-view-close" style="position: absolute; top: 15px; right: 15px; color: white; background: none; border: none; font-size: 24px;">&times;</button>
+            <div id="qv-image" style="height: 200px; border-radius: var(--radius-sm); margin-bottom: 20px; background: #333;"></div>
+            <span id="qv-category" class="text-gold" style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">CATEGORY</span>
+            <h2 id="qv-title" class="text-white" style="font-family: var(--font-mega); margin: 5px 0;">Title</h2>
+            <p id="qv-description" class="text-muted" style="font-size: 14px;">Description</p>
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <span id="qv-price" class="text-white" style="font-size: 20px; font-weight: bold;">£0.00</span>
+                <button id="qv-add-btn" class="btn btn-primary">Add to Inventory</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
         <ul class="drawer-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html" class="active-drawer-link">Marketplace</a></li>
-            <li><a href="guides.html">Guides</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li class="drawer-divider">
-                <a href="account.html" class="account-nav-link" id="account-nav-mobile">
-                    <i class="fa-regular fa-circle-user"></i> My Account
-                </a>
-            </li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="guides.html">Academy</a></li>
+            <li><a href="community.html">Nexus</a></li>
+            <li><a href="account.html">My Account</a></li>
         </ul>
     </nav>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
-    <script src="auth-ui.js" type="module"></script>
-    
-        <div id="quick-view-modal" class="quick-view-modal" aria-hidden="true">
-        <div class="quick-view-backdrop"></div>
-        
-        <div class="quick-view-panel">
-            <button class="quick-view-close" aria-label="Close">&times;</button>
-            
-            <div class="quick-view-grid">
-                <div class="quick-view-visual" id="qv-image"></div>
-                
-                <div class="quick-view-info">
-                    <span class="qv-tag" id="qv-category">Category</span>
-                    <h2 id="qv-title">Product Title</h2>
-                    <p id="qv-description">Product description goes here.</p>
-                    
-                    <div class="qv-footer">
-                        <div class="qv-price" id="qv-price">£0.00</div>
-                        <button id="qv-add-btn" class="btn btn-primary btn-md">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-        <div id="filter-modal" class="modern-filter-modal" aria-hidden="true">
-        <div class="filter-backdrop"></div>
-        
-        <div class="filter-panel">
-            <div class="modal-handle"></div>
-
-            <div class="filter-header">
-                <h3>Refine Selection</h3>
-                <button class="filter-close-btn" aria-label="Close filters">&times;</button>
-            </div>
-
-            <div class="filter-body">
-                <div class="filter-section">
-                    <h4>Category</h4>
-                    <div class="smart-tags-grid">
-                        <label class="smart-tag">
-                            <input type="checkbox" class="cat-filter" value="productivity">
-                            <span>Productivity</span>
-                        </label>
-                        <label class="smart-tag">
-                            <input type="checkbox" class="cat-filter" value="homeschool">
-                            <span>Homeschool</span>
-                        </label>
-                        <label class="smart-tag">
-                            <input type="checkbox" class="cat-filter" value="creative">
-                            <span>Creative</span>
-                        </label>
-                        <label class="smart-tag">
-                            <input type="checkbox" class="cat-filter" value="audio">
-                            <span>Audio</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <h4>Price Range</h4>
-                    <div class="price-cards-row">
-                        <label class="price-card">
-                            <input type="radio" name="price" value="all" checked>
-                            <span class="pc-content">
-                                <i class="fa-solid fa-infinity"></i>
-                                <span class="pc-label">Any</span>
-                            </span>
-                        </label>
-                        <label class="price-card">
-                            <input type="radio" name="price" value="0">
-                            <span class="pc-content">
-                                <i class="fa-solid fa-gift"></i>
-                                <span class="pc-label">Free</span>
-                            </span>
-                        </label>
-                        <label class="price-card">
-                            <input type="radio" name="price" value="under10">
-                            <span class="pc-content">
-                                <i class="fa-solid fa-coins"></i>
-                                <span class="pc-label">&lt; £10</span>
-                            </span>
-                        </label>
-                        <label class="price-card">
-                            <input type="radio" name="price" value="over10">
-                            <span class="pc-content">
-                                <i class="fa-solid fa-diamond"></i>
-                                <span class="pc-label">£10+</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <h4>Sort Order</h4>
-                    <select class="modern-select sort-dropdown">
-                        <option value="newest">Newest Arrivals</option>
-                        <option value="low-high">Price: Low to High</option>
-                        <option value="high-low">Price: High to Low</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="filter-footer">
-                <button id="clear-filters-btn" class="btn-ghost">Reset</button>
-                <button id="apply-filters-btn" class="btn-solid-gold">Show Results</button>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="auth-ui.js"></script>
 
 </body>
 </html>

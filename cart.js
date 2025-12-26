@@ -16,14 +16,16 @@ const CartSystem = (() => {
     };
 
     // --- DOM ELEMENTS ---
-    const UI = {
-        get badge() { return document.getElementById('cart-count-badge'); },
+        const UI = {
+        // FIXED: Updated ID to match Kynar 2026 Header
+        get badge() { return document.getElementById('cart-count'); },
         get drawer() { return document.getElementById('cart-side-drawer'); },
         get list() { return document.getElementById('cart-items-list'); },
         get total() { return document.getElementById('cart-drawer-total'); },
         get countTitle() { return document.getElementById('cart-drawer-count'); },
         get overlay() { return document.getElementById('drawer-overlay'); }
     };
+
 
     // --- CORE ENGINE ---
     

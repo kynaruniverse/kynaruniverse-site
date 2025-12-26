@@ -1,62 +1,66 @@
-<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="signin-title">
-        <div class="auth-modal-backdrop" aria-hidden="true"></div>
-    <div class="auth-modal-dialog" style="z-index: 2;">
-        <button class="auth-modal-close" aria-label="Close Login Modal" type="button">
-    <span aria-hidden="true">&times;</span>
-</button>
+<div class="auth-modal" id="auth-modal" aria-hidden="true">
+    <div class="auth-modal-backdrop" aria-hidden="true" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);"></div>
+    
+    <div class="auth-modal-dialog bento-card" style="width: 100%; max-width: 400px; padding: 40px; border: 1px solid var(--gold-dim);">
+        <button class="auth-modal-close" type="button" aria-label="Close" style="color: white; top: 20px; right: 20px;">&times;</button>
 
+        <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fa-solid fa-fingerprint text-gold" style="font-size: 40px; margin-bottom: 15px;"></i>
+            <h2 id="signin-title" class="auth-modal-heading text-white" style="font-family: var(--font-mega); font-size: 2rem;">IDENTIFY</h2>
+            <p class="auth-subtitle text-muted">Enter credentials to access the vault.</p>
+        </div>
         
-        <h2 id="signin-title" class="auth-modal-heading">Sign In</h2>
-        <p class="auth-subtitle">Welcome back.</p>
-        
-        <form id="auth-form">
-            <label class="auth-label">
-                <span>Email Address</span>
-                <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email">
-            </label>
-            <label class="auth-label">
-                <span>Password</span>
-                <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password">
-            </label>
+        <form id="auth-form" style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="position: relative;">
+                <i class="fa-solid fa-envelope text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
+                <input type="email" id="auth-email" required placeholder="Command Address" autocomplete="email" style="padding-left: 40px;">
+            </div>
             
-            <button type="submit" class="btn btn-primary btn-md btn-full-width">Login</button>
-            <button type="button" class="btn btn-secondary btn-md btn-full-width mt-10" id="auth-toggle-mode">Need an account? Sign up</button>
+            <div style="position: relative;">
+                <i class="fa-solid fa-key text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
+                <input type="password" id="auth-password" required placeholder="Access Code" autocomplete="current-password" style="padding-left: 40px;">
+            </div>
             
-            <p class="auth-message"></p>
+            <button type="submit" class="btn btn-primary btn-full-width">Authenticate</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="auth-toggle-mode">New User? Initialize ID</button>
+            
+            <p class="auth-message text-gold" style="text-align: center; font-size: 12px; height: 14px;"></p>
         </form>
     </div>
 </div>
 
-<div class="auth-modal" id="signup-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-        <div class="auth-modal-backdrop" aria-hidden="true"></div>
-    <div class="auth-modal-dialog" style="z-index: 2;">
-        <button class="auth-modal-close" aria-label="Close Signup Modal" type="button">
-    <span aria-hidden="true">&times;</span>
-</button>
+<div class="auth-modal" id="signup-modal" aria-hidden="true">
+    <div class="auth-modal-backdrop" aria-hidden="true" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);"></div>
+    
+    <div class="auth-modal-dialog bento-card" style="width: 100%; max-width: 400px; padding: 40px; border: 1px solid var(--gold-neon);">
+        <button class="auth-modal-close" type="button" aria-label="Close" style="color: white; top: 20px; right: 20px;">&times;</button>
 
+        <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fa-solid fa-user-astronaut text-white" style="font-size: 40px; margin-bottom: 15px;"></i>
+            <h2 id="signup-title" class="auth-modal-heading text-white" style="font-family: var(--font-mega); font-size: 2rem;">INITIALIZE</h2>
+            <p class="auth-subtitle text-muted">Create a new identity record.</p>
+        </div>
         
-        <h2 id="signup-title" class="auth-modal-heading">Create Account</h2>
-        <p class="auth-subtitle">Join the community.</p>
-        
-        <form id="signup-form">
-            <label class="auth-label">
-                <span>Display Name</span>
-                <input type="text" id="reg-name" required placeholder="Your Name" autocomplete="name">
-            </label>
-            <label class="auth-label">
-                <span>Email Address</span>
-                <input type="email" id="reg-email" required placeholder="you@example.com" autocomplete="email">
-            </label>
-            <label class="auth-label">
-                <span>Password</span>
-                <input type="password" id="reg-password" required placeholder="Min 6 characters" autocomplete="new-password">
-            </label>
-            
-                        <button type="submit" class="btn btn-primary btn-md btn-full-width">Join Kynar Universe</button>
-            <button type="button" class="btn btn-secondary btn-md btn-full-width mt-10" id="back-to-login" role="button">Already have an account? Login</button>
+        <form id="signup-form" style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="position: relative;">
+                <i class="fa-solid fa-tag text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
+                <input type="text" id="reg-name" required placeholder="Display Name" autocomplete="name" style="padding-left: 40px;">
+            </div>
 
+            <div style="position: relative;">
+                <i class="fa-solid fa-envelope text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
+                <input type="email" id="reg-email" required placeholder="Contact Email" autocomplete="email" style="padding-left: 40px;">
+            </div>
             
-            <p class="auth-message"></p>
+            <div style="position: relative;">
+                <i class="fa-solid fa-shield text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
+                <input type="password" id="reg-password" required placeholder="Set Password (Min 6)" autocomplete="new-password" style="padding-left: 40px;">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full-width">Create Identity</button>
+            <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="back-to-login">Return to Login</button>
+
+            <p class="auth-message text-gold" style="text-align: center; font-size: 12px; height: 14px;"></p>
         </form>
     </div>
 </div>

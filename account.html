@@ -3,288 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account | KYNAR Universe</title>
-    <meta name="description" content="Manage your KYNAR Universe profile and access your digital tools.">
+    <title>Command Center | KYNAR Universe</title>
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 
-        <script type="module">
+    <script type="module">
         import { auth, onAuthStateChanged } from "./firebase-config.js";
-        // Auth check - logic handled in body to allow Skeleton UI
         onAuthStateChanged(auth, (user) => {
             if (!user) window.location.replace("index.html");
         });
     </script>
-
 </head>
 
 <body class="account-page">
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-
+    
     <div class="header-wrapper">
         <div data-include="components/header.html"></div>
     </div>
 
-            <main class="main-content-container">
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
         
-        <div id="account-skeleton" class="account-dashboard">
-            <div class="skeleton-header skeleton"></div>
-            <div class="skeleton-grid">
-                <div class="skeleton-card skeleton" style="height: 120px;"></div>
-                <div class="skeleton-card skeleton" style="height: 120px;"></div>
+        <div id="account-skeleton" style="max-width: 800px; margin: 0 auto;">
+            <div style="height: 100px; background: rgba(255,255,255,0.05); border-radius: 20px; margin-bottom: 20px; animation: pulse 1.5s infinite;"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 20px; animation: pulse 1.5s infinite;"></div>
+                <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 20px; animation: pulse 1.5s infinite;"></div>
             </div>
-            <div class="skeleton-list skeleton" style="height: 300px; margin-top: 20px;"></div>
+            <style>@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.6; } 100% { opacity: 0.3; } }</style>
         </div>
 
-        <section id="account-real-content" class="account-nexus" style="display: none;">
+        <section id="account-real-content" style="display: none;">
             
-            <header class="nexus-header">
-                <div class="nexus-bg"></div> <div class="nexus-profile">
-                    <div class="holo-avatar">
+            <header class="bento-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: linear-gradient(90deg, #1a1a1a, #0d0d0d);">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="width: 60px; height: 60px; background: var(--gold-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mega); font-size: 24px; color: black;">
                         <span id="user-initial">K</span>
-                        <div class="holo-ring"></div>
                     </div>
-                    <div class="nexus-welcome">
-                        <span class="nexus-label">Welcome back,</span>
-                        <h1 id="welcome-name" class="nexus-name">Creator</h1>
-                        <p id="user-meta" class="nexus-meta">Member since 2025</p>
+                    <div>
+                        <span class="text-muted" style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase;">Commander</span>
+                        <h1 id="welcome-name" class="text-white" style="font-family: var(--font-mega); font-size: 2rem; line-height: 1;">User</h1>
                     </div>
                 </div>
-
-                <div class="nexus-actions">
-                    <button id="open-settings" class="btn-glass-icon" title="Settings">
-                        <i class="fa-solid fa-gear"></i>
-                    </button>
-                    <button id="account-sign-out" class="btn-glass-icon danger" title="Sign Out">
-                        <i class="fa-solid fa-power-off"></i>
-                    </button>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button id="open-settings" class="btn btn-secondary btn-sm" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;"><i class="fa-solid fa-gear"></i></button>
+                    <button id="account-sign-out" class="btn btn-secondary btn-sm" style="border-radius: 50%; width: 40px; height: 40px; padding: 0; color: #ff4444; border-color: #ff4444;"><i class="fa-solid fa-power-off"></i></button>
                 </div>
             </header>
 
-            <div class="command-grid">
-                <div class="glass-stat">
-                    <div class="stat-icon"><i class="fa-solid fa-box-open"></i></div>
-                    <div class="stat-info">
-                        <span id="owned-count" class="stat-value">0</span>
-                        <span class="stat-title">Assets Owned</span>
-                    </div>
+            <div class="bento-grid-wrapper" style="margin-bottom: 30px;">
+                <div class="bento-card span-6">
+                    <i class="fa-solid fa-box-open text-gold" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3 id="owned-count" class="text-white" style="font-size: 2rem; font-family: var(--font-mega);">0</h3>
+                    <p class="text-muted">Assets Secured</p>
                 </div>
-
-                <div class="glass-stat">
-                    <div class="stat-icon"><i class="fa-regular fa-heart"></i></div>
-                    <div class="stat-info">
-                        <span id="wishlist-count" class="stat-value">0</span>
-                        <span class="stat-title">Wishlist</span>
-                    </div>
+                <div class="bento-card span-6">
+                    <i class="fa-regular fa-heart text-white" style="font-size: 24px; margin-bottom: 10px;"></i>
+                    <h3 id="wishlist-count" class="text-white" style="font-size: 2rem; font-family: var(--font-mega);">0</h3>
+                    <p class="text-muted">Wishlist Targets</p>
                 </div>
             </div>
 
-            <div class="digital-vault">
-                <div class="vault-header">
-                    <h2><i class="fa-solid fa-server"></i> Digital Vault</h2>
-                    <a href="https://gumroad.com/library" target="_blank" class="vault-link">
-                        Gumroad Library <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
+            <div class="bento-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 class="text-white" style="font-family: var(--font-mega);">Digital Vault</h2>
+                    <a href="https://gumroad.com/library" target="_blank" class="text-gold" style="font-size: 12px; text-decoration: none;">External Link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
-                <div id="purchase-list" class="vault-grid">
-                    <div class="vault-empty">
-                        <i class="fa-solid fa-cloud"></i>
-                        <p>Your vault is empty.</p>
-                        <a href="marketplace.html" class="btn btn-primary btn-sm">Explore Marketplace</a>
+                <div id="purchase-list" style="display: flex; flex-direction: column; gap: 10px;">
                     </div>
-                </div>
             </div>
 
         </section>
+
     </main>
 
-
-
-    <div data-include="components/footer.html"></div>
-    <div data-include="components/auth-modals.html"></div>
-    
     <div class="auth-modal" id="settings-modal" aria-hidden="true">
         <div class="auth-modal-backdrop" id="settings-backdrop"></div>
-        <div class="auth-modal-dialog">
-            <button class="auth-modal-close" id="settings-close">✕</button>
-            <h2 class="auth-modal-heading">Settings</h2>
+        <div class="auth-modal-dialog" style="background: #111; border: 1px solid rgba(255,255,255,0.1);">
+            <button class="auth-modal-close" id="settings-close" style="color: white;">&times;</button>
+            <h2 class="auth-modal-heading text-white">Update ID</h2>
             <form id="settings-form">
-                <label class="auth-label">
-                    <span>Update Display Name</span>
-                    <input id="settings-display-name" type="text" maxlength="40">
-                </label>
-                <button type="submit" class="btn btn-primary btn-md btn-full-width">Save Changes</button>
-                <p id="settings-message" class="auth-message"></p>
+                <input id="settings-display-name" type="text" maxlength="40" style="margin-bottom: 20px;">
+                <button type="submit" class="btn btn-primary btn-full-width">Save Changes</button>
             </form>
         </div>
     </div>
+
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/auth-modals.html"></div>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+    
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
+        <ul class="drawer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="account.html">My Account</a></li>
+        </ul>
+    </nav>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
-
     <script src="auth-ui.js" type="module"></script>
-
+    
     <script type="module">
-        import { auth, db, signOut, onAuthStateChanged } from "./firebase-config.js";
-        // NOTE: Importing specific firestore functions here is fine for page-specific logic
-        import { doc, getDoc, updateDoc } from "./firebase-config.js";
+        import { auth, db, signOut, onAuthStateChanged, doc, getDoc, updateDoc } from "./firebase-config.js";
 
-
-                // Main Logic Wrapper
         function initAccountLogic(user) {
-            console.log("Initializing Account for:", user.displayName);
-
             const welcomeNameEl = document.getElementById('welcome-name');
             const initialEl = document.getElementById('user-initial');
-            const welcomeMetaEl = document.getElementById('user-meta');
-
-            // 1. Initial UI Set from Auth Data
-            let nameToShow = user.displayName || "Friend"; 
+            let nameToShow = user.displayName || "User"; 
             if (welcomeNameEl) welcomeNameEl.textContent = nameToShow;
             if (initialEl) initialEl.textContent = nameToShow.charAt(0).toUpperCase();
 
-            // 2. Load Extra Data from Firestore
-            // Use .then() to wait for data before hiding skeleton
             loadAccountData(user.uid).then(() => {
-                // SWAP: Hide Skeleton -> Show Content
-                const skeleton = document.getElementById('account-skeleton');
-                const content = document.getElementById('account-real-content');
-                
-                if (skeleton) skeleton.style.display = 'none';
-                if (content) {
-                    content.style.display = 'block';
-                    content.classList.add('reveal-on-scroll', 'is-visible'); // Add entry animation
+                document.getElementById('account-skeleton').style.display = 'none';
+                document.getElementById('account-real-content').style.display = 'block';
+            });
+
+            // Settings Logic
+            const settingsModal = document.getElementById('settings-modal');
+            document.getElementById('open-settings')?.addEventListener('click', () => {
+                settingsModal.classList.add('is-open');
+                document.getElementById('settings-display-name').value = user.displayName || "";
+            });
+            const closeSettings = () => settingsModal.classList.remove('is-open');
+            document.getElementById('settings-close')?.addEventListener('click', closeSettings);
+            document.getElementById('settings-backdrop')?.addEventListener('click', closeSettings);
+
+            document.getElementById('settings-form')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newName = document.getElementById('settings-display-name').value.trim();
+                if(newName) {
+                    await updateDoc(doc(db, "users", user.uid), { displayName: newName });
+                    window.location.reload();
                 }
             });
 
-            // 3. Settings Form Logic
-            setupSettingsForm(user);
-            
-            // 4. Local Sign Out
-            const localSignOut = document.getElementById('account-sign-out');
-            if (localSignOut) {
-                localSignOut.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    if(confirm('Sign out of your account?')) {
-                        await signOut(auth);
-                        window.location.href = "index.html";
-                    }
-                });
-            }
+            // Sign Out
+            document.getElementById('account-sign-out')?.addEventListener('click', async () => {
+                if(confirm('Terminate session?')) {
+                    await signOut(auth);
+                    window.location.href = "index.html";
+                }
+            });
         }
 
-
         async function loadAccountData(uid) {
-            const ownedCountEl = document.getElementById('owned-count');
-            const wishlistCountEl = document.getElementById('wishlist-count');
-            const purchaseListEl = document.getElementById('purchase-list');
-            const welcomeMetaEl = document.getElementById('user-meta');
-
             try {
                 const userDoc = await getDoc(doc(db, "users", uid));
                 if (userDoc.exists()) {
                     const data = userDoc.data();
+                    const listEl = document.getElementById('purchase-list');
                     
-                    // Update Name if Firestore is more recent than Auth
-                    if (data.displayName) {
-                        const welcomeNameEl = document.getElementById('welcome-name');
-                        if (welcomeNameEl) welcomeNameEl.textContent = data.displayName;
-                        const initialEl = document.getElementById('user-initial');
-                        if (initialEl) initialEl.textContent = data.displayName.charAt(0).toUpperCase();
-                    }
+                    document.getElementById('owned-count').textContent = (data.purchases || []).length;
+                    document.getElementById('wishlist-count').textContent = (data.wishlist || []).length;
 
-                    // Update Meta
-                    if (data.createdAt && welcomeMetaEl) {
-                         const date = new Date(data.createdAt);
-                         welcomeMetaEl.textContent = `Member since ${date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}`;
-                    }
-
-                    // Update Counts
-                    const purchases = data.purchases || [];
-                    const wishlist = data.wishlist || [];
-                    
-                    if (ownedCountEl) ownedCountEl.textContent = purchases.length;
-                    if (wishlistCountEl) wishlistCountEl.textContent = wishlist.length;
-
-                                        // Update List (The Vault)
-                    if (purchaseListEl) {
-                        if (purchases.length > 0) {
-                            const recent = purchases.slice(-5).reverse(); // Show last 5
-                            purchaseListEl.innerHTML = recent.map(p => `
-                                <div class="vault-item">
-                                    <div class="v-info">
-                                        <h4>${p.title}</h4>
-                                        <div class="v-date">${new Date(p.purchaseDate).toLocaleDateString()}</div>
-                                    </div>
-                                    ${p.downloadUrl ? 
-                                        `<a href="${p.downloadUrl}" target="_blank" class="btn btn-secondary btn-sm">
-                                            <i class="fa-solid fa-download"></i> Access
-                                        </a>` 
-                                        : '<span style="font-size:11px; opacity:0.5;">Processing</span>'}
+                    if (listEl && data.purchases && data.purchases.length > 0) {
+                        listEl.innerHTML = data.purchases.reverse().map(p => `
+                            <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.05);">
+                                <div>
+                                    <h4 class="text-white" style="margin-bottom: 5px;">${p.title}</h4>
+                                    <span class="text-muted" style="font-size: 10px;">${new Date(p.purchaseDate).toLocaleDateString()}</span>
                                 </div>
-                            `).join('');
-                        } else {
-                            purchaseListEl.innerHTML = `
-                                <div class="vault-empty">
-                                    <i class="fa-solid fa-cloud"></i>
-                                    <p>Your digital vault is empty.</p>
-                                    <a href="marketplace.html" class="btn btn-primary btn-sm" style="margin-top:10px;">Explore the Universe</a>
-                                </div>
-                            `;
-                        }
+                                <a href="${p.downloadUrl}" target="_blank" class="btn btn-secondary btn-sm">ACCESS</a>
+                            </div>
+                        `).join('');
+                    } else if (listEl) {
+                        listEl.innerHTML = `<p class="text-muted" style="text-align: center; font-size: 12px;">Vault Empty</p>`;
                     }
-
                 }
-            } catch (error) {
-                console.error("Error loading profile:", error);
-            }
+            } catch (e) { console.error(e); }
         }
 
-        function setupSettingsForm(user) {
-            const settingsModal = document.getElementById('settings-modal');
-            const openBtn = document.getElementById('open-settings');
-            const closeBtn = document.getElementById('settings-close');
-            const form = document.getElementById('settings-form');
-
-            if (openBtn && settingsModal) {
-                openBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    settingsModal.classList.add('is-open');
-                    document.getElementById('settings-display-name').value = user.displayName || "";
-                });
-
-                // Close logic
-                const close = () => settingsModal.classList.remove('is-open');
-                closeBtn.addEventListener('click', close);
-                document.getElementById('settings-backdrop').addEventListener('click', close);
-
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const newName = document.getElementById('settings-display-name').value.trim();
-                    if (!newName) return;
-
-                    try {
-                        // Update Firestore
-                        await updateDoc(doc(db, "users", user.uid), { displayName: newName });
-                        // Simple reload to reflect changes
-                        window.location.reload();
-                    } catch (err) {
-                        console.error(err);
-                        alert("Failed to update name");
-                    }
-                });
-            }
-        }
-
-        // Initialize
         onAuthStateChanged(auth, (user) => {
             if (user) initAccountLogic(user);
         });
     </script>
+
 </body>
 </html>

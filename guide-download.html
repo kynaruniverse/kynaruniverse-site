@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieval Protocol | KYNAR Universe</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <style>
+        .guide-body h2 { font-family: var(--font-mega); color: white; font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .guide-body h2:first-child { margin-top: 0; }
+        .guide-body p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; }
+        .guide-body ul { padding-left: 20px; color: var(--text-muted); margin-bottom: 30px; }
+        .guide-body li { margin-bottom: 10px; }
+        .guide-body strong { color: white; }
+    </style>
+</head>
+
+<body class="guide-detail-page">
+    
+    <div class="header-wrapper">
+        <div data-include="components/header.html"></div>
+    </div>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
+        
+        <header style="text-align: center; margin-bottom: 60px; height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+            <h1 class="mega-text" style="font-size: 15vw; opacity: 0.2; top: 50%; transform: translateY(-50%);">DOWNLOAD</h1>
+            <div class="bento-card" style="padding: 20px 40px; border: 1px solid var(--gold-neon); position: relative; z-index: 2;">
+                <span class="text-gold" style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase;">Protocol v1.0</span>
+                <h2 class="text-white" style="font-family: var(--font-mega); font-size: 2.5rem; line-height: 1; margin: 5px 0 0 0;">Asset Retrieval</h2>
+            </div>
+        </header>
+
+        <div class="bento-grid-wrapper">
+            
+            <aside class="bento-card span-4" style="height: fit-content; position: sticky; top: 100px;">
+                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 20px;">Data Specs</h3>
+                <ul style="list-style: none; padding: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
+                    <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span class="text-muted" style="font-size: 11px; text-transform: uppercase;">Difficulty</span>
+                        <span class="text-white">Level 1 (Basic)</span>
+                    </li>
+                    <li style="display: flex; justify-content: space-between;">
+                        <span class="text-muted" style="font-size: 11px; text-transform: uppercase;">Est. Time</span>
+                        <span class="text-gold">2 Minutes</span>
+                    </li>
+                </ul>
+                <div style="margin-top: 30px;">
+                    <a href="guides.html" class="btn btn-secondary btn-sm btn-full-width">← Return to Library</a>
+                </div>
+            </aside>
+
+            <article class="bento-card span-8 guide-body" style="background: rgba(255,255,255,0.02);">
+                
+                <h2>01. Immediate Retrieval (Email)</h2>
+                <p>Upon successful transaction at the Secure Gateway, our systems automatically dispatch a confirmation signal to your registered email.</p>
+                <ul>
+                    <li>Locate email from <strong>"Kynar Universe"</strong>.</li>
+                    <li>Click the button labeled <strong>"View Content"</strong> or <strong>"Download"</strong>.</li>
+                    <li>This link is secure and generates a unique instance for your device.</li>
+                </ul>
+
+                <h2>02. The Command Center (Account)</h2>
+                <p>If the email signal is delayed, access your permanent vault.</p>
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 16px;">
+                    <ol style="margin: 0; padding-left: 20px; color: var(--text-muted);">
+                        <li style="margin-bottom: 10px;">Navigate to <strong>My Account</strong> via the header dock.</li>
+                        <li style="margin-bottom: 10px;">Locate the <strong>"Digital Vault"</strong> section.</li>
+                        <li>Click <strong>"ACCESS"</strong> next to any file name to initiate download.</li>
+                    </ol>
+                </div>
+
+                <h2>03. File Extraction</h2>
+                <p>Most Kynar assets are compressed into <strong>.ZIP</strong> archives for data integrity.</p>
+                <div class="bento-grid-wrapper" style="grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; grid-column: span 1;">
+                        <h4 class="text-white"><i class="fa-brands fa-apple"></i> macOS</h4>
+                        <p style="font-size: 12px; margin: 5px 0 0 0;">Double-click the .zip file. The system will auto-extract a folder.</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; grid-column: span 1;">
+                        <h4 class="text-white"><i class="fa-brands fa-windows"></i> Windows</h4>
+                        <p style="font-size: 12px; margin: 5px 0 0 0;">Right-click .zip file > Select "Extract All" > Choose destination.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: right;">
+                    <a href="guide-troubleshooting.html" class="btn btn-primary">Next: Troubleshooting <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+            </article>
+
+        </div>
+    </main>
+
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/auth-modals.html"></div>
+    
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
+        <ul class="drawer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="guides.html">Academy</a></li>
+            <li><a href="account.html">My Account</a></li>
+        </ul>
+    </nav>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+
+    <script src="utilities.js"></script>
+    <script src="loading-state.js"></script>
+    <script src="script.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script type="module" src="auth-ui.js"></script>
+
+</body>
+</html>

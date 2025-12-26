@@ -3,145 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout | KYNAR Universe</title>
+    <title>Secure Gateway | KYNAR Universe</title>
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    
-    <style>
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .checkout-form-panel {
-            background: #fdfbf7;
-            padding: 30px;
-            border-radius: var(--radius-card);
-            border: 1px solid rgba(0,0,0,0.08);
-        }
-        
-        .order-summary-panel {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow-lg);
-            height: fit-content;
-            border-top: 4px solid var(--color-main-gold);
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: rgba(0,0,0,0.7);
-        }
-
-        .summary-total {
-            border-top: 2px solid #eee;
-            margin-top: 20px;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            font: bold 20px var(--font-display);
-            color: var(--color-dark-text);
-        }
-
-        @media (min-width: 900px) {
-            .checkout-grid { grid-template-columns: 1.5fr 1fr; }
-            .order-summary-panel { position: sticky; top: 120px; }
-        }
-    </style>
 </head>
 
 <body class="checkout-page">
     
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    <div class="loading-overlay" id="global-loading"><div class="loading-spinner"></div></div>
-
     <div class="header-wrapper">
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="main-content-container container">
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
         
-        <header class="section-spacing-top" style="text-align: center; margin-bottom: 40px;">
-            <h1 class="slogan-title">Secure Checkout</h1>
-            <p class="section-subtext">Complete your order to access your digital tools instantly.</p>
+        <header style="text-align: center; margin-bottom: 50px;">
+            <i class="fa-solid fa-shield-halved text-gold" style="font-size: 40px; margin-bottom: 20px;"></i>
+            <h1 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; line-height: 1;">SECURE GATEWAY</h1>
+            <p class="text-muted">Encrypted Transaction Channel</p>
         </header>
 
-        <form id="checkout-form" class="checkout-grid" style="display: none;"> <section class="checkout-form-panel">
-                <h2 class="panel-heading"><i class="fa-regular fa-id-card"></i> Customer Details</h2>
+        <form id="checkout-form" class="bento-grid-wrapper" style="display: none;">
+            
+            <section class="bento-card span-7" style="border-top: 2px solid var(--gold-neon);">
+                <h2 class="text-white" style="margin-bottom: 20px; font-family: var(--font-mega);">Identity Protocol</h2>
                 
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label class="auth-label">
-                        <span>Full Name</span>
-                        <input type="text" name="name" id="checkout-name" required placeholder="Jane Doe">
-                    </label>
+                <div style="margin-bottom: 20px;">
+                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Full Name</label>
+                    <input type="text" name="name" id="checkout-name" required placeholder="Ex: Alex Cipher">
                 </div>
 
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label class="auth-label">
-                        <span>Email Address</span>
-                        <input type="email" name="email" id="checkout-email" required placeholder="jane@example.com">
-                    </label>
-                    <p style="font-size: 11px; color: #666; margin-top: 5px;">
-                        <i class="fa-solid fa-lock"></i> Your files will be sent to this email address.
+                <div style="margin-bottom: 20px;">
+                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Transmission Email</label>
+                    <input type="email" name="email" id="checkout-email" required placeholder="Ex: alex@domain.com">
+                    <p class="text-gold" style="font-size: 11px; margin-top: 5px;">
+                        <i class="fa-solid fa-lock"></i> Assets will be linked to this ID.
                     </p>
                 </div>
 
-                <div class="form-group">
-                    <label class="auth-label">
-                        <span>Order Notes (Optional)</span>
-                        <textarea name="message" rows="3" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.2);"></textarea>
-                    </label>
+                <div>
+                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Flight Notes (Optional)</label>
+                    <textarea name="message" rows="3" placeholder="Special instructions..."></textarea>
                 </div>
             </section>
 
-            <aside class="order-summary-panel">
-                <h2 class="panel-heading">Order Summary</h2>
+            <aside class="bento-card span-5" style="background: rgba(20,20,20,0.8);">
+                <h2 class="text-white" style="margin-bottom: 20px; font-family: var(--font-mega);">Manifest</h2>
                 
-                <div id="checkout-items-list">
+                <div id="checkout-items-list" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px;">
                     </div>
 
-                <div class="summary-total">
-                    <span>Total</span>
-                    <span id="checkout-total-display">£0.00</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <span class="text-muted">TOTAL</span>
+                    <span id="checkout-total-display" class="text-gold" style="font-size: 24px; font-weight: bold; font-family: var(--font-tech);">£0.00</span>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-full-width" style="margin-top: 25px;">
-                    Complete Order <i class="fa-solid fa-arrow-right"></i>
+                <button type="submit" class="btn btn-primary btn-full-width" style="width: 100%;">
+                    Initialize Transfer <i class="fa-solid fa-bolt"></i>
                 </button>
                 
-                <p style="text-align: center; font-size: 11px; color: #999; margin-top: 15px;">
-                    By completing this order, you agree to our Terms of Service.
-                </p>
+                <div style="text-align: center; margin-top: 20px; opacity: 0.5;">
+                    <i class="fa-brands fa-cc-stripe text-white" style="font-size: 24px;"></i>
+                </div>
             </aside>
 
         </form>
 
         <div id="checkout-empty" style="display: none; text-align: center; padding: 60px;">
-            <i class="fa-solid fa-basket-shopping" style="font-size: 50px; color: #ccc; margin-bottom: 20px;"></i>
-            <h2>Your cart is empty</h2>
-            <p style="margin-bottom: 30px;">Looks like you haven't added any tools yet.</p>
-            <a href="marketplace.html" class="btn btn-primary btn-md">Browse Marketplace</a>
+            <i class="fa-solid fa-box-open text-muted" style="font-size: 50px; margin-bottom: 20px;"></i>
+            <h2 class="text-white">Manifest Empty</h2>
+            <a href="marketplace.html" class="btn btn-secondary" style="margin-top: 20px;">Return to Armory</a>
         </div>
 
     </main>
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    <nav class="side-drawer" id="side-drawer"><div class="drawer-header"><span class="drawer-title">Menu</span></div></nav>
+    
+    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
+        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
+        <ul class="drawer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="guides.html">Academy</a></li>
+            <li><a href="account.html">My Account</a></li>
+        </ul>
+    </nav>
+    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
-    <script src="checkout.js" defer></script> <script type="module" src="auth-ui.js"></script>
+    <script src="checkout.js" defer></script>
+    <script type="module" src="auth-ui.js"></script>
 
 </body>
 </html>
