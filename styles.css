@@ -4,40 +4,52 @@
    Architect: KynarCode v3
 */
 
-/*--- 1. MATERIAL VARIABLES ---*/
 :root {
-    /* PALETTE: Stone & Ink */
-    --bg-paper: #F4F4F0;        /* Warm, physical stone paper */
-    --bg-stone: #E6E6E2;        /* Grounded elements */
-    --bg-stone-deep: #DCDCD9;   /* Interaction states */
+    /* PALETTE: Alabaster & Iron (Lighter, Warmer) */
+    --bg-paper: #FDFDFB;        /* Near-white, like fresh paper */
+    --bg-stone: #F2F2F0;        /* Very pale grey/beige (Limestone) */
+    --bg-stone-deep: #EAEAE6;   /* Interaction state */
     
-    --ink-primary: #181816;     /* Near-black, soft */
-    --ink-secondary: #5F5F5B;   /* Reading grey */
-    --ink-faint: #A4A4A0;       /* Meta data */
+    --ink-primary: #222220;     /* Softened Charcoal (Less harsh than black) */
+    --ink-secondary: #666660;   /* Warm Grey */
+    --ink-faint: #B0B0A8;       /* Meta data */
     
-    --glass-surface: rgba(244, 244, 240, 0.9); /* For sticky nav only */
-    --focus-line: #181816;
+    --glass-surface: rgba(253, 253, 251, 0.95); /* Brighter sticky nav */
+    --focus-line: #222220;
 
     /* DIMENSIONS: Directional Rhythm */
-    --rhythm-pause: 18vh;       /* Major section break */
-    --rhythm-flow: 8vh;         /* Minor section break */
-    --rhythm-breath: 1.5rem;    /* Content spacing */
-    --gutter: clamp(1.5rem, 4vw, 3rem); /* Page margins */
+    --rhythm-pause: 18vh;       
+    --rhythm-flow: 8vh;         
+    --rhythm-breath: 1.5rem;    
+    --gutter: clamp(1.5rem, 4vw, 3rem); 
 
     /* TYPOGRAPHY: Ink Hierarchy */
-    --font-display: 'Bantayog', serif; /* The Voice */
-    --font-body: 'Glacial Indifference', sans-serif; /* The Whisper */
+    --font-display: 'Bantayog', serif; 
+    --font-body: 'Glacial Indifference', sans-serif; 
     
-    --fs-display: clamp(3rem, 8vw, 6.5rem); /* Massive anchor text */
+    --fs-display: clamp(3rem, 8vw, 6.5rem); 
     --fs-heading: clamp(1.5rem, 3vw, 2.5rem);
     --fs-body: 1.05rem;
     --fs-meta: 0.85rem;
 
     /* PHYSICS: Slow & Heavy */
-    --ease-forge: cubic-bezier(0.2, 0.0, 0.2, 1); /* Decisive, no bounce */
-    --radius-stone: 2px; /* Nearly sharp, feels crafted */
+    --ease-forge: cubic-bezier(0.2, 0.0, 0.2, 1); 
+    --radius-stone: 4px; /* Slightly softer corners for a friendlier feel */
     --radius-soft: 8px;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Mode: Keep this dark, but warmer */
+        --bg-paper: #191918;
+        --bg-stone: #242422;
+        --bg-stone-deep: #30302E;
+        --ink-primary: #EAEAE6;
+        --ink-secondary: #999995;
+        --glass-surface: rgba(25, 25, 24, 0.9);
+    }
+}
+
 
 @media (prefers-color-scheme: dark) {
     :root {
