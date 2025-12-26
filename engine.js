@@ -5,57 +5,46 @@
 
 const ForgeEngine = (() => {
 
-    // --- 1. MOCK INVENTORY (Artifacts) ---
+        // --- 1. REAL INVENTORY (Artifacts) ---
     const ARTIFACTS = [
         {
             id: 'art_001',
-            title: 'Deep Focus OS',
-            collection: 'productivity',
-            price: 24.00,
-            image: null,
-            tag: 'Notion System'
+            title: 'Kynar Daily Planner',
+            collection: 'productivity', // Matches filter
+            price: 0.00, // Set your real price
+            image: 'images/1/planner-cover.webp', // You need to upload a cover image here!
+            tag: 'PDF Planner',
+            downloadLink: 'assets/kynar-daily-planner.pdf' // Internal reference
         },
         {
             id: 'art_002',
-            title: 'Morning Rituals',
-            collection: 'productivity',
-            price: 12.00,
-            image: null,
-            tag: 'Planner PDF'
+            title: '10 AI Prompts',
+            collection: 'automation',
+            price: 0.00, 
+            image: 'images/1/ai-cover.webp', 
+            tag: 'Prompt Pack',
+            downloadLink: 'assets/10-ai-prompts.pdf'
         },
         {
             id: 'art_003',
-            title: 'Nature Study Pack',
-            collection: 'homeschool',
-            price: 8.50,
-            image: null,
-            tag: 'Printable'
+            title: 'Python Cheatsheet',
+            collection: 'automation', // or 'learning'
+            price: 0.00,
+            image: 'images/1/python-cover.webp',
+            tag: 'Reference Guide',
+            downloadLink: 'assets/python-basic-cheatsheet.pdf'
         },
         {
             id: 'art_004',
-            title: 'Quiet Python Scripts',
-            collection: 'automation',
-            price: 30.00,
-            image: null,
-            tag: 'Automation'
-        },
-        {
-            id: 'art_005',
-            title: 'Mindful Colouring I',
+            title: 'Worldbuilding Checklist',
             collection: 'creative',
-            price: 10.00,
-            image: null,
-            tag: 'Digital Book'
-        },
-        {
-            id: 'art_006',
-            title: 'The Stoic Journal',
-            collection: 'creative',
-            price: 15.00,
-            image: null,
-            tag: 'Interactive PDF'
+            price: 0.00,
+            image: 'images/1/world-cover.webp',
+            tag: 'Creative Tool',
+            downloadLink: 'assets/worldbuilding-checklist.pdf'
         }
     ];
+
 
     const DOM = {
         grid: document.getElementById('artifact-grid'),
