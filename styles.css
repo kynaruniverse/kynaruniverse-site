@@ -4,112 +4,61 @@
    Architect: KynarForge Pro
 */
 
-/* =========================================
-   1. CORE FOUNDATION
-   ========================================= */
-
-@font-face {
-    font-family: 'Bantayog';
-    src: url('fonts/Bantayog.woff2') format('woff2');
-    font-weight: 400 900; font-style: normal; font-display: swap;
-}
-
-@font-face {
-    font-family: 'Glacial Indifference';
-    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
+/* KYNAR 2026 - MOBILE SPATIAL OVERHAUL 
+   Focus: Depth, White Space, and Tactile Layering
+*/
 
 :root {
-    /* Platinum Palette (Paper & Ink) */
-    --bg-body: #ffffff;
-    --bg-surface: #f2f2f2;
-    --bg-card: #ffffff;
+    /* Increased breathing room for mobile */
+    --mobile-padding: 24px;
+    --section-gap: 80px;
     
-    /* Typography */
-    --text-main: #0a0a0a;
-    --text-muted: #666666;
-    
-    /* Accents */
-    --gold-neon: #D4AF37;
-    --gold-faint: rgba(212, 175, 55, 0.1);
-    
-    /* Elastic Metrics */
-    --overlap-offset: 60px; /* How much of the card 'peeks' out */
-    --card-radius: 24px;
-    --shadow-stack: 0 -10px 30px rgba(0,0,0,0.05);
-    --shadow-active: 0 20px 50px rgba(0,0,0,0.1);
-    
-    /* Layering */
-    --z-header: 1000;
-    --z-stack-base: 10;
-    --z-overlay: 2000;
+    /* Depth Tokens */
+    --shadow-tactile: 0 10px 40px rgba(0,0,0,0.08);
+    --shadow-lift: 0 20px 60px rgba(0,0,0,0.12);
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: var(--bg-body);
-    /* Premium Paper Texture */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-    color: var(--text-main);
-    font-family: 'Glacial Indifference', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
+    /* Subtle SVG Noise remains, but we add a soft gradient for depth */
+    background: radial-gradient(circle at top, #ffffff 0%, #f9f9f9 100%);
+    padding-bottom: 40px;
 }
 
-/* =========================================
-   2. THE ELASTIC STACK ENGINE
-   ========================================= */
+.container {
+    padding-inline: var(--mobile-padding);
+}
 
-/* The Container that holds the 'Deck' */
-.product-stack-container {
+/* Fix for "Squished" Hero Typography */
+.mega-hero-container {
+    padding: 100px 0 60px;
+    min-height: 85vh; /* Ensure hero takes up meaningful vertical space */
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin-top: 40px;
-    perspective: 1000px;
+    justify-content: center;
 }
 
-/* Individual Card Styling */
-.stack-card {
-    position: sticky;
-    top: 100px; /* Sticks to header area */
-    background: var(--bg-card);
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: var(--card-radius);
-    padding: 30px;
-    margin-bottom: -75vh; /* This creates the 80% overlap */
-    height: 85vh;
-    box-shadow: var(--shadow-stack);
-    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
-    display: flex;
-    flex-direction: column;
+.mega-text {
+    /* Larger, thinner, and further back to create depth */
+    font-size: clamp(80px, 25vw, 200px);
+    opacity: 0.03;
+    -webkit-text-stroke: 1px #000;
+    margin-bottom: -40px;
 }
 
-/* The 'Peek' Header */
-.stack-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: var(--overlap-offset);
-    cursor: pointer;
+/* The "Bento-Elastic" Hybrid Card */
+.bento-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-tactile);
+    padding: 32px; /* Increased internal padding */
+    margin-bottom: 24px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.stack-card-header h3 {
-    font-family: 'Bantayog', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 1.2rem;
+.bento-card:active {
+    transform: scale(0.98); /* Physical haptic feedback */
 }
 
-/* Expanded State (Via JS) */
-.stack-card.is-expanded {
-    transform: translateY(-20px) scale(1.02);
-    box-shadow: var(--shadow-active);
-    z-index: 500 !important;
-    margin-bottom: 20px; /* Breaks the overlap to show full content */
-}
 
 /* =========================================
    3. UI COMPONENTS (TACTILE)
@@ -192,4 +141,22 @@ body {
 @keyframes springUp {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
+}
+
+.product-stack-container {
+    margin-top: 40px;
+    padding-bottom: 50vh; /* Adds enough scroll room for the cards to 'unfold' */
+}
+
+.stack-card {
+    top: 120px; /* More space from the top header */
+    margin-bottom: -65vh; /* Adjusted overlap to show more of the card below */
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.02);
+}
+
+.stack-card.is-expanded {
+    margin-bottom: 30px; /* Full separation when viewing */
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lift);
 }
