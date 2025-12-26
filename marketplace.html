@@ -3,113 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace | KYNAR Universe</title>
+    <meta name="description" content="Kynar Universe Archive: Curated digital tools.">
+    <title>The Archive / Kynar Universe</title>
     
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
+<body>
 
-<body class="marketplace-page">
-    
-    <div class="header-wrapper">
-        <div data-include="components/header.html"></div>
-    </div>
+    <nav class="nav-forge">
+        <a href="index.html" class="logo-text">KYNAR UNIVERSE</a>
+        <div style="display: flex; gap: 2rem;">
+            <a href="account.html" class="ink-link" style="font-size: 0.85rem;">Account</a>
+        </div>
+    </nav>
 
-    <main class="container">
+    <main class="forge-container">
         
-        <header style="padding: 60px 0 40px; text-align: center;">
-            <h1 style="font-family: 'Bantayog', sans-serif; font-size: 3rem; line-height: 1;">THE ARMORY</h1>
-            <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
-                Pull down to search. Tap a card to inspect.
-            </p>
-        </header>
-
-        <div id="product-container" class="product-stack-container">
+        <section class="forge-section" style="padding-bottom: 2rem;">
+            <h1 class="text-display" style="font-size: clamp(2.5rem, 5vw, 4rem);">The Archive</h1>
             
-            <article class="stack-card" data-category="productivity" style="z-index: 10;">
-                <div class="stack-card-header">
-                    <h3>Ultimate Life OS</h3>
-                    <span class="text-gold">£12.00</span>
-                </div>
+            <div style="margin-top: var(--rhythm-breath); max-width: 800px;">
                 
-                <div class="stack-card-body">
-                    <div class="visual-preview" style="background: var(--bg-surface); height: 200px; border-radius: 12px; margin: 20px 0; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-brain" style="font-size: 60px; opacity: 0.1;"></i>
-                    </div>
-                    <p class="text-muted">A complete neural architecture for your daily life. Includes habit tracking, project management, and a second brain module.</p>
-                    
-                    <div style="margin-top: 30px; display: flex; gap: 15px;">
-                        <button class="btn btn-primary js-add-to-cart" data-id="p1" data-title="Ultimate Life OS" data-price="12.00">
-                            ACQUIRE ASSET
-                        </button>
-                    </div>
+                <div style="position: relative; margin-bottom: 2rem;">
+                    <input type="text" id="search-input" placeholder="Search the collection..." 
+                           style="width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--ink-secondary); 
+                                  padding: 1rem 0; font-family: var(--font-display); font-size: 1.5rem; 
+                                  color: var(--ink-primary); outline: none; border-radius: 0;">
                 </div>
-            </article>
 
-            <article class="stack-card" data-category="academy" style="z-index: 9;">
-                <div class="stack-card-header">
-                    <h3>Deep Focus Audio</h3>
-                    <span class="text-gold">FREE</span>
+                <div id="filter-container" style="display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none;">
+                    <button class="ink-link" data-filter="all" style="background:none; border:none; cursor:pointer; color: var(--ink-primary);">All</button>
+                    <button class="ink-link" data-filter="productivity" style="background:none; border:none; cursor:pointer; color: var(--ink-secondary);">Planning</button>
+                    <button class="ink-link" data-filter="homeschool" style="background:none; border:none; cursor:pointer; color: var(--ink-secondary);">Learning</button>
+                    <button class="ink-link" data-filter="creative" style="background:none; border:none; cursor:pointer; color: var(--ink-secondary);">Creativity</button>
+                    <button class="ink-link" data-filter="automation" style="background:none; border:none; cursor:pointer; color: var(--ink-secondary);">Automation</button>
                 </div>
-                
-                <div class="stack-card-body">
-                    <div class="visual-preview" style="background: var(--bg-surface); height: 200px; border-radius: 12px; margin: 20px 0; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-wave-square" style="font-size: 60px; opacity: 0.1;"></i>
-                    </div>
-                    <p class="text-muted">Binaural frequencies designed to pull your brain into Flow State. Optimized for technical work and long sessions.</p>
-                    
-                    <div style="margin-top: 30px;">
-                        <button class="btn btn-primary js-add-to-cart" data-id="p2" data-title="Deep Focus Audio" data-price="0.00">
-                            INITIALIZE DOWNLOAD
-                        </button>
-                    </div>
-                </div>
-            </article>
+            </div>
+        </section>
 
-            <article class="stack-card" data-category="systems" style="z-index: 8;">
-                <div class="stack-card-header">
-                    <h3>System Verifier</h3>
-                    <span class="text-gold">£5.00</span>
-                </div>
-                
-                <div class="stack-card-body">
-                    <div class="visual-preview" style="background: var(--bg-surface); height: 200px; border-radius: 12px; margin: 20px 0; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-shield-halved" style="font-size: 60px; opacity: 0.1;"></i>
-                    </div>
-                    <p class="text-muted">A checklist and audit tool for digital hygiene. Ensure your file structures and backups are mission-ready.</p>
-                    
-                    <div style="margin-top: 30px;">
-                        <button class="btn btn-primary js-add-to-cart" data-id="p3" data-title="System Verifier" data-price="5.00">
-                            SECURE ACCESS
-                        </button>
-                    </div>
-                </div>
-            </article>
+        <section id="products-container" class="stone-grid" style="min-height: 50vh;">
+            
+            <div class="stone-block" style="opacity: 0.5;">
+                <h3 class="text-heading">Loading Archive...</h3>
+            </div>
 
-        </div>
+        </section>
 
-        <div id="empty-state" style="display: none; text-align: center; padding: 100px 20px;">
-            <p class="text-muted">Database sector empty.</p>
-        </div>
+        <footer class="forge-section" style="border-top: 1px solid rgba(0,0,0,0.05); margin-top: var(--rhythm-pause);">
+            <p class="stone-meta">© 2025 Quiet Forge Edition</p>
+        </footer>
 
     </main>
 
-    <div data-include="components/footer.html"></div>
-    <div data-include="components/auth-modals.html"></div>
-
-    <div id="elastic-search-overlay" class="auth-modal">
-        <div class="search-panel" style="width: 100%; max-width: 600px; padding: 40px;">
-            <input type="search" id="global-search-input" placeholder="SEARCH DATABASE..." style="font-size: 2rem; border-bottom: 2px solid var(--gold-neon) !important; text-align: center;">
-            <p style="text-align: center; margin-top: 20px; font-size: 10px; letter-spacing: 2px;">ESC TO CLOSE</p>
-        </div>
-    </div>
-
     <script src="utilities.js"></script>
-    <script src="loading-state.js"></script>
-    <script src="script.js" defer></script>
-    <script src="cart.js" defer></script>
-    <script type="module" src="auth-ui.js"></script>
-
+    <script type="module">
+        import './firebase-config.js';
+        import './auth-ui.js';
+    </script>
+    <script src="script.js"></script>
+    
+    <script>
+        const filters = document.querySelectorAll('#filter-container button');
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Visual Reset
+                filters.forEach(b => {
+                    b.style.color = 'var(--ink-secondary)';
+                    b.classList.remove('active-filter');
+                });
+                // Visual Set
+                btn.style.color = 'var(--ink-primary)';
+                btn.classList.add('active-filter');
+                
+                // Actual Filtering is handled by script.js usually, 
+                // listening for 'click' on these elements.
+            });
+        });
+    </script>
 </body>
 </html>

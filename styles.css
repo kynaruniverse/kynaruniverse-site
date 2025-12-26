@@ -1,162 +1,231 @@
 /*
-   KYNAR 2026 - THE ELASTIC STACK (Platinum Plus)
-   Style: Tactile Luxury / Editorial / Physics-Based
-   Architect: KynarForge Pro
+   QUIET FORGE SYSTEM v1.0
+   Status: Active // Directive: Calm & Originality
+   Architect: KynarCode v3
 */
 
-/* KYNAR 2026 - MOBILE SPATIAL OVERHAUL 
-   Focus: Depth, White Space, and Tactile Layering
-*/
-
+/*--- 1. MATERIAL VARIABLES ---*/
 :root {
-    /* Increased breathing room for mobile */
-    --mobile-padding: 24px;
-    --section-gap: 80px;
+    /* PALETTE: Stone & Ink */
+    --bg-paper: #F4F4F0;        /* Warm, physical stone paper */
+    --bg-stone: #E6E6E2;        /* Grounded elements */
+    --bg-stone-deep: #DCDCD9;   /* Interaction states */
     
-    /* Depth Tokens */
-    --shadow-tactile: 0 10px 40px rgba(0,0,0,0.08);
-    --shadow-lift: 0 20px 60px rgba(0,0,0,0.12);
+    --ink-primary: #181816;     /* Near-black, soft */
+    --ink-secondary: #5F5F5B;   /* Reading grey */
+    --ink-faint: #A4A4A0;       /* Meta data */
+    
+    --glass-surface: rgba(244, 244, 240, 0.9); /* For sticky nav only */
+    --focus-line: #181816;
+
+    /* DIMENSIONS: Directional Rhythm */
+    --rhythm-pause: 18vh;       /* Major section break */
+    --rhythm-flow: 8vh;         /* Minor section break */
+    --rhythm-breath: 1.5rem;    /* Content spacing */
+    --gutter: clamp(1.5rem, 4vw, 3rem); /* Page margins */
+
+    /* TYPOGRAPHY: Ink Hierarchy */
+    --font-display: 'Bantayog', serif; /* The Voice */
+    --font-body: 'Glacial Indifference', sans-serif; /* The Whisper */
+    
+    --fs-display: clamp(3rem, 8vw, 6.5rem); /* Massive anchor text */
+    --fs-heading: clamp(1.5rem, 3vw, 2.5rem);
+    --fs-body: 1.05rem;
+    --fs-meta: 0.85rem;
+
+    /* PHYSICS: Slow & Heavy */
+    --ease-forge: cubic-bezier(0.2, 0.0, 0.2, 1); /* Decisive, no bounce */
+    --radius-stone: 2px; /* Nearly sharp, feels crafted */
+    --radius-soft: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-paper: #141413;
+        --bg-stone: #1E1E1C;
+        --bg-stone-deep: #2A2A28;
+        --ink-primary: #EAEAE6;
+        --ink-secondary: #999995;
+        --glass-surface: rgba(20, 20, 19, 0.9);
+        --focus-line: #EAEAE6;
+    }
+}
+
+/*--- 2. RESET & BASE ---*/
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { 
+    font-size: 100%; 
+    scroll-behavior: smooth; 
+    height: 100%;
 }
 
 body {
-    /* Subtle SVG Noise remains, but we add a soft gradient for depth */
-    background: radial-gradient(circle at top, #ffffff 0%, #f9f9f9 100%);
-    padding-bottom: 40px;
+    background-color: var(--bg-paper);
+    color: var(--ink-primary);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
 }
 
-.container {
-    padding-inline: var(--mobile-padding);
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; cursor: pointer; }
+
+/* Font Loading */
+@font-face {
+    font-family: 'Bantayog';
+    src: url('fonts/Bantayog.woff2') format('woff2');
+    font-weight: 400 900; font-display: block;
+}
+@font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2');
+    font-weight: normal; font-display: swap;
 }
 
-/* Fix for "Squished" Hero Typography */
-.mega-hero-container {
-    padding: 100px 0 60px;
-    min-height: 85vh; /* Ensure hero takes up meaningful vertical space */
+/*--- 3. LAYOUT: Directional Whitespace ---*/
+.forge-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+.forge-section {
+    padding-top: var(--rhythm-pause);
+    padding-bottom: var(--rhythm-flow);
+    /* Asymmetric spacing: Top heavy to signal arrival */
+}
+
+/*--- 4. TYPOGRAPHY: Ink Material ---*/
+.text-display {
+    font-family: var(--font-display);
+    font-size: var(--fs-display);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink-primary);
+    margin-bottom: var(--rhythm-breath);
+}
+
+.text-heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-heading);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.text-body {
+    color: var(--ink-secondary);
+    max-width: 45ch; /* Optimal reading length */
+    margin-bottom: var(--rhythm-breath);
+}
+
+/*--- 5. COMPONENT: The Ink Link (Nav & Actions) ---*/
+.ink-link {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.ink-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 1px;
+    background: var(--ink-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-forge);
+}
+
+.ink-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/*--- 6. COMPONENT: Stone Cards (The New Product Display) ---*/
+/* No borders. Mass only. */
+.stone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--rhythm-breath); /* Tight gap for grounded feel */
+    align-items: start;
+}
+
+.stone-block {
+    background: var(--bg-stone);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border-radius: var(--radius-stone);
+    transition: background 0.4s var(--ease-forge), transform 0.4s var(--ease-forge);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    height: 100%;
+    min-height: 320px;
 }
 
-.mega-text {
-    /* Larger, thinner, and further back to create depth */
-    font-size: clamp(80px, 25vw, 200px);
-    opacity: 0.03;
-    -webkit-text-stroke: 1px #000;
-    margin-bottom: -40px;
+.stone-block:hover {
+    background: var(--bg-stone-deep);
+    transform: translateY(-4px); /* Subtle lift */
 }
 
-/* The "Bento-Elastic" Hybrid Card */
-.bento-card {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.03);
-    box-shadow: var(--shadow-tactile);
-    padding: 32px; /* Increased internal padding */
-    margin-bottom: 24px;
-    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+.stone-block h3 {
+    margin-top: auto; /* Push title to bottom (Anchoring) */
+    font-family: var(--font-display);
+    font-size: 1.75rem;
 }
 
-.bento-card:active {
-    transform: scale(0.98); /* Physical haptic feedback */
+.stone-meta {
+    font-size: var(--fs-meta);
+    color: var(--ink-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
 }
 
-
-/* =========================================
-   3. UI COMPONENTS (TACTILE)
-   ========================================= */
-
-.btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 14px 32px; border-radius: 99px;
-    font-family: 'Bantayog', sans-serif; text-transform: uppercase;
-    font-size: 11px; font-weight: bold; letter-spacing: 2px;
-    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border: none; cursor: pointer;
+/*--- 7. NAVIGATION (Ghost) ---*/
+.nav-forge {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.5rem var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: var(--glass-surface);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.4s ease;
 }
 
-.btn:active { transform: scale(0.95); } /* Haptic feedback */
-
-.btn-primary {
-    background: var(--text-main); color: #fff;
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    z-index: 101;
 }
 
-.btn-primary:hover {
-    background: var(--gold-neon);
-    box-shadow: 0 10px 20px var(--gold-faint);
+/*--- 8. UTILITIES ---*/
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; 
+    overflow: hidden; clip: rect(0,0,0,0); border: 0;
 }
 
-/* =========================================
-   4. THE COMMAND CONSOLE (HEADER)
-   ========================================= */
+.mt-large { margin-top: var(--rhythm-pause); }
+.mt-breath { margin-top: var(--rhythm-breath); }
 
-.header-wrapper {
-    position: sticky; top: 0; z-index: var(--z-header);
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.header-top-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 25px;
-    max-width: 1400px; margin: 0 auto;
-}
-
-.brand-text {
-    font-family: 'Bantayog', sans-serif;
-    font-size: 28px; letter-spacing: 2px;
-}
-
-.header-nav-row {
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding: 12px 0;
-    display: flex; justify-content: center; gap: 40px;
-}
-
-.header-nav-row a {
-    font-size: 12px; font-weight: bold; text-transform: uppercase;
-    color: var(--text-muted); text-decoration: none;
-    letter-spacing: 1px;
-}
-
-.header-nav-row a:hover { color: var(--text-main); }
-
-/* =========================================
-   5. UTILITIES & MODALS
-   ========================================= */
-
-.auth-modal, .side-drawer, #cart-side-drawer {
-    display: none !important; /* Force hide by default */
-    position: fixed; inset: 0; z-index: var(--z-overlay);
-}
-
-.auth-modal.is-open {
-    display: flex !important;
-    align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(10px);
-}
-
-.bg-dark { background: #0a0a0a; color: #fff; }
-
-@keyframes springUp {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(0); }
-}
-
-.product-stack-container {
-    margin-top: 40px;
-    padding-bottom: 50vh; /* Adds enough scroll room for the cards to 'unfold' */
-}
-
-.stack-card {
-    top: 120px; /* More space from the top header */
-    margin-bottom: -65vh; /* Adjusted overlap to show more of the card below */
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
-    border-top: 1px solid rgba(0,0,0,0.02);
-}
-
-.stack-card.is-expanded {
-    margin-bottom: 30px; /* Full separation when viewing */
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lift);
+/* Mobile Adaptations */
+@media (max-width: 768px) {
+    :root {
+        --rhythm-pause: 12vh;
+        --fs-display: 3.5rem;
+    }
+    .forge-section { padding-top: 10vh; }
+    .stone-block { min-height: 250px; padding: 2rem; }
 }

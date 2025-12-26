@@ -2,106 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>KYNAR Universe | Digital Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kynar Universe: A digital sanctuary for clarity, creativity, and focus.">
+    <title>Kynar Universe / Quiet Forge</title>
+    
+    <link rel="preload" href="fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
     
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <meta property="og:image" content="images/social-share.jpg">
 </head>
-<body class="home-page">
-    
-    <div class="header-wrapper">
-        <div data-include="components/header.html"></div>
-    </div>
+<body>
 
-    <main id="main-content">
+    <nav class="nav-forge" aria-label="Main Navigation">
+        <a href="index.html" class="logo-text">KYNAR UNIVERSE</a>
         
-        <section class="mega-hero-container">
-            <h1 class="mega-text">KYNAR<br>2026</h1>
-            
-            <div class="hero-foreground reveal-on-scroll" style="text-align: left; padding: 0;">
-    <h2 style="font-size: 42px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: var(--text-main);">
-        Architect Your<br>Digital Future.
-    </h2>
-    <p class="text-muted" style="font-size: 16px; margin-bottom: 40px; line-height: 1.6;">
-        High-fidelity tools, systems, and digital architectures for modern creators.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <a href="marketplace.html" class="btn btn-primary" style="padding: 18px;">ENTER ARMORY</a>
-        <a href="community.html" class="btn btn-secondary" style="padding: 18px; border: 1px solid #eee;">JOIN NEXUS</a>
-    </div>
-</div>
+        <div style="display: flex; gap: 2rem;">
+            <a href="marketplace.html" class="ink-link" style="font-size: 0.85rem;">Marketplace</a>
+            <a href="account.html" class="ink-link" style="font-size: 0.85rem;">Account</a>
+        </div>
+    </nav>
 
+    <main class="forge-container">
+        
+        <section class="forge-section">
+            <h1 class="text-display">
+                Calm Tools<br>
+                For Chaotic Times.
+            </h1>
+            
+            <p class="text-body" style="margin-top: var(--rhythm-breath);">
+                A digital sanctuary of planners, systems, and creative resources. 
+                Handcrafted to organize your life without overwhelming your mind.
+            </p>
+
+            <div class="mt-breath" style="margin-top: 3rem;">
+                <a href="marketplace.html" class="ink-link">Enter the Sanctuary</a>
+            </div>
         </section>
 
-        <div class="container" style="padding-bottom: 100px;">
-            <div class="bento-grid-wrapper">
+
+        <section class="forge-section" style="padding-top: 0;">
+            <div class="stone-grid">
                 
-                <article class="bento-card span-8 reveal-on-scroll" style="background: #fff; border-color: rgba(0,0,0,0.1); min-height: 400px;">
-                    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
-                        <span class="text-gold" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold;">Priority System</span>
-                        <h3 style="font-family: 'Bantayog'; font-size: 3rem; line-height: 1; margin: 10px 0;">Notion<br>Life OS</h3>
-                        <p class="text-muted" style="max-width: 400px; margin-bottom: 30px;">A complete neural architecture for your daily life. Engineered for clarity, built for scale.</p>
-                        <div>
-                            <a href="marketplace.html" class="btn btn-primary">Initialize Access</a>
-                        </div>
-                    </div>
-                </article>
+                <a href="marketplace.html?category=productivity" class="stone-block">
+                    <span class="stone-meta">01 / Systems</span>
+                    <h3 class="text-heading">Productivity &<br>Planning</h3>
+                </a>
 
-                <article class="bento-card span-4 reveal-on-scroll">
-                    <div style="text-align: center; padding: 20px 0;">
-                        <i class="fa-solid fa-users-line" style="font-size: 32px; color: var(--gold-neon); margin-bottom: 20px;"></i>
-                        <h4 style="font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; font-size: 12px;">Active Architects</h4>
-                        <span style="font-family: 'Bantayog'; font-size: 4rem; line-height: 1; color: var(--text-main);">1.2K</span>
-                    </div>
-                </article>
+                <a href="marketplace.html?category=creative" class="stone-block">
+                    <span class="stone-meta">02 / Expression</span>
+                    <h3 class="text-heading">Mindful<br>Creativity</h3>
+                </a>
 
-                <article class="bento-card span-4 reveal-on-scroll" style="background: #0a0a0a; color: #fff;">
-                    <div style="display: flex; flex-direction: column; height: 100%;">
-                        <i class="fa-solid fa-bolt" style="font-size: 24px; color: var(--gold-neon); margin-bottom: 15px;"></i>
-                        <h4 style="font-family: 'Bantayog'; margin-bottom: 10px;">Flash Signals</h4>
-                        <p style="font-size: 13px; opacity: 0.6; margin-bottom: 25px;">Priority assets expiring in 24h.</p>
-                        <a href="marketplace.html" style="margin-top: auto; color: var(--gold-neon); font-weight: bold; font-size: 11px; letter-spacing: 1px;">VIEW SECTOR →</a>
-                    </div>
-                </article>
+                <a href="marketplace.html?category=homeschool" class="stone-block">
+                    <span class="stone-meta">03 / Knowledge</span>
+                    <h3 class="text-heading">Homeschool &<br>Learning</h3>
+                </a>
+
+                <a href="marketplace.html?category=automation" class="stone-block">
+                    <span class="stone-meta">04 / Efficiency</span>
+                    <h3 class="text-heading">Code &<br>Automation</h3>
+                </a>
 
             </div>
-        </div>
+        </section>
+
+
+        <footer class="forge-section" style="border-top: 1px solid rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem;">
+                
+                <div>
+                    <h4 class="text-heading" style="font-size: 1.5rem;">Kynar Universe</h4>
+                    <p class="stone-meta" style="margin-bottom: 0;">© 2025 Quiet Forge Edition</p>
+                </div>
+
+                <div style="display: flex; gap: 2rem;">
+                    <a href="guides.html" class="ink-link" style="font-size: 0.85rem; color: var(--ink-secondary);">Guides</a>
+                    <a href="community.html" class="ink-link" style="font-size: 0.85rem; color: var(--ink-secondary);">Community</a>
+                </div>
+
+            </div>
+        </footer>
 
     </main>
 
-    <div data-include="components/footer.html"></div>
-    <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header">
-            <span class="drawer-title" style="font-family: 'Bantayog'; letter-spacing: 2px;">COMMAND MENU</span>
-            <button class="drawer-close" type="button" style="background:none; border:none; font-size: 24px; cursor:pointer;">&times;</button>
-        </div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Portal</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Academy</a></li>
-            <li><a href="community.html">Nexus</a></li>
-            <li><a href="account.html">Command Center</a></li>
-        </ul>
-    </nav>
-    <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-
-    <div id="elastic-search-overlay" class="auth-modal">
-        <div style="width: 100%; max-width: 600px; padding: 40px; text-align: center;">
-            <input type="search" id="global-search-input" placeholder="SEARCH DATABASE..." style="font-size: 2rem; border: none; border-bottom: 2px solid var(--gold-neon); background: transparent; color: var(--text-main); text-align: center; width: 100%; outline: none;">
-        </div>
-    </div>
-
     <script src="utilities.js"></script>
-    <script src="loading-state.js"></script>
-    <script type="module" src="firebase-config.js"></script>
-    <script type="module" src="auth-ui.js"></script>
-    <script src="script.js" defer></script>
-    <script src="cart.js" defer></script>
+    <script type="module">
+        import './firebase-config.js';
+        import './auth-ui.js';
+    </script>
+    <script>
+        // Simple Reveal Logic for Quiet Forge
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
 
+            document.querySelectorAll('.stone-block').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
