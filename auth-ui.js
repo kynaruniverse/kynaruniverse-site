@@ -2,7 +2,7 @@
  * KYNAR UNIVERSE - Authentication Logic Layer
  * Architect: AetherCode
  * Description: Connects Firebase Auth state to the UI components.
- * Status: Patched (Close Button Fix applied)
+ * Status: GOLD MASTER (Colors Fixed for Kynar 2026)
  */
 
 import { 
@@ -22,7 +22,6 @@ const ROUTES = {
 const SELECTORS = {
     HEADER_AUTH_TRIGGER: '#auth-trigger',     
     HEADER_LOCK_ICON: '#header-lock-icon',    
-    HEADER_AUTH_TEXT: '#header-auth-text',    
     MOBILE_ACC_LINK: '#account-nav-mobile',   
     
     MODAL_LOGIN: '#auth-modal',
@@ -53,39 +52,50 @@ class AuthManager {
 
     renderHeaderState(user) {
         const lockIcon = document.querySelector(SELECTORS.HEADER_LOCK_ICON);
-        const authText = document.querySelector(SELECTORS.HEADER_AUTH_TEXT);
         const authLink = document.querySelector(SELECTORS.HEADER_AUTH_TRIGGER);
         const mobileLink = document.querySelector(SELECTORS.MOBILE_ACC_LINK);
 
         if (user) {
             document.body.classList.add('user-logged-in');
             
-            if (authText) authText.textContent = 'Account';
-            if (lockIcon) lockIcon.classList.add('active-user');
+            // Header Icon: Active State
+            if (lockIcon) {
+                lockIcon.classList.add('text-gold'); // Use utility class
+                lockIcon.style.color = 'var(--gold-neon)';
+            }
             
+            // Header Link: Go to Account
             if (authLink) {
                 authLink.setAttribute('href', ROUTES.ACCOUNT);
                 authLink.removeAttribute('data-modal-trigger');
+                authLink.setAttribute('title', 'My Account');
             }
 
+            // Mobile Drawer Link
             if (mobileLink) {
                 const name = (user.displayName || 'Creator').split(' ')[0];
                 mobileLink.innerHTML = `<i class="fa-solid fa-user-check"></i> Hello, ${name}`;
-                mobileLink.style.color = "var(--color-main-gold)";
+                mobileLink.style.color = "var(--gold-neon)";
                 mobileLink.setAttribute('href', ROUTES.ACCOUNT);
             }
 
         } else {
             document.body.classList.remove('user-logged-in');
 
-            if (authText) authText.textContent = 'Sign in';
-            if (lockIcon) lockIcon.classList.remove('active-user');
+            // Header Icon: Reset
+            if (lockIcon) {
+                lockIcon.classList.remove('text-gold');
+                lockIcon.style.color = '';
+            }
 
+            // Header Link: Open Login Modal
             if (authLink) {
                 authLink.setAttribute('href', '#');
                 authLink.setAttribute('data-modal-trigger', 'login');
+                authLink.setAttribute('title', 'Sign In');
             }
 
+            // Mobile Drawer Link
             if (mobileLink) {
                 mobileLink.innerHTML = `<i class="fa-regular fa-circle-user"></i> My Account`;
                 mobileLink.style.color = "";
@@ -99,10 +109,12 @@ class AuthManager {
         document.addEventListener('click', (e) => {
             const target = e.target;
 
-            // A. Open Login Modal
+            // A. Open Login Modal (Delegation)
             const trigger = target.closest('[data-modal-trigger="login"]');
             if (trigger) {
                 e.preventDefault();
+                // Close drawer if open (for mobile)
+                document.getElementById('side-drawer')?.classList.remove('is-open');
                 this.openModal(SELECTORS.MODAL_LOGIN);
                 return;
             }
@@ -117,11 +129,12 @@ class AuthManager {
                 this.openModal(SELECTORS.MODAL_LOGIN);
             }
 
-            // C. Close Modals (FIXED LOGIC)
-            // Uses .closest() to catch icon clicks, and checks ID for backdrop
+            // C. Close Modals
             if (target.closest('.auth-modal-close') || target.id === 'drawer-overlay') {
-                e.preventDefault();
-                this.closeAllModals(); // Properly clears overlay and body classes
+                // Only prevent default if it was a click on the overlay/button directly
+                // We let the overlay click handler in script.js handle the heavy lifting,
+                // but we trigger clean up here just in case.
+                this.closeAllModals();
             }
 
             // D. Sign Out
@@ -178,7 +191,8 @@ class AuthManager {
             await actionFn();
 
             if (msg) {
-                msg.style.color = 'var(--color-search-deep)';
+                // FIXED: Use Cyber Green for success
+                msg.style.color = '#00ff9d';
                 msg.textContent = successMessage;
             }
 
@@ -194,7 +208,8 @@ class AuthManager {
         } catch (error) {
             console.error(error);
             if (msg) {
-                msg.style.color = 'var(--color-star-red)';
+                // FIXED: Use System Red for errors
+                msg.style.color = '#ff4444';
                 msg.textContent = this.formatErrorMessage(error);
             }
             btn.textContent = originalText;

@@ -39,7 +39,6 @@ try {
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-
 /**
  * Advanced Registration Flow
  * execute profile update and DB creation in parallel for performance.
@@ -53,22 +52,23 @@ const registerUser = async (email, password, displayName) => {
         const now = new Date().toISOString();
 
         // 2. Parallel Execution: Update Profile & Create Firestore Doc
-        // This saves network round-trip time.
-                // 1. Update Profile First (Ensures local Auth state is correct)
-        await updateProfile(user, { displayName: finalName });
-
-        // 2. Then Create Firestore Record
-        await setDoc(doc(db, "users", user.uid), {
-            uid: user.uid,
-            email: email,
-            displayName: finalName,
-            createdAt: now,
-            updatedAt: now,
-            role: "user", // Added for marketplace permissions
-            purchases: [],
-            wishlist: []
-        }, { merge: true });
-
+        // We use Promise.all to fire both network requests simultaneously.
+        await Promise.all([
+            // Task A: Update local Auth profile
+            updateProfile(user, { displayName: finalName }),
+            
+            // Task B: Create remote Firestore document
+            setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: email,
+                displayName: finalName,
+                createdAt: now,
+                updatedAt: now,
+                role: "user",
+                purchases: [],
+                wishlist: []
+            }, { merge: true })
+        ]);
 
         return user;
     } catch (error) {
@@ -78,7 +78,6 @@ const registerUser = async (email, password, displayName) => {
 };
 
 // Export Services & Method Wrappers
-// This allows other files to import only from './firebase-config.js'
 export { 
     auth, 
     db, 

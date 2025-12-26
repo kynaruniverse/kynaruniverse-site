@@ -2,6 +2,7 @@
  * KYNAR UNIVERSE - Checkout Logic (Firebase Integrated)
  * Architect: KynarForge Pro
  * Description: Handles order processing and saves purchases to Firestore.
+ * Status: GOLD MASTER (Visuals Polished)
  */
 
 import { auth, db, doc, updateDoc, arrayUnion, onAuthStateChanged } from './firebase-config.js';
@@ -33,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = cartItems.reduce((sum, item) => sum + item.price, 0);
     if(totalDisplay) totalDisplay.textContent = `£${total.toFixed(2)}`;
 
-    // Render List
+    // Render List (Updated for Kynar 2026 Dark Mode)
     if(itemsList) {
         itemsList.innerHTML = cartItems.map(item => `
-            <div class="summary-item">
-                <span>${item.title}</span>
-                <span>£${item.price.toFixed(2)}</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                <span class="text-white" style="font-size: 14px;">${item.title}</span>
+                <span class="text-gold" style="font-weight: bold;">£${item.price.toFixed(2)}</span>
             </div>
         `).join('');
     }
@@ -51,9 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentUser = user;
             if(nameInput && !nameInput.value) nameInput.value = user.displayName || '';
             if(emailInput && !emailInput.value) emailInput.value = user.email || '';
-        } else {
-            // Optional: Redirect to login or show guest checkout warning
-            console.log("Guest checkout active");
         }
     });
 
@@ -63,8 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             if (!currentUser) {
-                alert("Please sign in to complete your purchase.");
-                // Trigger login modal via existing logic if possible, or redirect
+                // If not logged in, force open the Auth Modal instead of a boring alert
+                const authModal = document.getElementById('auth-modal');
+                if (authModal) {
+                    // Manually toggle class if UI helper isn't available in this scope
+                    authModal.classList.add('is-open'); 
+                    document.getElementById('drawer-overlay')?.classList.add('is-visible');
+                    alert("Security Protocol: Please Identify (Sign In) to proceed.");
+                } else {
+                    alert("Please sign in to complete your purchase.");
+                }
                 return;
             }
 
@@ -73,21 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
             
             try {
                 // A. Prepare Purchase Data
-                // Map cart items to the format account.html expects
                 const newPurchases = cartItems.map(item => ({
                     id: item.id,
                     title: item.title,
                     price: item.price,
                     purchaseDate: new Date().toISOString(),
-                    downloadUrl: '#' // In a real app, this would be the actual file link
+                    // In a real app, you'd map IDs to real URLs here
+                    downloadUrl: 'guide-download.html' 
                 }));
 
                 // B. Write to Firestore
-                // We use 'arrayUnion' to add items without overwriting existing history
                 const userRef = doc(db, "users", currentUser.uid);
                 
-                // We loop through items to add them (arrayUnion takes args, but for safety we do one update)
-                // Note: arrayUnion treats objects as unique by value.
                 await updateDoc(userRef, {
                     purchases: arrayUnion(...newPurchases)
                 });
@@ -95,19 +98,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 // C. Success Handling
                 if(window.LoadingState) window.LoadingState.buttonEnd(btn, "Confirmed!");
                 
-                // Clear Cart
+                // Clear Cart & Redirect
                 localStorage.removeItem('kynar_cart_v1');
                 
-                alert("Order Successful! Redirecting to your library...");
-                window.location.href = 'account.html';
+                // Optional: Short delay to let user see "Confirmed!"
+                setTimeout(() => {
+                    window.location.href = 'account.html';
+                }, 1000);
 
             } catch (error) {
                 console.error("Order Error:", error);
                 if(window.LoadingState) window.LoadingState.buttonEnd(btn, "Failed");
-                alert("There was an error processing your order. Please try again.");
+                alert("Transaction Failed. Check network connection.");
             }
         });
     }
 
-    console.log("💳 Checkout System Online (Firebase Active)");
+    console.log("💳 Secure Gateway Online");
 });

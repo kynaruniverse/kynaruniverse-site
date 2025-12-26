@@ -2,6 +2,7 @@
  * KYNAR UNIVERSE - Community Page Logic (2026 Edition)
  * Architect: AetherCode
  * Description: Handles the new 'Glass' forms and accordion interactions.
+ * Status: GOLD MASTER (CSS Variables Fixed)
  */
 
 const CommunityPage = (() => {
@@ -27,13 +28,16 @@ const CommunityPage = (() => {
                 btn.style.opacity = '0.7';
                 btn.disabled = true;
 
-                // Simulate API Call (Replace with real fetch if needed)
+                // Simulate API Call
                 setTimeout(() => {
-                    // 2. Success State (Premium Feedback)
+                    // 2. Success State (Cyber Green)
                     btn.textContent = 'Welcome, Founder!';
-                    btn.style.background = 'var(--color-search-deep)'; // Success Green
-                    btn.style.color = '#fff';
-                    btn.style.borderColor = 'var(--color-search-deep)';
+                    // PATCH: Updated color to match Kynar 2026 Dark Mode
+                    btn.style.background = '#00ff9d'; 
+                    btn.style.color = '#000'; // Black text for contrast
+                    btn.style.borderColor = '#00ff9d';
+                    btn.style.boxShadow = '0 0 15px rgba(0, 255, 157, 0.4)'; // Add Glow
+                    
                     input.value = ''; // Clear input
 
                     // 3. Reset after delay
@@ -42,6 +46,7 @@ const CommunityPage = (() => {
                         btn.style.background = ''; 
                         btn.style.color = '';
                         btn.style.borderColor = '';
+                        btn.style.boxShadow = '';
                         btn.style.opacity = '1';
                         btn.disabled = false;
                     }, 4000);
@@ -64,8 +69,9 @@ const CommunityPage = (() => {
                 setTimeout(() => {
                     // 2. Success
                     btn.textContent = 'Message Sent';
+                    // Swap classes to use the Gold Primary style defined in styles.css
                     btn.classList.remove('btn-secondary');
-                    btn.classList.add('btn-primary'); // Switch to Gold
+                    btn.classList.add('btn-primary'); 
                     
                     // 3. Reset
                     setTimeout(() => {
