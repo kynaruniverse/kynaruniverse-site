@@ -1,66 +1,48 @@
-<div class="auth-modal" id="auth-modal" aria-hidden="true">
-    <div class="auth-modal-backdrop" aria-hidden="true" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);"></div>
+<div id="auth-modal" class="auth-modal" aria-hidden="true">
+    <div class="auth-modal-backdrop" aria-hidden="true" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);"></div>
     
-    <div class="auth-modal-dialog bento-card" style="width: 100%; max-width: 400px; padding: 40px; border: 1px solid var(--gold-dim);">
-        <button class="auth-modal-close" type="button" aria-label="Close" style="color: white; top: 20px; right: 20px;">&times;</button>
+    <div class="auth-modal-dialog bento-card" style="width: 100%; max-width: 400px; padding: 50px 40px; border: 1px solid rgba(0,0,0,0.05); background: #fff;">
+        <button class="drawer-close" type="button" aria-label="Close" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-main);">&times;</button>
 
-        <div style="text-align: center; margin-bottom: 30px;">
-            <i class="fa-solid fa-fingerprint text-gold" style="font-size: 40px; margin-bottom: 15px;"></i>
-            <h2 id="signin-title" class="auth-modal-heading text-white" style="font-family: var(--font-mega); font-size: 2rem;">IDENTIFY</h2>
-            <p class="auth-subtitle text-muted">Enter credentials to access the vault.</p>
+        <div id="auth-login-view">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div style="width: 60px; height: 60px; background: var(--gold-faint); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fa-solid fa-fingerprint" style="font-size: 28px; color: var(--gold-neon);"></i>
+                </div>
+                <h2 style="font-family: 'Bantayog'; font-size: 2.2rem; line-height: 1; color: var(--text-main); margin-bottom: 10px;">IDENTIFY</h2>
+                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: bold;">Verify credentials for vault access</p>
+            </div>
+            
+            <form id="auth-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="email" id="auth-email" required placeholder="COMMAND@KYNAR.CO.UK" autocomplete="email" class="vip-input-field">
+                <input type="password" id="auth-password" required placeholder="ACCESS CODE" autocomplete="current-password" class="vip-input-field">
+                
+                <button type="submit" class="btn btn-primary btn-full-width" style="margin-top: 10px;">AUTHORIZE</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="show-signup-btn">NEW USER? INITIALIZE ID</button>
+                
+                <p class="auth-message" style="text-align: center; font-size: 11px; color: var(--gold-neon); font-weight: bold; min-height: 15px; margin-top: 10px;"></p>
+            </form>
         </div>
-        
-        <form id="auth-form" style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="position: relative;">
-                <i class="fa-solid fa-envelope text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
-                <input type="email" id="auth-email" required placeholder="Command Address" autocomplete="email" style="padding-left: 40px;">
+
+        <div id="auth-signup-view" style="display: none;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div style="width: 60px; height: 60px; background: var(--bg-surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                    <i class="fa-solid fa-user-plus" style="font-size: 28px; color: var(--text-main);"></i>
+                </div>
+                <h2 style="font-family: 'Bantayog'; font-size: 2.2rem; line-height: 1; color: var(--text-main); margin-bottom: 10px;">INITIALIZE</h2>
+                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: bold;">Establish new identity record</p>
             </div>
             
-            <div style="position: relative;">
-                <i class="fa-solid fa-key text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
-                <input type="password" id="auth-password" required placeholder="Access Code" autocomplete="current-password" style="padding-left: 40px;">
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-full-width">Authenticate</button>
-            <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="auth-toggle-mode">New User? Initialize ID</button>
-            
-            <p class="auth-message text-gold" style="text-align: center; font-size: 12px; height: 14px;"></p>
-        </form>
-    </div>
-</div>
+            <form id="signup-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="reg-name" required placeholder="DISPLAY NAME" autocomplete="name" class="vip-input-field">
+                <input type="email" id="reg-email" required placeholder="CONTACT EMAIL" autocomplete="email" class="vip-input-field">
+                <input type="password" id="reg-password" required placeholder="SET PASSWORD (MIN 6)" autocomplete="new-password" class="vip-input-field">
+                
+                <button type="submit" class="btn btn-primary btn-full-width" style="margin-top: 10px;">CREATE IDENTITY</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="back-to-login-btn">RETURN TO LOGIN</button>
 
-<div class="auth-modal" id="signup-modal" aria-hidden="true">
-    <div class="auth-modal-backdrop" aria-hidden="true" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);"></div>
-    
-    <div class="auth-modal-dialog bento-card" style="width: 100%; max-width: 400px; padding: 40px; border: 1px solid var(--gold-neon);">
-        <button class="auth-modal-close" type="button" aria-label="Close" style="color: white; top: 20px; right: 20px;">&times;</button>
-
-        <div style="text-align: center; margin-bottom: 30px;">
-            <i class="fa-solid fa-user-astronaut text-white" style="font-size: 40px; margin-bottom: 15px;"></i>
-            <h2 id="signup-title" class="auth-modal-heading text-white" style="font-family: var(--font-mega); font-size: 2rem;">INITIALIZE</h2>
-            <p class="auth-subtitle text-muted">Create a new identity record.</p>
+                <p class="auth-message" style="text-align: center; font-size: 11px; color: var(--gold-neon); font-weight: bold; min-height: 15px; margin-top: 10px;"></p>
+            </form>
         </div>
-        
-        <form id="signup-form" style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="position: relative;">
-                <i class="fa-solid fa-tag text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
-                <input type="text" id="reg-name" required placeholder="Display Name" autocomplete="name" style="padding-left: 40px;">
-            </div>
-
-            <div style="position: relative;">
-                <i class="fa-solid fa-envelope text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
-                <input type="email" id="reg-email" required placeholder="Contact Email" autocomplete="email" style="padding-left: 40px;">
-            </div>
-            
-            <div style="position: relative;">
-                <i class="fa-solid fa-shield text-muted" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 12px;"></i>
-                <input type="password" id="reg-password" required placeholder="Set Password (Min 6)" autocomplete="new-password" style="padding-left: 40px;">
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-full-width">Create Identity</button>
-            <button type="button" class="btn btn-secondary btn-sm btn-full-width" id="back-to-login">Return to Login</button>
-
-            <p class="auth-message text-gold" style="text-align: center; font-size: 12px; height: 14px;"></p>
-        </form>
     </div>
 </div>

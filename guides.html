@@ -17,102 +17,75 @@
         <div data-include="components/header.html"></div>
     </div>
     
-    <main id="knowledge-nexus" class="container" style="padding-top: 40px; padding-bottom: 100px;">
+    <main class="container" style="padding-bottom: 120px;">
         
-        <header style="text-align: center; margin-bottom: 60px; position: relative; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h1 class="mega-text" style="font-size: 18vw; top: 50%; transform: translateY(-50%); opacity: 0.5;">LIBRARY</h1>
+        <header style="text-align: center; padding: 100px 0 60px; position: relative; overflow: hidden;">
+            <span class="text-gold" style="font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: bold;">Knowledge Base</span>
+            <h1 class="mega-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05;">ACADEMY</h1>
+            <h2 style="font-family: 'Bantayog'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-main); line-height: 1; position: relative; z-index: 2; margin-top: 10px;">Master Your Tools</h2>
             
-            <div style="position: relative; z-index: 2; background: rgba(5,5,5,0.6); backdrop-filter: blur(5px); padding: 30px; border-radius: 99px; border: 1px solid rgba(255,255,255,0.05);">
-                <span class="text-gold" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 10px;">Academy Access</span>
-                <h2 class="text-white" style="font-family: var(--font-mega); font-size: 2.5rem; line-height: 1; margin: 0;">Master Your Tools</h2>
-            </div>
-            
-            <div class="knowledge-search" style="position: relative; z-index: 3; margin-top: 30px; width: 100%; max-width: 500px;">
-                <i class="fa-solid fa-magnifying-glass text-gold" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);"></i>
-                <input type="text" id="guide-search" placeholder="Search data shards (ex: 'Notion')..." style="padding-left: 50px; background: #111; border-color: var(--gold-dim); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);">
+            <div style="position: relative; z-index: 3; margin: 40px auto 0; width: 100%; max-width: 500px;" class="reveal-on-scroll">
+                <input type="text" id="guide-search" placeholder="SEARCH DATA SHARDS (EX: 'NOTION')..." class="vip-input-field" style="padding-left: 60px; text-align: left; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--gold-neon);"></i>
             </div>
         </header>
         
-        <div class="knowledge-filters" style="margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-            <button class="filter-pill active btn btn-secondary btn-sm" data-category="all" style="border-radius: 99px;">All Signals</button>
-            <button class="filter-pill btn btn-secondary btn-sm" data-category="getting-started" style="border-radius: 99px;">Initiation</button>
-            <button class="filter-pill btn btn-secondary btn-sm" data-category="tutorials" style="border-radius: 99px;">Tactics</button>
-            <button class="filter-pill btn btn-secondary btn-sm" data-category="troubleshooting" style="border-radius: 99px;">Diagnostics</button>
+        <div class="knowledge-filters reveal-on-scroll" style="margin-bottom: 60px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="all" style="padding: 10px 25px; border-radius: 99px;">ALL SIGNALS</button>
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="getting-started" style="padding: 10px 25px; border-radius: 99px;">INITIATION</button>
+            <button class="filter-pill btn btn-secondary btn-sm" data-category="tutorials" style="padding: 10px 25px; border-radius: 99px;">TACTICS</button>
         </div>
         
-        <div class="bento-grid-wrapper" id="guides-grid">
+        <div id="guides-grid" class="product-stack-container" style="margin-top: 20px;">
             
-            <article class="guide-tile bento-card span-4" data-category="getting-started" style="border-left: 2px solid var(--gold-neon);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <i class="fa-solid fa-rocket text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
-                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Start Here</span>
+            <article class="stack-card guide-tile" data-category="getting-started" style="z-index: 10;">
+                <div class="stack-card-header">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fa-solid fa-rocket" style="color: var(--gold-neon);"></i>
+                        <h3>Quick Start Guide</h3>
+                    </div>
+                    <span class="text-gold" style="font-size: 10px; font-weight: bold;">5 MIN READ</span>
                 </div>
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Quick Start</h3>
-                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Protocol for downloading, unzipping, and accessing your files instantly.</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="text-gold" style="font-size: 11px;">5 min read</span>
-                    <a href="guide-getting-started.html" class="btn-arrow-link text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="stack-card-body" style="padding-top: 30px;">
+                    <p class="text-muted" style="margin-bottom: 30px; font-size: 15px;">The standard protocol for downloading, unzipping, and initializing your architectural files across all devices.</p>
+                    <a href="guide-getting-started.html" class="btn btn-primary">INITIALIZE STUDY</a>
                 </div>
             </article>
             
-            <article class="guide-tile bento-card span-4" data-category="getting-started">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <i class="fa-solid fa-download text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
-                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Basics</span>
+            <article class="stack-card guide-tile" data-category="getting-started" style="z-index: 9;">
+                <div class="stack-card-header">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fa-solid fa-download" style="color: var(--text-main);"></i>
+                        <h3>Retrieval Protocol</h3>
+                    </div>
+                    <span class="text-gold" style="font-size: 10px; font-weight: bold;">3 MIN READ</span>
                 </div>
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Retrieval</h3>
-                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Secure download procedures for all device types.</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="text-gold" style="font-size: 11px;">3 min read</span>
-                    <a href="guide-download.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </article>
-            
-            <article class="guide-tile bento-card span-4" data-category="tutorials">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <i class="fa-brands fa-notion text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
-                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Deep Dive</span>
-                </div>
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Notion Setup</h3>
-                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Importing and connecting databases in your workspace.</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="text-gold" style="font-size: 11px;">10 min read</span>
-                    <a href="guide-notion-setup.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="stack-card-body" style="padding-top: 30px;">
+                    <p class="text-muted" style="margin-bottom: 30px; font-size: 15px;">Secure retrieval procedures. Learn how to verify your license and access the vault from new terminals.</p>
+                    <a href="guide-download.html" class="btn btn-primary">INITIALIZE STUDY</a>
                 </div>
             </article>
             
-            <article class="guide-tile bento-card span-4" data-category="tutorials">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <i class="fa-solid fa-calendar-days text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
-                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Tutorial</span>
+            <article class="stack-card guide-tile" data-category="tutorials" style="z-index: 8;">
+                <div class="stack-card-header">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fa-brands fa-notion" style="color: var(--text-main);"></i>
+                        <h3>Notion Integration</h3>
+                    </div>
+                    <span class="text-gold" style="font-size: 10px; font-weight: bold;">10 MIN READ</span>
                 </div>
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Digital Planners</h3>
-                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Hyperlink navigation and GoodNotes workflows.</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="text-gold" style="font-size: 11px;">8 min read</span>
-                    <a href="guide-digital-planners.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </article>
-            
-            <article class="guide-tile bento-card span-4" data-category="troubleshooting">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <i class="fa-solid fa-wrench text-white" style="font-size: 24px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px;"></i>
-                    <span class="text-muted" style="font-size: 10px; text-transform: uppercase;">Fixes</span>
-                </div>
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 10px;">Diagnostics</h3>
-                <p class="text-muted" style="font-size: 13px; flex-grow: 1;">Solutions for unzipping and display errors.</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="text-gold" style="font-size: 11px;">5 min read</span>
-                    <a href="guide-troubleshooting.html" class="text-white" style="text-decoration: none; font-size: 11px; font-weight: bold;">ACCESS <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="stack-card-body" style="padding-top: 30px;">
+                    <p class="text-muted" style="margin-bottom: 30px; font-size: 15px;">Advanced tactics for connecting databases and customizing your workspace environment for maximum output.</p>
+                    <a href="guide-notion-setup.html" class="btn btn-primary">INITIALIZE STUDY</a>
                 </div>
             </article>
             
-            <section class="bento-card span-8" style="background: linear-gradient(90deg, #111, #1a1a1a); display: flex; align-items: center; justify-content: space-between; padding: 40px;">
+            <section class="bento-card reveal-on-scroll" style="background: var(--bg-surface); border: none; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; padding: 40px; border-radius: var(--card-radius);">
                 <div>
-                    <h2 class="text-white" style="font-family: var(--font-mega);">System Failure?</h2>
-                    <p class="text-muted" style="margin-top: 5px;">Our engineers are standing by on the secure channel.</p>
+                    <h2 style="font-family: 'Bantayog'; font-size: 1.8rem; line-height: 1; color: var(--text-main);">System Failure?</h2>
+                    <p class="text-muted" style="margin-top: 10px; font-size: 14px;">Our engineers are standing by on the secure support channel.</p>
                 </div>
-                <a href="mailto:support@kynaruniverse.co.uk" class="btn btn-primary">Open Ticket <i class="fa-solid fa-headset"></i></a>
+                <a href="mailto:support@kynaruniverse.co.uk" class="btn btn-primary">Open Ticket <i class="fa-solid fa-headset" style="margin-left: 10px;"></i></a>
             </section>
             
         </div>
@@ -121,17 +94,6 @@
     
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Academy</a></li>
-            <li><a href="community.html">Nexus</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
     
     <script src="utilities.js"></script>

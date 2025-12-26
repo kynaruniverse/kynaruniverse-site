@@ -10,29 +10,36 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     
     <style>
-        /* Article Typography Overrides */
-        .guide-body h2 { font-family: var(--font-mega); color: white; font-size: 2rem; margin-top: 40px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        /* Platinum Plus Documentation Typography */
+        .guide-body h2 { 
+            font-family: 'Bantayog'; color: var(--text-main); font-size: 1.8rem; 
+            margin-top: 60px; margin-bottom: 25px; padding-bottom: 12px; 
+            border-bottom: 1px solid rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 1px;
+        }
         .guide-body h2:first-child { margin-top: 0; }
-        .guide-body p { color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
-        .guide-body li { color: var(--text-muted); margin-bottom: 10px; }
-        .guide-body strong { color: white; }
-        .guide-body a { color: var(--gold-neon); text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .guide-body p { color: var(--text-muted); margin-bottom: 25px; font-size: 16px; line-height: 1.8; }
+        .guide-body strong { color: var(--text-main); font-weight: 700; }
+        .guide-body a { color: var(--gold-neon); font-weight: bold; text-decoration: none; border-bottom: 1px solid transparent; }
         .guide-body a:hover { border-bottom-color: var(--gold-neon); }
         
-        /* Step Numbers */
+        /* Tactical Step Indicators */
         .step-list { counter-reset: step; list-style: none; padding: 0; }
-        .step-list li { position: relative; padding-left: 40px; margin-bottom: 20px; }
+        .step-list li { position: relative; padding-left: 50px; margin-bottom: 25px; color: var(--text-muted); }
         .step-list li::before {
-            counter-increment: step;
-            content: counter(step);
+            counter-increment: step; content: counter(step);
             position: absolute; left: 0; top: 0;
-            width: 24px; height: 24px;
-            background: rgba(255,255,255,0.1);
-            color: var(--gold-neon);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-tech); font-weight: bold; font-size: 12px;
+            width: 32px; height: 32px;
+            background: var(--bg-surface); color: var(--gold-neon);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-family: 'Bantayog'; font-weight: bold; font-size: 14px;
         }
+
+        .side-nav-link {
+            display: block; padding: 10px 0; color: var(--text-muted); 
+            text-decoration: none; font-size: 13px; font-weight: bold; 
+            transition: 0.3s; border-left: 0px solid var(--gold-neon);
+        }
+        .side-nav-link:hover { color: var(--gold-neon); padding-left: 10px; border-left-width: 3px; }
     </style>
 </head>
 
@@ -42,126 +49,110 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
+    <main class="container" style="padding-top: 80px; padding-bottom: 120px;">
         
-        <header style="text-align: center; margin-bottom: 60px; position: relative; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h1 class="mega-text" style="font-size: 18vw; top: 50%; transform: translateY(-50%); opacity: 0.3;">MANUAL</h1>
-            
-            <div style="position: relative; z-index: 2; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
-                <span class="text-gold" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 10px;">Protocol v1.0</span>
-                <h2 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; line-height: 1; margin: 0;">System Initialization</h2>
-            </div>
+        <header style="text-align: center; margin-bottom: 80px; position: relative; overflow: hidden;">
+            <span class="text-gold" style="font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: bold;">Manual v1.0</span>
+            <h1 class="mega-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05;">PROTOCOL</h1>
+            <h2 style="font-family: 'Bantayog'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-main); line-height: 1; position: relative; z-index: 2; margin-top: 10px;">System Initialization</h2>
         </header>
 
         <div class="bento-grid-wrapper">
             
-            <aside class="bento-card span-4" style="height: fit-content; position: sticky; top: 100px;">
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 20px;">Mission Data</h3>
-                
-                <ul style="list-style: none; padding: 0; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span class="text-muted" style="font-size: 12px; text-transform: uppercase;">Est. Time</span>
-                        <span class="text-white">5 Minutes</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span class="text-muted" style="font-size: 12px; text-transform: uppercase;">Category</span>
-                        <span class="text-gold">Onboarding</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text-muted" style="font-size: 12px; text-transform: uppercase;">Status</span>
-                        <span class="text-white">Updated 2026</span>
-                    </li>
-                </ul>
+            <aside class="span-4" style="height: fit-content; position: sticky; top: 120px;">
+                <div class="bento-card">
+                    <h3 style="font-family: 'Bantayog'; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.4;">MISSION DATA</h3>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 25px;">
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                            <span class="text-muted">EST. TIME</span>
+                            <span style="font-weight: bold;">5 MINUTES</span>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                            <span class="text-muted">CATEGORY</span>
+                            <span class="text-gold" style="font-weight: bold;">ONBOARDING</span>
+                        </li>
+                    </ul>
 
-                <h4 class="text-muted" style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Navigation</h4>
-                <nav style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="#step1" style="color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: 0.2s;">01. Identity Creation</a>
-                    <a href="#step2" style="color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: 0.2s;">02. Acquisition</a>
-                    <a href="#step3" style="color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: 0.2s;">03. Data Retrieval</a>
-                    <a href="#step4" style="color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: 0.2s;">04. Organization</a>
-                </nav>
+                    <nav>
+                        <a href="#step1" class="side-nav-link">01. IDENTITY CREATION</a>
+                        <a href="#step2" class="side-nav-link">02. ACQUISITION</a>
+                        <a href="#step3" class="side-nav-link">03. DATA RETRIEVAL</a>
+                    </nav>
 
-                <div style="margin-top: 40px;">
-                    <a href="guides.html" class="btn btn-secondary btn-sm btn-full-width">← Return to Library</a>
+                    <div style="margin-top: 40px;">
+                        <a href="guides.html" class="btn btn-secondary btn-full-width" style="font-size: 10px;">← BACK TO ACADEMY</a>
+                    </div>
                 </div>
             </aside>
 
-            <article class="bento-card span-8 guide-body" style="background: rgba(255,255,255,0.02);">
+            <article class="bento-card span-8 guide-body">
                 
-                <p class="text-white" style="font-size: 18px; line-height: 1.6;">
-                    Welcome, Architect. This protocol details the essential steps to initialize your KYNAR Universe experience, from identity creation to securing your first digital asset.
+                <p style="font-size: 18px; color: var(--text-main); font-weight: 500;">
+                    Welcome, Architect. This protocol details the essential steps to initialize your KYNAR Universe experience, from identity verification to securing your first digital asset.
                 </p>
 
                 <section id="step1" class="reveal-on-scroll">
                     <h2>01. Identity Creation</h2>
-                    <p>Access to the Armory requires a secure profile.</p>
+                    <p>Access to the Armory requires a secure profile. Your data is encrypted and linked to your unique UID.</p>
                     
-                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 16px; margin-bottom: 25px;">
+                    <div style="background: var(--bg-surface); padding: 35px; border-radius: 20px; margin-bottom: 30px;">
                         <ol class="step-list">
-                            <li>Engage the <strong>"Lock Icon"</strong> in the Glass Dock (Header).</li>
-                            <li>Select <strong>"Need an account?"</strong> to switch modes.</li>
+                            <li>Engage the <strong>User Icon</strong> in the Header Console.</li>
+                            <li>Select <strong>"Initialize ID"</strong> to create a new record.</li>
                             <li>Input your designated Display Name and secure Email.</li>
-                            <li>Execute by clicking <strong>"Join Kynar Universe"</strong>.</li>
+                            <li>Execute by clicking <strong>"Authorize"</strong>.</li>
                         </ol>
                     </div>
                     
-                    <div style="border-left: 2px solid var(--gold-neon); padding-left: 20px; margin-top: 20px;">
-                        <span class="text-gold" style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Pro Tip</span>
-                        <p style="margin-top: 5px; font-size: 13px;">Use a password manager. Security is paramount.</p>
+                    <div style="border-left: 3px solid var(--gold-neon); padding-left: 20px; margin: 30px 0;">
+                        <span class="text-gold" style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">PRO TIP</span>
+                        <p style="margin-top: 5px; font-size: 14px;">Use a dedicated vault for your access codes. Security is paramount.</p>
                     </div>
                 </section>
 
-                <section id="step2" style="margin-top: 60px;">
+                <section id="step2" class="reveal-on-scroll">
                     <h2>02. Acquisition Protocol</h2>
-                    <p>Navigate to the <a href="marketplace.html">Armory (Marketplace)</a> to begin browsing assets.</p>
+                    <p>Navigate to the <a href="marketplace.html">Armory</a> to begin browsing architectural assets.</p>
                     
-                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 16px;">
-                        <ol class="step-list">
-                            <li>Filter assets by category (e.g., Notion, Audio).</li>
-                            <li>Select an asset to view technical specs.</li>
-                            <li>Click <strong>"Acquire"</strong> or <strong>"Add"</strong> to load it into your manifest.</li>
-                            <li>Proceed to the <strong>Secure Gateway</strong> to finalize transfer.</li>
-                        </ol>
+                    <div style="background: var(--bg-surface); padding: 35px; border-radius: 20px;">
+                        <ul class="step-list">
+                            <li>Filter assets by sector (e.g., Productivity, Systems).</li>
+                            <li>Select an asset to view the technical manifest.</li>
+                            <li>Click <strong>"Acquire"</strong> to load it into your session.</li>
+                            <li>Finalize transfer through the <strong>Secure Gateway</strong>.</li>
+                        </ul>
                     </div>
                 </section>
 
-                <section id="step3" style="margin-top: 60px;">
+                <section id="step3" class="reveal-on-scroll">
                     <h2>03. Data Retrieval</h2>
-                    <p>Once acquired, your assets are available via three channels:</p>
+                    <p>Once acquired, your assets are available via two primary channels:</p>
                     
-                    <div class="bento-grid-wrapper" style="margin-top: 20px; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-                        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; grid-column: span 1;">
-                            <i class="fa-solid fa-envelope-open text-white" style="margin-bottom: 10px;"></i>
-                            <h4 class="text-white">Email Signal</h4>
+                    <div class="bento-grid-wrapper" style="margin-top: 30px; gap: 20px;">
+                        <div class="bento-card span-6" style="background: var(--bg-surface); border: none;">
+                            <i class="fa-solid fa-envelope-open" style="margin-bottom: 15px; color: var(--gold-neon);"></i>
+                            <h4 style="font-family: 'Bantayog'; font-size: 14px; margin-bottom: 5px;">EMAIL SIGNAL</h4>
                             <p style="font-size: 12px;">Instant transmission to your inbox.</p>
                         </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; grid-column: span 1;">
-                            <i class="fa-solid fa-server text-white" style="margin-bottom: 10px;"></i>
-                            <h4 class="text-white">Command Center</h4>
-                            <p style="font-size: 12px;">Stored permanently in your Account Vault.</p>
+                        <div class="bento-card span-6" style="background: var(--bg-surface); border: none;">
+                            <i class="fa-solid fa-server" style="margin-bottom: 15px; color: var(--gold-neon);"></i>
+                            <h4 style="font-family: 'Bantayog'; font-size: 14px; margin-bottom: 5px;">COMMAND CENTER</h4>
+                            <p style="font-size: 12px;">Stored permanently in your Vault.</p>
                         </div>
                     </div>
-                </section>
 
-                <section id="step4" style="margin-top: 60px;">
-                    <h2>04. Organization</h2>
-                    <p>Maintain a clean digital workspace.</p>
-                    <ul style="padding-left: 20px;">
-                        <li><strong>Dedicate a Sector:</strong> Create a "KYNAR" folder on your local drive.</li>
-                        <li><strong>Backup:</strong> Replicate files to cloud storage (Drive/Dropbox).</li>
-                    </ul>
-
-                    <div style="background: rgba(255, 68, 68, 0.1); border: 1px solid rgba(255, 68, 68, 0.3); padding: 15px; border-radius: 12px; margin-top: 20px; display: flex; gap: 15px; align-items: center;">
-                        <i class="fa-solid fa-triangle-exclamation" style="color: #ff4444; font-size: 20px;"></i>
+                    <div style="background: rgba(255, 68, 68, 0.05); border: 1px solid rgba(255, 68, 68, 0.1); padding: 25px; border-radius: 20px; margin-top: 40px; display: flex; gap: 20px; align-items: center;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #ff4444; font-size: 24px;"></i>
                         <div>
-                            <span style="color: #ff4444; font-size: 10px; text-transform: uppercase; font-weight: bold;">Warning</span>
-                            <p style="color: #ffaaaa; margin: 0; font-size: 13px;">Download immediately. Do not rely solely on remote access.</p>
+                            <span style="color: #ff4444; font-size: 10px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">Security Warning</span>
+                            <p style="color: var(--text-muted); margin: 0; font-size: 13px;">Download assets immediately to local storage. Do not rely solely on remote access.</p>
                         </div>
                     </div>
                 </section>
 
-                <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end;">
-                    <a href="guide-download.html" class="btn btn-primary">Next Protocol: Downloads <i class="fa-solid fa-arrow-right"></i></a>
+                <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: flex-end;">
+                    <a href="guide-download.html" class="btn btn-primary">NEXT: DOWNLOAD PROTOCOLS <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i></a>
                 </div>
 
             </article>
@@ -172,16 +163,6 @@
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Academy</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>

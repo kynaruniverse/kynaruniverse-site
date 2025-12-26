@@ -23,56 +23,56 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+    <main class="container" style="padding-top: 60px; padding-bottom: 120px;">
         
-        <div id="account-skeleton" style="max-width: 800px; margin: 0 auto;">
-            <div style="height: 100px; background: rgba(255,255,255,0.05); border-radius: 20px; margin-bottom: 20px; animation: pulse 1.5s infinite;"></div>
+        <div id="account-skeleton" style="max-width: 900px; margin: 0 auto;">
+            <div style="height: 120px; background: var(--bg-surface); border-radius: 24px; margin-bottom: 20px; animation: pulse 1.5s infinite;"></div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 20px; animation: pulse 1.5s infinite;"></div>
-                <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 20px; animation: pulse 1.5s infinite;"></div>
+                <div style="height: 150px; background: var(--bg-surface); border-radius: 24px; animation: pulse 1.5s infinite;"></div>
+                <div style="height: 150px; background: var(--bg-surface); border-radius: 24px; animation: pulse 1.5s infinite;"></div>
             </div>
-            <style>@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.6; } 100% { opacity: 0.3; } }</style>
+            <style>@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 0.8; } 100% { opacity: 0.5; } }</style>
         </div>
 
-        <section id="account-real-content" style="display: none;">
+        <section id="account-real-content" style="display: none; max-width: 900px; margin: 0 auto;">
             
-            <header class="bento-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: linear-gradient(90deg, #1a1a1a, #0d0d0d);">
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div style="width: 60px; height: 60px; background: var(--gold-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mega); font-size: 24px; color: black;">
+            <header class="bento-card reveal-on-scroll" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: var(--bg-surface); border: none;">
+                <div style="display: flex; align-items: center; gap: 25px;">
+                    <div style="width: 70px; height: 70px; background: var(--text-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bantayog'; font-size: 28px; color: #fff;">
                         <span id="user-initial">K</span>
                     </div>
                     <div>
-                        <span class="text-muted" style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase;">Commander</span>
-                        <h1 id="welcome-name" class="text-white" style="font-family: var(--font-mega); font-size: 2rem; line-height: 1;">User</h1>
+                        <span class="text-gold" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: bold;">Verified Architect</span>
+                        <h1 id="welcome-name" style="font-family: 'Bantayog'; font-size: 2.2rem; line-height: 1; color: var(--text-main);">User</h1>
                     </div>
                 </div>
                 
-                <div style="display: flex; gap: 10px;">
-                    <button id="open-settings" class="btn btn-secondary btn-sm" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;"><i class="fa-solid fa-gear"></i></button>
-                    <button id="account-sign-out" class="btn btn-secondary btn-sm" style="border-radius: 50%; width: 40px; height: 40px; padding: 0; color: #ff4444; border-color: #ff4444;"><i class="fa-solid fa-power-off"></i></button>
+                <div style="display: flex; gap: 12px;">
+                    <button id="open-settings" class="btn btn-secondary" style="padding: 12px; border-radius: 50%; width: 45px; height: 45px;"><i class="fa-solid fa-gear"></i></button>
+                    <button id="account-sign-out" class="btn btn-secondary" style="padding: 12px; border-radius: 50%; width: 45px; height: 45px; color: #ff4444; border-color: rgba(255,68,68,0.2);"><i class="fa-solid fa-power-off"></i></button>
                 </div>
             </header>
 
             <div class="bento-grid-wrapper" style="margin-bottom: 30px;">
-                <div class="bento-card span-6">
-                    <i class="fa-solid fa-box-open text-gold" style="font-size: 24px; margin-bottom: 10px;"></i>
-                    <h3 id="owned-count" class="text-white" style="font-size: 2rem; font-family: var(--font-mega);">0</h3>
-                    <p class="text-muted">Assets Secured</p>
+                <div class="bento-card span-6 reveal-on-scroll">
+                    <h4 style="font-family: 'Bantayog'; font-size: 11px; opacity: 0.4; text-transform: uppercase;">Assets Secured</h4>
+                    <h3 id="owned-count" style="font-size: 3.5rem; font-family: 'Bantayog'; color: var(--text-main); line-height: 1; margin: 10px 0;">0</h3>
+                    <p style="font-size: 12px; color: var(--gold-neon); font-weight: bold;">Mission Ready</p>
                 </div>
-                <div class="bento-card span-6">
-                    <i class="fa-regular fa-heart text-white" style="font-size: 24px; margin-bottom: 10px;"></i>
-                    <h3 id="wishlist-count" class="text-white" style="font-size: 2rem; font-family: var(--font-mega);">0</h3>
-                    <p class="text-muted">Wishlist Targets</p>
+                <div class="bento-card span-6 reveal-on-scroll">
+                    <h4 style="font-family: 'Bantayog'; font-size: 11px; opacity: 0.4; text-transform: uppercase;">Nexus Level</h4>
+                    <h3 style="font-size: 3.5rem; font-family: 'Bantayog'; color: var(--text-main); line-height: 1; margin: 10px 0;">01</h3>
+                    <p style="font-size: 12px; color: var(--text-muted);">Founding Member</p>
                 </div>
             </div>
 
-            <div class="bento-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 class="text-white" style="font-family: var(--font-mega);">Digital Vault</h2>
-                    <a href="https://gumroad.com/library" target="_blank" class="text-gold" style="font-size: 12px; text-decoration: none;">External Link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <div class="reveal-on-scroll">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 25px; padding: 0 10px;">
+                    <h2 style="font-family: 'Bantayog'; font-size: 1.5rem; letter-spacing: 1px;">DIGITAL VAULT</h2>
+                    <span class="text-muted" style="font-size: 11px; font-weight: bold;">SYNCHRONIZED</span>
                 </div>
 
-                <div id="purchase-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <div id="purchase-list" class="product-stack-container" style="padding: 0; margin: 0;">
                     </div>
             </div>
 
@@ -81,13 +81,15 @@
     </main>
 
     <div class="auth-modal" id="settings-modal" aria-hidden="true">
-        <div class="auth-modal-backdrop" id="settings-backdrop"></div>
-        <div class="auth-modal-dialog" style="background: #111; border: 1px solid rgba(255,255,255,0.1);">
-            <button class="auth-modal-close" id="settings-close" style="color: white;">&times;</button>
-            <h2 class="auth-modal-heading text-white">Update ID</h2>
+        <div class="auth-modal-dialog" style="background: #fff; border: 1px solid rgba(0,0,0,0.05); padding: 40px;">
+            <button class="auth-modal-close" id="settings-close" style="top: 20px; right: 20px;">&times;</button>
+            <h2 style="font-family: 'Bantayog'; text-align: center; margin-bottom: 30px;">UPDATE IDENTITY</h2>
             <form id="settings-form">
-                <input id="settings-display-name" type="text" maxlength="40" style="margin-bottom: 20px;">
-                <button type="submit" class="btn btn-primary btn-full-width">Save Changes</button>
+                <div style="margin-bottom: 25px;">
+                    <label style="font-size: 10px; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 10px;">DISPLAY NAME</label>
+                    <input id="settings-display-name" type="text" maxlength="40" class="vip-input-field" style="width: 100%;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full-width">SAVE PROTOCOL</button>
             </form>
         </div>
     </div>
@@ -95,15 +97,6 @@
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
 
     <script src="utilities.js"></script>
     <script src="loading-state.js"></script>
@@ -126,7 +119,7 @@
                 document.getElementById('account-real-content').style.display = 'block';
             });
 
-            // Settings Logic
+            // Settings Modal Logic
             const settingsModal = document.getElementById('settings-modal');
             document.getElementById('open-settings')?.addEventListener('click', () => {
                 settingsModal.classList.add('is-open');
@@ -134,7 +127,6 @@
             });
             const closeSettings = () => settingsModal.classList.remove('is-open');
             document.getElementById('settings-close')?.addEventListener('click', closeSettings);
-            document.getElementById('settings-backdrop')?.addEventListener('click', closeSettings);
 
             document.getElementById('settings-form')?.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -145,9 +137,8 @@
                 }
             });
 
-            // Sign Out
             document.getElementById('account-sign-out')?.addEventListener('click', async () => {
-                if(confirm('Terminate session?')) {
+                if(confirm('TERMINATE SESSION?')) {
                     await signOut(auth);
                     window.location.href = "index.html";
                 }
@@ -162,20 +153,26 @@
                     const listEl = document.getElementById('purchase-list');
                     
                     document.getElementById('owned-count').textContent = (data.purchases || []).length;
-                    document.getElementById('wishlist-count').textContent = (data.wishlist || []).length;
 
                     if (listEl && data.purchases && data.purchases.length > 0) {
-                        listEl.innerHTML = data.purchases.reverse().map(p => `
-                            <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.05);">
-                                <div>
-                                    <h4 class="text-white" style="margin-bottom: 5px;">${p.title}</h4>
-                                    <span class="text-muted" style="font-size: 10px;">${new Date(p.purchaseDate).toLocaleDateString()}</span>
+                        // Rendering items as Elastic Stack cards for visual consistency
+                        listEl.innerHTML = data.purchases.reverse().map((p, index) => `
+                            <article class="stack-card" style="margin-bottom: -78vh; height: 85vh; z-index: ${100 - index};">
+                                <div class="stack-card-header">
+                                    <h3 style="font-size: 14px;">${p.title}</h3>
+                                    <span style="font-size: 10px; opacity: 0.5;">${new Date(p.purchaseDate).toLocaleDateString()}</span>
                                 </div>
-                                <a href="${p.downloadUrl}" target="_blank" class="btn btn-secondary btn-sm">ACCESS</a>
-                            </div>
+                                <div class="stack-card-body" style="padding-top: 40px;">
+                                    <div style="background: var(--bg-surface); height: 200px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+                                        <i class="fa-solid fa-file-arrow-down" style="font-size: 60px; opacity: 0.1;"></i>
+                                    </div>
+                                    <p class="text-muted" style="font-size: 13px; margin-bottom: 30px;">This digital asset has been synchronized to your account. You have lifetime access to the secure download portal.</p>
+                                    <a href="${p.downloadUrl}" target="_blank" class="btn btn-primary" style="width: 100%;">ACCESS PROTOCOL</a>
+                                </div>
+                            </article>
                         `).join('');
                     } else if (listEl) {
-                        listEl.innerHTML = `<p class="text-muted" style="text-align: center; font-size: 12px;">Vault Empty</p>`;
+                        listEl.innerHTML = `<div class="bento-card" style="text-align: center; opacity: 0.5; padding: 60px;"><p>Vault Currently Empty</p></div>`;
                     }
                 }
             } catch (e) { console.error(e); }

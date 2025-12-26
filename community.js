@@ -1,83 +1,72 @@
 /**
- * KYNAR UNIVERSE - Community Page Logic (2026 Edition)
+ * KYNAR UNIVERSE - Community Nexus Logic
  * Architect: AetherCode
- * Description: Handles the new 'Glass' forms and accordion interactions.
- * Status: GOLD MASTER (CSS Variables Fixed)
+ * Evolution: Platinum Plus Elastic Edition
  */
 
 const CommunityPage = (() => {
 
-    // --- 1. FORM HANDLING ENGINE ---
+    // --- 1. FORM HANDLING ENGINE (HAPTIC FEEDBACK) ---
 
-    /**
-     * Handles the visual state changes for the new "Glass" forms
-     * (Newsletter VIP Card & Feedback Panel)
-     */
     const setupForms = () => {
-        // A. VIP Newsletter Form
-        const vipForm = document.querySelector('.vip-form');
+        // A. VIP Terminal Form
+        const vipForm = document.getElementById('nexus-vip-form');
         if (vipForm) {
             vipForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const btn = vipForm.querySelector('button');
                 const input = vipForm.querySelector('input');
-                const originalText = btn.textContent;
 
-                // 1. Loading State
-                btn.textContent = 'Joining...';
-                btn.style.opacity = '0.7';
-                btn.disabled = true;
+                // 1. Utilize LoadingState Utility (if available)
+                if (window.LoadingState) {
+                    window.LoadingState.buttonStart(btn);
+                } else {
+                    btn.disabled = true;
+                    btn.textContent = 'SYNCHRONIZING...';
+                }
 
-                // Simulate API Call
+                // Simulate Network Transmission
                 setTimeout(() => {
-                    // 2. Success State (Cyber Green)
-                    btn.textContent = 'Welcome, Founder!';
-                    // PATCH: Updated color to match Kynar 2026 Dark Mode
-                    btn.style.background = '#00ff9d'; 
-                    btn.style.color = '#000'; // Black text for contrast
-                    btn.style.borderColor = '#00ff9d';
-                    btn.style.boxShadow = '0 0 15px rgba(0, 255, 157, 0.4)'; // Add Glow
+                    // 2. Success State: Cyber Green (Tactile Logic)
+                    if (window.LoadingState) {
+                        // buttonEnd handles the color transition to green and text swap
+                        window.LoadingState.buttonEnd(btn, "SYNCHRONIZED");
+                    } else {
+                        btn.style.background = '#00ff9d';
+                        btn.style.color = '#000';
+                        btn.textContent = 'SYNCHRONIZED';
+                    }
                     
-                    input.value = ''; // Clear input
+                    input.value = ''; // Clear transmission buffer
 
-                    // 3. Reset after delay
+                    // 3. Reset Protocol
                     setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = ''; 
-                        btn.style.color = '';
-                        btn.style.borderColor = '';
-                        btn.style.boxShadow = '';
-                        btn.style.opacity = '1';
-                        btn.disabled = false;
+                        if (window.LoadingState) {
+                            // Logic to return button to original state
+                            btn.classList.remove('btn-loading');
+                            btn.style.background = '';
+                            btn.style.color = '';
+                            btn.textContent = 'INITIALIZE';
+                            btn.disabled = false;
+                        }
                     }, 4000);
                 }, 1500);
             });
         }
 
-        // B. Feedback Glass Form
+        // B. Signal Report (Feedback)
         const feedbackForm = document.querySelector('.feedback-mini-form');
         if (feedbackForm) {
             feedbackForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const btn = feedbackForm.querySelector('button');
-                const originalText = btn.textContent;
-
-                // 1. Loading
-                btn.textContent = 'Sending...';
-                btn.disabled = true;
+                
+                if (window.LoadingState) window.LoadingState.buttonStart(btn);
                 
                 setTimeout(() => {
-                    // 2. Success
-                    btn.textContent = 'Message Sent';
-                    // Swap classes to use the Gold Primary style defined in styles.css
-                    btn.classList.remove('btn-secondary');
-                    btn.classList.add('btn-primary'); 
+                    if (window.LoadingState) window.LoadingState.buttonEnd(btn, "TRANSMITTED");
                     
-                    // 3. Reset
                     setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.classList.add('btn-secondary');
-                        btn.classList.remove('btn-primary');
                         feedbackForm.reset();
                         btn.disabled = false;
                     }, 3000);
@@ -86,7 +75,7 @@ const CommunityPage = (() => {
         }
     };
 
-    // --- 2. FAQ ACCORDION ---
+    // --- 2. ELASTIC FAQ ACCORDION ---
     
     const initFAQ = () => {
         const faqItems = document.querySelectorAll('.faq-item');
@@ -99,15 +88,22 @@ const CommunityPage = (() => {
             questionBtn.addEventListener('click', () => {
                 const isOpen = item.classList.contains('active');
 
-                // Accordion logic: Close others for a cleaner look
+                // Protocol: Close others to maintain spatial focus
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
 
-                // Toggle Current
+                // Toggle Current (Transitions handled via CSS Bezier)
                 item.classList.toggle('active');
+                
+                // Haptic alignment if opening
+                if (!isOpen) {
+                    setTimeout(() => {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 300);
+                }
             });
         });
     };
@@ -117,7 +113,7 @@ const CommunityPage = (() => {
     const init = () => {
         initFAQ();
         setupForms();
-        console.log('✨ Community Nexus Online');
+        console.log('✨ Nexus Protocol Synchronized');
     };
 
     return { init };

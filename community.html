@@ -10,13 +10,26 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     
     <style>
-        /* Special FAQ Styling for Dark Mode */
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; }
-        .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: white; font-family: var(--font-tech); font-size: 16px; cursor: pointer; text-align: left; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s ease; opacity: 0.7; font-size: 14px; margin-top: 0; }
-        .faq-item.active .faq-answer { max-height: 200px; margin-top: 15px; }
+        /* Platinum Plus FAQ Aesthetics */
+        .faq-item { border-bottom: 1px solid rgba(0,0,0,0.05); padding: 25px 0; }
+        .faq-question { 
+            width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            background: none; border: none; color: var(--text-main); 
+            font-family: 'Bantayog'; font-size: 14px; letter-spacing: 1px;
+            cursor: pointer; text-align: left; text-transform: uppercase;
+        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; font-size: 14px; }
+        .faq-item.active .faq-answer { max-height: 300px; margin-top: 20px; opacity: 0.8; }
         .faq-item.active .faq-question { color: var(--gold-neon); }
-        .faq-item.active i { transform: rotate(180deg); }
+        .faq-item.active i { transform: rotate(180deg); color: var(--gold-neon); }
+        
+        .vip-input-field {
+            flex: 1; min-width: 250px; background: var(--bg-surface);
+            border: 1px solid rgba(0,0,0,0.05); padding: 16px 20px;
+            border-radius: 99px; font-family: 'Glacial Indifference'; outline: none;
+            transition: 0.3s;
+        }
+        .vip-input-field:focus { border-color: var(--gold-neon); box-shadow: 0 0 0 4px var(--gold-faint); }
     </style>
 </head>
 
@@ -26,89 +39,89 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
+    <main class="container" style="padding-bottom: 120px;">
         
-        <header style="text-align: center; margin-bottom: 60px; position: relative;">
-            <span class="text-gold" style="font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;">Inner Circle</span>
-            <h1 class="mega-text" style="position: relative; font-size: 15vw; color: rgba(255,255,255,0.03); -webkit-text-stroke: 0px; margin-bottom: -50px;">NEXUS</h1>
-            <h2 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; position: relative; z-index: 2;">Join the<br>Architects</h2>
+        <header style="text-align: center; padding: 80px 0 60px; position: relative; overflow: hidden;">
+            <span class="text-gold" style="font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: bold;">Collective Intelligence</span>
+            <h1 class="mega-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05;">NEXUS</h1>
+            <h2 style="font-family: 'Bantayog'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-main); line-height: 1; position: relative; z-index: 2; margin-top: 10px;">Join the<br>Architects</h2>
         </header>
 
         <div class="bento-grid-wrapper">
 
-            <article class="bento-card span-4" style="background: linear-gradient(135deg, #111, #1a1a1a);">
-                <i class="fa-solid fa-crown text-gold" style="font-size: 30px; margin-bottom: 20px;"></i>
-                <h3 class="text-white" style="font-family: var(--font-mega);">Founding Status</h3>
-                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Secure your legacy. Founding members receive lifetime badge verification.</p>
+            <article class="bento-card span-4 reveal-on-scroll">
+                <i class="fa-solid fa-crown" style="font-size: 28px; color: var(--gold-neon); margin-bottom: 25px;"></i>
+                <h3 style="font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px;">Founding Status</h3>
+                <p class="text-muted" style="margin-top: 12px; font-size: 13px;">Secure your legacy. Founding members receive lifetime badge verification and priority support.</p>
             </article>
 
-            <article class="bento-card span-4">
-                <i class="fa-solid fa-code-branch text-white" style="font-size: 30px; margin-bottom: 20px;"></i>
-                <h3 class="text-white" style="font-family: var(--font-mega);">Direct Input</h3>
-                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Vote on the roadmap. Your voice dictates the next tool we build.</p>
+            <article class="bento-card span-4 reveal-on-scroll">
+                <i class="fa-solid fa-code-branch" style="font-size: 28px; color: var(--text-main); margin-bottom: 25px;"></i>
+                <h3 style="font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px;">Direct Input</h3>
+                <p class="text-muted" style="margin-top: 12px; font-size: 13px;">Vote on the 2026 roadmap. Your feedback dictates the next high-fidelity tool we build.</p>
             </article>
 
-            <article class="bento-card span-4">
-                <i class="fa-solid fa-bolt text-white" style="font-size: 30px; margin-bottom: 20px;"></i>
-                <h3 class="text-white" style="font-family: var(--font-mega);">Early Access</h3>
-                <p class="text-muted" style="margin-top: 10px; font-size: 13px;">Beta test new templates 14 days before the public drop.</p>
+            <article class="bento-card span-4 reveal-on-scroll">
+                <i class="fa-solid fa-bolt" style="font-size: 28px; color: var(--text-main); margin-bottom: 25px;"></i>
+                <h3 style="font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px;">Early Access</h3>
+                <p class="text-muted" style="margin-top: 12px; font-size: 13px;">Beta test new Elastic Stack templates 14 days before the public Armory drop.</p>
             </article>
 
-            <section class="bento-card span-8" style="background: #0a0a0a; border: 1px solid var(--gold-dim);">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <section class="bento-card span-8 reveal-on-scroll" style="background: var(--bg-surface); border: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
                     <div>
-                        <h2 class="text-white" style="font-family: var(--font-mega);">VIP Terminal</h2>
-                        <p class="text-muted" style="font-size: 12px;">Input frequency for direct transmission.</p>
+                        <h2 style="font-family: 'Bantayog'; font-size: 1.8rem; line-height: 1;">VIP Terminal</h2>
+                        <p class="text-muted" style="font-size: 12px; margin-top: 5px;">Input your frequency for direct encrypted transmission.</p>
                     </div>
-                    <i class="fa-solid fa-envelope-open-text text-gold" style="font-size: 24px;"></i>
+                    <i class="fa-solid fa-envelope-open-text" style="font-size: 32px; opacity: 0.1;"></i>
                 </div>
                 
-                <form class="vip-form" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <input type="email" placeholder="Enter encrypted email..." required style="flex: 1; min-width: 200px;">
-                    <button type="submit" class="btn btn-primary">Initialize <i class="fa-solid fa-arrow-right"></i></button>
+                <form id="nexus-vip-form" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <input type="email" class="vip-input-field" placeholder="ARCHITECT@KYNAR.CO.UK" required>
+                    <button type="submit" class="btn btn-primary">Initialize <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i></button>
                 </form>
             </section>
 
-            <section class="bento-card span-4" style="background: rgba(255,255,255,0.03);">
-                <h3 class="text-white" style="margin-bottom: 15px; font-family: var(--font-mega);">Signal Report</h3>
-                <form class="feedback-mini-form">
-                    <select style="margin-bottom: 10px;">
+            <section class="bento-card span-4 reveal-on-scroll">
+                <h3 style="margin-bottom: 20px; font-family: 'Bantayog'; font-size: 14px; text-transform: uppercase;">Signal Report</h3>
+                <form class="feedback-mini-form" style="display: flex; flex-direction: column; gap: 12px;">
+                    <select class="vip-input-field" style="padding: 12px 15px; font-size: 12px;">
                         <option>Feature Request</option>
                         <option>Bug Report</option>
                         <option>General Comms</option>
                     </select>
-                    <textarea placeholder="Message content..." rows="2" style="margin-bottom: 10px;"></textarea>
-                    <button type="submit" class="btn btn-secondary btn-full-width btn-sm">Transmit</button>
+                    <textarea class="vip-input-field" placeholder="Transmit message..." rows="3" style="border-radius: 15px; resize: none;"></textarea>
+                    <button type="submit" class="btn btn-secondary btn-sm" style="width: 100%;">Transmit</button>
                 </form>
             </section>
 
-            <div class="span-12" style="margin-top: 40px;">
-                <h2 class="text-white" style="font-family: var(--font-mega); margin-bottom: 20px;">Protocol FAQ</h2>
+            <div class="span-12" style="margin-top: 60px;">
+                <h2 style="font-family: 'Bantayog'; font-size: 2rem; margin-bottom: 30px; text-align: center;">Protocol FAQ</h2>
                 
-                <div class="bento-card" style="padding: 10px 30px;">
+                <div class="bento-card" style="padding: 10px 40px; border-color: rgba(0,0,0,0.05);">
                     <div class="faq-accordion">
                         <div class="faq-item">
                             <button class="faq-question">
-                                When is the official launch? <i class="fa-solid fa-chevron-down"></i>
+                                When is the official 2026 launch? <i class="fa-solid fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>We are currently in Phase 1 (Alpha). The full public launch is scheduled for Late 2025.</p>
+                                <p>We are currently in active development. The full Platinum Plus rollout is scheduled for Early 2026.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                How do I access purchased files? <i class="fa-solid fa-chevron-down"></i>
+                                How do I access the Elastic Stack? <i class="fa-solid fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>Files are instantly available in your "Command Center" (Account page) or via the secure email link sent after purchase.</p>
+                                <p>Assets are instantly synchronized to your Command Center (Account page) after successful acquisition.</p>
                             </div>
                         </div>
                         <div class="faq-item">
                             <button class="faq-question">
-                                Are updates included? <i class="fa-solid fa-chevron-down"></i>
+                                Are system updates included? <i class="fa-solid fa-chevron-down"></i>
                             </button>
                             <div class="faq-answer">
-                                <p>Yes. All "Founding Member" purchases include lifetime updates for that specific version of the tool.</p>
+                                <p>Yes. Every Founding Member acquisition includes lifetime protocol updates for the life of the tool.</p>
                             </div>
                         </div>
                     </div>
@@ -121,16 +134,6 @@
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="community.html">Nexus</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>
@@ -142,3 +145,4 @@
 
 </body>
 </html>
+

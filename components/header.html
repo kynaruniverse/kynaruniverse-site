@@ -1,54 +1,44 @@
-<header class="top-header">
-    <div class="logo-area">
-        <button class="custom-burger" id="mobile-menu-trigger" type="button" aria-label="Toggle navigation">
+<div class="header-top-row">
+    
+    <div class="header-side-element">
+        <button class="custom-burger" id="mobile-menu-trigger" aria-label="Open Menu">
             <span></span><span></span><span></span>
         </button>
-        
-        <div class="site-title">
-            <a href="index.html" class="site-title-link">
-                <p class="main-title">KYNAR</p>
-                <p class="sub-title">UNIVERSE</p>
-            </a>
-            <figure class="stars" aria-hidden="true">✶ ✦ ✶ ✦ ✶</figure>
-        </div>
     </div>
 
-    <p class="slogan-header">Architect Your Digital Future.</p>
+    <div class="site-title-block">
+        <a href="index.html" class="brand-text">
+            KYNAR <span class="brand-suffix">26</span>
+        </a>
+        <p class="brand-tagline">Architecting Digital Futures</p>
+    </div>
 
-    <div class="account-area">
-        <a href="#" class="sign-in-link" id="auth-trigger" role="button">
-            <div class="custom-lock-icon" id="header-lock-icon">
+    <div class="header-actions-group">
+        <a href="#" id="auth-trigger" class="action-icon-link" title="Identify">
+            <div class="lock-status-indicator" id="header-lock-icon">
                 <i class="fa-regular fa-user"></i>
             </div>
-            <span class="sign-in-text" id="header-auth-text">IDENTIFY</span>
         </a>
+        
+        <button id="cart-toggle" class="cart-anchor">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span class="cart-badge-dot" id="cart-count">0</span>
+        </button>
     </div>
-</header>
+</div>
 
-<nav class="main-nav" aria-label="Primary site navigation">
-    <ul>
-        <li>
-            <a href="index.html">
-                <i class="fa-solid fa-house" aria-hidden="true"></i>
-                <span class="visually-hidden">Home</span>
-            </a>
-        </li>
-        <li><a href="marketplace.html">MARKETPLACE</a></li>
-        <li><a href="guides.html">ACADEMY</a></li>
-        <li><a href="community.html">NEXUS</a></li>
-        <li><a href="account.html" id="account-nav-desktop">COMMAND CENTER</a></li>
+<nav class="header-nav-row" aria-label="Main Navigation">
+    <ul class="nav-matrix-list">
+        <li><a href="index.html" class="nav-item">Portal</a></li>
+        <li><a href="marketplace.html" class="nav-item">Marketplace</a></li>
+        <li><a href="guides.html" class="nav-item">Academy</a></li>
+        <li><a href="community.html" class="nav-item">Nexus</a></li>
     </ul>
 </nav>
 
-<div class="search-subscribe-bar">
-    <div class="search-box-wrapper">
+<div id="elastic-search-overlay" class="hidden-search-container">
+    <div class="search-inner">
         <input type="search" id="global-search-input" placeholder="Search the database..." autocomplete="off">
-        <button type="button" class="search-submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+        <i class="fa-solid fa-magnifying-glass search-accent"></i>
     </div>
-    
-    <button id="cart-toggle" class="btn btn-secondary btn-sm" style="border-radius: 4px; padding: 5px 15px;">
-        <i class="fa-solid fa-basket-shopping"></i> <span id="cart-count">0</span>
-    </button>
 </div>

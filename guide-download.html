@@ -10,12 +10,24 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     
     <style>
-        .guide-body h2 { font-family: var(--font-mega); color: white; font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        /* Platinum Plus Documentation Typography */
+        .guide-body h2 { 
+            font-family: 'Bantayog'; color: var(--text-main); font-size: 1.8rem; 
+            margin-top: 60px; margin-bottom: 25px; padding-bottom: 12px; 
+            border-bottom: 1px solid rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 1px;
+        }
         .guide-body h2:first-child { margin-top: 0; }
-        .guide-body p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; }
-        .guide-body ul { padding-left: 20px; color: var(--text-muted); margin-bottom: 30px; }
+        .guide-body p { color: var(--text-muted); margin-bottom: 25px; font-size: 16px; line-height: 1.8; }
+        .guide-body strong { color: var(--text-main); font-weight: 700; }
+        .guide-body ul { padding-left: 20px; color: var(--text-muted); margin-bottom: 30px; list-style: square; }
         .guide-body li { margin-bottom: 10px; }
-        .guide-body strong { color: white; }
+        
+        .side-nav-link {
+            display: block; padding: 10px 0; color: var(--text-muted); 
+            text-decoration: none; font-size: 13px; font-weight: bold; 
+            transition: 0.3s; border-left: 0px solid var(--gold-neon);
+        }
+        .side-nav-link:hover { color: var(--gold-neon); padding-left: 10px; border-left-width: 3px; }
     </style>
 </head>
 
@@ -25,70 +37,84 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 100px;">
+    <main class="container" style="padding-top: 80px; padding-bottom: 120px;">
         
-        <header style="text-align: center; margin-bottom: 60px; height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
-            <h1 class="mega-text" style="font-size: 15vw; opacity: 0.2; top: 50%; transform: translateY(-50%);">DOWNLOAD</h1>
-            <div class="bento-card" style="padding: 20px 40px; border: 1px solid var(--gold-neon); position: relative; z-index: 2;">
-                <span class="text-gold" style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase;">Protocol v1.0</span>
-                <h2 class="text-white" style="font-family: var(--font-mega); font-size: 2.5rem; line-height: 1; margin: 5px 0 0 0;">Asset Retrieval</h2>
-            </div>
+        <header style="text-align: center; margin-bottom: 80px; position: relative; overflow: hidden;">
+            <span class="text-gold" style="font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: bold;">Manual v1.0</span>
+            <h1 class="mega-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05;">DOWNLOAD</h1>
+            <h2 style="font-family: 'Bantayog'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-main); line-height: 1; position: relative; z-index: 2; margin-top: 10px;">Asset Retrieval</h2>
         </header>
 
         <div class="bento-grid-wrapper">
             
-            <aside class="bento-card span-4" style="height: fit-content; position: sticky; top: 100px;">
-                <h3 class="text-white" style="font-family: var(--font-mega); margin-bottom: 20px;">Data Specs</h3>
-                <ul style="list-style: none; padding: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span class="text-muted" style="font-size: 11px; text-transform: uppercase;">Difficulty</span>
-                        <span class="text-white">Level 1 (Basic)</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text-muted" style="font-size: 11px; text-transform: uppercase;">Est. Time</span>
-                        <span class="text-gold">2 Minutes</span>
-                    </li>
-                </ul>
-                <div style="margin-top: 30px;">
-                    <a href="guides.html" class="btn btn-secondary btn-sm btn-full-width">← Return to Library</a>
+            <aside class="span-4" style="height: fit-content; position: sticky; top: 120px;">
+                <div class="bento-card">
+                    <h3 style="font-family: 'Bantayog'; font-size: 12px; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.4;">DATA SPECS</h3>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 25px;">
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                            <span class="text-muted">DIFFICULTY</span>
+                            <span style="font-weight: bold;">LEVEL 1 (BASIC)</span>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; font-size: 13px;">
+                            <span class="text-muted">EST. TIME</span>
+                            <span class="text-gold" style="font-weight: bold;">2 MINUTES</span>
+                        </li>
+                    </ul>
+
+                    <nav>
+                        <a href="#step1" class="side-nav-link">01. EMAIL RETRIEVAL</a>
+                        <a href="#step2" class="side-nav-link">02. THE COMMAND CENTER</a>
+                        <a href="#step3" class="side-nav-link">03. EXTRACTION</a>
+                    </nav>
+
+                    <div style="margin-top: 40px;">
+                        <a href="guides.html" class="btn btn-secondary btn-full-width" style="font-size: 10px;">← BACK TO ACADEMY</a>
+                    </div>
                 </div>
             </aside>
 
-            <article class="bento-card span-8 guide-body" style="background: rgba(255,255,255,0.02);">
+            <article class="bento-card span-8 guide-body">
                 
-                <h2>01. Immediate Retrieval (Email)</h2>
-                <p>Upon successful transaction at the Secure Gateway, our systems automatically dispatch a confirmation signal to your registered email.</p>
-                <ul>
-                    <li>Locate email from <strong>"Kynar Universe"</strong>.</li>
-                    <li>Click the button labeled <strong>"View Content"</strong> or <strong>"Download"</strong>.</li>
-                    <li>This link is secure and generates a unique instance for your device.</li>
-                </ul>
+                <section id="step1" class="reveal-on-scroll">
+                    <h2>01. Immediate Retrieval (Email)</h2>
+                    <p>Upon successful transaction at the Secure Gateway, our systems automatically dispatch a confirmation signal to your registered email address.</p>
+                    <ul>
+                        <li>Locate the signal from <strong>"Kynar Universe"</strong>.</li>
+                        <li>Engage the <strong>"Access Protocol"</strong> or <strong>"Download"</strong> button.</li>
+                        <li>This link is cryptographically secure and generates a unique instance for your terminal.</li>
+                    </ul>
+                </section>
 
-                <h2>02. The Command Center (Account)</h2>
-                <p>If the email signal is delayed, access your permanent vault.</p>
-                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 16px;">
-                    <ol style="margin: 0; padding-left: 20px; color: var(--text-muted);">
-                        <li style="margin-bottom: 10px;">Navigate to <strong>My Account</strong> via the header dock.</li>
-                        <li style="margin-bottom: 10px;">Locate the <strong>"Digital Vault"</strong> section.</li>
-                        <li>Click <strong>"ACCESS"</strong> next to any file name to initiate download.</li>
-                    </ol>
-                </div>
-
-                <h2>03. File Extraction</h2>
-                <p>Most Kynar assets are compressed into <strong>.ZIP</strong> archives for data integrity.</p>
-                <div class="bento-grid-wrapper" style="grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; grid-column: span 1;">
-                        <h4 class="text-white"><i class="fa-brands fa-apple"></i> macOS</h4>
-                        <p style="font-size: 12px; margin: 5px 0 0 0;">Double-click the .zip file. The system will auto-extract a folder.</p>
+                <section id="step2" class="reveal-on-scroll">
+                    <h2>02. The Command Center (Account)</h2>
+                    <p>If the email signal is interrupted, you may access your permanent digital vault directly from the portal.</p>
+                    <div style="background: var(--bg-surface); padding: 35px; border-radius: 20px; margin-bottom: 30px;">
+                        <ol style="margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 15px; line-height: 2;">
+                            <li>Navigate to <strong>Command Center</strong> via the console header.</li>
+                            <li>Locate the <strong>Digital Vault</strong> sector.</li>
+                            <li>Click <strong>"ACCESS PROTOCOL"</strong> next to any synchronized file to initiate retrieval.</li>
+                        </ol>
                     </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; grid-column: span 1;">
-                        <h4 class="text-white"><i class="fa-brands fa-windows"></i> Windows</h4>
-                        <p style="font-size: 12px; margin: 5px 0 0 0;">Right-click .zip file > Select "Extract All" > Choose destination.</p>
-                    </div>
-                </div>
+                </section>
 
-                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: right;">
-                    <a href="guide-troubleshooting.html" class="btn btn-primary">Next: Troubleshooting <i class="fa-solid fa-arrow-right"></i></a>
+                <section id="step3" class="reveal-on-scroll">
+                    <h2>03. File Extraction</h2>
+                    <p>Most KYNAR assets are compressed into <strong>.ZIP</strong> archives to ensure data integrity during transmission.</p>
+                    <div class="bento-grid-wrapper" style="gap: 20px; margin-top: 30px;">
+                        <div class="bento-card span-6" style="background: var(--bg-surface); border: none;">
+                            <h4 style="font-family: 'Bantayog'; font-size: 14px; margin-bottom: 10px;"><i class="fa-brands fa-apple" style="margin-right: 10px;"></i> macOS</h4>
+                            <p style="font-size: 12px; margin: 0;">Double-click the .zip archive. The system will auto-extract the directory.</p>
+                        </div>
+                        <div class="bento-card span-6" style="background: var(--bg-surface); border: none;">
+                            <h4 style="font-family: 'Bantayog'; font-size: 14px; margin-bottom: 10px;"><i class="fa-brands fa-windows" style="margin-right: 10px;"></i> WINDOWS</h4>
+                            <p style="font-size: 12px; margin: 0;">Right-click > Select "Extract All" > Designate destination path.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: flex-end;">
+                    <a href="guide-troubleshooting.html" class="btn btn-primary">NEXT: DIAGNOSTICS <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i></a>
                 </div>
 
             </article>
@@ -98,16 +124,6 @@
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Academy</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>

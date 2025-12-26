@@ -1,4 +1,11 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+/**
+ * KYNAR UNIVERSE - Firebase Engine (2026 Edition)
+ * Architect: AetherCode
+ * Description: Core data backbone for Identity and the Digital Vault.
+ * Evolution: Platinum Plus Parallel Logic
+ */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { 
     getAuth, 
     onAuthStateChanged, 
@@ -6,7 +13,7 @@ import {
     createUserWithEmailAndPassword, 
     signOut, 
     updateProfile 
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import { 
     getFirestore, 
     doc, 
@@ -15,7 +22,7 @@ import {
     updateDoc, 
     arrayUnion, 
     arrayRemove 
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
@@ -26,45 +33,38 @@ const firebaseConfig = {
     appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
 };
 
-// Initialize Services with Singleton Pattern
-let app;
-try {
-    app = initializeApp(firebaseConfig);
-} catch (e) {
-    if (!/already-exists/.test(e.code)) {
-        console.error("Firebase initialization error", e);
-    }
-}
-
+// Initialize Application Services
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 /**
- * Advanced Registration Flow
- * execute profile update and DB creation in parallel for performance.
+ * INITIALIZE IDENTITY PROTOCOL
+ * Orchestrates Auth profile and Firestore record in parallel.
+ * Optimized for the 2026 "Zero-Latency" UX.
  */
 const registerUser = async (email, password, displayName) => {
     try {
-        // 1. Create Auth User
+        // 1. Authenticate Initial Signal
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCred.user;
-        const finalName = displayName || "Creator";
+        const finalName = displayName || "Architect";
         const now = new Date().toISOString();
 
-        // 2. Parallel Execution: Update Profile & Create Firestore Doc
-        // We use Promise.all to fire both network requests simultaneously.
+        // 2. Parallel Synchronization
+        // Fires both Identity and Data-Vault initialization simultaneously.
         await Promise.all([
-            // Task A: Update local Auth profile
+            // Local Profile Mapping
             updateProfile(user, { displayName: finalName }),
             
-            // Task B: Create remote Firestore document
+            // Database Record Establishment
             setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 email: email,
                 displayName: finalName,
-                createdAt: now,
-                updatedAt: now,
-                role: "user",
+                established: now,
+                lastSync: now,
+                accessLevel: "founding_member",
                 purchases: [],
                 wishlist: []
             }, { merge: true })
@@ -72,12 +72,12 @@ const registerUser = async (email, password, displayName) => {
 
         return user;
     } catch (error) {
-        console.error("Registration Error:", error);
-        throw error; // Re-throw to be handled by the UI layer
+        console.error("Identity Protocol Error:", error);
+        throw error;
     }
 };
 
-// Export Services & Method Wrappers
+// Export Synchronized Services
 export { 
     auth, 
     db, 
@@ -85,7 +85,6 @@ export {
     signInWithEmailAndPassword, 
     signOut, 
     onAuthStateChanged,
-    // Firestore Helpers
     doc,
     getDoc,
     setDoc,

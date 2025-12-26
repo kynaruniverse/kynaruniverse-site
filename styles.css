@@ -1,24 +1,17 @@
 /*
-   KYNAR UNIVERSE 2026 - OBSIDIAN HYBRID MASTER
-   Architecture: AetherCode (Restored)
-   Skin: Obsidian & Neon Gold (2026)
-   Status: Technical & Aesthetic Fusion
+   KYNAR 2026 - THE ELASTIC STACK (Platinum Plus)
+   Style: Tactile Luxury / Editorial / Physics-Based
+   Architect: KynarForge Pro
 */
 
-/*--- 1. CORE FOUNDATION & FONTS ---*/
+/* =========================================
+   1. CORE FOUNDATION
+   ========================================= */
 
 @font-face {
     font-family: 'Bantayog';
     src: url('fonts/Bantayog.woff2') format('woff2');
-    font-weight: 400 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Jimmy Flashcard';
-    src: url('fonts/Jimmy Flashcard.woff2') format('woff2');
-    font-weight: normal; font-style: normal; font-display: swap;
+    font-weight: 400 900; font-style: normal; font-display: swap;
 }
 
 @font-face {
@@ -27,252 +20,176 @@
     font-weight: normal; font-style: normal; font-display: swap;
 }
 
-/* Modern Box Sizing Reset */
+:root {
+    /* Platinum Palette (Paper & Ink) */
+    --bg-body: #ffffff;
+    --bg-surface: #f2f2f2;
+    --bg-card: #ffffff;
+    
+    /* Typography */
+    --text-main: #0a0a0a;
+    --text-muted: #666666;
+    
+    /* Accents */
+    --gold-neon: #D4AF37;
+    --gold-faint: rgba(212, 175, 55, 0.1);
+    
+    /* Elastic Metrics */
+    --overlap-offset: 60px; /* How much of the card 'peeks' out */
+    --card-radius: 24px;
+    --shadow-stack: 0 -10px 30px rgba(0,0,0,0.05);
+    --shadow-active: 0 20px 50px rgba(0,0,0,0.1);
+    
+    /* Layering */
+    --z-header: 1000;
+    --z-stack-base: 10;
+    --z-overlay: 2000;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 100%; -webkit-text-size-adjust: 100%; }
-
-/*--- 2. DESIGN TOKENS (THE 2026 PALETTE) ---*/
-:root {
-    /* Obsidian Palette */
-    --color-bg-body: #050505;
-    --color-bg-surface: #0f0f0f;
-    --color-bg-panel: #111111;
-    --color-text-main: #ffffff;
-    --color-text-muted: #888888;
-    
-    /* Neon Gold Accents */
-    --color-gold-neon: #D4AF37;
-    --color-gold-dim: #7a6845;
-    --color-gold-glow: rgba(212, 175, 55, 0.4);
-    
-    /* Glass System */
-    --glass-surface: rgba(255, 255, 255, 0.03);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.08);
-    
-    /* Spacing & Radii */
-    --radius-pill: 999px;
-    --radius-card: 20px;
-    --radius-header: 99px; /* Floating Dock Style */
-    
-    /* Fonts */
-    --font-display: 'Bantayog', sans-serif;
-    --font-accent: 'Jimmy Flashcard', cursive;
-    --font-body: 'Glacial Indifference', sans-serif;
-
-    /* Layer Management (Restored from your upload) */
-    --z-header: 100;
-    --z-overlay: 1900;
-    --z-drawer: 2000;
-    --z-modal: 2000;
-    --z-loading: 99999;
-}
-
 body {
-    background-color: var(--color-bg-body);
-    color: var(--color-text-main);
-    font-family: var(--font-body);
-    min-height: 100vh;
+    background-color: var(--bg-body);
+    /* Premium Paper Texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    color: var(--text-main);
+    font-family: 'Glacial Indifference', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    /* Subtle Grain Texture */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-body.drawer-open { overflow: hidden; }
+/* =========================================
+   2. THE ELASTIC STACK ENGINE
+   ========================================= */
 
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; transition: 0.2s; }
-
-/*--- 3. LAYOUT UTILITIES ---*/
-.container {
-    width: 100%; max-width: 1400px;
-    margin-inline: auto; padding-inline: 20px;
+/* The Container that holds the 'Deck' */
+.product-stack-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 40px;
+    perspective: 1000px;
 }
 
-/* Bento Grid Wrapper */
-.bento-grid-wrapper {
-    display: grid; grid-template-columns: repeat(12, 1fr);
-    gap: 20px; grid-auto-rows: minmax(180px, auto);
-}
-.span-12 { grid-column: span 12; }
-.span-8  { grid-column: span 8; }
-.span-4  { grid-column: span 4; }
-.span-2  { grid-column: span 2; }
-@media (max-width: 900px) {
-    .bento-grid-wrapper { display: flex; flex-direction: column; gap: 20px; }
-    .span-8, .span-4, .span-2 { width: 100%; }
-}
-
-/*--- 4. UI COMPONENTS ---*/
-
-/* The Obsidian Card */
-.bento-card {
-    background: var(--glass-surface);
-    border: var(--glass-border);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border-radius: var(--radius-card);
-    padding: 24px;
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    color: white; /* Ensure text is visible */
+/* Individual Card Styling */
+.stack-card {
+    position: sticky;
+    top: 100px; /* Sticks to header area */
+    background: var(--bg-card);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: var(--card-radius);
+    padding: 30px;
+    margin-bottom: -75vh; /* This creates the 80% overlap */
+    height: 85vh;
+    box-shadow: var(--shadow-stack);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Buttons */
+/* The 'Peek' Header */
+.stack-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--overlap-offset);
+    cursor: pointer;
+}
+
+.stack-card-header h3 {
+    font-family: 'Bantayog', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+}
+
+/* Expanded State (Via JS) */
+.stack-card.is-expanded {
+    transform: translateY(-20px) scale(1.02);
+    box-shadow: var(--shadow-active);
+    z-index: 500 !important;
+    margin-bottom: 20px; /* Breaks the overlap to show full content */
+}
+
+/* =========================================
+   3. UI COMPONENTS (TACTILE)
+   ========================================= */
+
 .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 12px 28px; border-radius: var(--radius-pill);
-    font-family: var(--font-display); text-transform: uppercase; font-weight: bold; letter-spacing: 0.1em;
-    font-size: 12px; cursor: pointer; border: none; text-decoration: none;
-    transition: 0.3s;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 32px; border-radius: 99px;
+    font-family: 'Bantayog', sans-serif; text-transform: uppercase;
+    font-size: 11px; font-weight: bold; letter-spacing: 2px;
+    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none; cursor: pointer;
 }
+
+.btn:active { transform: scale(0.95); } /* Haptic feedback */
 
 .btn-primary {
-    background: var(--color-gold-neon); color: #000;
-    box-shadow: 0 0 15px var(--color-gold-glow);
-}
-.btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--color-gold-glow); }
-
-.btn-secondary {
-    background: transparent; border: 1px solid white; color: white;
-}
-.btn-secondary:hover { background: white; color: black; }
-
-/* Inputs */
-input, select, textarea {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white; padding: 12px 16px; border-radius: 12px; width: 100%;
+    background: var(--text-main); color: #fff;
 }
 
-/*--- 5. HEADER (THE GLASS DOCK) ---*/
+.btn-primary:hover {
+    background: var(--gold-neon);
+    box-shadow: 0 10px 20px var(--gold-faint);
+}
+
+/* =========================================
+   4. THE COMMAND CONSOLE (HEADER)
+   ========================================= */
+
 .header-wrapper {
-    position: sticky; top: 20px; z-index: var(--z-header);
-    margin: 0 20px;
+    position: sticky; top: 0; z-index: var(--z-header);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.glass-dock {
-    background: rgba(15, 15, 15, 0.85);
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 99px;
-    padding: 10px 25px;
+.header-top-row {
     display: flex; justify-content: space-between; align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    max-width: 1000px; margin: 0 auto;
+    padding: 15px 25px;
+    max-width: 1400px; margin: 0 auto;
 }
 
 .brand-text {
-    font-family: var(--font-display); font-size: 24px;
-    color: white; text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Bantayog', sans-serif;
+    font-size: 28px; letter-spacing: 2px;
 }
 
-.desktop-nav { display: none; gap: 30px; }
-@media(min-width: 900px) {
-    .desktop-nav { display: flex; }
-    .custom-burger { display: none; }
+.header-nav-row {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 12px 0;
+    display: flex; justify-content: center; gap: 40px;
 }
 
-/* Burger Menu */
-.custom-burger {
-    display: flex; flex-direction: column; justify-content: space-between;
-    width: 24px; height: 18px; background: none; border: none; cursor: pointer;
-}
-.custom-burger span {
-    display: block; width: 100%; height: 2px; background: white;
+.header-nav-row a {
+    font-size: 12px; font-weight: bold; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none;
+    letter-spacing: 1px;
 }
 
-/*--- 6. CRITICAL COMPONENT HIDING (RESTORED) ---*/
-/* This ensures drawers don't stack at the bottom of the page */
-.auth-modal, 
-.modern-filter-modal, 
-.quick-view-modal, 
-.side-drawer, 
-.cart-drawer, 
-#cart-side-drawer,
-.loading-overlay,
-.drawer-overlay, 
-.auth-modal-backdrop {
-    display: none !important;
-    opacity: 0;
-    z-index: 2000;
+.header-nav-row a:hover { color: var(--text-main); }
+
+/* =========================================
+   5. UTILITIES & MODALS
+   ========================================= */
+
+.auth-modal, .side-drawer, #cart-side-drawer {
+    display: none !important; /* Force hide by default */
+    position: fixed; inset: 0; z-index: var(--z-overlay);
 }
 
-/* Active States */
-.side-drawer.is-open {
-    display: block !important;
-    position: fixed; top: 0; left: 0;
-    width: 300px; height: 100vh;
-    background: var(--color-bg-panel); color: white;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    opacity: 1; animation: slideInLeft 0.3s forwards;
-}
-
-#cart-side-drawer.is-open, .cart-drawer.is-open {
+.auth-modal.is-open {
     display: flex !important;
-    flex-direction: column;
-    position: fixed; top: 0; right: 0;
-    width: 350px; height: 100vh;
-    background: var(--color-bg-panel); color: white;
-    border-left: 1px solid rgba(255,255,255,0.1);
-    opacity: 1; animation: slideInRight 0.3s forwards;
-}
-
-.auth-modal.is-open, .modern-filter-modal.is-open, .quick-view-modal.is-open {
-    display: flex !important;
-    position: fixed; inset: 0;
     align-items: center; justify-content: center;
-    opacity: 1;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
 }
 
-.drawer-overlay.is-visible, .auth-modal-backdrop.is-visible {
-    display: block !important;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
-    opacity: 1;
-}
+.bg-dark { background: #0a0a0a; color: #fff; }
 
-/* Drawer Content Styling */
-.drawer-header {
-    padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);
-    display: flex; justify-content: space-between; align-items: center;
-}
-.drawer-list { list-style: none; padding: 20px; }
-.drawer-list li { margin-bottom: 15px; }
-.drawer-list a { color: rgba(255,255,255,0.8); font-family: var(--font-display); text-transform: uppercase; }
-
-/*--- 7. MEGA HERO ---*/
-.mega-hero-container {
-    position: relative; height: 80vh;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; text-align: center;
-}
-.mega-text {
-    font-family: var(--font-display); font-size: clamp(60px, 18vw, 250px);
-    line-height: 0.8; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.15);
-    text-transform: uppercase; position: absolute; z-index: 0; pointer-events: none;
-}
-.hero-foreground {
-    z-index: 1; position: relative; max-width: 600px; padding: 40px;
-    background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);
-    border-radius: var(--radius-card); border: 1px solid rgba(255,255,255,0.1);
-}
-
-/*--- 8. UTILITIES ---*/
-.text-gold { color: var(--color-gold-neon); }
-.text-white { color: white; }
-.text-muted { color: var(--color-text-muted); }
-.bg-dark { background: var(--color-bg-body); }
-
-/* Animation Keyframes */
-@keyframes slideInLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-@keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* Loading Spinner */
-.loading-spinner {
-    width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1);
-    border-top-color: var(--color-gold-neon); border-radius: 50%;
-    animation: spin 1s infinite linear;
+@keyframes springUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
 }

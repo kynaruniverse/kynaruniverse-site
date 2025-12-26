@@ -16,80 +16,71 @@
         <div data-include="components/header.html"></div>
     </div>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+    <main class="container" style="padding-top: 80px; padding-bottom: 120px;">
         
-        <header style="text-align: center; margin-bottom: 50px;">
-            <i class="fa-solid fa-shield-halved text-gold" style="font-size: 40px; margin-bottom: 20px;"></i>
-            <h1 class="text-white" style="font-family: var(--font-mega); font-size: 3rem; line-height: 1;">SECURE GATEWAY</h1>
-            <p class="text-muted">Encrypted Transaction Channel</p>
+        <header style="text-align: center; margin-bottom: 60px;">
+            <div style="width: 80px; height: 80px; background: var(--gold-faint); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+                <i class="fa-solid fa-shield-halved" style="font-size: 32px; color: var(--gold-neon);"></i>
+            </div>
+            <h1 style="font-family: 'Bantayog'; font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1; color: var(--text-main);">SECURE GATEWAY</h1>
+            <p class="text-muted" style="letter-spacing: 2px; font-size: 11px; font-weight: bold; text-transform: uppercase;">Encrypted Transaction Channel</p>
         </header>
 
         <form id="checkout-form" class="bento-grid-wrapper" style="display: none;">
             
-            <section class="bento-card span-7" style="border-top: 2px solid var(--gold-neon);">
-                <h2 class="text-white" style="margin-bottom: 20px; font-family: var(--font-mega);">Identity Protocol</h2>
+            <section class="bento-card span-7 reveal-on-scroll">
+                <h2 style="margin-bottom: 30px; font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px;">Identity Protocol</h2>
                 
-                <div style="margin-bottom: 20px;">
-                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Full Name</label>
-                    <input type="text" name="name" id="checkout-name" required placeholder="Ex: Alex Cipher">
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; font-size: 10px; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">FULL NAME</label>
+                    <input type="text" name="name" id="checkout-name" class="vip-input-field" required placeholder="ALEX CIPHER">
                 </div>
 
-                <div style="margin-bottom: 20px;">
-                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Transmission Email</label>
-                    <input type="email" name="email" id="checkout-email" required placeholder="Ex: alex@domain.com">
-                    <p class="text-gold" style="font-size: 11px; margin-top: 5px;">
-                        <i class="fa-solid fa-lock"></i> Assets will be linked to this ID.
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; font-size: 10px; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">TRANSMISSION EMAIL</label>
+                    <input type="email" name="email" id="checkout-email" class="vip-input-field" required placeholder="ARCHITECT@KYNAR.CO.UK">
+                    <p style="font-size: 11px; color: var(--gold-neon); margin-top: 10px; font-weight: bold;">
+                        <i class="fa-solid fa-lock"></i> Assets will be synchronized to this ID.
                     </p>
                 </div>
 
                 <div>
-                    <label class="text-muted" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Flight Notes (Optional)</label>
-                    <textarea name="message" rows="3" placeholder="Special instructions..."></textarea>
+                    <label style="display: block; font-size: 10px; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">FLIGHT NOTES (OPTIONAL)</label>
+                    <textarea name="message" class="vip-input-field" rows="3" placeholder="SPECIFY SPECIAL INSTRUCTIONS..." style="border-radius: 16px; resize: none;"></textarea>
                 </div>
             </section>
 
-            <aside class="bento-card span-5" style="background: rgba(20,20,20,0.8);">
-                <h2 class="text-white" style="margin-bottom: 20px; font-family: var(--font-mega);">Manifest</h2>
+            <aside class="bento-card span-5 reveal-on-scroll" style="background: var(--bg-surface); border: none;">
+                <h2 style="margin-bottom: 30px; font-family: 'Bantayog'; text-transform: uppercase; letter-spacing: 1px;">Manifest</h2>
                 
-                <div id="checkout-items-list" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px;">
-                    </div>
+                <div id="checkout-items-list" style="margin-bottom: 30px;"></div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                    <span class="text-muted">TOTAL</span>
-                    <span id="checkout-total-display" class="text-gold" style="font-size: 24px; font-weight: bold; font-family: var(--font-tech);">£0.00</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-top: 20px; border-top: 2px solid rgba(0,0,0,0.05);">
+                    <span style="font-family: 'Bantayog'; font-size: 12px; opacity: 0.5;">TOTAL DUE</span>
+                    <span id="checkout-total-display" style="font-size: 32px; font-family: 'Bantayog'; color: var(--text-main); line-height: 1;">£0.00</span>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-full-width" style="width: 100%;">
-                    Initialize Transfer <i class="fa-solid fa-bolt"></i>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 20px;">
+                    INITIALIZE TRANSFER <i class="fa-solid fa-bolt" style="margin-left: 10px;"></i>
                 </button>
                 
-                <div style="text-align: center; margin-top: 20px; opacity: 0.5;">
-                    <i class="fa-brands fa-cc-stripe text-white" style="font-size: 24px;"></i>
+                <div style="text-align: center; margin-top: 30px; opacity: 0.2; filter: grayscale(1);">
+                    <i class="fa-brands fa-cc-stripe" style="font-size: 32px;"></i>
                 </div>
             </aside>
 
         </form>
 
-        <div id="checkout-empty" style="display: none; text-align: center; padding: 60px;">
-            <i class="fa-solid fa-box-open text-muted" style="font-size: 50px; margin-bottom: 20px;"></i>
-            <h2 class="text-white">Manifest Empty</h2>
-            <a href="marketplace.html" class="btn btn-secondary" style="margin-top: 20px;">Return to Armory</a>
+        <div id="checkout-empty" style="display: none; text-align: center; padding: 100px 20px;">
+            <i class="fa-solid fa-box-open" style="font-size: 60px; color: var(--bg-surface); margin-bottom: 30px;"></i>
+            <h2 style="font-family: 'Bantayog'; margin-bottom: 20px;">MANIFEST EMPTY</h2>
+            <a href="marketplace.html" class="btn btn-secondary">RETURN TO ARMORY</a>
         </div>
 
     </main>
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/auth-modals.html"></div>
-    
-    <nav class="side-drawer" id="side-drawer" aria-hidden="true">
-        <div class="drawer-header"><span class="drawer-title">Menu</span></div>
-        <ul class="drawer-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="guides.html">Academy</a></li>
-            <li><a href="account.html">My Account</a></li>
-        </ul>
-    </nav>
     <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 
     <script src="utilities.js"></script>
