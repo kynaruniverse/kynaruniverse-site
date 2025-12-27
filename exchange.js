@@ -61,24 +61,45 @@ document.addEventListener('DOMContentLoaded', () => {
         renderManifest();
     };
 
-    function processExchange() {
-        const originalText = DOM.btn.textContent;
-        DOM.btn.textContent = 'Securing...';
+        function processExchange() {
+        const btn = document.getElementById('btn-acquire');
+        const originalText = btn.textContent;
+        btn.textContent = 'Securing...';
         
         // Simulation of API call
         setTimeout(() => {
-            // Success
-            DOM.btn.textContent = 'Exchange Complete';
-            DOM.btn.style.background = '#4CAF50'; // Muted Success Green
+            // 1. GET CURRENT SATCHEL
+            const newItems = window.Satchel.getContents();
             
+            // 2. GET EXISTING LIBRARY (Owned items)
+            const currentLibrary = JSON.parse(localStorage.getItem('kynar_library') || '[]');
+            
+            // 3. MERGE (Avoid duplicates)
+            newItems.forEach(newItem => {
+                if (!currentLibrary.find(owned => owned.id === newItem.id)) {
+                    // Add timestamp for the ledger
+                    newItem.acquiredDate = new Date().toLocaleDateString();
+                    currentLibrary.push(newItem);
+                }
+            });
+            
+            // 4. SAVE TO PERMANENT STORAGE
+            localStorage.setItem('kynar_library', JSON.stringify(currentLibrary));
+            
+            // 5. SUCCESS STATE
+            btn.textContent = 'Exchange Complete';
+            btn.style.background = 'var(--ink-secondary)'; 
+            
+            if (window.Haptics) window.Haptics.success();
             alert("Exchange successful. Artifacts have been added to your Identity.");
             
-            // Clear and Redirect
+            // 6. CLEAR SATCHEL & REDIRECT
             window.Satchel.clear();
             window.location.href = 'identity.html';
             
         }, 1500);
     }
+
 
     init();
 });

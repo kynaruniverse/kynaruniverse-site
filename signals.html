@@ -3,47 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Signals / Kynar Universe</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <title>Signals/Kynar Universe</title>
+    <meta name="description" content="A curated archive of high-value digital artifacts. Tools for focus, productivity, and architectural thinking.">
+    <meta name="keywords" content="productivity, notion templates, digital artifacts, focus tools, kynar universe, deep work">
+    <meta name="author" content="Kynar Architect">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kynaruniverse.co.uk/">
+    <meta property="og:title" content="Kynar Universe">
+    <meta property="og:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
+    <meta property="og:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kynaruniverse.co.uk/">
+    <meta property="twitter:title" content="Kynar Universe">
+    <meta property="twitter:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
+    <meta property="twitter:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <div data-include="components/header.html"></div>
 
-    <main class="forge-container">
+        <main class="forge-container" style="max-width: 700px; text-align: center;">
         
-        <section class="forge-section" style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h1 class="text-display">Join the <br>Quiet Forge.</h1>
-            <p class="text-body" style="margin: 0 auto var(--rhythm-breath) auto;">
-                We don't spam. We send one signal, once a month, containing 
-                new tools, design philosophy, and silence.
+        <section class="forge-section">
+            <div id="signal-pulse" style="width: 60px; height: 60px; background: var(--bg-stone); border-radius: 50%; margin: 0 auto 2rem auto; display: flex; align-items: center; justify-content: center; position: relative;">
+                <div style="width: 10px; height: 10px; background: var(--ink-primary); border-radius: 50%;"></div>
+                </div>
+
+            <span class="stone-meta">The Kynar Frequency</span>
+            <h1 class="text-display" style="font-size: clamp(2.5rem, 6vw, 4rem);">Join the Signal.</h1>
+            <p class="text-body" style="max-width: 50ch; margin: 0 auto 3rem auto;">
+                Receive high-value architectural updates, new artifact alerts, and the weekly "Deep Focus" digest.
+                <br><br>
+                <strong>Current Strength:</strong> <span id="signal-strength">Checking...</span> Architects
             </p>
 
-            <div class="stone-block" style="text-align: left; margin-top: 3rem;">
-                <form id="signals-form">
-                    <div style="margin-bottom: 2rem;">
-                        <label class="stone-meta" for="signal-name">Your Name</label>
-                        <input type="text" id="signal-name" class="ink-input" placeholder="ENTER YOUR NAME" required>
-                    </div>
-                    <div style="margin-bottom: 2rem;">
-                        <label class="stone-meta" for="signal-email">Signal Frequency</label>
-                        <input type="email" id="signal-email" class="ink-input" placeholder="ENTER YOUR EMAIL" required>
+            <div class="stone-block" style="text-align: left; padding: 2rem;">
+                <form id="signal-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label for="email" class="stone-meta" style="margin-bottom: 0.5rem; display: block;">Your Frequency (Email)</label>
+                        <input type="email" id="email" placeholder="architect@example.com" required 
+                            style="width: 100%; padding: 1rem; background: var(--bg-paper); border: 1px solid rgba(0,0,0,0.1); font-family: inherit; font-size: 1rem; color: var(--ink-primary); outline: none;">
                     </div>
                     
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-                        <p id="signal-status" class="stone-meta" style="color: var(--ink-secondary); opacity: 0; transition: opacity 0.3s;">
-                            Transmitting...
-                        </p>
-                        <button type="submit" class="ink-link" style="background: none; border: none; font-size: 1.1rem; cursor: pointer; border-bottom: 1px solid transparent;">
-                            Connect
-                        </button>
-                    </div>
+                    <button type="submit" id="btn-signal" class="ink-link" style="background: var(--ink-primary); color: var(--bg-paper); padding: 1rem; border: none; cursor: pointer; text-align: center;">
+                        Establish Connection
+                    </button>
+                    
+                    <p style="font-size: 0.75rem; color: var(--ink-secondary); margin-top: 0.5rem; text-align: center;">
+                        Unlocks "Free" tier artifacts immediately.
+                    </p>
                 </form>
             </div>
         </section>
 
     </main>
+
 
     <div data-include="components/footer.html"></div>
     <div data-include="components/access-modals.html"></div>

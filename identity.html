@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Identity / Kynar Universe</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <title>Kynar Universe / All About You</title>
+    <meta name="description" content="A curated archive of high-value digital artifacts. Tools for focus, productivity, and architectural thinking.">
+    <meta name="keywords" content="productivity, notion templates, digital artifacts, focus tools, kynar universe, deep work">
+    <meta name="author" content="Kynar Architect">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kynaruniverse.co.uk/">
+    <meta property="og:title" content="Kynar Universe">
+    <meta property="og:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
+    <meta property="og:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kynaruniverse.co.uk/">
+    <meta property="twitter:title" content="Kynar Universe">
+    <meta property="twitter:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
+    <meta property="twitter:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <div data-include="components/header.html"></div>
@@ -62,12 +80,12 @@
     <div data-include="components/access-modals.html"></div>
 
     <script src="utilities.js"></script>
+        <script src="bookshelf.js"></script>
+
     <script type="module">
         import './firebase-config.js';
         import './access-ui.js';
     </script>
-    <script src="circadian.js"></script>
-    <script src="haptics.js"></script>
-
 </body>
+
 </html>
