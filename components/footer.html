@@ -1,70 +1,230 @@
-<footer class="site-footer" style="position: relative; overflow: hidden;">
+<footer
+  class="site-footer"
+  style="
+    overflow: hidden;
+    position: relative;
+  "
+>
     
-    <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; text-align: left; max-width: 800px; margin: 0 auto;">
+  <div
+    class="footer-grid"
+    style="
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      margin: 0 auto;
+      max-width: 800px;
+      text-align: left;
+    "
+  >
         
-        <div class="footer-col">
-            <h4 style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-display); margin-bottom: 0.5rem;">KYNAR</h4>
-            <p style="font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1.5rem;">
-                Quiet tools for chaotic times.<br>
-                Est. 2025
-            </p>
+    <div class="footer-col">
+      <h4
+        style="
+          color: var(--ink-display);
+          font-family: 'Bantayog';
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        "
+      >
+        KYNAR
+      </h4>
+      
+      <p
+        style="
+          color: var(--ink-muted);
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+        "
+      >
+        Quiet tools for chaotic times.<br />
+        Est. 2025
+      </p>
             
-            <div style="display: flex; gap: 0.8rem;">
-                <a href="#" aria-label="Twitter" style="width: 44px; height: 44px; background: var(--bg-canvas); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); color: var(--ink-display); transition: transform 0.2s;">
-                    <span style="font-size: 1.1rem; opacity: 0.8;">𝕏</span>
-                </a>
-                <a href="#" aria-label="Instagram" style="width: 44px; height: 44px; background: var(--bg-canvas); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); color: var(--ink-display); transition: transform 0.2s;">
-                    <span style="font-size: 1.2rem; opacity: 0.8;">📷</span>
-                </a>
-            </div>
-        </div>
+      <div style="display: flex; gap: 0.8rem;">
+        
+        <a
+          aria-label="Twitter"
+          href="#"
+          style="
+            align-items: center;
+            background: var(--bg-canvas);
+            border-radius: 50%;
+            box-shadow: var(--shadow-soft);
+            color: var(--ink-display);
+            display: flex;
+            height: 44px;
+            justify-content: center;
+            transition: transform 0.2s;
+            width: 44px;
+          "
+        >
+          <span style="font-size: 1.1rem; opacity: 0.8;">𝕏</span>
+        </a>
 
-        <div class="footer-col">
-            <span style="display: block; font-family: 'Bantayog'; color: var(--accent-gold); margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 0.05em;">EXPLORE</span>
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                <a href="archive.html" style="font-size: 0.9rem; color: var(--ink-body);">The Archive</a>
-                <a href="library.html" style="font-size: 0.9rem; color: var(--ink-body);">Library</a>
-                <a href="signals.html" style="font-size: 0.9rem; color: var(--ink-body);">Signals</a>
-                <a href="identity.html" style="font-size: 0.9rem; color: var(--ink-body);">Identity</a>
-            </div>
-        </div>
+        <a
+          aria-label="Instagram"
+          href="#"
+          style="
+            align-items: center;
+            background: var(--bg-canvas);
+            border-radius: 50%;
+            box-shadow: var(--shadow-soft);
+            color: var(--ink-display);
+            display: flex;
+            height: 44px;
+            justify-content: center;
+            transition: transform 0.2s;
+            width: 44px;
+          "
+        >
+          <span style="font-size: 1.2rem; opacity: 0.8;">📷</span>
+        </a>
 
-        <div class="footer-col">
-            <span style="display: block; font-family: 'Bantayog'; color: var(--accent-gold); margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 0.05em;">SYSTEM</span>
-            
-            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; background: var(--bg-canvas); padding: 0.5rem 1rem; border-radius: 99px; width: fit-content; border: 1px solid rgba(0,0,0,0.03);">
-                <span class="status-orb"></span>
-                <span style="font-size: 0.8rem; font-weight: bold; color: var(--ink-display);">Operational</span>
-            </div>
-
-            <p style="font-size: 0.75rem; color: var(--ink-muted);">
-                &copy; <span id="year-display">2025</span> Kynar Universe.<br>
-                <a href="#" style="text-decoration: underline !important; color: inherit;">Privacy Protocol</a>
-            </p>
-        </div>
-
+      </div>
     </div>
 
-    <div style="height: 6px; width: 100%; background: var(--grad-gold); margin-top: 3rem; opacity: 0.3; border-radius: 99px;"></div>
+    <div class="footer-col">
+      <span
+        style="
+          color: var(--accent-gold);
+          display: block;
+          font-family: 'Bantayog';
+          font-size: 0.9rem;
+          letter-spacing: 0.05em;
+          margin-bottom: 1rem;
+        "
+      >
+        EXPLORE
+      </span>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+        "
+      >
+        <a
+          href="archive.html"
+          style="color: var(--ink-body); font-size: 0.9rem;"
+        >
+          The Archive
+        </a>
+        <a
+          href="library.html"
+          style="color: var(--ink-body); font-size: 0.9rem;"
+        >
+          Library
+        </a>
+        <a
+          href="signals.html"
+          style="color: var(--ink-body); font-size: 0.9rem;"
+        >
+          Signals
+        </a>
+        <a
+          href="identity.html"
+          style="color: var(--ink-body); font-size: 0.9rem;"
+        >
+          Identity
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <span
+        style="
+          color: var(--accent-gold);
+          display: block;
+          font-family: 'Bantayog';
+          font-size: 0.9rem;
+          letter-spacing: 0.05em;
+          margin-bottom: 1rem;
+        "
+      >
+        SYSTEM
+      </span>
+            
+      <div
+        style="
+          align-items: center;
+          background: var(--bg-canvas);
+          border-radius: 99px;
+          border: 1px solid rgba(0, 0, 0, 0.03);
+          display: flex;
+          gap: 0.6rem;
+          margin-bottom: 1.5rem;
+          padding: 0.5rem 1rem;
+          width: fit-content;
+        "
+      >
+        <span class="status-orb"></span>
+        <span
+          style="
+            color: var(--ink-display);
+            font-size: 0.8rem;
+            font-weight: bold;
+          "
+        >
+          Operational
+        </span>
+      </div>
+
+      <p style="color: var(--ink-muted); font-size: 0.75rem;">
+        &copy; <span id="year-display">2025</span> Kynar Universe.<br />
+        <a
+          href="#"
+          style="color: inherit; text-decoration: underline !important;"
+        >
+          Privacy Protocol
+        </a>
+      </p>
+    </div>
+
+  </div>
+
+  <div
+    style="
+      background: var(--grad-gold);
+      border-radius: 99px;
+      height: 6px;
+      margin-top: 3rem;
+      opacity: 0.3;
+      width: 100%;
+    "
+  ></div>
 
 </footer>
 
 <style>
-    /* Local animation for the status light */
-    .status-orb {
-        width: 8px; height: 8px;
-        background-color: #10B981;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #10B981;
-        animation: signalPulse 3s infinite;
+  /* --- Status Orb Pulse Animation --- */
+  .status-orb {
+    animation: signalPulse 3s infinite;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+    height: 8px;
+    width: 8px;
+  }
+
+  @keyframes signalPulse {
+    0% {
+      opacity: 1;
+      transform: scale(1);
     }
-    @keyframes signalPulse {
-        0% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.5; transform: scale(0.9); }
-        100% { opacity: 1; transform: scale(1); }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.9);
     }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 </style>
 
 <script>
-    document.getElementById('year-display').textContent = new Date().getFullYear();
+  document.getElementById("year-display").textContent = new Date().getFullYear();
 </script>

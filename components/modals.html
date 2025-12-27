@@ -1,125 +1,309 @@
-<div id="modal-overlay" aria-hidden="true" style="
-    position: fixed; inset: 0; 
-    background: rgba(9, 44, 35, 0.6); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    z-index: 2000; 
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; pointer-events: none;
+<div
+  aria-hidden="true"
+  id="modal-overlay"
+  style="
+    align-items: center;
+    background: rgba(9, 44, 35, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-">
+    visibility: hidden;
+    z-index: 2000;
+  "
+>
     
-    <div class="feature-card" id="modal-card" style="
-        width: 90%; max-width: 380px; height: auto;
-        background: white; 
-        padding: 2.5rem 2rem; 
-        box-shadow: var(--shadow-float);
-        transform: translateY(20px); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        border: 1px solid rgba(0,0,0,0.05);
-        position: relative;
-    ">
+  <div
+    class="feature-card"
+    id="modal-card"
+    style="
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-float);
+      height: auto;
+      max-width: 380px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 90%;
+    "
+  >
         
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔐</div>
-            <h2 class="text-display" id="access-title" style="font-size: 1.8rem; margin-bottom: 0.25rem;">Identity</h2>
-            <p class="text-sub" id="access-subtitle" style="margin-bottom: 0;">Authenticate to access your ledger.</p>
-        </div>
-
-        <div style="display: flex; background: var(--bg-canvas); padding: 4px; border-radius: 99px; margin-bottom: 2rem;">
-            <button id="tab-login" onclick="ModalUI.switchMode('login')" class="dock-btn" style="flex: 1; height: 36px; font-size: 0.8rem; background: white; color: var(--ink-display); box-shadow: var(--shadow-soft); border: none; border-radius: 99px;">Login</button>
-            <button id="tab-register" onclick="ModalUI.switchMode('register')" class="dock-btn" style="flex: 1; height: 36px; font-size: 0.8rem; background: transparent; color: var(--ink-muted); border: none; box-shadow: none; border-radius: 99px;">Register</button>
-        </div>
-
-        <form id="login-form" class="access-form">
-            <div style="margin-bottom: 1rem;">
-                <input type="email" id="login-email" placeholder="Email Address" required 
-                    style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 99px; border: 1px solid rgba(0,0,0,0.1); font-family: 'Glacial Indifference'; font-size: 1rem; outline: none; transition: 0.2s;">
-            </div>
-            <div style="margin-bottom: 2rem;">
-                <input type="password" id="login-pass" placeholder="Password" required 
-                    style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 99px; border: 1px solid rgba(0,0,0,0.1); font-family: 'Glacial Indifference'; font-size: 1rem; outline: none; transition: 0.2s;">
-            </div>
-            
-            <button type="submit" class="dock-btn" style="width: 100%; background: var(--grad-emerald); color: white; border: none; font-weight: bold; box-shadow: var(--shadow-soft);">
-                Connect Identity
-            </button>
-        </form>
-
-        <form id="register-form" class="access-form" style="display: none;">
-            <div style="margin-bottom: 1rem;">
-                <input type="text" id="reg-name" placeholder="Architect Name" required 
-                    style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 99px; border: 1px solid rgba(0,0,0,0.1); font-family: 'Glacial Indifference'; font-size: 1rem; outline: none;">
-            </div>
-            <div style="margin-bottom: 1rem;">
-                <input type="email" id="reg-email" placeholder="Email Address" required 
-                    style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 99px; border: 1px solid rgba(0,0,0,0.1); font-family: 'Glacial Indifference'; font-size: 1rem; outline: none;">
-            </div>
-            <div style="margin-bottom: 2rem;">
-                <input type="password" id="reg-pass" placeholder="Set Password" required 
-                    style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 99px; border: 1px solid rgba(0,0,0,0.1); font-family: 'Glacial Indifference'; font-size: 1rem; outline: none;">
-            </div>
-            
-            <button type="submit" class="dock-btn" style="width: 100%; background: var(--grad-gold); color: white; border: none; font-weight: bold; box-shadow: var(--shadow-soft);">
-                Create Ledger
-            </button>
-        </form>
-
-        <button id="close-access" style="
-            position: absolute; top: 1rem; right: 1rem; 
-            background: rgba(0,0,0,0.05); border: none; 
-            width: 32px; height: 32px; border-radius: 50%;
-            font-size: 1.2rem; line-height: 1;
-            color: var(--ink-muted); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        ">&times;</button>
-
+    <div style="margin-bottom: 2rem; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔐</div>
+      
+      <h2
+        class="text-display"
+        id="access-title"
+        style="font-size: 1.8rem; margin-bottom: 0.25rem;"
+      >
+        Identity
+      </h2>
+      
+      <p
+        class="text-sub"
+        id="access-subtitle"
+        style="margin-bottom: 0;"
+      >
+        Authenticate to access your ledger.
+      </p>
     </div>
 
-</div>
+    <div
+      style="
+        background: var(--bg-canvas);
+        border-radius: 99px;
+        display: flex;
+        margin-bottom: 2rem;
+        padding: 4px;
+      "
+    >
+      <button
+        class="dock-btn"
+        id="tab-login"
+        onclick="ModalUI.switchMode('login')"
+        style="
+          background: white;
+          border-radius: 99px;
+          border: none;
+          box-shadow: var(--shadow-soft);
+          color: var(--ink-display);
+          flex: 1;
+          font-size: 0.8rem;
+          height: 36px;
+        "
+      >
+        Login
+      </button>
 
-<script>
-    const ModalUI = {
-        switchMode(mode) {
-            const loginForm = document.getElementById('login-form');
-            const regForm = document.getElementById('register-form');
-            const tabLogin = document.getElementById('tab-login');
-            const tabReg = document.getElementById('tab-register');
-            const title = document.getElementById('access-title');
-            const sub = document.getElementById('access-subtitle');
+      <button
+        class="dock-btn"
+        id="tab-register"
+        onclick="ModalUI.switchMode('register')"
+        style="
+          background: transparent;
+          border-radius: 99px;
+          border: none;
+          box-shadow: none;
+          color: var(--ink-muted);
+          flex: 1;
+          font-size: 0.8rem;
+          height: 36px;
+        "
+      >
+        Register
+      </button>
+    </div>
 
-            if (mode === 'login') {
-                loginForm.style.display = 'block';
-                regForm.style.display = 'none';
-                
-                // Style Tabs
-                tabLogin.style.background = 'white';
-                tabLogin.style.boxShadow = 'var(--shadow-soft)';
-                tabReg.style.background = 'transparent';
-                tabReg.style.boxShadow = 'none';
+    <form class="access-form" id="login-form">
+      
+      <div style="margin-bottom: 1rem;">
+        <input
+          id="login-email"
+          placeholder="Email Address"
+          required
+          style="
+            border-radius: 99px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Glacial Indifference';
+            font-size: 1rem;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            transition: 0.2s;
+            width: 100%;
+          "
+          type="email"
+        />
+      </div>
+      
+      <div style="margin-bottom: 2rem;">
+        <input
+          id="login-pass"
+          placeholder="Password"
+          required
+          style="
+            border-radius: 99px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Glacial Indifference';
+            font-size: 1rem;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            transition: 0.2s;
+            width: 100%;
+          "
+          type="password"
+        />
+      </div>
+      
+      <button
+        class="dock-btn"
+        style="
+          background: var(--grad-emerald);
+          border: none;
+          box-shadow: var(--shadow-soft);
+          color: white;
+          font-weight: bold;
+          width: 100%;
+        "
+        type="submit"
+      >
+        Connect Identity
+      </button>
+    </form>
 
-                title.innerText = 'Identity';
-                sub.innerText = 'Authenticate to access your ledger.';
-            } else {
-                loginForm.style.display = 'none';
-                regForm.style.display = 'block';
+    <form
+      class="access-form"
+      id="register-form"
+      style="display: none;"
+    >
+      
+      <div style="margin-bottom: 1rem;">
+        <input
+          id="reg-name"
+          placeholder="Architect Name"
+          required
+          style="
+            border-radius: 99px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Glacial Indifference';
+            font-size: 1rem;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            width: 100%;
+          "
+          type="text"
+        />
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <input
+          id="reg-email"
+          placeholder="Email Address"
+          required
+          style="
+            border-radius: 99px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Glacial Indifference';
+            font-size: 1rem;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            width: 100%;
+          "
+          type="email"
+        />
+      </div>
+      
+      <div style="margin-bottom: 2rem;">
+        <input
+          id="reg-pass"
+          placeholder="Set Password"
+          required
+          style="
+            border-radius: 99px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: 'Glacial Indifference';
+            font-size: 1rem;
+            outline: none;
+            padding: 0.8rem 1.2rem;
+            width: 100%;
+          "
+          type="password"
+        />
+      </div>
+      
+      <button
+        class="dock-btn"
+        style="
+          background: var(--grad-gold);
+          border: none;
+          box-shadow: var(--shadow-soft);
+          color: white;
+          font-weight: bold;
+          width: 100%;
+        "
+        type="submit"
+      >
+        Create Ledger
+      </button>
+    </form>
 
-                // Style Tabs
-                tabReg.style.background = 'white';
-                tabReg.style.boxShadow = 'var(--shadow-soft)';
-                tabLogin.style.background = 'transparent';
-                tabLogin.style.boxShadow = 'none';
+    <button
+      id="close-access"
+      style="
+        align-items: center;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        border: none;
+        color: var(--ink-muted);
+        cursor: pointer;
+        display: flex;
+        font-size: 1.2rem;
+        height: 32px;
+        justify-content: center;
+        line-height: 1;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: 32px;
+      "
+    >
+      &times;
+    </button>
 
-                title.innerText = 'Register';
-                sub.innerText = 'Begin your architectural journey.';
-            }
-        }
-    };
+  </div> </div> <script>
+  const ModalUI = {
+    switchMode(mode) {
+      const loginForm = document.getElementById("login-form");
+      const regForm = document.getElementById("register-form");
+      const tabLogin = document.getElementById("tab-login");
+      const tabReg = document.getElementById("tab-register");
+      const title = document.getElementById("access-title");
+      const sub = document.getElementById("access-subtitle");
+
+      if (mode === "login") {
+        // --- State: Login ---
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+
+        // Reset Tab Styles
+        tabLogin.style.background = "white";
+        tabLogin.style.boxShadow = "var(--shadow-soft)";
+        tabReg.style.background = "transparent";
+        tabReg.style.boxShadow = "none";
+
+        // Update Text
+        title.innerText = "Identity";
+        sub.innerText = "Authenticate to access your ledger.";
+      } else {
+        // --- State: Register ---
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+
+        // Reset Tab Styles
+        tabReg.style.background = "white";
+        tabReg.style.boxShadow = "var(--shadow-soft)";
+        tabLogin.style.background = "transparent";
+        tabLogin.style.boxShadow = "none";
+
+        // Update Text
+        title.innerText = "Register";
+        sub.innerText = "Begin your architectural journey.";
+      }
+    },
+  };
 </script>
 
 <style>
-    /* Focus States */
-    .access-form input:focus {
-        border-color: var(--accent-gold) !important;
-        background: white !important;
-        box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
-    }
+  /* --- Input Focus States --- */
+  .access-form input:focus {
+    background: white !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+  }
 </style>

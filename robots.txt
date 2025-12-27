@@ -1,10 +1,29 @@
+# ══════════════════════════════════════════════════════════════════════════
+# MODULE: KYNAR ROBOTS CONFIGURATION
+# ══════════════════════════════════════════════════════════════════════════
+# Description: Controls search engine crawler access.
+# Strategy: Open by default, protecting system includes and private user pages.
+# ══════════════════════════════════════════════════════════════════════════
+
+# [ 1. GLOBAL ACCESS RULES ]
 User-agent: *
 Allow: /
 
-# Block system files
+# [ 2. SYSTEM RESTRICTIONS ]
+
+# Block component fragments (headers, footers, modals)
 Disallow: /components/
+
+# Block raw assets and direct download paths
 Disallow: /assets/
+
+# [ 3. PRIVATE USER PAGES ]
+
+# Transaction success page (Post-purchase)
 Disallow: /success.html
+
+# User Profile & Identity Ledger
 Disallow: /identity.html
 
+# [ 4. DISCOVERY ]
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

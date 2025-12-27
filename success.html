@@ -1,59 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+      name="viewport"
+    />
+
     <title>Kynar Universe / Acquisition Complete</title>
-    <meta name="description" content="Artifact secured. Access your download securely.">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta
+      content="Artifact secured. Access your download securely."
+      name="description"
+    />
+    <link href="assets/favicon.png" rel="icon" type="image/png" />
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
 
     <div data-include="components/header.html"></div>
 
-    <main class="app-container" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <main
+      class="app-container"
+      style="
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 70vh;
+      "
+    >
         
-        <div style="text-align: center; max-width: 500px; margin-bottom: 3rem;">
-            
-            <div class="success-orb">
-                <div style="font-size: 3rem; color: white;">✔</div>
-            </div>
-
-            <h1 class="text-display" style="margin-bottom: 0.5rem;">Artifact Secured</h1>
-            <p class="text-sub">
-                The transaction was successful. This artifact has been permanently added to your Identity Ledger.
-            </p>
+      <div
+        style="
+          margin-bottom: 3rem;
+          max-width: 500px;
+          text-align: center;
+        "
+      >
+        <div class="success-orb">
+          <div style="color: white; font-size: 3rem;">✔</div>
         </div>
 
-        <div class="feature-card" style="width: 100%; max-width: 450px; height: auto; background: white; padding: 2rem; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-float); margin-bottom: 2rem;">
-            
-            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
-                <div style="width: 60px; height: 60px; background: var(--grad-emerald); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white;">
-                    📦
-                </div>
-                <div>
-                    <div style="font-family: 'Bantayog'; font-size: 1.25rem; color: var(--ink-display);">Deep Focus OS</div>
-                    <div style="font-size: 0.85rem; color: var(--ink-muted);">v2.4 • ZIP Archive • 12MB</div>
-                </div>
+        <h1 class="text-display" style="margin-bottom: 0.5rem;">
+          Artifact Secured
+        </h1>
+        <p class="text-sub">
+          The transaction was successful. This artifact has been permanently added
+          to your Identity Ledger.
+        </p>
+      </div>
+
+      <div
+        class="feature-card"
+        style="
+          background: white;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: var(--shadow-float);
+          height: auto;
+          margin-bottom: 2rem;
+          max-width: 450px;
+          padding: 2rem;
+          width: 100%;
+        "
+      >
+        
+        <div
+          style="
+            align-items: center;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+          "
+        >
+          <div
+            style="
+              align-items: center;
+              background: var(--grad-emerald);
+              border-radius: 12px;
+              color: white;
+              display: flex;
+              font-size: 1.5rem;
+              height: 60px;
+              justify-content: center;
+              width: 60px;
+            "
+          >
+            📦
+          </div>
+          
+          <div>
+            <div
+              style="
+                color: var(--ink-display);
+                font-family: 'Bantayog';
+                font-size: 1.25rem;
+              "
+            >
+              Deep Focus OS
             </div>
-
-            <a href="assets/10-ai-prompts.pdf" download class="dock-btn" style="width: 100%; background: var(--grad-gold); color: white; border: none; font-weight: bold; margin-bottom: 1rem; box-shadow: var(--shadow-soft);">
-                Initiate Download
-            </a>
-
-            <a href="artifact.html" class="dock-btn" style="width: 100%; background: transparent; color: var(--ink-muted); border: 1px solid rgba(0,0,0,0.05);">
-                Read Setup Guide
-            </a>
-
+            <div style="color: var(--ink-muted); font-size: 0.85rem;">
+              v2.4 • ZIP Archive • 12MB
+            </div>
+          </div>
         </div>
 
-        <a href="identity.html" style="font-size: 0.9rem; color: var(--ink-muted); text-decoration: underline !important;">
-            Return to Identity Ledger
+        <a
+          class="dock-btn"
+          download
+          href="assets/10-ai-prompts.pdf"
+          style="
+            background: var(--grad-gold);
+            border: none;
+            box-shadow: var(--shadow-soft);
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            width: 100%;
+          "
+        >
+          Initiate Download
         </a>
+
+        <a
+          class="dock-btn"
+          href="artifact.html"
+          style="
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--ink-muted);
+            width: 100%;
+          "
+        >
+          Read Setup Guide
+        </a>
+
+      </div>
+
+      <a
+        href="identity.html"
+        style="
+          color: var(--ink-muted);
+          font-size: 0.9rem;
+          text-decoration: underline !important;
+        "
+      >
+        Return to Identity Ledger
+      </a>
 
     </main>
 
@@ -61,35 +156,43 @@
     <div data-include="components/modals.html"></div>
 
     <style>
-        .success-orb {
-            width: 80px; height: 80px;
-            background: #10B981; /* Emerald Success */
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            transform: scale(0);
-        }
+      .success-orb {
+        align-items: center;
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        background: #10b981; /* Emerald Success */
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        display: flex;
+        height: 80px;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        transform: scale(0);
+        width: 80px;
+      }
 
-        @keyframes popIn {
-            to { transform: scale(1); }
+      @keyframes popIn {
+        to {
+          transform: scale(1);
         }
+      }
     </style>
 
     <script src="core.js"></script>
     <script src="cart.js"></script>
     <script src="haptics.js"></script>
+    
     <script type="module">
-        import './firebase-config.js';
-        import './access-ui.js';
+      import './firebase-config.js';
+      import './auth.js';
     </script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.Haptics) setTimeout(() => window.Haptics.success(), 300);
-        });
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.Haptics) {
+          setTimeout(() => window.Haptics.success(), 300);
+        }
+      });
     </script>
 
-</body>
+  </body>
 </html>

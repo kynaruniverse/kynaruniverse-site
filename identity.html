@@ -1,100 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+      name="viewport"
+    />
+
     <title>Kynar Universe / Identity</title>
-    <meta name="description" content="Your personal ledger and digital passport within the Kynar Universe.">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta
+      content="Your personal ledger and digital passport within the Kynar Universe."
+      name="description"
+    />
+    <link href="assets/favicon.png" rel="icon" type="image/png" />
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
 
-<body>
-
+  <body>
     <div data-include="components/header.html"></div>
 
     <main class="app-container">
+      
+      <section
+        style="
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+          text-align: center;
+        "
+      >
+        <h1 class="text-display">
+          Identity<br />Ledger
+        </h1>
+        <p class="text-sub">
+          The record of your journey and acquired artifacts.
+        </p>
+      </section>
+
+      <div
+        class="feature-card"
+        id="state-guest"
+        style="
+          align-items: center;
+          background: var(--grad-silver);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          height: auto;
+          padding: 3rem 1.5rem;
+          text-align: center;
+        "
+      >
+        <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">
+          🔒
+        </div>
+
+        <h3
+          style="
+            font-family: 'Bantayog';
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Identity Required
+        </h3>
+
+        <p
+          style="
+            color: var(--ink-body);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            max-width: 400px;
+          "
+        >
+          Authenticate your identity to view your acquired artifacts, access secure
+          downloads, and manage your ledger.
+        </p>
+
+        <button
+          class="trigger-access dock-btn"
+          style="height: 50px; max-width: 280px; width: 100%;"
+        >
+          Authenticate
+        </button>
+      </div>
+
+      <div id="state-user" style="display: none;">
         
-        <section style="margin-top: 1rem; margin-bottom: 2rem; text-align: center;">
-            <h1 class="text-display">Identity<br>Ledger</h1>
-            <p class="text-sub">The record of your journey and acquired artifacts.</p>
-        </section>
+        <div
+          class="feature-card card-bg-emerald"
+          style="
+            height: auto;
+            margin-bottom: 2rem;
+            min-height: 200px;
+            overflow: hidden;
+            position: relative;
+          "
+        >
+          <div
+            style="
+              font-family: 'Bantayog';
+              font-size: 10rem;
+              opacity: 0.05;
+              position: absolute;
+              right: -20px;
+              top: -20px;
+            "
+          >
+            K
+          </div>
 
-        <div id="state-guest" class="feature-card" style="background: var(--grad-silver); height: auto; text-align: center; align-items: center; padding: 3rem 1.5rem; border: 1px solid rgba(0,0,0,0.05);">
-            <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">🔒</div>
-            <h3 style="font-family: 'Bantayog'; margin-bottom: 0.5rem; font-size: 1.5rem;">Identity Required</h3>
-            <p style="font-size: 0.9rem; color: var(--ink-body); margin-bottom: 2rem; max-width: 400px;">
-                Authenticate your identity to view your acquired artifacts, access secure downloads, and manage your ledger.
-            </p>
-            <button class="trigger-access dock-btn" style="width: 100%; max-width: 280px; height: 50px;">
-                Authenticate
-            </button>
-        </div>
-
-        <div id="state-user" style="display: none;">
+          <div style="position: relative; z-index: 2;">
+            <div
+              style="
+                font-size: 0.8rem;
+                letter-spacing: 0.15em;
+                margin-bottom: 0.5rem;
+                opacity: 0.8;
+                text-transform: uppercase;
+              "
+            >
+              Verified Architect
+            </div>
             
-            <div class="feature-card card-bg-emerald" style="height: auto; min-height: 200px; margin-bottom: 2rem; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -20px; right: -20px; font-size: 10rem; opacity: 0.05; font-family: 'Bantayog';">K</div>
-                
-                <div style="z-index: 2; position: relative;">
-                    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.8; margin-bottom: 0.5rem;">Verified Architect</div>
-                    <h2 id="user-greeting" style="color: white; font-size: 2.2rem; margin-bottom: 0.25rem; font-family: 'Bantayog';">Traveler</h2>
-                    <div style="font-size: 0.85rem; opacity: 0.8; font-family: 'Glacial Indifference';">ID: <span id="user-email-display">...</span></div>
-                </div>
-
-                <button id="btn-logout" style="position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 0.5rem 1.2rem; border-radius: 99px; font-size: 0.75rem; cursor: pointer; backdrop-filter: blur(4px); font-weight: bold; transition: background 0.2s;">
-                    Disconnect
-                </button>
+            <h2
+              id="user-greeting"
+              style="
+                color: white;
+                font-family: 'Bantayog';
+                font-size: 2.2rem;
+                margin-bottom: 0.25rem;
+              "
+            >
+              Traveler
+            </h2>
+            
+            <div
+              style="
+                font-family: 'Glacial Indifference';
+                font-size: 0.85rem;
+                opacity: 0.8;
+              "
+            >
+              ID: <span id="user-email-display">...</span>
             </div>
+          </div>
 
-            <div class="scroll-stream" style="margin-bottom: 2rem; padding-bottom: 0.5rem; gap: 0.8rem;">
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; background: var(--grad-gold); color: white; border: none;">
-                    Artifacts
-                </button>
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.6;">
-                    Settings
-                </button>
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.6;">
-                    Support
-                </button>
-            </div>
-
-            <div id="artifact-list" style="display: grid; gap: 1rem;">
-                <div class="stream-card" style="width: 100%; height: auto; flex-direction: row; align-items: center; gap: 1.5rem; opacity: 0.7; border: 1px dashed rgba(0,0,0,0.1); background: transparent; box-shadow: none;">
-                    <div class="stream-visual visual-silver" style="background: rgba(0,0,0,0.05); color: var(--ink-muted);">∅</div>
-                    <div>
-                        <div class="stream-title" style="color: var(--ink-muted);">Ledger Empty</div>
-                        <div class="stream-meta">Explore the archive to begin.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 3rem; text-align: center;">
-                <a href="archive.html" class="dock-btn">
-                    <span>Acquire Artifacts</span>
-                </a>
-            </div>
-
+          <button
+            id="btn-logout"
+            style="
+              backdrop-filter: blur(4px);
+              background: rgba(0, 0, 0, 0.25);
+              border-radius: 99px;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              bottom: 1.5rem;
+              color: white;
+              cursor: pointer;
+              font-size: 0.75rem;
+              font-weight: bold;
+              padding: 0.5rem 1.2rem;
+              position: absolute;
+              right: 1.5rem;
+              transition: background 0.2s;
+            "
+          >
+            Disconnect
+          </button>
         </div>
 
-    </main>
-    
+        <div
+          class="scroll-stream"
+          style="gap: 0.8rem; margin-bottom: 2rem; padding-bottom: 0.5rem;"
+        >
+          <button
+            class="dock-btn"
+            style="
+              background: var(--grad-gold);
+              border-radius: 99px;
+              border: none;
+              color: white;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              padding: 0 1.5rem;
+            "
+          >
+            Artifacts
+          </button>
+          
+          <button
+            class="dock-btn"
+            style="
+              border-radius: 99px;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              opacity: 0.6;
+              padding: 0 1.5rem;
+            "
+          >
+            Settings
+          </button>
+          
+          <button
+            class="dock-btn"
+            style="
+              border-radius: 99px;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              opacity: 0.6;
+              padding: 0 1.5rem;
+            "
+          >
+            Support
+          </button>
+        </div>
+
+        <div id="artifact-list" style="display: grid; gap: 1rem;">
+          
+          <div
+            class="stream-card"
+            style="
+              align-items: center;
+              background: transparent;
+              border: 1px dashed rgba(0, 0, 0, 0.1);
+              box-shadow: none;
+              flex-direction: row;
+              gap: 1.5rem;
+              height: auto;
+              opacity: 0.7;
+              width: 100%;
+            "
+          >
+            <div
+              class="stream-visual visual-silver"
+              style="background: rgba(0, 0, 0, 0.05); color: var(--ink-muted);"
+            >
+              ∅
+            </div>
+            
+            <div>
+              <div class="stream-title" style="color: var(--ink-muted);">
+                Ledger Empty
+              </div>
+              <div class="stream-meta">Explore the archive to begin.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem; text-align: center;">
+          <a class="dock-btn" href="archive.html">
+            <span>Acquire Artifacts</span>
+          </a>
+        </div>
+
+      </div> </main>
+
     <div data-include="components/footer.html"></div>
     <div data-include="components/modals.html"></div>
 
     <script src="core.js"></script>
-    <script src="ledger.js"></script>
+    <script src="bookshelf.js"></script>
     <script src="cart.js"></script>
+    
     <script type="module">
-        import './firebase-config.js';
-        import './access-ui.js';
+      import "./firebase-config.js";
+      import "./auth.js";
     </script>
 
     <style>
-        #btn-logout:hover { background: rgba(0,0,0,0.4) !important; }
+      #btn-logout:hover {
+        background: rgba(0, 0, 0, 0.4) !important;
+      }
     </style>
-
-</body>
+  </body>
 </html>

@@ -2,234 +2,377 @@
    Role: Layout, Typography, Drawers, and Theme Variables
 */
 
-/* --- 1. THEME VARIABLES --- */
+/* ═══════════════════════════════════════
+   1. THEME CONFIGURATION
+   ═══════════════════════════════════════ */
+
+/* --- Root Variables: Colors & Settings --- */
 :root {
-    /* Color Palette */
-    --bg-paper: #F8F8F6;      /* Off-white background */
-    --bg-canvas: #E6E6E2;     /* Darker stone background */
-    --ink-display: #092C23;   /* Deep Emerald (Headings) */
-    --ink-body: #333333;      /* Standard Text */
-    --ink-muted: #666666;     /* Secondary Text */
-    --ink-border: rgba(0,0,0,0.08);
-    
-    --accent-gold: #C5A059;   /* Royal Gold */
-    --accent-red: #D32F2F;    /* Alert/Action */
-    
-    /* Gradients */
-    --grad-emerald: linear-gradient(135deg, #092C23 0%, #16423C 100%);
-    --grad-gold: linear-gradient(135deg, #C5A059 0%, #D4AF37 100%);
-    --grad-silver: linear-gradient(180deg, #FFFFFF 0%, #F4F4F4 100%);
-    --grad-burgundy: linear-gradient(135deg, #4A0E0E 0%, #6B1A1A 100%);
-    
-    /* Shadows & Radius */
-    --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
-    --shadow-float: 0 15px 35px rgba(9, 44, 35, 0.1);
-    --radius-card: 16px;
-    --radius-pill: 99px;
-    
-    /* Fonts */
-    --font-display: 'Bantayog', 'Times New Roman', serif;
-    --font-body: 'Glacial Indifference', sans-serif;
+  /* Color Palette */
+  --accent-gold: #c5a059; /* Royal Gold */
+  --accent-red: #d32f2f;  /* Alert/Action */
+
+  --bg-canvas: #e6e6e2;   /* Darker stone background */
+  --bg-paper: #f8f8f6;    /* Off-white background */
+
+  --ink-body: #333333;    /* Standard Text */
+  --ink-border: rgba(0, 0, 0, 0.08);
+  --ink-display: #092c23; /* Deep Emerald (Headings) */
+  --ink-muted: #666666;   /* Secondary Text */
+
+  /* Gradients */
+  --grad-burgundy: linear-gradient(135deg, #4a0e0e 0%, #6b1a1a 100%);
+  --grad-emerald: linear-gradient(135deg, #092c23 0%, #16423c 100%);
+  --grad-gold: linear-gradient(135deg, #c5a059 0%, #d4af37 100%);
+  --grad-silver: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
+
+  /* Fonts */
+  --font-body: 'Glacial Indifference', sans-serif;
+  --font-display: 'Bantayog', 'Times New Roman', serif;
+
+  /* Shadows & Radius */
+  --radius-card: 16px;
+  --radius-pill: 99px;
+  --shadow-float: 0 15px 35px rgba(9, 44, 35, 0.1);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* --- 2. RESET & BASE --- */
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+/* ═══════════════════════════════════════
+   2. RESET & GLOBAL DEFAULTS
+   ═══════════════════════════════════════ */
 
+/* --- Box Sizing & Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Body Defaults --- */
 body {
-    background-color: var(--bg-paper);
-    color: var(--ink-body);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+  background-color: var(--bg-paper);
+  color: var(--ink-body);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
-button { font-family: inherit; }
+/* --- Global Elements (Links/Buttons) --- */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
 
-/* Typography */
-.text-display { font-family: var(--font-display); color: var(--ink-display); line-height: 1.2; font-weight: normal; margin-bottom: 0.5rem; }
-.text-sub { font-size: 1.1rem; color: var(--ink-muted); line-height: 1.5; max-width: 600px; margin: 0 auto; }
+button {
+  font-family: inherit;
+}
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+/* ═══════════════════════════════════════
+   3. TYPOGRAPHY SYSTEM
+   ═══════════════════════════════════════ */
 
-/* --- 3. LAYOUT CONTAINERS --- */
+/* --- Headings --- */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* --- Text Utility Classes --- */
+.text-display {
+  color: var(--ink-display);
+  font-family: var(--font-display);
+  font-weight: normal;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.text-sub {
+  color: var(--ink-muted);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ═══════════════════════════════════════
+   4. LAYOUT STRUCTURE
+   ═══════════════════════════════════════ */
+
+/* --- Main Application Container --- */
 .app-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 100px 1.5rem 4rem 1.5rem; /* Top padding clears fixed header */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 100px 1.5rem 4rem 1.5rem; /* Top padding clears fixed header */
+  width: 100%;
+  max-width: 1000px;
 }
 
-/* Sections */
-section { margin-bottom: 3rem; }
+/* --- Standard Section Spacing --- */
+section {
+  margin-bottom: 3rem;
+}
 
-/* --- 4. HEADER (Fixed) --- */
+/* ═══════════════════════════════════════
+   5. HEADER MODULE
+   ═══════════════════════════════════════ */
+
+/* --- Fixed Header Bar --- */
 .app-header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    height: 70px;
-    background: rgba(248, 248, 246, 0.9); /* Translucent */
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 1.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(248, 248, 246, 0.9); /* Translucent */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 1.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.brand-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.1em; color: var(--ink-display); font-weight: bold; }
+/* --- Brand/Logo --- */
+.brand-logo {
+  color: var(--ink-display);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
 
-.header-actions { display: flex; align-items: center; gap: 1rem; }
+/* --- Header Action Area --- */
+.header-actions {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
 
-/* --- 5. DRAWERS (The Fix for the "Stacking" Issue) --- */
+/* ═══════════════════════════════════════
+   6. DRAWER NAVIGATION SYSTEM
+   ═══════════════════════════════════════ */
+
+/* --- Drawer Container --- */
 .drawer {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Hidden by default */
-    width: 85%;
-    max-width: 400px;
-    height: 100vh;
-    background: var(--bg-paper);
-    z-index: 2000;
-    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: -5px 0 30px rgba(0,0,0,0.15);
-    display: flex; flex-direction: column;
-    overflow-y: auto;
-    visibility: hidden; /* Ensure it doesn't block clicks when closed */
+  background: var(--bg-paper);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  right: -100%; /* Hidden by default */
+  top: 0;
+  transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  visibility: hidden; /* Ensure it doesn't block clicks when closed */
+  width: 85%;
+  max-width: 400px;
+  z-index: 2000;
 }
 
-/* Active State */
+/* --- Drawer Active State --- */
 .drawer.is-open {
-    right: 0;
-    visibility: visible;
+  right: 0;
+  visibility: visible;
 }
 
+/* --- Drawer Internal Layout --- */
 .drawer-header {
-    padding: 1.5rem;
-    display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid var(--ink-border);
+  align-items: center;
+  border-bottom: 1px solid var(--ink-border);
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
 }
 
-.drawer-content { padding: 1.5rem; flex: 1; }
+.drawer-content {
+  flex: 1;
+  padding: 1.5rem;
+}
 
+/* --- Modal Backdrop Overlay --- */
 .drawer-backdrop {
-    position: fixed; inset: 0;
-    background: rgba(9, 44, 35, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 1999;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+  background: rgba(9, 44, 35, 0.4);
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.3s ease;
+  z-index: 1999;
 }
-.drawer-backdrop.is-visible { opacity: 1; pointer-events: all; }
 
-/* --- 6. COMPONENTS: CARDS & BUTTONS --- */
+.drawer-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
 
-/* Feature Card (The "Identity" Card) */
+/* ═══════════════════════════════════════
+   7. INTERACTIVE COMPONENTS
+   ═══════════════════════════════════════ */
+
+/* --- Feature/Identity Card --- */
 .feature-card {
-    background: white;
-    border-radius: var(--radius-card);
-    padding: 2rem;
-    border: 1px solid var(--ink-border);
-    box-shadow: var(--shadow-soft);
-    display: flex;
-    flex-direction: column; /* Stack vertically on mobile */
-    align-items: center;    /* Center content */
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    overflow: hidden;
+  align-items: center; /* Center content */
+  background: white;
+  border: 1px solid var(--ink-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column; /* Stack vertically on mobile */
+  overflow: hidden;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* On Desktop, switch to row if needed, but for Identity card, column is usually best */
+/* --- Feature Card: Responsive Tweaks --- */
 @media (min-width: 768px) {
-    .feature-card.horizontal {
-        flex-direction: row;
-        text-align: left;
-        align-items: flex-start;
-    }
+  .feature-card.horizontal {
+    align-items: flex-start;
+    flex-direction: row;
+    text-align: left;
+  }
 }
 
-/* Dock Button (Pill Shape) */
+/* --- Buttons: Dock Style --- */
 .dock-btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    height: 48px;
-    padding: 0 2rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    background: var(--ink-display);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.1s, opacity 0.2s;
-    white-space: nowrap;
+  align-items: center;
+  background: var(--ink-display);
+  border: none;
+  border-radius: var(--radius-pill);
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  transition: transform 0.1s, opacity 0.2s;
+  white-space: nowrap;
 }
-.dock-btn:active { transform: scale(0.98); }
 
-/* Stream Card (Horizontal Scroll Items or List Items) */
+.dock-btn:active {
+  transform: scale(0.98);
+}
+
+/* ═══════════════════════════════════════
+   8. STREAM & CONTENT CARDS
+   ═══════════════════════════════════════ */
+
+/* --- Stream Card Item --- */
 .stream-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid var(--ink-border);
-    transition: transform 0.2s;
-    text-decoration: none;
-    color: inherit;
+  background: white;
+  border: 1px solid var(--ink-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
-.stream-card:hover { transform: translateY(-2px); }
 
-/* Scroll Stream (Horizontal Container) */
+.stream-card:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Horizontal Scroll Container --- */
 .scroll-stream {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-    -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -webkit-overflow-scrolling: touch;
 }
-.scroll-stream::-webkit-scrollbar { display: none; }
 
-/* Emerald Card Variation */
+.scroll-stream::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Card Variant: Emerald --- */
 .card-bg-emerald {
-    background: var(--grad-emerald);
-    color: white;
-    border: none;
+  background: var(--grad-emerald);
+  border: none;
+  color: white;
 }
-.card-bg-emerald .text-sub { color: rgba(255,255,255,0.7); }
 
-/* --- 7. UTILITIES --- */
+.card-bg-emerald .text-sub {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ═══════════════════════════════════════
+   9. UTILITIES & ANIMATIONS
+   ═══════════════════════════════════════ */
+
+/* --- Loading Spinner --- */
 .spinner {
-    display: inline-block;
-    border: 2px solid rgba(0,0,0,0.1);
-    border-left-color: currentColor;
-    border-radius: 50%;
-    width: 20px; height: 20px;
-    animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left-color: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
 }
-@keyframes spin { 100% { transform: rotate(360deg); } }
 
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Layout Hacks & Overrides --- */
 /* Fix for the "Identity Text Squashing" */
-/* Forces the identity card text to have full width so it doesn't wrap weirdly */
-#state-guest h3, #state-guest p {
-    width: 100%;
-    max-width: 400px; /* Readability cap */
+#state-guest h3,
+#state-guest p {
+  max-width: 400px; /* Readability cap */
+  width: 100%;
 }
 
-/* --- 8. RESPONSIVE GRID --- */
-/* For Archive Page */
+/* ═══════════════════════════════════════
+   10. RESPONSIVE GRIDS
+   ═══════════════════════════════════════ */
+
 @media (min-width: 600px) {
-    #artifact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
+  #artifact-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+
+/* Add this to styles.css */
+.twin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 480px) {
+    .twin-grid {
+        grid-template-columns: 1fr; /* Stack on very small phones */
     }
 }
+

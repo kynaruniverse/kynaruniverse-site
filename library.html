@@ -1,79 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+      name="viewport"
+    />
+
     <title>Kynar Universe / The Library</title>
-    <meta name="description" content="Manuals for modern life. Deep dives into productivity, design theory, and digital minimalism.">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta
+      content="Manuals for modern life. Deep dives into productivity, design theory, and digital minimalism."
+      name="description"
+    />
+    <link href="assets/favicon.png" rel="icon" type="image/png" />
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
 
     <div data-include="components/header.html"></div>
 
     <main class="app-container">
         
-        <section style="margin-top: 1rem; margin-bottom: 2rem; text-align: center;">
-            <h1 class="text-display">The Library</h1>
-            <p class="text-sub">
-                Manuals for the modern architect. Systems, theory, and digital craft.
-            </p>
-        </section>
+      <section
+        style="
+          margin-bottom: 2rem;
+          margin-top: 1rem;
+          text-align: center;
+        "
+      >
+        <h1 class="text-display">The Library</h1>
+        <p class="text-sub">
+          Manuals for the modern architect. Systems, theory, and digital craft.
+        </p>
+      </section>
 
-        <section style="margin-bottom: 2rem;">
-            <div class="scroll-stream" style="padding-bottom: 0.5rem; justify-content: center;">
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; background: var(--grad-gold); color: white; border: none;">
-                    All Volumes
-                </button>
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.6;">
-                    Systems
-                </button>
-                <button class="dock-btn" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.6;">
-                    Philosophy
-                </button>
-            </div>
-        </section>
+      <section style="margin-bottom: 2rem;">
+        <div
+          class="scroll-stream"
+          style="justify-content: center; padding-bottom: 0.5rem;"
+        >
+          <button
+            class="dock-btn"
+            style="
+              background: var(--grad-gold);
+              border: none;
+              border-radius: 99px;
+              color: white;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              padding: 0 1.5rem;
+            "
+          >
+            All Volumes
+          </button>
+          
+          <button
+            class="dock-btn"
+            style="
+              border-radius: 99px;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              opacity: 0.6;
+              padding: 0 1.5rem;
+            "
+          >
+            Systems
+          </button>
+          
+          <button
+            class="dock-btn"
+            style="
+              border-radius: 99px;
+              flex: 0 0 auto;
+              font-size: 0.8rem;
+              height: 40px;
+              opacity: 0.6;
+              padding: 0 1.5rem;
+            "
+          >
+            Philosophy
+          </button>
+        </div>
+      </section>
 
-        <section style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <section
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        "
+      >
             
-            <a href="artifact.html" class="feature-card card-bg-emerald" style="height: auto; min-height: 180px; text-decoration: none;">
+        <a
+          class="feature-card card-bg-emerald"
+          href="artifact.html"
+          style="
+            height: auto;
+            min-height: 180px;
+            text-decoration: none;
+          "
+        >
 
-                <div class="feature-icon" style="top: 2rem; font-size: 4rem; opacity: 0.15; right: 2rem; left: auto;">📖</div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-family: 'Bantayog'; opacity: 0.7; margin-bottom: 0.5rem; letter-spacing: 0.1em;">VOL. 01</div>
-                    <h2 style="color: white; font-size: 1.8rem; margin-bottom: 0.5rem;">The First Step</h2>
-                    <p style="font-size: 0.95rem; opacity: 0.9; max-width: 400px; line-height: 1.5;">
-                        A complete manual on downloading, unzipping, and configuring your new Kynar digital assets.
-                    </p>
-                    <div style="margin-top: 1.5rem; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
-                        <span>Open Manual</span> <span>→</span>
-                    </div>
-                </div>
-            </a>
-
-            <div class="feature-card card-bg-burgundy" style="height: auto; min-height: 180px; opacity: 0.9;">
-                <div class="feature-icon" style="top: 2rem; font-size: 4rem; opacity: 0.15; right: 2rem; left: auto;">🧠</div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-family: 'Bantayog'; opacity: 0.7; margin-bottom: 0.5rem; letter-spacing: 0.1em;">VOL. 02</div>
-                    <h2 style="color: white; font-size: 1.8rem; margin-bottom: 0.5rem;">Digital Minimalism</h2>
-                    <p style="font-size: 0.95rem; opacity: 0.9; max-width: 400px; line-height: 1.5;">
-                        Why fewer tools lead to better work. A deep dive into the philosophy of subtraction.
-                    </p>
-                    <div style="margin-top: 1.5rem; font-size: 0.8rem; font-weight: bold; opacity: 0.6; display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.2); width: fit-content; padding: 0.3rem 0.8rem; border-radius: 99px;">
-                        <span>🔒 Drafting...</span>
-                    </div>
-                </div>
+          <div
+            class="feature-icon"
+            style="
+              font-size: 4rem;
+              left: auto;
+              opacity: 0.15;
+              right: 2rem;
+              top: 2rem;
+            "
+          >
+            📖
+          </div>
+          
+          <div style="position: relative; z-index: 2;">
+            <div
+              style="
+                font-family: 'Bantayog';
+                letter-spacing: 0.1em;
+                margin-bottom: 0.5rem;
+                opacity: 0.7;
+              "
+            >
+              VOL. 01
             </div>
-
-            <div class="feature-card" style="height: auto; min-height: 120px; background: var(--bg-canvas); border: 1px dashed rgba(0,0,0,0.1); box-shadow: none; align-items: center; justify-content: center; color: var(--ink-muted);">
-                <p style="font-size: 0.9rem;">More volumes are being written.</p>
+            
+            <h2
+              style="
+                color: white;
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+              "
+            >
+              The First Step
+            </h2>
+            
+            <p
+              style="
+                font-size: 0.95rem;
+                line-height: 1.5;
+                max-width: 400px;
+                opacity: 0.9;
+              "
+            >
+              A complete manual on downloading, unzipping, and configuring your new Kynar digital assets.
+            </p>
+            
+            <div
+              style="
+                align-items: center;
+                display: flex;
+                font-size: 0.8rem;
+                font-weight: bold;
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+              "
+            >
+              <span>Open Manual</span> <span>→</span>
             </div>
+          </div>
+        </a>
 
-        </section>
+        <div
+          class="feature-card card-bg-burgundy"
+          style="
+            height: auto;
+            min-height: 180px;
+            opacity: 0.9;
+          "
+        >
+          <div
+            class="feature-icon"
+            style="
+              font-size: 4rem;
+              left: auto;
+              opacity: 0.15;
+              right: 2rem;
+              top: 2rem;
+            "
+          >
+            🧠
+          </div>
+          
+          <div style="position: relative; z-index: 2;">
+            <div
+              style="
+                font-family: 'Bantayog';
+                letter-spacing: 0.1em;
+                margin-bottom: 0.5rem;
+                opacity: 0.7;
+              "
+            >
+              VOL. 02
+            </div>
+            
+            <h2
+              style="
+                color: white;
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+              "
+            >
+              Digital Minimalism
+            </h2>
+            
+            <p
+              style="
+                font-size: 0.95rem;
+                line-height: 1.5;
+                max-width: 400px;
+                opacity: 0.9;
+              "
+            >
+              Why fewer tools lead to better work. A deep dive into the philosophy of subtraction.
+            </p>
+            
+            <div
+              style="
+                align-items: center;
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 99px;
+                display: flex;
+                font-size: 0.8rem;
+                font-weight: bold;
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+                opacity: 0.6;
+                padding: 0.3rem 0.8rem;
+                width: fit-content;
+              "
+            >
+              <span>🔒 Drafting...</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="feature-card"
+          style="
+            align-items: center;
+            background: var(--bg-canvas);
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+            box-shadow: none;
+            color: var(--ink-muted);
+            height: auto;
+            justify-content: center;
+            min-height: 120px;
+          "
+        >
+          <p style="font-size: 0.9rem;">More volumes are being written.</p>
+        </div>
+
+      </section>
 
     </main>
     
@@ -83,11 +267,11 @@
     <script src="core.js"></script>
     <script src="cart.js"></script>
     <script src="haptics.js"></script>
+    
     <script type="module">
-        import './firebase-config.js';
-        import './access-ui.js';
+      import './firebase-config.js';
+      import './auth.js';
     </script>
     
-
-</body>
+  </body>
 </html>
