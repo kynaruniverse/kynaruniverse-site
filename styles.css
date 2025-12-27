@@ -1,9 +1,9 @@
-/* * KYNAR UNIVERSE / HYBRID ENGINE V4.0
+/* * KYNAR UNIVERSE / ENGINE V5.0 (FINAL)
  * Theme: Royal Botanist (Silver, Emerald, Burgundy, Gold)
- * Architecture: 3D Physics, Fluid Type, Mobile-First Drawer
+ * Architecture: Royal App Header, Fluid Type, 3D Physics
  */
 
-/* --- 1. TYPOGRAPHY ENGINE (From Old CSS) --- */
+/* --- 1. TYPOGRAPHY ENGINE --- */
 @font-face {
     font-family: 'Bantayog';
     src: url('fonts/Bantayog.woff2') format('woff2'), url('fonts/Bantayog.woff') format('woff');
@@ -22,44 +22,40 @@
 
 :root {
     /* --- PALETTE: Royal Botanist --- */
-    /* Backgrounds */
     --bg-canvas: #F0F2F3;      /* Platinum Silver (Main Background) */
     --bg-card: #FFFFFF;        /* Pure White (Cards) */
     --bg-panel: #E3E8E8;       /* Sidebar/Headers */
     
-    /* Typography Colors */
     --ink-display: #092C23;    /* Deep Jungle Green (Headings) */
     --ink-body: #2F4F4F;       /* Dark Slate Gray (Reading text) */
     --ink-muted: #8FA3A3;      /* Silver Green (Meta/Borders) */
     
-    /* Accents */
     --accent-gold: #C5A059;    /* Antique Gold (Borders/Lines/Focus) */
     --accent-red: #800020;     /* Burgundy (Buttons/Actions) */
     --accent-red-hover: #5C0015;
 
-    /* --- TYPOGRAPHY MAPPING (From Old CSS) --- */
+    /* --- TYPOGRAPHY MAPPING --- */
     --font-display: 'Bantayog', sans-serif;
-    --font-accent: 'Jimmy Flashcard', sans-serif; /* For signatures/slogans */
+    --font-accent: 'Jimmy Flashcard', sans-serif; 
     --font-ui: 'Glacial Indifference', sans-serif;
     
     /* Fluid Type Scale */
-    --fs-xl: clamp(1.75rem, 1.5rem + 1.5vw, 3rem); /* Main Titles */
-    --fs-lg: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem); /* Section Headings */
-    --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);  /* Body Text */
+    --fs-xl: clamp(1.75rem, 1.5rem + 1.5vw, 3rem); 
+    --fs-lg: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem); 
+    --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem); 
 
-    /* --- PHYSICS & DIMENSIONS --- */
+    /* --- PHYSICS --- */
     --max-width: 1280px;
     --radius-pill: 999px;
     --radius-card: 12px;
     
-    /* --- 3D EFFECTS (Adapted to New Colors) --- */
-    /* Gold-tinted shadows instead of plain black */
-    --shadow-3d: 0 6px 0 #8E7036, 0 12px 18px rgba(9, 44, 35, 0.15), inset 0 2px 0 rgba(255,255,255,0.5);
-    --shadow-3d-hover: 0 8px 0 #8E7036, 0 16px 24px rgba(9, 44, 35, 0.2), inset 0 2px 0 rgba(255,255,255,0.55);
-    --shadow-3d-active: 0 2px 0 #8E7036, 0 4px 8px rgba(9, 44, 35, 0.2), inset 0 2px 4px rgba(0,0,0,0.1);
+    /* 3D Shadows (Gold Tinted) */
+    --shadow-3d: 0 6px 0 #8E7036, 0 12px 18px rgba(9, 44, 35, 0.15);
+    --shadow-3d-hover: 0 8px 0 #8E7036, 0 16px 24px rgba(9, 44, 35, 0.2);
+    --shadow-3d-active: 0 2px 0 #8E7036, 0 4px 8px rgba(9, 44, 35, 0.2);
 }
 
-/* --- RESET & BASE --- */
+/* --- 2. RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -70,8 +66,15 @@ body {
     overflow-x: hidden;
 }
 
-/* --- TYPOGRAPHY HIERARCHY --- */
-h1, h2, h3, .nav-logo {
+/* GLOBAL LINK FIX: Kills blue links everywhere */
+a {
+    text-decoration: none !important;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+/* --- 3. TYPOGRAPHY HIERARCHY --- */
+h1, h2, h3 {
     font-family: var(--font-display);
     color: var(--ink-display);
     text-transform: uppercase;
@@ -87,11 +90,21 @@ h1, h2, h3, .nav-logo {
 
 .text-heading { font-size: var(--fs-lg); margin-bottom: 0.5rem; }
 
-/* The "Soul" text */
-p.text-body, .article-content {
+.text-body {
     font-size: var(--fs-md);
     color: var(--ink-body);
     line-height: 1.7;
+}
+
+.stone-meta {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 /* Handwritten Accent */
@@ -103,684 +116,24 @@ p.text-body, .article-content {
     display: inline-block;
 }
 
-/* --- LAYOUT: THE CONTAINER --- */
-.forge-container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.forge-section {
-    padding: 4rem 0;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.15); /* Faint gold line */
-}
-
-/* --- COMPONENT: 3D BUTTONS (Adapted from Old CSS) --- */
-.btn {
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease;
-    border: none;
-    padding: 14px 30px;
-    font-size: 0.9rem;
-}
-
-/* Primary: Burgundy with Gold Shadow */
-.btn-primary {
-    background-color: var(--accent-red);
-    color: white;
-    /* Special Burgundy Shadow Variant */
-    box-shadow: 0 6px 0 #4A0012, 0 12px 18px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,0.2);
-}
-
-.btn-primary:hover { 
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 0 #4A0012, 0 16px 24px rgba(0,0,0,0.25);
-}
-
-.btn-primary:active { 
-    transform: translateY(3px); 
-    box-shadow: 0 2px 0 #4A0012, 0 4px 8px rgba(0,0,0,0.2); 
-}
-
-/* Secondary: Gold Outline */
-.btn-secondary {
-    background: transparent;
-    color: var(--ink-display);
-    border: 2px solid var(--accent-gold);
-    box-shadow: none;
-}
-.btn-secondary:hover {
-    background: var(--accent-gold);
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* --- COMPONENT: NAVIGATION (Frosted Glass) --- */
-.nav-forge {
-    background: rgba(240, 242, 243, 0.85); /* Translucent Silver */
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--accent-gold);
-    position: sticky; top: 0; z-index: 1000;
-    padding: 1rem 0;
-}
-
-.nav-content { display: flex; justify-content: space-between; align-items: center; }
-
-.nav-logo {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: var(--ink-display);
-}
-
-.nav-links { display: flex; gap: 2rem; }
-.nav-links a {
-    text-decoration: none;
-    font-family: var(--font-ui);
-    color: var(--ink-body);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--accent-red); }
-
-/* Mobile Burger (Hidden on Desktop) */
-.custom-burger {
-    display: none;
-    flex-direction: column; justify-content: space-between;
-    width: 30px; height: 20px;
-    background: none; border: none; cursor: pointer;
-}
-.custom-burger span {
-    width: 100%; height: 3px;
-    background: var(--ink-display);
-    transition: 0.3s;
-}
-
-/* --- COMPONENT: ARTIFACT CARD (Hybrid) --- */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.stone-block {
-    background: var(--bg-card);
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: var(--radius-card);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    display: flex; flex-direction: column;
-    position: relative;
-    overflow: hidden; /* For shimmer effects */
-}
-
-/* The Lift + Glow Effect */
-.stone-block:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(9, 44, 35, 0.1);
-    border-color: var(--accent-gold);
-}
-
-.stone-image-frame {
-    width: 100%; aspect-ratio: 16/10;
-    background: var(--bg-panel);
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    position: relative;
-}
-.stone-image-frame img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.stone-block:hover img { transform: scale(1.05); }
-
-/* Badge Logic */
-.product-badge {
-    position: absolute; top: 1rem; left: 1rem;
-    background: var(--accent-gold); color: white;
-    padding: 4px 10px;
-    font-family: var(--font-ui); font-size: 0.7rem;
-    font-weight: bold; text-transform: uppercase;
-    border-radius: 4px;
-    z-index: 10;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* --- COMPONENT: MOBILE DRAWER (Extracted & Adapted) --- */
-.drawer-backdrop {
-    position: fixed; inset: 0;
-    background: rgba(9, 44, 35, 0.6); /* Emerald Tint */
-    backdrop-filter: blur(4px);
-    z-index: 2000;
-    opacity: 0; visibility: hidden;
-    transition: 0.3s;
-}
-
-.drawer-panel {
-    position: fixed; top: 0; right: 0; bottom: 0;
-    width: 85%; max-width: 350px;
-    background: var(--bg-canvas);
-    z-index: 2001;
-    transform: translateX(100%);
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -10px 0 40px rgba(0,0,0,0.2);
-    display: flex; flex-direction: column;
-    border-left: 4px solid var(--accent-gold);
-}
-
-.drawer-open .drawer-backdrop { opacity: 1; visibility: visible; }
-.drawer-open .drawer-panel { transform: translateX(0); }
-
-.drawer-header {
-    padding: 2rem;
-    background: var(--bg-card);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    display: flex; justify-content: space-between; align-items: center;
-}
-.drawer-body { padding: 2rem; overflow-y: auto; flex: 1; }
-.drawer-footer { padding: 2rem; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.05); }
-
-
-/* --- UTILITIES & LOADING --- */
-.loading-overlay {
-    position: fixed; inset: 0;
-    background: rgba(240, 242, 243, 0.9);
-    backdrop-filter: blur(5px);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 99999;
-    opacity: 0; visibility: hidden;
-    transition: 0.3s;
-}
-.loading-overlay.is-visible { opacity: 1; visibility: visible; }
-
-.spinner {
-    width: 40px; height: 40px;
-    border: 3px solid rgba(197, 160, 89, 0.2);
-    border-top-color: var(--accent-gold);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* --- RESPONSIVE OPTIMIZATIONS --- */
-@media (max-width: 768px) {
-    .nav-links { display: none; } /* Hide desktop nav */
-    .custom-burger { display: flex; } /* Show mobile burger */
-    
-    .text-display { font-size: 2.5rem; }
-    
-    .product-grid { 
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 1.5rem;
-    }
-    
-    .btn { width: 100%; } /* Full width buttons on mobile */
-}
-
-/* --- COMPONENT: SYSTEM FOOTER --- */
-
-.site-footer {
-    background-color: var(--bg-canvas); /* Matches page background for seamless look */
-    border-top: 1px solid var(--accent-gold); /* The Royal Line */
-    padding: 4rem 0 2rem;
-    margin-top: auto; /* Pushes footer to bottom if page is short */
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr; /* Brand is wider */
-    gap: 4rem;
-    align-items: start;
-}
-
-/* Typography */
-.footer-logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--ink-display);
-    margin-bottom: 0.5rem;
-}
-
-.footer-tagline {
-    font-family: var(--font-reading); /* Cormorant Garamond */
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--ink-muted);
-    margin-bottom: 1.5rem;
-}
-
-.footer-heading {
-    display: block;
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent-gold);
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-/* Links */
-.footer-col a {
-    display: block;
-    text-decoration: none;
-    color: var(--ink-body);
-    font-family: var(--font-ui);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    transition: color 0.2s, transform 0.2s;
-}
-
-.footer-col a:hover {
-    color: var(--accent-red);
-    transform: translateX(4px); /* Subtle slide */
-}
-
-/* Socials (Simple Text for now) */
-.footer-socials {
-    display: flex;
-    gap: 1rem;
-}
-.footer-socials a {
-    font-weight: bold;
-    font-size: 0.8rem;
-    border: 1px solid var(--ink-muted);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    display: inline-block;
-}
-.footer-socials a:hover {
-    border-color: var(--accent-red);
-    transform: translateY(-2px);
-}
-
-/* System Status Light */
-.system-status {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-ui);
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-    margin-bottom: 1rem;
-}
-
-.status-light {
-    width: 8px; height: 8px;
-    background-color: #10B981; /* Emerald Signal Light */
-    border-radius: 50%;
-    box-shadow: 0 0 8px #10B981;
-    animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-.copyright {
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    color: var(--ink-muted);
-    line-height: 1.6;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr; /* Stack vertically */
-        gap: 2.5rem;
-        text-align: center;
-    }
-    
-    .footer-socials, .system-status {
-        justify-content: center;
-    }
-    
-    .footer-col a:hover {
-        transform: translateX(0); /* Disable slide on mobile */
-    }
-}
-
-
-/* --- COMPONENT: HEADER 10X (Hybrid) --- */
-
-/* 1. TOP SYSTEM BAR */
-.header-top-bar {
-    background-color: var(--bg-panel);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 0.5rem 0;
-    font-size: 0.8rem;
-}
-
-.top-bar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem; /* Align with container */
-}
-
-/* Slogan & Stars */
-.slogan-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.stars {
-    color: var(--accent-gold);
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-}
-
-.slogan-text {
-    font-family: var(--font-accent); /* Jimmy Flashcard */
-    color: var(--ink-muted);
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-}
-
-/* Top Account Link */
-.top-account-link {
-    display: flex; align-items: center; gap: 0.5rem;
-    text-decoration: none;
-    color: var(--ink-body);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    transition: color 0.2s;
-}
-.top-account-link:hover { color: var(--accent-red); }
-
-/* 2. MAIN NAV UPDATES */
-.nav-forge {
-    /* Ensure sticky works perfectly */
-    position: sticky; top: 0; z-index: 1000;
-}
-
-.nav-content {
-    display: grid;
-    grid-template-columns: auto 1fr auto auto; /* Logo | Search | Links | Satchel */
-    align-items: center;
-    gap: 2rem;
-}
-
-/* 3. INTEGRATED SEARCH BAR */
-.nav-search {
-    display: flex;
-    align-items: center;
-    background: var(--bg-card);
-    border: 1px solid var(--ink-muted);
-    border-radius: var(--radius-pill);
-    padding: 0.4rem 1rem;
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto; /* Center it */
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.nav-search:focus-within {
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
-}
-
-.nav-search input {
-    border: none; background: none; padding: 0;
-    font-size: 0.9rem; flex: 1;
-    color: var(--ink-body);
-}
-.nav-search input:focus { outline: none; border: none; }
-
-.nav-search button {
-    background: none; border: none; padding: 0;
-    color: var(--ink-muted); cursor: pointer;
-    display: flex; align-items: center;
-    margin: 0; width: auto; /* Reset generic button styles */
-}
-.nav-search button:hover { color: var(--accent-red); transform: none; }
-
-
-/* 4. SATCHEL BUTTON */
-.satchel-btn {
-    background: none; border: none;
-    display: flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-display);
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: var(--accent-red);
-    cursor: pointer;
-    padding: 0;
-    margin: 0; width: auto;
-}
-.satchel-btn:hover { background: none; transform: translateY(-1px); }
-
-.satchel-badge {
-    background: var(--accent-red);
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 10px;
-    opacity: 0; /* Hidden if empty */
-    transition: opacity 0.3s;
-}
-
-/* RESPONSIVE TWEAKS */
-@media (max-width: 900px) {
-    .nav-search { display: none; } /* Hide search on tablets/mobile to save space */
-    .header-top-bar { display: none; } /* Optional: Hide top bar on mobile for cleanliness */
-    
-    .nav-content {
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
-
-/* --- PAGE: HOME (THE SANCTUARY) --- */
-
-/* 1. HERO FORGE */
-.hero-section {
-    text-align: center;
-    padding: 6rem 0 4rem;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-text {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
-    color: var(--ink-body);
-}
-
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-/* Animation Keyframes */
-@keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 2. CATEGORY MATRIX */
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.category-card {
-    position: relative;
-    padding: 2rem;
-    border-radius: var(--radius-card);
-    text-decoration: none;
-    color: var(--ink-display);
-    border: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 240px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-/* Specific Card Colors (Subtle Tints) */
-.prod-card { background: #F4F1EA; }    /* Warm Paper */
-.creative-card { background: #EAEFEC; } /* Mint Tint */
-.knowledge-card { background: #F2EFEF; } /* Rose Tint */
-.tech-card { background: #E8EBEB; }     /* Cool Grey */
-
-.category-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(9, 44, 35, 0.1);
-    border-color: var(--accent-gold);
-}
-
-.card-number {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    opacity: 0.1;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    transition: 0.3s;
-}
-
-.category-card:hover .card-number {
-    opacity: 0.2;
-    transform: scale(1.1);
-}
-
-.card-icon {
-    align-self: flex-end;
-    font-size: 1.5rem;
-    color: var(--accent-red);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: 0.3s;
-}
-
-.category-card:hover .card-icon {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* 3. SOLE CREATOR SEAL (Ported from Old Design) */
-.sole-creator-slogan {
-    background-color: var(--bg-card);
-    border: 1px solid var(--accent-gold);
-    border-radius: 20px;
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 3rem 2rem;
-    text-align: center;
-    box-shadow: 
-        0 10px 30px rgba(197, 160, 89, 0.15), /* Gold Glow */
-        inset 0 0 0 4px rgba(240, 242, 243, 0.5); /* Inner Ring */
-}
-
-.slogan-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    text-transform: uppercase;
-    color: var(--ink-display);
-}
-
-.slogan-title span { color: var(--accent-gold); }
-
-.slogan-tagline {
-    font-family: var(--font-ui);
-    font-weight: bold;
-    color: var(--accent-red);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-}
-
-/* 4. FEATURED GRID */
-.featured-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    background: var(--bg-card);
-    padding: 3rem;
-    border-radius: var(--radius-card);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.feature-list {
-    list-style: none;
-    margin: 2rem 0;
-    font-family: var(--font-ui);
-    color: var(--ink-body);
-}
-.feature-list li { margin-bottom: 0.5rem; }
-
-/* Mobile Response */
-@media (max-width: 768px) {
-    .hero-text { font-size: 1rem; }
-    .hero-actions { flex-direction: column; }
-    
-    .featured-grid {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-        gap: 2rem;
-    }
-    
-    .category-grid { grid-template-columns: 1fr; }
-    
-    .sole-creator-slogan { margin: 2rem auto; padding: 2rem 1.5rem; }
-}
-
-
-/* --- COMPONENT: ROYAL APP HEADER --- */
-
-/* 1. GLOBAL LINK RESET (Kills the Blue/Purple) */
-a {
-    text-decoration: none !important; /* Force removal of underline */
-    color: inherit; /* Inherit the Royal Colors */
-}
-
-/* 2. THE SHELL (Container) */
+/* --- 4. COMPONENT: ROYAL APP HEADER (THE FIX) --- */
 .header-shell {
-    background-color: var(--bg-canvas); /* Matches page background */
+    background-color: var(--bg-canvas);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Subtle lift */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
-/* 3. ROW 1: COMMAND BAR */
+/* Row 1: Command Bar (Burger | Logo | Satchel) */
 .command-bar {
     display: grid;
-    grid-template-columns: 50px 1fr 80px; /* Precise Layout: Burger | Logo | Satchel */
+    /* Precise Columns: 50px Left, Center content, 80px Right */
+    grid-template-columns: 50px 1fr 80px; 
     align-items: center;
     height: 60px;
     padding: 0 1rem;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Faint Gold Line */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Faint Gold */
 }
 
 .brand-logo {
@@ -792,13 +145,25 @@ a {
     white-space: nowrap;
 }
 
+/* Burger Menu Trigger */
+.custom-burger {
+    background: none; border: none; padding: 0;
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 30px; height: 30px; cursor: pointer;
+}
+.custom-burger span {
+    display: block; width: 100%; height: 2px;
+    background: var(--ink-display);
+    transition: 0.3s;
+}
+
 /* Satchel Button */
 .satchel-icon-btn {
-    background: none; border: none;
+    background: none; border: none; padding: 0;
     font-family: var(--font-ui);
     font-weight: bold;
     font-size: 0.75rem;
-    color: var(--accent-red); /* Burgundy */
+    color: var(--accent-red);
     display: flex; align-items: center; justify-content: flex-end; gap: 6px;
     cursor: pointer;
 }
@@ -810,9 +175,9 @@ a {
     display: none; /* Hidden unless active */
 }
 
-/* 4. ROW 2: SCROLL NAV (The Request) */
+/* Row 2: Horizontal Scroll Nav */
 .scroll-nav {
-    background: var(--bg-card); /* White strip */
+    background: var(--bg-card);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     height: 45px;
     display: flex; align-items: center;
@@ -822,25 +187,23 @@ a {
     display: flex;
     gap: 1.5rem;
     padding: 0 1.5rem;
-    overflow-x: auto; /* Enables Horizontal Scroll */
-    white-space: nowrap; /* Prevents wrapping */
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-    -ms-overflow-style: none; /* Hide scrollbar IE */
+    overflow-x: auto; /* Enables Swipe */
+    white-space: nowrap;
+    scrollbar-width: none; /* Hide Scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide Scrollbar IE */
     height: 100%;
     align-items: center;
+    width: 100%;
 }
+.scroll-track::-webkit-scrollbar { display: none; } /* Hide Scrollbar Chrome */
 
-.scroll-track::-webkit-scrollbar { display: none; /* Hide scrollbar Chrome/Safari */ }
-
-/* The Links */
 .scroll-link {
     font-family: var(--font-ui);
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--ink-muted); /* Muted Green/Grey */
+    color: var(--ink-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: color 0.2s;
     height: 100%;
     display: flex; align-items: center;
     border-bottom: 2px solid transparent;
@@ -848,29 +211,161 @@ a {
 
 .scroll-link.active,
 .scroll-link:hover {
-    color: var(--ink-display); /* Dark Green */
-    border-bottom-color: var(--accent-gold); /* Gold Line on Hover */
+    color: var(--ink-display);
+    border-bottom-color: var(--accent-gold);
 }
 
-/* 5. DRAWER FIXES */
-.empty-msg {
+/* --- 5. COMPONENT: DRAWER SYSTEM (Unified) --- */
+.drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(9, 44, 35, 0.6); /* Emerald Tint */
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    opacity: 0; visibility: hidden;
+    transition: 0.3s;
+}
+
+.drawer-panel, .side-drawer {
+    position: fixed; top: 0; bottom: 0;
+    background: var(--bg-canvas);
+    z-index: 2001;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 40px rgba(0,0,0,0.2);
+    display: flex; flex-direction: column;
+}
+
+/* Right Drawer (Satchel) */
+.drawer-panel {
+    right: 0; width: 85%; max-width: 350px;
+    transform: translateX(100%);
+    border-left: 4px solid var(--accent-gold);
+}
+
+/* Left Drawer (Menu) */
+.side-drawer {
+    left: 0; width: 80%; max-width: 300px;
+    transform: translateX(-100%);
+    border-right: 4px solid var(--accent-gold);
+}
+
+.drawer-panel.is-open, .side-drawer.is-open { transform: translateX(0); }
+.drawer-backdrop.is-visible { opacity: 1; visibility: visible; }
+
+.drawer-header {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex; justify-content: space-between; align-items: center;
+}
+.drawer-title { font-family: var(--font-display); text-transform: uppercase; }
+.drawer-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+.drawer-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
+.drawer-footer { padding: 1.5rem; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.05); }
+
+/* Drawer List Styles */
+.drawer-list { list-style: none; }
+.drawer-list li { border-bottom: 1px solid rgba(0,0,0,0.05); }
+.drawer-list a {
+    display: block; padding: 1rem 0;
+    font-family: var(--font-ui); font-weight: bold;
+    color: var(--ink-display);
+}
+
+/* --- 6. PAGE: HOME LAYOUT --- */
+.hero-section { text-align: center; padding: 6rem 1rem 4rem; }
+.hero-content { max-width: 800px; margin: 0 auto; }
+.hero-text { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
+.hero-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+
+/* Category Grid */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 2rem 4rem;
+    max-width: 1280px; margin: 0 auto;
+}
+
+.category-card {
+    position: relative; padding: 2rem;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; justify-content: space-between;
+    height: 240px; transition: all 0.3s ease; overflow: hidden;
+}
+
+.prod-card { background: #F4F1EA; }
+.creative-card { background: #EAEFEC; }
+.knowledge-card { background: #F2EFEF; }
+.tech-card { background: #E8EBEB; }
+
+.category-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+
+.card-number {
+    font-family: var(--font-display); font-size: 3rem;
+    opacity: 0.1; position: absolute; top: 1rem; right: 1.5rem;
+}
+.card-icon { align-self: flex-end; font-size: 1.5rem; color: var(--accent-red); }
+
+/* Sole Creator */
+.sole-creator-slogan {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-gold);
+    border-radius: 20px;
+    max-width: 600px; margin: 0 auto 4rem; padding: 3rem 2rem;
     text-align: center;
-    color: var(--ink-muted);
-    font-style: italic;
-    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
 }
 
-.total-row {
-    display: flex; justify-content: space-between;
-    margin-bottom: 1rem;
-    font-family: var(--font-display);
+/* Featured Grid */
+.featured-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    background: var(--bg-card); padding: 3rem;
+    border-radius: var(--radius-card);
+    max-width: 1280px; margin: 0 auto 4rem;
 }
+
+/* --- 7. BUTTONS & UTILITIES --- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    text-transform: uppercase; font-weight: bold; letter-spacing: 0.1em;
+    border-radius: var(--radius-pill); cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none; padding: 14px 30px; font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-red); color: white;
+    box-shadow: var(--shadow-3d);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-3d-hover); }
+
+.btn-secondary {
+    background: transparent; color: var(--ink-display);
+    border: 2px solid var(--accent-gold);
+}
+.btn-secondary:hover { background: var(--accent-gold); color: white; transform: translateY(-2px); }
 
 .btn-full { width: 100%; }
 
-/* Mobile Adjustments */
-@media (max-width: 480px) {
-    .brand-logo { font-size: 1.1rem; }
-    .command-bar { padding: 0 0.5rem; }
-    .scroll-track { gap: 1.2rem; padding: 0 1rem; }
+/* --- 8. FOOTER --- */
+.site-footer {
+    background: var(--bg-canvas); border-top: 1px solid var(--accent-gold);
+    padding: 4rem 2rem 2rem; margin-top: auto;
+}
+.footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
+    max-width: 1280px; margin: 0 auto;
+}
+.footer-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-display); }
+.footer-heading { color: var(--accent-gold); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 1rem;}
+.footer-col a { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.footer-col a:hover { color: var(--accent-red); }
+
+/* --- RESPONSIVE FINAL --- */
+@media (max-width: 768px) {
+    .featured-grid { grid-template-columns: 1fr; padding: 2rem; }
+    .hero-actions { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
 }
