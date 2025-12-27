@@ -754,3 +754,123 @@ p.text-body, .article-content {
     
     .sole-creator-slogan { margin: 2rem auto; padding: 2rem 1.5rem; }
 }
+
+
+/* --- COMPONENT: ROYAL APP HEADER --- */
+
+/* 1. GLOBAL LINK RESET (Kills the Blue/Purple) */
+a {
+    text-decoration: none !important; /* Force removal of underline */
+    color: inherit; /* Inherit the Royal Colors */
+}
+
+/* 2. THE SHELL (Container) */
+.header-shell {
+    background-color: var(--bg-canvas); /* Matches page background */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Subtle lift */
+}
+
+/* 3. ROW 1: COMMAND BAR */
+.command-bar {
+    display: grid;
+    grid-template-columns: 50px 1fr 80px; /* Precise Layout: Burger | Logo | Satchel */
+    align-items: center;
+    height: 60px;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Faint Gold Line */
+}
+
+.brand-logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink-display);
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+/* Satchel Button */
+.satchel-icon-btn {
+    background: none; border: none;
+    font-family: var(--font-ui);
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: var(--accent-red); /* Burgundy */
+    display: flex; align-items: center; justify-content: flex-end; gap: 6px;
+    cursor: pointer;
+}
+
+.satchel-dot {
+    width: 8px; height: 8px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    display: none; /* Hidden unless active */
+}
+
+/* 4. ROW 2: SCROLL NAV (The Request) */
+.scroll-nav {
+    background: var(--bg-card); /* White strip */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    height: 45px;
+    display: flex; align-items: center;
+}
+
+.scroll-track {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    overflow-x: auto; /* Enables Horizontal Scroll */
+    white-space: nowrap; /* Prevents wrapping */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar IE */
+    height: 100%;
+    align-items: center;
+}
+
+.scroll-track::-webkit-scrollbar { display: none; /* Hide scrollbar Chrome/Safari */ }
+
+/* The Links */
+.scroll-link {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-muted); /* Muted Green/Grey */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    height: 100%;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+}
+
+.scroll-link.active,
+.scroll-link:hover {
+    color: var(--ink-display); /* Dark Green */
+    border-bottom-color: var(--accent-gold); /* Gold Line on Hover */
+}
+
+/* 5. DRAWER FIXES */
+.empty-msg {
+    text-align: center;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+.total-row {
+    display: flex; justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+}
+
+.btn-full { width: 100%; }
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .brand-logo { font-size: 1.1rem; }
+    .command-bar { padding: 0 0.5rem; }
+    .scroll-track { gap: 1.2rem; padding: 0 1rem; }
+}
