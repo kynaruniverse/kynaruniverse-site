@@ -1,222 +1,235 @@
-/* * KYNAR UNIVERSE / SOFT ROYAL ENGINE V6.0
- * Theme: Royal Botanist (Soft UI Edition)
- * Visuals: Gradients, Glassmorphism, Super-Rounded
- */
+/* SOFT ROYAL ENGINE V6.0 - GLOBAL STYLES
+   Role: Layout, Typography, Drawers, and Theme Variables
+*/
 
-/* --- 1. TYPOGRAPHY ENGINE --- */
-@font-face { 
-    font-family: 'Bantayog'; 
-    src: url('fonts/Bantayog.woff2') format('woff2'), url('fonts/Bantayog.woff') format('woff'); 
-    font-weight: normal; font-style: normal; font-display: swap; 
-}
-@font-face { 
-    font-family: 'Jimmy Flashcard'; 
-    src: url('fonts/Jimmy Flashcard.woff2') format('woff2'), url('fonts/Jimmy Flashcard.woff') format('woff'); 
-    font-weight: normal; font-style: normal; font-display: swap; 
-}
-@font-face { 
-    font-family: 'Glacial Indifference'; 
-    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'), url('fonts/GlacialIndifferenceRegular.woff') format('woff'); 
-    font-weight: normal; font-style: normal; font-display: swap; 
-}
-
+/* --- 1. THEME VARIABLES --- */
 :root {
-    /* --- PALETTE: Royal Botanist Core --- */
-    --bg-canvas: #F5F7F8;      /* Even lighter Silver for that "App" feel */
-    --bg-card: #FFFFFF;        /* Pure White */
+    /* Color Palette */
+    --bg-paper: #F8F8F6;      /* Off-white background */
+    --bg-canvas: #E6E6E2;     /* Darker stone background */
+    --ink-display: #092C23;   /* Deep Emerald (Headings) */
+    --ink-body: #333333;      /* Standard Text */
+    --ink-muted: #666666;     /* Secondary Text */
+    --ink-border: rgba(0,0,0,0.08);
     
-    --ink-display: #092C23;    /* Deep Jungle Green */
-    --ink-body: #4A5D58;       /* Softer Slate */
-    --ink-muted: #9AA7A3;      /* Silver Green */
+    --accent-gold: #C5A059;   /* Royal Gold */
+    --accent-red: #D32F2F;    /* Alert/Action */
     
-    --accent-gold: #C5A059;
-    --accent-red: #800020;
-
-    /* --- NEW: THE LIVING GRADIENTS --- */
-    --grad-emerald: linear-gradient(135deg, #092C23 0%, #1A4D3E 100%);
-    --grad-burgundy: linear-gradient(135deg, #800020 0%, #B31E40 100%);
-    --grad-gold: linear-gradient(135deg, #C5A059 0%, #E6C685 100%);
-    --grad-silver: linear-gradient(135deg, #E3E8E8 0%, #FFFFFF 100%);
+    /* Gradients */
+    --grad-emerald: linear-gradient(135deg, #092C23 0%, #16423C 100%);
+    --grad-gold: linear-gradient(135deg, #C5A059 0%, #D4AF37 100%);
+    --grad-silver: linear-gradient(180deg, #FFFFFF 0%, #F4F4F4 100%);
+    --grad-burgundy: linear-gradient(135deg, #4A0E0E 0%, #6B1A1A 100%);
     
-    /* --- NEW: SOFT UI PHYSICS --- */
-    --radius-pill: 999px;
-    --radius-app: 24px; /* The "Super Round" look from the image */
+    /* Shadows & Radius */
+    --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-float: 0 15px 35px rgba(9, 44, 35, 0.1);
+    --radius-card: 16px;
+    --radius-pill: 99px;
     
-    /* Soft, diffused shadows */
-    --shadow-soft: 0 10px 40px -10px rgba(9, 44, 35, 0.08);
-    --shadow-float: 0 20px 50px -10px rgba(9, 44, 35, 0.15);
+    /* Fonts */
+    --font-display: 'Bantayog', 'Times New Roman', serif;
+    --font-body: 'Glacial Indifference', sans-serif;
 }
 
-/* --- RESET & BASE --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    background-color: var(--bg-canvas); 
-    color: var(--ink-body); 
-    font-family: 'Glacial Indifference', sans-serif; 
-    line-height: 1.6; 
-    overflow-x: hidden; 
-}
-a { text-decoration: none !important; color: inherit; transition: all 0.2s ease; }
+/* --- 2. RESET & BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-/* --- TYPOGRAPHY --- */
-h1, h2, h3 { 
-    font-family: 'Bantayog', serif; 
-    color: var(--ink-display); 
-    line-height: 1.1; 
-    letter-spacing: 0.02em; 
+body {
+    background-color: var(--bg-paper);
+    color: var(--ink-body);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.text-display { 
-    font-size: clamp(2rem, 5vw, 3rem); 
-    text-align: center; 
-    margin-bottom: 0.5rem; 
-}
+a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+button { font-family: inherit; }
 
-.text-sub { 
-    font-size: 1rem; 
-    color: var(--ink-muted); 
-    text-align: center; 
-    max-width: 500px; 
-    margin: 0 auto 3rem; 
-}
+/* Typography */
+.text-display { font-family: var(--font-display); color: var(--ink-display); line-height: 1.2; font-weight: normal; margin-bottom: 0.5rem; }
+.text-sub { font-size: 1.1rem; color: var(--ink-muted); line-height: 1.5; max-width: 600px; margin: 0 auto; }
 
-/* --- LAYOUT: APP CONTAINER --- */
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+/* --- 3. LAYOUT CONTAINERS --- */
 .app-container {
-    max-width: 800px; /* Limits width to look like an "App" on desktop */
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 6rem; /* Extra bottom padding for scroll */
-}
-
-/* --- COMPONENT: TWIN PILLARS (The Top Two Cards) --- */
-.twin-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-    margin-bottom: 3rem;
-}
-
-.feature-card {
-    height: 200px;
-    border-radius: var(--radius-app);
-    padding: 1.5rem;
+    padding: 100px 1.5rem 4rem 1.5rem; /* Top padding clears fixed header */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    color: white;
-    position: relative;
-    overflow: hidden;
+}
+
+/* Sections */
+section { margin-bottom: 3rem; }
+
+/* --- 4. HEADER (Fixed) --- */
+.app-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: 70px;
+    background: rgba(248, 248, 246, 0.9); /* Translucent */
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.brand-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.1em; color: var(--ink-display); font-weight: bold; }
+
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+
+/* --- 5. DRAWERS (The Fix for the "Stacking" Issue) --- */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 85%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--bg-paper);
+    z-index: 2000;
+    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+    visibility: hidden; /* Ensure it doesn't block clicks when closed */
+}
+
+/* Active State */
+.drawer.is-open {
+    right: 0;
+    visibility: visible;
+}
+
+.drawer-header {
+    padding: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--ink-border);
+}
+
+.drawer-content { padding: 1.5rem; flex: 1; }
+
+.drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(9, 44, 35, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1999;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.drawer-backdrop.is-visible { opacity: 1; pointer-events: all; }
+
+/* --- 6. COMPONENTS: CARDS & BUTTONS --- */
+
+/* Feature Card (The "Identity" Card) */
+.feature-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    border: 1px solid var(--ink-border);
     box-shadow: var(--shadow-soft);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.feature-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-float); }
-
-.card-bg-emerald { background: var(--grad-emerald); }
-.card-bg-burgundy { background: var(--grad-burgundy); }
-
-.feature-icon {
-    position: absolute; top: 1.5rem; left: 0; right:0; margin: auto;
-    font-size: 3rem; text-align: center; opacity: 0.9;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: center;    /* Center content */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
 }
 
-.feature-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem; font-family: 'Bantayog'; }
-.feature-desc { font-size: 0.8rem; opacity: 0.9; font-family: 'Glacial Indifference'; }
-
-/* --- COMPONENT: INFINITE STREAM (Horizontal Scroll) --- */
-.section-header {
-    font-family: 'Bantayog';
-    font-size: 1.25rem;
-    color: var(--ink-display);
-    margin-bottom: 1rem;
-    padding-left: 0.5rem;
+/* On Desktop, switch to row if needed, but for Identity card, column is usually best */
+@media (min-width: 768px) {
+    .feature-card.horizontal {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+    }
 }
 
+/* Dock Button (Pill Shape) */
+.dock-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 48px;
+    padding: 0 2rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--ink-display);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+    white-space: nowrap;
+}
+.dock-btn:active { transform: scale(0.98); }
+
+/* Stream Card (Horizontal Scroll Items or List Items) */
+.stream-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--ink-border);
+    transition: transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+}
+.stream-card:hover { transform: translateY(-2px); }
+
+/* Scroll Stream (Horizontal Container) */
 .scroll-stream {
     display: flex;
     gap: 1rem;
     overflow-x: auto;
-    padding: 0.5rem 0.5rem 2rem; /* Padding for shadow clearance */
-    scroll-snap-type: x mandatory;
-    margin: 0 -1.5rem; /* Bleed to edges on mobile */
-    padding-left: 1.5rem; /* Restore padding */
-    padding-right: 1.5rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none; /* IE/Edge */
+    padding-bottom: 1rem;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    -webkit-overflow-scrolling: touch;
 }
 .scroll-stream::-webkit-scrollbar { display: none; }
 
-.stream-card {
-    flex: 0 0 160px; /* Fixed width */
-    height: 180px;
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 1.25rem;
-    scroll-snap-align: start;
-    display: flex; flex-direction: column; justify-content: space-between;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(0,0,0,0.03);
-    transition: transform 0.2s;
+/* Emerald Card Variation */
+.card-bg-emerald {
+    background: var(--grad-emerald);
+    color: white;
+    border: none;
 }
-.stream-card:hover { transform: translateY(-5px); }
+.card-bg-emerald .text-sub { color: rgba(255,255,255,0.7); }
 
-.stream-visual {
-    width: 50px; height: 50px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; color: white;
-    background: var(--grad-gold); /* Default */
+/* --- 7. UTILITIES --- */
+.spinner {
+    display: inline-block;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-left-color: currentColor;
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    animation: spin 1s linear infinite;
 }
-.visual-silver { background: var(--grad-silver); color: var(--ink-display); }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
-.stream-title { font-weight: bold; font-size: 1rem; line-height: 1.2; color: var(--ink-display); }
-.stream-meta { font-size: 0.75rem; color: var(--ink-muted); }
-
-/* --- COMPONENT: DUAL ACTIONS (Bottom Buttons) --- */
-.action-dock {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-    margin-top: 1rem;
+/* Fix for the "Identity Text Squashing" */
+/* Forces the identity card text to have full width so it doesn't wrap weirdly */
+#state-guest h3, #state-guest p {
+    width: 100%;
+    max-width: 400px; /* Readability cap */
 }
 
-.dock-btn {
-    background: var(--bg-card);
-    height: 60px;
-    border-radius: var(--radius-pill);
-    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-    font-weight: bold; color: var(--ink-display);
-    box-shadow: var(--shadow-soft);
-    transition: 0.2s;
-    border: 1px solid rgba(0,0,0,0.03);
-}
-.dock-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-float); color: var(--accent-red); }
-
-/* --- HEADER FIXES (Keep it sticky & glassy) --- */
-.header-shell { 
-    background: rgba(245, 247, 248, 0.95); 
-    backdrop-filter: blur(20px); 
-    position: sticky; top: 0; z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-.command-bar {
-    display: grid; grid-template-columns: 50px 1fr 80px;
-    align-items: center; height: 60px; padding: 0 1rem;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.1); /* Very faint gold */
-}
-
-/* --- FOOTER (Matches App Style) --- */
-.site-footer {
-    background: var(--bg-card);
-    border-top: 1px solid var(--accent-gold);
-    padding: 3rem 1.5rem 1.5rem;
-    margin-top: 2rem;
-}
-.footer-grid {
-    display: grid; grid-template-columns: 1fr; gap: 2rem; text-align: center;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 480px) {
-    .twin-grid { grid-template-columns: 1fr; } /* Stack big cards on tiny screens */
-    .feature-card { height: 160px; flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem; }
-    .feature-icon { position: static; margin: 0; font-size: 2.5rem; }
-    .feature-text-box { display: flex; flex-direction: column; }
+/* --- 8. RESPONSIVE GRID --- */
+/* For Archive Page */
+@media (min-width: 600px) {
+    #artifact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
 }
