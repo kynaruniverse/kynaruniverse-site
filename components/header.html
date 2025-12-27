@@ -1,28 +1,43 @@
+<div class="header-top-bar">
+    <div class="forge-container top-bar-content">
+        <div class="slogan-wrapper">
+            <span class="stars">✶ ✦ ✶</span>
+            <span class="slogan-text">Quiet Tools for Chaotic Times</span>
+        </div>
+
+        <a href="account.html" class="top-account-link">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+            <span>Sign In</span>
+        </a>
+    </div>
+</div>
+
 <nav class="nav-forge">
     <div class="forge-container nav-content">
         
         <button class="custom-burger" id="nav-toggle" aria-label="Open Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
 
-        <a href="index.html" class="nav-logo" aria-label="Kynar Universe Home">
-            KYNAR UNIVERSE
-        </a>
+        <a href="index.html" class="nav-logo">KYNAR UNIVERSE</a>
+
+        <form class="nav-search" action="archive.html" method="GET">
+            <input type="search" name="q" placeholder="Search the archive..." aria-label="Search">
+            <button type="submit">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+            </button>
+        </form>
 
         <div class="nav-links">
-            <a href="archive.html">The Archive</a>
+            <a href="archive.html">Archive</a>
             <a href="library.html">Library</a>
             <a href="identity.html">Identity</a>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 1rem;">
-            <button id="satchel-trigger" class="ink-link" style="background:none; border:none; padding:0; display:flex; align-items:center;" aria-label="Open Satchel">
-                <span style="font-family: var(--font-display); font-size: 0.9rem;">SATCHEL</span>
-                <span id="satchel-count" style="margin-left: 5px; font-weight: bold; color: var(--accent-red); opacity: 0; transition: opacity 0.3s;"></span>
-            </button>
-        </div>
+        <button id="satchel-trigger" class="satchel-btn" aria-label="Open Satchel">
+            <span>SATCHEL</span>
+            <span id="satchel-count" class="satchel-badge"></span>
+        </button>
     </div>
 </nav>
 
@@ -32,43 +47,32 @@
         <span class="drawer-title">Navigation</span>
         <button id="close-nav" class="drawer-close-btn">&times;</button>
     </div>
-    
     <ul class="drawer-list">
         <li><a href="index.html">Home</a></li>
         <li><a href="archive.html">The Archive</a></li>
         <li><a href="library.html">Library</a></li>
         <li><a href="identity.html">Identity</a></li>
         <li><a href="signals.html">Signals</a></li>
-    </ul>
-
-    <div class="drawer-divider"></div>
-    
-    <ul class="drawer-list">
-        <li><a href="account.html" style="font-size: 0.9rem; color: var(--ink-muted);">My Account</a></li>
+        <li><a href="account.html">My Account</a></li>
     </ul>
 </aside>
 
 <div id="satchel-drawer-backdrop" class="drawer-backdrop"></div>
 <aside id="satchel-drawer" class="drawer-panel">
-    
     <div class="drawer-header">
         <span class="drawer-title">Current Satchel</span>
         <button id="close-drawer" class="drawer-close-btn">&times;</button>
     </div>
-
     <div id="drawer-items" class="drawer-body">
-        <p class="text-body" style="font-size: 0.9rem; color: var(--ink-muted); text-align:center; margin-top:2rem;">Your satchel is empty.</p>
+        <p class="text-body" style="text-align:center; color: var(--ink-muted); margin-top:2rem;">Your satchel is empty.</p>
     </div>
-
     <div class="drawer-footer">
         <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
             <span class="text-body" style="font-weight:bold;">Total</span>
             <span class="text-heading" id="drawer-total" style="color:var(--accent-red);">£0.00</span>
         </div>
-        
-        <a href="exchange.html" class="btn btn-primary" style="width: 100%; text-align: center; text-decoration: none; justify-content: center;">
+        <a href="exchange.html" class="btn btn-primary" style="width: 100%; text-align: center; text-decoration: none;">
             Proceed to Exchange
         </a>
     </div>
-
 </aside>
