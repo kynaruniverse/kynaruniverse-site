@@ -1,371 +1,165 @@
-/* * KYNAR UNIVERSE / ENGINE V5.0 (FINAL)
- * Theme: Royal Botanist (Silver, Emerald, Burgundy, Gold)
- * Architecture: Royal App Header, Fluid Type, 3D Physics
+/* * KYNAR UNIVERSE / SOFT ROYAL ENGINE V6.0
+ * Theme: Royal Botanist (Soft UI Edition)
+ * Visuals: Gradients, Glassmorphism, Super-Rounded
  */
 
-/* --- 1. TYPOGRAPHY ENGINE --- */
-@font-face {
-    font-family: 'Bantayog';
-    src: url('fonts/Bantayog.woff2') format('woff2'), url('fonts/Bantayog.woff') format('woff');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
-@font-face {
-    font-family: 'Jimmy Flashcard';
-    src: url('fonts/Jimmy Flashcard.woff2') format('woff2'), url('fonts/Jimmy Flashcard.woff') format('woff');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
-@font-face {
-    font-family: 'Glacial Indifference';
-    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'), url('fonts/GlacialIndifferenceRegular.woff') format('woff');
-    font-weight: normal; font-style: normal; font-display: swap;
-}
+/* --- 1. TYPOGRAPHY ENGINE (Unchanged) --- */
+@font-face { font-family: 'Bantayog'; src: url('fonts/Bantayog.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Jimmy Flashcard'; src: url('fonts/Jimmy Flashcard.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Glacial Indifference'; src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'); font-display: swap; }
 
 :root {
-    /* --- PALETTE: Royal Botanist --- */
-    --bg-canvas: #F0F2F3;      /* Platinum Silver (Main Background) */
-    --bg-card: #FFFFFF;        /* Pure White (Cards) */
-    --bg-panel: #E3E8E8;       /* Sidebar/Headers */
+    /* --- PALETTE: Royal Botanist Core --- */
+    --bg-canvas: #F5F7F8;      /* Even lighter Silver for that "App" feel */
+    --bg-card: #FFFFFF;        /* Pure White */
     
-    --ink-display: #092C23;    /* Deep Jungle Green (Headings) */
-    --ink-body: #2F4F4F;       /* Dark Slate Gray (Reading text) */
-    --ink-muted: #8FA3A3;      /* Silver Green (Meta/Borders) */
+    --ink-display: #092C23;    /* Deep Jungle Green */
+    --ink-body: #4A5D58;       /* Softer Slate */
+    --ink-muted: #9AA7A3;      /* Silver Green */
     
-    --accent-gold: #C5A059;    /* Antique Gold (Borders/Lines/Focus) */
-    --accent-red: #800020;     /* Burgundy (Buttons/Actions) */
-    --accent-red-hover: #5C0015;
+    --accent-gold: #C5A059;
+    --accent-red: #800020;
 
-    /* --- TYPOGRAPHY MAPPING --- */
-    --font-display: 'Bantayog', sans-serif;
-    --font-accent: 'Jimmy Flashcard', sans-serif; 
-    --font-ui: 'Glacial Indifference', sans-serif;
+    /* --- NEW: THE LIVING GRADIENTS --- */
+    --grad-emerald: linear-gradient(135deg, #092C23 0%, #1A4D3E 100%);
+    --grad-burgundy: linear-gradient(135deg, #800020 0%, #B31E40 100%);
+    --grad-gold: linear-gradient(135deg, #C5A059 0%, #E6C685 100%);
+    --grad-silver: linear-gradient(135deg, #E3E8E8 0%, #FFFFFF 100%);
     
-    /* Fluid Type Scale */
-    --fs-xl: clamp(1.75rem, 1.5rem + 1.5vw, 3rem); 
-    --fs-lg: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem); 
-    --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem); 
-
-    /* --- PHYSICS --- */
-    --max-width: 1280px;
+    /* --- NEW: SOFT UI PHYSICS --- */
     --radius-pill: 999px;
-    --radius-card: 12px;
+    --radius-app: 24px; /* The "Super Round" look from the image */
     
-    /* 3D Shadows (Gold Tinted) */
-    --shadow-3d: 0 6px 0 #8E7036, 0 12px 18px rgba(9, 44, 35, 0.15);
-    --shadow-3d-hover: 0 8px 0 #8E7036, 0 16px 24px rgba(9, 44, 35, 0.2);
-    --shadow-3d-active: 0 2px 0 #8E7036, 0 4px 8px rgba(9, 44, 35, 0.2);
+    /* Soft, diffused shadows */
+    --shadow-soft: 0 10px 40px -10px rgba(9, 44, 35, 0.08);
+    --shadow-float: 0 20px 50px -10px rgba(9, 44, 35, 0.15);
 }
 
-/* --- 2. RESET & BASE --- */
+/* --- RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { background-color: var(--bg-canvas); color: var(--ink-body); font-family: 'Glacial Indifference', sans-serif; line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none !important; color: inherit; }
 
-body {
-    background-color: var(--bg-canvas);
-    color: var(--ink-body);
-    font-family: var(--font-ui);
-    line-height: 1.6;
-    overflow-x: hidden;
+/* --- TYPOGRAPHY --- */
+h1, h2, h3 { font-family: 'Bantayog', serif; color: var(--ink-display); line-height: 1.1; letter-spacing: 0.02em; }
+.text-display { font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 0.5rem; }
+.text-sub { font-size: 1rem; color: var(--ink-muted); text-align: center; max-width: 500px; margin: 0 auto 3rem; }
+
+/* --- LAYOUT: APP CONTAINER --- */
+.app-container {
+    max-width: 800px; /* Limits width to look like an "App" on desktop */
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem; /* Extra bottom padding for scroll */
 }
 
-/* GLOBAL LINK FIX: Kills blue links everywhere */
-a {
-    text-decoration: none !important;
-    color: inherit;
-    transition: color 0.2s ease;
-}
-
-/* --- 3. TYPOGRAPHY HIERARCHY --- */
-h1, h2, h3 {
-    font-family: var(--font-display);
-    color: var(--ink-display);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1.1;
-}
-
-.text-display { 
-    font-size: var(--fs-xl);
-    margin-bottom: 1rem;
-    text-wrap: balance;
-}
-
-.text-heading { font-size: var(--fs-lg); margin-bottom: 0.5rem; }
-
-.text-body {
-    font-size: var(--fs-md);
-    color: var(--ink-body);
-    line-height: 1.7;
-}
-
-.stone-meta {
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent-gold);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* Handwritten Accent */
-.slogan-accent {
-    font-family: var(--font-accent);
-    color: var(--accent-gold);
-    font-size: 1.5rem;
-    transform: rotate(-2deg);
-    display: inline-block;
-}
-
-/* --- 4. COMPONENT: ROYAL APP HEADER (THE FIX) --- */
-.header-shell {
-    background-color: var(--bg-canvas);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-
-/* Row 1: Command Bar (Burger | Logo | Satchel) */
-.command-bar {
+/* --- COMPONENT: TWIN PILLARS (The Top Two Cards) --- */
+.twin-grid {
     display: grid;
-    /* Precise Columns: 50px Left, Center content, 80px Right */
-    grid-template-columns: 50px 1fr 80px; 
-    align-items: center;
-    height: 60px;
-    padding: 0 1rem;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Faint Gold */
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
 }
 
-.brand-logo {
-    font-family: var(--font-display);
+.feature-card {
+    height: 200px;
+    border-radius: var(--radius-app);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.feature-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-float); }
+
+.card-bg-emerald { background: var(--grad-emerald); }
+.card-bg-burgundy { background: var(--grad-burgundy); }
+
+.feature-icon {
+    position: absolute; top: 1.5rem; left: 0; right:0; margin: auto;
+    font-size: 3rem; text-align: center; opacity: 0.9;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+}
+
+.feature-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem; font-family: 'Bantayog'; }
+.feature-desc { font-size: 0.8rem; opacity: 0.9; font-family: 'Glacial Indifference'; }
+
+/* --- COMPONENT: INFINITE STREAM (Horizontal Scroll) --- */
+.section-header {
+    font-family: 'Bantayog';
     font-size: 1.25rem;
     color: var(--ink-display);
-    text-align: center;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
 }
 
-/* Burger Menu Trigger */
-.custom-burger {
-    background: none; border: none; padding: 0;
-    display: flex; flex-direction: column; justify-content: center; gap: 5px;
-    width: 30px; height: 30px; cursor: pointer;
-}
-.custom-burger span {
-    display: block; width: 100%; height: 2px;
-    background: var(--ink-display);
-    transition: 0.3s;
-}
-
-/* Satchel Button */
-.satchel-icon-btn {
-    background: none; border: none; padding: 0;
-    font-family: var(--font-ui);
-    font-weight: bold;
-    font-size: 0.75rem;
-    color: var(--accent-red);
-    display: flex; align-items: center; justify-content: flex-end; gap: 6px;
-    cursor: pointer;
-}
-
-.satchel-dot {
-    width: 8px; height: 8px;
-    background: var(--accent-red);
-    border-radius: 50%;
-    display: none; /* Hidden unless active */
-}
-
-/* Row 2: Horizontal Scroll Nav */
-.scroll-nav {
-    background: var(--bg-card);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    height: 45px;
-    display: flex; align-items: center;
-}
-
-.scroll-track {
+.scroll-stream {
     display: flex;
-    gap: 1.5rem;
-    padding: 0 1.5rem;
-    overflow-x: auto; /* Enables Swipe */
-    white-space: nowrap;
-    scrollbar-width: none; /* Hide Scrollbar Firefox */
-    -ms-overflow-style: none; /* Hide Scrollbar IE */
-    height: 100%;
-    align-items: center;
-    width: 100%;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.5rem 2rem; /* Padding for shadow clearance */
+    scroll-snap-type: x mandatory;
+    margin: 0 -1.5rem; /* Bleed to edges on mobile */
+    padding-left: 1.5rem; /* Restore padding */
+    padding-right: 1.5rem;
+    scrollbar-width: none;
 }
-.scroll-track::-webkit-scrollbar { display: none; } /* Hide Scrollbar Chrome */
+.scroll-stream::-webkit-scrollbar { display: none; }
 
-.scroll-link {
-    font-family: var(--font-ui);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    height: 100%;
-    display: flex; align-items: center;
-    border-bottom: 2px solid transparent;
-}
-
-.scroll-link.active,
-.scroll-link:hover {
-    color: var(--ink-display);
-    border-bottom-color: var(--accent-gold);
-}
-
-/* --- 5. COMPONENT: DRAWER SYSTEM (Unified) --- */
-.drawer-backdrop {
-    position: fixed; inset: 0;
-    background: rgba(9, 44, 35, 0.6); /* Emerald Tint */
-    backdrop-filter: blur(4px);
-    z-index: 2000;
-    opacity: 0; visibility: hidden;
-    transition: 0.3s;
-}
-
-.drawer-panel, .side-drawer {
-    position: fixed; top: 0; bottom: 0;
-    background: var(--bg-canvas);
-    z-index: 2001;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 40px rgba(0,0,0,0.2);
-    display: flex; flex-direction: column;
-}
-
-/* Right Drawer (Satchel) */
-.drawer-panel {
-    right: 0; width: 85%; max-width: 350px;
-    transform: translateX(100%);
-    border-left: 4px solid var(--accent-gold);
-}
-
-/* Left Drawer (Menu) */
-.side-drawer {
-    left: 0; width: 80%; max-width: 300px;
-    transform: translateX(-100%);
-    border-right: 4px solid var(--accent-gold);
-}
-
-.drawer-panel.is-open, .side-drawer.is-open { transform: translateX(0); }
-.drawer-backdrop.is-visible { opacity: 1; visibility: visible; }
-
-.drawer-header {
-    padding: 1.5rem;
+.stream-card {
+    flex: 0 0 160px; /* Fixed width */
+    height: 180px;
     background: var(--bg-card);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    display: flex; justify-content: space-between; align-items: center;
-}
-.drawer-title { font-family: var(--font-display); text-transform: uppercase; }
-.drawer-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-
-.drawer-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
-.drawer-footer { padding: 1.5rem; background: var(--bg-card); border-top: 1px solid rgba(0,0,0,0.05); }
-
-/* Drawer List Styles */
-.drawer-list { list-style: none; }
-.drawer-list li { border-bottom: 1px solid rgba(0,0,0,0.05); }
-.drawer-list a {
-    display: block; padding: 1rem 0;
-    font-family: var(--font-ui); font-weight: bold;
-    color: var(--ink-display);
-}
-
-/* --- 6. PAGE: HOME LAYOUT --- */
-.hero-section { text-align: center; padding: 6rem 1rem 4rem; }
-.hero-content { max-width: 800px; margin: 0 auto; }
-.hero-text { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
-.hero-actions { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
-
-/* Category Grid */
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 0 2rem 4rem;
-    max-width: 1280px; margin: 0 auto;
-}
-
-.category-card {
-    position: relative; padding: 2rem;
-    border-radius: var(--radius-card);
-    border: 1px solid rgba(0,0,0,0.05);
-    display: flex; flex-direction: column; justify-content: space-between;
-    height: 240px; transition: all 0.3s ease; overflow: hidden;
-}
-
-.prod-card { background: #F4F1EA; }
-.creative-card { background: #EAEFEC; }
-.knowledge-card { background: #F2EFEF; }
-.tech-card { background: #E8EBEB; }
-
-.category-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
-
-.card-number {
-    font-family: var(--font-display); font-size: 3rem;
-    opacity: 0.1; position: absolute; top: 1rem; right: 1.5rem;
-}
-.card-icon { align-self: flex-end; font-size: 1.5rem; color: var(--accent-red); }
-
-/* Sole Creator */
-.sole-creator-slogan {
-    background: var(--bg-card);
-    border: 1px solid var(--accent-gold);
     border-radius: 20px;
-    max-width: 600px; margin: 0 auto 4rem; padding: 3rem 2rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+    padding: 1.25rem;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+.stream-card:hover { transform: translateY(-5px); }
+
+.stream-visual {
+    width: 50px; height: 50px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: white;
+    background: var(--grad-gold); /* Default */
+}
+.visual-silver { background: var(--grad-silver); color: var(--ink-display); }
+
+.stream-title { font-weight: bold; font-size: 1rem; line-height: 1.2; color: var(--ink-display); }
+.stream-meta { font-size: 0.75rem; color: var(--ink-muted); }
+
+/* --- COMPONENT: DUAL ACTIONS (Bottom Buttons) --- */
+.action-dock {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 1rem;
 }
 
-/* Featured Grid */
-.featured-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    background: var(--bg-card); padding: 3rem;
-    border-radius: var(--radius-card);
-    max-width: 1280px; margin: 0 auto 4rem;
+.dock-btn {
+    background: var(--bg-card);
+    height: 60px;
+    border-radius: var(--radius-pill);
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    font-weight: bold; color: var(--ink-display);
+    box-shadow: var(--shadow-soft);
+    transition: 0.2s;
+    border: 1px solid rgba(0,0,0,0.03);
 }
+.dock-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-float); color: var(--accent-red); }
 
-/* --- 7. BUTTONS & UTILITIES --- */
-.btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    text-transform: uppercase; font-weight: bold; letter-spacing: 0.1em;
-    border-radius: var(--radius-pill); cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none; padding: 14px 30px; font-size: 0.9rem;
-}
+/* --- HEADER FIXES (Keep it sticky) --- */
+.header-shell { background: rgba(245, 247, 248, 0.95); backdrop-filter: blur(20px); }
 
-.btn-primary {
-    background-color: var(--accent-red); color: white;
-    box-shadow: var(--shadow-3d);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-3d-hover); }
-
-.btn-secondary {
-    background: transparent; color: var(--ink-display);
-    border: 2px solid var(--accent-gold);
-}
-.btn-secondary:hover { background: var(--accent-gold); color: white; transform: translateY(-2px); }
-
-.btn-full { width: 100%; }
-
-/* --- 8. FOOTER --- */
-.site-footer {
-    background: var(--bg-canvas); border-top: 1px solid var(--accent-gold);
-    padding: 4rem 2rem 2rem; margin-top: auto;
-}
-.footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
-    max-width: 1280px; margin: 0 auto;
-}
-.footer-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-display); }
-.footer-heading { color: var(--accent-gold); font-size: 0.75rem; font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 1rem;}
-.footer-col a { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
-.footer-col a:hover { color: var(--accent-red); }
-
-/* --- RESPONSIVE FINAL --- */
-@media (max-width: 768px) {
-    .featured-grid { grid-template-columns: 1fr; padding: 2rem; }
-    .hero-actions { flex-direction: column; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+/* --- RESPONSIVE --- */
+@media (max-width: 480px) {
+    .twin-grid { grid-template-columns: 1fr; } /* Stack big cards on tiny screens */
+    .feature-card { height: 160px; flex-direction: row; align-items: center; gap: 1rem; padding: 1.5rem; }
+    .feature-icon { position: static; margin: 0; font-size: 2.5rem; }
+    .feature-text-box { display: flex; flex-direction: column; }
 }
