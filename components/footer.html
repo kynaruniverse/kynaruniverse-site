@@ -1,16 +1,42 @@
-<footer class="forge-container" style="margin-top: auto;">
-    <div class="forge-section" style="border-top: 1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-end;">
+<footer class="site-footer">
+    <div class="forge-container footer-grid">
         
-        <div>
-            <h4 class="text-heading" style="font-size: 1.25rem;">Kynar Universe</h4>
-            <p class="stone-meta" style="margin-bottom: 0;">Quiet Tools for Chaotic Times.</p>
+        <div class="footer-col brand-col">
+            <h4 class="footer-logo">KYNAR UNIVERSE</h4>
+            <p class="footer-tagline">Quiet Tools for Chaotic Times.</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Twitter">TW</a>
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="Discord">DC</a>
+            </div>
         </div>
 
-        <div style="display: flex; gap: 2rem;">
-            <a href="signals.html" class="ink-link" style="font-size: 0.8rem; color: var(--ink-secondary);">Signals</a>
-            <a href="library.html" class="ink-link" style="font-size: 0.8rem; color: var(--ink-secondary);">Help</a>
-            <span class="stone-meta" style="margin-bottom:0;">© 2025</span>
+        <div class="footer-col nav-col">
+            <span class="footer-heading">Explore</span>
+            <a href="archive.html">The Archive</a>
+            <a href="library.html">Library</a>
+            <a href="identity.html">Identity</a>
+            <a href="signals.html">Signals</a>
+        </div>
+
+        <div class="footer-col status-col">
+            <span class="footer-heading">System</span>
+            
+            <div class="system-status">
+                <span class="status-light"></span>
+                <span>All Systems Operational</span>
+            </div>
+
+            <p class="copyright">
+                &copy; <span id="year-display">2025</span> Kynar Universe.<br>
+                <a href="#">Privacy Protocol</a>
+            </p>
         </div>
 
     </div>
 </footer>
+
+<script>
+    // Auto-update year
+    document.getElementById('year-display').textContent = new Date().getFullYear();
+</script>

@@ -328,3 +328,129 @@ p.text-body, .article-content {
     
     .btn { width: 100%; } /* Full width buttons on mobile */
 }
+
+/* --- COMPONENT: SYSTEM FOOTER --- */
+
+.site-footer {
+    background-color: var(--bg-canvas); /* Matches page background for seamless look */
+    border-top: 1px solid var(--accent-gold); /* The Royal Line */
+    padding: 4rem 0 2rem;
+    margin-top: auto; /* Pushes footer to bottom if page is short */
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* Brand is wider */
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Typography */
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--ink-display);
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    font-family: var(--font-reading); /* Cormorant Garamond */
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+}
+
+.footer-heading {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Links */
+.footer-col a {
+    display: block;
+    text-decoration: none;
+    color: var(--ink-body);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-col a:hover {
+    color: var(--accent-red);
+    transform: translateX(4px); /* Subtle slide */
+}
+
+/* Socials (Simple Text for now) */
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+}
+.footer-socials a {
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: 1px solid var(--ink-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+.footer-socials a:hover {
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+}
+
+/* System Status Light */
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+}
+
+.status-light {
+    width: 8px; height: 8px;
+    background-color: #10B981; /* Emerald Signal Light */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10B981;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.copyright {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 2.5rem;
+        text-align: center;
+    }
+    
+    .footer-socials, .system-status {
+        justify-content: center;
+    }
+    
+    .footer-col a:hover {
+        transform: translateX(0); /* Disable slide on mobile */
+    }
+}

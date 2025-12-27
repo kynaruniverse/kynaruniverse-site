@@ -1,6 +1,6 @@
 /**
- * QUIET FORGE UTILITIES
- * Role: Component Loader & Satchel Logic
+ * QUIET FORGE UTILITIES V2.0
+ * Role: System Core, Component Loader & State Management
  */
 
 const ForgeUtils = {
@@ -8,7 +8,9 @@ const ForgeUtils = {
     async loadComponents() {
         const elements = document.querySelectorAll('[data-include]');
         
-        for (const el of elements) {
+        // We use Promise.all to load everything efficiently in parallel
+        // preventing the "pop-in" effect where parts of the page load one by one.
+        const promises = Array.from(elements).map(async (el) => {
             const file = el.dataset.include;
             try {
                 const response = await fetch(file);
@@ -17,15 +19,19 @@ const ForgeUtils = {
                     el.innerHTML = html;
                     this.executeScripts(el);
                     
-                    // Update Satchel if header loaded
+                    // If this was the header, trigger the system setup
                     if (file.includes('header')) {
                         this.updateSatchelCount();
+                        // DISPATCH EVENT: "Header is Ready"
+                        document.dispatchEvent(new Event('ForgeHeaderLoaded'));
                     }
                 }
             } catch (err) {
                 console.error('Forge Load Error:', err);
             }
-        }
+        });
+
+        await Promise.all(promises);
     },
 
     executeScripts(container) {
@@ -38,81 +44,91 @@ const ForgeUtils = {
         });
     },
 
-    // RENAMED: Cart -> Satchel
     updateSatchelCount() {
         const countEl = document.getElementById('satchel-count');
         if (!countEl) return;
         
-        // We still use localStorage 'kynar_cart' for data safety, 
-        // but the UI is now 'Satchel'
         const satchel = JSON.parse(localStorage.getItem('kynar_cart') || '[]');
         const count = satchel.length;
         
         if (count > 0) {
             countEl.textContent = `(${count})`;
             countEl.style.opacity = '1';
+            countEl.style.transform = 'scale(1)';
         } else {
             countEl.textContent = '';
             countEl.style.opacity = '0';
+            countEl.style.transform = 'scale(0.8)';
         }
     }
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    ForgeUtils.loadComponents();
-});
 
 /**
  * NAV & DRAWER CONTROLLER
- * Role: Handles opening/closing of Mobile Menu and Satchel
+ * Role: Logic for Mobile Menu & Satchel interactions
  */
 const Navigation = {
     init() {
+        console.log("Forge System: Initializing Navigation...");
+
         // --- 1. MOBILE NAV DRAWER ---
-        const navToggle = document.getElementById('nav-toggle');
-        const navClose = document.getElementById('close-nav');
-        const navDrawer = document.getElementById('nav-drawer');
-        const navBackdrop = document.getElementById('nav-backdrop');
-
-        // Open
-        if (navToggle) {
-            navToggle.addEventListener('click', () => {
-                navDrawer.classList.add('is-open');
-                navBackdrop.classList.add('is-visible');
-            });
-        }
-
-        // Close (Button & Backdrop)
-        const closeNavMenu = () => {
-            if (navDrawer) navDrawer.classList.remove('is-open');
-            if (navBackdrop) navBackdrop.classList.remove('is-visible');
-        };
-
-        if (navClose) navClose.addEventListener('click', closeNavMenu);
-        if (navBackdrop) navBackdrop.addEventListener('click', closeNavMenu);
+        this.bindDrawer('nav-toggle', 'nav-drawer', 'nav-backdrop', 'close-nav');
 
         // --- 2. SATCHEL DRAWER ---
-        // Hijack the "Satchel" text link to open the drawer instead of going to page
+        // We bind the trigger to open the Satchel Object's drawer
         const satchelTrigger = document.getElementById('satchel-trigger');
-        const satchelDrawer = document.getElementById('satchel-drawer');
-        const satchelBackdrop = document.getElementById('satchel-drawer-backdrop');
-        const satchelClose = document.getElementById('close-drawer');
-
-        // Logic handled by your existing Satchel object? 
-        // If not, add this simple toggle:
         if (satchelTrigger) {
             satchelTrigger.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (window.Satchel) window.Satchel.openDrawer();
+                if (window.Satchel && window.Satchel.openDrawer) {
+                    window.Satchel.openDrawer();
+                } else {
+                    console.warn("Satchel System not loaded yet.");
+                    // Fallback: Redirect if JS fails
+                    window.location.href = 'exchange.html';
+                }
             });
         }
+    },
+
+    // Helper to keep code clean (DRY Principle)
+    bindDrawer(triggerId, drawerId, backdropId, closeId) {
+        const trigger = document.getElementById(triggerId);
+        const drawer = document.getElementById(drawerId);
+        const backdrop = document.getElementById(backdropId);
+        const closeBtn = document.getElementById(closeId);
+
+        if (!trigger || !drawer) return; // Safety check
+
+        const open = () => {
+            drawer.classList.add('is-open');
+            if (backdrop) backdrop.classList.add('is-visible');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+        };
+
+        const close = () => {
+            drawer.classList.remove('is-open');
+            if (backdrop) backdrop.classList.remove('is-visible');
+            document.body.style.overflow = ''; // Unlock scroll
+        };
+
+        trigger.addEventListener('click', open);
+        if (closeBtn) closeBtn.addEventListener('click', close);
+        if (backdrop) backdrop.addEventListener('click', close);
     }
 };
 
-// Initialize when DOM is ready
+// --- SYSTEM BOOT SEQUENCE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a brief moment for header.html to be injected by ForgeUtils
-    setTimeout(() => {
+    // 1. Start loading components
+    ForgeUtils.loadComponents();
+
+    // 2. Wait strictly for the "HeaderLoaded" signal before attaching Nav listeners
+    // This eliminates the race condition completely.
+    document.addEventListener('ForgeHeaderLoaded', () => {
         Navigation.init();
-    }, 200);
+    });
 });
+
+// Expose Utils globally so other scripts can talk to it
+window.ForgeUtils = ForgeUtils;
