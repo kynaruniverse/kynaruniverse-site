@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Path Lost / Kynar Universe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Void / Kynar Universe</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
@@ -11,28 +11,33 @@
 
     <div data-include="components/header.html"></div>
 
-    <main class="forge-container" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <main class="app-container" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
         
-        <section class="forge-section">
-            <span class="stone-meta">Error 404</span>
-            <h1 class="text-display" style="font-size: clamp(4rem, 10vw, 8rem); margin-bottom: 0;">Void.</h1>
-            <p class="text-body" style="margin: 0 auto 3rem auto;">
-                The path you followed leads to silence. <br>
-                This artifact may have been moved or never existed.
-            </p>
+        <div style="font-size: 6rem; opacity: 0.1; font-weight: bold; margin-bottom: 1rem;">404</div>
+        
+        <h1 class="text-display" style="margin-bottom: 1rem;">Lost in the Void</h1>
+        
+        <p class="text-sub" style="max-width: 400px; margin-bottom: 3rem;">
+            The artifact you are looking for has been moved, archived, or never existed.
+        </p>
 
-            <a href="index.html" class="ink-link">Return to The Approach</a>
-        </section>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="index.html" class="dock-btn" style="background: var(--ink-display); color: white;">
+                Return Home
+            </a>
+            <a href="archive.html" class="dock-btn" style="background: white; border: 1px solid rgba(0,0,0,0.1);">
+                Browse Archive
+            </a>
+        </div>
 
     </main>
 
     <div data-include="components/footer.html"></div>
-    <div data-include="components/access-modals.html"></div>
+    <div data-include="components/modals.html"></div>
 
-    <script src="utilities.js"></script>
-    <script type="module">
-        import './firebase-config.js';
-        import './access-ui.js';
-    </script>
+    <script src="core.js"></script>
+    <script src="cart.js"></script>
+    <script src="haptics.js"></script>
+
 </body>
 </html>

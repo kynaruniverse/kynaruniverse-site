@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block system files
+Disallow: /components/
+Disallow: /assets/
+Disallow: /success.html
+Disallow: /identity.html
+
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

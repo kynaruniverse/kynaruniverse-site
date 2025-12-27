@@ -4,23 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     
-    <title>Signals/Kynar Universe</title>
-    <meta name="description" content="A curated archive of high-value digital artifacts. Tools for focus, productivity, and architectural thinking.">
-    <meta name="keywords" content="productivity, notion templates, digital artifacts, focus tools, kynar universe, deep work">
-    <meta name="author" content="Kynar Architect">
+    <title>Kynar Universe / The Signal</title>
+    <meta name="description" content="Join the Kynar Frequency. High-value architectural updates and deep focus digests.">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kynaruniverse.co.uk/">
-    <meta property="og:title" content="Kynar Universe">
-    <meta property="og:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
-    <meta property="og:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kynaruniverse.co.uk/">
-    <meta property="twitter:title" content="Kynar Universe">
-    <meta property="twitter:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
-    <meta property="twitter:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -29,52 +15,128 @@
 
     <div data-include="components/header.html"></div>
 
-        <main class="forge-container" style="max-width: 700px; text-align: center;">
+    <main class="app-container">
         
-        <section class="forge-section">
-            <div id="signal-pulse" style="width: 60px; height: 60px; background: var(--bg-stone); border-radius: 50%; margin: 0 auto 2rem auto; display: flex; align-items: center; justify-content: center; position: relative;">
-                <div style="width: 10px; height: 10px; background: var(--ink-primary); border-radius: 50%;"></div>
+        <section style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
+            <div class="signal-orb">
+                <div class="orb-core"></div>
+                <div class="orb-wave"></div>
+            </div>
+            
+            <h1 class="text-display">The Signal</h1>
+            <p class="text-sub">
+                Join <span id="signal-strength" style="color: var(--accent-red); font-weight: bold;">...</span> architects receiving the weekly Deep Focus digest.
+            </p>
+        </section>
+
+        <div class="feature-card" style="height: auto; background: white; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-float); padding: 2.5rem 2rem; margin-bottom: 4rem;">
+            
+            <form id="signal-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <div style="text-align: left;">
+                    <label for="email" style="display: block; font-size: 0.8rem; font-weight: bold; color: var(--ink-muted); margin-bottom: 0.5rem; margin-left: 0.5rem;">YOUR FREQUENCY (EMAIL)</label>
+                    <input type="email" id="email" placeholder="architect@example.com" required 
+                        style="width: 100%; padding: 1rem 1.5rem; background: var(--bg-canvas); border: 1px solid rgba(0,0,0,0.05); border-radius: 99px; font-family: 'Glacial Indifference'; font-size: 1rem; color: var(--ink-display); outline: none; transition: all 0.2s;">
+                </div>
+                
+                <button type="submit" id="btn-signal" class="dock-btn" style="width: 100%; border: none; background: var(--grad-emerald); color: white; font-weight: bold; cursor: pointer;">
+                    Establish Connection
+                </button>
+
+                <div style="text-align: center; font-size: 0.75rem; color: var(--ink-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                    <span>🔒 Secure Channel</span>
+                    <span>•</span>
+                    <span>Unlocks Free Artifacts</span>
                 </div>
 
-            <span class="stone-meta">The Kynar Frequency</span>
-            <h1 class="text-display" style="font-size: clamp(2.5rem, 6vw, 4rem);">Join the Signal.</h1>
-            <p class="text-body" style="max-width: 50ch; margin: 0 auto 3rem auto;">
-                Receive high-value architectural updates, new artifact alerts, and the weekly "Deep Focus" digest.
-                <br><br>
-                <strong>Current Strength:</strong> <span id="signal-strength">Checking...</span> Architects
-            </p>
+            </form>
+        </div>
 
-            <div class="stone-block" style="text-align: left; padding: 2rem;">
-                <form id="signal-form" style="display: flex; flex-direction: column; gap: 1rem;">
+        <section>
+            <div class="section-header">Recent Transmissions</div>
+            
+            <div class="scroll-stream">
+                <a href="#" class="stream-card">
+                    <div class="stream-visual" style="background: var(--grad-burgundy);">#42</div>
                     <div>
-                        <label for="email" class="stone-meta" style="margin-bottom: 0.5rem; display: block;">Your Frequency (Email)</label>
-                        <input type="email" id="email" placeholder="architect@example.com" required 
-                            style="width: 100%; padding: 1rem; background: var(--bg-paper); border: 1px solid rgba(0,0,0,0.1); font-family: inherit; font-size: 1rem; color: var(--ink-primary); outline: none;">
+                        <div class="stream-title">The Art of Subtraction</div>
+                        <div class="stream-meta">Digest</div>
                     </div>
-                    
-                    <button type="submit" id="btn-signal" class="ink-link" style="background: var(--ink-primary); color: var(--bg-paper); padding: 1rem; border: none; cursor: pointer; text-align: center;">
-                        Establish Connection
-                    </button>
-                    
-                    <p style="font-size: 0.75rem; color: var(--ink-secondary); margin-top: 0.5rem; text-align: center;">
-                        Unlocks "Free" tier artifacts immediately.
-                    </p>
-                </form>
+                </a>
+
+                <a href="#" class="stream-card">
+                    <div class="stream-visual" style="background: var(--grad-gold);">#41</div>
+                    <div>
+                        <div class="stream-title">Building a Second Brain</div>
+                        <div class="stream-meta">System</div>
+                    </div>
+                </a>
+
+                <a href="#" class="stream-card">
+                    <div class="stream-visual visual-silver">#40</div>
+                    <div>
+                        <div class="stream-title">Digital Minimalism</div>
+                        <div class="stream-meta">Guide</div>
+                    </div>
+                </a>
             </div>
         </section>
 
     </main>
 
-
     <div data-include="components/footer.html"></div>
-    <div data-include="components/access-modals.html"></div>
+    <div data-include="components/modals.html"></div>
 
-    <script src="utilities.js"></script>
-    <script src="signals.js"></script> <script type="module">
+    <style>
+        .signal-orb {
+            position: relative;
+            width: 80px; height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .orb-core {
+            width: 100%; height: 100%;
+            background: var(--grad-emerald);
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(9, 44, 35, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .orb-wave {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 2px solid #092C23;
+            opacity: 0;
+            animation: radarPing 3s infinite;
+            z-index: 1;
+        }
+
+        @keyframes radarPing {
+            0% { width: 100%; height: 100%; opacity: 0.8; }
+            100% { width: 250%; height: 250%; opacity: 0; }
+        }
+
+        /* Form Input Focus */
+        input:focus {
+            background: white !important;
+            box-shadow: 0 0 0 3px rgba(9, 44, 35, 0.1);
+            border-color: var(--accent-gold) !important;
+        }
+    </style>
+
+    <script src="core.js"></script>
+    <script src="signals.js"></script> 
+    <script src="haptics.js"></script>
+    <script src="cart.js"></script>
+    <script type="module">
         import './firebase-config.js';
         import './access-ui.js';
     </script>
-    <script src="haptics.js"></script>
 
 </body>
 </html>

@@ -1,76 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     
-    <title>The Archive/Kynar Universe</title>
+    <title>Kynar Universe / The Archive</title>
     <meta name="description" content="A curated archive of high-value digital artifacts. Tools for focus, productivity, and architectural thinking.">
-    <meta name="keywords" content="productivity, notion templates, digital artifacts, focus tools, kynar universe, deep work">
-    <meta name="author" content="Kynar Architect">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kynaruniverse.co.uk/">
-    <meta property="og:title" content="Kynar Universe">
-    <meta property="og:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
-    <meta property="og:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kynaruniverse.co.uk/">
-    <meta property="twitter:title" content="Kynar Universe">
-    <meta property="twitter:description" content="Acquire the tools of the new digital architect. Focus. Build. Transcend.">
-    <meta property="twitter:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg">
-
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-
-    <div data-include="components/header.html"></div>
-
-    <main class="forge-container">
-        
-        <section class="forge-section" style="padding-bottom: 2rem;">
-            <h1 class="text-display" style="font-size: clamp(2.5rem, 5vw, 4rem);">The Archive</h1>
-            
-            <div style="margin-top: var(--rhythm-breath); max-width: 800px;">
-                
-                <div style="position: relative; margin-bottom: 2rem;">
-                    <input type="text" id="archive-search" class="ink-input" placeholder="Search the collection..." 
-                           style="font-family: var(--font-display); font-size: 1.5rem;">
-                </div>
-
-                <div id="filter-stream" style="display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none;">
-                    <button class="ink-link" data-filter="all" style="background:none; border:none; cursor:pointer; padding:0; color: var(--ink-primary);">All</button>
-                    <button class="ink-link" data-filter="productivity" style="background:none; border:none; cursor:pointer; padding:0; color: var(--ink-secondary);">Systems</button>
-                    <button class="ink-link" data-filter="homeschool" style="background:none; border:none; cursor:pointer; padding:0; color: var(--ink-secondary);">Knowledge</button>
-                    <button class="ink-link" data-filter="creative" style="background:none; border:none; cursor:pointer; padding:0; color: var(--ink-secondary);">Expression</button>
-                    <button class="ink-link" data-filter="automation" style="background:none; border:none; cursor:pointer; padding:0; color: var(--ink-secondary);">Code</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="artifact-grid" class="stone-grid" style="min-height: 50vh;">
-            <div class="stone-block" style="opacity: 0.5;">
-                <h3 class="text-heading">Loading Archive...</h3>
-            </div>
-        </section>
-
-    </main>
-
-    <div data-include="components/footer.html"></div>
-    <div data-include="components/access-modals.html"></div>
-
-    <script src="utilities.js"></script>
-    <script src="engine.js"></script> 
     
+    <div data-include="components/header.html"></div>
+    
+    <main class="app-container">
+        
+        <section style="margin-top: 1rem; margin-bottom: 2rem; text-align: center;">
+            <h1 class="text-display">The Archive</h1>
+            <p class="text-sub">
+                Browse the complete collection of digital artifacts.
+            </p>
+        </section>
+        
+        <section style="margin-bottom: 2rem; position: sticky; top: 70px; z-index: 900;">
+            
+            <div style="position: relative; margin-bottom: 1rem;">
+                <input type="text" id="archive-search" placeholder="Search the collection..." style="width: 100%; padding: 1rem 3rem 1rem 1.5rem; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.05); border-radius: 99px; font-family: 'Glacial Indifference'; font-size: 1rem; color: var(--ink-display); outline: none; box-shadow: var(--shadow-soft);">
+                <span style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
+            </div>
+            
+            <div id="filter-stream" class="scroll-stream" style="padding-bottom: 0.5rem; justify-content: flex-start; margin: 0 -1.5rem; padding: 0.5rem 1.5rem;">
+                <button class="dock-btn active-filter" data-filter="all" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; background: var(--grad-gold); color: white; border: none;">
+                    All
+                </button>
+                <button class="dock-btn" data-filter="productivity" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.7;">
+                    Systems
+                </button>
+                <button class="dock-btn" data-filter="homeschool" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.7;">
+                    Knowledge
+                </button>
+                <button class="dock-btn" data-filter="creative" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.7;">
+                    Expression
+                </button>
+                <button class="dock-btn" data-filter="automation" style="height: 40px; padding: 0 1.5rem; flex: 0 0 auto; border-radius: 99px; font-size: 0.8rem; opacity: 0.7;">
+                    Code
+                </button>
+            </div>
+        </section>
+        
+        <section id="artifact-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; min-height: 50vh;">
+            
+            <div class="stream-card" style="width: 100%; height: 200px; align-items: center; justify-content: center; opacity: 0.5; grid-column: 1 / -1;">
+                <div class="spinner" style="border-color: var(--accent-gold); border-right-color: transparent;"></div>
+                <div style="margin-top: 1rem; font-size: 0.8rem;">Accessing Vault...</div>
+            </div>
+            
+        </section>
+        
+    </main>
+    
+    <div data-include="components/footer.html"></div>
+    <div data-include="components/modals.html"></div>
+    
+    <script src="core.js"></script>
+    <script src="archive.js"></script>
+    <script src="cart.js"></script>
+    <script src="haptics.js"></script>
     <script type="module">
         import './firebase-config.js';
         import './access-ui.js';
     </script>
     
-    <script src="haptics.js"></script>
-
 </body>
+
 </html>

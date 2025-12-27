@@ -1,6 +1,7 @@
 /**
- * QUIET FORGE CONNECTION
- * Role: Initialize external database connection
+ * SOFT ROYAL CONNECTION
+ * Role: Initialize external database connection (Firebase)
+ * Status: Configured with 'kynar-universe-official' credentials
  */
 
 // Import the functions you need from the SDKs you need
@@ -8,21 +9,28 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// TODO: REPLACE WITH YOUR ACTUAL FIREBASE CONFIG KEYS
+// --- CONFIGURATION ---
+// These are your actual keys extracted from your old file.
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "your-project.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef"
+    apiKey: "AIzaSyDBCrZmrwbiAP4SFoIZrBYmJaYszdAj8pk",
+    authDomain: "kynar-universe-official.firebaseapp.com",
+    projectId: "kynar-universe-official",
+    storageBucket: "kynar-universe-official.firebasestorage.app",
+    messagingSenderId: "1089722386738",
+    appId: "1:1089722386738:web:372e68ab876deb4707ef2b"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// --- INITIALIZATION ---
+let app, auth, db;
 
-// Export for use in access-ui.js
+try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    console.log('Soft Royal Connection: Established (kynar-universe-official)');
+} catch (error) {
+    console.error('Soft Royal Connection Failed:', error);
+}
+
+// Export for use in auth.js
 export { app, auth, db };
-console.log('Quiet Forge Connection: Established');

@@ -3,10 +3,22 @@
  * Visuals: Gradients, Glassmorphism, Super-Rounded
  */
 
-/* --- 1. TYPOGRAPHY ENGINE (Unchanged) --- */
-@font-face { font-family: 'Bantayog'; src: url('fonts/Bantayog.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Jimmy Flashcard'; src: url('fonts/Jimmy Flashcard.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Glacial Indifference'; src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'); font-display: swap; }
+/* --- 1. TYPOGRAPHY ENGINE --- */
+@font-face { 
+    font-family: 'Bantayog'; 
+    src: url('fonts/Bantayog.woff2') format('woff2'), url('fonts/Bantayog.woff') format('woff'); 
+    font-weight: normal; font-style: normal; font-display: swap; 
+}
+@font-face { 
+    font-family: 'Jimmy Flashcard'; 
+    src: url('fonts/Jimmy Flashcard.woff2') format('woff2'), url('fonts/Jimmy Flashcard.woff') format('woff'); 
+    font-weight: normal; font-style: normal; font-display: swap; 
+}
+@font-face { 
+    font-family: 'Glacial Indifference'; 
+    src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'), url('fonts/GlacialIndifferenceRegular.woff') format('woff'); 
+    font-weight: normal; font-style: normal; font-display: swap; 
+}
 
 :root {
     /* --- PALETTE: Royal Botanist Core --- */
@@ -37,13 +49,36 @@
 
 /* --- RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background-color: var(--bg-canvas); color: var(--ink-body); font-family: 'Glacial Indifference', sans-serif; line-height: 1.6; overflow-x: hidden; }
-a { text-decoration: none !important; color: inherit; }
+body { 
+    background-color: var(--bg-canvas); 
+    color: var(--ink-body); 
+    font-family: 'Glacial Indifference', sans-serif; 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
+a { text-decoration: none !important; color: inherit; transition: all 0.2s ease; }
 
 /* --- TYPOGRAPHY --- */
-h1, h2, h3 { font-family: 'Bantayog', serif; color: var(--ink-display); line-height: 1.1; letter-spacing: 0.02em; }
-.text-display { font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 0.5rem; }
-.text-sub { font-size: 1rem; color: var(--ink-muted); text-align: center; max-width: 500px; margin: 0 auto 3rem; }
+h1, h2, h3 { 
+    font-family: 'Bantayog', serif; 
+    color: var(--ink-display); 
+    line-height: 1.1; 
+    letter-spacing: 0.02em; 
+}
+
+.text-display { 
+    font-size: clamp(2rem, 5vw, 3rem); 
+    text-align: center; 
+    margin-bottom: 0.5rem; 
+}
+
+.text-sub { 
+    font-size: 1rem; 
+    color: var(--ink-muted); 
+    text-align: center; 
+    max-width: 500px; 
+    margin: 0 auto 3rem; 
+}
 
 /* --- LAYOUT: APP CONTAINER --- */
 .app-container {
@@ -106,6 +141,7 @@ h1, h2, h3 { font-family: 'Bantayog', serif; color: var(--ink-display); line-hei
     padding-left: 1.5rem; /* Restore padding */
     padding-right: 1.5rem;
     scrollbar-width: none;
+    -ms-overflow-style: none; /* IE/Edge */
 }
 .scroll-stream::-webkit-scrollbar { display: none; }
 
@@ -153,8 +189,29 @@ h1, h2, h3 { font-family: 'Bantayog', serif; color: var(--ink-display); line-hei
 }
 .dock-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-float); color: var(--accent-red); }
 
-/* --- HEADER FIXES (Keep it sticky) --- */
-.header-shell { background: rgba(245, 247, 248, 0.95); backdrop-filter: blur(20px); }
+/* --- HEADER FIXES (Keep it sticky & glassy) --- */
+.header-shell { 
+    background: rgba(245, 247, 248, 0.95); 
+    backdrop-filter: blur(20px); 
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+.command-bar {
+    display: grid; grid-template-columns: 50px 1fr 80px;
+    align-items: center; height: 60px; padding: 0 1rem;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1); /* Very faint gold */
+}
+
+/* --- FOOTER (Matches App Style) --- */
+.site-footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--accent-gold);
+    padding: 3rem 1.5rem 1.5rem;
+    margin-top: 2rem;
+}
+.footer-grid {
+    display: grid; grid-template-columns: 1fr; gap: 2rem; text-align: center;
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 480px) {
