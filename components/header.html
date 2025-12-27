@@ -1,42 +1,72 @@
-<nav class="nav-forge"> 
-    
-    <a href="index.html" class="logo-text" aria-label="Return to The Approach">
-        KYNAR UNIVERSE
-    </a>
+<nav class="nav-forge">
+    <div class="forge-container nav-content">
+        
+        <button class="custom-burger" id="nav-toggle" aria-label="Open Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <div id="nav-stream" style="display: flex; align-items: center;">
-        
-        <a href="archive.html" class="ink-link" style="font-size: 0.85rem;">The Archive</a>
-        <a href="library.html" class="ink-link" style="font-size: 0.85rem;">Library</a>
-        <a href="identity.html" class="ink-link" style="font-size: 0.85rem;">Identity</a>
-        
-        <a href="exchange.html" class="ink-link" style="font-size: 0.85rem; display: flex; align-items: center;">
-            Satchel <span id="satchel-count" style="font-weight: bold; opacity: 0; transition: opacity 0.3s; margin-left: 4px;"></span>
+        <a href="index.html" class="nav-logo" aria-label="Kynar Universe Home">
+            KYNAR UNIVERSE
         </a>
-    </div>
 
+        <div class="nav-links">
+            <a href="archive.html">The Archive</a>
+            <a href="library.html">Library</a>
+            <a href="identity.html">Identity</a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button id="satchel-trigger" class="ink-link" style="background:none; border:none; padding:0; display:flex; align-items:center;" aria-label="Open Satchel">
+                <span style="font-family: var(--font-display); font-size: 0.9rem;">SATCHEL</span>
+                <span id="satchel-count" style="margin-left: 5px; font-weight: bold; color: var(--accent-red); opacity: 0; transition: opacity 0.3s;"></span>
+            </button>
+        </div>
+    </div>
 </nav>
 
+<div id="nav-backdrop" class="drawer-backdrop"></div>
+<aside id="nav-drawer" class="side-drawer">
+    <div class="drawer-header">
+        <span class="drawer-title">Navigation</span>
+        <button id="close-nav" class="drawer-close-btn">&times;</button>
+    </div>
+    
+    <ul class="drawer-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="archive.html">The Archive</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="identity.html">Identity</a></li>
+        <li><a href="signals.html">Signals</a></li>
+    </ul>
+
+    <div class="drawer-divider"></div>
+    
+    <ul class="drawer-list">
+        <li><a href="account.html" style="font-size: 0.9rem; color: var(--ink-muted);">My Account</a></li>
+    </ul>
+</aside>
 
 <div id="satchel-drawer-backdrop" class="drawer-backdrop"></div>
-
 <aside id="satchel-drawer" class="drawer-panel">
     
     <div class="drawer-header">
-        <span class="stone-meta" style="margin:0;">Current Satchel</span>
-        <button id="close-drawer" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--ink-secondary);">&times;</button>
+        <span class="drawer-title">Current Satchel</span>
+        <button id="close-drawer" class="drawer-close-btn">&times;</button>
     </div>
 
     <div id="drawer-items" class="drawer-body">
-        <p class="text-body" style="font-size: 0.9rem; color: var(--ink-secondary);">Your satchel is empty.</p>
+        <p class="text-body" style="font-size: 0.9rem; color: var(--ink-muted); text-align:center; margin-top:2rem;">Your satchel is empty.</p>
     </div>
 
     <div class="drawer-footer">
         <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-            <span class="text-body">Total</span>
-            <span class="text-heading" id="drawer-total">£0.00</span>
+            <span class="text-body" style="font-weight:bold;">Total</span>
+            <span class="text-heading" id="drawer-total" style="color:var(--accent-red);">£0.00</span>
         </div>
-        <a href="exchange.html" class="ink-link" style="display: block; width: 100%; text-align: center; background: var(--ink-primary); color: var(--bg-paper); padding: 1rem; text-decoration: none;">
+        
+        <a href="exchange.html" class="btn btn-primary" style="width: 100%; text-align: center; text-decoration: none; justify-content: center;">
             Proceed to Exchange
         </a>
     </div>
