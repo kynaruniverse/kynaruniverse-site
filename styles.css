@@ -1,439 +1,222 @@
-/*
-   KYNAR UNIVERSE - QUIET FORGE SYSTEM v2.0
-   Directive: Editorial, Calm, Limestone & Ink.
-*/
+/* * KYNAR UNIVERSE / STYLE ENGINE V2.0 
+ * Palette: Royal Botanist (Silver, Emerald, Burgundy, Gold)
+ */
 
-/*--- 1. MATERIAL VARIABLES ---*/
 :root {
-    /* --- 1. THE PALETTE (Alabaster Day) --- */
+    /* --- 1. THE PALETTE --- */
     
-    /* Backgrounds: Warm, natural whites, not harsh #FFF */
-    --bg-paper: #F9F8F6;  /* The main page background (Cloud White) */
-    --bg-stone: #EFECE8;  /* Cards/Headers (Raw Limestone) */
-    --bg-stone-deep: #E0DBD5; /* Inputs/Active states */
+    /* BACKGROUNDS (Silver White) */
+    --bg-paper: #F2F4F5;  /* A cool, misty silver-white for the main page */
+    --bg-stone: #FFFFFF;  /* Pure white for cards to pop against the silver */
+    --bg-panel: #E8EBEB;  /* Slightly darker silver for sidebars */
 
-    /* Ink: Dark Charcoal, never pure black */
-    --ink-primary: #1A1A1A; /* Headings */
-    --ink-secondary: #5C5855; /* Body text / Meta */
-    --ink-faint: #A8A4A0; /* Borders / Inactive */
+    /* TYPOGRAPHY (Forest Emerald) */
+    --ink-primary: #0B3D2E;   /* Deepest Forest Green (Headings) */
+    --ink-secondary: #3A6351; /* Muted Moss Green (Body text) */
+    --ink-faint: #9FB3AC;     /* Pale Green-Grey (Borders/Meta) */
 
-    /* Accents: The "Kynar" Blue/Grey */
-    --accent-core: #2C3E50; 
-    --focus-line: #000000;
+    /* ACTIONS (Burgundy Deep Red) */
+    --action-core: #780018;   /* Burgundy (Buttons/Links) */
+    --action-hover: #5A0012;  /* Darker Red */
 
-    /* Glass Effects */
-    --glass-surface: rgba(249, 248, 246, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.06);
+    /* LUXURY (Glow Gold) */
+    --gold-accent: #C5A059;   /* Metallic Gold */
+    --gold-glow: 0 0 15px rgba(197, 160, 89, 0.3);
 
-    /* --- 2. THE RHYTHM --- */
-    --rhythm-pause: 15vh;
-    --rhythm-flow: 8vh;
-    --gutter: clamp(1rem, 5vw, 4rem);
-    --max-width: 1400px;
-    
-    /* --- 3. THE PHYSICS --- */
-    --radius-stone: 4px; /* Sharp but safe */
-    --ease-forge: cubic-bezier(0.2, 0.0, 0.0, 1.0); /* Sharp snap */
+    /* --- 2. DIMENSIONS & PHYSICS --- */
+    --max-width: 1200px;
+    --radius-stone: 2px; /* Sharp, premium corners */
+    --font-heading: 'Georgia', 'Times New Roman', serif; /* Classic Authority */
+    --font-body: 'Helvetica Neue', 'Arial', sans-serif; /* Clean Utility */
 }
 
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-paper: #191918;
-        --bg-stone: #242422;
-        --bg-stone-deep: #30302E;
-        --ink-primary: #EAEAE6;
-        --ink-secondary: #999995;
-        --glass-surface: rgba(25, 25, 24, 0.95);
-    }
-}
-
-/*--- 2. RESET & BASE ---*/
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 100%; height: 100%; }
+/* --- RESET --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: var(--bg-paper);
-    color: var(--ink-primary);
+    color: var(--ink-secondary);
     font-family: var(--font-body);
-    font-size: var(--fs-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    transition: background 0.3s ease;
 }
 
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; cursor: pointer; transition: opacity 0.3s ease; }
-
-/* Font Loading */
-@font-face { font-family: 'Bantayog'; src: url('fonts/Bantayog.woff2') format('woff2'); font-display: block; }
-@font-face { font-family: 'Glacial Indifference'; src: url('fonts/GlacialIndifferenceRegular.woff2') format('woff2'); font-display: swap; }
-
-/*--- 3. LAYOUT UTILITIES ---*/
-.forge-container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-}
-
-.forge-section {
-    padding-top: var(--rhythm-pause);
-    padding-bottom: var(--rhythm-flow);
-}
-
-.text-display { font-family: var(--font-display); font-size: var(--fs-display); line-height: 1; letter-spacing: -0.02em; color: var(--ink-primary); }
-.text-heading { font-family: var(--font-display); font-size: var(--fs-heading); line-height: 1.2; }
-.text-body { color: var(--ink-secondary); max-width: 50ch; }
-.stone-meta { font-size: var(--fs-small); color: var(--ink-secondary); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; }
-
-/*--- 4. COMPONENTS: Stone & Ink ---*/
-
-/* The Ink Link (Button Replacement) */
-.ink-link {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-}
-.ink-link:hover { border-bottom-color: var(--ink-primary); }
-
-/* The Stone Block (Card Replacement) */
-.stone-block {
-    background: var(--bg-stone);
-    padding: 2rem;
-    border-radius: var(--radius-stone);
-    transition: background 0.3s var(--ease-forge), transform 0.3s var(--ease-forge);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.stone-block:hover {
-    background: var(--bg-stone-deep);
-    transform: translateY(-2px);
-}
-
-/* Hardens the edges for light mode visibility */
-.stone-block, .nav-forge, .drawer-panel {
-    border: 1px solid var(--glass-border);
-}
-
-/* Invert button text color for high contrast */
-.ink-link {
-    font-weight: 500;
-}
-
-
-/* Inputs (Forms) */
-.ink-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--ink-secondary);
-    padding: 1rem 0;
-    font-family: var(--font-body);
-    font-size: 1.1rem;
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, h4, .text-display, .text-heading {
+    font-family: var(--font-heading);
     color: var(--ink-primary);
-    border-radius: 0;
-    outline: none;
+    font-weight: 400; /* Elegant, not bold */
+    letter-spacing: -0.02em;
 }
-.ink-input:focus { border-bottom-color: var(--ink-primary); }
 
-/* Sticky Nav (Ghost) */
+.text-display { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; }
+.text-heading { font-size: 1.25rem; }
+.text-body { font-size: 1rem; color: var(--ink-secondary); }
+.stone-meta { 
+    font-size: 0.75rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+    color: var(--gold-accent); /* Gold Metadata */
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* --- LAYOUT --- */
+.forge-container {
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.forge-section { margin-bottom: 6rem; }
+
+/* Grid for Products */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* --- COMPONENT: NAV BAR --- */
 .nav-forge {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--glass-surface);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 1.5rem var(--gutter);
+    background: rgba(255, 255, 255, 0.95); /* Frosted White */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gold-accent); /* Gold Line */
+    padding: 1rem 0;
+}
+
+.nav-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 
-/* Grid System */
-.stone-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--rhythm-breath);
+.nav-logo {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--ink-primary);
+    text-decoration: none;
+    letter-spacing: -0.03em;
 }
 
-/*--- 5. THE FINAL POLISH (Browser Skinning) ---*/
-
-/* Selection (Highlighting text) */
-::selection {
-    background: var(--ink-primary);
-    color: var(--bg-paper);
+.nav-links a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--ink-secondary);
+    font-size: 0.9rem;
+    transition: color 0.2s;
 }
 
-/* Scrollbar (Webkit - Chrome/Safari/Edge) */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+.nav-links a:hover { color: var(--action-core); }
+
+/* --- COMPONENT: STONE BLOCK (CARDS) --- */
+.stone-block {
+    background: var(--bg-stone);
+    padding: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: var(--radius-stone);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--bg-paper);
+.stone-block:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-accent);
+    box-shadow: var(--gold-glow);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--ink-secondary);
-    border-radius: 4px;
-    border: 2px solid var(--bg-paper); /* Creates padding effect */
+/* --- COMPONENT: BUTTONS (The Burgundy Action) --- */
+.ink-link, button {
+    display: inline-block;
+    color: var(--action-core);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--ink-primary);
+.ink-link:hover {
+    color: var(--action-hover);
+    border-bottom-color: var(--action-hover);
 }
 
-/* Focus States (Accessibility with Style) */
-:focus-visible {
-    outline: 2px solid var(--focus-line);
-    outline-offset: 4px;
+/* Primary Button Style (Filled) */
+button[onclick*="Satchel.add"], button[type="submit"] {
+    background: var(--action-core);
+    color: #FFF !important;
+    padding: 0.75rem 1.5rem;
     border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--action-core);
 }
 
-/*--- 6. PROTOCOL: FLUID STONE (Mobile Optimization) ---*/
-
-@media (max-width: 768px) {
-    
-    :root {
-        /* Tighter rhythm for small screens */
-        --rhythm-pause: 10vh;
-        --rhythm-flow: 5vh;
-        --gutter: 1.25rem; /* Maximize content width */
-        --fs-display: 2.5rem; /* Prevent headline wrapping issues */
-        --radius-stone: 6px; /* slightly rounder feels better in hand */
-    }
-
-    /* NAV: The Horizontal Stream */
-    /* Instead of hiding links behind a menu, we let them flow. */
-    .nav-forge {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem var(--gutter);
-        gap: 1rem;
-    }
-
-    .nav-forge .logo-text {
-        width: 100%;
-        text-align: center;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .nav-forge > div {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 5px; /* Space for scrollbar */
-        justify-content: flex-start; /* Align left */
-        gap: 1.5rem;
-        /* Hide scrollbar but keep functionality */
-        scrollbar-width: none; 
-        -ms-overflow-style: none;
-        /* Snapping */
-        scroll-snap-type: x mandatory;
-    }
-    
-    .nav-forge > div::-webkit-scrollbar { display: none; }
-
-    .nav-forge a.ink-link {
-        white-space: nowrap;
-        scroll-snap-align: start;
-        padding: 0.5rem 0; /* Larger touch target */
-    }
-
-    /* ARTIFACTS: Full Width Stone */
-    .stone-grid {
-        grid-template-columns: 1fr; /* Force single column */
-        gap: 2rem;
-    }
-    
-    /* Better Thumb Targets */
-    .ink-link, button {
-        touch-action: manipulation; /* Removes double-tap zoom delay */
-    }
-
-    /* TEXT: Optical Balancing */
-    .text-display, .text-heading {
-        text-wrap: balance; /* Prevents "widows" (single words on new line) */
-    }
+button:hover {
+    background: var(--action-hover);
+    border-color: var(--action-hover);
+    transform: translateY(-1px);
 }
 
-/* Landscape Mode Tweak (Phone rotated) */
-@media (max-width: 900px) and (orientation: landscape) {
-    :root { --rhythm-pause: 15vh; }
-    .nav-forge { position: relative; } /* Unstick nav to save vertical space */
-}
-
-
-/*--- 7. ENHANCEMENT: THE GHOST DRAWER ---*/
-
-/* The Overlay (Darkens the background) */
+/* --- COMPONENT: GHOST DRAWER (SATCHEL) --- */
 .drawer-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(34, 34, 32, 0.4); /* Ink Primary at 40% */
+    position: fixed; inset: 0;
+    background: rgba(11, 61, 46, 0.4); /* Emerald Tint Overlay */
     backdrop-filter: blur(4px);
     z-index: 800;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s var(--ease-forge), visibility 0.4s;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
 }
 
-/* The Drawer (Slide-out Panel) */
 .drawer-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: 400px;
-    background: var(--bg-paper);
-    border-left: 1px solid rgba(0,0,0,0.05);
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 100%; max-width: 400px;
+    background: var(--bg-stone);
     z-index: 850;
     transform: translateX(100%);
-    transition: transform 0.4s var(--ease-forge);
-    display: flex;
-    flex-direction: column;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column;
+    border-left: 2px solid var(--gold-accent);
 }
 
-/* Active State */
 .drawer-open .drawer-backdrop { opacity: 1; visibility: visible; }
 .drawer-open .drawer-panel { transform: translateX(0); }
 
-/* Drawer Content */
 .drawer-header {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--ink-faint);
+    display: flex; justify-content: space-between; align-items: center;
 }
 
-.drawer-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 2rem;
-}
+.drawer-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+.drawer-footer { padding: 1.5rem; background: var(--bg-panel); border-top: 1px solid var(--ink-faint); }
 
-.drawer-footer {
-    padding: 2rem;
-    background: var(--bg-stone);
-    border-top: 1px solid rgba(0,0,0,0.05);
-}
-
-/* --- 8. MAGIC TRICK: CIRCADIAN RHYTHMS (Recalibrated) --- */
-
-/* Base Transition */
-body, .stone-block, .nav-forge, .drawer-panel, input {
-    transition: background-color 1.5s ease, color 1.5s ease, border-color 1.5s ease;
-}
-
-/* MORNING (06:00 - 17:00): crisp white light */
-body[data-time="morning"] {
-    --bg-paper: #FFFFFF;
-    --bg-stone: #F4F4F4;
-    --ink-primary: #000000;
-    --ink-secondary: #444444;
-}
-
-/* EVENING (17:00 - 20:00): Warm "Gallery" light */
-body[data-time="evening"] {
-    --bg-paper: #F0EBE5; /* Warmer Beige */
-    --bg-stone: #E6DFD6;
-    --ink-primary: #2B2620;
-    --ink-secondary: #6B6359;
-}
-
-/* NIGHT (20:00 - 06:00): The "Dark Mode" you had before */
-/* This is essential so users aren't blinded at night */
-body[data-time="night"] {
-    --bg-paper: #121212;
-    --bg-stone: #1E1E1E;
-    --bg-stone-deep: #2A2A2A;
-    --ink-primary: #E0E0E0;
-    --ink-secondary: #888888;
-    --ink-faint: #444444;
-    --glass-surface: rgba(18, 18, 18, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.08);
-}
-
-
-
-/*--- 9. MAGIC TRICK: INSPECTION LENS ---*/
-
+/* --- MAGIC TRICK: LENS --- */
 .stone-image-frame {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background: #E6E6E2;
-    margin-bottom: 1.5rem;
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-    cursor: crosshair; /* Indicates inspection */
+    width: 100%; aspect-ratio: 1/1;
+    background: var(--bg-panel);
+    border-radius: 2px; overflow: hidden;
+    position: relative; margin-bottom: 1rem;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
 }
+.stone-image-frame:hover { border-color: var(--gold-accent); }
 
 .stone-image-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.1s linear; /* Fast response for mouse tracking */
-    transform-origin: center center;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.1s linear;
 }
 
-/* When inspecting (class added by JS) */
-.stone-image-frame.inspecting img {
-    transform: scale(2); /* 2x Zoom */
-}
-
-/* Social Proof Text */
-.stone-proof {
-    font-size: 0.75rem;
-    color: var(--ink-faint);
-    font-style: italic;
-    margin-top: 0.25rem;
-    display: block;
-}
-
-/* --- EMERGENCY OVERRIDE: FORCE ALABASTER --- */
-
-:root {
-    /* FORCE LIGHT PALETTE */
-    --bg-paper: #F9F8F6 !important;
-    --bg-stone: #EFECE8 !important;
-    --bg-stone-deep: #E0DBD5 !important;
-    --ink-primary: #1A1A1A !important;
-    --ink-secondary: #5C5855 !important;
-    --glass-surface: rgba(249, 248, 246, 0.95) !important;
-    --glass-border: rgba(0, 0, 0, 0.08) !important;
-}
-
-body {
-    background-color: var(--bg-paper) !important;
-    color: var(--ink-primary) !important;
-}
-
-.stone-block, .nav-forge, .drawer-panel {
-    background-color: var(--bg-stone) !important;
-    border: 1px solid var(--glass-border) !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03) !important; /* Subtle shadow for depth */
-}
-
-/* Fix Inputs to be visible on light background */
-input, textarea {
-    background: #FFFFFF !important;
-    border: 1px solid var(--glass-border) !important;
-    color: var(--ink-primary) !important;
-}
-
-/* Fix Headings */
-h1, h2, h3, h4, .text-display, .text-heading {
-    color: var(--ink-primary) !important;
+/* Mobile Tweaks */
+@media (max-width: 768px) {
+    .text-display { font-size: 2.5rem; }
+    .stone-block:hover { transform: none; }
 }
