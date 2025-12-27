@@ -61,3 +61,58 @@ const ForgeUtils = {
 document.addEventListener('DOMContentLoaded', () => {
     ForgeUtils.loadComponents();
 });
+
+/**
+ * NAV & DRAWER CONTROLLER
+ * Role: Handles opening/closing of Mobile Menu and Satchel
+ */
+const Navigation = {
+    init() {
+        // --- 1. MOBILE NAV DRAWER ---
+        const navToggle = document.getElementById('nav-toggle');
+        const navClose = document.getElementById('close-nav');
+        const navDrawer = document.getElementById('nav-drawer');
+        const navBackdrop = document.getElementById('nav-backdrop');
+
+        // Open
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navDrawer.classList.add('is-open');
+                navBackdrop.classList.add('is-visible');
+            });
+        }
+
+        // Close (Button & Backdrop)
+        const closeNavMenu = () => {
+            if (navDrawer) navDrawer.classList.remove('is-open');
+            if (navBackdrop) navBackdrop.classList.remove('is-visible');
+        };
+
+        if (navClose) navClose.addEventListener('click', closeNavMenu);
+        if (navBackdrop) navBackdrop.addEventListener('click', closeNavMenu);
+
+        // --- 2. SATCHEL DRAWER ---
+        // Hijack the "Satchel" text link to open the drawer instead of going to page
+        const satchelTrigger = document.getElementById('satchel-trigger');
+        const satchelDrawer = document.getElementById('satchel-drawer');
+        const satchelBackdrop = document.getElementById('satchel-drawer-backdrop');
+        const satchelClose = document.getElementById('close-drawer');
+
+        // Logic handled by your existing Satchel object? 
+        // If not, add this simple toggle:
+        if (satchelTrigger) {
+            satchelTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (window.Satchel) window.Satchel.openDrawer();
+            });
+        }
+    }
+};
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a brief moment for header.html to be injected by ForgeUtils
+    setTimeout(() => {
+        Navigation.init();
+    }, 200);
+});
