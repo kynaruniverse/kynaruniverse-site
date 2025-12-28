@@ -1,13 +1,13 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * MODULE: KYNAR COMMERCE ENGINE (V1.3 - MASTER SYNC)
+ * MODULE: KYNAR COMMERCE ENGINE (V1.4 - MASTER SYNC)
  * ══════════════════════════════════════════════════════════════════════════
  */
 
 const KynarCart = {
   getKey: () => "kynar_cart_v1",
 
-  // Ensures we ALWAYS get an array, never null or an object
+  // Ensures we ALWAYS get an array to prevent .some() or .push() errors
   getContents() {
     try {
       const data = localStorage.getItem(this.getKey());
@@ -19,34 +19,35 @@ const KynarCart = {
   },
 
   add(productId) {
-    console.log("Kynar: Adding Product ID:", productId);
     try {
-      // 1. Safeguard: Wait for ShopSystem database
-      if (!window.ShopSystem) {
-        console.warn("Kynar: ShopSystem not ready.");
+      // 1. Find the product in the global database (fixed reference)
+      const database = window.ShopDatabase || (window.ShopSystem ? window.ShopSystem.getDb() : []);
+      const product = database.find(p => p.id === productId);
+
+      if (!product) {
+        console.warn("Kynar Cart: Product ID not found in database.");
         return;
       }
 
-      const product = window.ShopSystem.getDb().find(p => p.id === productId);
-      if (!product) return;
-
-      // 2. Load and Update
+      // 2. Load current state and update
       let contents = this.getContents();
       const exists = contents.some(item => item.id === productId);
       
       if (!exists) {
         contents.push(product);
         localStorage.setItem(this.getKey(), JSON.stringify(contents));
+        
+        // Tactile Feedback
         this.bumpCart();
         if (window.Haptics) window.Haptics.success();
       }
 
-      // 3. UI Synchronization
+      // 3. UI Flow: Sync and then show the user
       this.syncUI();
       this.openDrawer();
       
     } catch (err) {
-      console.error("Kynar: Cart Add Exception:", err);
+      console.error("Kynar Cart: Critical Error in Add logic", err);
     }
   },
 
@@ -54,6 +55,7 @@ const KynarCart = {
     let contents = this.getContents();
     contents = contents.filter(item => item.id !== productId);
     localStorage.setItem(this.getKey(), JSON.stringify(contents));
+    
     this.syncUI();
     if (window.Haptics) window.Haptics.light();
   },
@@ -61,14 +63,14 @@ const KynarCart = {
   syncUI() {
     const items = this.getContents();
     
-    // Update Badge
+    // Update Header Badge (linked to header.html)
     const badge = document.getElementById("cart-count");
     if (badge) {
       badge.textContent = items.length;
       badge.style.display = items.length > 0 ? "flex" : "none";
     }
 
-    // Update Drawer Content
+    // Update the drawer content
     this.renderDrawer(items);
   },
 
@@ -76,32 +78,37 @@ const KynarCart = {
     const container = document.getElementById("drawer-items");
     const totalEl = document.getElementById("drawer-total");
     
+    // Calculate Total
     if (totalEl) {
       const total = items.reduce((sum, item) => sum + (item.price || 0), 0);
       totalEl.textContent = `£${total.toFixed(2)}`;
     }
 
-    if (container) {
-      if (items.length === 0) {
-        container.innerHTML = `
-          <div style="text-align:center; padding:5rem 2rem; opacity:0.3;">
-            <p style="font-weight:800;">VAULT EMPTY</p>
-            <p style="font-size:0.7rem; margin-top:0.5rem;">Select assets to begin.</p>
-          </div>`;
-        return;
-      }
+    if (!container) return;
 
-      container.innerHTML = items.map(item => `
-        <div class="nav-item" style="margin:0.5rem 1rem; padding:1rem; background:white; border:1px solid var(--ink-border); display:flex; align-items:center;">
-          <div class="nav-icon" style="background:var(--grad-emerald); color:white; min-width:36px;">${item.icon || '📦'}</div>
-          <div class="nav-label" style="margin-left:1rem; flex:1;">
-            <div style="font-weight:800; font-size:0.9rem; color:var(--ink-display);">${item.title}</div>
-            <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">£${(item.price || 0).toFixed(2)}</div>
-          </div>
-          <button onclick="KynarCart.remove('${item.id}')" style="background:var(--bg-canvas); border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; color:var(--ink-muted); font-weight:bold;">&times;</button>
-        </div>
-      `).join("");
+    // Handle Empty State
+    if (items.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center; padding:5rem 2rem; opacity:0.3;">
+          <div style="font-size:2rem; margin-bottom:1rem;">🛒</div>
+          <p style="font-weight:800; letter-spacing:0.05em;">VAULT EMPTY</p>
+        </div>`;
+      return;
     }
+
+    // Render Items
+    container.innerHTML = items.map(item => `
+      <div class="cart-item" style="margin:0.5rem 0; padding:1rem; background:white; border:1px solid var(--ink-border); display:flex; align-items:center; border-radius:12px;">
+        <div style="background:var(--grad-emerald); color:white; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+          ${item.icon || '📦'}
+        </div>
+        <div style="margin-left:1rem; flex:1;">
+          <div style="font-weight:800; font-size:0.9rem; color:var(--ink-display); line-height:1.2;">${item.title}</div>
+          <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">£${(item.price || 0).toFixed(2)}</div>
+        </div>
+        <button onclick="KynarCart.remove('${item.id}')" style="background:var(--bg-canvas); border:none; width:28px; height:28px; border-radius:50%; cursor:pointer; color:var(--ink-muted); font-size:1rem; font-weight:bold;">&times;</button>
+      </div>
+    `).join("");
   },
 
   openDrawer() {
@@ -110,7 +117,7 @@ const KynarCart = {
     if (drawer && backdrop) {
       drawer.classList.add("is-open");
       backdrop.classList.add("is-visible");
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"; // Scroll Lock
     }
   },
 
@@ -120,22 +127,21 @@ const KynarCart = {
     if (drawer && backdrop) {
       drawer.classList.remove("is-open");
       backdrop.classList.remove("is-visible");
-      document.body.style.overflow = "";
+      document.body.style.overflow = ""; // Release Lock
     }
   },
 
   bumpCart() {
     const trigger = document.getElementById("cart-trigger");
     if (trigger) {
-      trigger.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-      trigger.style.transform = "scale(1.3) rotate(8deg)";
-      setTimeout(() => trigger.style.transform = "scale(1) rotate(0deg)", 300);
+      trigger.style.transform = "scale(1.2) rotate(5deg)";
+      setTimeout(() => trigger.style.transform = "scale(1) rotate(0deg)", 200);
     }
   }
 };
 
 window.KynarCart = KynarCart;
 
-// Re-Sync when the page finishes loading components
+// Initialization hooks
 document.addEventListener("DOMContentLoaded", () => KynarCart.syncUI());
 document.addEventListener("KynarHeaderLoaded", () => KynarCart.syncUI());

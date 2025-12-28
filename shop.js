@@ -1,11 +1,11 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * MODULE: KYNAR SHOP SYSTEM (V1.1 - MASTER SYNC)
+ * MODULE: KYNAR SHOP SYSTEM (V1.2 - MASTER SYNC)
  * ══════════════════════════════════════════════════════════════════════════
  */
 
 const ShopSystem = (() => {
-  // 1. THE PRODUCT CATALOG (Unchanged data, verified IDs)
+  // 1. THE PRODUCT CATALOG
   const PRODUCTS = [
     { id: "prod_001", title: "Ultimate Notion OS", collection: "productivity", price: 24.00, image: "images/1/notion-os.webp", icon: "⚡", tag: "Notion System", downloadLink: "#" },
     { id: "prod_002", title: "Kids Activity Pack", collection: "family", price: 0.0, image: "images/1/kids-pack.webp", icon: "🎨", tag: "Printable PDF", downloadLink: "assets/kids-activity-pack.pdf" },
@@ -17,7 +17,6 @@ const ShopSystem = (() => {
   const DOM = {
     grid: document.getElementById("product-grid"),
     search: document.getElementById("shop-search"),
-    filters: document.querySelectorAll("#filter-stream button"),
   };
 
   // 2. THE RENDERER
@@ -48,25 +47,25 @@ const ShopSystem = (() => {
       const isFree = item.price === 0;
       const formattedPrice = isFree ? "Free" : `£${item.price.toFixed(2)}`;
       
-      // FIXED ACTION BUTTON LOGIC
+      // Standarized Handshake for KynarCart
       const actionBtn = isFree
-          ? `<button onclick="KynarCart.directDownload('${item.downloadLink}')" class="dock-btn" style="height: 34px; padding: 0 1.25rem; font-size: 0.75rem; background: var(--bg-canvas); color: var(--ink-display); border: 1px solid var(--ink-border);">Get Free</button>`
+          ? `<button onclick="KynarCart.add('${item.id}')" class="dock-btn" style="height: 34px; padding: 0 1.25rem; font-size: 0.75rem; background: var(--bg-canvas); color: var(--ink-display); border: 1px solid var(--ink-border);">Get Free</button>`
           : `<button onclick="KynarCart.add('${item.id}')" class="dock-btn" style="height: 34px; padding: 0 1.25rem; font-size: 0.75rem; background: var(--grad-gold); color: white; border: none;">+ Add to Cart</button>`;
 
       return `
         <div class="stream-card ${!isFree ? 'glimmer-card' : ''}" style="height: auto; min-height: 290px; padding: 0;">
             <div class="stream-visual" style="width: 100%; height: 160px; position: relative; overflow: hidden; background: var(--bg-canvas);">
-                ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="font-size:3rem;">${item.icon}</div>`}
+                ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:3rem;">${item.icon}</div>`}
                 <div style="position: absolute; top: 12px; left: 12px;">
-                    <span style="background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 6px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase;">${item.collection}</span>
+                    <span style="background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 6px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color:var(--ink-display);">${item.collection}</span>
                 </div>
             </div>
             <div style="padding: 1.25rem;">
-                <div style="font-size: 0.7rem; color: var(--accent-gold); font-weight: 800; margin-bottom: 4px;">${item.tag}</div>
-                <div style="font-size: 1.1rem; margin-bottom: 1.2rem; font-weight:700;">${item.title}</div>
+                <div style="font-size: 0.7rem; color: var(--accent-gold); font-weight: 800; margin-bottom: 4px; text-transform:uppercase;">${item.tag}</div>
+                <div style="font-size: 1.1rem; margin-bottom: 1.2rem; font-weight:700; color:var(--ink-display);">${item.title}</div>
                 <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--ink-border);">
                     <div>
-                        <span style="display:block; font-size: 0.6rem; color: var(--ink-muted); font-weight: 700;">Price</span>
+                        <span style="display:block; font-size: 0.6rem; color: var(--ink-muted); font-weight: 700; text-transform:uppercase;">Price</span>
                         <span style="font-weight: 800; color: var(--ink-display);">${formattedPrice}</span>
                     </div>
                     ${actionBtn}
@@ -92,7 +91,15 @@ const ShopSystem = (() => {
     }
   };
 
-  return { init: Controller.init, getDb: () => PRODUCTS };
+  // Crucial: Attach to window so other scripts can find the database immediately
+  window.ShopDatabase = PRODUCTS;
+
+  return { 
+    init: Controller.init, 
+    getDb: () => PRODUCTS 
+  };
 })();
 
-document.addEventListener("DOMContentLoaded", ShopSystem.init);
+// Global Access
+window.ShopSystem = ShopSystem;
+document.addEventListener("DOMContentLoaded", () => ShopSystem.init());
