@@ -578,3 +578,12 @@ img.lazy-load.loaded {
     border: 4px solid white;
     box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.1), var(--shadow-float) !important;
 }
+
+/* Smart Header Animation */
+.app-header {
+    transition: transform 0.3s ease-in-out, background 0.3s ease !important;
+}
+
+.app-header.header-hidden {
+    transform: translateY(-100%);
+}

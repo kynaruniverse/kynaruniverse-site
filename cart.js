@@ -1,10 +1,9 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * MODULE: SOFT ROYAL CART LOGIC (SATCHEL)
+ * MODULE: KYNAR SATCHEL / COMMERCE ENGINE (V1.0)
  * ══════════════════════════════════════════════════════════════════════════
- * @description Manages the shopping cart state (Satchel), local storage persistence,
- * and the visual logic for the side drawer UI.
- * @module Satchel
+ * @description High-performance shopping state management and luxury
+ * drawer interactions for the Kynar Marketplace.
  */
 
 const Satchel = {
@@ -24,7 +23,7 @@ const Satchel = {
 
   /**
    * Retrieves the current cart contents from LocalStorage.
-   * @returns {Array<Object>} Array of artifact objects.
+   * @returns {Array<Object>} Array of Product objects.
    */
   getContents() {
     return JSON.parse(localStorage.getItem(this.getKey()) || "[]");
@@ -32,15 +31,15 @@ const Satchel = {
 
   /**
    * Adds an item to the Satchel.
-   * Handles both full objects (from Artifact pages) and ID strings (from Archive).
+   * Handles both full objects (from Products pages) and ID strings (from Shop).
    * @param {Object|string} artifactOrId - The item object or its ID string.
    * @returns {boolean} True if added, false if already existed.
    */
   add(artifactOrId) {
-    // Handle both ID string (from Archive) and Object (from Artifact page)
+    // Handle both ID string (from Shop) and Object (from Product page)
     let artifact = artifactOrId;
 
-    // If string, fetch full object from global Archive DB if possible, or fail gracefully
+    // If string, fetch full object from global Shop DB if possible, or fail gracefully
     if (typeof artifactOrId === "string") {
       if (window.ArchiveSystem) {
         const db = window.ArchiveSystem.getDb();
@@ -57,7 +56,10 @@ const Satchel = {
     if (!contents.find((item) => item.id === artifact.id)) {
       contents.push(artifact);
       this.save(contents);
+    
       this.openDrawer(); // Auto-open to confirm add
+      this.bumpCart();
+
 
       if (window.Haptics) window.Haptics.success();
       return true;
@@ -119,6 +121,21 @@ const Satchel = {
   /**
    * Updates the red notification dot on the header icon.
    */
+   
+    /**
+   * Triggers a tactile scale animation on the cart icon.
+   */
+  bumpCart() {
+    const trigger = document.getElementById("satchel-trigger");
+    if (trigger) {
+      trigger.style.transition = "transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      trigger.style.transform = "scale(1.3)";
+      setTimeout(() => { trigger.style.transform = "scale(1)"; }, 200);
+    }
+  },
+
+
+  
   updateUI() {
     const count = this.getContents().length;
     const badge = document.getElementById("satchel-count");
@@ -251,28 +268,24 @@ const Satchel = {
    * Handles direct file downloads with authentication checks.
    * @param {string} url - The file URL to download.
    */
-  directDownload(url) {
-    // In a real app, check for email/auth here first
-    const hasAuth = localStorage.getItem("kynar_signal_token");
+    directDownload(url) {
+    const hasAuth = localStorage.getItem("kynar_auth_token");
 
-    if (hasAuth || true) {
-      // Bypassing for demo purposes
+    if (hasAuth || true) { // Logic bypass for seamless demo experience
       if (window.Haptics) window.Haptics.success();
 
-      // Create temporary link to trigger download
       const a = document.createElement("a");
       a.href = url;
       a.download = "";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
-      alert("Download starting...");
     } else {
-      alert("Please join The Signal to unlock free downloads.");
-      window.location.href = "signals.html";
+      // Direct to Account/Login instead of old "Signals" page
+      if (window.KynarCore) window.KynarCore.openAuthModal();
     }
   },
+
 
   // #endregion
 };
@@ -282,18 +295,16 @@ window.Satchel = Satchel;
 
 // #region [ 6. INITIALIZATION ]
 
-// Init Listener (Wait for Header Injection)
 document.addEventListener("DOMContentLoaded", () => {
-  // Check every 100ms for the header to be injected by the component loader
-  const checkHeader = setInterval(() => {
-    if (document.getElementById("satchel-trigger")) {
-      Satchel.initDrawer();
-      clearInterval(checkHeader);
-    }
-  }, 100);
+  // Use the Custom Event from core.js for instant, clean initialization
+  document.addEventListener("KynarHeaderLoaded", () => {
+    Satchel.initDrawer();
+  });
 
-  // Fallback stop after 3 seconds to prevent infinite polling
-  setTimeout(() => clearInterval(checkHeader), 3000);
+  // Manual check in case the event fired before this script loaded
+  if (document.getElementById("satchel-trigger")) {
+    Satchel.initDrawer();
+  }
 });
 
 // #endregion
