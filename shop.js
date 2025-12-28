@@ -47,7 +47,6 @@ const ShopSystem = (() => {
       const isFree = item.price === 0;
       const formattedPrice = isFree ? "Free" : `£${item.price.toFixed(2)}`;
       
-      // Standarized Handshake for KynarCart
       const actionBtn = isFree
           ? `<button onclick="KynarCart.add('${item.id}')" class="dock-btn" style="height: 34px; padding: 0 1.25rem; font-size: 0.75rem; background: var(--bg-canvas); color: var(--ink-display); border: 1px solid var(--ink-border);">Get Free</button>`
           : `<button onclick="KynarCart.add('${item.id}')" class="dock-btn" style="height: 34px; padding: 0 1.25rem; font-size: 0.75rem; background: var(--grad-gold); color: white; border: none;">+ Add to Cart</button>`;
@@ -91,7 +90,7 @@ const ShopSystem = (() => {
     }
   };
 
-  // Crucial: Attach to window so other scripts can find the database immediately
+  // BROADCAST DATABASE IMMEDIATELY
   window.ShopDatabase = PRODUCTS;
 
   return { 
@@ -100,6 +99,5 @@ const ShopSystem = (() => {
   };
 })();
 
-// Global Access
 window.ShopSystem = ShopSystem;
 document.addEventListener("DOMContentLoaded", () => ShopSystem.init());

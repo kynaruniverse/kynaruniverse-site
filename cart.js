@@ -20,16 +20,16 @@ const KynarCart = {
 
   add(productId) {
     try {
-      // 1. Find the product in the global database (fixed reference)
+      // 1. Find product using global broadcast from shop.js
       const database = window.ShopDatabase || (window.ShopSystem ? window.ShopSystem.getDb() : []);
       const product = database.find(p => p.id === productId);
 
       if (!product) {
-        console.warn("Kynar Cart: Product ID not found in database.");
+        console.warn("Kynar Cart: Product not found.");
         return;
       }
 
-      // 2. Load current state and update
+      // 2. Load and Update
       let contents = this.getContents();
       const exists = contents.some(item => item.id === productId);
       
@@ -37,17 +37,17 @@ const KynarCart = {
         contents.push(product);
         localStorage.setItem(this.getKey(), JSON.stringify(contents));
         
-        // Tactile Feedback
+        // Visual Feedback
         this.bumpCart();
         if (window.Haptics) window.Haptics.success();
       }
 
-      // 3. UI Flow: Sync and then show the user
+      // 3. UI Synchronization
       this.syncUI();
       this.openDrawer();
       
     } catch (err) {
-      console.error("Kynar Cart: Critical Error in Add logic", err);
+      console.error("Kynar Cart: Add logic failure", err);
     }
   },
 
@@ -63,14 +63,13 @@ const KynarCart = {
   syncUI() {
     const items = this.getContents();
     
-    // Update Header Badge (linked to header.html)
+    // Update Header Badge (ID from header.html)
     const badge = document.getElementById("cart-count");
     if (badge) {
       badge.textContent = items.length;
       badge.style.display = items.length > 0 ? "flex" : "none";
     }
 
-    // Update the drawer content
     this.renderDrawer(items);
   },
 
@@ -78,7 +77,6 @@ const KynarCart = {
     const container = document.getElementById("drawer-items");
     const totalEl = document.getElementById("drawer-total");
     
-    // Calculate Total
     if (totalEl) {
       const total = items.reduce((sum, item) => sum + (item.price || 0), 0);
       totalEl.textContent = `£${total.toFixed(2)}`;
@@ -86,27 +84,21 @@ const KynarCart = {
 
     if (!container) return;
 
-    // Handle Empty State
     if (items.length === 0) {
-      container.innerHTML = `
-        <div style="text-align:center; padding:5rem 2rem; opacity:0.3;">
-          <div style="font-size:2rem; margin-bottom:1rem;">🛒</div>
-          <p style="font-weight:800; letter-spacing:0.05em;">VAULT EMPTY</p>
-        </div>`;
+      container.innerHTML = `<div style="text-align:center; padding:5rem 2rem; opacity:0.3;">VAULT EMPTY</div>`;
       return;
     }
 
-    // Render Items
     container.innerHTML = items.map(item => `
-      <div class="cart-item" style="margin:0.5rem 0; padding:1rem; background:white; border:1px solid var(--ink-border); display:flex; align-items:center; border-radius:12px;">
+      <div class="cart-item" style="margin:0.5rem 1rem; padding:1rem; background:white; border:1px solid var(--ink-border); display:flex; align-items:center; border-radius:12px;">
         <div style="background:var(--grad-emerald); color:white; width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
           ${item.icon || '📦'}
         </div>
         <div style="margin-left:1rem; flex:1;">
-          <div style="font-weight:800; font-size:0.9rem; color:var(--ink-display); line-height:1.2;">${item.title}</div>
+          <div style="font-weight:800; font-size:0.9rem; color:var(--ink-display);">${item.title}</div>
           <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">£${(item.price || 0).toFixed(2)}</div>
         </div>
-        <button onclick="KynarCart.remove('${item.id}')" style="background:var(--bg-canvas); border:none; width:28px; height:28px; border-radius:50%; cursor:pointer; color:var(--ink-muted); font-size:1rem; font-weight:bold;">&times;</button>
+        <button onclick="KynarCart.remove('${item.id}')" style="background:var(--bg-canvas); border:none; width:28px; height:28px; border-radius:50%; cursor:pointer; color:var(--ink-muted); font-weight:bold;">&times;</button>
       </div>
     `).join("");
   },
@@ -117,7 +109,7 @@ const KynarCart = {
     if (drawer && backdrop) {
       drawer.classList.add("is-open");
       backdrop.classList.add("is-visible");
-      document.body.style.overflow = "hidden"; // Scroll Lock
+      document.body.style.overflow = "hidden";
     }
   },
 
@@ -127,7 +119,7 @@ const KynarCart = {
     if (drawer && backdrop) {
       drawer.classList.remove("is-open");
       backdrop.classList.remove("is-visible");
-      document.body.style.overflow = ""; // Release Lock
+      document.body.style.overflow = "";
     }
   },
 
@@ -142,6 +134,5 @@ const KynarCart = {
 
 window.KynarCart = KynarCart;
 
-// Initialization hooks
 document.addEventListener("DOMContentLoaded", () => KynarCart.syncUI());
 document.addEventListener("KynarHeaderLoaded", () => KynarCart.syncUI());

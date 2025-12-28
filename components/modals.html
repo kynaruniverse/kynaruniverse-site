@@ -51,7 +51,7 @@
 </aside>
 
 <div id="cart-drawer-backdrop" class="drawer-backdrop"></div>
-<div id="cart-drawer" class="drawer" style="z-index: 2500;">
+<div id="cart-drawer" class="drawer" style="right: -100%; left: auto; border-radius: 24px 0 0 24px;">
   <div style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ink-border);">
     <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-display);">Member Vault</h3>
     <button id="close-drawer" style="background: var(--bg-canvas); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.8rem; cursor: pointer; color: var(--ink-display); display: flex; align-items: center; justify-content: center;">&times;</button>
@@ -82,18 +82,6 @@
       document.getElementById('tab-register').classList.toggle('active', !isLogin);
       document.getElementById('access-title').innerText = isLogin ? 'Welcome Back' : 'Create Account';
       document.getElementById('access-subtitle').innerText = isLogin ? 'Sign in to access your library.' : 'Join to track your digital assets.';
-      if (window.Haptics) window.Haptics.light();
     }
   };
 </script>
-
-<style>
-  .auth-tab-group { display: flex; background: var(--bg-canvas); padding: 5px; border-radius: 99px; margin-bottom: 2rem; }
-  .auth-tab { flex: 1; height: 38px; border: none; border-radius: 99px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; background: transparent; color: var(--ink-muted); }
-  .auth-tab.active { background: white; color: var(--ink-display); box-shadow: var(--shadow-soft); }
-  .kynar-input { width: 100%; height: 52px; padding: 0 1.5rem; border-radius: 99px; border: 1px solid var(--ink-border); background: var(--bg-paper); font-family: var(--font-body); font-size: 1rem; outline: none; transition: all 0.3s var(--transition-smooth); margin-bottom: 1rem; }
-  #modal-card { width: 90%; max-width: 400px; background: white; padding: 3rem 2rem 2.5rem; border-radius: 28px; box-shadow: var(--shadow-float); }
-  .drawer { display: flex; flex-direction: column; overflow: hidden; position: fixed; top: 0; height: 100vh; width: 85%; max-width: 380px; background: var(--bg-paper); transition: transform 0.4s ease; z-index: 2500; }
-  .nav-item { padding: 1rem; text-decoration: none; color: var(--ink-display); font-weight: 600; border-radius: 12px; transition: background 0.2s; }
-  .nav-item:hover { background: var(--bg-canvas); }
-</style>

@@ -2,10 +2,12 @@
  * ══════════════════════════════════════════════════════════════════════════
  * MODULE: KYNAR MARKETPLACE CORE (V1.4 - MASTER SYNC)
  * ══════════════════════════════════════════════════════════════════════════
+ * @description The central brain of Kynar. Manages component loading, 
+ * left/right drawer exclusivity, and global event delegation.
  */
 
 const KynarCore = {
-  // 1. COMPONENT LOADER
+  // 1. COMPONENT LOADER: Fetches HTML fragments (header, modals, etc.)
   async loadComponents() {
     const elements = document.querySelectorAll("[data-include]");
     const promises = Array.from(elements).map(async (el) => {
@@ -17,6 +19,7 @@ const KynarCore = {
           el.innerHTML = html;
           this.executeScripts(el);
           
+          // Dispatch signals for other modules (like Cart) to sync
           if (file.includes("header")) document.dispatchEvent(new Event("KynarHeaderLoaded"));
           if (file.includes("modals")) document.dispatchEvent(new Event("KynarModalsLoaded"));
         }
@@ -27,6 +30,7 @@ const KynarCore = {
     await Promise.all(promises);
   },
 
+  // Re-initializes <script> tags found inside loaded HTML fragments
   executeScripts(container) {
     const scripts = container.querySelectorAll("script");
     scripts.forEach((oldScript) => {
@@ -37,22 +41,24 @@ const KynarCore = {
     });
   },
 
-  // 2. GLOBAL INTERACTION ENGINE
+  // 2. GLOBAL INTERACTION ENGINE: Listens for all clicks on the document
   initInteractions() {
     document.body.addEventListener("click", (e) => {
       
-      // --- A. NAVIGATION DRAWER (LEFT) ---
+      // --- A. NAVIGATION DRAWER (LEFT SIDE) ---
       if (e.target.closest("#nav-toggle")) {
-        if (window.KynarCart) window.KynarCart.closeDrawer(); // Close cart first
+        // Ensure the Cart is closed before opening Menu
+        if (window.KynarCart) window.KynarCart.closeDrawer();
         this.toggleMenu(true);
       }
       if (e.target.closest("#close-nav") || e.target.id === "nav-backdrop") {
         this.toggleMenu(false);
       }
 
-      // --- B. AUTH MODALS ---
+      // --- B. AUTHENTICATION MODALS ---
       if (e.target.closest(".trigger-access")) {
         e.preventDefault();
+        // Close all drawers before opening Auth Modal
         this.toggleMenu(false); 
         if (window.KynarCart) window.KynarCart.closeDrawer();
         this.openAuthModal();
@@ -62,24 +68,25 @@ const KynarCore = {
         this.closeAuthModal();
       }
 
-      // --- C. CART DRAWER (RIGHT) ---
+      // --- C. CART DRAWER (RIGHT SIDE) ---
       if (e.target.closest("#cart-trigger")) {
         e.preventDefault();
-        this.toggleMenu(false); // Close nav first
+        // Ensure the Nav Menu is closed before opening Cart
+        this.toggleMenu(false); 
         if (window.KynarCart) window.KynarCart.openDrawer();
       }
       
-      // Listener for Cart Close Button and its specific Backdrop
+      // Specifically listen for the Cart Close elements in modals.html
       if (e.target.closest("#close-drawer") || e.target.id === "cart-drawer-backdrop") {
         if (window.KynarCart) window.KynarCart.closeDrawer();
       }
     });
 
-    // Smart Header Scroll Logic
+    // Smart Header Logic: Hides on scroll down, reveals on scroll up
     let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.app-header');
-      // Don't hide header if a drawer/modal is open
+      // Do not hide the header if any drawer or modal is open (Scroll Lock active)
       if (!header || document.body.style.overflow === "hidden") return;
       
       if (window.scrollY > lastScrollY && window.scrollY > 100) {
@@ -100,11 +107,11 @@ const KynarCore = {
     if (isOpen) {
       drawer.classList.add("is-open");
       if (backdrop) backdrop.classList.add("is-visible");
-      document.body.style.overflow = "hidden"; // Physics: Lock
+      document.body.style.overflow = "hidden"; // Lock page scroll
     } else {
       drawer.classList.remove("is-open");
       if (backdrop) backdrop.classList.remove("is-visible");
-      document.body.style.overflow = ""; // Physics: Release
+      document.body.style.overflow = ""; // Release page scroll
     }
   },
 
@@ -128,13 +135,13 @@ const KynarCore = {
 
 // 4. INITIALIZATION SEQUENCE
 document.addEventListener("DOMContentLoaded", async () => {
-  // Load Fragments
+  // First, fetch and inject HTML fragments
   await KynarCore.loadComponents();
   
-  // Start the Brain
+  // Second, activate the global interaction listeners
   KynarCore.initInteractions();
 
-  // Initialize Progress Bar
+  // Create and initialize the visual scroll progress indicator
   const progressBar = document.createElement('div');
   progressBar.id = 'scroll-indicator';
   document.body.appendChild(progressBar);
@@ -147,4 +154,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, { passive: true });
 });
 
+// Export to Global Window Object
 window.KynarCore = KynarCore;
