@@ -140,30 +140,48 @@
   <script src="cart.js"></script>
   
   <script type="module">
-    import "./firebase-config.js";
-    import "./auth.js";
+  import "./firebase-config.js";
+  import "./auth.js";
 
-    const hero = document.getElementById('hero-trigger');
-    const liveCount = document.getElementById('live-count');
+  const hero = document.getElementById('hero-trigger');
+  const liveCount = document.getElementById('live-count');
 
-    // 1. Optimized Scroll Parallax
-    window.addEventListener('scroll', () => {
-      if (!hero || window.innerWidth < 768) return;
-      const scrolled = window.pageYOffset;
-      requestAnimationFrame(() => {
-        hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-        hero.style.opacity = 1 - (scrolled / 600);
-      });
-    }, { passive: true });
+  // 1. High-Performance Parallax (Paused during Drawer interaction)
+  window.addEventListener('scroll', () => {
+    // Safety: Stop parallax if hero is missing, on mobile, or if drawer is open
+    if (!hero || window.innerWidth < 768 || document.body.style.overflow === "hidden") return;
+    
+    const scrolled = window.pageYOffset;
+    requestAnimationFrame(() => {
+      // Moves the hero slightly slower than the scroll for depth
+      hero.style.transform = `translateY(${scrolled * 0.12}px)`;
+      // Gradually fades the hero out as the user scrolls down
+      hero.style.opacity = Math.max(0, 1 - (scrolled / 500));
+    });
+  }, { passive: true });
 
-    // 2. Dynamic Counter Logic
+  // 2. Dynamic Counter (Simulates real-time system activity)
+  if (liveCount) {
     setInterval(() => {
-      if (liveCount) {
-        let current = parseInt(liveCount.innerText.replace(',', ''));
-        let change = Math.floor(Math.random() * 3) - 1;
-        liveCount.innerText = (current + change).toLocaleString();
-      }
+      let current = parseInt(liveCount.innerText.replace(/,/g, ''));
+      // Randomly fluctuates the count by -1, 0, or +1
+      let change = Math.floor(Math.random() * 3) - 1;
+      liveCount.innerText = (current + change).toLocaleString();
     }, 4500);
-  </script>
+  }
+
+  // 3. Reveal Animation Trigger
+  // Ensures Trending Systems pop in smoothly after the header is ready
+  document.addEventListener("KynarHeaderLoaded", () => {
+    const reveals = document.querySelectorAll('.product-card-reveal');
+    reveals.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }, i * 150);
+    });
+  });
+</script>
+
 </body>
 </html>
