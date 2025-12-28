@@ -499,3 +499,63 @@ img.lazy-load.loaded { filter: blur(0); }
     transform: translateX(0); 
     visibility: visible;
 }
+
+/* ═══════════════════════════════════════
+   VISUALFORGE UPGRADES
+   ═══════════════════════════════════════ */
+
+/* 1. Refined Header Buttons (Ghost Style) */
+.header-btn {
+    background: transparent;
+    border: none; /* Removed the hard border */
+    color: var(--ink-display);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: background 0.2s ease, transform 0.2s var(--transition-tactile);
+}
+
+.header-btn:active {
+    background: rgba(0,0,0,0.05); /* Subtle touch feedback */
+    transform: scale(0.92);
+}
+
+/* 2. Tech-Spec Status Chip */
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(9, 44, 35, 0.04);
+    border: 1px solid rgba(9, 44, 35, 0.08);
+    border-radius: 99px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink-display);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+/* 3. Hero Text grouping */
+.hero-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+}
+
+/* Tighten the headline specifically for the hero */
+.hero-group h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 10vw, 3.8rem); /* Slightly larger scaling */
+    letter-spacing: -0.03em;
+}
