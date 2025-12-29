@@ -1,275 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Kynar / Product Details</title>
-    <meta name="description" content="Premium Digital Systems for high-performance workflows.">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Kynar / Product Detail</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div data-include="components/header.html"></div>
 
-    <main class="app-container">
-        <div 
-            style="
-                margin-bottom: 2.5rem; 
-                display: flex; 
-                align-items: center; 
-                justify-content: space-between;
-            "
-        >
-            <a 
-                href="shop.html" 
-                class="nav-item" 
-                style="margin: 0; padding: 0.6rem 1.2rem; border-radius: 99px; background: white;"
-            >
-                <span style="font-size: 0.8rem; margin-right: 0.5rem;">←</span>
-                <span style="font-size: 0.8rem; font-weight: 800;">Back to Shop</span>
-            </a>
-            <div 
-                style="
-                    font-size: 0.65rem; 
-                    color: var(--ink-muted); 
-                    text-transform: uppercase; 
-                    letter-spacing: 0.15em; 
-                    font-weight: 800;
-                "
-            >System Specifications</div>
-        </div>
+  <header class="app-header">
+    <div class="header-inner" style="
+      width: 100%; max-width: 1200px; margin: 0 auto; 
+      display: grid; grid-template-columns: 44px 1fr 44px; align-items: center;
+    ">
+      <a href="shop.html" class="header-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </a>
+      <div style="display: flex; justify-content: center;">
+         <span style="font-family: var(--font-display); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Product Detail</span>
+      </div>
+      <button class="header-btn" id="cart-trigger">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
+      </button>
+    </div>
+  </header>
 
-        <div class="product-layout"> 
-            
-            <article>
-                <div 
-                    class="product-hero-container" 
-                    style="
-                        height: 380px; 
-                        background: var(--grad-emerald); 
-                        margin-bottom: 3rem; 
-                        display: flex; 
-                        align-items: center; 
-                        justify-content: center;
-                        position: relative;
-                    "
-                >
-                    <div 
-                        id="hero-icon"
-                        style="
-                            font-size: 10rem; 
-                            opacity: 0.15; 
-                            filter: blur(8px);
-                            transition: transform 0.2s ease-out;
-                        " 
-                    >⚡</div>
-                    <div 
-                        style="
-                            position: absolute; 
-                            bottom: 1.5rem; 
-                            left: 1.5rem; 
-                            background: rgba(255,255,255,0.95); 
-                            padding: 8px 16px; 
-                            border-radius: 10px; 
-                            font-weight: 900; 
-                            font-size: 0.65rem; 
-                            color: var(--ink-display); 
-                            text-transform: uppercase; 
-                            letter-spacing: 0.1em; 
-                            box-shadow: var(--shadow-soft);
-                        "
-                    >Verified Kynar Asset</div>
-                </div>
-
-                <h1 class="text-display glass-title" style="text-align: left; margin-bottom: 1.5rem;">Deep Focus OS</h1>
-                
-                <p 
-                    style="
-                        font-size: 1.15rem; 
-                        line-height: 1.8; 
-                        color: var(--ink-body); 
-                        margin-bottom: 3.5rem; 
-                        opacity: 0.85;
-                    "
-                >
-                    A minimalist powerhouse designed for creators who demand clarity. 
-                    Deep Focus OS eliminates traditional productivity friction by automating 
-                    priority management. Built on the Kynar V1.0 architecture for Notion.
-                </p>
-                
-                <h3 
-                    style="
-                        font-family: var(--font-display); 
-                        font-size: 1.4rem; 
-                        margin-bottom: 2rem; 
-                        color: var(--ink-display); 
-                        display: flex; 
-                        align-items: center; 
-                        gap: 12px;
-                    "
-                >
-                    <span style="width: 24px; height: 3px; background: var(--accent-gold); border-radius: 2px;"></span>
-                    Technical Capabilities
-                </h3>
-
-                <div 
-                    style="
-                        display: grid; 
-                        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-                        gap: 1.5rem; 
-                        margin-bottom: 5rem;
-                    "
-                >
-                    <div class="value-tile">
-                        <div class="nav-icon" style="background: var(--bg-canvas); color: var(--ink-display);">📥</div>
-                        <div style="font-weight: 800; font-size: 1.1rem; color: var(--ink-display);">Zero-Leak Capture</div>
-                        <p style="font-size: 0.85rem; color: var(--ink-muted); line-height: 1.6;">Automated sorting for every thought, link, and file you encounter.</p>
-                    </div>
-
-                    <div class="value-tile">
-                        <div class="nav-icon" style="background: var(--bg-canvas); color: var(--ink-display);">⚙️</div>
-                        <div style="font-weight: 800; font-size: 1.1rem; color: var(--ink-display);">Dynamic Dashboard</div>
-                        <p style="font-size: 0.85rem; color: var(--ink-muted); line-height: 1.6;">Interface adapts to your current time of day and energy levels.</p>
-                    </div>
-                </div>
-            </article>
-
-            <aside class="sidebar-wrapper"> 
-                <div 
-                    class="feature-card" 
-                    style="
-                        padding: 2.5rem; 
-                        background: white; 
-                        border: 1px solid var(--ink-border); 
-                        box-shadow: var(--shadow-float); 
-                        position: sticky; 
-                        top: 100px;
-                    "
-                >
-                    <div 
-                        style="
-                            display: grid; 
-                            grid-template-columns: 1fr 1fr; 
-                            gap: 1.5rem; 
-                            margin-bottom: 2rem; 
-                            border-bottom: 1px solid var(--ink-border); 
-                            padding-bottom: 1.5rem;
-                        "
-                    >
-                        <div>
-                            <span class="meta-label">Platform</span>
-                            <span class="meta-value">Notion OS</span>
-                        </div>
-                        <div>
-                            <span class="meta-label">Version</span>
-                            <span class="meta-value">2.4.1</span>
-                        </div>
-                        <div>
-                            <span class="meta-label">License</span>
-                            <span class="meta-value">Lifetime</span>
-                        </div>
-                        <div>
-                            <span class="meta-label">Delivery</span>
-                            <span class="meta-value">Instant</span>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <div style="display: flex; flex-direction: column;">
-                            <span class="meta-label">Total Investment</span>
-                            <span style="font-family: var(--font-display); font-size: 2.5rem; color: var(--ink-display); line-height: 1;">£24.00</span>
-                        </div>
-                    </div>
-
-                    <button 
-                        onclick="window.KynarCart.add({id: 'prod_001', title: 'Deep Focus OS', price: 24.00, collection: 'productivity', icon: '⚡'})" 
-                        class="dock-btn" 
-                        style="
-                            width: 100%; 
-                            border: none; 
-                            background: var(--grad-gold); 
-                            color: white; 
-                            font-weight: 800; 
-                            height: 60px; 
-                            box-shadow: var(--shadow-soft);
-                        "
-                    >
-                        Add to Cart
-                    </button>
-
-                    <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0.6;">
-                        <span class="live-beacon" style="margin: 0;"></span>
-                        <span style="font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">Payment Gateway Secured</span>
-                    </div>
-                </div>
-            </aside>
-        </div>
-
-        <div class="mobile-purchase-bar">
-            <div style="display: flex; flex-direction: column;">
-                <span style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase;">Investment</span>
-                <span style="font-family: var(--font-display); font-size: 1.4rem; color: var(--ink-display);">£24.00</span>
-            </div>
-            <button 
-                onclick="window.KynarCart.add({id: 'prod_001', title: 'Deep Focus OS', price: 24.00, collection: 'productivity', icon: '⚡'})" 
-                class="dock-btn" 
-                style="height: 50px; padding: 0 1.5rem; font-size: 0.8rem; background: var(--grad-gold); border: none; font-weight: 800;"
-            >Add to Cart</button>
-        </div>
-
-    </main>
+  <main class="product-container">
     
-    <div data-include="components/footer.html"></div>
-    <div data-include="components/modals.html"></div>
+    <div class="product-stage">
+       <div class="stage-visual" id="p-bg">
+          <div id="p-icon" style="font-size: 5rem; animation: floatIcon 3s ease-in-out infinite;"></div>
+       </div>
+    </div>
 
-    <style>
-        .product-layout {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
+    <div class="product-intel" id="desktop-wrapper">
+      
+      <div class="intel-header">
+        <span class="status-chip" id="p-tag" style="margin-bottom: 0.5rem; display: inline-flex;"></span>
+        <h1 class="intel-title" id="p-title">Loading System...</h1>
+        <div class="intel-price" id="p-price">--</div>
+        <p class="intel-desc" id="p-desc"></p>
+      </div>
 
-        .meta-label {
-            display: block;
-            font-size: 0.7rem; 
-            color: var(--ink-muted);
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.3rem;
-        }
+      <div class="spec-stack">
+        <details class="spec-drawer" open>
+          <summary class="spec-trigger">
+            <span>Core Features</span>
+            <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="spec-content">
+            <ul class="feature-list" id="p-features">
+              </ul>
+          </div>
+        </details>
 
-        .meta-value {
-            display: block;
-            font-weight: 700; 
-            font-size: 1rem;
-            color: var(--ink-display);
-        }
+        <details class="spec-drawer">
+          <summary class="spec-trigger">
+             <span>File Specs</span>
+             <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="spec-content">
+             <div class="tech-bit">
+                <span class="bit-label">Delivery</span>
+                <span class="bit-val">Instant Digital Download</span>
+             </div>
+          </div>
+        </details>
+      </div>
 
-        @media (max-width: 850px) {
-            .product-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .sidebar-wrapper { order: -1; margin-bottom: 1.5rem; }
-            .sidebar-wrapper .feature-card { position: relative; top: 0; padding: 1.5rem; }
-        }
-    </style>
+    </div>
 
-    <script src="core.js"></script>
-    <script src="haptics.js"></script>
-    <script src="cart.js"></script>
-    
-    <script>
-        const heroIcon = document.getElementById('hero-icon');
-        window.addEventListener('mousemove', (e) => {
-            if (!heroIcon || window.innerWidth < 768) return;
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.015;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.015;
-            heroIcon.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-        });
-    </script>
+  </main>
+
+  <div class="sticky-action-bar">
+    <div class="action-price">
+      <span style="font-size: 0.7rem; color: var(--ink-muted); text-transform: uppercase; font-weight: 700;">Total</span>
+      <span style="font-size: 1.1rem; font-weight: 800; color: var(--ink-display);" id="p-price-sticky">--</span>
+    </div>
+    <button class="action-btn">Add to Cart</button>
+  </div>
+
+  <script>
+    // 1. THE PRODUCT DATABASE (Add your products here)
+    const productDB = {
+      'prod_001': {
+        title: "Ultimate Notion OS",
+        price: "£24.00",
+        tag: "System Architecture",
+        desc: "The definitive workspace for digital creators. Organize projects, manage finances, and track habits in one unified ecosystem.",
+        icon: "⚡",
+        bg: "var(--grad-gold)",
+        features: ["Project Management Dashboard", "Automated Finance Tracker", "Client CRM Portal", "Mobile-Optimized Layouts"]
+      },
+      'prod_002': {
+        title: "Kids Activity Pack",
+        price: "Free",
+        tag: "Family Resource",
+        desc: "A creative suite of printable assets designed to keep children engaged and learning. Includes coloring, math, and logic puzzles.",
+        icon: "🎨",
+        bg: "var(--bg-canvas)",
+        features: ["50+ Printable Pages", "PDF & PNG Formats", "Age Groups 4-8", "Teacher Approved"]
+      },
+      'prod_003': {
+        title: "Startup Launch Kit",
+        price: "£15.00",
+        tag: "Business Guide",
+        desc: "Everything you need to go from zero to launch. Includes pitch decks, financial models, and marketing checklists.",
+        icon: "🚀",
+        bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", // Custom Blue
+        features: ["Investor Pitch Deck", "5-Year Financial Model", "Marketing Roadmap", "Legal Checklist"]
+      }
+    };
+
+    // 2. THE LOGIC
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get ID from URL (e.g. product.html?id=prod_001)
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'prod_001'; // Default to 001 if no ID
+
+      const data = productDB[id];
+
+      if (data) {
+        // Inject Text
+        document.getElementById('p-title').innerText = data.title;
+        document.getElementById('p-price').innerText = data.price;
+        document.getElementById('p-price-sticky').innerText = data.price;
+        document.getElementById('p-desc').innerText = data.desc;
+        document.getElementById('p-tag').innerText = data.tag;
+        document.getElementById('p-icon').innerText = data.icon;
+        
+        // Inject Visuals
+        document.getElementById('p-bg').style.background = data.bg;
+        
+        // Inject Features List
+        const listContainer = document.getElementById('p-features');
+        listContainer.innerHTML = data.features.map(feat => `<li>${feat}</li>`).join('');
+
+        // Desktop Price Injector
+        document.getElementById('desktop-wrapper').setAttribute('data-price-desktop', data.price);
+      }
+    });
+  </script>
+
 </body>
 </html>
