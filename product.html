@@ -1,254 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Kynar / Product Detail</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Product Details | Kynaruniverse</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
+    <style>
+        /* PRODUCT SPECIFIC LAYOUT */
+        .product-split {
+            display: grid; grid-template-columns: 1fr; gap: 40px;
+            margin-top: 40px;
+        }
+        
+        /* The Visual Stage */
+        .product-stage {
+            background-color: var(--pastel-sage); /* Default, changes via JS */
+            border-radius: var(--radius-soft);
+            aspect-ratio: 1/1;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            box-shadow: var(--shadow-float);
+        }
+        .product-stage img {
+            width: 80%; height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            transform: scale(0.9);
+            transition: transform 0.5s ease;
+        }
+        .product-stage:hover img { transform: scale(1); }
+
+        /* The Intel Column */
+        .product-intel { display: flex; flex-direction: column; justify-content: center; }
+        
+        .crumb { font-size: 0.85rem; color: var(--ink-medium); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .price-tag {
+            font-size: 1.5rem; color: var(--accent-gold); font-weight: 700;
+            margin-bottom: 24px; display: inline-block;
+        }
+
+        .features-list {
+            list-style: none; margin: 30px 0; padding: 20px;
+            background: white; border-radius: var(--radius-soft);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .features-list li {
+            margin-bottom: 12px; padding-left: 20px; position: relative;
+            color: var(--ink-medium); font-size: 0.95rem;
+        }
+        .features-list li::before {
+            content: "•"; color: var(--accent-gold); font-size: 1.2rem;
+            position: absolute; left: 0; top: -2px;
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 900px) {
+            .product-split { grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+            .product-stage { position: sticky; top: 100px; }
+        }
+
+        /* Mobile Sticky Action Bar */
+        .mobile-action-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            padding: 16px 20px; border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 999; transform: translateY(100%); transition: 0.3s ease;
+        }
+        .mobile-action-bar.visible { transform: translateY(0); }
+        @media (min-width: 900px) { .mobile-action-bar { display: none; } }
+    </style>
+</head>
 <body>
 
-  <header class="app-header">
-    <div class="header-inner" style="
-      width: 100%; max-width: 1200px; margin: 0 auto; 
-      display: grid; grid-template-columns: 44px 1fr 44px; align-items: center;
-    ">
-      <a href="shop.html" class="header-btn">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-      </a>
-      <div style="display: flex; justify-content: center;">
-         <span style="font-family: var(--font-display); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Product Detail</span>
-      </div>
-      <button class="header-btn" onclick="toggleCart()">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
-      </button>
-    </div>
-  </header>
+    <header class="app-header">
+        <button class="nav-icon" onclick="window.history.back()" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep);">DETAILS</span>
+        <button class="nav-icon" onclick="LemonSqueezy.Url.OpenCheckout('https://store.kynaruniverse.com/checkout')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </button>
+    </header>
 
-  <main class="product-container" style="min-height: 80vh;">
-    
-    <div class="product-stage">
-       <div class="stage-visual" id="p-bg">
-          <div id="p-icon" style="font-size: 5rem; animation: floatIcon 3s ease-in-out infinite;">📦</div>
-       </div>
-    </div>
+    <main class="container">
+        
+        <div class="product-split">
+            
+            <div class="product-stage reveal-up" id="productBg">
+                <img id="productImage" src="" alt="Product Visual">
+            </div>
 
-    <div class="product-intel" id="desktop-wrapper">
-      
-      <div class="intel-header">
-        <span class="status-chip" id="p-tag" style="margin-bottom: 0.5rem; display: inline-flex;">LOADING...</span>
-        <h1 class="intel-title" id="p-title">Loading System...</h1>
-        <div class="intel-price" id="p-price">--</div>
-        <p class="intel-desc" id="p-desc">Fetching asset data from secure vault...</p>
-      </div>
+            <div class="product-intel reveal-up">
+                <div class="crumb">Shop / <span id="categoryLabel">Asset</span></div>
+                
+                <h1 id="productTitle">Loading Asset...</h1>
+                <span class="price-tag" id="productPrice">--</span>
+                
+                <p id="productDesc">Fetching data from the vault...</p>
 
-      <div class="spec-stack">
-        <details class="spec-drawer" open>
-          <summary class="spec-trigger">
-            <span>Description</span>
-            <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </summary>
-          <div class="spec-content">
-            <p id="p-long-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--ink-muted);">
-                </p>
-          </div>
-        </details>
+                <ul class="features-list" id="featureList">
+                    </ul>
 
-        <details class="spec-drawer">
-          <summary class="spec-trigger">
-             <span>File Specs</span>
-             <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </summary>
-          <div class="spec-content">
-             <div class="tech-bit">
-                <span class="bit-label">Format</span>
-                <span class="bit-val">PDF / Digital</span>
-             </div>
-             <div class="tech-bit">
-                <span class="bit-label">Delivery</span>
-                <span class="bit-val">Instant Secure Download</span>
-             </div>
-          </div>
-        </details>
-      </div>
+                <a href="#" id="buyButtonDesktop" class="btn-primary" style="text-align: center; width: 100%;">
+                    Purchase License
+                </a>
+            </div>
 
+        </div>
+
+    </main>
+
+    <div class="mobile-action-bar visible">
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.8rem; opacity: 0.6;">Total</span>
+            <span style="font-weight: 700; color: var(--ink-deep);" id="mobilePrice">--</span>
+        </div>
+        <a href="#" id="buyButtonMobile" class="btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">
+            Buy Now
+        </a>
     </div>
 
-  </main>
-
-  <div class="sticky-action-bar">
-    <div class="action-price">
-      <span style="font-size: 0.7rem; color: var(--ink-muted); text-transform: uppercase; font-weight: 700;">Total</span>
-      <span style="font-size: 1.1rem; font-weight: 800; color: var(--ink-display);" id="p-price-sticky">--</span>
-    </div>
-    <button class="action-btn" id="main-action-btn">Initialize</button>
-  </div>
-
-  <div id="interface-overlay"></div>
-
-  <aside id="nav-drawer" class="drawer-panel drawer-left">
-      <div class="drawer-header">
-          <span class="drawer-title">Menu</span>
-          <button class="close-btn" onclick="toggleNav()">✕</button>
-      </div>
-      <nav class="drawer-content">
-          <a href="shop.html" class="drawer-link">Marketplace</a>
-          <a href="library.html" class="drawer-link">Manuals</a>
-          <a href="newsletter.html" class="drawer-link">The Network</a>
-          <a href="account.html" class="drawer-link">Member Vault</a>
-      </nav>
-  </aside>
-
-  <aside id="cart-drawer" class="drawer-panel drawer-right">
-      <div class="drawer-header">
-          <span class="drawer-title">Cart</span>
-          <button class="close-btn" onclick="toggleCart()">✕</button>
-      </div>
-      <div class="drawer-content"></div> <div class="drawer-footer">
-          <div class="cart-total-row">
-              <span>Subtotal</span>
-              <span>£0.00</span>
-          </div>
-          <button class="dock-btn" onclick="window.location.href='checkout.html'" style="width: 100%; justify-content: center; margin-top: 1rem;">
-              Secure Checkout
-          </button>
-      </div>
-  </aside>
-
-  <script src="core.js"></script>
-  <script src="cart.js"></script>
-  
-  <script type="module">
-    import { supabase } from './supabase-config.js';
-    import './vault.js'; // Imports the downloadProduct function
-
-    // 1. HELPER: Map Categories to Visuals (Since DB doesn't store colors yet)
-    function getVisuals(category) {
-        const map = {
-            'systems': { icon: '⚡', bg: 'var(--grad-gold)' },
-            'creative': { icon: '🎨', bg: 'var(--bg-canvas)' },
-            'business': { icon: '🚀', bg: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
-            'ai': { icon: '🤖', bg: '#e0f2f1' },
-            'education': { icon: '📅', bg: '#fff3e0' }
-        };
-        return map[category] || { icon: '📦', bg: '#f5f5f5' };
-    }
-
-    // 2. FETCH LOGIC
-    document.addEventListener('DOMContentLoaded', async () => {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get('id');
-
-      if (!id) {
-        document.getElementById('p-title').innerText = "System Error: ID Missing";
-        return;
-      }
-
-      // Supabase Query
-      const { data: product, error } = await supabase
-        .from('products')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-      if (error || !product) {
-        document.getElementById('p-title').innerText = "System Not Found";
-        document.getElementById('p-desc').innerText = "This asset may have been archived.";
-        return;
-      }
-
-      // 3. INJECT DATA
-      const visuals = getVisuals(product.category);
-      const isFree = product.price === 0;
-      const displayPrice = isFree ? "Free" : `£${Number(product.price).toFixed(2)}`;
-
-      document.getElementById('p-title').innerText = product.title;
-      document.getElementById('p-price').innerText = displayPrice;
-      document.getElementById('p-price-sticky').innerText = displayPrice;
-      document.getElementById('p-desc').innerText = product.description;
-      document.getElementById('p-long-desc').innerText = product.description; // Duplicate for now
-      document.getElementById('p-tag').innerText = product.category ? product.category.toUpperCase() : "DIGITAL ASSET";
-      
-      // Visuals
-      document.getElementById('p-icon').innerText = visuals.icon;
-      document.getElementById('p-bg').style.background = visuals.bg;
-
-      // 4. BUTTON LOGIC (Free = Download, Paid = Cart)
-      const btn = document.getElementById('main-action-btn');
-      
-      if (isFree) {
-        btn.innerText = "Download Securely";
-        btn.style.background = "var(--ink-display)";
-        btn.onclick = () => {
-             // Uses the global download function from vault.js
-             if(window.downloadProduct) window.downloadProduct(product.file_path);
-             else alert("Vault System Loading...");
-        };
-      } else {
-        btn.innerText = "Add to Cart";
-        btn.onclick = () => {
-            if (window.KynarCart) {
-                window.KynarCart.add({
-                    id: String(product.id),
-                    title: product.title,
-                    price: product.price,
-                    meta: product.category,
-                    icon: visuals.icon,
-                    bg: visuals.bg
-                });
+    <script src="ui-core.js"></script>
+    <script>
+        /* ══════════════════════════════════════════════════════════════════════════
+           THE PRODUCT VAULT (No Database Required)
+           ══════════════════════════════════════════════════════════════════════════ */
+        const PRODUCT_DB = {
+            'universe-os': {
+                title: "Universe OS",
+                price: "$29.00",
+                desc: "The ultimate Notion system for organizing your entire life. Includes project management, habit tracking, and financial review dashboards.",
+                features: ["All-in-one Dashboard", "Financial Tracker 2.0", "Mobile Optimized Views", "Lifetime Updates"],
+                bg: "var(--pastel-sage)",
+                image: "assets/images/planner-mockup.png",
+                checkoutUrl: "https://store.kynaruniverse.com/checkout/buy/YOUR-VARIANT-ID-1"
+            },
+            'creator-bundle': {
+                title: "Creator Bundle",
+                price: "$45.00",
+                desc: "A massive library of 200+ high-resolution textures, gradients, and mockups designed for the modern content creator.",
+                features: ["4K Textures", "PSD Mockups", "Commercial License", "Figma Files Included"],
+                bg: "var(--pastel-clay)",
+                image: "assets/images/creative-mockup.png",
+                checkoutUrl: "https://store.kynaruniverse.com/checkout/buy/YOUR-VARIANT-ID-2"
+            },
+            'saas-starter': {
+                title: "SaaS Starter Kit",
+                price: "$69.00",
+                desc: "Stop rebuilding auth and payments. This Next.js boilerplate comes with Stripe, Supabase, and Tailwind pre-configured.",
+                features: ["Next.js 14 App Router", "Supabase Auth", "Stripe Webhooks", "SEO Optimized"],
+                bg: "var(--pastel-sky)",
+                image: "assets/images/code-mockup.png",
+                checkoutUrl: "https://store.kynaruniverse.com/checkout/buy/YOUR-VARIANT-ID-3"
+            },
+            'finance-tracker': {
+                title: "Finance Tracker",
+                price: "$15.00",
+                desc: "Automated Google Sheets template to track income, expenses, and investments with beautiful visualization.",
+                features: ["Auto-categorization", "Investment Portfolio", "Monthly Reports", "Video Guide"],
+                bg: "var(--pastel-sage)",
+                image: "assets/images/finance-mockup.png",
+                checkoutUrl: "https://store.kynaruniverse.com/checkout/buy/YOUR-VARIANT-ID-4"
             }
         };
-      }
 
-      // 5. Inject Desktop Button (Clone logic)
-      if(window.innerWidth > 800) {
-          const desktopBtn = btn.cloneNode(true);
-          desktopBtn.style.marginTop = '2rem';
-          desktopBtn.style.width = '100%';
-          // Re-attach listener because cloneNode doesn't copy listeners
-          desktopBtn.onclick = btn.onclick; 
-          document.querySelector('.product-intel').appendChild(desktopBtn);
-      }
+        /* THE INJECTOR LOGIC */
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get ID from URL (e.g., ?id=universe-os)
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const data = PRODUCT_DB[productId];
 
-    });
-  </script>
+            if (data) {
+                // 2. Inject Data
+                document.title = `${data.title} | Kynaruniverse`;
+                document.getElementById('productTitle').innerText = data.title;
+                document.getElementById('productPrice').innerText = data.price;
+                document.getElementById('mobilePrice').innerText = data.price;
+                document.getElementById('productDesc').innerText = data.desc;
+                document.getElementById('productBg').style.backgroundColor = data.bg;
+                document.getElementById('productImage').src = data.image;
 
-  <script>
-    const overlay = document.getElementById('interface-overlay');
-    const navDrawer = document.getElementById('nav-drawer');
-    const cartDrawer = document.getElementById('cart-drawer');
+                // 3. Inject Features
+                const list = document.getElementById('featureList');
+                data.features.forEach(feat => {
+                    const li = document.createElement('li');
+                    li.innerText = feat;
+                    list.appendChild(li);
+                });
 
-    window.toggleNav = function() {
-      const isActive = navDrawer.classList.contains('active');
-      closeAllDrawers();
-      if (!isActive) {
-        navDrawer.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; 
-      }
-    };
+                // 4. Activate Buttons (Lemon Squeezy)
+                // Note: We use the class 'lemonsqueezy-button' to trigger overlay
+                const setupButton = (btn) => {
+                    btn.href = data.checkoutUrl;
+                    btn.classList.add('lemonsqueezy-button'); 
+                };
+                
+                setupButton(document.getElementById('buyButtonDesktop'));
+                setupButton(document.getElementById('buyButtonMobile'));
 
-    window.toggleCart = function() {
-      const isActive = cartDrawer.classList.contains('active');
-      closeAllDrawers();
-      if (!isActive) {
-        cartDrawer.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    };
-
-    window.closeAllDrawers = function() {
-      if(navDrawer) navDrawer.classList.remove('active');
-      if(cartDrawer) cartDrawer.classList.remove('active');
-      if(overlay) overlay.classList.remove('active');
-      document.body.style.overflow = ''; 
-    };
-
-    if(overlay) overlay.addEventListener('click', closeAllDrawers);
-  </script>
-
+            } else {
+                // Handle 404
+                document.querySelector('.container').innerHTML = "<h2 style='text-align:center; margin-top:100px;'>Product Not Found</h2><p style='text-align:center;'><a href='shop.html'>Return to Shop</a></p>";
+            }
+        });
+    </script>
 </body>
 </html>

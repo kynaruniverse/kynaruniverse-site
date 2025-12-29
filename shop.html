@@ -1,103 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Kynar / Digital Shop</title>
-  <meta name="description" content="Browse premium digital products. Notion templates, worksheets, and creative assets." />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
-  
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-
-<body>
-  <div data-include="components/header.html"></div>
-  
-  <main class="app-container">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Collection | Kynaruniverse</title>
     
-    <div style="margin-bottom: 1rem;">
-        <h1 class="text-display">Digital Shop</h1>
-        <p class="text-sub">Premium templates, systems, and creative resources.</p>
-    </div>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
-    <div class="shop-header-sticky">
-        <div class="search-wrapper">
-            <div class="search-icon-place">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <style>
+        .filter-bar {
+            display: flex; gap: 12px; overflow-x: auto; padding-bottom: 20px;
+            margin-bottom: 40px; scrollbar-width: none;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+        
+        .filter-chip {
+            padding: 8px 20px; border-radius: 50px; border: 1px solid rgba(15, 61, 48, 0.2);
+            background: transparent; color: var(--ink-deep); font-family: var(--font-body);
+            font-size: 0.9rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .filter-chip.active, .filter-chip:hover {
+            background: var(--ink-deep); color: white; border-color: var(--ink-deep);
+        }
+        
+        .empty-state {
+            grid-column: 1 / -1; text-align: center; padding: 60px 0;
+            display: none; color: var(--ink-medium);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <button class="nav-icon" onclick="window.location.href='index.html'" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+
+        <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep);">COLLECTION</span>
+
+        <button class="nav-icon" onclick="LemonSqueezy.Url.OpenCheckout('https://store.kynaruniverse.com/checkout')" aria-label="Cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </button>
+    </header>
+
+    <main class="container">
+        
+        <div class="reveal-up" style="margin-top: 40px;">
+            <h1>Archive</h1>
+            <p>Select a category to filter.</p>
+        </div>
+
+        <div class="filter-bar reveal-up" id="filterContainer">
+            <button class="filter-chip active" onclick="filterGrid('all', this)">View All</button>
+            <button class="filter-chip" onclick="filterGrid('planner', this)">Planners</button>
+            <button class="filter-chip" onclick="filterGrid('code', this)">Code</button>
+            <button class="filter-chip" onclick="filterGrid('creative', this)">Creative</button>
+        </div>
+
+        <div class="gallery-grid" id="productGrid">
+            
+            <article class="product-card reveal-up" data-category="planner">
+                <span class="tag">Notion</span>
+                <a href="product.html?id=universe-os" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
+                    <img src="assets/images/planner-mockup.png" alt="Universe OS" onerror="this.style.opacity='0.1'">
+                </a>
+                <div class="card-info">
+                    <h3 class="card-title">Universe OS</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">Life Operating System.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-price">$29.00</span>
+                        <a href="product.html?id=universe-os" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card reveal-up" data-category="creative">
+                <span class="tag">Asset Pack</span>
+                <a href="product.html?id=creator-bundle" class="card-image" style="background-color: var(--pastel-clay); text-decoration: none;">
+                    <img src="assets/images/creative-mockup.png" alt="Creator Bundle" onerror="this.style.opacity='0.1'">
+                </a>
+                <div class="card-info">
+                    <h3 class="card-title">Creator Bundle</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">200+ High-res assets.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-price">$45.00</span>
+                        <a href="product.html?id=creator-bundle" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card reveal-up" data-category="code">
+                <span class="tag">Next.js</span>
+                <a href="product.html?id=saas-starter" class="card-image" style="background-color: var(--pastel-sky); text-decoration: none;">
+                    <img src="assets/images/code-mockup.png" alt="SaaS Starter" onerror="this.style.opacity='0.1'">
+                </a>
+                <div class="card-info">
+                    <h3 class="card-title">SaaS Starter</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">Boilerplate for founders.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-price">$69.00</span>
+                        <a href="product.html?id=saas-starter" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
+                    </div>
+                </div>
+            </article>
+
+             <article class="product-card reveal-up" data-category="planner">
+                <span class="tag">PDF</span>
+                <a href="product.html?id=finance-tracker" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
+                    <img src="assets/images/finance-mockup.png" alt="Finance Tracker" onerror="this.style.opacity='0.1'">
+                </a>
+                <div class="card-info">
+                    <h3 class="card-title">Finance Tracker</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">Spreadsheet automation.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="card-price">$15.00</span>
+                        <a href="product.html?id=finance-tracker" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
+                    </div>
+                </div>
+            </article>
+
+            <div class="empty-state" id="emptyState">
+                <h3>No assets found in this category.</h3>
             </div>
-            <input type="text" class="search-input" placeholder="Search the marketplace...">
+
         </div>
+    </main>
 
-        <div class="filter-stream">
-            <a href="#" class="filter-pill active">All Products</a>
-            <a href="#" class="filter-pill">Systems</a>
-            <a href="#" class="filter-pill">Creative</a>
-            <a href="#" class="filter-pill">Business</a>
-            <a href="#" class="filter-pill">Education</a>
-        </div>
-    </div>
+    <script src="ui-core.js"></script>
+    <script>
+        // Simple client-side filtering logic
+        function filterGrid(category, btn) {
+            // 1. Update Buttons
+            document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
 
-    <div class="shop-grid">
-        <div style="grid-column: 1/-1; padding: 4rem; text-align: center; opacity: 0.5;">
-            <div class="spinner" style="margin: 0 auto 1rem auto;"></div>
-            <div style="font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;">Loading Catalog...</div>
-        </div>
-    </div>
+            // 2. Filter Cards
+            const cards = document.querySelectorAll('.product-card');
+            let visibleCount = 0;
 
-  </main>
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                    // Re-trigger animation
+                    card.classList.remove('reveal-visible');
+                    setTimeout(() => card.classList.add('reveal-visible'), 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
 
-  <div data-include="components/footer.html"></div>
-  <div data-include="components/modals.html"></div>
-  
-  <script src="core.js"></script>
-  <script src="cart.js"></script>
-  <script src="haptics.js"></script>
-  
-  <script type="module" src="shop.js"></script> 
-  <script type="module">
-    import './auth.js';
-    import './vault.js'; // Needed for "Free Download" buttons in the grid
-  </script>
-  
-  <div id="interface-overlay"></div>
-
-  <aside id="nav-drawer" class="drawer-panel drawer-left">
-      <div class="drawer-header">
-          <span class="drawer-title">Menu</span>
-          <button class="close-btn" onclick="toggleNav()">✕</button>
-      </div>
-      <nav class="drawer-content">
-          <a href="shop.html" class="drawer-link" style="color: var(--accent-gold);">Marketplace</a>
-          <a href="library.html" class="drawer-link">Manuals</a>
-          <a href="newsletter.html" class="drawer-link">The Network</a>
-          <a href="account.html" class="drawer-link">Member Vault</a>
-      </nav>
-      <div class="drawer-footer">
-          <div class="status-chip">
-              <span class="live-beacon"></span> Systems Active
-          </div>
-      </div>
-  </aside>
-
-  <aside id="cart-drawer" class="drawer-panel drawer-right">
-      <div class="drawer-header">
-          <span class="drawer-title">Cart</span>
-          <button class="close-btn" onclick="toggleCart()">✕</button>
-      </div>
-      
-      <div class="drawer-content"></div>
-
-      <div class="drawer-footer">
-          <div class="cart-total-row">
-              <span>Subtotal</span>
-              <span style="font-weight: 800; color: var(--ink-display);">£0.00</span>
-          </div>
-          <a href="checkout.html" class="dock-btn" style="width: 100%; justify-content: center; margin-top: 1rem; text-decoration: none;">
-              Secure Checkout
-          </a>
-      </div>
-  </aside>
-
+            // 3. Toggle Empty State
+            const empty = document.getElementById('emptyState');
+            if (visibleCount === 0) {
+                empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
