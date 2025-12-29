@@ -18,8 +18,9 @@ Disallow: /checkout.html
 Disallow: /success.html
 Disallow: /404.html
 
-# [ 3. ASSETS NOTE ]
-# We allow /assets/ so Google can render Fonts, Icons, and PDF Lead Magnets.
+# [ 3. CONFIGURATION FILES ]
+# Prevent indexing of backend configuration scripts
+Disallow: /supabase-config.js
 
 # [ 4. SITEMAP ]
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

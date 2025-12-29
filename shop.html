@@ -7,6 +7,8 @@
   <meta name="description" content="Browse premium digital products. Notion templates, worksheets, and creative assets." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -51,11 +53,11 @@
   <script src="core.js"></script>
   <script src="cart.js"></script>
   <script src="haptics.js"></script>
-  <script src="shop.js"></script> 
   
+  <script type="module" src="shop.js"></script> 
   <script type="module">
-    import "./firebase-config.js";
-    import "./auth.js";
+    import './auth.js';
+    import './vault.js'; // Needed for "Free Download" buttons in the grid
   </script>
   
   <div id="interface-overlay"></div>

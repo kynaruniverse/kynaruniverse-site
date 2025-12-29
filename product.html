@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Kynar / Product Detail</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -20,38 +21,38 @@
       <div style="display: flex; justify-content: center;">
          <span style="font-family: var(--font-display); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Product Detail</span>
       </div>
-      <button class="header-btn" id="cart-trigger">
+      <button class="header-btn" onclick="toggleCart()">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
       </button>
     </div>
   </header>
 
-  <main class="product-container">
+  <main class="product-container" style="min-height: 80vh;">
     
     <div class="product-stage">
        <div class="stage-visual" id="p-bg">
-          <div id="p-icon" style="font-size: 5rem; animation: floatIcon 3s ease-in-out infinite;"></div>
+          <div id="p-icon" style="font-size: 5rem; animation: floatIcon 3s ease-in-out infinite;">📦</div>
        </div>
     </div>
 
     <div class="product-intel" id="desktop-wrapper">
       
       <div class="intel-header">
-        <span class="status-chip" id="p-tag" style="margin-bottom: 0.5rem; display: inline-flex;"></span>
+        <span class="status-chip" id="p-tag" style="margin-bottom: 0.5rem; display: inline-flex;">LOADING...</span>
         <h1 class="intel-title" id="p-title">Loading System...</h1>
         <div class="intel-price" id="p-price">--</div>
-        <p class="intel-desc" id="p-desc"></p>
+        <p class="intel-desc" id="p-desc">Fetching asset data from secure vault...</p>
       </div>
 
       <div class="spec-stack">
         <details class="spec-drawer" open>
           <summary class="spec-trigger">
-            <span>Core Features</span>
+            <span>Description</span>
             <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </summary>
           <div class="spec-content">
-            <ul class="feature-list" id="p-features">
-              </ul>
+            <p id="p-long-desc" style="font-size: 0.9rem; line-height: 1.6; color: var(--ink-muted);">
+                </p>
           </div>
         </details>
 
@@ -62,8 +63,12 @@
           </summary>
           <div class="spec-content">
              <div class="tech-bit">
+                <span class="bit-label">Format</span>
+                <span class="bit-val">PDF / Digital</span>
+             </div>
+             <div class="tech-bit">
                 <span class="bit-label">Delivery</span>
-                <span class="bit-val">Instant Digital Download</span>
+                <span class="bit-val">Instant Secure Download</span>
              </div>
           </div>
         </details>
@@ -78,169 +83,172 @@
       <span style="font-size: 0.7rem; color: var(--ink-muted); text-transform: uppercase; font-weight: 700;">Total</span>
       <span style="font-size: 1.1rem; font-weight: 800; color: var(--ink-display);" id="p-price-sticky">--</span>
     </div>
-    <button class="action-btn">Add to Cart</button>
+    <button class="action-btn" id="main-action-btn">Initialize</button>
   </div>
 
-  <script>
-    // 1. THE PRODUCT DATABASE (Add your products here)
-    const productDB = {
-      'prod_001': {
-        title: "Ultimate Notion OS",
-        price: "£24.00",
-        tag: "System Architecture",
-        desc: "The definitive workspace for digital creators. Organize projects, manage finances, and track habits in one unified ecosystem.",
-        icon: "⚡",
-        bg: "var(--grad-gold)",
-        features: ["Project Management Dashboard", "Automated Finance Tracker", "Client CRM Portal", "Mobile-Optimized Layouts"]
-      },
-      'prod_002': {
-        title: "Kids Activity Pack",
-        price: "Free",
-        tag: "Family Resource",
-        desc: "A creative suite of printable assets designed to keep children engaged and learning. Includes coloring, math, and logic puzzles.",
-        icon: "🎨",
-        bg: "var(--bg-canvas)",
-        features: ["50+ Printable Pages", "PDF & PNG Formats", "Age Groups 4-8", "Teacher Approved"]
-      },
-      'prod_003': {
-        title: "Startup Launch Kit",
-        price: "£15.00",
-        tag: "Business Guide",
-        desc: "Everything you need to go from zero to launch. Includes pitch decks, financial models, and marketing checklists.",
-        icon: "🚀",
-        bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", // Custom Blue
-        features: ["Investor Pitch Deck", "5-Year Financial Model", "Marketing Roadmap", "Legal Checklist"]
-      }
-    };
+  <div id="interface-overlay"></div>
 
-        // 2. THE LOGIC
-    document.addEventListener('DOMContentLoaded', () => {
+  <aside id="nav-drawer" class="drawer-panel drawer-left">
+      <div class="drawer-header">
+          <span class="drawer-title">Menu</span>
+          <button class="close-btn" onclick="toggleNav()">✕</button>
+      </div>
+      <nav class="drawer-content">
+          <a href="shop.html" class="drawer-link">Marketplace</a>
+          <a href="library.html" class="drawer-link">Manuals</a>
+          <a href="newsletter.html" class="drawer-link">The Network</a>
+          <a href="account.html" class="drawer-link">Member Vault</a>
+      </nav>
+  </aside>
+
+  <aside id="cart-drawer" class="drawer-panel drawer-right">
+      <div class="drawer-header">
+          <span class="drawer-title">Cart</span>
+          <button class="close-btn" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="drawer-content"></div> <div class="drawer-footer">
+          <div class="cart-total-row">
+              <span>Subtotal</span>
+              <span>£0.00</span>
+          </div>
+          <button class="dock-btn" onclick="window.location.href='checkout.html'" style="width: 100%; justify-content: center; margin-top: 1rem;">
+              Secure Checkout
+          </button>
+      </div>
+  </aside>
+
+  <script src="core.js"></script>
+  <script src="cart.js"></script>
+  
+  <script type="module">
+    import { supabase } from './supabase-config.js';
+    import './vault.js'; // Imports the downloadProduct function
+
+    // 1. HELPER: Map Categories to Visuals (Since DB doesn't store colors yet)
+    function getVisuals(category) {
+        const map = {
+            'systems': { icon: '⚡', bg: 'var(--grad-gold)' },
+            'creative': { icon: '🎨', bg: 'var(--bg-canvas)' },
+            'business': { icon: '🚀', bg: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
+            'ai': { icon: '🤖', bg: '#e0f2f1' },
+            'education': { icon: '📅', bg: '#fff3e0' }
+        };
+        return map[category] || { icon: '📦', bg: '#f5f5f5' };
+    }
+
+    // 2. FETCH LOGIC
+    document.addEventListener('DOMContentLoaded', async () => {
       const params = new URLSearchParams(window.location.search);
-      const id = params.get('id') || 'prod_001'; 
-      const data = productDB[id];
+      const id = params.get('id');
 
-      if (data) {
-        // Inject Text & Visuals (Existing logic...)
-        document.getElementById('p-title').innerText = data.title;
-        document.getElementById('p-price').innerText = data.price;
-        document.getElementById('p-price-sticky').innerText = data.price;
-        document.getElementById('p-desc').innerText = data.desc;
-        document.getElementById('p-tag').innerText = data.tag;
-        document.getElementById('p-icon').innerText = data.icon;
-        document.getElementById('p-bg').style.background = data.bg;
-        
-        const listContainer = document.getElementById('p-features');
-        listContainer.innerHTML = data.features.map(feat => `<li>${feat}</li>`).join('');
+      if (!id) {
+        document.getElementById('p-title').innerText = "System Error: ID Missing";
+        return;
+      }
 
-        // NEW: ATTACH CART LISTENERS
-        // We find both buttons (Sticky Mobile & Desktop)
-        const buttons = document.querySelectorAll('.action-btn');
-        
-        buttons.forEach(btn => {
-            btn.onclick = () => {
-                // Call the new Cart Engine
-                if (window.KynarCart) {
-                    window.KynarCart.add({
-                        id: id,
-                        title: data.title,
-                        price: data.price,
-                        meta: data.tag,
-                        icon: data.icon,
-                        bg: data.bg
-                    });
-                }
-            };
-        });
+      // Supabase Query
+      const { data: product, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-        // Desktop Button Injection (CSS Pseudo-element can't click, so we need a real button if we want desktop click)
-        // Correction from previous step: CSS ::after cannot be clicked.
-        // Let's inject a REAL button for Desktop into the Intel wrapper.
-        const desktopBtn = document.createElement('button');
-        desktopBtn.className = 'action-btn'; // Reuse class
-        desktopBtn.style.marginTop = '2rem';
-        desktopBtn.style.width = '100%';
-        desktopBtn.innerText = `Add to Cart • ${data.price}`;
-        desktopBtn.onclick = () => {
-             if (window.KynarCart) {
+      if (error || !product) {
+        document.getElementById('p-title').innerText = "System Not Found";
+        document.getElementById('p-desc').innerText = "This asset may have been archived.";
+        return;
+      }
+
+      // 3. INJECT DATA
+      const visuals = getVisuals(product.category);
+      const isFree = product.price === 0;
+      const displayPrice = isFree ? "Free" : `£${Number(product.price).toFixed(2)}`;
+
+      document.getElementById('p-title').innerText = product.title;
+      document.getElementById('p-price').innerText = displayPrice;
+      document.getElementById('p-price-sticky').innerText = displayPrice;
+      document.getElementById('p-desc').innerText = product.description;
+      document.getElementById('p-long-desc').innerText = product.description; // Duplicate for now
+      document.getElementById('p-tag').innerText = product.category ? product.category.toUpperCase() : "DIGITAL ASSET";
+      
+      // Visuals
+      document.getElementById('p-icon').innerText = visuals.icon;
+      document.getElementById('p-bg').style.background = visuals.bg;
+
+      // 4. BUTTON LOGIC (Free = Download, Paid = Cart)
+      const btn = document.getElementById('main-action-btn');
+      
+      if (isFree) {
+        btn.innerText = "Download Securely";
+        btn.style.background = "var(--ink-display)";
+        btn.onclick = () => {
+             // Uses the global download function from vault.js
+             if(window.downloadProduct) window.downloadProduct(product.file_path);
+             else alert("Vault System Loading...");
+        };
+      } else {
+        btn.innerText = "Add to Cart";
+        btn.onclick = () => {
+            if (window.KynarCart) {
                 window.KynarCart.add({
-                    id: id,
-                    title: data.title,
-                    price: data.price,
-                    meta: data.tag,
-                    icon: data.icon,
-                    bg: data.bg
+                    id: String(product.id),
+                    title: product.title,
+                    price: product.price,
+                    meta: product.category,
+                    icon: visuals.icon,
+                    bg: visuals.bg
                 });
             }
         };
-        
-        // Only append if screen is wide (or just append and let CSS handle display)
-        if(window.innerWidth > 800) {
-            document.querySelector('.product-intel').appendChild(desktopBtn);
-        }
       }
+
+      // 5. Inject Desktop Button (Clone logic)
+      if(window.innerWidth > 800) {
+          const desktopBtn = btn.cloneNode(true);
+          desktopBtn.style.marginTop = '2rem';
+          desktopBtn.style.width = '100%';
+          // Re-attach listener because cloneNode doesn't copy listeners
+          desktopBtn.onclick = btn.onclick; 
+          document.querySelector('.product-intel').appendChild(desktopBtn);
+      }
+
     });
-
   </script>
-  
-  <div id="interface-overlay"></div>
 
-<aside id="nav-drawer" class="drawer-panel drawer-left">
-    <div class="drawer-header">
-        <span class="drawer-title">Menu</span>
-        <button class="close-btn" onclick="toggleNav()">✕</button>
-    </div>
-    <nav class="drawer-content">
-        <a href="shop.html" class="drawer-link">Marketplace</a>
-        <a href="library.html" class="drawer-link">Manuals</a>
-        <a href="newsletter.html" class="drawer-link">The Network</a>
-        <a href="account.html" class="drawer-link">Member Vault</a>
-    </nav>
-    <div class="drawer-footer">
-        <div class="status-chip">
-            <span class="live-beacon"></span> Systems Active
-        </div>
-    </div>
-</aside>
+  <script>
+    const overlay = document.getElementById('interface-overlay');
+    const navDrawer = document.getElementById('nav-drawer');
+    const cartDrawer = document.getElementById('cart-drawer');
 
-<aside id="cart-drawer" class="drawer-panel drawer-right">
-    <div class="drawer-header">
-        <span class="drawer-title">Cart (2)</span>
-        <button class="close-btn" onclick="toggleCart()">✕</button>
-    </div>
-    
-    <div class="drawer-content">
-        <div class="cart-item">
-            <div class="cart-thumb" style="background: var(--grad-gold);">⚡</div>
-            <div class="cart-details">
-                <div class="cart-name">Ultimate Notion OS</div>
-                <div class="cart-meta">System Architecture</div>
-                <div class="cart-price">£24.00</div>
-            </div>
-            <button class="cart-remove">×</button>
-        </div>
-        
-        <div class="cart-item">
-            <div class="cart-thumb" style="background: var(--bg-canvas);">🎨</div>
-            <div class="cart-details">
-                <div class="cart-name">Kids Activity Pack</div>
-                <div class="cart-meta">Digital Asset</div>
-                <div class="cart-price">Free</div>
-            </div>
-            <button class="cart-remove">×</button>
-        </div>
-    </div>
+    window.toggleNav = function() {
+      const isActive = navDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        navDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      }
+    };
 
-    <div class="drawer-footer">
-        <div class="cart-total-row">
-            <span>Subtotal</span>
-            <span style="font-weight: 800; color: var(--ink-display);">£24.00</span>
-        </div>
-        <button class="dock-btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            Secure Checkout
-        </button>
-    </div>
-</aside>
+    window.toggleCart = function() {
+      const isActive = cartDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        cartDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
 
+    window.closeAllDrawers = function() {
+      if(navDrawer) navDrawer.classList.remove('active');
+      if(cartDrawer) cartDrawer.classList.remove('active');
+      if(overlay) overlay.classList.remove('active');
+      document.body.style.overflow = ''; 
+    };
+
+    if(overlay) overlay.addEventListener('click', closeAllDrawers);
+  </script>
 
 </body>
 </html>

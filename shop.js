@@ -61,7 +61,7 @@ const ShopSystem = (() => {
       'ai': '🤖',
       'education': '📅'
     };
-    return map[cat] || 'wm'; // Default icon
+    return map[cat] || '📦'; // Default icon
   }
 
   function getCategoryColor(cat) {

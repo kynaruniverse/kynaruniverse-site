@@ -7,6 +7,7 @@
   <meta name="description" content="Deployment manuals, configuration guides, and system walkthroughs." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -39,24 +40,23 @@
 
     <section class="manual-grid">
       
-      <a href="#" class="manual-card featured-manual">
+      <div class="manual-card featured-manual">
         <div class="manual-status public">Public Access</div>
         <div class="manual-icon">📁</div>
         <div class="manual-content">
           <span class="manual-id">DOC-001</span>
           <h2 class="manual-title">Quick Start Protocol</h2>
           <p class="manual-desc">The essential guide to authorizing, downloading, and deploying Kynar assets across your workstation.</p>
-          <button 
-   class="read-link" 
-   style="background:none; border:none; padding:0; cursor:pointer;"
-   onclick="downloadProduct('kynar-daily-planner.pdf')">
-   Initialize Guide →
-</button>
+          
+          <button class="read-link" style="background:white; color:var(--ink-display); border:none; padding:10px 20px; border-radius:99px; cursor:pointer; font-weight:800;" 
+                  onclick="if(window.downloadProduct) window.downloadProduct('kynar-daily-planner.pdf'); else alert('System Loading...');">
+             Initialize Guide →
+          </button>
 
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="manual-card">
+      <div class="manual-card">
         <div class="manual-status locked">Member Only</div>
         <div class="manual-icon">🔒</div>
         <div class="manual-content">
@@ -65,9 +65,9 @@
           <p class="manual-desc">Deep duplication and custom system setup for advanced users.</p>
           <span class="read-link locked-link">Unlock Access</span>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="manual-card">
+      <a href="#" class="manual-card" style="text-decoration:none;">
         <div class="manual-status public">Public Access</div>
         <div class="manual-icon">🤖</div>
         <div class="manual-content">
@@ -78,7 +78,7 @@
         </div>
       </a>
 
-      <a href="#" class="manual-card">
+      <div class="manual-card">
         <div class="manual-status locked">Member Only</div>
         <div class="manual-icon">⚡</div>
         <div class="manual-content">
@@ -87,7 +87,7 @@
           <p class="manual-desc">Connecting APIs and setting up Zapier bridges.</p>
           <span class="read-link locked-link">Unlock Access</span>
         </div>
-      </a>
+      </div>
 
     </section>
 
@@ -100,13 +100,32 @@
   
   <div data-include="components/footer.html"></div>
   <div data-include="components/modals.html"></div>
+  <div id="interface-overlay"></div>
+
+  <aside id="nav-drawer" class="drawer-panel drawer-left">
+      <div class="drawer-header"><span class="drawer-title">Menu</span><button class="close-btn" onclick="toggleNav()">✕</button></div>
+      <nav class="drawer-content">
+          <a href="shop.html" class="drawer-link">Marketplace</a>
+          <a href="library.html" class="drawer-link" style="color: var(--accent-gold);">Manuals</a>
+          <a href="newsletter.html" class="drawer-link">The Network</a>
+          <a href="account.html" class="drawer-link">Member Vault</a>
+      </nav>
+  </aside>
+
+  <aside id="cart-drawer" class="drawer-panel drawer-right">
+      <div class="drawer-header"><span class="drawer-title">Cart</span><button class="close-btn" onclick="toggleCart()">✕</button></div>
+      <div class="drawer-content"></div>
+  </aside>
 
   <script src="core.js"></script>
   <script src="cart.js"></script>
   <script src="haptics.js"></script>
-  <script type="module" src="vault.js"></script>
-
   
+  <script type="module">
+      import './auth.js';
+      import './vault.js'; // Exposes window.downloadProduct
+  </script>
+
   <style>
     /* HEADER SECTION */
     .library-header {
@@ -272,12 +291,6 @@
       font-size: 0.8rem; font-weight: 800;
       color: var(--ink-display); text-transform: uppercase;
       letter-spacing: 0.05em;
-    }
-    
-    .featured-manual .read-link {
-        background: white; color: var(--ink-display);
-        padding: 10px 20px; border-radius: 99px;
-        align-self: flex-start;
     }
 
     .locked-link { color: var(--ink-muted); opacity: 0.7; }

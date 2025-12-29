@@ -7,6 +7,7 @@
   <meta name="description" content="Join the Kynar Network. Get system updates, free resources, and professional insights." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 
     <section class="auth-card-wrapper">
       <div class="auth-card">
-        <form id="newsletter-form" onsubmit="handleSubscribe(event)">
+        <form id="newsletter-form">
           <div class="input-group">
             <label class="input-label">Email Authorization</label>
             <div class="field-wrapper">
@@ -41,9 +42,11 @@
             </div>
           </div>
           
-          <button type="submit" class="auth-btn">
+          <button type="submit" class="auth-btn" id="sub-btn">
             Authorize Join <span class="arrow">→</span>
           </button>
+
+          <div id="sub-feedback" style="text-align:center; font-size:0.8rem; margin-top:1rem; min-height:20px;"></div>
 
           <div class="trust-row">
             <span>🔒 Secured</span>
@@ -111,9 +114,98 @@
   <script src="core.js"></script>
   <script src="cart.js"></script>
   <script src="haptics.js"></script>
+  
   <script type="module">
-    import './firebase-config.js';
+    import { supabase } from './supabase-config.js';
     import './auth.js';
+
+    // ⚡ REAL SUBSCRIPTION LOGIC
+    const form = document.getElementById('newsletter-form');
+    const input = document.getElementById('email-input');
+    const btn = document.getElementById('sub-btn');
+    const feedback = document.getElementById('sub-feedback');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = input.value;
+            
+            // 1. Loading State
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner" style="border-left-color:white; width:20px; height:20px;"></span> Processing...';
+            btn.style.opacity = '0.8';
+            btn.disabled = true;
+
+            try {
+                // 2. Insert to Supabase 'subscribers' table
+                const { error } = await supabase
+                    .from('subscribers')
+                    .insert([{ email: email }]);
+
+                if (error) throw error;
+
+                // 3. Success State
+                btn.innerHTML = 'Access Granted ✓';
+                btn.style.background = '#10B981'; // Emerald
+                btn.style.color = 'white';
+                feedback.textContent = "Welcome to the inner circle.";
+                feedback.style.color = "#10B981";
+                
+                // Haptics
+                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
+
+                // Reset after 3s
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = ""; // Reset to CSS default
+                    btn.style.color = "";
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    input.value = "";
+                }, 3000);
+
+            } catch (err) {
+                console.error("Sub Error:", err);
+                // Handle duplicate
+                if (err.code === '23505') {
+                    feedback.textContent = "You are already authorized.";
+                    feedback.style.color = "var(--accent-gold)";
+                    btn.innerHTML = 'Already Joined';
+                } else {
+                    feedback.textContent = "Connection Error. Try again.";
+                    feedback.style.color = "var(--accent-red)";
+                    btn.innerHTML = 'Failed ✕';
+                }
+                
+                // Reset
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
+
+    // Member Count Animation
+    document.addEventListener("DOMContentLoaded", () => {
+        const countEl = document.getElementById('member-count');
+        if (!countEl) return;
+
+        let count = 12420; 
+        countEl.innerText = count.toLocaleString() + "+";
+
+        setInterval(() => {
+            const fluctuation = Math.floor(Math.random() * 3) - 1; 
+            count += fluctuation;
+            countEl.style.transition = "opacity 0.3s ease";
+            countEl.style.opacity = "0.7";
+            setTimeout(() => {
+                countEl.innerText = count.toLocaleString() + "+";
+                countEl.style.opacity = "1";
+            }, 300);
+        }, 4500);
+    });
   </script>
 
   <style>
@@ -185,72 +277,5 @@
     .meta-tag { font-size: 0.65rem; color: var(--ink-muted); text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink-display); }
   </style>
-
-    <script>
-    // ═════════════════════════════════════════════════════════════════════
-    // NEWSLETTER LOGIC (Embedded for Performance)
-    // ═════════════════════════════════════════════════════════════════════
-
-    function handleSubscribe(e) {
-        e.preventDefault();
-        const btn = document.querySelector('.auth-btn');
-        const input = document.getElementById('email-input');
-        
-        if(input.value) {
-            // 1. UI: Transition to Loading
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="spinner" style="border-left-color:white; width:20px; height:20px;"></span> Authorizing...';
-            btn.style.opacity = '0.8';
-            btn.style.pointerEvents = 'none'; // Prevent double clicks
-            
-            // Haptics
-            if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(50);
-            
-            // 2. LOGIC: Simulate Secure Handshake
-            setTimeout(() => {
-                // Success State
-                btn.innerHTML = 'Access Granted ✓';
-                btn.style.background = '#10B981'; // Emerald Success
-                btn.style.color = 'white';
-                
-                // Store Auth Token (Your original logic)
-                localStorage.setItem("kynar_auth_token", "active");
-                console.log(`Kynar Network: Authorized ${input.value}`);
-
-                // Success Haptic
-                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
-                
-                // 3. REDIRECT: Go to Shop
-                setTimeout(() => {
-                    window.location.href = "shop.html";
-                }, 1200);
-            }, 1500);
-        }
-    }
-    
-    // Member Count Animation (Social Proof)
-    document.addEventListener("DOMContentLoaded", () => {
-        const countEl = document.getElementById('member-count');
-        if (!countEl) return;
-
-        let count = 12420; // Your base number
-        countEl.innerText = count.toLocaleString() + "+";
-
-        setInterval(() => {
-            // Subtle fluctuation logic
-            const fluctuation = Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
-            count += fluctuation;
-            
-            // Visual Pulse
-            countEl.style.transition = "opacity 0.3s ease";
-            countEl.style.opacity = "0.7";
-            
-            setTimeout(() => {
-                countEl.innerText = count.toLocaleString() + "+";
-                countEl.style.opacity = "1";
-            }, 300);
-        }, 4500);
-    });
-  </script>
 </body>
 </html>

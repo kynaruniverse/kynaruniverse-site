@@ -6,6 +6,7 @@
   <title>Kynar / Signal Interrupted</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -58,17 +59,50 @@
   <script src="haptics.js"></script>
   
   <script type="module">
-    import './firebase-config.js';
+    import { supabase } from './supabase-config.js';
     import './auth.js';
-  </script>
-  
-  <script>
+    
+    // Haptic Error Pulse (Mobile Feedback)
     document.addEventListener('DOMContentLoaded', () => {
-      // Haptic Error Pulse
       if (window.navigator && window.navigator.vibrate) {
         setTimeout(() => window.navigator.vibrate([30, 50, 30]), 500);
       }
     });
+  </script>
+
+  <script>
+    const overlay = document.getElementById('interface-overlay');
+    const navDrawer = document.getElementById('nav-drawer');
+    const cartDrawer = document.getElementById('cart-drawer');
+
+    window.toggleNav = function() {
+      const isActive = navDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        navDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      }
+    };
+
+    window.toggleCart = function() {
+      const isActive = cartDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        cartDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeAllDrawers = function() {
+      if(navDrawer) navDrawer.classList.remove('active');
+      if(cartDrawer) cartDrawer.classList.remove('active');
+      if(overlay) overlay.classList.remove('active');
+      document.body.style.overflow = ''; 
+    };
+
+    if(overlay) overlay.addEventListener('click', closeAllDrawers);
   </script>
 
   <style>
@@ -103,7 +137,7 @@
         justify-content: center; width: 100%; max-width: 500px;
     }
 
-    .btn-emerald { width: 100%; } /* Main CTA is wide */
+    .btn-emerald { width: 100%; }
     .btn-ghost { flex: 1; min-width: 140px; border: 1px solid var(--ink-border); }
   </style>
 </body>

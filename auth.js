@@ -1,37 +1,26 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * MODULE: KYNAR IDENTITY SERVICE (V2.0 - ROBUST SYNC)
+ * MODULE: KYNAR IDENTITY SERVICE (SUPABASE EDITION)
  * ══════════════════════════════════════════════════════════════════════════
- * @description Manages secure Firebase authentication via Event Delegation.
+ * @description Manages secure Supabase authentication via Event Delegation.
  */
 
-import { auth, db } from "./firebase-config.js";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import {
-  doc,
-  setDoc,
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { supabase } from './supabase-config.js';
 
 const KynarAuth = (() => {
   
   // 1. INITIALIZATION
   function init() {
     monitorAuthState();
-    bindGlobalEvents(); // New: Delegation Strategy
-    console.log("Kynar Identity: System Active");
+    bindGlobalEvents();
+    console.log("Kynar Identity: Supabase System Active");
   }
 
-  // 2. EVENT DELEGATION (The "Catch-All" Strategy)
-  // This ensures buttons work even if modals.html loads late.
+  // 2. EVENT DELEGATION
+  // Catches clicks/submits even if the Modal HTML is injected later
   function bindGlobalEvents() {
     
-    // Listen for ANY form submit on the page
+    // FORM SUBMITS
     document.addEventListener("submit", (e) => {
       if (e.target && e.target.id === "login-form") {
         handleLogin(e);
@@ -41,9 +30,8 @@ const KynarAuth = (() => {
       }
     });
 
-    // Listen for logout click anywhere
+    // CLICKS (Logout)
     document.addEventListener("click", (e) => {
-      // Handle ID or Class based logout buttons
       if (e.target && (e.target.id === "btn-logout" || e.target.closest("#btn-logout"))) {
         e.preventDefault();
         handleLogout();
@@ -52,6 +40,8 @@ const KynarAuth = (() => {
   }
 
   // 3. AUTHENTICATION LOGIC
+
+  // ➤ LOGIN
   async function handleLogin(e) {
     e.preventDefault();
     const email = document.getElementById("login-email").value;
@@ -61,17 +51,26 @@ const KynarAuth = (() => {
     setLoading(btn, true, "Authorizing...");
 
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: pass
+      });
+
+      if (error) throw error;
+
+      // Success
       closeAuthInterface();
       if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(50);
+      
     } catch (error) {
-      console.error("Kynar Auth Error:", error);
-      // Optional: Add a visual toast here instead of alert for better UX
-      alert("Authorization Failed: " + cleanError(error.message));
+      console.error("Login Error:", error.message);
+      alert("Authorization Failed: " + error.message);
+    } finally {
       setLoading(btn, false, "Authorize Entry");
     }
   }
 
+  // ➤ REGISTER
   async function handleRegister(e) {
     e.preventDefault();
     const name = document.getElementById("reg-name").value;
@@ -82,38 +81,41 @@ const KynarAuth = (() => {
     setLoading(btn, true, "Verifying Identity...");
 
     try {
-      // 1. Create Auth User
-      const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-      const user = userCred.user;
-
-      // 2. Update Profile Display Name
-      await updateProfile(user, { displayName: name });
-
-      // 3. Create Merchant Database Entry
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        name: name,
+      // 1. Create User in Supabase
+      // We pass 'full_name' in the options object so it saves to metadata immediately
+      const { data, error } = await supabase.auth.signUp({
         email: email,
-        status: "verified", 
-        tier: "standard", // Default tier
-        joinedDate: new Date().toISOString(),
+        password: pass,
+        options: {
+          data: {
+            full_name: name 
+          }
+        }
       });
 
+      if (error) throw error;
+
+      // 2. Success Feedback
+      alert("Registration Successful! Please check your email to confirm.");
       closeAuthInterface();
       if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
+
     } catch (error) {
-      console.error("Kynar Registration Error:", error);
-      alert("Registration Failed: " + cleanError(error.message));
+      console.error("Registration Error:", error.message);
+      alert("Registration Failed: " + error.message);
+    } finally {
       setLoading(btn, false, "Initialize Account");
     }
   }
 
+  // ➤ LOGOUT
   async function handleLogout() {
     if (confirm("Terminate secure session?")) {
       try {
-        await signOut(auth);
+        await supabase.auth.signOut();
+        // Clear any local storage flags
         localStorage.removeItem("kynar_auth_token");
-        window.location.reload(); // Refresh to reset state
+        window.location.reload(); 
       } catch (error) {
         console.error("Logout Error:", error);
       }
@@ -122,76 +124,88 @@ const KynarAuth = (() => {
 
   // 4. REACTIVE UI ENGINE
   function monitorAuthState() {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        localStorage.setItem("kynar_auth_token", "active");
-        updateAccountUI(user);
-        
-        // Broadcast Event for other modules (like Vault)
-        document.dispatchEvent(new CustomEvent("KynarAuthChanged", { detail: { user } }));
-      } else {
-        localStorage.removeItem("kynar_auth_token");
-        resetAccountUI();
-        document.dispatchEvent(new CustomEvent("KynarAuthChanged", { detail: { user: null } }));
-      }
+    // A. Check current session on load
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      handleSessionChange(session);
+    });
+
+    // B. Listen for changes (Login/Logout events)
+    supabase.auth.onAuthStateChange((_event, session) => {
+      handleSessionChange(session);
     });
   }
 
-  // Updates the Account Page UI (if present)
+  function handleSessionChange(session) {
+    const user = session?.user;
+
+    if (user) {
+      localStorage.setItem("kynar_auth_token", "active");
+      updateAccountUI(user);
+      
+      // Broadcast Event for other modules (like Vault or Checkout)
+      document.dispatchEvent(new CustomEvent("KynarAuthChanged", { detail: { user } }));
+    } else {
+      localStorage.removeItem("kynar_auth_token");
+      resetAccountUI();
+      document.dispatchEvent(new CustomEvent("KynarAuthChanged", { detail: { user: null } }));
+    }
+  }
+
+  // Updates the Account Page UI
   function updateAccountUI(user) {
     const guestState = document.getElementById("state-guest");
     const userState = document.getElementById("state-user");
     const greeting = document.getElementById("user-greeting");
     const emailDisplay = document.getElementById("user-email-display");
-    const avatar = document.getElementById("user-avatar-text");
+    const avatar = document.getElementById("user-avatar-text"); // If you use avatars
 
-    if (guestState && userState) {
-      guestState.style.display = "none";
-      userState.style.display = "block";
-    }
+    // Toggle Visibility
+    if (guestState) guestState.style.display = "none";
+    if (userState) userState.style.display = "block";
 
-    if (greeting) greeting.textContent = user.displayName || "Verified Member";
+    // Update Text
+    // Supabase stores extra data in user_metadata
+    const displayName = user.user_metadata.full_name || "Verified Member";
+
+    if (greeting) greeting.textContent = displayName;
     if (emailDisplay) emailDisplay.textContent = `ID: ${user.email}`;
-    if (avatar && user.displayName) avatar.textContent = user.displayName.charAt(0).toUpperCase();
+    if (avatar && displayName) avatar.textContent = displayName.charAt(0).toUpperCase();
   }
 
   function resetAccountUI() {
     const guestState = document.getElementById("state-guest");
     const userState = document.getElementById("state-user");
 
-    if (guestState && userState) {
-      guestState.style.display = "flex"; // or block depending on layout
-      userState.style.display = "none";
-    }
+    if (guestState) guestState.style.display = "block"; // or flex
+    if (userState) userState.style.display = "none";
   }
 
   // 5. UTILITIES
   function closeAuthInterface() {
-    // Utilize the helper we defined in modals.html
+    // Helper from core.js or manual fallback
     if (window.KynarCore && window.KynarCore.closeAuthModal) {
       window.KynarCore.closeAuthModal();
     } else {
-      // Fallback: Remove class manually
       const overlay = document.getElementById("modal-overlay");
+      const modal = document.querySelector(".auth-modal"); // Assuming class name
       if (overlay) overlay.classList.remove('is-visible');
+      if (modal) modal.classList.remove('is-visible');
       document.body.style.overflow = '';
     }
   }
 
   function setLoading(btn, isLoading, text) {
+    if (!btn) return;
     if (isLoading) {
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="width:16px; height:16px; border-top-color:white; border-left-color: rgba(255,255,255,0.3); margin-right:8px; display:inline-block;"></span> ${text}`;
+      btn.dataset.originalText = btn.textContent; // Store original text
+      btn.innerHTML = `<span class="spinner" style="width:16px; height:16px; border-top-color:white; border-left-color: rgba(255,255,255,0.3); margin-right:8px; display:inline-block; border-radius:50%; border-style:solid; border-width:2px; animation:spin 1s linear infinite;"></span> ${text}`;
       btn.style.opacity = "0.8";
     } else {
       btn.disabled = false;
-      btn.textContent = text;
+      btn.textContent = btn.dataset.originalText || text;
       btn.style.opacity = "1";
     }
-  }
-
-  function cleanError(msg) {
-    return msg.replace("Firebase: ", "").replace("auth/", "").replace(/-/g, " ");
   }
 
   return { init };

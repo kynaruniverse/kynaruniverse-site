@@ -1,4 +1,4 @@
-<div id="modal-overlay" aria-hidden="true">
+<div id="auth-modal" class="auth-modal" aria-hidden="true">
   <div id="modal-card">
     
     <button id="close-access" aria-label="Close Modal" onclick="KynarCore.closeAuthModal()">
@@ -42,10 +42,31 @@
 </div>
 
 <style>
-    /* Modal Container */
+    /* CONTAINER PHYSICS 
+       Positioned Fixed center, hidden by default.
+       Activated by core.js adding .active class
+    */
+    .auth-modal {
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        z-index: 3001; /* Above interface-overlay (3000) */
+        width: 100%; max-width: 420px;
+        padding: 1rem;
+        
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .auth-modal.active {
+        opacity: 1; visibility: visible; pointer-events: all;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Modal Card */
     #modal-card {
         background: white;
-        width: 100%; max-width: 420px;
+        width: 100%;
         border-radius: 24px;
         padding: 2.5rem;
         position: relative;
@@ -65,7 +86,7 @@
     }
     #close-access:hover { transform: scale(1.1); }
 
-    /* Header */
+    /* Visuals */
     .modal-header { text-align: center; margin-bottom: 2rem; }
     .modal-icon {
         width: 64px; height: 64px;
@@ -123,6 +144,7 @@
 </style>
 
 <script>
+  // UI Switcher Logic
   window.KynarModal = {
     switch(mode) {
       const isLogin = mode === 'login';
@@ -133,21 +155,16 @@
           loginForm.style.display = isLogin ? 'block' : 'none';
           regForm.style.display = isLogin ? 'none' : 'block';
           
-          document.getElementById('tab-login').classList.toggle('active', isLogin);
-          document.getElementById('tab-register').classList.toggle('active', !isLogin);
+          const tabL = document.getElementById('tab-login');
+          const tabR = document.getElementById('tab-register');
+          if(tabL) tabL.classList.toggle('active', isLogin);
+          if(tabR) tabR.classList.toggle('active', !isLogin);
           
-          document.getElementById('access-title').innerText = isLogin ? 'Member Access' : 'New Identity';
-          document.getElementById('access-subtitle').innerText = isLogin ? 'Enter your credentials to access the vault.' : 'Create your secure Kynar profile.';
+          const title = document.getElementById('access-title');
+          const sub = document.getElementById('access-subtitle');
+          if(title) title.innerText = isLogin ? 'Member Access' : 'New Identity';
+          if(sub) sub.innerText = isLogin ? 'Enter your credentials to access the vault.' : 'Create your secure Kynar profile.';
       }
     }
   };
-  
-  // Close logic is handled by core.js via window.closeAllDrawers or specific ID clicks
-  // But we add a helper just in case
-  window.KynarCore = window.KynarCore || {};
-  window.KynarCore.closeAuthModal = function() {
-      const overlay = document.getElementById('modal-overlay');
-      if(overlay) overlay.classList.remove('is-visible'); // or .active depending on CSS
-      if(window.closeAllDrawers) window.closeAllDrawers();
-  }
 </script>

@@ -7,6 +7,8 @@
   <meta name="description" content="Access your Kynar Vault and manage your digital systems." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
       <p class="guest-msg">
         Access to digital assets is restricted to verified members. Please sign in to unlock your vault.
       </p>
-      <button class="trigger-access dock-btn btn-gold" onclick="KynarCore.openAuthModal()">
+      <button class="trigger-access dock-btn btn-gold" id="login-trigger-btn">
           Sign In / Register
       </button>
     </div>
@@ -100,48 +102,140 @@
   <script src="haptics.js"></script>
   
   <script type="module">
-    import "./firebase-config.js";
-    import "./auth.js";
+    import { supabase } from './supabase-config.js';
+    import './auth.js'; 
+    import './vault.js'; // Helper for secure downloads
+
+    // 1. PAGE LOAD LOGIC
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Wait briefly for auth to initialize
+        const { data: { user } } = await supabase.auth.getUser();
+        
+        if (user) {
+            renderUser(user);
+            fetchPurchases(user.id);
+        } else {
+            // Show Guest State
+            document.getElementById("state-guest").style.display = "block";
+            document.getElementById("state-user").style.display = "none";
+        }
+
+        // Attach Login Trigger manually if Core doesn't catch it
+        const loginBtn = document.getElementById('login-trigger-btn');
+        if(loginBtn) {
+            loginBtn.onclick = () => {
+                if(window.KynarCore) window.KynarCore.openAuthModal();
+            }
+        }
+    });
+
+    // 2. RENDER USER INFO
+    function renderUser(user) {
+        document.getElementById("state-guest").style.display = "none";
+        document.getElementById("state-user").style.display = "block";
+        
+        document.getElementById("user-email-display").innerText = `ID: ${user.email}`;
+        if(user.user_metadata && user.user_metadata.full_name) {
+             document.getElementById("user-greeting").innerText = `Welcome, ${user.user_metadata.full_name}`;
+        }
+    }
+
+    // 3. FETCH PURCHASES (THE REAL DATABASE)
+    async function fetchPurchases(userId) {
+        const list = document.getElementById("vault-list");
+        const emptyState = document.getElementById("vault-empty");
+
+        try {
+            // Join 'purchases' with 'products' to get details
+            // Supabase Syntax: select(*, products(*))
+            const { data, error } = await supabase
+                .from('purchases')
+                .select(`
+                    created_at,
+                    products (
+                        title,
+                        file_path,
+                        category
+                    )
+                `)
+                .eq('user_id', userId)
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            if (!data || data.length === 0) {
+                list.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            // Render List
+            list.innerHTML = data.map(item => {
+                const product = item.products; // Linked data
+                const date = new Date(item.created_at).toLocaleDateString();
+                const icon = getCategoryIcon(product.category);
+
+                return `
+                    <div class="asset-card">
+                        <div class="asset-icon" style="background: var(--ink-display);">${icon}</div>
+                        <div class="asset-details">
+                            <div class="asset-title">${product.title}</div>
+                            <div class="asset-meta">Authorized: ${date}</div>
+                        </div>
+                        <button class="download-btn" onclick="window.downloadProduct('${product.file_path}')">
+                            Download ↓
+                        </button>
+                    </div>
+                `;
+            }).join("");
+
+        } catch (err) {
+            console.error("Vault Error:", err);
+            list.innerHTML = `<div style="text-align:center; color:red;">Error syncing vault.</div>`;
+        }
+    }
+
+    // Helper: Reuse category icons
+    function getCategoryIcon(cat) {
+        const map = { 'systems': '⚡', 'creative': '🎨', 'business': '🚀', 'ai': '🤖', 'education': '📅' };
+        return map[cat] || '📦';
+    }
+
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        // Wait for Auth to confirm user state, then render vault
-        setTimeout(renderVault, 1000); 
-    });
+    const overlay = document.getElementById('interface-overlay');
+    const navDrawer = document.getElementById('nav-drawer');
+    const cartDrawer = document.getElementById('cart-drawer');
 
-    function renderVault() {
-        const list = document.getElementById("vault-list");
-        const emptyState = document.getElementById("vault-empty");
-        
-        // Fetch from "Fake" Database (LocalStorage)
-        // In a real app, this would query Firebase Firestore
-        const vaultItems = JSON.parse(localStorage.getItem("kynar_vault") || "[]");
+    window.toggleNav = function() {
+      const isActive = navDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        navDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      }
+    };
 
-        if (vaultItems.length === 0) {
-            list.style.display = 'none';
-            emptyState.style.display = 'block';
-            return;
-        }
+    window.toggleCart = function() {
+      const isActive = cartDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        cartDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
 
-        list.innerHTML = vaultItems.map(item => `
-            <div class="asset-card">
-                <div class="asset-icon" style="background: ${item.bg || 'var(--ink-display)'}">${item.icon || '📦'}</div>
-                <div class="asset-details">
-                    <div class="asset-title">${item.title}</div>
-                    <div class="asset-meta">Authorized: ${item.authorizedDate || 'Just now'}</div>
-                </div>
-                <button class="download-btn" onclick="downloadAsset('${item.title}')">
-                    Download ↓
-                </button>
-            </div>
-        `).join("");
-    }
+    window.closeAllDrawers = function() {
+      if(navDrawer) navDrawer.classList.remove('active');
+      if(cartDrawer) cartDrawer.classList.remove('active');
+      if(overlay) overlay.classList.remove('active');
+      document.body.style.overflow = ''; 
+    };
 
-    window.downloadAsset = (title) => {
-        alert(`Downloading secure package for: ${title}`);
-        if(window.navigator.vibrate) window.navigator.vibrate(50);
-    }
+    if(overlay) overlay.addEventListener('click', closeAllDrawers);
   </script>
 
   <style>

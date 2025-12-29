@@ -1,9 +1,9 @@
 /**
  * ══════════════════════════════════════════════════════════════════════════
- * MODULE: KYNAR MARKETPLACE CORE (V2.0 - VISUALFORGE SYNC)
+ * MODULE: KYNAR MARKETPLACE CORE (V2.1 - SUPABASE INTEGRATED)
  * ══════════════════════════════════════════════════════════════════════════
  * @description The central nervous system. Manages component injection,
- * global drawer physics, and scroll interactions.
+ * global drawer physics, scroll interactions, and Auth Modals.
  */
 
 const KynarCore = {
@@ -22,6 +22,7 @@ const KynarCore = {
           
           // Dispatch Signal: "Header is ready, attach listeners now"
           if (file.includes("header")) document.dispatchEvent(new Event("KynarHeaderLoaded"));
+          if (file.includes("modals")) document.dispatchEvent(new Event("KynarModalsLoaded"));
         }
       } catch (err) {
         console.error(`Kynar Core: Error loading ${file}`, err);
@@ -79,6 +80,11 @@ const KynarCore = {
     window.closeAllDrawers = function() {
       if(navDrawer) navDrawer.classList.remove('active');
       if(cartDrawer) cartDrawer.classList.remove('active');
+      
+      // Close Modals too
+      const activeModal = document.querySelector('.auth-modal.active');
+      if(activeModal) activeModal.classList.remove('active');
+      
       if(overlay) overlay.classList.remove('active');
       document.body.style.overflow = ''; // Release Scroll
     };
@@ -99,9 +105,12 @@ const KynarCore = {
   // 3. SCROLL INTELLIGENCE
   initScrollEffects() {
     // A. Scroll Progress Bar
-    const progressBar = document.createElement('div');
-    progressBar.id = 'scroll-indicator';
-    document.body.appendChild(progressBar);
+    let progressBar = document.getElementById('scroll-indicator');
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.id = 'scroll-indicator';
+        document.body.appendChild(progressBar);
+    }
 
     // B. Header Hide/Show Logic
     let lastScrollY = window.scrollY;
@@ -118,18 +127,56 @@ const KynarCore = {
       if (!header || document.body.style.overflow === "hidden") return;
 
       if (window.scrollY > lastScrollY && window.scrollY > 100) {
-        header.classList.add('header-hidden'); // CSS class needed in styles
+        header.classList.add('header-hidden');
       } else {
         header.classList.remove('header-hidden');
       }
       lastScrollY = window.scrollY;
     }, { passive: true });
+  },
+
+  // 4. MODAL MANAGER (Required for Auth)
+  openAuthModal(type = 'login') {
+    window.closeAllDrawers(); // Close nav/cart first
+    
+    // We expect modals.html to have injected a div with id="auth-modal"
+    const modal = document.getElementById('auth-modal');
+    const overlay = document.getElementById('interface-overlay');
+    
+    if (modal && overlay) {
+      modal.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Switch tab based on type ('login' or 'register')
+      const loginTab = document.getElementById('tab-login');
+      const regTab = document.getElementById('tab-register');
+      const loginForm = document.getElementById('login-form');
+      const regForm = document.getElementById('register-form');
+
+      if (type === 'register' && regTab && loginTab) {
+          regTab.click(); // Simulate click on register tab
+      } else if (loginTab) {
+          loginTab.click(); // Default to login
+      }
+    } else {
+      console.warn("Auth Modal not found in DOM yet.");
+    }
+  },
+
+  closeAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    const overlay = document.getElementById('interface-overlay');
+    
+    if (modal) modal.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
   }
 };
 
-// 4. IGNITION SEQUENCE
+// 5. IGNITION SEQUENCE
 document.addEventListener("DOMContentLoaded", async () => {
-  // Step 1: inject the HTML (Header, Footer)
+  // Step 1: inject the HTML (Header, Footer, Modals)
   await KynarCore.loadComponents();
   
   // Step 2: Initialize the Drawers (Now that elements exist)
@@ -138,8 +185,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Step 3: Start Scroll Effects
   KynarCore.initScrollEffects();
   
-  console.log("VisualForge System: Kynar Core V2 Online");
+  console.log("VisualForge System: Kynar Core V2.1 Online");
 });
 
-// Export
+// Export Global
 window.KynarCore = KynarCore;

@@ -8,14 +8,14 @@
         High-performance digital systems for creators, entrepreneurs, and professional workflows.
       </p>
 
-      <form class="sub-form" action="#" method="POST">
+      <form class="sub-form" id="footer-sub-form">
         <div class="input-wrapper">
-          <input type="email" placeholder="Enter your email..." required class="sub-input">
-          <button type="submit" class="sub-btn" aria-label="Subscribe">
+          <input type="email" id="footer-email" placeholder="Enter your email..." required class="sub-input">
+          <button type="submit" class="sub-btn" id="footer-sub-btn" aria-label="Subscribe">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
-        <span class="sub-note">Join the network. No spam, ever.</span>
+        <span class="sub-note" id="footer-msg">Join the network. No spam, ever.</span>
       </form>
       
       <div class="social-row">
@@ -59,9 +59,58 @@
   </div>
 </footer>
 
-<script>
-  (function() {
-    const el = document.getElementById("year-display");
-    if(el) el.textContent = new Date().getFullYear();
-  })();
+<script type="module">
+  import { supabase } from './supabase-config.js';
+
+  // 1. Year Updater
+  const yearEl = document.getElementById("year-display");
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // 2. Newsletter Logic
+  const form = document.getElementById("footer-sub-form");
+  const msg = document.getElementById("footer-msg");
+  const btn = document.getElementById("footer-sub-btn");
+  const input = document.getElementById("footer-email");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = input.value;
+
+      // UI Loading
+      btn.innerHTML = `<span class="spinner" style="width:12px; height:12px; border-width:2px;"></span>`;
+      btn.disabled = true;
+
+      try {
+        // Insert into Supabase
+        const { error } = await supabase
+          .from('subscribers')
+          .insert([{ email: email }]);
+
+        if (error) throw error;
+
+        // Success State
+        msg.textContent = "Welcome to the network.";
+        msg.style.color = "var(--accent-gold)";
+        input.value = "";
+        btn.innerHTML = "✓";
+        
+      } catch (err) {
+        console.error("Sub Error:", err);
+        // If error is duplicate key (already subscribed), treat as success
+        if (err.code === '23505') {
+            msg.textContent = "You are already on the list.";
+        } else {
+            msg.textContent = "Connection failed. Try again.";
+            msg.style.color = "var(--accent-red)";
+        }
+        btn.innerHTML = "✕";
+      } finally {
+        setTimeout(() => {
+            btn.disabled = false;
+            if(btn.innerHTML === "✕") btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
+        }, 3000);
+      }
+    });
+  }
 </script>

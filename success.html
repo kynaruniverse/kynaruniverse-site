@@ -7,6 +7,7 @@
   <meta name="description" content="Transaction authorized. Access your Kynar digital assets." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
       </div>
 
       <div class="success-text">
-          <div class="status-pill-success">Transaction 0x9928-A Authorized</div>
+          <div class="status-pill-success">Transaction Authorized</div>
           <h1 class="text-display glass-title">System Unlocked</h1>
           <p class="text-sub">
             Your digital assets have been encrypted and transferred to your private vault. 
@@ -65,9 +66,13 @@
   <script src="core.js"></script>
   <script src="cart.js"></script>
   <script src="haptics.js"></script>
+  
   <script type="module">
-    import './firebase-config.js';
+    import { supabase } from './supabase-config.js';
     import './auth.js';
+    
+    // Clear cart on success page load (Redundant safety check)
+    if(window.KynarCart) window.KynarCart.clear();
   </script>
   
   <div id="interface-overlay"></div>
@@ -189,26 +194,21 @@
           const p = document.createElement('div');
           p.className = 'confetti-piece';
           
-          // Randomize Physics
           p.style.left = Math.random() * 100 + 'vw';
           p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
           p.style.opacity = Math.random();
           p.style.width = (Math.random() * 6 + 4) + 'px';
           p.style.height = p.style.width;
           
-          // Speed variation
           const duration = Math.random() * 3 + 2; 
           p.style.animationDuration = duration + 's';
           p.style.animationDelay = Math.random() * 1 + 's';
           
           document.body.appendChild(p);
-          
-          // Cleanup
           setTimeout(() => p.remove(), duration * 1000 + 1000);
         }
       };
 
-      // Trigger animation
       setTimeout(createParticles, 300);
     });
   </script>

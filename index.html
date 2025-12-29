@@ -13,6 +13,8 @@
   <meta property="og:title" content="Kynar Marketplace" />
   <meta property="og:description" content="Shop high-quality digital systems and creative assets." />
   <meta property="og:image" content="https://kynaruniverse.co.uk/assets/social-card.jpg" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -21,55 +23,41 @@
   <main class="app-container">
     
     <section class="hero-depth" style="margin-top: 2rem; margin-bottom: 4rem;">
-  <div class="hero-content hero-group" id="hero-trigger">
-    
-    <div class="status-chip">
-      <span class="live-beacon"></span>
-      <span><span id="live-count">1,420</span> Systems Active</span>
-    </div>
-
-    <h1 class="text-display glass-title" style="margin-bottom: 1rem;">
-      The Future of<br />Digital Systems
-    </h1>
-    
-    <p class="text-sub">
-      A curated destination for high-performance assets. Discover Notion architectures, 
-      professional guides, and creative toolkits designed for scale.
-    </p>
-
-  </div>
-</section>
-
+      <div class="hero-content hero-group" id="hero-trigger">
+        <div class="status-chip">
+          <span class="live-beacon"></span>
+          <span><span id="live-count">1,420</span> Systems Active</span>
+        </div>
+        <h1 class="text-display glass-title" style="margin-bottom: 1rem;">
+          The Future of<br />Digital Systems
+        </h1>
+        <p class="text-sub">
+          A curated destination for high-performance assets. Discover Notion architectures, 
+          professional guides, and creative toolkits designed for scale.
+        </p>
+      </div>
+    </section>
 
     <section class="twin-grid" style="margin-bottom: 3.5rem;">
-      <a class="feature-card glimmer-card" href="shop.html?filter=productivity" style="background: var(--grad-emerald); border: none; text-align: left; padding: 2.5rem 2rem; position: relative;">
-  <div class="feature-icon" style="font-size: 2.5rem; margin-bottom: 1.5rem; transform-origin: left center;">⚡</div>
-  <div>
-    <h2 style="font-family: var(--font-display); color: white; font-size: 1.8rem; margin-bottom: 0.5rem;">Productivity</h2>
-    <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.4;">Master your workflow with Notion OS.</p>
-  </div>
-</a>
+      <a class="feature-card glimmer-card" href="shop.html?filter=systems" style="background: var(--grad-emerald); border: none; text-align: left; padding: 2.5rem 2rem; position: relative;">
+        <div class="feature-icon" style="font-size: 2.5rem; margin-bottom: 1.5rem; transform-origin: left center;">⚡</div>
+        <div>
+          <h2 style="font-family: var(--font-display); color: white; font-size: 1.8rem; margin-bottom: 0.5rem;">Productivity</h2>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.4;">Master your workflow with Notion OS.</p>
+        </div>
+      </a>
 
-<a class="feature-card" href="shop.html?filter=creative" style="background: white; border: 1px solid var(--ink-border); text-align: left; padding: 2.5rem 2rem;">
-  <div class="feature-icon" style="font-size: 2.5rem; margin-bottom: 1.5rem;">🎨</div>
-  <div>
-    <h2 style="font-family: var(--font-display); color: var(--ink-display); font-size: 1.8rem; margin-bottom: 0.5rem;">Creative</h2>
-    <p style="color: var(--ink-muted); font-size: 0.95rem; line-height: 1.4;">Professional assets for digital creators.</p>
-  </div>
-</a>
-
+      <a class="feature-card" href="shop.html?filter=creative" style="background: white; border: 1px solid var(--ink-border); text-align: left; padding: 2.5rem 2rem;">
+        <div class="feature-icon" style="font-size: 2.5rem; margin-bottom: 1.5rem;">🎨</div>
+        <div>
+          <h2 style="font-family: var(--font-display); color: var(--ink-display); font-size: 1.8rem; margin-bottom: 0.5rem;">Creative</h2>
+          <p style="color: var(--ink-muted); font-size: 0.95rem; line-height: 1.4;">Professional assets for digital creators.</p>
+        </div>
+      </a>
     </section>
 
     <section style="margin-bottom: 3.5rem;">
-      <div 
-        class="scroll-stream" 
-        style="
-          gap: 0.75rem; 
-          padding-bottom: 1rem;
-          margin: 0 -1.25rem;
-          padding-left: 1.25rem;
-        "
-      >
+      <div class="scroll-stream" style="gap: 0.75rem; padding-bottom: 1rem; margin: 0 -1.25rem; padding-left: 1.25rem;">
         <a class="dock-btn" href="shop.html" style="background: var(--grad-gold); height: 42px; font-size: 0.75rem;">Explore Catalog</a>
         <a class="dock-btn" href="shop.html?tag=business" style="background: white; color: var(--ink-display); border: 1px solid var(--ink-border); height: 42px; font-size: 0.75rem;">Business</a>
         <a class="dock-btn" href="shop.html?tag=education" style="background: white; color: var(--ink-display); border: 1px solid var(--ink-border); height: 42px; font-size: 0.75rem;">Education</a>
@@ -80,68 +68,9 @@
     <section style="margin-bottom: 4rem;">
       <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--ink-display);">Trending Systems</h3>
       
-<div class="scroll-stream" style="padding-bottom: 2rem; gap: 1.5rem;">
-  
-    <a class="stream-card product-card-reveal" href="product.html?id=prod_001" style="min-width: 260px; padding: 0;">
-    <div style="overflow: hidden; position: relative;"> 
-        <div class="card-visual" style="background: var(--grad-gold);">⚡</div>
-        
-        <div class="qv-overlay">
-            <span class="qv-btn">QUICK VIEW</span>
-        </div>
-    </div>
-    
-    <div class="card-meta">
-      <div style="font-size: 0.65rem; color: var(--accent-gold); font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">
-        Top Seller
+      <div class="scroll-stream" id="trending-stream" style="padding-bottom: 2rem; gap: 1.5rem;">
+         <div class="spinner" style="margin: 2rem auto;"></div>
       </div>
-      <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-display); line-height: 1.2;">
-        Ultimate Notion OS
-      </div>
-    </div>
-  </a>
-  
-  <a class="stream-card product-card-reveal" href="product.html?id=prod_002" style="min-width: 260px; padding: 0;">
-    <div style="overflow: hidden; position: relative;">
-        <div class="card-visual" style="background: var(--bg-canvas);">🎨</div>
-        
-        <div class="qv-overlay">
-            <span class="qv-btn">QUICK VIEW</span>
-        </div>
-    </div>
-    
-    <div class="card-meta">
-      <div style="font-size: 0.65rem; color: var(--ink-muted); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">
-        Printable Asset
-      </div>
-      <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-display); line-height: 1.2;">
-        Kids Activity Pack
-      </div>
-    </div>
-  </a>
-
-  <a class="stream-card product-card-reveal" href="product.html?id=prod_003" style="min-width: 260px; padding: 0;">
-    <div style="overflow: hidden; position: relative;">
-        <div class="card-visual" style="background: #e0f2f1; color: #004d40;">📊</div>
-        
-        <div class="qv-overlay">
-            <span class="qv-btn">QUICK VIEW</span>
-        </div>
-    </div>
-    
-    <div class="card-meta">
-      <div style="font-size: 0.65rem; color: #00897b; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">
-        Finance
-      </div>
-      <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-display); line-height: 1.2;">
-        Freelance Tracker
-      </div>
-    </div>
-  </a>
-
-  
-</div>
-
     </section>
     
     <section style="margin-top: 2rem; margin-bottom: 5rem;">
@@ -159,162 +88,162 @@
   
   <div data-include="components/footer.html"></div>
   <div data-include="components/modals.html"></div>
-  
+  <div id="interface-overlay"></div>
+
+  <aside id="nav-drawer" class="drawer-panel drawer-left">
+      <div class="drawer-header">
+          <span class="drawer-title">Menu</span>
+          <button class="close-btn" onclick="toggleNav()">✕</button>
+      </div>
+      <nav class="drawer-content">
+          <a href="shop.html" class="drawer-link">Marketplace</a>
+          <a href="library.html" class="drawer-link">Manuals</a>
+          <a href="newsletter.html" class="drawer-link">The Network</a>
+          <a href="account.html" class="drawer-link">Member Vault</a>
+      </nav>
+      <div class="drawer-footer">
+          <div class="status-chip"><span class="live-beacon"></span> Systems Active</div>
+      </div>
+  </aside>
+
+  <aside id="cart-drawer" class="drawer-panel drawer-right">
+      <div class="drawer-header">
+          <span class="drawer-title">Cart</span>
+          <button class="close-btn" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="drawer-content"></div>
+      <div class="drawer-footer">
+          <div class="cart-total-row">
+              <span>Subtotal</span>
+              <span>£0.00</span>
+          </div>
+          <button class="dock-btn" onclick="window.location.href='checkout.html'" style="width: 100%; justify-content: center; margin-top: 1rem;">
+              Secure Checkout
+          </button>
+      </div>
+  </aside>
+
   <script src="core.js"></script>
   <script src="haptics.js"></script>
   <script src="cart.js"></script>
   
   <script type="module">
-  import "./firebase-config.js";
-  import "./auth.js";
+    import { supabase } from './supabase-config.js';
+    import './auth.js'; 
 
-  const hero = document.getElementById('hero-trigger');
-  const liveCount = document.getElementById('live-count');
+    // 1. DYNAMIC HOMEPAGE FETCH
+    async function fetchTrending() {
+      const container = document.getElementById('trending-stream');
+      if(!container) return;
 
-  // 1. High-Performance Parallax (Paused during Drawer interaction)
-  window.addEventListener('scroll', () => {
-    // Safety: Stop parallax if hero is missing, on mobile, or if drawer is open
-    if (!hero || window.innerWidth < 768 || document.body.style.overflow === "hidden") return;
-    
-    const scrolled = window.pageYOffset;
-    requestAnimationFrame(() => {
-      // Moves the hero slightly slower than the scroll for depth
-      hero.style.transform = `translateY(${scrolled * 0.12}px)`;
-      // Gradually fades the hero out as the user scrolls down
-      hero.style.opacity = Math.max(0, 1 - (scrolled / 500));
-    });
-  }, { passive: true });
+      try {
+        // Fetch 3 items from DB
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .limit(3);
 
-  // 2. Dynamic Counter (Simulates real-time system activity)
-  if (liveCount) {
-    setInterval(() => {
-      let current = parseInt(liveCount.innerText.replace(/,/g, ''));
-      // Randomly fluctuates the count by -1, 0, or +1
-      let change = Math.floor(Math.random() * 3) - 1;
-      liveCount.innerText = (current + change).toLocaleString();
-    }, 4500);
-  }
-
-  // 3. Reveal Animation Trigger
-  // Ensures Trending Systems pop in smoothly after the header is ready
-  document.addEventListener("KynarHeaderLoaded", () => {
-    const reveals = document.querySelectorAll('.product-card-reveal');
-    reveals.forEach((el, i) => {
-      setTimeout(() => {
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      }, i * 150);
-    });
-  });
-</script>
-
-<div id="interface-overlay"></div>
-
-<aside id="nav-drawer" class="drawer-panel drawer-left">
-    <div class="drawer-header">
-        <span class="drawer-title">Menu</span>
-        <button class="close-btn" onclick="toggleNav()">✕</button>
-    </div>
-    <nav class="drawer-content">
-        <a href="shop.html" class="drawer-link">Marketplace</a>
-        <a href="library.html" class="drawer-link">Manuals</a>
-        <a href="newsletter.html" class="drawer-link">The Network</a>
-        <a href="account.html" class="drawer-link">Member Vault</a>
-    </nav>
-    <div class="drawer-footer">
-        <div class="status-chip">
-            <span class="live-beacon"></span> Systems Active
-        </div>
-    </div>
-</aside>
-
-<aside id="cart-drawer" class="drawer-panel drawer-right">
-    <div class="drawer-header">
-        <span class="drawer-title">Cart (2)</span>
-        <button class="close-btn" onclick="toggleCart()">✕</button>
-    </div>
-    
-    <div class="drawer-content">
-        <div class="cart-item">
-            <div class="cart-thumb" style="background: var(--grad-gold);">⚡</div>
-            <div class="cart-details">
-                <div class="cart-name">Ultimate Notion OS</div>
-                <div class="cart-meta">System Architecture</div>
-                <div class="cart-price">£24.00</div>
-            </div>
-            <button class="cart-remove">×</button>
-        </div>
+        if(error) throw error;
         
-        <div class="cart-item">
-            <div class="cart-thumb" style="background: var(--bg-canvas);">🎨</div>
-            <div class="cart-details">
-                <div class="cart-name">Kids Activity Pack</div>
-                <div class="cart-meta">Digital Asset</div>
-                <div class="cart-price">Free</div>
-            </div>
-            <button class="cart-remove">×</button>
-        </div>
-    </div>
+        if(data.length > 0) {
+            container.innerHTML = data.map(item => {
+                // Visual Mappings
+                const visuals = getVisuals(item.category);
+                return `
+                <a class="stream-card product-card-reveal" href="product.html?id=${item.id}" style="min-width: 260px; padding: 0;">
+                  <div style="overflow: hidden; position: relative;"> 
+                      <div class="card-visual" style="background: ${visuals.bg}; color: ${item.category === 'business' ? 'white' : 'var(--ink-display)'};">${visuals.icon}</div>
+                      <div class="qv-overlay"><span class="qv-btn">QUICK VIEW</span></div>
+                  </div>
+                  <div class="card-meta">
+                    <div style="font-size: 0.65rem; color: var(--accent-gold); font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">${item.category || 'System'}</div>
+                    <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-display); line-height: 1.2;">${item.title}</div>
+                  </div>
+                </a>`;
+            }).join('');
+        } else {
+             container.innerHTML = `<div style="padding:2rem; opacity:0.5;">Systems Offline</div>`;
+        }
 
-    <div class="drawer-footer">
-        <div class="cart-total-row">
-            <span>Subtotal</span>
-            <span style="font-weight: 800; color: var(--ink-display);">£24.00</span>
-        </div>
-        <button class="dock-btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            Secure Checkout
-        </button>
-    </div>
-</aside>
-
-<script>
-  const overlay = document.getElementById('interface-overlay');
-  const navDrawer = document.getElementById('nav-drawer');
-  const cartDrawer = document.getElementById('cart-drawer');
-
-  // 1. Toggle Functions (Global Scope for onclick events)
-  window.toggleNav = function() {
-    const isActive = navDrawer.classList.contains('active');
-    closeAllDrawers();
-    if (!isActive) {
-      navDrawer.classList.add('active');
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Stop background scrolling
+      } catch (err) {
+        console.warn("Homepage Fetch Error", err);
+        container.innerHTML = ""; // Fail silently or keep placeholder
+      }
     }
-  };
 
-  window.toggleCart = function() {
-    const isActive = cartDrawer.classList.contains('active');
-    closeAllDrawers();
-    if (!isActive) {
-      cartDrawer.classList.add('active');
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    // Helper: Map Categories
+    function getVisuals(cat) {
+        const map = {
+            'systems': { icon: '⚡', bg: 'var(--grad-gold)' },
+            'creative': { icon: '🎨', bg: 'var(--bg-canvas)' },
+            'business': { icon: '🚀', bg: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
+            'ai': { icon: '🤖', bg: '#e0f2f1' },
+            'education': { icon: '📅', bg: '#fff3e0' }
+        };
+        return map[cat] || { icon: '📦', bg: '#f5f5f5' };
     }
-  };
 
-  window.closeAllDrawers = function() {
-    if(navDrawer) navDrawer.classList.remove('active');
-    if(cartDrawer) cartDrawer.classList.remove('active');
-    if(overlay) overlay.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
-  };
-
-  // 2. Event Listeners
-  document.addEventListener('DOMContentLoaded', () => {
-    // Connect Header Buttons (if they exist in loaded header)
-    // Note: Since header is loaded via data-include, we might need to delegate or wait.
-    // For now, these listeners handle the drawer internal close buttons.
-    
-    if(overlay) overlay.addEventListener('click', closeAllDrawers);
-    
-    // Optional: Close on Escape Key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAllDrawers();
+    // 2. Init
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchTrending();
+        
+        // Counter Logic
+        const liveCount = document.getElementById('live-count');
+        if (liveCount) {
+          setInterval(() => {
+            let current = parseInt(liveCount.innerText.replace(/,/g, ''));
+            let change = Math.floor(Math.random() * 3) - 1;
+            liveCount.innerText = (current + change).toLocaleString();
+          }, 4500);
+        }
     });
-  });
-</script>
 
+    // 3. Parallax
+    const hero = document.getElementById('hero-trigger');
+    window.addEventListener('scroll', () => {
+      if (!hero || window.innerWidth < 768) return;
+      const scrolled = window.pageYOffset;
+      requestAnimationFrame(() => {
+        hero.style.transform = `translateY(${scrolled * 0.12}px)`;
+        hero.style.opacity = Math.max(0, 1 - (scrolled / 500));
+      });
+    }, { passive: true });
+  </script>
+
+  <script>
+    const overlay = document.getElementById('interface-overlay');
+    const navDrawer = document.getElementById('nav-drawer');
+    const cartDrawer = document.getElementById('cart-drawer');
+
+    window.toggleNav = function() {
+      const isActive = navDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        navDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      }
+    };
+
+    window.toggleCart = function() {
+      const isActive = cartDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        cartDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeAllDrawers = function() {
+      if(navDrawer) navDrawer.classList.remove('active');
+      if(cartDrawer) cartDrawer.classList.remove('active');
+      if(overlay) overlay.classList.remove('active');
+      document.body.style.overflow = ''; 
+    };
+
+    if(overlay) overlay.addEventListener('click', closeAllDrawers);
+  </script>
 
 </body>
 </html>

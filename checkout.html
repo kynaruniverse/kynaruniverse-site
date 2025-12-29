@@ -7,6 +7,8 @@
   <meta name="description" content="Securely complete your purchase of Kynar digital systems." />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -53,6 +55,8 @@
           <button id="btn-pay" class="pay-btn">
             Authorize <span id="pay-btn-amount" style="margin-left:5px;">£0.00</span>
           </button>
+
+          <div id="checkout-error" style="color: #ffcccb; font-size: 0.8rem; margin-top: 1rem; text-align: center; display: none;"></div>
 
           <div class="trust-badges">
             <span class="trust-text">AES-256 Encrypted • Instant Delivery</span>
@@ -102,11 +106,48 @@
 
   <script src="core.js"></script>
   <script src="cart.js"></script> 
-  <script src="checkout.js"></script> 
   <script src="haptics.js"></script>
+  
+  <script type="module" src="checkout.js"></script> 
   <script type="module">
-    import './firebase-config.js';
-    import './auth.js';
+    // Minimal Auth Init just to check login state
+    import './auth.js'; 
+    import { supabase } from './supabase-config.js';
+  </script>
+
+  <script>
+    const overlay = document.getElementById('interface-overlay');
+    const navDrawer = document.getElementById('nav-drawer');
+    const cartDrawer = document.getElementById('cart-drawer');
+
+    window.toggleNav = function() {
+      const isActive = navDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        navDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+      }
+    };
+
+    window.toggleCart = function() {
+      const isActive = cartDrawer.classList.contains('active');
+      closeAllDrawers();
+      if (!isActive) {
+        cartDrawer.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeAllDrawers = function() {
+      if(navDrawer) navDrawer.classList.remove('active');
+      if(cartDrawer) cartDrawer.classList.remove('active');
+      if(overlay) overlay.classList.remove('active');
+      document.body.style.overflow = ''; 
+    };
+
+    if(overlay) overlay.addEventListener('click', closeAllDrawers);
   </script>
 
   <style>
@@ -221,7 +262,6 @@
     /* MOBILE RESPONSIVE */
     @media (max-width: 900px) {
       .checkout-layout { grid-template-columns: 1fr; gap: 2rem; }
-      /* We keep the Sidebar BELOW the items on mobile so they review first */
       .merchant-sidebar { order: 1; }
       .checkout-card { position: relative; top: 0; padding: 1.5rem; }
     }

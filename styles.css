@@ -1,18 +1,24 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   KYNAR VISUAL SYSTEM (V2.0 - MASTER)
+   KYNAR VISUAL SYSTEM (V2.1 - SUPABASE READY)
    Architecture: VisualForge
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* 0. FONTS */
+/* 0. FONTS (FIXED: Linked to correct .woff2 files) */
 @font-face {
     font-family: 'Bantayog';
-    src: url('assets/fonts/Bantayog-Regular.otf') format('opentype');
+    src: url('assets/fonts/Bantayog.woff2') format('woff2'),
+         url('assets/fonts/Bantayog.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Glacial Indifference';
-    src: url('assets/fonts/GlacialIndifference-Regular.otf') format('opentype');
+    /* Note: Filename matched to your file tree exactly */
+    src: url('assets/fonts/GlacialIndifferenceRegular.woff2') format('woff2'),
+         url('assets/fonts/GlacialIndifferenceRegular.woff') format('woff');
     font-weight: normal;
+    font-style: normal;
     font-display: swap;
 }
 

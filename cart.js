@@ -5,7 +5,7 @@
  */
 
 const KynarCart = {
-  getKey: () => "kynar_cart_v3", // New Key version
+  getKey: () => "kynar_cart_v3", // Versioning prevents cache conflicts
 
   getContents() {
     try {
@@ -26,7 +26,8 @@ const KynarCart = {
         const safeItem = {
           id: pId,
           title: productData.title,
-          price: Number(productData.price), // Force Number storage
+          // Force Number storage (Critical for Checkout math)
+          price: Number(productData.price), 
           meta: productData.meta || "Digital Asset",
           icon: productData.icon || "📦",
           bg: productData.bg || "var(--ink-display)"
@@ -34,11 +35,14 @@ const KynarCart = {
 
         contents.push(safeItem);
         localStorage.setItem(this.getKey(), JSON.stringify(contents));
+        
+        // Haptic Feedback (Mobile First)
         if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(50);
       }
 
       this.syncUI();
-      if (window.toggleCart) window.toggleCart(); // Open Drawer
+      // Open Drawer if the function exists
+      if (window.toggleCart) window.toggleCart(); 
       
     } catch (err) {
       console.error("Cart Add Error", err);
@@ -61,30 +65,30 @@ const KynarCart = {
   syncUI() {
     const items = this.getContents();
     
-    // Badge
+    // 1. Update Badge (Header)
     const badge = document.getElementById("cart-count");
     if (badge) {
       badge.textContent = items.length;
       badge.style.display = items.length > 0 ? "flex" : "none";
     }
 
-    // Drawer Elements
-    const container = document.querySelector("#cart-drawer .drawer-content");
-    const footerTotal = document.querySelector("#cart-drawer .cart-total-row span:last-child");
+    // 2. Update Drawer Title
     const drawerTitle = document.querySelector("#cart-drawer .drawer-title");
-
     if (drawerTitle) drawerTitle.textContent = `Cart (${items.length})`;
 
-    // Logic: Calculate Total Safely
+    // 3. Calculate Total
     let total = 0;
     items.forEach(item => {
         const val = parseFloat(item.price);
         if (!isNaN(val)) total += val;
     });
 
+    // 4. Update Total Display
+    const footerTotal = document.querySelector("#cart-drawer .cart-total-row span:last-child");
     if (footerTotal) footerTotal.textContent = `£${total.toFixed(2)}`;
 
-    // Render HTML
+    // 5. Render HTML List
+    const container = document.querySelector("#cart-drawer .drawer-content");
     if (container) {
       if (items.length === 0) {
         container.innerHTML = `
@@ -93,26 +97,30 @@ const KynarCart = {
                 <div>Your system is empty.</div>
             </div>`;
       } else {
-        container.innerHTML = items.map(item => `
-          <div class="cart-item">
-            <div class="cart-thumb" style="background: ${item.bg}; color:white;">${item.icon}</div>
-            <div class="cart-details">
-                <div class="cart-name">${item.title}</div>
-                <div class="cart-meta">${item.meta}</div>
-                <div class="cart-price">£${Number(item.price).toFixed(2)}</div>
+        container.innerHTML = items.map(item => {
+          // Visual Polish: Show "Free" if price is 0
+          const displayPrice = item.price === 0 ? "Free" : `£${Number(item.price).toFixed(2)}`;
+          
+          return `
+            <div class="cart-item">
+              <div class="cart-thumb" style="background: ${item.bg}; color:white;">${item.icon}</div>
+              <div class="cart-details">
+                  <div class="cart-name">${item.title}</div>
+                  <div class="cart-meta">${item.meta}</div>
+                  <div class="cart-price">${displayPrice}</div>
+              </div>
+              <button class="cart-remove" onclick="KynarCart.remove('${item.id}')">×</button>
             </div>
-            <button class="cart-remove" onclick="KynarCart.remove('${item.id}')">×</button>
-          </div>
-        `).join("");
+          `;
+        }).join("");
       }
     }
   },
   
-  // Connects page buttons to global DB
+  // Helper: Connects HTML buttons to Global DB (from shop.js)
   addFromPage(id) {
-    // Looks up KynarDB (exposed by Shop.js)
     if (typeof window.KynarDB !== 'undefined') {
-        // Loose comparison (string vs number ID)
+        // Loose comparison (string vs number ID) to be safe
         const p = window.KynarDB.find(x => x.id == id);
         if(p) {
             this.add({
@@ -128,5 +136,10 @@ const KynarCart = {
   }
 };
 
+// Auto-Sync on Load
 document.addEventListener("DOMContentLoaded", () => KynarCart.syncUI());
+
+// ⚡ EVENT LISTENER: Catches late header injections from core.js
+document.addEventListener("KynarHeaderLoaded", () => KynarCart.syncUI());
+
 window.KynarCart = KynarCart;

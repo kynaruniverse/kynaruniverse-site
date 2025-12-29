@@ -6,6 +6,7 @@
   <title>Kynar / Support Concierge</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -25,20 +26,20 @@
         <form id="contact-form">
           <div class="input-group">
             <label class="input-label">Identity (Full Name)</label>
-            <input type="text" required class="contact-input" placeholder="Enter your name">
+            <input type="text" id="msg-name" required class="contact-input" placeholder="Enter your name">
           </div>
           
           <div class="input-group">
             <label class="input-label">Communication Channel</label>
-            <input type="email" required class="contact-input" placeholder="Enter your email">
+            <input type="email" id="msg-email" required class="contact-input" placeholder="Enter your email">
           </div>
           
           <div class="input-group">
             <label class="input-label">Transmission Details</label>
-            <textarea required class="contact-input contact-area" placeholder="Describe your inquiry..."></textarea>
+            <textarea id="msg-text" required class="contact-input contact-area" placeholder="Describe your inquiry..."></textarea>
           </div>
           
-          <button type="submit" class="dock-btn btn-emerald" style="width: 100%; margin-top: 1rem;">
+          <button type="submit" class="dock-btn btn-emerald" id="msg-btn" style="width: 100%; margin-top: 1rem;">
             Initialize Transmission
           </button>
         </form>
@@ -99,14 +100,18 @@
   <script src="haptics.js"></script>
   
   <script type="module">
-    import './firebase-config.js';
+    import { supabase } from './supabase-config.js';
     import './auth.js';
-  </script>
-  
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+
+    // REAL CONTACT FORM LOGIC
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button');
+      
+      const btn = document.getElementById('msg-btn');
+      const name = document.getElementById('msg-name').value;
+      const email = document.getElementById('msg-email').value;
+      const message = document.getElementById('msg-text').value;
+      
       const originalText = btn.innerText;
 
       // 1. Tactile Feedback
@@ -114,26 +119,37 @@
 
       // 2. Loading State
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="width:16px; height:16px; border-top-color:white; border-left-color:rgba(255,255,255,0.3); margin-right:8px; display:inline-block;"></span> SENDING...`;
+      btn.innerHTML = `<span class="spinner" style="width:16px; height:16px; border-top-color:white; border-left-color:rgba(255,255,255,0.3); margin-right:8px; display:inline-block;"></span> TRANSMITTING...`;
       btn.style.opacity = '0.8';
 
-      // 3. Simulate Secure Transmission
-      setTimeout(() => {
-        if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
-        
-        btn.style.background = '#10B981'; // Success Emerald
-        btn.innerText = 'TRANSMISSION SENT';
-        btn.style.opacity = '1';
+      try {
+          // 3. Send to Supabase 'messages' table
+          const { error } = await supabase
+            .from('messages')
+            .insert([{ name, email, message }]);
 
-        // 4. Reset form
-        e.target.reset();
+          if (error) throw error;
 
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.style.background = ''; // Revert to CSS class
-          btn.innerText = originalText;
-        }, 3000);
-      }, 1500);
+          // 4. Success State
+          if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
+          btn.style.background = '#10B981'; // Emerald
+          btn.innerText = 'TRANSMISSION RECEIVED';
+          btn.style.opacity = '1';
+          
+          e.target.reset();
+
+      } catch (err) {
+          console.error("Contact Error:", err);
+          btn.style.background = '#ef4444'; // Red
+          btn.innerText = 'TRANSMISSION FAILED';
+      } finally {
+          // Reset Button after 3s
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.style.background = ''; // Revert to CSS
+            btn.innerText = originalText;
+          }, 3000);
+      }
     });
   </script>
 

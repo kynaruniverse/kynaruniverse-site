@@ -1,10 +1,10 @@
 # Kynar Universe | Digital Systems Marketplace
 
 ![Project Status](https://img.shields.io/badge/Status-Operational-success)
-![Version](https://img.shields.io/badge/Version-2.0.4-blue)
+![Version](https://img.shields.io/badge/Version-2.1.0-blue)
 ![License](https://img.shields.io/badge/License-Proprietary-orange)
 
-**Kynar Universe** is a high-performance digital marketplace designed for creators and entrepreneurs. It features a custom "Glass & Grid" design system, a modular vanilla JavaScript architecture ("VisualForge"), and integrated Firebase authentication for secure member vaults.
+**Kynar Universe** is a high-performance digital marketplace designed for creators and entrepreneurs. It features a custom "Glass & Grid" design system, a modular vanilla JavaScript architecture ("VisualForge"), and a fully integrated **Supabase Backend** for authentication, database management, and secure asset delivery.
 
 ---
 
@@ -18,9 +18,10 @@
 
 ### 🛠 **Core Architecture**
 * **Zero-Dependency:** Built on pure HTML5, CSS3, and ES6+ JavaScript. No bundlers required.
-* **Centralized Logic:** `core.js` manages UI state to prevent DOM conflicts.
-* **Commerce Engine:** `cart.js` handles local persistence, calculations, and badge updates.
-* **Identity Layer:** `auth.js` manages Firebase V9 authentication (Login/Register/Logout).
+* **Centralized Logic:** `core.js` manages UI state, modal injections, and drawer physics.
+* **Commerce Engine:** `cart.js` handles V3 local persistence, safe math calculations, and badge updates.
+* **Identity Layer:** `auth.js` manages Supabase Authentication (Login/Register/Logout).
+* **Secure Vault:** `vault.js` generates signed, temporary URLs for secure file downloads.
 
 ---
 
@@ -28,23 +29,28 @@
 
 ```text
 Kynaruniverse-site/
-├── assets/                 # Static resources (PDFs, Fonts)
-├── components/             # Reusable HTML fragments (Header/Footer)
-├── images/                 # Product images and icons
+├── assets/                 # Static resources (Fonts, Icons, Social Images)
+├── components/             # Reusable HTML fragments (Header/Footer/Modals)
+├── images/                 # Product visuals
 │
-├── styles.css              # Unified Design System (480 lines)
+├── styles.css              # Unified Design System (VisualForge)
 │
 ├── core.js                 # UI Master Controller (Drawers/Modals)
-├── cart.js                 # Shopping Cart Data Engine
-├── auth.js                 # Firebase Identity Service
+├── auth.js                 # Supabase Identity Service
+├── shop.js                 # Database Fetching & Rendering
+├── cart.js                 # Shopping Cart Engine (V3)
+├── checkout.js             # Transaction Processing
+├── vault.js                # Secure Download Manager
 ├── haptics.js              # Tactile Feedback Engine
-├── firebase-config.js      # Firebase API Configuration
+├── supabase-config.js      # API Configuration (Supabase)
 │
 ├── index.html              # Homepage (Feed & Hero)
 ├── shop.html               # Marketplace (Matrix Grid)
 ├── product.html            # Dynamic Product Template
-├── account.html            # Member Vault (Dashboard)
+├── account.html            # Member Vault (Purchase History)
 ├── checkout.html           # Secure Payment Terminal
+├── success.html            # Post-Purchase Landing
 ├── library.html            # Documentation Hub
 ├── newsletter.html         # Lead Generation Terminal
+├── contact.html            # Support Concierge
 └── 404.html                # Error Handling
