@@ -559,3 +559,52 @@ img.lazy-load.loaded { filter: blur(0); }
     font-size: clamp(2.5rem, 10vw, 3.8rem); /* Slightly larger scaling */
     letter-spacing: -0.03em;
 }
+
+/* ═══════════════════════════════════════
+   VISUALFORGE UPGRADE: KINETIC CARDS
+   ═══════════════════════════════════════ */
+
+/* Base Card Physics */
+.stream-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures the zoom stays inside borders */
+    background: white;
+    border: 1px solid var(--ink-border);
+    border-radius: var(--radius-card);
+    transition: transform 0.4s var(--transition-tactile), 
+                box-shadow 0.4s var(--transition-tactile),
+                border-color 0.3s ease;
+    will-change: transform; /* Performance optimization */
+}
+
+/* Hover State: The Lift */
+.stream-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12); /* Subtle contrast bump */
+}
+
+/* The Visual Header (Color Block) */
+.card-visual {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hover State: The Inner Zoom */
+.stream-card:hover .card-visual {
+    transform: scale(1.08); /* Slow, cinematic zoom */
+}
+
+/* Typography grouping for cleaner HTML */
+.card-meta {
+    padding: 1.25rem;
+    background: white;
+    position: relative;
+    z-index: 2; /* Ensures text stays sharp above any potential overflows */
+}
