@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initAtelierHaptics();
     initMenuEngine();
     initCartBadge();
+    initNetworkPopup();
     console.log("Kynar Atelier: System Fully Calibrated");
 });
 
@@ -174,6 +175,52 @@ function initCartBadge() {
         }
     });
 }
+
+// 8. THE NETWORK POPUP ENGINE
+function initNetworkPopup() {
+    const isMainPage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('shop.html') || window.location.pathname === '/';
+    if (!isMainPage || sessionStorage.getItem('kynar_popup_seen')) return;
+
+    const popupHTML = `
+        <div class="network-popup-overlay" id="networkPopup">
+            <div class="network-popup-card">
+                <button class="close-popup" aria-label="Dismiss">✕</button>
+                
+                <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.25em;">The Network</span>
+                
+                <h2 class="popup-title">Acquire <br><span style="color: var(--ink-medium);">Fresh Coordinates.</span></h2>
+                
+                <p style="font-size: 1rem; margin-bottom: 30px; line-height: 1.5;">
+                    Join the inner circle for weekly archive transmissions, free asset drops, and system updates.
+                </p>
+                
+                <form action="https://formspree.io/f/mlgekbwb" method="POST">
+                    <input type="email" name="email" required placeholder="Enter your email" class="popup-input">
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Authorize Access</button>
+                </form>
+                
+                <p style="margin-top: 20px; font-size: 0.75rem; opacity: 0.4; font-weight: 600;">
+                    NO SPAM. ZERO FRICTION. ONE CLICK OPT-OUT.
+                </p>
+            </div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        document.body.insertAdjacentHTML('beforeend', popupHTML);
+        const popup = document.getElementById('networkPopup');
+        const closeBtn = popup.querySelector('.close-popup');
+
+        popup.classList.add('active');
+
+        closeBtn.onclick = () => {
+            popup.classList.remove('active');
+            sessionStorage.setItem('kynar_popup_seen', 'true');
+        };
+    }, 6000); // 6 seconds gives the user more time to absorb the main brand first
+}
+
+
 
 
     const burgerBtn = document.querySelector('.nav-icon[aria-label="Menu"]');

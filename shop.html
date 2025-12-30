@@ -36,22 +36,28 @@
 <body>
 
     <header class="app-header">
-        <button class="nav-icon" onclick="window.location.href='index.html'" aria-label="Back">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        </button>
+        <div style="display: flex; gap: 4px;">
+            <button class="nav-icon" onclick="window.location.href='index.html'" aria-label="Back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <button class="nav-icon" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
 
         <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep); cursor: pointer;" onclick="window.location.href='index.html'">KYNAR.</span>
 
-        <button class="nav-icon" aria-label="Menu">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <button class="nav-icon cart-trigger" aria-label="Cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </button>
     </header>
 
     <main class="container">
         
         <div class="reveal-up" style="margin-top: 40px;">
-            <h1>Archive</h1>
-            <p>Select a category to filter the launch collection.</p>
+            <span style="font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 10px;">Curated Archive</span>
+            <h1>Collection</h1>
+            <p>Select a category to filter the launch inventory.</p>
         </div>
 
         <div class="filter-bar reveal-up" id="filterContainer">
@@ -133,23 +139,18 @@
     <script src="ui-core.js"></script>
     <script>
         function filterGrid(category, btn) {
-            // Update chip states
             document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
 
             const cards = document.querySelectorAll('.product-card');
             let visibleCount = 0;
 
-            cards.forEach((card, index) => {
+            cards.forEach((card) => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = 'flex';
                     visibleCount++;
-                    
-                    // Reset reveal animation for filtered view
                     card.classList.remove('reveal-visible');
-                    // Add a staggered delay to the filtered results
                     card.style.transitionDelay = `${(visibleCount * 0.1)}s`;
-                    
                     setTimeout(() => card.classList.add('reveal-visible'), 50);
                 } else {
                     card.style.display = 'none';

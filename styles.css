@@ -246,3 +246,41 @@ p { color: var(--ink-medium); font-weight: 400; max-width: 60ch; }
     transform: scale(1);
 }
 
+/* REFINED ATELIER POPUP */
+.network-popup-overlay {
+    position: fixed; inset: 0; background: rgba(15, 61, 48, 0.4);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 3000; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.6s ease;
+    padding: 20px;
+}
+
+.network-popup-overlay.active { opacity: 1; pointer-events: all; }
+
+.network-popup-card {
+    background: var(--bg-bone); width: 100%; max-width: 440px;
+    padding: 50px 40px; border-radius: 30px; position: relative;
+    box-shadow: var(--shadow-depth); text-align: left; /* Asymmetric look */
+    transform: translateY(40px); transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-left: 8px solid var(--pastel-sage); /* Signature brand accent */
+}
+
+.network-popup-overlay.active .network-popup-card { transform: translateY(0); }
+
+.popup-title {
+    font-family: var(--font-display); font-size: 2.2rem; 
+    line-height: 1.1; margin: 15px 0; color: var(--ink-deep);
+}
+
+.close-popup {
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    font-size: 1.5rem; cursor: pointer; color: var(--ink-deep); opacity: 0.3;
+    transition: opacity 0.3s;
+}
+.close-popup:hover { opacity: 1; }
+
+.popup-input {
+    width: 100%; padding: 18px; border-radius: 15px; 
+    border: 1px solid rgba(15, 61, 48, 0.1); margin-bottom: 15px; 
+    font-family: var(--font-body); font-size: 1rem; background: #fff;
+}

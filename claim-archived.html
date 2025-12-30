@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Download Your Kit | Kynaruniverse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <a href="index.html" style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep); text-decoration: none; margin: 0 auto;">KYNAR.</a>
+    </header>
+
+    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 80vh; text-align: center;">
+        <div class="reveal-up" style="max-width: 500px;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">📦</div>
+            <span style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Identity Verified</span>
+            
+            <h1>Ready for <br><span style="color: var(--ink-medium);">Transfer.</span></h1>
+            
+            <p style="margin: 20px 0 40px 0; font-size: 1.1rem; line-height: 1.6;">
+                The **Starter Architect Kit** is ready. This zip file contains your Notion components and creative presets.
+            </p>
+
+            <a href="#" class="btn-primary" style="width: 100%;" download>Initialize Download</a>
+            
+            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">
+                Having trouble? <a href="contact.html" style="color: var(--ink-deep); font-weight: 600;">Contact Concierge</a>.
+            </p>
+        </div>
+    </main>
+
+    <script src="ui-core.js"></script>
+    
+    <script>
+    document.querySelector('.btn-primary').addEventListener('click', () => {
+        if (navigator.vibrate) navigator.vibrate([100, 30, 100]); // A "Heavy" confirming pulse
+    });
+</script>
+
+</body>
+</html>
