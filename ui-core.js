@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   KYNAR UI CORE (V3.1)
-   Mobile-First Intelligence, Physics & Tactile Feedback
+   KYNAR UI CORE (V3.2)
+   Mobile-First Intelligence, Physics, Tactile Feedback & Menu Engine
    ══════════════════════════════════════════════════════════════════════════ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     initSmartHeader();
     initCustomCursor();
     initRevealAnimations();
-    initAtelierHaptics(); // ⚡ ACTIVATED: Merged Haptic Engine
-    console.log("Kynar Atelier: Online & Tactile");
+    initAtelierHaptics();
+    initMenuEngine();
+    initCartBadge();
+    console.log("Kynar Atelier: System Fully Calibrated");
 });
 
 // 1. LUXURIOUS SMOOTH SCROLL (Lenis)
@@ -35,6 +37,8 @@ function initSmoothScroll() {
 // 2. SMART HEADER (Hides on Scroll Down, Shows on Up)
 function initSmartHeader() {
     const header = document.querySelector('.app-header');
+    if (!header) return;
+    
     let lastScroll = 0;
     const threshold = 50;
 
@@ -97,7 +101,8 @@ function initAtelierHaptics() {
         '.btn-ghost', 
         '.product-card', 
         '.nav-icon', 
-        '.filter-chip'
+        '.filter-chip',
+        '.nav-menu-link'
     ];
 
     document.body.addEventListener("touchstart", (e) => {
@@ -105,4 +110,95 @@ function initAtelierHaptics() {
             navigator.vibrate(5); 
         }
     }, { passive: true });
+}
+
+// 6. GLOBAL MENU ENGINE (Dynamic Overlay Navigation)
+function initMenuEngine() {
+    // 1. Create Overlay if missing
+    if (!document.querySelector('.nav-overlay')) {
+        const menuHTML = `
+            <div class="nav-overlay">
+                <button class="close-menu nav-icon" aria-label="Close Menu">✕</button>
+                <ul class="nav-menu-list">
+                    <li class="nav-menu-item" style="--i:1"><a href="index.html" class="nav-menu-link">Home</a></li>
+                    <li class="nav-menu-item" style="--i:2"><a href="shop.html" class="nav-menu-link">Collection</a></li>
+                    <li class="nav-menu-item" style="--i:3"><a href="newsletter.html" class="nav-menu-link">Network</a></li>
+                    <li class="nav-menu-item" style="--i:4"><a href="contact.html" class="nav-menu-link">Concierge</a></li>
+                </ul>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', menuHTML);
+    }
+    
+    // 7. CART BADGE ENGINE
+function initCartBadge() {
+    const cartBtn = document.querySelector('.nav-icon[aria-label="Cart"]');
+    if (!cartBtn) return;
+
+    // Wrap the button in a div to hold the badge
+    const wrapper = document.createElement('div');
+    wrapper.className = 'cart-wrapper';
+    cartBtn.parentNode.insertBefore(wrapper, cartBtn);
+    wrapper.appendChild(cartBtn);
+
+    // Create the badge
+    const badge = document.createElement('span');
+    badge.className = 'cart-count-badge';
+    badge.innerText = '0';
+    wrapper.appendChild(badge);
+
+    // Listen for Lemon Squeezy Events
+    window.createLemonSqueezy = function() {
+        window.LemonSqueezy.Setup({
+            eventHandler: (event) => {
+                if (event.event === 'Checkout.Success') {
+                    // Reset cart count on success
+                    updateBadge(0);
+                }
+            }
+        });
+    };
+
+    // Since Lemon Squeezy doesn't provide a "item added" callback for simple overlays,
+    // we trigger a visual "pulse" whenever the buy buttons are clicked.
+    document.body.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-primary') || e.target.closest('.btn-ghost')) {
+            // This is a placeholder for your product addition logic
+            // For now, it provides visual feedback that the system is working
+            badge.classList.add('visible');
+            let current = parseInt(badge.innerText);
+            badge.innerText = current + 1;
+            
+            // Haptic feedback for "Added to Cart"
+            if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        }
+    });
+}
+
+
+    const burgerBtn = document.querySelector('.nav-icon[aria-label="Menu"]');
+    const overlay = document.querySelector('.nav-overlay');
+    const closeBtn = document.querySelector('.close-menu');
+
+    if (burgerBtn && overlay) {
+        burgerBtn.addEventListener('click', () => {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        });
+    }
+
+    if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = ''; 
+        });
+    }
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-menu-link').forEach(link => {
+        link.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
 }

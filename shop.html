@@ -40,10 +40,10 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </button>
 
-        <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep);">COLLECTION</span>
+        <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep); cursor: pointer;" onclick="window.location.href='index.html'">KYNAR.</span>
 
-        <button class="nav-icon" onclick="LemonSqueezy.Url.OpenCheckout('https://store.kynaruniverse.com/checkout')" aria-label="Cart">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <button class="nav-icon" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
     </header>
 
@@ -63,7 +63,7 @@
 
         <div class="gallery-grid" id="productGrid">
             
-            <article class="product-card reveal-up" data-category="planner">
+            <article class="product-card reveal-up" data-category="planner" style="transition-delay: 0.1s;">
                 <span class="tag">Notion</span>
                 <a href="product.html?id=finance-architect" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
                     <img src="assets/images/finance-mockup.png" alt="The Finance Architect" onerror="this.style.opacity='0.1'">
@@ -78,7 +78,7 @@
                 </div>
             </article>
 
-            <article class="product-card reveal-up" data-category="creative">
+            <article class="product-card reveal-up" data-category="creative" style="transition-delay: 0.2s;">
                 <span class="tag">Canva</span>
                 <a href="product.html?id=influence-suite" class="card-image" style="background-color: var(--pastel-clay); text-decoration: none;">
                     <img src="assets/images/creative-mockup.png" alt="The Influence Suite" onerror="this.style.opacity='0.1'">
@@ -93,7 +93,7 @@
                 </div>
             </article>
 
-            <article class="product-card reveal-up" data-category="creative">
+            <article class="product-card reveal-up" data-category="creative" style="transition-delay: 0.3s;">
                 <span class="tag">Lightroom</span>
                 <a href="product.html?id=aura-presets" class="card-image" style="background-color: var(--pastel-sky); text-decoration: none;">
                     <img src="assets/images/visual-mockup.png" alt="Aura Presets" onerror="this.style.opacity='0.1'">
@@ -108,7 +108,7 @@
                 </div>
             </article>
 
-            <article class="product-card reveal-up" data-category="code">
+            <article class="product-card reveal-up" data-category="code" style="transition-delay: 0.4s;">
                 <span class="tag">AI Prompts</span>
                 <a href="product.html?id=scribe-vault" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
                     <img src="assets/images/code-mockup.png" alt="The Scribe Vault" onerror="this.style.opacity='0.1'">
@@ -133,17 +133,23 @@
     <script src="ui-core.js"></script>
     <script>
         function filterGrid(category, btn) {
+            // Update chip states
             document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
 
             const cards = document.querySelectorAll('.product-card');
             let visibleCount = 0;
 
-            cards.forEach(card => {
+            cards.forEach((card, index) => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = 'flex';
                     visibleCount++;
+                    
+                    // Reset reveal animation for filtered view
                     card.classList.remove('reveal-visible');
+                    // Add a staggered delay to the filtered results
+                    card.style.transitionDelay = `${(visibleCount * 0.1)}s`;
+                    
                     setTimeout(() => card.classList.add('reveal-visible'), 50);
                 } else {
                     card.style.display = 'none';
@@ -151,13 +157,8 @@
             });
 
             const empty = document.getElementById('emptyState');
-            if (visibleCount === 0) {
-                empty.style.display = 'block';
-            } else {
-                empty.style.display = 'none';
-            }
+            empty.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
     </script>
 </body>
 </html>
-
