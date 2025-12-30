@@ -210,3 +210,28 @@ p { color: var(--ink-medium); max-width: 60ch; transition: color var(--transitio
     color: var(--ink-deep);
     letter-spacing: 0.02em;
 }
+
+/* --- PRODUCT IMAGE SIZING --- */
+.card-image {
+    aspect-ratio: 16/9; /* Compact landscape ratio for mobile */
+    background: var(--pastel-sage);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    position: relative; 
+    overflow: hidden;
+    width: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+@media (min-width: 768px) {
+    .card-image {
+        aspect-ratio: 4/5; /* Premium portrait ratio for tablet/desktop */
+    }
+}
