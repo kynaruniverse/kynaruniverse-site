@@ -1,216 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Kynar / Authorization Complete</title>
-  <meta name="description" content="Transaction authorized. Access your Kynar digital assets." />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transfer Complete | Kynaruniverse</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
-
 <body>
-  <div data-include="components/header.html"></div>
 
-  <main class="app-container success-layout">
-    
-    <div class="success-hero">
-      <div class="holo-emitter">
-        <div class="holo-ring ring-1"></div>
-        <div class="holo-ring ring-2"></div>
-        <div class="holo-icon">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        </div>
-      </div>
+    <header class="app-header" style="justify-content: center;">
+        <a href="index.html" style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep); text-decoration: none;">KYNAR.</a>
+    </header>
 
-      <div class="success-text">
-          <div class="status-pill-success">Transaction Authorized</div>
-          <h1 class="text-display glass-title">System Unlocked</h1>
-          <p class="text-sub">
-            Your digital assets have been encrypted and transferred to your private vault. 
-            You have full clearance.
-          </p>
-      </div>
-    </div>
-
-    <div class="action-grid">
-      
-      <a href="account.html" class="system-card primary">
-        <div class="card-icon">🛡️</div>
-        <div class="card-content">
-            <h3 class="card-title">Access Member Vault</h3>
-            <p class="card-sub">Download your assets and license keys.</p>
-        </div>
-        <div class="card-arrow">→</div>
-      </a>
-
-      <a href="library.html" class="system-card secondary">
-        <div class="card-icon">📖</div>
-        <div class="card-content">
-            <h3 class="card-title">System Manuals</h3>
-            <p class="card-sub">Deployment guides & setup protocols.</p>
-        </div>
-        <div class="card-arrow">→</div>
-      </a>
-
-    </div>
-
-    <a href="shop.html" class="return-link">Return to Global Marketplace</a>
-
-  </main>
-
-  <div data-include="components/footer.html"></div>
-  <div data-include="components/modals.html"></div>
-
-  <script src="core.js"></script>
-  <script src="cart.js"></script>
-  <script src="haptics.js"></script>
-  
-  <script type="module">
-    import { supabase } from './supabase-config.js';
-    import './auth.js';
-    
-    // Clear cart on success page load (Redundant safety check)
-    if(window.KynarCart) window.KynarCart.clear();
-  </script>
-  
-  <div id="interface-overlay"></div>
-  
-  <aside id="nav-drawer" class="drawer-panel drawer-left">
-      <div class="drawer-header"><span class="drawer-title">Menu</span><button class="close-btn" onclick="toggleNav()">✕</button></div>
-      <nav class="drawer-content">
-          <a href="shop.html" class="drawer-link">Marketplace</a>
-          <a href="library.html" class="drawer-link">Manuals</a>
-          <a href="newsletter.html" class="drawer-link">The Network</a>
-          <a href="account.html" class="drawer-link">Member Vault</a>
-      </nav>
-  </aside>
-
-  <aside id="cart-drawer" class="drawer-panel drawer-right">
-      <div class="drawer-header"><span class="drawer-title">Cart</span><button class="close-btn" onclick="toggleCart()">✕</button></div>
-      <div class="drawer-content"></div>
-  </aside>
-
-  <style>
-    .success-layout {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        min-height: 85vh; text-align: center;
-    }
-
-    /* HOLOGRAPHIC EMITTER */
-    .success-hero { margin-bottom: 3.5rem; position: relative; }
-    
-    .holo-emitter {
-        position: relative; width: 120px; height: 120px; margin: 0 auto 2rem auto;
-        display: flex; align-items: center; justify-content: center;
-    }
-    
-    .holo-icon {
-        position: relative; z-index: 2; color: #10B981;
-        filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.4));
-        animation: floatIcon 3s ease-in-out infinite;
-    }
-    
-    .holo-ring {
-        position: absolute; inset: 0; border-radius: 50%;
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        opacity: 0;
-    }
-    
-    .ring-1 { animation: ripple 2s infinite; }
-    .ring-2 { animation: ripple 2s infinite 0.6s; }
-    
-    @keyframes ripple {
-        0% { transform: scale(0.8); opacity: 0.6; border-width: 2px; }
-        100% { transform: scale(1.6); opacity: 0; border-width: 0px; }
-    }
-
-    .status-pill-success {
-        display: inline-block; padding: 6px 16px; border-radius: 99px;
-        background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
-        color: #059669; font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
-        letter-spacing: 0.1em; margin-bottom: 1.5rem;
-    }
-
-    /* ACTION GRID */
-    .action-grid {
-        display: flex; flex-direction: column; gap: 1rem;
-        width: 100%; max-width: 450px; margin-bottom: 2rem;
-    }
-
-    .system-card {
-        display: flex; align-items: center; padding: 1.5rem;
-        background: white; border: 1px solid var(--ink-border);
-        border-radius: 16px; text-decoration: none; text-align: left;
-        transition: all 0.3s var(--transition-tactile);
-    }
-    
-    .system-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        border-color: var(--accent-gold);
-    }
-
-    .system-card.primary { border-left: 4px solid var(--accent-gold); }
-    .system-card.secondary { border-left: 4px solid var(--ink-muted); }
-
-    .card-icon { font-size: 1.5rem; margin-right: 1.25rem; }
-    .card-content { flex-grow: 1; }
-    .card-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink-display); line-height: 1.2; }
-    .card-sub { font-size: 0.8rem; color: var(--ink-muted); }
-    .card-arrow { font-weight: 800; color: var(--ink-display); opacity: 0.3; transition: opacity 0.2s; }
-    
-    .system-card:hover .card-arrow { opacity: 1; transform: translateX(3px); }
-
-    .return-link {
-        color: var(--ink-muted); font-size: 0.85rem; font-weight: 700;
-        text-decoration: none; transition: color 0.2s;
-    }
-    .return-link:hover { color: var(--accent-gold); }
-
-    /* PARTICLE STYLES */
-    .confetti-piece {
-        position: fixed; width: 8px; height: 8px;
-        top: -10px; z-index: 2000; pointer-events: none;
-        animation: fall linear forwards;
-    }
-
-    @keyframes fall {
-        to { transform: translateY(110vh) rotate(720deg); }
-    }
-  </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Success Haptics
-      if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
-
-      // 2. "System Data" Particle Effect
-      const createParticles = () => {
-        const colors = ['#c5a059', '#10B981', '#092c23'];
+    <main class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; text-align: center;">
         
-        for(let i = 0; i < 50; i++) {
-          const p = document.createElement('div');
-          p.className = 'confetti-piece';
-          
-          p.style.left = Math.random() * 100 + 'vw';
-          p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          p.style.opacity = Math.random();
-          p.style.width = (Math.random() * 6 + 4) + 'px';
-          p.style.height = p.style.width;
-          
-          const duration = Math.random() * 3 + 2; 
-          p.style.animationDuration = duration + 's';
-          p.style.animationDelay = Math.random() * 1 + 's';
-          
-          document.body.appendChild(p);
-          setTimeout(() => p.remove(), duration * 1000 + 1000);
-        }
-      };
+        <div class="reveal-up" style="max-width: 500px;">
+            <div style="position: relative; width: 100px; height: 100px; margin: 0 auto 30px auto;">
+                <div style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite;"></div>
+                <div style="font-size: 4rem; line-height: 100px;">✨</div>
+            </div>
+            
+            <span style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Asset Unlocked</span>
+            
+            <h1 style="margin-bottom: 20px;">Thank you for <br><span style="color: var(--ink-medium);">your order.</span></h1>
+            
+            <p style="margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6; opacity: 0.8;">
+                Your digital assets are being prepared. You will receive an automated email from **Lemon Squeezy** within minutes containing your secure download link and receipt.
+            </p>
 
-      setTimeout(createParticles, 300);
-    });
-  </script>
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+                <div class="product-card" style="padding: 20px; flex-direction: row; align-items: center; text-align: left; gap: 20px; background: #fff;">
+                    <div style="font-size: 1.5rem;">📥</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">Check Inbox</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Look for "Your Kynar Download"</div>
+                    </div>
+                </div>
+
+                <div class="product-card" style="padding: 20px; flex-direction: row; align-items: center; text-align: left; gap: 20px; background: #fff;">
+                    <div style="font-size: 1.5rem;">🛠️</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">Technical Support</div>
+                        <a href="contact.html" style="font-weight: 600; font-size: 0.9rem; color: var(--ink-deep); text-decoration: none;">Contact Concierge →</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-primary" style="margin-top: 40px; width: 100%;">Return to Home</a>
+        </div>
+
+    </main>
+
+    <style>
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+    </style>
+
+    <script src="ui-core.js"></script>
+    <script>
+        // TACTILE SUCCESS
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate([50, 50, 100]);
+            }
+        });
+    </script>
 </body>
 </html>

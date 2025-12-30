@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   THE KYNAR VAULT (Creator Edition)
+   THE KYNAR VAULT (Creator Edition - Placeholder Version)
    Currency: GBP (£)
    ══════════════════════════════════════════════════════════════════════════ */
 
@@ -14,7 +14,7 @@ const VAULT = [
         features: ["Automated Income Tracking", "Subscription Manager", "50/30/20 Rule Built-in", "Mobile-First View"],
         bg: "var(--pastel-sage)",
         image: "assets/images/finance-mockup.png",
-        checkout: "https://store.kynaruniverse.com/checkout/buy/VARIANT-ID-1"
+        checkout: "#" // PLACEHOLDER: Replace with Lemon Squeezy URL later
     },
     {
         id: 'influence-suite',
@@ -26,7 +26,7 @@ const VAULT = [
         features: ["50+ Carousel Slides", "10 Highlight Icons", "Fully Editable in Canva", "Free Font Pairings"],
         bg: "var(--pastel-clay)",
         image: "assets/images/creative-mockup.png",
-        checkout: "https://store.kynaruniverse.com/checkout/buy/VARIANT-ID-2"
+        checkout: "#" // PLACEHOLDER: Replace with Lemon Squeezy URL later
     },
     {
         id: 'aura-presets',
@@ -38,7 +38,7 @@ const VAULT = [
         features: ["10 Mobile DNG Files", "Non-Destructive Editing", "Installation Guide", "Skin Tone Protection"],
         bg: "var(--pastel-sky)",
         image: "assets/images/visual-mockup.png",
-        checkout: "https://store.kynaruniverse.com/checkout/buy/VARIANT-ID-3"
+        checkout: "#" // PLACEHOLDER: Replace with Lemon Squeezy URL later
     },
     {
         id: 'scribe-vault',
@@ -50,11 +50,11 @@ const VAULT = [
         features: ["100+ Tested Prompts", "Email Sequence Builders", "Blog Outline Generators", "Notion & PDF Format"],
         bg: "var(--pastel-sage)",
         image: "assets/images/code-mockup.png",
-        checkout: "https://store.kynaruniverse.com/checkout/buy/VARIANT-ID-4"
+        checkout: "#" // PLACEHOLDER: Replace with Lemon Squeezy URL later
     }
 ];
 
-// UTILITY: Fetch product by ID
+// UTILITY: Fetch product by ID for use in product.html
 function getProduct(id) {
     return VAULT.find(p => p.id === id);
 }

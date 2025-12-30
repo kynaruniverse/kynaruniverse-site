@@ -1,144 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Kynar / Signal Interrupted</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Archive Lost | Kynaruniverse</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
-
 <body>
-  <div data-include="components/header.html"></div>
 
-  <main class="app-container error-layout">
-    
-    <div class="error-backdrop">404</div>
+    <header class="app-header" style="justify-content: center;">
+        <a href="index.html" style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep); text-decoration: none;">KYNAR.</a>
+    </header>
 
-    <div class="error-content">
-        <div class="status-chip warning">Signal Lost</div>
+    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center; position: relative; overflow: hidden;">
         
-        <h1 class="text-display glass-title">System Calibration</h1>
-        
-        <p class="text-sub error-msg">
-          The asset coordinates you are seeking are currently outside the authorized network. 
-          Please recalibrate your navigation.
-        </p>
-
-        <div class="action-grid">
-          <a href="shop.html" class="dock-btn btn-emerald">Explore Catalog</a>
-          <a href="index.html" class="dock-btn btn-ghost">Storefront</a>
-          <a href="contact.html" class="dock-btn btn-ghost">Report Issue</a>
+        <div style="position: absolute; font-family: 'Bantayog'; font-size: clamp(10rem, 40vw, 25rem); opacity: 0.03; z-index: -1; user-select: none; pointer-events: none;">
+            404
         </div>
-    </div>
 
-  </main>
+        <div class="reveal-up" style="max-width: 500px; padding: 20px;">
+            <span style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Signal Interrupted</span>
+            
+            <h1 style="margin-bottom: 20px;">Coordinates <br><span style="color: var(--ink-medium);">Misaligned.</span></h1>
+            
+            <p style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; opacity: 0.7;">
+                The asset you are seeking is currently outside our authorized network. Please recalibrate your navigation to the main archive.
+            </p>
 
-  <div data-include="components/footer.html"></div>
-  <div data-include="components/modals.html"></div>
-  <div id="interface-overlay"></div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%;">
+                <a href="shop.html" class="btn-primary">Explore Collection</a>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <a href="index.html" class="btn-ghost" style="padding: 12px; font-size: 0.85rem; border: 1px solid rgba(0,0,0,0.1);">Storefront</a>
+                    <a href="contact.html" class="btn-ghost" style="padding: 12px; font-size: 0.85rem; border: 1px solid rgba(0,0,0,0.1);">Concierge</a>
+                </div>
+            </div>
+        </div>
 
-  <aside id="nav-drawer" class="drawer-panel drawer-left">
-      <div class="drawer-header"><span class="drawer-title">Menu</span><button class="close-btn" onclick="toggleNav()">✕</button></div>
-      <nav class="drawer-content">
-          <a href="shop.html" class="drawer-link">Marketplace</a>
-          <a href="library.html" class="drawer-link">Manuals</a>
-          <a href="newsletter.html" class="drawer-link">The Network</a>
-          <a href="account.html" class="drawer-link">Member Vault</a>
-      </nav>
-  </aside>
+    </main>
 
-  <aside id="cart-drawer" class="drawer-panel drawer-right">
-      <div class="drawer-header"><span class="drawer-title">Cart</span><button class="close-btn" onclick="toggleCart()">✕</button></div>
-      <div class="drawer-content"></div>
-  </aside>
-
-  <script src="core.js"></script>
-  <script src="cart.js"></script>
-  <script src="haptics.js"></script>
-  
-  <script type="module">
-    import { supabase } from './supabase-config.js';
-    import './auth.js';
-    
-    // Haptic Error Pulse (Mobile Feedback)
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.navigator && window.navigator.vibrate) {
-        setTimeout(() => window.navigator.vibrate([30, 50, 30]), 500);
-      }
-    });
-  </script>
-
-  <script>
-    const overlay = document.getElementById('interface-overlay');
-    const navDrawer = document.getElementById('nav-drawer');
-    const cartDrawer = document.getElementById('cart-drawer');
-
-    window.toggleNav = function() {
-      const isActive = navDrawer.classList.contains('active');
-      closeAllDrawers();
-      if (!isActive) {
-        navDrawer.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; 
-      }
-    };
-
-    window.toggleCart = function() {
-      const isActive = cartDrawer.classList.contains('active');
-      closeAllDrawers();
-      if (!isActive) {
-        cartDrawer.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    };
-
-    window.closeAllDrawers = function() {
-      if(navDrawer) navDrawer.classList.remove('active');
-      if(cartDrawer) cartDrawer.classList.remove('active');
-      if(overlay) overlay.classList.remove('active');
-      document.body.style.overflow = ''; 
-    };
-
-    if(overlay) overlay.addEventListener('click', closeAllDrawers);
-  </script>
-
-  <style>
-    .error-layout {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        min-height: 80vh; text-align: center; position: relative; overflow: hidden;
-    }
-
-    .error-backdrop {
-        font-family: var(--font-display);
-        font-size: clamp(10rem, 30vw, 20rem);
-        font-weight: 900; line-height: 1;
-        position: absolute; z-index: -1;
-        opacity: 0.03; user-select: none;
-        animation: floatError 6s ease-in-out infinite;
-    }
-
-    @keyframes floatError {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-20px) scale(1.02); }
-    }
-
-    .status-chip.warning {
-        color: #d97706; background: rgba(245, 158, 11, 0.1);
-        border-color: rgba(245, 158, 11, 0.2);
-    }
-
-    .error-msg { margin: 0 auto 3.5rem; max-width: 480px; }
-
-    .action-grid {
-        display: flex; flex-wrap: wrap; gap: 1rem;
-        justify-content: center; width: 100%; max-width: 500px;
-    }
-
-    .btn-emerald { width: 100%; }
-    .btn-ghost { flex: 1; min-width: 140px; border: 1px solid var(--ink-border); }
-  </style>
+    <script src="ui-core.js"></script>
+    <script>
+        // HAPTIC RECALIBRATION
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.navigator && window.navigator.vibrate) {
+                // Subtle "error" pulse
+                setTimeout(() => window.navigator.vibrate([30, 50, 30]), 500);
+            }
+        });
+    </script>
 </body>
 </html>

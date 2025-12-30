@@ -176,3 +176,4 @@ p { color: var(--ink-medium); font-weight: 400; max-width: 60ch; }
 /* 10. UTILITIES */
 .reveal-up { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .reveal-visible { opacity: 1; transform: translateY(0); }
+

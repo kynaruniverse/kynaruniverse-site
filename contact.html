@@ -1,202 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Kynar / Support Concierge</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Support Concierge | Kynaruniverse</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
-
 <body>
-  <div data-include="components/header.html"></div>
 
-  <main class="app-container">
-    
-    <section class="contact-hero">
-      <div class="status-chip">Technical Authorization</div>
-      <h1 class="text-display glass-title">Support Concierge</h1>
-      <p class="text-sub">Connect with our intelligence team for system assistance or partnership inquiries.</p>
-    </section>
+    <header class="app-header">
+        <button class="nav-icon" onclick="window.location.href='index.html'" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <span style="font-family: 'Bantayog'; font-size: 1.5rem; color: var(--ink-deep);">CONCIERGE</span>
+        <div style="width: 44px;"></div> </header>
 
-    <div class="contact-layout">
-      
-      <div class="feature-card form-card">
-        <form id="contact-form">
-          <div class="input-group">
-            <label class="input-label">Identity (Full Name)</label>
-            <input type="text" id="msg-name" required class="contact-input" placeholder="Enter your name">
-          </div>
-          
-          <div class="input-group">
-            <label class="input-label">Communication Channel</label>
-            <input type="email" id="msg-email" required class="contact-input" placeholder="Enter your email">
-          </div>
-          
-          <div class="input-group">
-            <label class="input-label">Transmission Details</label>
-            <textarea id="msg-text" required class="contact-input contact-area" placeholder="Describe your inquiry..."></textarea>
-          </div>
-          
-          <button type="submit" class="dock-btn btn-emerald" id="msg-btn" style="width: 100%; margin-top: 1rem;">
-            Initialize Transmission
-          </button>
-        </form>
-      </div>
-
-      <div class="info-stack">
+    <main class="container">
         
-        <div class="info-card">
-          <div class="info-icon gold">📧</div>
-          <div class="info-text">
-            <div class="info-label">Direct Channel</div>
-            <div class="info-val">support@kynar.co</div>
-          </div>
+        <section style="margin-top: 40px; text-align: center;">
+            <div class="reveal-up">
+                <span style="font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Direct Channel</span>
+                <h1>How can we <br><span style="color: var(--ink-medium);">assist you?</span></h1>
+                <p style="margin: 20px auto; font-size: 1.1rem; max-width: 500px;">
+                    Whether it's a technical query regarding an asset or a partnership inquiry, our team is ready to respond.
+                </p>
+            </div>
+        </section>
+
+        <div class="gallery-grid" style="align-items: start; margin-top: 60px;">
+            
+            <div class="product-card reveal-up" style="padding: 30px;">
+                <h3 class="card-title" style="margin-bottom: 24px;">Send Transmission</h3>
+                <form action="https://formspree.io/f/mlgekbwb" method="POST" id="contactForm">
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display:block; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; opacity: 0.6;">Identity</label>
+                        <input type="text" name="name" required placeholder="Full name" style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: var(--font-body); font-size: 1rem; background: #fff;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display:block; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; opacity: 0.6;">Communication Channel</label>
+                        <input type="email" name="email" required placeholder="email@address.com" style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: var(--font-body); font-size: 1rem; background: #fff;">
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <label style="display:block; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; opacity: 0.6;">Inquiry Details</label>
+                        <textarea name="message" required placeholder="How can we help?" style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-family: var(--font-body); min-height: 140px; font-size: 1rem; background: #fff; resize: none;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; cursor: pointer;">Initialize Transmission</button>
+                </form>
+            </div>
+
+            <div class="reveal-up" style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <div class="product-card" style="padding: 24px; flex-direction: row; align-items: center; gap: 20px; background: #fff;">
+                    <div style="font-size: 1.5rem;">📧</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase;">Direct Mail</div>
+                        <div style="font-weight: 600;">support@kynar.co.uk</div>
+                    </div>
+                </div>
+
+                <div class="product-card" style="padding: 24px; flex-direction: row; align-items: center; gap: 20px; background: #fff;">
+                    <div style="font-size: 1.5rem;">💬</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase;">Averaged Response</div>
+                        <div style="font-weight: 600;">Within 12 Hours</div>
+                    </div>
+                </div>
+
+                <div class="product-card" style="padding: 24px; flex-direction: row; align-items: center; gap: 20px; background: var(--pastel-sage);">
+                    <div style="font-size: 1.5rem;">📍</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--ink-deep); text-transform: uppercase;">Operational Base</div>
+                        <div style="font-weight: 600;">Clacton-on-Sea, Essex</div>
+                    </div>
+                </div>
+
+                <div class="product-card" style="padding: 24px; flex-direction: row; align-items: center; gap: 20px; background: #fff;">
+                    <div style="font-size: 1.5rem;">📖</div>
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase;">Self-Service</div>
+                        <a href="shop.html" style="font-weight: 600; color: var(--ink-deep); text-decoration: none;">Browse Archive →</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="info-card">
-          <div class="info-icon dark">💬</div>
-          <div class="info-text">
-            <div class="info-label">Member Response</div>
-            <div class="info-val">Under 12 Hours</div>
-          </div>
+    </main>
+
+    <footer style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: center;">
+        <div style="font-family: 'Bantayog'; font-size: 1.8rem; color: var(--ink-deep); margin-bottom: 10px;">KYNAR.</div>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-bottom: 20px;">Digital Atelier & Curated Archive.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; font-size: 0.9rem;">
+            <a href="index.html" style="color: var(--ink-deep); text-decoration: none;">Home</a>
+            <a href="shop.html" style="color: var(--ink-deep); text-decoration: none;">Shop</a>
+            <a href="newsletter.html" style="color: var(--ink-deep); text-decoration: none;">Network</a>
         </div>
+    </footer>
 
-        <a href="library.html" class="info-card link">
-           <div class="info-icon">📖</div>
-           <div class="info-text">
-             <div class="info-label">Self Service</div>
-             <div class="info-val">Browse Manuals →</div>
-           </div>
-        </a>
-
-      </div>
-
-    </div>
-  </main>
-
-  <div data-include="components/footer.html"></div>
-  <div data-include="components/modals.html"></div>
-  <div id="interface-overlay"></div>
-
-  <aside id="nav-drawer" class="drawer-panel drawer-left">
-      <div class="drawer-header"><span class="drawer-title">Menu</span><button class="close-btn" onclick="toggleNav()">✕</button></div>
-      <nav class="drawer-content">
-          <a href="shop.html" class="drawer-link">Marketplace</a>
-          <a href="library.html" class="drawer-link">Manuals</a>
-          <a href="newsletter.html" class="drawer-link">The Network</a>
-          <a href="account.html" class="drawer-link">Member Vault</a>
-      </nav>
-  </aside>
-
-  <aside id="cart-drawer" class="drawer-panel drawer-right">
-      <div class="drawer-header"><span class="drawer-title">Cart</span><button class="close-btn" onclick="toggleCart()">✕</button></div>
-      <div class="drawer-content"></div>
-  </aside>
-
-  <script src="core.js"></script>
-  <script src="cart.js"></script>
-  <script src="haptics.js"></script>
-  
-  <script type="module">
-    import { supabase } from './supabase-config.js';
-    import './auth.js';
-
-    // REAL CONTACT FORM LOGIC
-    document.getElementById('contact-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const btn = document.getElementById('msg-btn');
-      const name = document.getElementById('msg-name').value;
-      const email = document.getElementById('msg-email').value;
-      const message = document.getElementById('msg-text').value;
-      
-      const originalText = btn.innerText;
-
-      // 1. Tactile Feedback
-      if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(50);
-
-      // 2. Loading State
-      btn.disabled = true;
-      btn.innerHTML = `<span class="spinner" style="width:16px; height:16px; border-top-color:white; border-left-color:rgba(255,255,255,0.3); margin-right:8px; display:inline-block;"></span> TRANSMITTING...`;
-      btn.style.opacity = '0.8';
-
-      try {
-          // 3. Send to Supabase 'messages' table
-          const { error } = await supabase
-            .from('messages')
-            .insert([{ name, email, message }]);
-
-          if (error) throw error;
-
-          // 4. Success State
-          if (window.navigator && window.navigator.vibrate) window.navigator.vibrate([50, 50, 100]);
-          btn.style.background = '#10B981'; // Emerald
-          btn.innerText = 'TRANSMISSION RECEIVED';
-          btn.style.opacity = '1';
-          
-          e.target.reset();
-
-      } catch (err) {
-          console.error("Contact Error:", err);
-          btn.style.background = '#ef4444'; // Red
-          btn.innerText = 'TRANSMISSION FAILED';
-      } finally {
-          // Reset Button after 3s
-          setTimeout(() => {
-            btn.disabled = false;
-            btn.style.background = ''; // Revert to CSS
-            btn.innerText = originalText;
-          }, 3000);
-      }
-    });
-  </script>
-
-  <style>
-    .contact-hero { text-align: center; margin-top: 2rem; margin-bottom: 3.5rem; display: flex; flex-direction: column; align-items: center; }
-    
-    .contact-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 5rem; }
-    @media (min-width: 800px) { .contact-layout { grid-template-columns: 1.5fr 1fr; } }
-
-    /* Form Styles */
-    .form-card { background: white; border: 1px solid var(--ink-border); padding: 2.5rem; border-radius: 24px; box-shadow: var(--shadow-float); }
-    .input-group { margin-bottom: 1.5rem; }
-    .input-label { display: block; font-size: 0.7rem; font-weight: 900; color: var(--ink-muted); text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
-    
-    .contact-input {
-        width: 100%; height: 50px; border-radius: 12px; border: 1px solid var(--ink-border);
-        padding: 0 1.25rem; font-family: var(--font-body); outline: none; background: var(--bg-paper);
-        transition: all 0.2s var(--transition-tactile); font-size: 0.95rem;
-    }
-    .contact-area { height: auto; min-height: 140px; padding: 1.25rem; resize: vertical; }
-    
-    .contact-input:focus {
-        background: white; border-color: var(--accent-gold);
-        box-shadow: 0 4px 15px rgba(197, 160, 89, 0.15); transform: translateY(-2px);
-    }
-
-    /* Info Stack */
-    .info-stack { display: flex; flex-direction: column; gap: 1.5rem; }
-    
-    .info-card {
-        padding: 1.5rem; background: white; border: 1px solid var(--ink-border);
-        border-radius: 16px; display: flex; align-items: center; gap: 1rem;
-        transition: transform 0.2s;
-    }
-    .info-card.link { text-decoration: none; cursor: pointer; }
-    .info-card.link:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
-
-    .info-icon {
-        width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-        font-size: 1.5rem; background: var(--bg-canvas); color: var(--ink-display); flex-shrink: 0;
-    }
-    .info-icon.gold { background: var(--grad-gold); color: white; }
-    .info-icon.dark { background: var(--ink-display); color: white; }
-
-    .info-text { flex-grow: 1; }
-    .info-label { font-size: 0.65rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; }
-    .info-val { font-weight: 800; font-size: 1.1rem; color: var(--ink-display); }
-  </style>
+    <script src="ui-core.js"></script>
 </body>
 </html>

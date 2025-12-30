@@ -1,26 +1,13 @@
 # ══════════════════════════════════════════════════════════════════════════
-# MODULE: KYNAR ROBOTS PROTOCOL (V2.0)
-# ══════════════════════════════════════════════════════════════════════════
-# Strategy: Allow full rendering (CSS/Fonts) while hiding private logic.
+# KYNARUNIVERSE ROBOTS.TXT
 # ══════════════════════════════════════════════════════════════════════════
 
 User-agent: *
 Allow: /
 
-# [ 1. ARCHITECTURAL RESTRICTIONS ]
-# Hide HTML fragments so they don't appear in search results as broken pages.
+# Block access to any potential private component folders
 Disallow: /components/
+Disallow: /private/
 
-# [ 2. PRIVATE & TRANSACTIONAL PATHS ]
-# Keep member vaults and payment terminals out of Google Search.
-Disallow: /account.html
-Disallow: /checkout.html
-Disallow: /success.html
-Disallow: /404.html
-
-# [ 3. CONFIGURATION FILES ]
-# Prevent indexing of backend configuration scripts
-Disallow: /supabase-config.js
-
-# [ 4. SITEMAP ]
+# Link to your Sitemap
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml
