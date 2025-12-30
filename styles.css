@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   KYNAR "DIGITAL ATELIER" SYSTEM (Modular V4.1)
+   KYNAR "KYNAR STUDIO" SYSTEM (Modular V4.1)
    Features: Obsidian Mode, Tactile Grain, Physics-Based Motion
    ══════════════════════════════════════════════════════════════════════════ */
 
@@ -12,6 +12,11 @@
          url('assets/fonts/Bantayog.woff') format('woff');
     font-weight: normal; font-style: normal; font-display: swap;
 }
+/* Update global brand spacing */
+.app-header a {
+    letter-spacing: 0.1em;
+}
+
 
 /* 2. THE PALETTE (Variables) */
 :root {

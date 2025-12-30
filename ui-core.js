@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSmoothScroll();
     initRevealAnimations();
     initCustomCursor();
-    initAtelierHaptics();
+        initStudioHaptics();
     initNetworkPopup();
     
     // 3. PERSISTENCE: Restore session state
@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. SOCIAL PROOF: Initial trigger
     setTimeout(triggerActivityToast, 3000); 
 
-    console.log("Kynar Atelier: Core System Online");
+    console.log("Kynar Studio: Core System Online");
 });
+
 
 // 0.1 FOOTER INJECTOR
 async function loadFooter() {
@@ -32,8 +33,9 @@ async function loadFooter() {
         const response = await fetch('components/footer.html');
         if (!response.ok) throw new Error('Footer not found');
         const html = await response.text();
-        footerEl.innerHTML = html;
-        console.log("Kynar Atelier: Footer Synchronized");
+                footerEl.innerHTML = html;
+        console.log("Kynar Studio: Footer Synchronized");
+
     } catch (err) {
         console.error("Footer injection failed:", err);
     }
@@ -58,7 +60,8 @@ async function loadHeader() {
         initThemeEngine();
         initSmartHeader(); 
         
-        console.log("Kynar Atelier: Header Synchronized");
+        console.log("Kynar Studio: Header Synchronized");
+
     } catch (err) {
         console.error("Header injection failed. Ensure 'components/header.html' exists.");
     }
@@ -232,8 +235,9 @@ function initCustomCursor() {
     });
 }
 
-function initAtelierHaptics() {
+function initStudioHaptics() {
     const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
     if (!isMobile || !navigator.vibrate) return;
     document.body.addEventListener("touchstart", (e) => {
         if (e.target.closest('.btn-primary, .btn-ghost, .nav-icon, .filter-chip')) navigator.vibrate(5);

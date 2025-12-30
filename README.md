@@ -1,6 +1,7 @@
-# Kynaruniverse | Digital Atelier 🏛️
+# Kynar Studio | Digital Marketplace 🏛️
 
-A premium, high-performance marketplace for curated digital assets and organizational tools. Built with a focus on mobile-first aesthetics, tactile physics, and modular architecture.
+A versatile marketplace for curated digital assets, designed for all occasions and creators. Built with a focus on mobile-first aesthetics, tactile physics, and modular architecture.
+
 
 ## 🏗️ Technical Architecture
 - **Skin:** `styles.css` (Bone/Emerald "Day" system & Obsidian "Night" system)
