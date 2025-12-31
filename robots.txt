@@ -4,19 +4,17 @@
 
 User-agent: *
 
-# Allow crawling of the main architecture
+# 1. CORE ACCESS
 Allow: /
 
-# Block modular puzzle pieces
+# 2. SYSTEM ARCHITECTURE (Block Partials)
 Disallow: /components/
-
-# Block Lead Magnet & Success pages to prevent funnel-jumping
-Disallow: /claim-archived.html
-Disallow: /success.html
-
-# Block any private development directories
 Disallow: /private/
 Disallow: /assets/fonts/
 
-# Global Sitemap Reference
+# 3. FUNNEL SECURITY (Prevent Direct Access/Indexing)
+Disallow: /claim-archived.html
+Disallow: /success.html
+
+# 4. DISCOVERY
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

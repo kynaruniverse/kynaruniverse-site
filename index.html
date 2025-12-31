@@ -1,217 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
     <title>Kynar Studio | Digital Marketplace</title>
 
-    
-    <link rel="stylesheet" href="styles.css">
-    
+    <link href="styles.css" rel="stylesheet" />
+
     <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-</head>
-<body>
-    
-        <div class="nav-overlay" id="navOverlay">
-        <button class="nav-icon" id="closeMenu" aria-label="Close Menu" style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
+  </head>
 
-        <nav style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
-            <a href="index.html" class="nav-menu-link">Home</a>
-            <a href="shop.html" class="nav-menu-link">Marketplace</a>
-            <a href="newsletter.html" class="nav-menu-link">Community</a>
-            <a href="contact.html" class="nav-menu-link">Support</a>
-        </nav>
+  <body>
+    <div class="nav-overlay" id="navOverlay">
+      <button
+        aria-label="Close Menu"
+        class="nav-icon"
+        id="closeMenu"
+        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
+      >
+        <svg
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <line x1="18" x2="6" y1="6" y2="18"></line>
+          <line x1="6" x2="18" y1="6" y2="18"></line>
+        </svg>
+      </button>
 
-        <div style="position: absolute; bottom: 40px; text-align: center;">
-            <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px;">Kynar Studio</p>
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <span style="font-size: 0.8rem; font-weight: 700;">IG</span>
-                <span style="font-size: 0.8rem; font-weight: 700;">TW</span>
-                <span style="font-size: 0.8rem; font-weight: 700;">TK</span>
-            </div>
+      <nav
+        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
+      >
+        <a class="nav-menu-link" href="index.html">Home</a>
+        <a class="nav-menu-link" href="shop.html">Marketplace</a>
+        <a class="nav-menu-link" href="newsletter.html">Community</a>
+        <a class="nav-menu-link" href="contact.html">Support</a>
+      </nav>
+
+      <div style="position: absolute; bottom: 40px; text-align: center">
+        <p
+          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
+        >
+          Kynar Studio
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center">
+          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
         </div>
+      </div>
     </div>
 
-
-    <header class="app-header" id="global-header">
-        </header>
+    <header class="app-header" id="global-header"></header>
 
     <main class="container">
-        
-        <section style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 40px;">
-            <div class="reveal-up">
-                <span style="font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Kynar Studio</span>
+      <section
+        style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 40px"
+      >
+        <div class="reveal-up">
+          <span
+            style="font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px"
+          >
+            Kynar Studio
+          </span>
 
-                
-                <h1 style="color: var(--ink-deep); font-size: clamp(2rem, 8vw, 4.5rem);">Tools for Every <br><span style="color: var(--ink-medium);">Occasion.</span></h1>
-                
-<p style="margin-top: 20px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
-    Premium digital assets designed for everyone. From personal organization to 
-    creative projects, find the perfect tool to elevate your daily life.
-</p>
+          <h1
+            style="color: var(--ink-deep); font-size: clamp(2rem, 8vw, 4.5rem)"
+          >
+            Tools for Every <br />
+            <span style="color: var(--ink-medium)">Occasion.</span>
+          </h1>
 
+          <p
+            style="margin-top: 20px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium)"
+          >
+            Premium digital assets designed for everyone. From personal
+            organization to creative projects, find the perfect tool to elevate
+            your daily life.
+          </p>
 
-                <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px;">
-                    <a href="shop.html" class="btn-primary">Explore Collection</a>
-                    <a href="freebie.html" class="btn-ghost">Claim Starter Kit</a>
-                </div>
+          <div
+            style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px"
+          >
+            <a class="btn-primary" href="shop.html">Explore Collection</a>
+            <a class="btn-ghost" href="freebie.html">Claim Starter Kit</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal-up" style="margin-bottom: 80px">
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px"
+        >
+          <a
+            href="shop.html?cat=personal"
+            style="text-decoration: none; display: block"
+          >
+            <div
+              style="background: var(--pastel-sage); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease"
+            >
+              <span
+                style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6"
+              >
+                Occasion
+              </span>
+              <h3
+                style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep)"
+              >
+                Life & Flow
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium)"
+              >
+                Personal organization and daily wellness tools.
+              </p>
             </div>
-        </section>
-        
-                <section class="reveal-up" style="margin-bottom: 80px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                
-                <a href="shop.html?cat=personal" style="text-decoration: none; group">
-                    <div style="background: var(--pastel-sage); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease;">
-                        <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6;">Occasion</span>
-                        <h3 style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep);">Life & Flow</h3>
-                        <p style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium);">Personal organization and daily wellness tools.</p>
-                    </div>
-                </a>
+          </a>
 
-                <a href="shop.html?cat=work" style="text-decoration: none;">
-                    <div style="background: var(--pastel-clay); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease;">
-                        <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6;">Professional</span>
-                        <h3 style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep);">Business & Growth</h3>
-                        <p style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium);">Systems designed for productivity and career.</p>
-                    </div>
-                </a>
-
-                <a href="shop.html?cat=creative" style="text-decoration: none;">
-                    <div style="background: var(--pastel-sky); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease;">
-                        <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6;">Creative</span>
-                        <h3 style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep);">Content & Style</h3>
-                        <p style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium);">Visual assets and social media essentials.</p>
-                    </div>
-                </a>
-
+          <a href="shop.html?cat=work" style="text-decoration: none">
+            <div
+              style="background: var(--pastel-clay); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease"
+            >
+              <span
+                style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6"
+              >
+                Professional
+              </span>
+              <h3
+                style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep)"
+              >
+                Business & Growth
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium)"
+              >
+                Systems designed for productivity and career.
+              </p>
             </div>
-        </section>
+          </a>
 
-
-        <section id="shop" style="padding-top: 60px;">
-    <div style="margin-bottom: 30px;">
-        <h2 class="reveal-up" style="color: var(--ink-deep); font-size: 1.8rem;">Latest Arrivals</h2>
-        <div style="width: 40px; height: 3px; background: var(--accent-gold); margin-top: 8px; border-radius: 2px;"></div>
-    </div>
-
-
-            <div class="gallery-grid">
-                
-                <article class="product-card reveal-up" style="transition-delay: 0.1s;">
-    <span class="tag">Organization</span>
-    <a href="product.html?id=finance-architect" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
-        <img src="assets/images/finance-mockup.png" alt="The Finance Tracker" onerror="this.style.opacity='0.1'">
-    </a>
-    <div class="card-info">
-        <h3 class="card-title" style="color: var(--ink-deep);">The Finance Tracker</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium);">Complete personal wealth management.</p>
-
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="card-price">£24.00</span>
-                            <a href="product.html?id=finance-architect" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card reveal-up" style="transition-delay: 0.2s;">
-    <span class="tag">Creative</span>
-    <a href="product.html?id=influence-suite" class="card-image" style="background-color: var(--pastel-clay); text-decoration: none;">
-        <img src="assets/images/creative-mockup.png" alt="The Social Suite" onerror="this.style.opacity='0.1'">
-    </a>
-    <div class="card-info">
-        <h3 class="card-title" style="color: var(--ink-deep);">The Social Suite</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium);">Ready-to-use creative templates.</p>
-
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="card-price">£35.00</span>
-                            <a href="product.html?id=influence-suite" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card reveal-up" style="transition-delay: 0.3s;">
-    <span class="tag">Photography</span>
-    <a href="product.html?id=aura-presets" class="card-image" style="background-color: var(--pastel-sky); text-decoration: none;">
-        <img src="assets/images/visual-mockup.png" alt="Aura Photo Filters" onerror="this.style.opacity='0.1'">
-    </a>
-    <div class="card-info">
-        <h3 class="card-title" style="color: var(--ink-deep);">Aura Photo Filters</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium);">Cinematic lifestyle presets.</p>
-
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="card-price">£19.00</span>
-                            <a href="product.html?id=aura-presets" class="btn-ghost" style="padding: 8px 16px; font-size: 0.8rem;">View</a>
-                        </div>
-                    </div>
-                </article>
-
+          <a href="shop.html?cat=creative" style="text-decoration: none">
+            <div
+              style="background: var(--pastel-sky); padding: 40px 30px; border-radius: 20px; transition: transform 0.3s ease"
+            >
+              <span
+                style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-deep); opacity: 0.6"
+              >
+                Creative
+              </span>
+              <h3
+                style="font-size: 1.5rem; margin-top: 10px; color: var(--ink-deep)"
+              >
+                Content & Style
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-top: 10px; color: var(--ink-medium)"
+              >
+                Visual assets and social media essentials.
+              </p>
             </div>
-        </section>
-        
-        <section id="faq" style="padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);">
-    <div style="margin-bottom: 40px; text-align: center;">
-        <h2 class="reveal-up" style="color: var(--ink-deep); font-size: 2rem;">Common Questions</h2>
-        <div style="width: 40px; height: 3px; background: var(--accent-gold); margin: 12px auto; border-radius: 2px;"></div>
-    </div>
+          </a>
+        </div>
+      </section>
 
-    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
-        
-        <details class="faq-item reveal-up">
-            <summary class="faq-question">How do I receive my digital assets?</summary>
-            <div class="faq-answer">
-                Immediately after purchase, you'll receive an email from Lemon Squeezy with a secure download link. You can also access your files via the confirmation page.
-            </div>
-        </details>
-
-        <details class="faq-item reveal-up" style="transition-delay: 0.1s;">
-            <summary class="faq-question">What software do I need to use these tools?</summary>
-            <div class="faq-answer">
-                It depends on the product! Our organization tools typically use Notion, creative templates use Canva, and photo filters work with the free Lightroom Mobile app. Check the product page for specifics.
-            </div>
-        </details>
-
-        <details class="faq-item reveal-up" style="transition-delay: 0.2s;">
-            <summary class="faq-question">Do you offer refunds on digital products?</summary>
-            <div class="faq-answer">
-                Due to the nature of digital downloads, we generally don't offer refunds once a file has been accessed. However, if you have any technical issues, please contact our support team and we'll make it right.
-            </div>
-        </details>
-
-                <details class="faq-item reveal-up" style="transition-delay: 0.3s;">
-            <summary class="faq-question">Can I use these for my business?</summary>
-            <div class="faq-answer">
-                Yes! All Kynar Studio assets come with a standard license that allows for personal and commercial use in your own business or social media projects.
-            </div>
-        </details>
-
-        <div class="reveal-up" style="margin-top: 50px; text-align: center; background: var(--bg-bone); padding: 40px; border-radius: 20px; border: 1px dashed rgba(15, 61, 48, 0.2);">
-            <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--ink-deep);">Still have questions?</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 25px; margin-inline: auto;">
-                Our team is available to help you find the perfect asset for your needs.
-            </p>
-            <a href="contact.html" class="btn-ghost" style="font-size: 0.8rem; padding: 10px 30px;">
-                Get in Touch
-            </a>
+      <section id="shop" style="padding-top: 60px">
+        <div style="margin-bottom: 30px">
+          <h2
+            class="reveal-up"
+            style="color: var(--ink-deep); font-size: 1.8rem"
+          >
+            Latest Arrivals
+          </h2>
+          <div
+            style="width: 40px; height: 3px; background: var(--accent-gold); margin-top: 8px; border-radius: 2px"
+          ></div>
         </div>
 
+        <div class="gallery-grid">
+          <article
+            class="product-card reveal-up"
+            style="transition-delay: 0.1s"
+          >
+            <span class="tag">Organization</span>
+            <a
+              class="card-image"
+              href="product.html?id=finance-architect"
+              style="background-color: var(--pastel-sage); text-decoration: none"
+            >
+              <img
+                alt="The Finance Tracker"
+                onerror="this.style.opacity='0.1'"
+                src="assets/images/finance-mockup.png"
+              />
+            </a>
+            <div class="card-info">
+              <h3 class="card-title" style="color: var(--ink-deep)">
+                The Finance Tracker
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium)"
+              >
+                Complete personal wealth management.
+              </p>
+              <div
+                style="display: flex; justify-content: space-between; align-items: center"
+              >
+                <span class="card-price">£24.00</span>
+                <a
+                  class="btn-ghost"
+                  href="product.html?id=finance-architect"
+                  style="padding: 8px 16px; font-size: 0.8rem"
+                >
+                  View
+                </a>
+              </div>
+            </div>
+          </article>
 
-    </div>
-</section>
+          <article
+            class="product-card reveal-up"
+            style="transition-delay: 0.2s"
+          >
+            <span class="tag">Creative</span>
+            <a
+              class="card-image"
+              href="product.html?id=influence-suite"
+              style="background-color: var(--pastel-clay); text-decoration: none"
+            >
+              <img
+                alt="The Social Suite"
+                onerror="this.style.opacity='0.1'"
+                src="assets/images/creative-mockup.png"
+              />
+            </a>
+            <div class="card-info">
+              <h3 class="card-title" style="color: var(--ink-deep)">
+                The Social Suite
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium)"
+              >
+                Ready-to-use creative templates.
+              </p>
+              <div
+                style="display: flex; justify-content: space-between; align-items: center"
+              >
+                <span class="card-price">£35.00</span>
+                <a
+                  class="btn-ghost"
+                  href="product.html?id=influence-suite"
+                  style="padding: 8px 16px; font-size: 0.8rem"
+                >
+                  View
+                </a>
+              </div>
+            </div>
+          </article>
 
+          <article
+            class="product-card reveal-up"
+            style="transition-delay: 0.3s"
+          >
+            <span class="tag">Photography</span>
+            <a
+              class="card-image"
+              href="product.html?id=aura-presets"
+              style="background-color: var(--pastel-sky); text-decoration: none"
+            >
+              <img
+                alt="Aura Photo Filters"
+                onerror="this.style.opacity='0.1'"
+                src="assets/images/visual-mockup.png"
+              />
+            </a>
+            <div class="card-info">
+              <h3 class="card-title" style="color: var(--ink-deep)">
+                Aura Photo Filters
+              </h3>
+              <p
+                style="font-size: 0.9rem; margin-bottom: 12px; color: var(--ink-medium)"
+              >
+                Cinematic lifestyle presets.
+              </p>
+              <div
+                style="display: flex; justify-content: space-between; align-items: center"
+              >
+                <span class="card-price">£19.00</span>
+                <a
+                  class="btn-ghost"
+                  href="product.html?id=aura-presets"
+                  style="padding: 8px 16px; font-size: 0.8rem"
+                >
+                  View
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <footer class="app-footer" id="global-footer" style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: center;">
-    </footer>
+      <section
+        id="faq"
+        style="padding: 80px 0; border-top: 1px solid rgba(0, 0, 0, 0.05)"
+      >
+        <div style="margin-bottom: 40px; text-align: center">
+          <h2 class="reveal-up" style="color: var(--ink-deep); font-size: 2rem">
+            Common Questions
+          </h2>
+          <div
+            style="width: 40px; height: 3px; background: var(--accent-gold); margin: 12px auto; border-radius: 2px"
+          ></div>
+        </div>
 
+        <div
+          style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px"
+        >
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              How do I receive my digital assets?
+            </summary>
+            <div class="faq-answer">
+              Immediately after purchase, you'll receive an email from Lemon
+              Squeezy with a secure download link. You can also access your
+              files via the confirmation page.
+            </div>
+          </details>
 
+          <details class="faq-item reveal-up" style="transition-delay: 0.1s">
+            <summary class="faq-question">
+              What software do I need to use these tools?
+            </summary>
+            <div class="faq-answer">
+              It depends on the product! Our organization tools typically use
+              Notion, creative templates use Canva, and photo filters work with
+              the free Lightroom Mobile app. Check the product page for
+              specifics.
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up" style="transition-delay: 0.2s">
+            <summary class="faq-question">
+              Do you offer refunds on digital products?
+            </summary>
+            <div class="faq-answer">
+              Due to the nature of digital downloads, we generally don't offer
+              refunds once a file has been accessed. However, if you have any
+              technical issues, please contact our support team and we'll make
+              it right.
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up" style="transition-delay: 0.3s">
+            <summary class="faq-question">Can I use these for my business?</summary>
+            <div class="faq-answer">
+              Yes! All Kynar Studio assets come with a standard license that
+              allows for personal and commercial use in your own business or
+              social media projects.
+            </div>
+          </details>
+
+          <div
+            class="reveal-up"
+            style="margin-top: 50px; text-align: center; background: var(--bg-bone); padding: 40px; border-radius: 20px; border: 1px dashed rgba(15, 61, 48, 0.2)"
+          >
+            <h3
+              style="font-size: 1.2rem; margin-bottom: 10px; color: var(--ink-deep)"
+            >
+              Still have questions?
+            </h3>
+            <p
+              style="font-size: 0.9rem; margin-bottom: 25px; margin-inline: auto"
+            >
+              Our team is available to help you find the perfect asset for your
+              needs.
+            </p>
+            <a
+              class="btn-ghost"
+              href="contact.html"
+              style="font-size: 0.8rem; padding: 10px 30px"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer
+        class="app-footer"
+        id="global-footer"
+        style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0, 0, 0, 0.05); text-align: center"
+      ></footer>
     </main>
 
     <script src="ui-core.js"></script>
-</body>
+  </body>
 </html>

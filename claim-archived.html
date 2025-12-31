@@ -1,87 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
     <title>Download Your Assets | Kynar Studio</title>
 
-    
-    <link rel="stylesheet" href="styles.css">
-    
+    <link href="styles.css" rel="stylesheet" />
+
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-</head>
-<body>
-    
+  </head>
+
+  <body>
     <div class="nav-overlay" id="navOverlay">
-    <button class="nav-icon" id="closeMenu" aria-label="Close Menu" style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+      <button
+        aria-label="Close Menu"
+        class="nav-icon"
+        id="closeMenu"
+        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
+      >
+        <svg
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <line x1="18" x2="6" y1="6" y2="18"></line>
+          <line x1="6" x2="18" y1="6" y2="18"></line>
         </svg>
-    </button>
+      </button>
 
-    <nav style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
-        <a href="index.html" class="nav-menu-link">Home</a>
-        <a href="shop.html" class="nav-menu-link">Marketplace</a>
-        <a href="newsletter.html" class="nav-menu-link">Community</a>
-        <a href="contact.html" class="nav-menu-link">Support</a>
-    </nav>
+      <nav
+        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
+      >
+        <a class="nav-menu-link" href="index.html">Home</a>
+        <a class="nav-menu-link" href="shop.html">Marketplace</a>
+        <a class="nav-menu-link" href="newsletter.html">Community</a>
+        <a class="nav-menu-link" href="contact.html">Support</a>
+      </nav>
 
-    <div style="position: absolute; bottom: 40px; text-align: center;">
-        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px;">Kynar Studio</p>
-        <div style="display: flex; gap: 20px; justify-content: center;">
-            <span style="font-size: 0.8rem; font-weight: 700;">IG</span>
-            <span style="font-size: 0.8rem; font-weight: 700;">TW</span>
-            <span style="font-size: 0.8rem; font-weight: 700;">TK</span>
+      <div style="position: absolute; bottom: 40px; text-align: center">
+        <p
+          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
+        >
+          Kynar Studio
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center">
+          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
         </div>
+      </div>
     </div>
-</div>
 
+    <header class="app-header" id="global-header"></header>
 
-    <header class="app-header" id="global-header">
-        </header>
+    <main
+      class="container"
+      style="display: flex; align-items: center; justify-content: center; min-height: 80vh; text-align: center"
+    >
+      <div class="reveal-up" style="max-width: 500px; width: 100%">
+        <div style="font-size: 4rem; margin-bottom: 20px">📦</div>
 
-    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 80vh; text-align: center;">
-        
-        <div class="reveal-up" style="max-width: 500px; width: 100%;">
-            <div style="font-size: 4rem; margin-bottom: 20px;">📦</div>
-            <span style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Purchase Confirmed</span>
-            
-<h1>Your Assets are <br><span style="color: var(--ink-medium);">Ready.</span></h1>
+        <span
+          style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px"
+        >
+          Purchase Confirmed
+        </span>
 
-            
-            <p style="margin: 20px 0 40px 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
-    Your <strong>Essential Starter Pack</strong> is ready. This folder contains your new organization tools and creative assets.
-</p>
+        <h1>
+          Your Assets are <br /><span style="color: var(--ink-medium)">
+            Ready.
+          </span>
+        </h1>
 
+        <p
+          style="margin: 20px 0 40px 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium)"
+        >
+          Your <strong>Essential Starter Pack</strong> is ready. This folder
+          contains your new organization tools and creative assets.
+        </p>
 
-            <a href="#" class="btn-primary" id="downloadBtn" style="width: 100%; justify-content: center;" download>Download Now</a>
+        <a
+          class="btn-primary"
+          download
+          href="#"
+          id="downloadBtn"
+          style="width: 100%; justify-content: center"
+        >
+          Download Now
+        </a>
 
-            
-            <p style="margin-top: 40px; font-size: 0.85rem; color: var(--ink-medium); opacity: 0.7;">
-                Having trouble? <a href="contact.html" style="color: var(--ink-deep); font-weight: 700; text-decoration: underline;">Contact Support</a>.
-
-            </p>
-        </div>
-
+        <p
+          style="margin-top: 40px; font-size: 0.85rem; color: var(--ink-medium); opacity: 0.7"
+        >
+          Having trouble?
+          <a
+            href="contact.html"
+            style="color: var(--ink-deep); font-weight: 700; text-decoration: underline"
+          >
+            Contact Support
+          </a>.
+        </p>
+      </div>
     </main>
 
     <script src="ui-core.js"></script>
-    <script>
-        // CUSTOM DOWNLOAD HAPTIC
-        document.addEventListener('DOMContentLoaded', () => {
-            const dlBtn = document.getElementById('downloadBtn');
-            if (dlBtn) {
-                dlBtn.addEventListener('click', () => {
-                    if (navigator.vibrate) {
-                        // A heavier, distinct sequence for successful acquisition
-                        navigator.vibrate([100, 30, 100]); 
-                    }
-                    console.log("Kynar Studio: Download Initiated.");
 
-                });
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const dlBtn = document.getElementById("downloadBtn");
+
+        if (dlBtn) {
+          dlBtn.addEventListener("click", () => {
+            // Haptic Feedback for Mobile
+            if (navigator.vibrate) {
+              // A heavier, distinct sequence for successful acquisition
+              navigator.vibrate([100, 30, 100]);
             }
-        });
+            console.log("Kynar Studio: Download Initiated.");
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

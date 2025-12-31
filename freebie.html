@@ -1,89 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
     <title>Free Starter Pack | Kynar Studio</title>
 
-    
-    <link rel="stylesheet" href="styles.css">
-    
+    <link href="styles.css" rel="stylesheet" />
+
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-</head>
-<body>
-    
+  </head>
+
+  <body>
     <div class="nav-overlay" id="navOverlay">
-    <button class="nav-icon" id="closeMenu" aria-label="Close Menu" style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+      <button
+        aria-label="Close Menu"
+        class="nav-icon"
+        id="closeMenu"
+        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
+      >
+        <svg
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <line x1="18" x2="6" y1="6" y2="18"></line>
+          <line x1="6" x2="18" y1="6" y2="18"></line>
         </svg>
-    </button>
+      </button>
 
-    <nav style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
-        <a href="index.html" class="nav-menu-link">Home</a>
-        <a href="shop.html" class="nav-menu-link">Marketplace</a>
-        <a href="newsletter.html" class="nav-menu-link">Community</a>
-        <a href="contact.html" class="nav-menu-link">Support</a>
-    </nav>
+      <nav
+        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
+      >
+        <a class="nav-menu-link" href="index.html">Home</a>
+        <a class="nav-menu-link" href="shop.html">Marketplace</a>
+        <a class="nav-menu-link" href="newsletter.html">Community</a>
+        <a class="nav-menu-link" href="contact.html">Support</a>
+      </nav>
 
-    <div style="position: absolute; bottom: 40px; text-align: center;">
-        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px;">Kynar Studio</p>
-        <div style="display: flex; gap: 20px; justify-content: center;">
-            <span style="font-size: 0.8rem; font-weight: 700;">IG</span>
-            <span style="font-size: 0.8rem; font-weight: 700;">TW</span>
-            <span style="font-size: 0.8rem; font-weight: 700;">TK</span>
+      <div style="position: absolute; bottom: 40px; text-align: center">
+        <p
+          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
+        >
+          Kynar Studio
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center">
+          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
+          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
         </div>
+      </div>
     </div>
-</div>
 
+    <header class="app-header" id="global-header"></header>
 
-    <header class="app-header" id="global-header">
-        </header>
+    <main
+      class="container"
+      style="display: flex; align-items: center; justify-content: center; min-height: 85vh"
+    >
+      <div class="reveal-up" style="max-width: 600px; text-align: center">
+        <span
+          style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px"
+        >
+          Welcome Gift
+        </span>
 
-    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh;">
-        <div class="reveal-up" style="max-width: 600px; text-align: center;">
-            
-            <span style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px;">Welcome Gift</span>
+        <h1 style="color: var(--ink-deep)">
+          The Essential <br /><span style="color: var(--ink-medium)">
+            Starter Pack.
+          </span>
+        </h1>
 
-            
-            <h1 style="color: var(--ink-deep);">The Essential <br><span style="color: var(--ink-medium);">Starter Pack.</span></h1>
-            
-            <p style="margin: 20px 0 40px 0; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium);">
-            Experience the quality of our marketplace with a free selection of 
-            organization and creative tools. Start your journey with Kynar Studio.
-</p>
+        <p
+          style="margin: 20px 0 40px 0; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium)"
+        >
+          Experience the quality of our marketplace with a free selection of
+          organization and creative tools. Start your journey with Kynar Studio.
+        </p>
 
+        <div
+          class="product-card"
+          style="padding: 40px; background: var(--bg-surface); text-align: left; border-left: 6px solid var(--pastel-sage); border-radius: 20px"
+        >
+          <form action="https://formspree.io/f/mlgekbwb" method="POST">
+            <input name="_captcha" type="hidden" value="false" />
+            <input
+              name="_next"
+              type="hidden"
+              value="https://kynaruniverse.co.uk/claim-archived.html"
+            />
+            <input
+              name="_subject"
+              type="hidden"
+              value="New Freebie Request - Kynar Starter Kit"
+            />
 
-            <div class="product-card" style="padding: 40px; background: var(--bg-surface); text-align: left; border-left: 6px solid var(--pastel-sage); border-radius: 20px;">
-                <form action="https://formspree.io/f/mlgekbwb" method="POST">
-                    
-                    <input type="hidden" name="_subject" value="New Freebie Request - Kynar Starter Kit">
-                    <input type="hidden" name="_next" value="https://kynaruniverse.co.uk/claim-archived.html">
-                    <input type="hidden" name="_captcha" value="false">
+            <label
+              style="display: block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: var(--ink-deep); opacity: 0.6; letter-spacing: 0.1em"
+            >
+              Email Address
+            </label>
 
-                    <label style="display:block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: var(--ink-deep); opacity: 0.6; letter-spacing: 0.1em;">Email Address</label>
+            <input
+              name="email"
+              placeholder="your@email.com"
+              required
+              style="width: 100%; padding: 18px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.1); margin-bottom: 20px; font-family: var(--font-body); font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); outline: none"
+              type="email"
+            />
 
-                    
-                    <input type="email" name="email" required placeholder="your@email.com" 
-                           style="width: 100%; padding: 18px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.1); margin-bottom: 20px; font-family: var(--font-body); font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); outline: none;">
-                    
-                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Get My Starter Pack →</button>
-
-                </form>
-            </div>
-            
-            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--ink-medium); opacity: 0.7;">
-    By requesting this pack, you join the <strong>Kynar Community</strong> for marketplace updates and exclusive freebies.
-</p>
-
+            <button
+              class="btn-primary"
+              style="width: 100%; justify-content: center"
+              type="submit"
+            >
+              Get My Starter Pack →
+            </button>
+          </form>
         </div>
+
+        <p
+          style="margin-top: 30px; font-size: 0.8rem; color: var(--ink-medium); opacity: 0.7"
+        >
+          By requesting this pack, you join the
+          <strong>Kynar Community</strong> for marketplace updates and exclusive
+          freebies.
+        </p>
+      </div>
     </main>
 
-    <footer class="app-footer" id="global-footer" style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: center;">
-    </footer>
-
+    <footer
+      class="app-footer"
+      id="global-footer"
+      style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0, 0, 0, 0.05); text-align: center"
+    ></footer>
 
     <script src="ui-core.js"></script>
-</body>
+  </body>
 </html>
