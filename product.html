@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Product Details | Kynaruniverse</title>
+    <title>Product Details | Kynar Studio</title>
+
     
     <link rel="stylesheet" href="styles.css">
     
@@ -17,8 +18,9 @@
 
     <main class="container" id="product-content">
         <div class="reveal-up" style="text-align: center; padding: 120px 0; opacity: 1; transform: translateY(0);">
-            <p style="font-family: 'Bantayog'; letter-spacing: 0.1em; font-size: 0.9rem;">Initializing Secure Connection...</p>
-        </div>
+    <p style="font-family: 'Bantayog'; letter-spacing: 0.1em; font-size: 0.9rem;">Loading Product Details...</p>
+</div>
+
     </main>
 
     <footer class="app-footer" id="global-footer" style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0,0,0,0.05); text-align: center;">
@@ -34,9 +36,10 @@
             const product = getProduct(productId);
 
             if (product) {
-                document.title = `${product.title} | Kynaruniverse`;
-                renderProduct(product);
-            } else {
+    document.title = `${product.title} | Kynar Studio`;
+    renderProduct(product);
+}
+ else {
                 // Fail-safe: if ID is missing or wrong, go to Archive
                 window.location.href = 'shop.html';
             }
@@ -60,7 +63,8 @@
                         <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: var(--ink-medium);">${p.desc}</p>
                         
                         <div style="margin-bottom: 40px; background: var(--bg-surface); padding: 25px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05);">
-                            <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">Manifest Contents:</h4>
+                            <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">Product Features:</h4>
+
                             <ul style="list-style: none; display: grid; gap: 12px;">
                                 ${p.features.map(f => `
                                     <li style="display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 0.95rem;">
@@ -75,7 +79,8 @@
 
                         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px;">
                             <span style="font-size: 2.2rem; font-family: 'Bantayog'; color: var(--ink-deep);">${p.price}</span>
-                            <a href="${p.checkout}" class="btn-primary" style="flex-grow: 1; min-width: 200px; justify-content: center;">Acquire Asset →</a>
+                            <a href="${p.checkout}" class="btn-primary" style="flex-grow: 1; min-width: 200px; justify-content: center;">Purchase Now →</a>
+
                         </div>
                     </div>
                 </div>

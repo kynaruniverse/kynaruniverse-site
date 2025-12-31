@@ -52,7 +52,7 @@ const VAULT = [
         tag: "AI Tools",
         desc: "The ultimate AI prompt library for every task. Over 100+ tested prompts to help you write better emails, plan projects, and get more done with ChatGPT.",
         features: ["100+ Multi-use Prompts", "Daily Productivity Hacks", "Creative Writing Aids", "Instant Digital Access"],
-        bg: "var(--pastel-sage)",
+        bg: "var(--pastel-clay)",
         image: "assets/images/code-mockup.png",
         checkout: "#" 
     }

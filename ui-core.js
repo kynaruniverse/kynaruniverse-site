@@ -17,11 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. PERSISTENCE: Restore session state
     syncCartBadge();
     
-    // 4. SOCIAL PROOF: Initial trigger
+        // 4. SOCIAL PROOF: Initial trigger
     setTimeout(triggerActivityToast, 3000); 
+
+    // 5. DEEP LINKING: Check for URL filters
+    handleUrlFilters();
 
     console.log("Kynar Studio: Core System Online");
 });
+
 
 
 // 0.1 FOOTER INJECTOR
@@ -247,12 +251,13 @@ function initStudioHaptics() {
 
 // --- HONEST SOCIAL PROOF ENGINE ---
 const activityLog = [
-    "New Asset Acquired: Finance Architect",
-    "Someone joined The Network",
-    "New Asset Acquired: Aura Presets",
-    "Identity Verified: Starter Kit Claimed",
-    "New Asset Acquired: Influence Suite"
+    "New Product Acquired: Finance Tracker",
+    "Someone joined the Kynar Community",
+    "New Product Acquired: Aura Photo Filters",
+    "Essential Starter Pack Claimed",
+    "New Product Acquired: The Social Suite"
 ];
+
 
 function triggerActivityToast() {
     // Create element if it doesn't exist
@@ -282,3 +287,32 @@ function triggerActivityToast() {
 
     }, 15000); // Trigger every 15 seconds
 }
+
+// --- DEEP LINK FILTERING ENGINE ---
+function handleUrlFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('cat');
+    
+    if (category) {
+        // Find the matching filter button in shop.html
+        const targetBtn = document.querySelector(`.filter-chip[onclick*="'${category}'"]`);
+        if (targetBtn) {
+            // Trigger the existing filter function
+            filterGrid(category, targetBtn);
+            
+            // Smoothly scroll to the shop section after a short delay
+            setTimeout(() => {
+                const shopSection = document.getElementById('shop');
+                if (shopSection) {
+                    window.scrollTo({
+                        top: shopSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 500);
+        }
+    }
+}
+
+// Update the main DOMContentLoaded listener to include this check
+
