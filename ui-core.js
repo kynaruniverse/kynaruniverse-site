@@ -276,3 +276,13 @@ function applyPreLaunchStatus() {
     const cards = document.querySelectorAll('.product-card');
     cards.forEach(card => card.setAttribute('data-status', 'coming-soon'));
 }
+// Close menu automatically when a link is clicked
+document.querySelectorAll('.nav-menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navOverlay) {
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
