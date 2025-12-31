@@ -57,80 +57,76 @@
     <script src="prelaunch-logic.js"></script>
     <script src="ui-core.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const productId = params.get('id');
-            const product = getProduct(productId);
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+        const product = getProduct(productId);
 
-            if (product) {
-    document.title = `${product.title} | Kynar Studio`;
-    renderProduct(product);
-}
- else {
-                // Fail-safe: if ID is missing or wrong, go to Archive
-                window.location.href = 'shop.html';
-            }
-        });
-
-        function renderProduct(p) {
-            const container = document.getElementById('product-content');
-            
-            // Image of a dynamic product page layout with large featured image on left and details on right
-            
-
-            container.innerHTML = `
-                <div class="gallery-grid" style="align-items: start; margin-top: 40px; gap: 40px;">
-                    <div class="reveal-up" style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-depth); background: ${p.bg}; position: sticky; top: 100px;">
-                        <img src="${p.image}" alt="${p.title}" style="width: 100%; display: block; mix-blend-mode: multiply; opacity: 0.9;">
-                    </div>
-                    
-                    <div class="reveal-up" style="transition-delay: 0.2s; padding-bottom: 40px;">
-                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em;">${p.tag}</span>
-                        <h1 style="margin: 10px 0 20px 0; font-size: clamp(2rem, 5vw, 3rem);">${p.title}</h1>
-                        <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: var(--ink-medium);">${p.desc}</p>
-                        
-                        <div style="margin-bottom: 40px; background: var(--bg-surface); padding: 25px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05);">
-                            <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">Product Features:</h4>
-
-                            <ul style="list-style: none; display: grid; gap: 12px;">
-                                ${p.features.map(f => `
-                                    <li style="display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 0.95rem;">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="3" style="flex-shrink: 0; margin-top: 2px;">
-                                            <polyline points="20 6 9 17 4 12"></polyline>
-                                        </svg>
-                                        ${f}
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-
-                        // Dynamic CTA based on status
-const ctaSection = p.status === 'coming-soon' ? `
-    <div style="width: 100%; background: var(--bg-bone); padding: 30px; border-radius: 15px; border: 2px dashed var(--accent-gold);">
-        <h4 style="margin-bottom: 10px; color: var(--ink-deep);">Coming Next Week</h4>
-        <p style="font-size: 0.9rem; margin-bottom: 20px;">Join the waitlist to get an exclusive 20% launch discount.</p>
-        <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; gap: 10px;">
-            <input type="hidden" name="interest" value="${p.title}">
-            <input type="email" name="email" placeholder="email@address.com" required style="flex-grow: 1; padding: 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);">
-            <button type="submit" class="btn-primary" style="padding: 12px 24px;">Notify Me</button>
-        </form>
-    </div>
-` : `
-    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px;">
-        <span style="font-size: 2.2rem; font-family: 'Bantayog'; color: var(--ink-deep);">${p.price}</span>
-        <a href="${p.checkout}" class="btn-primary" style="flex-grow: 1; min-width: 200px; justify-content: center;">Purchase Now →</a>
-    </div>
-`;
-
-                    </div>
-                </div>
-            `;
-
-            // Trigger animations
-            setTimeout(() => {
-                document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
-            }, 150);
+        if (product) {
+            document.title = `${product.title} | Kynar Studio`;
+            renderProduct(product);
+        } else {
+            window.location.href = 'shop.html';
         }
-    </script>
+    });
+
+    function renderProduct(p) {
+        const container = document.getElementById('product-content');
+
+        // PRE-CALCULATE CTA: Decides between 'Waitlist' or 'Purchase'
+        let ctaHtml = "";
+        if (p.status === 'coming-soon') {
+            ctaHtml = `
+                <div style="width: 100%; background: var(--bg-bone); padding: 30px; border-radius: 20px; border: 2px dashed var(--accent-gold);">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--ink-deep);">Launching in 7 Days</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px; color: var(--ink-medium);">Join the waitlist for an exclusive launch discount and early access.</p>
+                    <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                        <input type="hidden" name="product_interest" value="${p.title}">
+                        <input type="email" name="email" required placeholder="Enter your email" style="width:100%; padding:14px; border-radius:10px; border:1px solid rgba(0,0,0,0.1); outline:none; background: var(--bg-surface);">
+                        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Notify Me</button>
+                    </form>
+                </div>`;
+        } else {
+            ctaHtml = `
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px;">
+                    <span style="font-size: 2.2rem; font-family: 'Bantayog'; color: var(--ink-deep);">${p.price}</span>
+                    <a href="${p.checkout}" class="btn-primary" style="flex-grow: 1; min-width: 200px; justify-content: center;">Purchase Now →</a>
+                </div>`;
+        }
+
+        container.innerHTML = `
+            <div class="gallery-grid" style="align-items: start; margin-top: 40px; gap: 40px;">
+                <div class="reveal-up" style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-depth); background: ${p.bg}; position: sticky; top: 100px;">
+                    <img src="${p.image}" alt="${p.title}" style="width: 100%; display: block; mix-blend-mode: multiply; opacity: 0.9;">
+                </div>
+                
+                <div class="reveal-up" style="transition-delay: 0.2s; padding-bottom: 40px;">
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em;">${p.tag}</span>
+                    <h1 style="margin: 10px 0 20px 0; font-size: clamp(2rem, 5vw, 3rem);">${p.title}</h1>
+                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: var(--ink-medium);">${p.desc}</p>
+                    
+                    <div style="margin-bottom: 40px; background: var(--bg-surface); padding: 25px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05);">
+                        <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">Product Features:</h4>
+                        <ul style="list-style: none; display: grid; gap: 12px;">
+                            ${p.features.map(f => `
+                                <li style="display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 0.95rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="3" style="flex-shrink: 0; margin-top: 2px;">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    ${f}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    ${ctaHtml}
+                </div>
+            </div>`;
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
+        }, 150);
+    }
+</script>
+
 </body>
 </html>

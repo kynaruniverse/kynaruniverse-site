@@ -211,13 +211,15 @@ function initStudioHaptics() {
 }
 
 // --- SOCIAL PROOF & FILTERS ---
+/* SURGICAL REPAIR: Update social proof to reflect pre-launch status */
 const activityLog = [
-    "3 people just joined the Finance Tracker waitlist",
+    "5 people joined the Finance Tracker waitlist today",
     "New Member joined the Kynar Community",
     "Waitlist growing: Aura Photo Filters",
     "Someone just claimed the Essential Starter Pack",
-    "Social Suite launching in 7 days"
+    "The Social Suite launches in exactly 1 week"
 ];
+
 
 
 function triggerActivityToast() {
