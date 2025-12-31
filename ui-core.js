@@ -196,8 +196,9 @@ function initNetworkPopup() {
                 <div class="network-popup-card">
                     <button class="close-popup">✕</button>
                     <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.25em;">The Network</span>
-                    <h2 class="popup-title">Acquire <br><span style="color: var(--ink-medium);">Fresh Coordinates.</span></h2>
-                    <p style="font-size: 1rem; margin-bottom: 30px; line-height: 1.5;">Join for weekly archive transmissions and system updates.</p>
+                    <h2 class="popup-title">Join the <br><span style="color: var(--ink-medium);">Kynar Community.</span></h2>
+<p style="font-size: 1rem; margin-bottom: 30px; line-height: 1.5;">Get the latest product drops, free templates, and creative tips delivered to you.</p>
+
                     <form action="https://formspree.io/f/mlgekbwb" method="POST">
                         <input type="email" name="email" required placeholder="Enter your email" class="popup-input">
                         <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Authorize Access</button>

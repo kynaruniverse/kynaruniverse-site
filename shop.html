@@ -57,15 +57,17 @@
         </div>
 
         <nav class="filter-bar reveal-up" id="filterContainer">
-            <button class="filter-chip active" onclick="filterGrid('all', this)">View All</button>
-            <button class="filter-chip" onclick="filterGrid('planner', this)">Planners</button>
-            <button class="filter-chip" onclick="filterGrid('creative', this)">Visuals</button>
-            <button class="filter-chip" onclick="filterGrid('code', this)">AI & Tech</button>
-        </nav>
+    <button class="filter-chip active" onclick="filterGrid('all', this)">All Assets</button>
+    <button class="filter-chip" onclick="filterGrid('personal', this)">Life & Flow</button>
+    <button class="filter-chip" onclick="filterGrid('work', this)">Business & Growth</button>
+    <button class="filter-chip" onclick="filterGrid('creative', this)">Content & Style</button>
+</nav>
+
 
         <div class="gallery-grid" id="productGrid">
             
-            <article class="product-card reveal-up" data-category="planner" style="transition-delay: 0.1s;">
+            <article class="product-card reveal-up" data-category="personal" style="transition-delay: 0.1s;">
+
                 <span class="tag">Notion</span>
                 <a href="product.html?id=finance-architect" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
                     <img src="assets/images/finance-mockup.png" alt="The Finance Architect" onerror="this.style.opacity='0.1'">
@@ -110,7 +112,7 @@
                 </div>
             </article>
 
-            <article class="product-card reveal-up" data-category="code" style="transition-delay: 0.4s;">
+            <article class="product-card reveal-up" data-category="work" style="transition-delay: 0.4s;">
                 <span class="tag">AI Prompts</span>
                 <a href="product.html?id=scribe-vault" class="card-image" style="background-color: var(--pastel-sage); text-decoration: none;">
                     <img src="assets/images/code-mockup.png" alt="The Scribe Vault" onerror="this.style.opacity='0.1'">

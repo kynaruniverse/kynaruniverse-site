@@ -6,13 +6,13 @@
 const VAULT = [
     {
         id: 'finance-architect',
-        category: 'planner',
-        title: "The Finance Architect",
-        shortDesc: "Premium wealth tracking",
+        category: 'personal',
+        title: "The Finance Tracker",
+        shortDesc: "Complete wealth management",
         price: "£24.00",
-        tag: "Notion",
-        desc: "A master system for wealth. Track income, automate budget categories, and visualize your net worth growth in one premium Notion dashboard.",
-        features: ["Automated Income Tracking", "Subscription Manager", "50/30/20 Rule Built-in", "Mobile-First View"],
+        tag: "Organization",
+        desc: "A complete personal finance and wealth tracker for everyone. Manage your income, automate your budget, and watch your savings grow in one intuitive dashboard.",
+        features: ["Simple Income Tracking", "Monthly Budget Planner", "Savings Goal Tracker", "Mobile-Friendly Design"],
         bg: "var(--pastel-sage)",
         image: "assets/images/finance-mockup.png",
         checkout: "#" 
@@ -20,12 +20,12 @@ const VAULT = [
     {
         id: 'influence-suite',
         category: 'creative',
-        title: "The Influence Suite",
-        shortDesc: "High-conversion social assets",
+        title: "The Social Suite",
+        shortDesc: "Ready-to-use creative templates",
         price: "£35.00",
-        tag: "Canva",
-        desc: "Stop designing from scratch. 50+ high-conversion Instagram carousels and highlight covers designed to stop the scroll.",
-        features: ["50+ Carousel Slides", "10 Highlight Icons", "Fully Editable in Canva", "Free Font Pairings"],
+        tag: "Creative",
+        desc: "Professional social media templates for any occasion. 50+ editable designs created to help you share your story beautifully and effortlessly.",
+        features: ["50+ Social Templates", "Versatile Design Style", "Easy Canva Editing", "Step-by-Step Guide"],
         bg: "var(--pastel-clay)",
         image: "assets/images/creative-mockup.png",
         checkout: "#" 
@@ -33,30 +33,31 @@ const VAULT = [
     {
         id: 'aura-presets',
         category: 'creative',
-        title: "Aura Presets",
-        shortDesc: "Cinematic lifestyle filters",
+        title: "Aura Photo Filters",
+        shortDesc: "Cinematic lifestyle presets",
         price: "£19.00",
-        tag: "Lightroom",
-        desc: "The 'Old Money' aesthetic in one click. A collection of 10 mobile Lightroom presets for creating warm, cinematic travel and lifestyle photos.",
-        features: ["10 Mobile DNG Files", "Non-Destructive Editing", "Installation Guide", "Skin Tone Protection"],
+        tag: "Photography",
+        desc: "Transform your photos in seconds. A collection of 10 essential mobile filters designed to give your everyday memories a warm, cinematic feel.",
+        features: ["10 One-Click Filters", "Works for All Photos", "Easy Mobile Setup", "Natural Look Preserved"],
         bg: "var(--pastel-sky)",
         image: "assets/images/visual-mockup.png",
         checkout: "#" 
     },
     {
         id: 'scribe-vault',
-        category: 'code',
-        title: "The Scribe Vault",
-        shortDesc: "Master library for ChatGPT",
+        category: 'work',
+        title: "The Prompt Library",
+        shortDesc: "AI prompts for every task",
         price: "£15.00",
-        tag: "AI Prompts",
-        desc: "Unlock the full power of ChatGPT. A library of 100+ 'fill-in-the-blank' prompts for marketers, copywriters, and content creators.",
-        features: ["100+ Tested Prompts", "Email Sequence Builders", "Blog Outline Generators", "Notion & PDF Format"],
+        tag: "AI Tools",
+        desc: "The ultimate AI prompt library for every task. Over 100+ tested prompts to help you write better emails, plan projects, and get more done with ChatGPT.",
+        features: ["100+ Multi-use Prompts", "Daily Productivity Hacks", "Creative Writing Aids", "Instant Digital Access"],
         bg: "var(--pastel-sage)",
         image: "assets/images/code-mockup.png",
         checkout: "#" 
     }
 ];
+
 
 // UTILITY: Fetch product by ID
 function getProduct(id) {

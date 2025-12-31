@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   KYNAR "KYNAR STUDIO" SYSTEM (Modular V4.1)
+   KYNAR "KYNAR s" SYSTEM (Modular V4.1)
    Features: Obsidian Mode, Tactile Grain, Physics-Based Motion
    ══════════════════════════════════════════════════════════════════════════ */
 
@@ -250,8 +250,8 @@ p { color: var(--ink-medium); max-width: 60ch; transition: color var(--transitio
     top: 15px; 
     left: 15px;
     padding: 6px 14px; 
-    border-radius: 6px;
-    font-size: 0.65rem; 
+    border-radius: 4px;
+    font-size: 0.75rem; 
     font-weight: 800; 
     text-transform: uppercase;
     letter-spacing: 0.1em;
