@@ -2,195 +2,101 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Success | Kynar Studio</title>
-
     <link href="styles.css" rel="stylesheet" />
-
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-
     <style>
-      @keyframes ripple {
-        0% {
-          transform: scale(0.8);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1.6);
-          opacity: 0;
-        }
-      }
-
-      .status-card {
-        padding: 24px;
-        background: var(--bg-surface);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        text-align: left;
-        gap: 20px;
-        width: 100%;
-        transition: transform 0.3s ease;
-      }
-
-      body.dark-mode .status-card {
-        border-color: rgba(255, 255, 255, 0.05);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .success-icon-wrap {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 30px auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+      @keyframes ripple { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+      .status-card { padding: 24px; background: var(--bg-surface); border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 20px; display: flex; align-items: center; gap: 20px; width: 100%; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+      .status-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); }
+      .success-icon-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto 30px auto; display: flex; align-items: center; justify-content: center; }
     </style>
   </head>
 
   <body>
-    <div class="nav-overlay" id="navOverlay">
-      <button
-        aria-label="Close Menu"
-        class="nav-icon"
-        id="closeMenu"
-        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
-      >
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
-        </svg>
-      </button>
-
-      <nav
-        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
-      >
-        <a class="nav-menu-link" href="index.html">Home</a>
-        <a class="nav-menu-link" href="shop.html">Marketplace</a>
-        <a class="nav-menu-link" href="newsletter.html">Community</a>
-        <a class="nav-menu-link" href="contact.html">Support</a>
-      </nav>
-    </div>
-
     <header class="app-header" id="global-header"></header>
 
-    <main
-      class="container"
-      style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; text-align: center; padding: 20px"
-    >
+    <main class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; text-align: center;">
       <div class="reveal-up" style="max-width: 500px; width: 100%">
+        
         <div class="success-icon-wrap">
-          <div
-            style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite"
-          ></div>
-          <div style="font-size: 3.5rem; position: relative; z-index: 2">
-            ✨
-          </div>
+          <div style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite"></div>
+          <div style="font-size: 3.5rem; position: relative; z-index: 2">✨</div>
         </div>
 
-        <span
-          id="success-label"
-          style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 15px"
-        >
-          Access Authorized
+        <span id="success-label" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 15px;">
+          Signal Verified
         </span>
 
-        <h1
-          id="success-title"
-          style="margin-bottom: 20px; font-size: clamp(2rem, 8vw, 3rem)"
-        >
-          Welcome to <br /><span style="color: var(--ink-medium)">
-            The Archive.
-          </span>
+        <h1 id="success-title" style="margin-bottom: 20px; line-height: 1.1;">
+          Welcome to <br><span style="color: var(--ink-medium)">The Archive.</span>
         </h1>
 
-        <p
-          id="success-text"
-          style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium)"
-        >
-          Your registration is complete. Check your inbox for your welcome
-          package and exclusive community updates.
+        <p id="success-text" style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
+          Authorization successful. Your digital profile has been updated. Check your inbox for your welcome package.
         </p>
 
-        <div
-          style="display: flex; flex-direction: column; gap: 12px; width: 100%"
-        >
+        <div id="action-stack" style="display: flex; flex-direction: column; gap: 12px; width: 100%">
           <div class="status-card">
-            <div aria-hidden="true" style="font-size: 1.5rem">📥</div>
-            <div>
-              <div
-                style="font-size: 0.65rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px"
-              >
-                Next Step
-              </div>
-              <div
-                style="font-weight: 600; font-size: 0.9rem; color: var(--ink-deep)"
-              >
-                Check your inbox for our message
-              </div>
+            <div style="font-size: 1.5rem">📥</div>
+            <div style="text-align: left;">
+              <div style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Primary Action</div>
+              <div id="action-text" style="font-weight: 600; font-size: 0.95rem; color: var(--ink-deep);">Initializing delivery...</div>
             </div>
           </div>
 
-          <div class="status-card">
-            <div aria-hidden="true" style="font-size: 1.5rem">🤝</div>
-            <div>
-              <div
-                style="font-size: 0.65rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px"
-              >
-                Need Help?
-              </div>
-              <a
-                href="contact.html"
-                style="font-weight: 600; font-size: 0.9rem; color: var(--ink-deep); text-decoration: none; border-bottom: 1px solid var(--accent-gold)"
-              >
-                Contact our concierge →
-              </a>
+          <a href="contact.html" class="status-card" style="text-decoration: none; color: inherit;">
+            <div style="font-size: 1.5rem">🤝</div>
+            <div style="text-align: left;">
+              <div style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Concierge</div>
+              <div style="font-weight: 600; font-size: 0.95rem; color: var(--ink-deep);">Need technical help? →</div>
             </div>
-          </div>
+          </a>
         </div>
 
-        <a
-          class="btn-primary"
-          href="index.html"
-          style="margin-top: 40px; width: 100%; justify-content: center"
-        >
+        <a class="btn-primary" href="shop.html" style="margin-top: 40px; width: 100%; justify-content: center">
           Return to Marketplace
         </a>
       </div>
     </main>
 
-    <script src="ui-core.js"></script>
+    <footer class="app-footer" id="global-footer"></footer>
 
-    <script>
+    <script src="ui-core.js"></script>
+    <script type="module">
+      import { getProduct } from './vault.js';
+
       document.addEventListener("DOMContentLoaded", () => {
-        // 1. SUCCESS HAPTIC
-        if (window.navigator && window.navigator.vibrate) {
-          setTimeout(() => window.navigator.vibrate([50, 30, 100]), 500);
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get("type");
+        const productId = params.get("id");
+
+        if (type === "order") {
+          const product = getProduct(productId);
+          const pName = product ? product.title : "Digital Assets";
+          
+          document.getElementById("success-label").textContent = "Order Confirmed";
+          document.getElementById("success-title").innerHTML = `${pName} <br><span style='color: var(--ink-medium);'>Are Ready.</span>`;
+          document.getElementById("success-text").textContent = "Your payment was successful. A unique download key has been generated and dispatched to your email.";
+          document.getElementById("action-text").textContent = "Check email for secure download link";
+
+          // PROACTIVE EVOLUTION: Add immediate access button if ID is present
+          if (productId) {
+            const gatewayBtn = document.createElement('a');
+            gatewayBtn.href = `claim-archived.html?id=${productId}`;
+            gatewayBtn.className = "btn-ghost";
+            gatewayBtn.style.marginTop = "20px";
+            gatewayBtn.style.width = "100%";
+            gatewayBtn.style.justifyContent = "center";
+            gatewayBtn.textContent = "Access Portal Directly →";
+            document.getElementById("action-stack").after(gatewayBtn);
+          }
         }
 
-        // 2. DYNAMIC CONTENT LOGIC (Query Param Detection)
-        const params = new URLSearchParams(window.location.search);
-
-        if (params.get("type") === "order") {
-          document.getElementById("success-label").textContent =
-            "Order Confirmed";
-          document.getElementById("success-title").innerHTML =
-            "Digital Assets <br><span style='color: var(--ink-medium);'>Ready.</span>";
-          document.getElementById("success-text").textContent =
-            "Your payment was successful. Check your email for a secure download link from Lemon Squeezy.";
+        // Kynar "Success Sequence" Haptic
+        if (navigator.vibrate) {
+          setTimeout(() => navigator.vibrate([40, 40, 150]), 600);
         }
       });
     </script>

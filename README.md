@@ -1,43 +1,36 @@
-# Kynar Studio | Digital Marketplace 🏛️
+# 🏛️ Kynar Studio | High-Fidelity Digital Archive
 
-A versatile marketplace for curated digital assets, designed for all occasions and creators. Built with a focus on mobile-first aesthetics, tactile physics, and modular architecture.
+Kynar Studio is a high-performance, boutique digital marketplace engineered for the creative elite. This repository contains the **V6.5 Engine**, a synchronized ecosystem built for speed, security, and global scalability.
 
----
 
-## 🏗️ Technical Architecture
-
-- **Skin:** `styles.css` (Bone/Emerald "Day" system & Obsidian "Night" system)
-- **Physics:** `ui-core.js` (Lenis Smooth Scroll, V4.0 Component Injection, Haptic Engine)
-- **Components:** `components/header.html` (Global shared navigation)
-- **Database:** `vault.js` (Centralized JSON product architecture)
-- **Commerce:** Lemon Squeezy Overlay Integration
-- **Backend:** Formspree (Lead Magnet & Concierge routing)
 
 ---
 
-## 📁 File Structure
+## 💎 The V6.5 Philosophy
+Unlike traditional template-based stores, Kynar Studio operates on a **Data-Driven Architecture**. Every product interaction is controlled by a centralized Vault, ensuring that the interface remains lean while the inventory grows.
+
+### **Key Technical Features**
+* **Vault-Sync Discovery:** A real-time search engine that filters through the `vault.js` database without page reloads.
+* **Secure Gateway Delivery:** A protocol-driven claim system that decrypts asset paths only after authorization.
+* **Clinical UI Physics:** Powered by Lenis Smooth Scroll and custom haptic feedback for a tactile mobile experience.
+* **Boutique SEO:** Pre-configured with JSON-LD logic, Open Graph meta-tags, and a dynamic XML sitemap.
+
+---
+
+## 🏗️ Repository Architecture
 
 ```text
-/root
-├── index.html            # Brand Storefront
-├── shop.html             # Filterable Archive Gallery
-├── product.html          # Dynamic Template Engine
-├── freebie.html          # Lead Magnet (The Starter Kit)
-├── contact.html          # Support Concierge
-├── newsletter.html       # The Network Hub
-├── success.html          # Transaction Handover Page
-├── claim-archived.html   # Secure Download Gateway
-├── 404.html              # Coordinate Redirection
-├── robots.txt            # Crawler Directives
-├── sitemap.xml           # SEO Map
-│
-├── assets/               # Fonts, Grain textures, and Product mockups
-│
-├── components/           # Modular HTML fragments
-│   ├── header.html
-│   └── footer.html
-│
-└── js/                   # (Optional: organize scripts here)
-    ├── ui-core.js
-    ├── vault.js
-    └── prelaunch-logic.js
+├── assets/
+│   ├── downloads/      # 🔒 Protected (.htaccess secured)
+│   ├── images/         # Optimized WebP assets
+│   └── fonts/          # Custom brand typography
+├── components/
+│   ├── header.html     # Modular Control Center & Search
+│   └── footer.html     # Legal Hub & Trust Signals
+├── ui-core.js          # The "Engine" (Haptics, Reveal, Logic)
+├── vault.js            # The "Database" (Product Schema)
+├── styles.css          # Master Design System (Grain, Dark Mode)
+├── index.html          # Dynamic Showroom
+├── shop.html           # The Archive Grid
+├── product.html        # High-Conversion Detail Page
+└── legal.html          # Operational Protocols

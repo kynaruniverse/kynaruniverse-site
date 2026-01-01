@@ -2,189 +2,74 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
-    <title>Newsletter | Kynar Studio</title>
-
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>Community Archive | Kynar Studio</title>
     <link href="styles.css" rel="stylesheet" />
-
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="ui-core.js" defer></script>
   </head>
 
   <body>
-    <div class="nav-overlay" id="navOverlay">
-      <button
-        aria-label="Close Menu"
-        class="nav-icon"
-        id="closeMenu"
-        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
-      >
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
-        </svg>
-      </button>
-
-      <nav
-        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
-      >
-        <a class="nav-menu-link" href="index.html">Home</a>
-        <a class="nav-menu-link" href="shop.html">Marketplace</a>
-        <a class="nav-menu-link" href="newsletter.html">Community</a>
-        <a class="nav-menu-link" href="contact.html">Support</a>
-      </nav>
-
-      <div style="position: absolute; bottom: 40px; text-align: center">
-        <p
-          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
-        >
-          Kynar Studio
-        </p>
-        <div style="display: flex; gap: 20px; justify-content: center">
-          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
-        </div>
-      </div>
-    </div>
-
     <header class="app-header" id="global-header"></header>
 
-    <main
-      class="container"
-      style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; padding-top: 60px"
-    >
-      <div class="reveal-up" style="max-width: 550px; text-align: center">
-        <div style="font-size: 3rem; margin-bottom: 20px">📜</div>
-        <span
-          style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px"
-        >
-          Kynar Studio Updates
+    <main class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh;">
+      
+      <div class="reveal-up" style="max-width: 550px; text-align: center; margin-top: 60px;">
+        <div style="font-size: 3.5rem; margin-bottom: 25px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));">📜</div>
+        <span style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px;">
+          The Community Archive
         </span>
 
-        <h1>
-          Join the <br /><span style="color: var(--ink-medium)">Community.</span>
-        </h1>
+        <h1 style="line-height: 1.1;">Join the <br /><span style="color: var(--ink-medium)">Kynar Network.</span></h1>
 
-        <p
-          style="margin: 20px 0 40px 0; font-size: 1.15rem; line-height: 1.6"
-        >
-          Stay updated with new product drops, creative inspiration, and
-          exclusive deals for the Kynar community.
+        <p style="margin: 25px 0 45px 0; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium);">
+          Access high-fidelity insights, exclusive asset drops, and creative strategies delivered weekly to your inbox.
         </p>
 
-        <div
-          class="product-card"
-          style="padding: 8px; flex-direction: row; border-radius: 50px; background: var(--bg-surface); box-shadow: var(--shadow-float)"
-        >
-          <form
-            action="https://formspree.io/f/mlgekbwb"
-            method="POST"
-            style="display: flex; width: 100%"
-          >
-            <input
-              name="_next"
-              type="hidden"
-              value="https://kynaruniverse.co.uk/success.html"
-            />
-
-            <input
-              name="email"
-              placeholder="Enter email address"
-              required
-              style="flex-grow: 1; background: transparent; border: none; padding: 0 25px; font-family: var(--font-body); font-size: 1rem; outline: none; color: var(--ink-deep)"
-              type="email"
-            />
-            <button
-              class="btn-primary"
-              style="padding: 14px 30px; font-size: 0.85rem; border-radius: 40px; white-space: nowrap; justify-content: center"
-              type="submit"
-            >
+        <div class="product-card" style="padding: 8px; flex-direction: row; border-radius: 50px; background: var(--bg-surface); border: 1.5px solid var(--ink-deep); overflow: visible;">
+          <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; width: 100%; align-items: center;">
+            <input name="_next" type="hidden" value="https://kynaruniverse.co.uk/success.html?type=newsletter" />
+            
+            <input name="email" placeholder="Archive access email..." required 
+                   style="flex-grow: 1; background: transparent; border: none; padding: 0 25px; font-family: var(--font-body); font-size: 1rem; outline: none; color: var(--ink-deep);"
+                   type="email" />
+            
+            <button class="btn-primary" style="padding: 14px 30px; font-size: 0.8rem; border-radius: 40px; white-space: nowrap;" type="submit">
               Join Now
             </button>
           </form>
         </div>
 
-        <div
-          style="margin-top: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; font-size: 0.7rem; font-weight: 700; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.1em"
-        >
-          <span>🔒 Secured</span>
+        <div style="margin-top: 35px; display: flex; justify-content: center; gap: 20px; font-size: 0.65rem; font-weight: 800; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.15em;">
+          <span>🔒 End-to-End Secure</span>
           <span>•</span>
-          <span>Weekly Frequency</span>
-          <span>•</span>
-          <span>One-Click Opt Out</span>
+          <span>Zero Spam Policy</span>
         </div>
       </div>
 
-      <section
-        style="width: 100%; max-width: 800px; margin-top: 100px; margin-bottom: 60px"
-      >
-        <h3
-          style="font-family: 'Bantayog'; font-size: 1.2rem; margin-bottom: 30px; text-align: center; opacity: 0.6; letter-spacing: 0.1em"
-        >
-          Latest Updates
+      <section style="width: 100%; max-width: 800px; margin-top: 120px; margin-bottom: 60px;">
+        <h3 style="font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 40px; text-align: center; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.2em;">
+          Previous Dispatches
         </h3>
 
-        <div
-          class="gallery-grid"
-          style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))"
-        >
-          <div
-            class="product-card"
-            style="padding: 30px; text-align: left; background: var(--bg-surface); border-left: 4px solid var(--pastel-sage)"
-          >
-            <span
-              style="font-size: 0.65rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase"
-            >
-              #02 • Insights
-            </span>
-            <h4
-              style="margin: 10px 0; font-family: 'Bantayog'; font-size: 1.1rem"
-            >
-              Tools for the New Year
-            </h4>
-            <p style="font-size: 0.85rem; color: var(--ink-medium)">
-              Strategic shifts in how digital assets are consumed in 2026.
-            </p>
-          </div>
+        <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+          
+          <article class="product-card" style="padding: 30px; text-align: left; border-left: 6px solid var(--pastel-sage); display: block;">
+            <span style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em;">Dispatch #02</span>
+            <h4 style="margin: 12px 0; font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-deep);">The 2026 Asset Economy</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-medium); line-height: 1.5;">Analyzing the shift toward minimalist, high-utility digital products in the creative space.</p>
+          </article>
 
-          <div
-            class="product-card"
-            style="padding: 30px; text-align: left; background: var(--bg-surface); border-left: 4px solid var(--pastel-clay)"
-          >
-            <span
-              style="font-size: 0.65rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase"
-            >
-              #01 • Resource
-            </span>
-            <h4
-              style="margin: 10px 0; font-family: 'Bantayog'; font-size: 1.1rem"
-            >
-              Minimalist Asset Design
-            </h4>
-            <p style="font-size: 0.85rem; color: var(--ink-medium)">
-              Why 'less' is generating more revenue for template creators.
-            </p>
-          </div>
+          <article class="product-card" style="padding: 30px; text-align: left; border-left: 6px solid var(--pastel-clay); display: block;">
+            <span style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em;">Dispatch #01</span>
+            <h4 style="margin: 12px 0; font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-deep);">Design as a Service</h4>
+            <p style="font-size: 0.9rem; color: var(--ink-medium); line-height: 1.5;">How template creators are moving from one-off sales to recurring community memberships.</p>
+          </article>
+
         </div>
       </section>
     </main>
 
-    <footer
-      class="app-footer"
-      id="global-footer"
-      style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0, 0, 0, 0.05); text-align: center"
-    ></footer>
-
-    <script src="ui-core.js"></script>
+    <footer class="app-footer" id="global-footer"></footer>
   </body>
 </html>

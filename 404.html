@@ -2,31 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Archive Lost | Kynar Studio</title>
-
     <link href="styles.css" rel="stylesheet" />
-
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="ui-core.js" defer></script>
 
     <style>
       .error-bg-text {
         position: absolute;
         font-family: var(--font-display);
-        font-size: clamp(10rem, 40vw, 22rem);
+        font-size: clamp(12rem, 45vw, 25rem);
         color: var(--ink-deep);
-        opacity: 0.03;
+        opacity: 0.04;
         z-index: -1;
         user-select: none;
         pointer-events: none;
         letter-spacing: -0.05em;
         line-height: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
-      /* Responsive button fix */
       .error-nav-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -35,114 +33,57 @@
       }
 
       @media (max-width: 480px) {
-        .error-nav-grid {
-          grid-template-columns: 1fr;
-        }
+        .error-nav-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
 
   <body>
-    <div class="nav-overlay" id="navOverlay">
-      <button
-        aria-label="Close Menu"
-        class="nav-icon"
-        id="closeMenu"
-        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
-      >
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
-        </svg>
-      </button>
-
-      <nav
-        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
-      >
-        <a class="nav-menu-link" href="index.html">Home</a>
-        <a class="nav-menu-link" href="shop.html">Marketplace</a>
-        <a class="nav-menu-link" href="newsletter.html">Community</a>
-        <a class="nav-menu-link" href="contact.html">Support</a>
-      </nav>
-    </div>
-
     <header class="app-header" id="global-header"></header>
 
-    <main
-      class="container"
-      style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center; position: relative; overflow: hidden; padding: 20px"
-    >
+    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center; position: relative; overflow: hidden;">
+      
       <div class="error-bg-text">404</div>
 
-      <div class="reveal-up" style="max-width: 500px; width: 100%">
-        <span
-          style="font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px"
-        >
+      <div class="reveal-up" style="max-width: 500px; width: 100%; z-index: 10;">
+        <span style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 25px;">
           Signal Interrupted
         </span>
 
-        <h1
-          style="color: var(--ink-deep); font-size: clamp(2.5rem, 10vw, 4rem); margin-bottom: 15px"
-        >
+        <h1 style="color: var(--ink-deep); font-size: clamp(2.5rem, 10vw, 4rem); line-height: 1.1; margin-bottom: 20px;">
           Archive <br /><span style="color: var(--ink-medium)">Not Found.</span>
         </h1>
 
-        <p
-          style="margin-bottom: 35px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium)"
-        >
-          The link you followed may be broken or the archive has been relocated.
-          Let's get you back on track.
+        <p style="margin-bottom: 45px; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium);">
+          The requested coordinate is missing or has been re-indexed. 
+          Let's restore your connection to the marketplace.
         </p>
 
-        <div
-          style="display: flex; flex-direction: column; gap: 12px; width: 100%"
-        >
-          <a
-            class="btn-primary"
-            href="shop.html"
-            style="justify-content: center; width: 100%"
-          >
+        <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+          <a class="btn-primary" href="shop.html" style="justify-content: center; width: 100%; letter-spacing: 0.1em;">
             Return to Marketplace
           </a>
 
           <div class="error-nav-grid">
-            <a
-              class="btn-ghost"
-              href="index.html"
-              style="padding: 14px; font-size: 0.85rem; justify-content: center"
-            >
+            <a class="btn-ghost" href="index.html" style="padding: 14px; font-size: 0.8rem; justify-content: center;">
               Main Store
             </a>
-            <a
-              class="btn-ghost"
-              href="contact.html"
-              style="padding: 14px; font-size: 0.85rem; justify-content: center"
-            >
-              Support
+            <a class="btn-ghost" href="contact.html" style="padding: 14px; font-size: 0.8rem; justify-content: center;">
+              Support Desk
             </a>
           </div>
         </div>
       </div>
     </main>
 
-    <script src="ui-core.js"></script>
+    <footer class="app-footer" id="global-footer"></footer>
 
     <script>
-      // ERROR SIGNAL HAPTIC
+      // KYNAR ERROR PULSE
       document.addEventListener("DOMContentLoaded", () => {
-        if (window.navigator && window.navigator.vibrate) {
-          // Subtle triple-pulse error signal: short, gap, short, gap, long
-          setTimeout(
-            () => window.navigator.vibrate([40, 60, 40, 60, 80]),
-            800
-          );
+        if (navigator.vibrate) {
+          // Subtle triple-pulse error signal
+          setTimeout(() => navigator.vibrate([40, 60, 40, 60, 80]), 800);
         }
       });
     </script>

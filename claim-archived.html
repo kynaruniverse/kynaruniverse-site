@@ -2,129 +2,109 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
-    <title>Download Your Assets | Kynar Studio</title>
-
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>Secure Delivery | Kynar Studio</title>
     <link href="styles.css" rel="stylesheet" />
-
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="ui-core.js" defer></script>
+    <style>
+        .vault-icon {
+            font-size: 4rem; 
+            margin-bottom: 25px; 
+            display: inline-block;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
   </head>
 
   <body>
-    <div class="nav-overlay" id="navOverlay">
-      <button
-        aria-label="Close Menu"
-        class="nav-icon"
-        id="closeMenu"
-        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
-      >
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
-        </svg>
-      </button>
-
-      <nav
-        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
-      >
-        <a class="nav-menu-link" href="index.html">Home</a>
-        <a class="nav-menu-link" href="shop.html">Marketplace</a>
-        <a class="nav-menu-link" href="newsletter.html">Community</a>
-        <a class="nav-menu-link" href="contact.html">Support</a>
-      </nav>
-
-      <div style="position: absolute; bottom: 40px; text-align: center">
-        <p
-          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
-        >
-          Kynar Studio
-        </p>
-        <div style="display: flex; gap: 20px; justify-content: center">
-          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
-        </div>
-      </div>
-    </div>
-
     <header class="app-header" id="global-header"></header>
 
-    <main
-      class="container"
-      style="display: flex; align-items: center; justify-content: center; min-height: 80vh; text-align: center"
-    >
+    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center;">
       <div class="reveal-up" style="max-width: 500px; width: 100%">
-        <div style="font-size: 4rem; margin-bottom: 20px">📦</div>
+        
+        <div class="vault-icon" id="status-icon">📦</div>
 
-        <span
-          style="font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 20px"
-        >
-          Purchase Confirmed
+        <span id="security-label" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px;">
+          Initialising Gateway
         </span>
 
-        <h1>
-          Your Assets are <br /><span style="color: var(--ink-medium)">
-            Ready.
-          </span>
-        </h1>
+        <h1 id="claim-title">Preparing Your <br /><span style="color: var(--ink-medium)">Archive.</span></h1>
 
-        <p
-          style="margin: 20px 0 40px 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium)"
-        >
-          Your <strong>Essential Starter Pack</strong> is ready. This folder
-          contains your new organization tools and creative assets.
+        <p id="download-meta" style="margin: 25px 0 45px 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
+          Verifying security certificates and generating your unique access token...
         </p>
 
-        <a
-          class="btn-primary"
-          download
-          href="#"
-          id="downloadBtn"
-          style="width: 100%; justify-content: center"
-        >
-          Download Now
-        </a>
+        <div id="action-cluster" style="display: flex; flex-direction: column; gap: 12px; opacity: 0; pointer-events: none; transition: opacity 0.5s ease;">
+          <a class="btn-primary" download href="#" id="downloadBtn" style="width: 100%; justify-content: center; letter-spacing: 0.1em;">
+            Download Package Now
+          </a>
+          <a href="shop.html" class="btn-ghost" style="width: 100%; justify-content: center">
+            Return to Marketplace
+          </a>
+        </div>
 
-        <p
-          style="margin-top: 40px; font-size: 0.85rem; color: var(--ink-medium); opacity: 0.7"
-        >
-          Having trouble?
-          <a
-            href="contact.html"
-            style="color: var(--ink-deep); font-weight: 700; text-decoration: underline"
-          >
-            Contact Support
-          </a>.
-        </p>
+        <div style="margin-top: 50px; padding: 25px; border-radius: 20px; background: var(--bg-surface); border: 1.5px dashed rgba(15, 61, 48, 0.1);">
+           <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5;">
+            🔒 <strong>Security Protocol:</strong> Access links are valid for 24 hours. <br> 
+            For technical assistance, <a href="contact.html" style="color: var(--ink-deep); font-weight: 700; text-decoration: underline;">Connect with Support</a>
+          </p>
+        </div>
       </div>
     </main>
 
-    <script src="ui-core.js"></script>
+    <footer class="app-footer" id="global-footer"></footer>
 
-    <script>
+    <script type="module">
+      import { getProduct } from './vault.js';
+
       document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const metaText = document.getElementById("download-meta");
+        const securityLabel = document.getElementById("security-label");
+        const claimTitle = document.getElementById("claim-title");
+        const actionCluster = document.getElementById("action-cluster");
         const dlBtn = document.getElementById("downloadBtn");
+        const icon = document.getElementById("status-icon");
 
-        if (dlBtn) {
-          dlBtn.addEventListener("click", () => {
-            // Haptic Feedback for Mobile
-            if (navigator.vibrate) {
-              // A heavier, distinct sequence for successful acquisition
-              navigator.vibrate([100, 30, 100]);
+        // GATEWAY LOGIC
+        setTimeout(() => {
+            // Find product or provide the Default Starter Kit if ID is missing/invalid
+            const product = getProduct(productId) || { 
+              title: "Essential Starter Pack", 
+              file: "kynar-starter-pack.zip" 
+            };
+            
+            const productName = product.title;
+
+            // UI Transformation
+            securityLabel.textContent = "Security Verified";
+            securityLabel.style.color = "var(--ink-deep)";
+            claimTitle.innerHTML = `Your Assets Are <br /><span style="color: var(--ink-medium)">Ready.</span>`;
+            metaText.innerHTML = `The <strong>${productName}</strong> archive is now decrypted and prepared for download.`;
+            icon.textContent = "🔓";
+            
+            // Activate Actions
+            actionCluster.style.opacity = "1";
+            actionCluster.style.pointerEvents = "all";
+
+            // Secure Path Injection
+            if (product.file) {
+                dlBtn.href = `assets/downloads/${product.file}`;
             }
-            console.log("Kynar Studio: Download Initiated.");
-          });
-        }
+
+            if (dlBtn) {
+              dlBtn.onclick = () => {
+                if (navigator.vibrate) navigator.vibrate([100, 30, 100]);
+              };
+            }
+        }, 1800); 
       });
     </script>
   </body>

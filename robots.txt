@@ -1,20 +1,6 @@
-# ══════════════════════════════════════════════════════════════════════════
-# KYNARUNIVERSE ROBOTS.TXT (V4.1)
-# ══════════════════════════════════════════════════════════════════════════
-
 User-agent: *
-
-# 1. CORE ACCESS
 Allow: /
-
-# 2. SYSTEM ARCHITECTURE (Block Partials)
-Disallow: /components/
-Disallow: /private/
-Disallow: /assets/fonts/
-
-# 3. FUNNEL SECURITY (Prevent Direct Access/Indexing)
+Disallow: /assets/downloads/
 Disallow: /claim-archived.html
-Disallow: /success.html
 
-# 4. DISCOVERY
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

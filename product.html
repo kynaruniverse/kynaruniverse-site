@@ -2,215 +2,148 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
-    />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Product Details | Kynar Studio</title>
-
     <link href="styles.css" rel="stylesheet" />
-
+    
+    <script src="ui-core.js" defer></script>
     <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <style>
+      .product-hero-img {
+        width: 100%;
+        display: block;
+        mix-blend-mode: multiply; /* Blends mockup naturally with p.bg */
+        opacity: 0;
+        transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: opacity;
+      }
+      /* Ensure container has a height before image loads to prevent layout jump */
+      .img-skeleton {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    
+    <meta property="og:type" content="website">
+<meta property="og:url" content="https://kynaruniverse.co.uk/">
+<meta property="og:title" content="Kynar Studio | Digital Marketplace">
+<meta property="og:description" content="Premium digital assets for the creative elite. Explore the archive.">
+<meta property="og:image" content="assets/images/og-preview.webp">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="Kynar Studio">
+<meta property="twitter:description" content="Premium digital assets and creative tools.">
+<meta property="twitter:image" content="assets/images/og-preview.webp">
+
   </head>
 
   <body>
-    <div class="nav-overlay" id="navOverlay">
-      <button
-        aria-label="Close Menu"
-        class="nav-icon"
-        id="closeMenu"
-        style="position: absolute; top: 20px; left: 20px; color: var(--ink-deep)"
-      >
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
-        </svg>
-      </button>
-
-      <nav
-        style="display: flex; flex-direction: column; align-items: center; gap: 30px"
-      >
-        <a class="nav-menu-link" href="index.html">Home</a>
-        <a class="nav-menu-link" href="shop.html">Marketplace</a>
-        <a class="nav-menu-link" href="newsletter.html">Community</a>
-        <a class="nav-menu-link" href="contact.html">Support</a>
-      </nav>
-
-      <div style="position: absolute; bottom: 40px; text-align: center">
-        <p
-          style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 20px"
-        >
-          Kynar Studio
-        </p>
-        <div style="display: flex; gap: 20px; justify-content: center">
-          <span style="font-size: 0.8rem; font-weight: 700">IG</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TW</span>
-          <span style="font-size: 0.8rem; font-weight: 700">TK</span>
-        </div>
-      </div>
-    </div>
-
     <header class="app-header" id="global-header"></header>
 
     <main class="container" id="product-content">
-      <div
-        class="reveal-up"
-        style="text-align: center; padding: 120px 0; opacity: 1; transform: translateY(0)"
-      >
-        <p
-          style="font-family: 'Bantayog'; letter-spacing: 0.1em; font-size: 0.9rem"
-        >
-          Loading Product Details...
-        </p>
+      <div class="reveal-up" style="text-align: center; padding: 120px 0;">
+        <p style="font-family: 'Bantayog'; letter-spacing: 0.1em; font-size: 0.9rem; opacity: 0.5;">Accessing Archive...</p>
       </div>
     </main>
 
-    <footer
-      class="app-footer"
-      id="global-footer"
-      style="margin-top: 100px; padding: 60px 20px; border-top: 1px solid rgba(0, 0, 0, 0.05); text-align: center"
-    ></footer>
+    <footer class="app-footer" id="global-footer"></footer>
 
-    <script src="vault.js"></script>
-    <script src="prelaunch-logic.js"></script>
-    <script src="ui-core.js"></script>
+    <script type="module">
+      import { getProduct } from './vault.js';
 
-    <script>
       document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
-        const productId = params.get("id");
-        // Ensure getProduct exists (from vault.js)
-        const product =
-          typeof getProduct === "function" ? getProduct(productId) : null;
+        const product = getProduct(params.get("id"));
 
         if (product) {
-          document.title = `${product.title} | Kynar Studio`;
           renderProduct(product);
         } else {
-          // Fallback if ID is invalid or missing
           window.location.href = "shop.html";
         }
       });
 
       function renderProduct(p) {
         const container = document.getElementById("product-content");
+        
+        // 1. Dynamic Meta & Title
+        document.title = `${p.title} | Kynar Studio`;
+        let meta = document.querySelector('meta[name="description"]') || document.createElement('meta');
+        meta.name = "description";
+        meta.content = p.shortDesc;
+        document.head.appendChild(meta);
 
-        // Surgical Meta-Update: Prevent FOUC on SEO crawlers
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc && p.shortDesc) {
-          metaDesc.setAttribute("content", p.shortDesc);
-        } else if (!metaDesc) {
-          const newMeta = document.createElement("meta");
-          newMeta.name = "description";
-          newMeta.content = p.shortDesc;
-          document.head.appendChild(newMeta);
-        }
-
-        // PRE-CALCULATE CTA: Decides between 'Waitlist' or 'Purchase'
-        let ctaHtml = "";
-
-        if (p.status === "coming-soon") {
-          // WAITLIST TEMPLATE
-          ctaHtml = `
-            <div class="waitlist-card" style="width: 100%; background: var(--bg-bone); padding: 30px; border-radius: 20px; border: 2px dashed var(--accent-gold); animation: pulse-border 3s infinite;">
-              <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--ink-deep); font-family: var(--font-display);">
-                Arriving Shortly
-              </h3>
-              <p style="font-size: 0.95rem; margin-bottom: 20px; color: var(--ink-medium); line-height: 1.5;">
-                Secure your place in the archive. Members get 20% off during the first 24 hours.
-              </p>
-              <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
-                <input type="hidden" name="product_interest" value="${p.title}">
-                <input 
-                  type="email" 
-                  name="email" 
-                  required 
-                  placeholder="Enter your email" 
-                  style="width:100%; padding:14px; border-radius:10px; border:1px solid rgba(0,0,0,0.1); outline:none; background: var(--bg-surface);"
-                >
-                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
-                  Notify Me
-                </button>
-              </form>
-            </div>`;
-        } else {
-          // PURCHASE TEMPLATE
-          ctaHtml = `
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px;">
-              <span style="font-size: 2.2rem; font-family: 'Bantayog'; color: var(--ink-deep);">
-                ${p.price}
-              </span>
-              <a href="${p.checkout}" class="btn-primary" style="flex-grow: 1; min-width: 200px; justify-content: center;">
-                Purchase Now →
-              </a>
-            </div>`;
-        }
-
-        // MAIN PRODUCT LAYOUT INJECTION
-        container.innerHTML = `
-          <div class="gallery-grid" style="align-items: start; margin-top: 40px; gap: 40px;">
-            
-            <div class="reveal-up" style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-depth); background: ${
-              p.bg
-            }; position: sticky; top: 100px;">
-              <img 
-                alt="${p.title}" 
-                src="${p.image}" 
-                style="width: 100%; display: block; mix-blend-mode: multiply; opacity: 0.9;"
-              >
+        // 2. Action Component Logic
+        const previewBtn = p.previewUrl && p.previewUrl !== "#" 
+          ? `<a href="${p.previewUrl}" target="_blank" class="btn-ghost" style="width:100%; margin-top:10px; justify-content:center;">Live Preview</a>` 
+          : '';
+        
+        let ctaHtml = p.status === "coming-soon" ? `
+          <div class="waitlist-card" style="background: var(--bg-bone); padding: 30px; border-radius: 20px; border: 2px dashed var(--accent-gold); animation: pulse-border 3s infinite;">
+            <h3 style="font-family: var(--font-display); margin-bottom: 10px;">Arriving Shortly</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 20px; color: var(--ink-medium); line-height: 1.5;">Secure your place in the archive. Members get early access.</p>
+            <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+              <input type="hidden" name="interest" value="${p.title}">
+              <input type="email" name="email" required placeholder="Enter email" style="width:100%; padding:14px; border-radius:10px; border:1px solid rgba(0,0,0,0.1); background: var(--bg-surface); outline:none;">
+              <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Notify Me</button>
+            </form>
+            ${previewBtn}
+          </div>` : `
+          <div class="purchase-actions" style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 2.2rem; font-family: 'Bantayog'; color: var(--ink-deep);">${p.price}</span>
+              <span style="font-size:0.6rem; opacity:0.6; font-weight:800; letter-spacing:0.15em; text-transform: uppercase;">Digital Asset</span>
             </div>
-            
-            <div class="reveal-up" style="transition-delay: 0.2s; padding-bottom: 40px;">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em;">
-                ${p.tag}
-              </span>
-              
-              <h1 style="margin: 10px 0 20px 0; font-size: clamp(2rem, 5vw, 3rem);">
-                ${p.title}
-              </h1>
-              
-              <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: var(--ink-medium);">
-                ${p.desc}
-              </p>
-              
-              <div style="margin-bottom: 40px; background: var(--bg-surface); padding: 25px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05);">
-                <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">
-                  Product Features:
-                </h4>
-                <ul style="list-style: none; display: grid; gap: 12px;">
-                  ${p.features
-                    .map(
-                      (f) => `
-                    <li style="display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 0.95rem;">
-                      <svg fill="none" height="18" stroke="var(--accent-gold)" stroke-width="3" viewBox="0 0 24 24" width="18" style="flex-shrink: 0; margin-top: 2px;">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      ${f}
-                    </li>
-                  `
-                    )
-                    .join("")}
-                </ul>
-              </div>
-
-              ${ctaHtml}
-            </div>
+            <a href="${p.checkout}" class="btn-primary" style="width: 100%; justify-content: center;">Get Access Now →</a>
+            ${previewBtn}
           </div>`;
 
-        // Trigger Reveal Animations
+        // 3. Main Injection
+        container.innerHTML = `
+          <div class="gallery-grid" style="align-items: start; margin-top: 20px; gap: 40px;">
+            <div class="reveal-up img-skeleton" style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-depth); background: ${p.bg}; position: sticky; top: 100px;">
+              <img src="${p.image}" 
+                   alt="${p.title}" 
+                   class="product-hero-img" 
+                   onload="this.style.opacity='0.95'"
+                   onerror="this.src='assets/images/placeholder.webp'; this.style.mixBlendMode='normal';">
+            </div>
+            
+            <div class="reveal-up" style="transition-delay: 0.2s; padding-bottom: 140px;">
+              <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em;">${p.tag}</span>
+              <h1 style="margin: 12px 0 24px 0; line-height: 1.1; font-size: clamp(2.2rem, 5vw, 3.5rem);">${p.title}</h1>
+              <p style="font-size: 1.15rem; line-height: 1.6; margin-bottom: 30px; color: var(--ink-medium);">${p.desc}</p>
+              
+              <div style="margin-bottom: 40px; background: var(--bg-surface); padding: 25px; border-radius: 18px; border: 1px solid rgba(0,0,0,0.04);">
+                <h4 style="font-family: 'Bantayog'; margin-bottom: 15px; font-size: 0.8rem; opacity: 0.7; text-transform: uppercase;">Technical Specs:</h4>
+                <ul style="list-style: none; display: grid; gap: 14px;">
+                  ${p.features.map(f => `<li style="display: flex; gap: 12px; font-size: 0.95rem; font-weight: 500;">
+                    <svg fill="none" height="18" stroke="var(--accent-gold)" stroke-width="3" viewBox="0 0 24 24" width="18" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span style="color: var(--ink-deep);">${f}</span>
+                  </li>`).join('')}
+                </ul>
+              </div>
+              ${ctaHtml}
+            </div>
+          </div>
+
+          <div class="mobile-sticky-cta">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+              <span style="font-size: 0.6rem; opacity: 0.6; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">${p.title}</span>
+              <span style="font-family: 'Bantayog'; font-size: 1.1rem; color: var(--ink-deep);">${p.price}</span>
+            </div>
+            <a href="${p.status === 'coming-soon' ? '#' : p.checkout}" class="btn-primary" style="flex-grow: 1; padding: 12px; font-size: 0.85rem; justify-content: center;">
+              ${p.status === 'coming-soon' ? 'Notify Me' : 'Get Access'}
+            </a>
+          </div>`;
+
+        // 4. Re-init Reveal Observer
         setTimeout(() => {
-          document.querySelectorAll(".reveal-up").forEach((el) => {
-            el.classList.add("reveal-visible");
-          });
-        }, 150);
+          document.querySelectorAll(".reveal-up").forEach(el => el.classList.add("reveal-visible"));
+        }, 100);
       }
     </script>
   </body>

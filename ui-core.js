@@ -1,407 +1,176 @@
 /* ══════════════════════════════════════════════════════════════════════════
-   KYNAR UI CORE (V4.2 - AJAX Redirect Enabled)
+   KYNAR UI CORE (V6.5 - Legal & Success Sync)
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   1. SYSTEM INITIALIZATION
-   ══════════════════════════════════════════════════════════════════════════ */
+document.addEventListener("DOMContentLoaded", async () => {
+  // 1. Critical Component Load
+  await Promise.all([loadHeader(), loadFooter()]);
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadHeader();
-  loadFooter();
+  // 2. Data Handshake
+  if (typeof VAULT === 'undefined') {
+    try {
+      const module = await import('./vault.js');
+      window.VAULT = module.VAULT;
+    } catch (e) { console.warn("Vault Sync Failed: Fallback to global."); }
+  }
+
+  // 3. System Initialization
   initSmoothScroll();
-  initRevealAnimations();
-  initCustomCursor();
   initStudioHaptics();
-  initNetworkPopup();
-  syncCartBadge();
+  initMobileStickyCTA();
+  initSearchEngine(); 
 
-  // Delayed Triggers
-  setTimeout(triggerActivityToast, 3000);
-  handleUrlFilters();
+  // 4. State Sync & Success Page Detection
   applyPreLaunchStatus();
-
-  console.log("Kynar Studio: Core System Online");
+  handleSuccessLogic(); // NEW: Specific messaging for Legal/Support/Newsletter
+  
+  console.log("Kynar Engine V6.5: Fully Synchronised");
 });
 
 /* ══════════════════════════════════════════════════════════════════════════
-   2. COMPONENT INJECTORS
+   COMPONENT INJECTORS
    ══════════════════════════════════════════════════════════════════════════ */
-
-async function loadFooter() {
-  const footerEl = document.getElementById("global-footer");
-  if (!footerEl) return;
-
-  try {
-    const response = await fetch("components/footer.html");
-    if (!response.ok) throw new Error("Footer not found");
-
-    const html = await response.text();
-    footerEl.innerHTML = html;
-    console.log("Kynar Studio: Footer Synchronized");
-  } catch (err) {
-    console.error("Footer injection failed:", err);
-  }
-}
 
 async function loadHeader() {
   const headerEl = document.getElementById("global-header");
   if (!headerEl) return;
-
   try {
     const response = await fetch("components/header.html");
-    if (!response.ok) throw new Error("Header not found");
-
-    const html = await response.text();
-    headerEl.innerHTML = html;
-
-    // Initialize Header Dependencies
-    initCartBadge();
+    headerEl.innerHTML = await response.text();
     initThemeEngine();
-    initSmartHeader();
-    console.log("Kynar Studio: Header Synchronized");
-  } catch (err) {
-    console.error("Header injection failed.");
+    initMenuLogic();
+    initSearchEngine(); 
+  } catch (err) { console.error("Header Error:", err); }
+}
+
+async function loadFooter() {
+  const footerEl = document.getElementById("global-footer");
+  if (!footerEl) return;
+  try {
+    const response = await fetch("components/footer.html");
+    footerEl.innerHTML = await response.text();
+  } catch (err) { console.error("Footer Error:", err); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SUCCESS HUB LOGIC (Dynamic URL Detection)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+function handleSuccessLogic() {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+  const label = document.getElementById("success-label");
+  const text = document.getElementById("success-text");
+
+  if (!label || !text) return;
+
+  const successTypes = {
+    newsletter: { label: "Signal Verified", text: "Welcome to the Community. Your access to the Archive is now active." },
+    support: { label: "Dispatch Received", text: "Our concierge team has received your inquiry. Expect a response within 12 hours." },
+    legal: { label: "Protocol Accepted", text: "Your query regarding our Legal Archive has been successfully logged." }
+  };
+
+  if (successTypes[type]) {
+    label.textContent = successTypes[type].label;
+    text.textContent = successTypes[type].text;
+    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
   }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   3. CORE SYSTEMS: SCROLL, THEME, HEADER
+   SEARCH & INTERACTION
    ══════════════════════════════════════════════════════════════════════════ */
 
-function initSmoothScroll() {
-  if (typeof Lenis !== "undefined") {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
+function initSearchEngine() {
+  const searchTrigger = document.getElementById('searchTrigger');
+  if (!searchTrigger || document.getElementById('searchOverlay')) return;
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }
-}
+  searchTrigger.onclick = () => {
+    if (navigator.vibrate) navigator.vibrate(10);
+    const searchHTML = `
+      <div id="searchOverlay" class="nav-overlay active" style="padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; background: var(--bg-bone);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+          <span style="font-family: var(--font-display); font-size: 1.2rem; color: var(--accent-gold);">Archive Search</span>
+          <button id="closeSearch" class="nav-icon" style="font-weight: 800; font-size: 1.5rem;">✕</button>
+        </div>
+        <input type="text" id="searchInput" placeholder="Find tools, kits, or archives..." 
+               style="width: 100%; padding: 20px; border-radius: 15px; border: 1.5px solid var(--ink-deep); background: var(--bg-surface); font-family: var(--font-body); font-size: 1.1rem; outline: none;">
+        <div id="searchResults" style="margin-top: 30px; display: grid; gap: 12px; overflow-y: auto; max-height: 70vh;"></div>
+      </div>`;
 
-function initSmartHeader() {
-  const header = document.querySelector(".app-header");
-  if (!header) return;
+    document.body.insertAdjacentHTML('beforeend', searchHTML);
+    document.body.style.overflow = 'hidden';
+    const input = document.getElementById('searchInput');
+    input.focus();
 
-  let lastScroll = 0;
-  window.addEventListener(
-    "scroll",
-    () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        header.classList.add("hidden");
-      } else {
-        header.classList.remove("hidden");
-      }
-      lastScroll = currentScroll;
-    },
-    { passive: true }
-  );
-}
+    input.oninput = (e) => {
+      const query = e.target.value.toLowerCase();
+      const results = document.getElementById('searchResults');
+      if (query.length < 2) { results.innerHTML = ''; return; }
+      const matches = VAULT.filter(p => p.title.toLowerCase().includes(query) || p.tag.toLowerCase().includes(query));
+      results.innerHTML = matches.map(p => `
+        <a href="product.html?id=${p.id}" style="text-decoration: none; background: var(--bg-surface); padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0,0,0,0.05);">
+          <div style="width: 45px; height: 45px; background: ${p.bg}; border-radius: 8px; flex-shrink: 0;"></div>
+          <div>
+            <div style="font-weight: 700; color: var(--ink-deep); font-size: 0.95rem;">${p.title}</div>
+            <div style="font-size: 0.7rem; color: var(--accent-gold); text-transform: uppercase;">${p.tag}</div>
+          </div>
+        </a>`).join('');
+    };
 
-function initThemeEngine() {
-  const toggleBtn = document.getElementById("themeToggle");
-  if (!toggleBtn) return;
-
-  const currentTheme = localStorage.getItem("kynar_theme") || "light";
-  if (currentTheme === "dark") document.body.classList.add("dark-mode");
-
-  toggleBtn.onclick = () => {
-    const isDark = document.body.classList.toggle("dark-mode");
-    localStorage.setItem("kynar_theme", isDark ? "dark" : "light");
-
-    // Kynar Signature Haptic: Light Pulse
-    if (navigator.vibrate) navigator.vibrate(8);
-
-    // Notify other components
-    window.dispatchEvent(new Event("themeChanged"));
+    document.getElementById('closeSearch').onclick = () => {
+      document.getElementById('searchOverlay').remove();
+      document.body.style.overflow = '';
+    };
   };
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   4. POPUP LOGIC & AJAX HANDLING
-   ══════════════════════════════════════════════════════════════════════════ */
-
-function initNetworkPopup() {
-  const path = window.location.pathname;
-  const isMainPage =
-    path === "/" || path.includes("index") || path.includes("shop");
-
-  if (!isMainPage || sessionStorage.getItem("kynar_popup_seen")) return;
-
-  setTimeout(() => {
-    if (document.getElementById("networkPopup")) return;
-
-    // Template Literal: Indented for code readability
-    const popupHTML = `
-      <div class="network-popup-overlay" id="networkPopup">
-        <div class="network-popup-card">
-          <button class="close-popup">✕</button>
-          <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.25em;">
-            Kynar Studio
-          </span>
-          <h2 class="popup-title">Join the <br><span style="color: var(--ink-medium);">Kynar Community.</span></h2>
-          <p style="font-size: 1rem; margin-bottom: 30px; line-height: 1.5;">
-            Get the latest product drops, free templates, and creative tips.
-          </p>
-
-          <form id="networkForm">
-            <input type="email" name="email" required placeholder="Enter your email" class="popup-input">
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-              Join Community
-            </button>
-          </form>
-        </div>
-      </div>`;
-
-    document.body.insertAdjacentHTML("beforeend", popupHTML);
-    const p = document.getElementById("networkPopup");
-    p.classList.add("active");
-
-    // --- AJAX FORM SUBMISSION ---
-    const form = document.getElementById("networkForm");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector("button");
-      const formData = new FormData(form);
-
-      btn.disabled = true;
-      btn.textContent = "Authorizing...";
-
-      try {
-        const response = await fetch("https://formspree.io/f/mlgekbwb", {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        });
-
-        if (response.ok) {
-          window.location.href = "success.html"; // Manual Redirect
-        } else {
-          alert("Submission failed. Please try again.");
-          btn.disabled = false;
-          btn.textContent = "Join Community";
-        }
-      } catch (err) {
-        alert("Network error.");
-        btn.disabled = false;
-        btn.textContent = "Join Community";
-      }
-    });
-
-    p.querySelector(".close-popup").onclick = () => {
-      p.classList.remove("active");
-      sessionStorage.setItem("kynar_popup_seen", "true");
-    };
-  }, 6000);
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   5. UI UTILITIES (Cart, Cursor, Haptics)
-   ══════════════════════════════════════════════════════════════════════════ */
-
-function initCartBadge() {
-  const cartBtn = document.querySelector(".cart-trigger");
-  if (!cartBtn || document.querySelector(".cart-wrapper")) return;
-
-  const wrapper = document.createElement("div");
-  wrapper.className = "cart-wrapper";
-  cartBtn.parentNode.insertBefore(wrapper, cartBtn);
-  wrapper.appendChild(cartBtn);
-
-  const badge = document.createElement("span");
-  badge.className = "cart-count-badge";
-  const savedCount = localStorage.getItem("kynar_cart_count") || "0";
-  badge.innerText = savedCount;
-
-  if (parseInt(savedCount) > 0) badge.classList.add("visible");
-  wrapper.appendChild(badge);
-
-  document.body.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".btn-primary, .btn-ghost");
-    if (trigger) {
-      badge.classList.add("visible");
-      let newCount = parseInt(badge.innerText) + 1;
-      badge.innerText = newCount;
-      localStorage.setItem("kynar_cart_count", newCount);
-
-      if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
-    }
-  });
-}
-
-function syncCartBadge() {
-  const badge = document.querySelector(".cart-count-badge");
-  const savedCount = localStorage.getItem("kynar_cart_count");
-
-  if (badge && savedCount && parseInt(savedCount) > 0) {
-    badge.innerText = savedCount;
-    badge.classList.add("visible");
+function initMenuLogic() {
+  const trigger = document.querySelector('.nav-icon[aria-label="Menu"]');
+  const nav = document.getElementById("navOverlay");
+  if (trigger && nav) {
+    trigger.onclick = () => { nav.classList.add("active"); document.body.style.overflow = "hidden"; };
+    document.getElementById("closeMenu").onclick = () => { nav.classList.remove("active"); document.body.style.overflow = ""; };
   }
-}
-
-function initRevealAnimations() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("reveal-visible");
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  document.querySelectorAll(".reveal-up").forEach((el) => observer.observe(el));
-}
-
-function initCustomCursor() {
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-
-  const dot = document.createElement("div");
-  const outline = document.createElement("div");
-
-  dot.className = "cursor-dot";
-  outline.className = "cursor-outline";
-
-  document.body.append(dot, outline);
-
-  window.addEventListener("mousemove", (e) => {
-    dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-    outline.animate(
-      {
-        transform: `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`,
-      },
-      { duration: 500, fill: "forwards" }
-    );
-  });
 }
 
 function initStudioHaptics() {
-  const isMobile = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  if (!isMobile || !navigator.vibrate) return;
-
-  document.body.addEventListener(
-    "touchstart",
-    (e) => {
-      if (
-        e.target.closest(".btn-primary, .btn-ghost, .nav-icon, .filter-chip")
-      ) {
-        navigator.vibrate(5);
-      }
-    },
-    { passive: true }
-  );
+  if (!("ontouchstart" in window) || !navigator.vibrate) return;
+  document.body.addEventListener("touchstart", (e) => {
+    if (e.target.closest(".btn-primary, .btn-ghost, .nav-icon, .filter-chip")) navigator.vibrate(8);
+  }, { passive: true });
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   6. FEATURES: SOCIAL PROOF & FILTERS
-   ══════════════════════════════════════════════════════════════════════════ */
-
-const activityLog = [
-  "New Product Acquired: The Finance Tracker",
-  "Someone joined the Kynar Community",
-  "New Product Acquired: Aura Photo Filters",
-  "Essential Starter Pack Claimed",
-  "New Product Acquired: The Social Suite",
-];
-
-function triggerActivityToast() {
-  let toast =
-    document.querySelector(".activity-toast") || document.createElement("div");
-
-  if (!toast.className) {
-    toast.className = "activity-toast";
-    toast.innerHTML = `<div class="activity-dot"></div><div class="activity-text"></div>`;
-    document.body.appendChild(toast);
-  }
-
-  const textEl = toast.querySelector(".activity-text");
-  let index = 0;
-
-  setInterval(() => {
-    textEl.textContent = activityLog[index];
-    toast.classList.add("visible");
-
-    setTimeout(() => {
-      toast.classList.remove("visible");
-      index = (index + 1) % activityLog.length;
-    }, 5000);
-  }, 15000);
-}
-
-function handleUrlFilters() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get("cat");
-
-  if (category) {
-    const targetBtn = document.querySelector(
-      `.filter-chip[onclick*="'${category}'"]`
-    );
-
-    if (targetBtn) {
-      filterGrid(category, targetBtn);
-      setTimeout(() => {
-        const shopSection = document.getElementById("shop");
-        if (shopSection) {
-          window.scrollTo({
-            top: shopSection.offsetTop - 100,
-            behavior: "smooth",
-          });
-        }
-      }, 500);
-    }
-  }
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   7. NAVIGATION & STATE MANAGEMENT
-   ══════════════════════════════════════════════════════════════════════════ */
-
-// NOTE: These listeners run immediately (ensure script is deferred or at bottom of body)
-const menuBtn = document.querySelector('.nav-icon[aria-label="Menu"]');
-const closeBtn = document.getElementById("closeMenu");
-const navOverlay = document.getElementById("navOverlay");
-
-if (menuBtn && navOverlay) {
-  menuBtn.onclick = () => {
-    navOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  };
-}
-
-if (closeBtn && navOverlay) {
-  closeBtn.onclick = () => {
-    navOverlay.classList.remove("active");
-    document.body.style.overflow = "";
-  };
+function initMobileStickyCTA() {
+  const productTitle = document.querySelector('h1');
+  const stickyBar = document.querySelector('.mobile-sticky-cta');
+  if (!productTitle || !stickyBar) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => stickyBar.classList.toggle('visible', !entry.isIntersecting));
+  }, { threshold: 0 });
+  observer.observe(productTitle);
 }
 
 function applyPreLaunchStatus() {
-  const cards = document.querySelectorAll(".product-card");
-
-  // Surgically apply status from vault data instead of global override
-  cards.forEach((card) => {
-    const productId = card.querySelector("a")?.href.split("id=")[1];
-    const product =
-      typeof getProduct === "function" ? getProduct(productId) : null;
-
-    if (product && product.status === "coming-soon") {
+  document.querySelectorAll(".product-card").forEach((card) => {
+    const link = card.querySelector("a")?.href;
+    if (!link || typeof VAULT === 'undefined') return;
+    const pid = new URLSearchParams(link.split('?')[1]).get('id');
+    const p = VAULT.find(item => item.id === pid);
+    if (p?.status === "coming-soon") {
       card.setAttribute("data-status", "coming-soon");
+      card.onclick = (e) => {
+        e.preventDefault();
+        window.location.href = `product.html?id=${pid}`;
+      };
     }
   });
 }
 
-// Auto-close menu on link click
-document.querySelectorAll(".nav-menu-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    if (navOverlay) {
-      navOverlay.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-  });
-});
+function initSmoothScroll() {
+  if (typeof Lenis !== "undefined") {
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+}
