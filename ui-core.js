@@ -42,11 +42,14 @@ async function loadHeader() {
   try {
     const response = await fetch("components/header.html");
     headerEl.innerHTML = await response.text();
-    initThemeEngine();
+    
+    // Bind logic specifically after HTML injection
     initMenuLogic();
-    initSearchEngine(); // Re-bind for dynamic header
+    initSearchEngine(); 
+    initThemeEngine();
   } catch (err) { console.error("Header Fault:", err); }
 }
+
 
 async function loadFooter() {
   const footerEl = document.getElementById("global-footer");
@@ -246,4 +249,21 @@ function initMobileStickyCTA() {
   const bar = document.querySelector('.mobile-sticky-cta');
   if (!title || !bar) return;
   new IntersectionObserver(([e]) => bar.classList.toggle('visible', !e.isIntersecting)).observe(title);
+}
+
+function initThemeEngine() {
+  const themeBtn = document.getElementById('themeToggle');
+  if (!themeBtn) return;
+
+  // Sync saved preference
+  if (localStorage.getItem('kynar_theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+
+  themeBtn.onclick = () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('kynar_theme', isDark ? 'dark' : 'light');
+    if (navigator.vibrate) navigator.vibrate(10);
+  };
 }

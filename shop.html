@@ -7,22 +7,32 @@
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <style>
-      /* Mobile-First Sticky Category Swiper */
+      /* Mobile-First Sticky Category Swiper + Seamless Fix */
       .filter-bar {
         display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px;
         margin: 0 -20px 40px -20px; scrollbar-width: none; 
         -webkit-overflow-scrolling: touch;
-        position: sticky; top: 70px; background: var(--bg-bone); z-index: 100;
+        position: sticky; 
+        top: 69px; /* Seamless overlap with header */
+        background: var(--bg-bone); 
+        z-index: 100;
         border-bottom: 1px solid rgba(0,0,0,0.05);
+        /* Scroll Snapping Physics */
+        scroll-snap-type: x mandatory;
+        scroll-padding: 20px;
       }
       .filter-bar::-webkit-scrollbar { display: none; }
+      
       .filter-chip {
+        scroll-snap-align: start;
         padding: 10px 24px; border-radius: 50px; border: 1px solid var(--ink-medium);
         background: transparent; color: var(--ink-deep); font-weight: 600;
         white-space: nowrap; transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
         opacity: 0.6; cursor: pointer;
       }
+      .filter-chip:active { transform: scale(0.95); background: rgba(15, 61, 48, 0.05); }
       .filter-chip.active { background: var(--ink-deep); color: var(--bg-bone); opacity: 1; border-color: var(--ink-deep); }
+      
       .empty-state { grid-column: 1 / -1; text-align: center; padding: 100px 0; display: none; }
       
       /* WebP Fade-In Physics */
@@ -32,17 +42,12 @@
         will-change: opacity;
       }
     </style>
+    
     <meta property="og:type" content="website">
-<meta property="og:url" content="https://kynaruniverse.co.uk/">
-<meta property="og:title" content="Kynar Studio | Digital Marketplace">
-<meta property="og:description" content="Premium digital assets for the creative elite. Explore the archive.">
-<meta property="og:image" content="assets/images/og-preview.webp">
-
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Kynar Studio">
-<meta property="twitter:description" content="Premium digital assets and creative tools.">
-<meta property="twitter:image" content="assets/images/og-preview.webp">
-
+    <meta property="og:url" content="https://kynaruniverse.co.uk/">
+    <meta property="og:title" content="Kynar Studio | Digital Marketplace">
+    <meta property="og:description" content="Premium digital assets for the creative elite. Explore the archive.">
+    <meta property="og:image" content="assets/images/og-preview.webp">
   </head>
 
   <body>
@@ -64,10 +69,7 @@
 
       <div class="gallery-grid" id="productGrid"></div>
       
-      <div class="empty-state" id="emptyState">
-        <h3 style="font-family: var(--font-display);">No assets found.</h3>
-        <p>Try selecting a different archive category.</p>
-      </div>
+      <div id="emptyState" class="empty-state"></div>
     </main>
 
     <footer class="app-footer" id="global-footer"></footer>
@@ -78,49 +80,70 @@
       const grid = document.getElementById('productGrid');
       const emptyState = document.getElementById('emptyState');
 
-      function renderGallery(filter = 'all') {
-        const filtered = filter === 'all' ? VAULT : VAULT.filter(p => p.category === filter);
-        
-        if (filtered.length === 0) {
-          emptyState.style.display = 'block';
-          grid.innerHTML = '';
-          return;
-        }
-
-        emptyState.style.display = 'none';
-        grid.innerHTML = filtered.map((p, i) => `
-  <article class="product-card reveal-up" data-status="${p.status}" style="transition-delay: ${i * 0.05}s">
-    <div class="tag">${p.tag}</div>
-    <a class="card-image" href="product.html?id=${p.id}" style="background-color: ${p.bg};">
-      <img class="product-img" 
-           src="${p.image}" 
-           alt="${p.title}" 
-           loading="lazy"
-           onload="this.style.opacity='1'">
-    </a>
-    <div class="card-info">
-      <h3 class="card-title">${p.title}</h3>
-      <p style="font-size: 0.9rem; line-height: 1.5; opacity: 0.7;">${p.shortDesc}</p>
-      
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 25px;">
-        <div>
-          <span style="display: block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 4px;">INVESTMENT</span>
-          <span class="card-price">${p.price}</span>
-        </div>
-        <a class="btn-ghost" href="product.html?id=${p.id}" style="padding: 8px 16px; font-size: 0.65rem;">View Archive</a>
-      </div>
-    </div>
-  </article>
-`).join('');
-
-
-        // Trigger animations
-        setTimeout(() => {
-          document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
-        }, 100);
+      function showSkeletons() {
+        grid.innerHTML = Array(4).fill(0).map(() => `<div class="skeleton-card"></div>`).join('');
       }
 
-      // Handle Filter Clicks (Event Delegation)
+      async function renderGallery(filter = 'all') {
+        grid.style.opacity = '0.5';
+        showSkeletons();
+
+        setTimeout(() => {
+          const filtered = filter === 'all' ? VAULT : VAULT.filter(p => p.category === filter);
+          
+          if (filtered.length === 0) {
+            emptyState.style.display = 'block';
+            emptyState.innerHTML = `
+              <h3 style="font-family: var(--font-display); margin-bottom: 15px;">No assets found.</h3>
+              <button class="btn-ghost" onclick="resetFilters()">Clear All Filters</button>`;
+            grid.innerHTML = '';
+          } else {
+            emptyState.style.display = 'none';
+            grid.innerHTML = filtered.map((p, i) => `
+              <article class="product-card reveal-up" 
+                       onclick="window.location.href='product.html?id=${p.id}'"
+                       style="transition-delay: ${i * 0.05}s">
+                <div class="tag">${p.tag}</div>
+                <div class="card-image" style="background-color: ${p.bg};">
+                  <img class="product-img" src="${p.image}" alt="${p.title}" loading="lazy" onload="this.style.opacity='1'">
+                </div>
+                <div class="card-info">
+                  <h3 class="card-title">${p.title}</h3>
+                  <p style="font-size: 0.9rem; line-height: 1.5; opacity: 0.7;">${p.shortDesc}</p>
+                  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 25px;">
+                    <div>
+                      <span style="display: block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 4px;">INVESTMENT</span>
+                      <span class="card-price">${p.price}</span>
+                    </div>
+                    <div class="btn-ghost" style="padding: 8px 16px; font-size: 0.65rem;">View Archive</div>
+                  </div>
+                </div>
+              </article>`).join('');
+          }
+
+          grid.style.opacity = '1';
+          document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
+        }, 400);
+      }
+
+      // Gesture & Filter Logic
+      let touchStart = 0;
+      window.addEventListener('touchstart', e => { touchStart = e.touches[0].pageY; }, {passive: true});
+      window.addEventListener('touchend', e => {
+        const touchEnd = e.changedTouches[0].pageY;
+        if (window.scrollY === 0 && touchEnd - touchStart > 150) {
+          if (navigator.vibrate) navigator.vibrate([30, 50]);
+          resetFilters();
+        }
+      }, {passive: true});
+
+      window.resetFilters = () => {
+        const allChip = document.querySelector('.filter-chip[data-cat="all"]');
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        allChip.classList.add('active');
+        renderGallery('all');
+      };
+
       document.getElementById('filterContainer').addEventListener('click', (e) => {
         const chip = e.target.closest('.filter-chip');
         if (chip) {
@@ -130,7 +153,6 @@
         }
       });
 
-      // Initial Load
       window.addEventListener('load', () => renderGallery());
     </script>
     

@@ -25,7 +25,7 @@
   </button>
 
   <div class="cart-wrapper">
-    <button aria-label="Cart" class="nav-icon cart-trigger">
+    <button aria-label="Cart" class="nav-icon cart-trigger" onclick="toggleCart('open')">
       <svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="22">
         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
         <line x1="3" x2="21" y1="6" y2="6"></line>
@@ -34,6 +34,7 @@
     </button>
     <span class="cart-count-badge">0</span>
   </div>
+
 </div>
 
 <div class="nav-overlay" id="navOverlay">
@@ -48,7 +49,9 @@
     <a class="nav-menu-link" href="index.html">Home</a>
     <a class="nav-menu-link" href="shop.html">Archive</a>
     <a class="nav-menu-link" href="newsletter.html">Community</a>
-    <a class="nav-menu-link" href="legal.html">Protocol</a> <a class="nav-menu-link" href="contact.html">Support</a>
+    <a class="nav-menu-link" href="legal.html">Protocol</a>
+    <a class="nav-menu-link" href="contact.html">Support</a>
+
   </nav>
 
   <div style="position: absolute; bottom: 50px; text-align: center; width: 100%;">
