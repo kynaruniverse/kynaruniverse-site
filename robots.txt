@@ -1,6 +1,36 @@
+# KYNAR STUDIO ARCHIVE - INDEXING PROTOCOL 2026
+# CANONICAL: https://www.kynaruniverse.co.uk
+
+# PHASE 1: SOCIAL MEDIA HANDSHAKE
+# Prioritize high-speed OG image fetching for community sharing
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 1
+
+# PHASE 2: GLOBAL CRAWLER PHYSICS
+# Restrict general bots to prevent fragmented indexing and protect resource depth
 User-agent: *
 Allow: /
-Disallow: /assets/downloads/
-Disallow: /claim-archived.html
+Crawl-delay: 10
 
-Sitemap: https://kynaruniverse.co.uk/sitemap.xml
+# Shield Internal Component Fragments
+Disallow: /components/
+Disallow: /header.html
+Disallow: /footer.html
+
+# Shield Operational & Success Paths
+Disallow: /claim-archived.html*
+Disallow: /success.html*
+Disallow: /assets/downloads/
+
+# Shield Temporary State Parameters
+Disallow: /*?search=
+Disallow: /*?cart=
+
+# PHASE 3: CANONICAL DISCOVERY
+# Point to the high-fidelity master sitemap
+Sitemap: https://www.kynaruniverse.co.uk/sitemap.xml

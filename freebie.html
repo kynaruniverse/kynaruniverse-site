@@ -7,7 +7,33 @@
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="ui-core.js" defer></script>
+    <style>
+      input:focus { 
+        border-color: var(--accent-gold) !important; 
+        box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1); 
+        transform: translateY(-2px);
+      }
+      body.dark-mode strong { color: var(--accent-gold); }
+      body.dark-mode .container > div > div p { color: rgba(255, 255, 255, 0.5); }
+      body.dark-mode .container > div > p { color: var(--ink-medium); }
+      
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--ink-deep);
+        -webkit-box-shadow: 0 0 0px 1000px var(--bg-surface) inset;
+        transition: background-color 5000s ease-in-out 0s;
+}
+
+    </style>
+    <meta property="og:title" content="Free Starter Pack | Kynar Studio">
+    <meta property="og:url" content="https://www.kynaruniverse.co.uk/freebie.html">
+    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Starter Pack | Kynar Studio">
+    <meta name="twitter:description" content="Access the high-fidelity starter archive.">
   </head>
+
 
   <body>
     <header class="app-header" id="global-header"></header>
@@ -28,10 +54,11 @@
           organization frameworks and creative systems to start your journey.
         </p>
 
-        <div class="product-card" style="padding: 40px; background: var(--bg-surface); text-align: left; border-left: 8px solid var(--pastel-sage); border-radius: 24px; box-shadow: var(--shadow-depth);">
+        <div class="product-card" style="padding: 40px; background: var(--bg-surface); text-align: left; border-left: 6px solid var(--accent-gold); border-radius: 24px; box-shadow: var(--shadow-depth);">
           <form action="https://formspree.io/f/mlgekbwb" method="POST">
             <input name="_captcha" type="hidden" value="false" />
-            <input name="_next" type="hidden" value="https://kynaruniverse.co.uk/claim-archived.html?id=starter-pack" />
+            <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/claim-archived.html/?id=starter-pack" />
+
             <input name="_subject" type="hidden" value="Freebie Authorization - Starter Kit" />
 
             <label style="display: block; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; color: var(--accent-gold); letter-spacing: 0.15em">
@@ -39,16 +66,16 @@
             </label>
 
             <input name="email" placeholder="Enter your email address..." required 
-                   style="width: 100%; padding: 18px; border-radius: 12px; border: 1.5px solid rgba(15, 61, 48, 0.08); margin-bottom: 25px; font-family: var(--font-body); font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); outline: none; transition: border 0.3s;" 
+                   style="width: 100%; padding: 18px; border-radius: 12px; border: 1.5px solid rgba(15, 61, 48, 0.08); margin-bottom: 25px; font-family: var(--font-body); font-size: 1rem; background: var(--bg-surface); color: var(--ink-deep); caret-color: var(--accent-gold); outline: none; transition: var(--transition-main); " 
                    type="email" />
 
-            <button class="btn-primary" style="width: 100%; justify-content: center; letter-spacing: 0.1em;" type="submit">
+            <button class="btn-primary" onclick="if(navigator.vibrate) navigator.vibrate([15, 30]);" style="width: 100%; justify-content: center; letter-spacing: 0.1em;" type="submit">
               Initialize Download →
             </button>
           </form>
         </div>
 
-        <div style="margin-top: 40px; padding: 20px; border-radius: 15px; background: rgba(0,0,0,0.02);">
+        <div style="margin-top: 40px; padding: 20px; border-radius: 15px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.05); ">
             <p style="font-size: 0.8rem; color: var(--ink-medium); line-height: 1.4;">
                 🔒 <strong>Encryption Verified:</strong> By claiming this pack, you join the 
                 <strong>Kynar Network</strong> for curated marketplace updates and exclusive archive drops.

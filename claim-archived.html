@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>Secure Delivery | Kynar Studio</title>
+    <title>Archive Decryption | Kynar Studio</title>
+    <meta property="og:url" content="https://www.kynaruniverse.co.uk/claim-archived.html">
+
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="ui-core.js" defer></script>
@@ -15,11 +17,27 @@
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
             animation: float 3s ease-in-out infinite;
         }
+                @keyframes border-march {
+            to { stroke-dashoffset: -20; }
+        }
+        .security-box.verifying {
+            border-style: dashed;
+            animation: pulse-border 2s infinite;
+        }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
     </style>
+    
+        <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Archive Entry Verified | Kynar Studio">
+    <meta property="og:description" content="Secure decryption gateway for the Kynar Archive.">
+    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+
+
   </head>
 
   <body>
@@ -49,7 +67,8 @@
           </a>
         </div>
 
-        <div style="margin-top: 50px; padding: 25px; border-radius: 20px; background: var(--bg-surface); border: 1.5px dashed rgba(15, 61, 48, 0.1);">
+        <div id="security-box" class="security-box verifying" style="margin-top: 50px; padding: 25px; border-radius: 20px; background: var(--bg-surface); border: 1.5px dashed rgba(15, 61, 48, 0.1);">
+
            <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5;">
             🔒 <strong>Security Protocol:</strong> Access links are valid for 24 hours. <br> 
             For technical assistance, <a href="contact.html" style="color: var(--ink-deep); font-weight: 700; text-decoration: underline;">Connect with Support</a>
@@ -71,37 +90,64 @@
         const claimTitle = document.getElementById("claim-title");
         const actionCluster = document.getElementById("action-cluster");
         const dlBtn = document.getElementById("downloadBtn");
+
         const icon = document.getElementById("status-icon");
+        const securityBox = document.getElementById("security-box"); // Defined globally for this block
 
         // GATEWAY LOGIC
         setTimeout(() => {
+
             // Find product or provide the Default Starter Kit if ID is missing/invalid
-            const product = getProduct(productId) || { 
-              title: "Essential Starter Pack", 
-              file: "kynar-starter-pack.zip" 
-            };
+                        const product = getProduct(productId);
             
-            const productName = product.title;
+            if (!product && productId !== 'starter-pack') {
+                securityLabel.textContent = "Access Denied";
+                securityLabel.style.color = "#e63946";
+                claimTitle.innerHTML = `Archive Link <br /><span style="color: var(--ink-medium)">Invalid.</span>`;
+                metaText.textContent = "Security certificates could not be verified for this session.";
+                icon.textContent = "🚫";
+                // Obsidian Protocol: Resolve Visual Physics (Error State)
+                securityBox.classList.remove('verifying');
+                securityBox.style.borderStyle = "solid";
+                securityBox.style.borderColor = "#e63946";
+
+                return;
+            }
+
+            const activeProduct = product || { title: "Starter Pack", file: "kynar-starter-pack.zip" };
+
+            
+                        const productName = activeProduct.title;
 
             // UI Transformation
             securityLabel.textContent = "Security Verified";
-            securityLabel.style.color = "var(--ink-deep)";
+            securityLabel.style.color = "var(--accent-gold)"; // Obsidian Protocol: Use Accent Gold for success
             claimTitle.innerHTML = `Your Assets Are <br /><span style="color: var(--ink-medium)">Ready.</span>`;
             metaText.innerHTML = `The <strong>${productName}</strong> archive is now decrypted and prepared for download.`;
             icon.textContent = "🔓";
+                        // Obsidian Protocol: Resolve Visual Physics (Success State)
+            securityBox.classList.remove('verifying');
+            securityBox.style.borderStyle = "solid";
+            securityBox.style.borderColor = "var(--accent-gold)";
+
             
             // Activate Actions
             actionCluster.style.opacity = "1";
             actionCluster.style.pointerEvents = "all";
 
             // Secure Path Injection
-            if (product.file) {
-                dlBtn.href = `assets/downloads/${product.file}`;
+            if (activeProduct.file) {
+                dlBtn.href = `assets/downloads/${activeProduct.file}`;
             }
+
 
             if (dlBtn) {
               dlBtn.onclick = () => {
                 if (navigator.vibrate) navigator.vibrate([100, 30, 100]);
+                dlBtn.style.pointerEvents = "none";
+                dlBtn.textContent = "Download Initialized";
+                setTimeout(() => { dlBtn.style.pointerEvents = "all";
+                  dlBtn.textContent = "Download Package Now"; }, 3000);
               };
             }
         }, 1800); 

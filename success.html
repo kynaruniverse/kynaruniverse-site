@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>Success | Kynar Studio</title>
+    <title>Verification Successful | Kynar Studio Archive</title>
+
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <style>
@@ -12,12 +13,19 @@
         100% { transform: scale(1.8); opacity: 0; } 
       }
 
-      .status-card { padding: 24px; background: var(--bg-surface); border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 20px; display: flex; align-items: center; gap: 20px; width: 100%; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+      .status-card { padding: 24px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.08); border-radius: 20px; display: flex; align-items: center; gap: 20px; width: 100%; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
       .status-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); }
       .success-icon-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto 30px auto; display: flex; align-items: center; justify-content: center; }
       body.dark-mode { --ripple-opacity: 0.15; }
+      body.dark-mode .status-card { border-color: rgba(255, 255, 255, 0.05); }
+
 
     </style>
+    
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Archive Entry Verified | Kynar Studio">
+    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+
   </head>
 
   <body>
@@ -27,7 +35,8 @@
       <div class="reveal-up" style="max-width: 500px; width: 100%">
         
         <div class="success-icon-wrap">
-          <div style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite"></div>
+          <div style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          "></div>
           <div style="font-size: 3.5rem; position: relative; z-index: 2">✨</div>
         </div>
 
@@ -102,13 +111,18 @@
         }
 
         // Kynar "Success Sequence" Haptic
+                // Kynar "Success Sequence" Haptic
         if (navigator.vibrate) {
           setTimeout(() => navigator.vibrate([40, 40, 150]), 600);
-                  // Self-Correcting Visibility Heartbeat
-        requestAnimationFrame(() => {
-          document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
-        });
         }
+
+        // Global Visibility Heartbeat (Crucial for all devices)
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
+          }, 100);
+        });
+
       });
     </script>
   </body>

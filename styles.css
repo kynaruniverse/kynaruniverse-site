@@ -352,3 +352,26 @@ p { color: var(--ink-medium); max-width: 60ch; }
 .reveal-visible { opacity: 1; transform: translateY(0); }
 
 .empty-state { grid-column: 1 / -1; text-align: center; padding: 100px 0; color: var(--ink-medium); }
+
+#themeToggle .sun-icon, 
+#themeToggle .moon-icon {
+  transition: opacity var(--transition-main), transform var(--transition-main);
+}
+
+#themeToggle .sun-icon { display: block; opacity: 1; }
+#themeToggle .moon-icon { display: none; opacity: 0; }
+
+body.dark-mode #themeToggle .sun-icon { display: none; opacity: 0; }
+body.dark-mode #themeToggle .moon-icon { display: block; opacity: 1; transform: rotate(-15deg); }
+
+/* Footer Logo Physics */
+.footer-wrap div[style*="opacity: 0.4"]:hover {
+  opacity: 0.8 !important;
+  transform: scale(0.92); /* Subtle haptic compression */
+}
+
+/* Footer Navigation Handshake */
+.footer-wrap nav a:hover {
+  color: var(--accent-gold) !important;
+  letter-spacing: 0.25em; /* Kinetic expansion */
+}

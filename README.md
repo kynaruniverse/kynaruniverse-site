@@ -17,7 +17,18 @@ Unlike traditional template-based stores, Kynar Studio operates on a **Data-Driv
 
 ---
 
-## 🏗️ Repository Architecture
+## 🛠️ Maintenance Protocol
+To preserve the **High-Fidelity Handshake**, all additions to the archive must follow these rules:
+1. **Geometric Integrity:** New product IDs in `vault.js` must be kebab-case and mirrored in `sitemap.xml`.
+2. **Haptic Sync:** All new interactive triggers must include the `navigator.vibrate` handshake.
+3. **Temporal Physics:** Update the `<lastmod>` tag in `sitemap.xml` after every inventory injection.
+4. **Obsidian Handshake:** Never use hardcoded HEX/RGBA for UI elements; utilize `var(--ink-deep)` or `var(--bg-surface)` to ensure Dark Mode parity.
+5. **Semantic Handshake:** Update the `@context` JSON-LD schema in `index.html` if the studio’s official URL or social handles are re-indexed.
+
+
+
+
+## ⚙️ System Schematics
 
 ```text
 ├── assets/
@@ -28,9 +39,24 @@ Unlike traditional template-based stores, Kynar Studio operates on a **Data-Driv
 │   ├── header.html     # Modular Control Center & Search
 │   └── footer.html     # Legal Hub & Trust Signals
 ├── ui-core.js          # The "Engine" (Haptics, Reveal, Logic)
-├── vault.js            # The "Database" (Product Schema)
+├── vault.js            # 📦 The Vault (JSON Product Schema)
 ├── styles.css          # Master Design System (Grain, Dark Mode)
 ├── index.html          # Dynamic Showroom
 ├── shop.html           # The Archive Grid
 ├── product.html        # High-Conversion Detail Page
-└── legal.html          # Operational Protocols
+├── legal.html          # Operational Protocols
+├── 404.html            # Archive Dead-End (Haptic Recovery)
+├── maintenance.html    # System Update Portal
+├── robots.txt          # Indexing Shield & Bot Handshake
+├── sitemap.xml         # Temporal SEO Physics
+└── google47ef7...html  # Search Console Verification Token
+
+
+## 🚀 Live Signal (Deployment)
+
+* **Environment:** HTTPS Required for Haptic Engine (`navigator.vibrate`).
+* **Caching:** Purge CDN (Cloudflare/Vercel) upon `vault.js` updates to sync discovery.
+* **Compression:** WebP/Brotli enforced for ultra-low latency.
+
+
+

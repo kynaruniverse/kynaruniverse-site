@@ -7,7 +7,21 @@
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="ui-core.js" defer></script>
+    
+    <meta property="og:title" content="Support Concierge | Kynar Studio">
+    <meta property="og:description" content="Reach out to the Kynar Archive support team for technical assistance.">
+    <meta property="og:url" content="https://www.kynaruniverse.co.uk/contact.html">
+        <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+
+    <style>
+      input:focus, textarea:focus { 
+        border-color: var(--accent-gold) !important; 
+        box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1); 
+        transform: translateY(-2px);
+      }
+    </style>
   </head>
+
 
   <body>
     <header class="app-header" id="global-header"></header>
@@ -34,30 +48,33 @@
           <h3 class="card-title" style="margin-bottom: 30px; font-family: var(--font-display); font-size: 1.4rem;">Send a Message</h3>
 
           <form action="https://formspree.io/f/mlgekbwb" id="contactForm" method="POST">
-            <input name="_next" type="hidden" value="https://kynaruniverse.co.uk/success.html?type=support" />
+            <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=support" />
+
             <input name="_subject" type="hidden" value="Concierge Inquiry - Kynar Studio" />
 
             <div style="margin-bottom: 25px">
               <label style="display: block; font-size: 0.65rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em;">Your Name</label>
               <input name="name" placeholder="Full name..." required 
-                     style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); outline: none; transition: 0.3s;" 
+                     style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); font-size: 1rem; background: var(--bg-surface); color: var(--ink-deep); caret-color: var(--accent-gold); outline: none; transition: var(--transition-main);" 
                      type="text" />
             </div>
 
             <div style="margin-bottom: 25px">
               <label style="display: block; font-size: 0.65rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em;">Email Address</label>
               <input name="email" placeholder="email@address.com" required 
-                     style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); outline: none; transition: 0.3s;" 
+                     style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); font-size: 1rem; background: var(--bg-surface); color: var(--ink-deep); caret-color: var(--accent-gold); outline: none; transition: var(--transition-main);" 
                      type="email" />
             </div>
 
             <div style="margin-bottom: 35px">
               <label style="display: block; font-size: 0.65rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em;">Inquiry Details</label>
               <textarea name="message" placeholder="How can our team assist you today?" required 
-                        style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); min-height: 160px; font-size: 1rem; background: var(--bg-bone); color: var(--ink-deep); resize: none; outline: none; transition: 0.3s;"></textarea>
+                        style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(15, 61, 48, 0.08); font-family: var(--font-body); min-height: 160px; font-size: 1rem; background: var(--bg-surface); color: var(--ink-deep); caret-color: var(--accent-gold); resize: none; outline: none; transition: var(--transition-main);
+                        "></textarea>
             </div>
 
-            <button class="btn-primary" style="width: 100%; justify-content: center; letter-spacing: 0.15em;" type="submit">
+            <button class="btn-primary" onclick="if(navigator.vibrate) navigator.vibrate(20);" style="width: 100%; justify-content: center; letter-spacing: 0.15em;" type="submit">
+
               Dispatch Message →
             </button>
           </form>
@@ -65,7 +82,8 @@
 
         <div class="reveal-up" style="display: flex; flex-direction: column; gap: 24px">
           
-          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--bg-surface); border: none;">
+          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.05); transition: var(--transition-main);
+">
             <div style="font-size: 1.8rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));">📧</div>
             <div>
               <div style="font-size: 0.65rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px;">Direct Mail</div>
@@ -73,7 +91,8 @@
             </div>
           </div>
 
-          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--bg-surface); border: none;">
+          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.05); transition: var(--transition-main);
+">
             <div style="font-size: 1.8rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));">💬</div>
             <div>
               <div style="font-size: 0.65rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px;">Response Time</div>
@@ -81,7 +100,8 @@
             </div>
           </div>
 
-          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--pastel-sage); border: none;">
+          <div class="product-card" style="padding: 30px; flex-direction: row; align-items: center; gap: 24px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.05); transition: var(--transition-main);
+          ">
             <div style="font-size: 1.8rem; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));">📍</div>
             <div>
               <div style="font-size: 0.65rem; font-weight: 900; color: var(--ink-deep); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px; opacity: 0.6;">HQ Location</div>

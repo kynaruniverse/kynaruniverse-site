@@ -13,8 +13,9 @@
         position: absolute;
         font-family: var(--font-display);
         font-size: clamp(12rem, 45vw, 25rem);
-        color: var(--ink-deep);
-        opacity: 0.04;
+        color: var(--ink-medium);
+        opacity: 0.08;
+        transition: var(--transition-main);
         z-index: -1;
         user-select: none;
         pointer-events: none;
@@ -23,7 +24,14 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        animation: ghost-fade-in 1.5s ease-out forwards;
       }
+
+      @keyframes ghost-fade-in {
+        from { opacity: 0; transform: translate(-50%, -45%); }
+        to { opacity: 0.08; transform: translate(-50%, -50%); }
+      }
+
 
       .error-nav-grid {
         display: grid;
@@ -36,6 +44,12 @@
         .error-nav-grid { grid-template-columns: 1fr; }
       }
     </style>
+        <meta name="robots" content="noindex, follow">
+    <meta property="og:title" content="Archive Lost | Kynar Studio">
+    <meta property="og:description" content="The requested coordinate is missing. Return to the Kynar marketplace.">
+    <meta property="og:url" content="https://www.kynaruniverse.co.uk/404.html">
+
+
   </head>
 
   <body>
@@ -60,17 +74,16 @@
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-          <a class="btn-primary" href="shop.html" style="justify-content: center; width: 100%; letter-spacing: 0.1em;">
+          <a class="btn-primary" href="shop.html" onclick="if(navigator.vibrate) navigator.vibrate(20);" style="display: flex; justify-content: center; align-items: center; width: 100%; letter-spacing: 0.1em; text-decoration: none;">
             Return to Marketplace
           </a>
 
           <div class="error-nav-grid">
-            <a class="btn-ghost" href="index.html" style="padding: 14px; font-size: 0.8rem; justify-content: center;">
-              Main Store
+            <a class="btn-ghost" href="index.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="padding: 14px; font-size: 0.8rem; justify-content: center; transition: var(--transition-main);">Main Store
             </a>
-            <a class="btn-ghost" href="contact.html" style="padding: 14px; font-size: 0.8rem; justify-content: center;">
-              Support Desk
+            <a class="btn-ghost" href="contact.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="padding: 14px; font-size: 0.8rem; justify-content: center; transition: var(--transition-main);"> Support Desk
             </a>
+
           </div>
         </div>
       </div>
@@ -83,7 +96,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         if (navigator.vibrate) {
           // Subtle triple-pulse error signal
-          setTimeout(() => navigator.vibrate([40, 60, 40, 60, 80]), 800);
+          setTimeout(() => navigator.vibrate([40, 60, 40, 60, 80]), 1200);
         }
       });
     </script>

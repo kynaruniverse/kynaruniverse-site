@@ -1,6 +1,6 @@
 <div class="footer-wrap" style="text-align: center; padding: 80px 20px;">
   
-  <div class="footer-brand" style="font-family: var(--font-display); font-size: 1.8rem; color: var(--ink-deep); margin-bottom: 12px; letter-spacing: 0.05em;">
+  <div class="footer-brand" style="font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-deep); margin-bottom: 12px; letter-spacing: 0.05em;">
     KYNAR.
   </div>
 
@@ -10,26 +10,31 @@
   </p>
 
   <nav style="display: flex; flex-direction: column; gap: 18px; align-items: center; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 48px;">
-    <a href="index.html" style="color: var(--ink-deep); text-decoration: none;">Home</a>
-    <a href="shop.html" style="color: var(--ink-deep); text-decoration: none;">Archive</a>
-    <a href="newsletter.html" style="color: var(--ink-deep); text-decoration: none;">Community</a>
-    <a href="legal.html" style="color: var(--ink-deep); text-decoration: none;">Protocol</a>
-    <a href="contact.html" style="color: var(--ink-deep); text-decoration: none;">Support</a>
+    <a href="index.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="color: var(--ink-medium); text-decoration: none; transition: var(--transition-main);">Home</a>
+    <a href="shop.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="color: var(--ink-medium); text-decoration: none; transition: var(--transition-main);">Archive</a>
+    <a href="newsletter.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="color: var(--ink-medium); text-decoration: none; transition: var(--transition-main);">Community</a>
+    <a href="legal.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="color: var(--ink-medium); text-decoration: none; transition: var(--transition-main);">Protocol</a>
+    <a href="contact.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="color: var(--ink-medium); text-decoration: none; transition: var(--transition-main);">Support</a>
+
 </nav>
 
 
   <div style="display: flex; flex-direction: column; align-items: center; gap: 32px; margin-top: 10px;">
 
     
-    <div style="display: flex; gap: 20px; opacity: 0.4; filter: grayscale(1) brightness(var(--logo-brightness, 1)); align-items: center; transform: scale(0.9);">
+    <div style="display: flex; gap: 20px; opacity: 0.4; cursor: default; filter: grayscale(1) invert(var(--logo-invert, 0)) brightness(1.5); transition: var(--transition-main); align-items: center; transform: scale(0.9);">
 
-      <img alt="Visa" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" style="height: 10px; width: auto" />
-      <img alt="Mastercard" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" style="height: 14px; width: auto" />
-      <img alt="PayPal" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" style="height: 14px; width: auto" />
-      <img alt="Apple Pay" src="https://upload.wikimedia.org/wikipedia/commons/3/30/Apple_Pay_logo.svg" style="height: 14px; width: auto" />
+      <img alt="Visa" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" style="height: 10px; width: auto; aspect-ratio: 3/1;" 
+ />
+      <img alt="Mastercard" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" style="height: 14px; width: auto; aspect-ratio: 1.5/1;" 
+ />
+      <img alt="PayPal" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" style="height: 14px; width: auto; aspect-ratio: 1.5/1;" 
+ />
+      <img alt="Apple Pay" src="https://upload.wikimedia.org/wikipedia/commons/3/30/Apple_Pay_logo.svg" style="height: 14px; width: auto; aspect-ratio: 1.5/1;" 
+ />
     </div>
 
-    <div style="font-size: 0.65rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.03); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.02);">
+    <div style="font-size: 0.65rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; display: flex; align-items: center; gap: 8px; background: var(--bg-surface); padding: 10px 24px; border-radius: 50px; border: 1px solid rgba(15, 61, 48, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: var(--transition-main);">
       <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="10">
         <rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
