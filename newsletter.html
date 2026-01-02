@@ -1,88 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>Community Archive | Kynar Studio</title>
+    
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="ui-core.js" defer></script>
+    <script defer src="ui-core.js"></script>
     
-    <meta property="og:title" content="The Community Archive | Kynar Studio">
-    <meta property="og:description" content="Join the network for high-fidelity creative dispatches.">
-    <meta property="og:url" content="https://www.kynaruniverse.co.uk/newsletter.html">
-    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+    <meta content="The Community Archive | Kynar Studio" property="og:title">
+    <meta content="Join the network for high-fidelity creative dispatches." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/newsletter.html" property="og:url">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@kynarstudio">
-    <meta name="twitter:title" content="The Community Archive">
-    <meta name="twitter:description" content="Access elite creative strategies.">
-    <meta name="twitter:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
-    
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="@kynarstudio" name="twitter:site">
+    <meta content="The Community Archive" name="twitter:title">
+    <meta content="Access elite creative strategies." name="twitter:description">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" name="twitter:image">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
-    <main class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh;">
+    <main 
+      class="container" 
+      style="
+        align-items: center; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        min-height: 85vh;
+      "
+    >
       
-      <div class="reveal-up" style="max-width: 550px; text-align: center; margin-top: 60px;">
-        <div style="font-size: 3.5rem; margin-bottom: 25px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));">📜</div>
-        <span style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px;">
+      <div 
+        class="reveal-up" 
+        style="
+          margin-top: 60px; 
+          max-width: 550px; 
+          text-align: center;
+        "
+      >
+        <div 
+          style="
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05)); 
+            font-size: 3.5rem; 
+            margin-bottom: 25px;
+          "
+        >📜</div>
+        
+        <span 
+          style="
+            color: var(--accent-gold); 
+            display: block; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            letter-spacing: 0.25em; 
+            margin-bottom: 20px;
+            text-transform: uppercase; 
+          "
+        >
           The Community Archive
         </span>
 
-        <h1 style="line-height: 1.1;">Join the <br /><span style="color: var(--ink-medium)">Kynar Network.</span></h1>
+        <h1 style="line-height: 1.1;">
+          Join the <br /><span style="color: var(--ink-medium)">Kynar Network.</span>
+        </h1>
 
-        <p style="margin: 25px 0 45px 0; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium);">
+        <p 
+          style="
+            color: var(--ink-medium);
+            font-size: 1.15rem; 
+            line-height: 1.6; 
+            margin: 25px 0 45px 0; 
+          "
+        >
           Access high-fidelity insights, exclusive asset drops, and creative strategies delivered weekly to your inbox.
         </p>
 
-        <div class="product-card" style="padding: 8px; flex-direction: row; border-radius: 50px; background: var(--bg-surface); border: 1.5px solid var(--ink-deep); overflow: visible; min-height: 64px;">
-
-          <form action="https://formspree.io/f/mlgekbwb" method="POST" style="display: flex; width: 100%; align-items: center;">
+        <div 
+          class="product-card" 
+          style="
+            background: var(--bg-surface); 
+            border: 1.5px solid var(--ink-deep); 
+            border-radius: 50px; 
+            flex-direction: row; 
+            min-height: 64px;
+            overflow: visible; 
+            padding: 8px; 
+          "
+        >
+          <form 
+            action="https://formspree.io/f/mlgekbwb" 
+            method="POST" 
+            style="
+              align-items: center; 
+              display: flex; 
+              width: 100%; 
+            "
+          >
             <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=newsletter" />
-
-
             
-            <input name="email" placeholder="Archive access email..." required 
-                   style="flex-grow: 1; background: transparent; border: none; padding: 0 25px; font-family: var(--font-body); font-size: 1rem; outline: none; color: var(--ink-deep); caret-color: var(--accent-gold);"
-
-                   type="email" />
+            <input 
+              name="email" 
+              placeholder="Archive access email..." 
+              required 
+              style="
+                background: transparent; 
+                border: none; 
+                caret-color: var(--accent-gold);
+                color: var(--ink-deep); 
+                flex-grow: 1; 
+                font-family: var(--font-body); 
+                font-size: 1rem; 
+                outline: none; 
+                padding: 0 25px; 
+              "
+              type="email" 
+            />
             
-            <button class="btn-primary" onclick="if(navigator.vibrate) navigator.vibrate([20, 40]);" style="padding: 14px 30px; font-size: 0.8rem; border-radius: 40px; white-space: nowrap;" type="submit">
-
+            <button 
+              class="btn-primary" 
+              onclick="if(navigator.vibrate) navigator.vibrate([20, 40]);" 
+              style="
+                border-radius: 40px; 
+                font-size: 0.8rem; 
+                padding: 14px 30px; 
+                white-space: nowrap;
+              " 
+              type="submit"
+            >
               Join Now
             </button>
           </form>
         </div>
 
-        <div style="margin-top: 35px; display: flex; justify-content: center; gap: 20px; font-size: 0.65rem; font-weight: 800; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.15em;">
+        <div 
+          style="
+            display: flex; 
+            font-size: 0.65rem; 
+            font-weight: 800; 
+            gap: 20px; 
+            justify-content: center; 
+            letter-spacing: 0.15em;
+            margin-top: 35px; 
+            opacity: 0.5; 
+            text-transform: uppercase; 
+          "
+        >
           <span>🔒 End-to-End Secure</span>
           <span>•</span>
           <span>Zero Spam Policy</span>
         </div>
       </div>
 
-      <section style="width: 100%; max-width: 800px; margin-top: 120px; margin-bottom: 60px;">
-        <h3 style="font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 40px; text-align: center; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.2em;">
+      <section 
+        style="
+          margin-bottom: 60px;
+          margin-top: 120px; 
+          max-width: 800px; 
+          width: 100%; 
+        "
+      >
+        <h3 
+          style="
+            font-family: var(--font-display); 
+            font-size: 0.9rem; 
+            letter-spacing: 0.2em;
+            margin-bottom: 40px; 
+            opacity: 0.4; 
+            text-align: center; 
+            text-transform: uppercase; 
+          "
+        >
           Previous Dispatches
         </h3>
 
-        <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+        <div 
+          class="gallery-grid" 
+          style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));"
+        >
           
-          <article class="product-card" style="padding: 30px; text-align: left; border-left: 4px solid var(--accent-gold); display: block; transition: var(--transition-main); cursor: default;">
-
-            <span style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em;">Dispatch #02</span>
-            <h4 style="margin: 12px 0; font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-deep);">The 2026 Asset Economy</h4>
-            <p style="font-size: 0.9rem; color: var(--ink-medium); line-height: 1.5;">Analyzing the shift toward minimalist, high-utility digital products in the creative space.</p>
+          <article 
+            class="product-card" 
+            style="
+              border-left: 4px solid var(--accent-gold); 
+              cursor: default;
+              display: block; 
+              padding: 30px; 
+              text-align: left; 
+              transition: var(--transition-main); 
+            "
+          >
+            <span 
+              style="
+                color: var(--accent-gold); 
+                font-size: 0.6rem; 
+                font-weight: 900; 
+                letter-spacing: 0.1em;
+                text-transform: uppercase; 
+              "
+            >Dispatch #02</span>
+            
+            <h4 
+              style="
+                color: var(--ink-deep);
+                font-family: var(--font-display); 
+                font-size: 1.2rem; 
+                margin: 12px 0; 
+              "
+            >The 2026 Asset Economy</h4>
+            
+            <p 
+              style="
+                color: var(--ink-medium); 
+                font-size: 0.9rem; 
+                line-height: 1.5;
+              "
+            >Analyzing the shift toward minimalist, high-utility digital products in the creative space.</p>
           </article>
 
-          <article class="product-card" style="padding: 30px; text-align: left; border-left: 4px solid var(--accent-gold); display: block; transition: var(--transition-main); cursor: default;">
-
-            <span style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em;">Dispatch #01</span>
-            <h4 style="margin: 12px 0; font-family: var(--font-display); font-size: 1.2rem; color: var(--ink-deep);">Design as a Service</h4>
-            <p style="font-size: 0.9rem; color: var(--ink-medium); line-height: 1.5;">How template creators are moving from one-off sales to recurring community memberships.</p>
+          <article 
+            class="product-card" 
+            style="
+              border-left: 4px solid var(--accent-gold); 
+              cursor: default;
+              display: block; 
+              padding: 30px; 
+              text-align: left; 
+              transition: var(--transition-main); 
+            "
+          >
+            <span 
+              style="
+                color: var(--accent-gold); 
+                font-size: 0.6rem; 
+                font-weight: 900; 
+                letter-spacing: 0.1em;
+                text-transform: uppercase; 
+              "
+            >Dispatch #01</span>
+            
+            <h4 
+              style="
+                color: var(--ink-deep);
+                font-family: var(--font-display); 
+                font-size: 1.2rem; 
+                margin: 12px 0; 
+              "
+            >Design as a Service</h4>
+            
+            <p 
+              style="
+                color: var(--ink-medium); 
+                font-size: 0.9rem; 
+                line-height: 1.5;
+              "
+            >How template creators are moving from one-off sales to recurring community memberships.</p>
           </article>
 
         </div>
@@ -92,4 +274,3 @@
     <footer class="app-footer" id="global-footer"></footer>
   </body>
 </html>
-

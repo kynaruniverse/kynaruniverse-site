@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>The Marketplace | Kynar Studio</title>
+    
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.kynaruniverse.co.uk/">
-    <meta property="og:title" content="Kynar Studio | Digital Marketplace">
-    <meta property="og:description" content="Premium digital assets for the creative elite. Explore the archive.">
-    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+    <meta content="website" property="og:type">
+    <meta content="https://www.kynaruniverse.co.uk/" property="og:url">
+    <meta content="Kynar Studio | Digital Marketplace" property="og:title">
+    <meta content="Premium digital assets for the creative elite. Explore the archive." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
     
-        <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Marketplace | Kynar Studio">
-    <meta name="twitter:description" content="Premium digital assets for the creative elite.">
-    <meta name="twitter:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
-
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="The Marketplace | Kynar Studio" name="twitter:title">
+    <meta content="Premium digital assets for the creative elite." name="twitter:description">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" name="twitter:image">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
     <main class="container">
-      <div class="reveal-up" style="margin-top: 40px">
-        <span style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800;">Curated Archive</span>
+      
+      <div 
+        class="reveal-up" 
+        style="margin-top: 40px"
+      >
+        <span 
+          style="
+            color: var(--accent-gold); 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+          "
+        >
+          Curated Archive
+        </span>
         <h1>The Marketplace</h1>
         <p style="margin-top: 10px;">High-fidelity assets for digital creators.</p>
       </div>
 
       <nav class="filter-bar reveal-up" id="filterContainer">
-  <button class="filter-chip active" data-cat="all">All Assets</button>
-  <button class="filter-chip" data-cat="personal">Life & Flow</button>
-  <button class="filter-chip" data-cat="work">Business & Growth</button>
-  <button class="filter-chip" data-cat="creative">Content & Style</button>
-  <button class="filter-chip" data-cat="education">Learning & Dev</button>
-</nav>
-
-
+        <button class="filter-chip active" data-cat="all">All Assets</button>
+        <button class="filter-chip" data-cat="personal">Life & Flow</button>
+        <button class="filter-chip" data-cat="work">Business & Growth</button>
+        <button class="filter-chip" data-cat="creative">Content & Style</button>
+        <button class="filter-chip" data-cat="education">Learning & Dev</button>
+      </nav>
 
       <div class="gallery-grid" id="productGrid"></div>
       
-      <div id="emptyState" class="empty-state"></div>
+      <div class="empty-state" id="emptyState"></div>
+
     </main>
 
     <footer class="app-footer" id="global-footer"></footer>
@@ -50,17 +69,41 @@
     <script type="module">
       import { VAULT } from './vault.js';
 
+      // #region [ 1. INITIALIZATION ]
       const grid = document.getElementById('productGrid');
       const emptyState = document.getElementById('emptyState');
+      // #endregion
 
-            function showSkeletons() {
+      // #region [ 2. RENDERERS ]
+
+      /**
+       * Injects loading skeletons while the main renderer processes data.
+       */
+      function showSkeletons() {
         grid.innerHTML = Array(6).fill(0).map(() => `
-          <div class="product-card" style="height: 350px; background: var(--bg-surface); opacity: 0.5;">
-            <div style="width: 100%; height: 60%; background: var(--bg-bone); animation: pulse-border 2s infinite;"></div>
+          <div 
+            class="product-card" 
+            style="
+              background: var(--bg-surface); 
+              height: 350px; 
+              opacity: 0.5;
+            "
+          >
+            <div 
+              style="
+                animation: pulse-border 2s infinite;
+                background: var(--bg-bone); 
+                height: 60%; 
+                width: 100%; 
+              "
+            ></div>
           </div>`).join('');
       }
 
-
+      /**
+       * Renders the product grid based on the selected category filter.
+       * @param {string} filter - The category ID or 'all'.
+       */
       async function renderGallery(filter = 'all') {
         grid.style.opacity = '0.5';
         showSkeletons();
@@ -68,46 +111,96 @@
         requestAnimationFrame(() => {
           const filtered = filter === 'all' ? VAULT : VAULT.filter(p => p.category === filter);
           
+          // --- State: No Results ---
           if (filtered.length === 0) {
             emptyState.style.display = 'block';
             emptyState.innerHTML = `
               <h3 style="font-family: var(--font-display); margin-bottom: 15px;">No assets found.</h3>
               <button class="btn-ghost" onclick="resetFilters()">Clear All Filters</button>`;
             grid.innerHTML = '';
-          } else {
+          } 
+          // --- State: Populated ---
+          else {
             emptyState.style.display = 'none';
             grid.innerHTML = filtered.map((p, i) => `
-              <article class="product-card reveal-up" 
-                       onclick="window.location.href='product.html?id=${p.id}'"
-                       style="transition-delay: ${i * 0.05}s">
+              <article 
+                class="product-card reveal-up" 
+                onclick="window.location.href='product.html?id=${p.id}'"
+                style="transition-delay: ${i * 0.05}s"
+              >
                 <div class="tag">${p.tag}</div>
-                <div class="card-image" style="background: var(--bg-bone);">
-
-                  <img class="product-img" src="${p.image}" alt="${p.title}" loading="lazy" onload="this.style.opacity='1'">
+                
+                <div 
+                  class="card-image" 
+                  style="background: var(--bg-bone);"
+                >
+                  <img 
+                    alt="${p.title}" 
+                    class="product-img" 
+                    loading="lazy" 
+                    onload="this.style.opacity='1'"
+                    src="${p.image}" 
+                  >
                 </div>
+                
                 <div class="card-info">
                   <h3 class="card-title">${p.title}</h3>
-                  <p style="font-size: 0.9rem; line-height: 1.5; opacity: 0.7;">${p.shortDesc}</p>
-                  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 25px;">
+                  <p 
+                    style="
+                      font-size: 0.9rem; 
+                      line-height: 1.5; 
+                      opacity: 0.7;
+                    "
+                  >${p.shortDesc}</p>
+                  
+                  <div 
+                    style="
+                      align-items: flex-end; 
+                      display: flex; 
+                      justify-content: space-between; 
+                      margin-top: auto; 
+                      padding-top: 25px;
+                    "
+                  >
                     <div>
-                      <span style="display: block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 4px;">INVESTMENT</span>
+                      <span 
+                        style="
+                          display: block; 
+                          font-size: 0.6rem; 
+                          font-weight: 800; 
+                          letter-spacing: 0.1em; 
+                          margin-bottom: 4px;
+                          opacity: 0.4; 
+                        "
+                      >INVESTMENT</span>
                       <span class="card-price">${p.price}</span>
                     </div>
-                    <div class="btn-ghost" style="padding: 8px 16px; font-size: 0.65rem;">View Archive</div>
+                    <div 
+                      class="btn-ghost" 
+                      style="
+                        font-size: 0.65rem;
+                        padding: 8px 16px; 
+                      "
+                    >View Archive</div>
                   </div>
                 </div>
               </article>`).join('');
           }
 
+          // Animation Reveal
           grid.style.opacity = '1';
           document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
         });
       }
 
+      // #endregion
 
-      // Gesture & Filter Logic
+      // #region [ 3. INTERACTION LOGIC ]
+
+      // Gesture: Pull Down to Reset
       let touchStart = 0;
       window.addEventListener('touchstart', e => { touchStart = e.touches[0].pageY; }, {passive: true});
+      
       window.addEventListener('touchend', e => {
         const touchEnd = e.changedTouches[0].pageY;
         if (window.scrollY === 0 && touchEnd - touchStart > 150) {
@@ -123,6 +216,7 @@
         renderGallery('all');
       };
 
+      // Event: Filter Click
       document.getElementById('filterContainer').addEventListener('click', (e) => {
         const chip = e.target.closest('.filter-chip');
         if (chip) {
@@ -131,29 +225,29 @@
           chip.classList.add('active');
           renderGallery(chip.dataset.cat);
         }
-
       });
 
+      // Event: Page Load (URL Params)
       window.addEventListener('load', () => {
-  const params = new URLSearchParams(window.location.search);
-  const catParam = params.get('cat');
-  
-    if (catParam) {
-    document.querySelectorAll('.filter-chip').forEach(c => {
-      c.classList.toggle('active', c.dataset.cat === catParam);
-    });
-    renderGallery(catParam);
-    // Obsidian Protocol: History Cleanup
-    window.history.replaceState({}, document.title, window.location.pathname);
-  } else {
-    renderGallery('all');
-  }
+        const params = new URLSearchParams(window.location.search);
+        const catParam = params.get('cat');
+        
+        if (catParam) {
+          document.querySelectorAll('.filter-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.cat === catParam);
+          });
+          renderGallery(catParam);
+          // Obsidian Protocol: History Cleanup
+          window.history.replaceState({}, document.title, window.location.pathname);
+        } else {
+          renderGallery('all');
+        }
+      });
 
-});
-
+      // #endregion
     </script>
     
-    <script src="ui-core.js" defer></script>
+    <script defer src="ui-core.js"></script>
 
   </body>
 </html>

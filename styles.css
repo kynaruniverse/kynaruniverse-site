@@ -113,7 +113,6 @@ p { color: var(--ink-medium); max-width: 60ch; }
   transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-
 }
 .reveal-visible { opacity: 1; transform: translateY(0); }
 
@@ -165,14 +164,6 @@ p { color: var(--ink-medium); max-width: 60ch; }
   box-shadow: none !important;
 }
 .nav-icon:active { transform: scale(0.85); }
-
-/* Theme Toggle Icons */
-#themeToggle .sun-icon, 
-#themeToggle .moon-icon {
-  transition: opacity var(--transition-main), transform var(--transition-main);
-}
-#themeToggle .sun-icon { display: block; opacity: 1; }
-#themeToggle .moon-icon { display: none; opacity: 0; }
 
 /* #endregion */
 

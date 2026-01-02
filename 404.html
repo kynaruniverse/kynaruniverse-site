@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>Archive Lost | Kynar Studio</title>
+    
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="ui-core.js" defer></script>
+    <script defer src="ui-core.js"></script>
 
     <style>
       .error-bg-text {
-        position: absolute;
+        animation: ghost-fade-in 1.5s ease-out forwards;
+        color: var(--ink-medium);
         font-family: var(--font-display);
         font-size: clamp(12rem, 45vw, 25rem);
-        color: var(--ink-medium);
-        opacity: 0.08;
-        transition: var(--transition-main);
-        z-index: -1;
-        user-select: none;
-        pointer-events: none;
+        left: 50%;
         letter-spacing: -0.05em;
         line-height: 1;
+        opacity: 0.08;
+        pointer-events: none;
+        position: absolute;
         top: 50%;
-        left: 50%;
         transform: translate(-50%, -50%);
-        animation: ghost-fade-in 1.5s ease-out forwards;
+        transition: var(--transition-main);
+        user-select: none;
+        z-index: -1;
       }
 
       @keyframes ghost-fade-in {
@@ -32,11 +38,10 @@
         to { opacity: 0.08; transform: translate(-50%, -50%); }
       }
 
-
       .error-nav-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 12px;
+        grid-template-columns: 1fr 1fr;
         width: 100%;
       }
 
@@ -44,46 +49,128 @@
         .error-nav-grid { grid-template-columns: 1fr; }
       }
     </style>
-        <meta name="robots" content="noindex, follow">
-    <meta property="og:title" content="Archive Lost | Kynar Studio">
-    <meta property="og:description" content="The requested coordinate is missing. Return to the Kynar marketplace.">
-    <meta property="og:url" content="https://www.kynaruniverse.co.uk/404.html">
-
-
+    
+    <meta content="noindex, follow" name="robots">
+    
+    <meta content="Archive Lost | Kynar Studio" property="og:title">
+    <meta content="The requested coordinate is missing. Return to the Kynar marketplace." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/404.html" property="og:url">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
-    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center; position: relative; overflow: hidden;">
+    <main 
+      class="container" 
+      style="
+        align-items: center; 
+        display: flex; 
+        justify-content: center; 
+        min-height: 85vh; 
+        overflow: hidden; 
+        position: relative; 
+        text-align: center; 
+      "
+    >
       
       <div class="error-bg-text">404</div>
 
-      <div class="reveal-up" style="max-width: 500px; width: 100%; z-index: 10;">
-        <span style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 25px;">
+      <div 
+        class="reveal-up" 
+        style="
+          max-width: 500px; 
+          width: 100%; 
+          z-index: 10;
+        "
+      >
+        <span 
+          style="
+            color: var(--accent-gold); 
+            display: block; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            letter-spacing: 0.25em; 
+            margin-bottom: 25px;
+            text-transform: uppercase; 
+          "
+        >
           Signal Interrupted
         </span>
 
-        <h1 style="color: var(--ink-deep); font-size: clamp(2.5rem, 10vw, 4rem); line-height: 1.1; margin-bottom: 20px;">
+        <h1 
+          style="
+            color: var(--ink-deep); 
+            font-size: clamp(2.5rem, 10vw, 4rem); 
+            line-height: 1.1; 
+            margin-bottom: 20px;
+          "
+        >
           Archive <br /><span style="color: var(--ink-medium)">Not Found.</span>
         </h1>
 
-        <p style="margin-bottom: 45px; font-size: 1.15rem; line-height: 1.6; color: var(--ink-medium);">
+        <p 
+          style="
+            color: var(--ink-medium);
+            font-size: 1.15rem; 
+            line-height: 1.6; 
+            margin-bottom: 45px; 
+          "
+        >
           The requested coordinate is missing or has been re-indexed. 
           Let's restore your connection to the marketplace.
         </p>
 
-        <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-          <a class="btn-primary" href="shop.html" onclick="if(navigator.vibrate) navigator.vibrate(20);" style="display: flex; justify-content: center; align-items: center; width: 100%; letter-spacing: 0.1em; text-decoration: none;">
+        <div 
+          style="
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            width: 100%;
+          "
+        >
+          <a 
+            class="btn-primary" 
+            href="shop.html" 
+            onclick="if(navigator.vibrate) navigator.vibrate(20);" 
+            style="
+              align-items: center; 
+              display: flex; 
+              justify-content: center; 
+              letter-spacing: 0.1em; 
+              text-decoration: none;
+              width: 100%; 
+            "
+          >
             Return to Marketplace
           </a>
 
           <div class="error-nav-grid">
-            <a class="btn-ghost" href="index.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="padding: 14px; font-size: 0.8rem; justify-content: center; transition: var(--transition-main);">Main Store
+            <a 
+              class="btn-ghost" 
+              href="index.html" 
+              onclick="if(navigator.vibrate) navigator.vibrate(10);" 
+              style="
+                font-size: 0.8rem; 
+                justify-content: center; 
+                padding: 14px; 
+                transition: var(--transition-main);
+              "
+            >Main Store
             </a>
-            <a class="btn-ghost" href="contact.html" onclick="if(navigator.vibrate) navigator.vibrate(10);" style="padding: 14px; font-size: 0.8rem; justify-content: center; transition: var(--transition-main);"> Support Desk
+            
+            <a 
+              class="btn-ghost" 
+              href="contact.html" 
+              onclick="if(navigator.vibrate) navigator.vibrate(10);" 
+              style="
+                font-size: 0.8rem; 
+                justify-content: center; 
+                padding: 14px; 
+                transition: var(--transition-main);
+              "
+            > Support Desk
             </a>
-
           </div>
         </div>
       </div>

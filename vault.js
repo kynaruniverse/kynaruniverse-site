@@ -177,7 +177,7 @@ export const VAULT = [
   // --- ASSETS & CODE ---
   {
     id: "icon-system-v1",
-    category: "creative", // Note: Categorized as 'creative' in source
+    category: "creative", 
     status: "active",
     actionLabel: "Authorize Download",
     title: "Kynar Icon System",

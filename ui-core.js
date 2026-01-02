@@ -1,23 +1,32 @@
-/* ══════════════════════════════════════════════════════════════════════════
-   KYNAR UI CORE (V7.0 - Masterpiece Logic)
-   Features: Command Center Cart, Fluid State Sync, Proximity Haptics
-   ══════════════════════════════════════════════════════════════════════════ */
+/**
+ * ══════════════════════════════════════════════════════════════════════════
+ * MODULE: KYNAR UI CORE (V7.0 - MASTERPIECE LOGIC)
+ * ══════════════════════════════════════════════════════════════════════════
+ * @description Central controller for the Kynar UI.
+ * Handles state management, component injection, cart logic, and experience services.
+ * @module UiCore
+ */
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1. Initialise State
-  window.KYNAR_STATE = { cart: JSON.parse(localStorage.getItem('kynar_cart')) || [] };
-  window.scrollTo(0, 0);
+  // #region [ 1. INITIALIZATION ]
 
+  // 1. Initialise State
+  window.KYNAR_STATE = {
+    cart: JSON.parse(localStorage.getItem("kynar_cart")) || [],
+  };
+  window.scrollTo(0, 0);
 
   // 2. Critical Component Load & Handshake
   await Promise.all([loadHeader(), loadFooter(), loadCartSidebar()]);
 
   // 3. Data Handshake (Global Vault Check)
-  if (typeof VAULT === 'undefined') {
+  if (typeof VAULT === "undefined") {
     try {
-      const module = await import('./vault.js');
+      const module = await import("./vault.js");
       window.VAULT = module.VAULT;
-    } catch (e) { console.warn("Vault Offline: Running in isolated mode."); }
+    } catch (e) {
+      console.warn("Vault Offline: Running in isolated mode.");
+    }
   }
 
   // 4. Engine Boot Sequence
@@ -29,14 +38,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   initMobileStickyCTA();
   applyPreLaunchStatus();
   handleSuccessLogic();
-  
+
   console.log("Kynar Engine V7.0: Masterpiece Mode Active");
+
+  // #endregion
 });
 
 /* ══════════════════════════════════════════════════════════════════════════
    COMPONENT INJECTORS
    ══════════════════════════════════════════════════════════════════════════ */
 
+// #region [ 2. COMPONENT LOADERS ]
+
+/**
+ * Fetches and injects the global header.
+ * Initializes menu, theme, and search logic after injection.
+ */
 async function loadHeader() {
   const headerEl = document.getElementById("global-header");
   if (!headerEl) return;
@@ -44,36 +61,39 @@ async function loadHeader() {
     const response = await fetch("components/header.html");
     const html = await response.text();
     headerEl.innerHTML = html;
-    
+
     // Binding listeners specifically after injection
     initMenuLogic();
     initThemeEngine();
     initSearchEngine();
-
-  } catch (err) { 
-  console.error("Header Fault:", err);
-  headerEl.innerHTML = '<div style="padding:20px; text-align:center;">Handshake Interrupted. <a href="index.html">Reload Archive</a></div>';
+  } catch (err) {
+    console.error("Header Fault:", err);
+    headerEl.innerHTML =
+      '<div style="padding:20px; text-align:center;">Handshake Interrupted. <a href="index.html">Reload Archive</a></div>';
+  }
 }
 
-}
-
-
-
-
+/**
+ * Fetches and injects the global footer.
+ */
 async function loadFooter() {
   const footerEl = document.getElementById("global-footer");
   if (!footerEl) return;
   try {
     const response = await fetch("components/footer.html");
     footerEl.innerHTML = await response.text();
-      console.log("Footer Index Handshake: Verified");
-
-  } catch (err) { console.error("Footer Fault:", err); }
+    console.log("Footer Index Handshake: Verified");
+  } catch (err) {
+    console.error("Footer Fault:", err);
+  }
 }
 
+/**
+ * Injects the Master Cart Sidebar HTML into the DOM if missing.
+ */
 async function loadCartSidebar() {
   // Inject the Master Cart Sidebar if it doesn't exist
-  if (document.getElementById('cartSidebar')) return;
+  if (document.getElementById("cartSidebar")) return;
   const cartHTML = `
     <div id="cartSidebar" class="cart-sidebar">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
@@ -89,75 +109,94 @@ async function loadCartSidebar() {
         <button class="checkout-btn" onclick="initiateCheckout()">Authorize Download <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>`;
-  document.body.insertAdjacentHTML('beforeend', cartHTML);
+  document.body.insertAdjacentHTML("beforeend", cartHTML);
 }
+
+// #endregion
 
 /* ══════════════════════════════════════════════════════════════════════════
    MASTER CART LOGIC
    ══════════════════════════════════════════════════════════════════════════ */
 
+// #region [ 3. CART ENGINE ]
+
 function initCartEngine() {
+  /**
+   * Toggles the visibility of the cart sidebar.
+   * Manages body scroll lock and Lenis scroll state.
+   */
   window.toggleCart = (state) => {
-    const sidebar = document.getElementById('cartSidebar');
+    const sidebar = document.getElementById("cartSidebar");
     if (!sidebar) return;
-    const isActive = state === 'open';
-    sidebar.classList.toggle('active', isActive);
-            const lenisInstance = window.lenis || null;
+    const isActive = state === "open";
+    sidebar.classList.toggle("active", isActive);
+    const lenisInstance = window.lenis || null;
     if (isActive) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       if (lenisInstance) lenisInstance.stop();
     } else {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       if (lenisInstance) lenisInstance.start();
     }
-
 
     if (isActive && navigator.vibrate) navigator.vibrate(10);
   };
 
+  /**
+   * Adds a product to the cart state and triggers a UI sync.
+   */
   window.addToCart = (productId) => {
-    const item = VAULT.find(p => p.id === productId);
-    if (item && !window.KYNAR_STATE.cart.find(c => c.id === productId)) {
+    const item = VAULT.find((p) => p.id === productId);
+    if (item && !window.KYNAR_STATE.cart.find((c) => c.id === productId)) {
       window.KYNAR_STATE.cart.push(item);
       syncCart();
-      window.toggleCart('open');
+      window.toggleCart("open");
       if (navigator.vibrate) navigator.vibrate([20, 50, 20]);
     }
   };
 
   window.removeFromCart = (id) => {
-    window.KYNAR_STATE.cart = window.KYNAR_STATE.cart.filter(item => item.id !== id);
+    window.KYNAR_STATE.cart = window.KYNAR_STATE.cart.filter(
+      (item) => item.id !== id
+    );
     syncCart();
   };
 
   function syncCart() {
-    localStorage.setItem('kynar_cart', JSON.stringify(window.KYNAR_STATE.cart));
+    localStorage.setItem(
+      "kynar_cart",
+      JSON.stringify(window.KYNAR_STATE.cart)
+    );
     renderCartUI();
   }
 
   function renderCartUI() {
-    const list = document.getElementById('cartList');
-    const badge = document.querySelector('.cart-count-badge');
-    const totalEl = document.getElementById('cartTotal');
+    const list = document.getElementById("cartList");
+    const badge = document.querySelector(".cart-count-badge");
+    const totalEl = document.getElementById("cartTotal");
     if (!list) return;
 
-        const count = window.KYNAR_STATE.cart.length;
+    const count = window.KYNAR_STATE.cart.length;
     badge.textContent = count;
     if (count > 0) {
-      badge.classList.add('visible');
-      badge.style.visibility = 'visible';
+      badge.classList.add("visible");
+      badge.style.visibility = "visible";
     } else {
-      badge.classList.remove('visible');
-      badge.style.visibility = 'hidden';
+      badge.classList.remove("visible");
+      badge.style.visibility = "hidden";
     }
 
-
-        if (window.KYNAR_STATE.cart.length === 0) {
-      list.innerHTML = '<div class="reveal-up reveal-visible" style="text-align: center; margin-top: 100px; opacity: 0.4; font-family: var(--font-display);">Archive Index Empty</div>';
+    // --- Empty State ---
+    if (window.KYNAR_STATE.cart.length === 0) {
+      list.innerHTML =
+        '<div class="reveal-up reveal-visible" style="text-align: center; margin-top: 100px; opacity: 0.4; font-family: var(--font-display);">Archive Index Empty</div>';
     } else {
-      list.innerHTML = window.KYNAR_STATE.cart.map(item => `
+      // --- Populated State ---
+      list.innerHTML = window.KYNAR_STATE.cart
+        .map(
+          (item) => `
         <div class="cart-item reveal-up reveal-visible">
           <div class="cart-item-img" style="background: var(--bg-surface); border: 1px solid rgba(0,0,0,0.05);">
             <img src="${item.image}" onerror="this.src='assets/images/placeholder.png'" style="width:100%; height:100%; object-fit:contain;" loading="lazy">
@@ -168,12 +207,14 @@ function initCartEngine() {
             <span style="font-family:var(--font-display); font-size:0.9rem; color: var(--accent-gold);">${item.price}</span>
           </div>
           <button onclick="removeFromCart('${item.id}')" class="nav-icon" style="font-size: 1rem; opacity: 0.5;">✕</button>
-        </div>`).join('');
+        </div>`
+        )
+        .join("");
     }
 
-
-        const total = window.KYNAR_STATE.cart.reduce((acc, item) => {
-      const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ''));
+    // --- Total Calculation ---
+    const total = window.KYNAR_STATE.cart.reduce((acc, item) => {
+      const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ""));
       return acc + (isNaN(numericPrice) ? 0 : numericPrice);
     }, 0);
     totalEl.textContent = `£${total.toFixed(2)}`;
@@ -182,17 +223,21 @@ function initCartEngine() {
   renderCartUI();
 }
 
+// #endregion
+
 /* ══════════════════════════════════════════════════════════════════════════
    EXPERIENCE & SEARCH
    ══════════════════════════════════════════════════════════════════════════ */
 
+// #region [ 4. EXPERIENCE LOGIC ]
+
 function initSearchEngine() {
-  const trigger = document.getElementById('searchTrigger');
-  if (!trigger || document.getElementById('searchOverlay')) return;
+  const trigger = document.getElementById("searchTrigger");
+  if (!trigger || document.getElementById("searchOverlay")) return;
 
   trigger.onclick = () => {
     if (navigator.vibrate) navigator.vibrate(10);
-        const searchHTML = `
+    const searchHTML = `
       <div id="searchOverlay" class="nav-overlay active" style="padding: 20px; background: var(--bg-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; width: 100%; max-width: 800px; margin: 0 auto 40px auto;">
           <span style="font-family: var(--font-display); font-size: 1.2rem; color: var(--accent-gold); letter-spacing: 0.1em;">Archive Index</span>
@@ -204,31 +249,41 @@ function initSearchEngine() {
         </div>
       </div>`;
 
-
-    document.body.insertAdjacentHTML('beforeend', searchHTML);
-    document.body.style.overflow = 'hidden';
-    const input = document.getElementById('searchInput');
+    document.body.insertAdjacentHTML("beforeend", searchHTML);
+    document.body.style.overflow = "hidden";
+    const input = document.getElementById("searchInput");
     input.focus();
 
     input.oninput = (e) => {
       const query = e.target.value.toLowerCase();
-      const results = document.getElementById('searchResults');
-      if (query.length < 2) { results.innerHTML = ''; return; }
-      const matches = VAULT.filter(p => p.title.toLowerCase().includes(query) || p.tag.toLowerCase().includes(query));
-      results.innerHTML = matches.map(p => `
+      const results = document.getElementById("searchResults");
+      if (query.length < 2) {
+        results.innerHTML = "";
+        return;
+      }
+      const matches = VAULT.filter(
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          p.tag.toLowerCase().includes(query)
+      );
+      results.innerHTML = matches
+        .map(
+          (p) => `
         <a href="product.html?id=${p.id}" class="product-card" style="flex-direction: row; padding: 15px; align-items: center; gap: 20px; text-decoration: none;">
           <div style="width: 60px; height: 60px; background: var(--bg-surface); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 8px; display: flex; align-items: center; justify-content: center;"><img src="${p.image}" style="width:100%; height:100%; object-fit:contain;"></div>
 
           <div><h4 style="color:var(--ink-deep); margin:0;">${p.title}</h4><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:800; text-transform:uppercase;">${p.tag}</span></div>
-        </a>`).join('');
+        </a>`
+        )
+        .join("");
     };
 
-        document.getElementById('closeSearch').onclick = () => {
-      const overlay = document.getElementById('searchOverlay');
+    document.getElementById("closeSearch").onclick = () => {
+      const overlay = document.getElementById("searchOverlay");
       const lenisInstance = window.lenis || null;
-      overlay.classList.remove('active');
+      overlay.classList.remove("active");
       setTimeout(() => overlay.remove(), 500);
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
       if (lenisInstance) lenisInstance.start();
     };
   };
@@ -236,26 +291,38 @@ function initSearchEngine() {
 
 function initStudioHaptics() {
   if (!("ontouchstart" in window) || !navigator.vibrate) return;
-  document.body.addEventListener("touchstart", (e) => {
-    const target = e.target.closest(".btn-primary, .btn-ghost, .nav-icon, .filter-chip, .product-card");
-    if (target) {
-      // Distinct haptic for "Save" vs "General Taps"
-      if (target.id === 'save-btn') {
-        navigator.vibrate([10, 30, 10]);
-      } else {
-        navigator.vibrate(8);
+  document.body.addEventListener(
+    "touchstart",
+    (e) => {
+      const target = e.target.closest(
+        ".btn-primary, .btn-ghost, .nav-icon, .filter-chip, .product-card"
+      );
+      if (target) {
+        // Distinct haptic for "Save" vs "General Taps"
+        if (target.id === "save-btn") {
+          navigator.vibrate([10, 30, 10]);
+        } else {
+          navigator.vibrate(8);
+        }
       }
-    }
-  }, { passive: true });
+    },
+    { passive: true }
+  );
 }
-
 
 function initSmoothScroll() {
   if (typeof Lenis !== "undefined") {
-        window.lenis = new Lenis({ duration: 1.4, lerp: 0.08, smoothWheel: true });
+    window.lenis = new Lenis({
+      duration: 1.4,
+      lerp: 0.08,
+      smoothWheel: true,
+    });
     const lenis = window.lenis;
 
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
   }
 }
@@ -269,7 +336,7 @@ function handleSuccessLogic() {
   const dictionary = {
     newsletter: "Signal Verified",
     support: "Dispatch Received",
-    legal: "Protocol Accepted"
+    legal: "Protocol Accepted",
   };
 
   if (dictionary[type]) {
@@ -285,65 +352,69 @@ function initMenuLogic() {
   const lenisInstance = window.lenis || null;
 
   if (trigger && nav) {
-    trigger.onclick = () => { 
-      nav.classList.add("active"); 
+    trigger.onclick = () => {
+      nav.classList.add("active");
       document.body.style.overflow = "hidden";
       if (lenisInstance) lenisInstance.stop();
       if (navigator.vibrate) navigator.vibrate(10);
     };
     if (close) {
-      close.onclick = () => { 
-        nav.classList.remove("active"); 
-        document.body.style.overflow = ""; 
+      close.onclick = () => {
+        nav.classList.remove("active");
+        document.body.style.overflow = "";
         if (lenisInstance) lenisInstance.start();
       };
     }
   }
 }
 
-
 function applyPreLaunchStatus() {
   document.querySelectorAll(".product-card").forEach((card) => {
     const link = card.querySelector("a")?.href;
-    if (!link || typeof VAULT === 'undefined') return;
-    const pid = new URLSearchParams(link.split('?')[1]).get('id');
-    const p = VAULT.find(item => item.id === pid);
+    if (!link || typeof VAULT === "undefined") return;
+    const pid = new URLSearchParams(link.split("?")[1]).get("id");
+    const p = VAULT.find((item) => item.id === pid);
     if (p?.status === "coming-soon") {
       card.setAttribute("data-status", "coming-soon");
-      card.onclick = (e) => { e.preventDefault(); window.location.href = `product.html?id=${pid}`; };
+      card.onclick = (e) => {
+        e.preventDefault();
+        window.location.href = `product.html?id=${pid}`;
+      };
     }
   });
 }
 
 function initMobileStickyCTA() {
-  const title = document.querySelector('h1');
-  const bar = document.querySelector('.mobile-sticky-cta');
+  const title = document.querySelector("h1");
+  const bar = document.querySelector(".mobile-sticky-cta");
   if (!title || !bar) return;
-  new IntersectionObserver(([e]) => bar.classList.toggle('visible', !e.isIntersecting)).observe(title);
+  new IntersectionObserver(([e]) =>
+    bar.classList.toggle("visible", !e.isIntersecting)
+  ).observe(title);
 }
 
 function initThemeEngine() {
-  const themeBtn = document.getElementById('themeToggle');
+  const themeBtn = document.getElementById("themeToggle");
   if (!themeBtn) return;
 
   // Sync saved preference
-  if (localStorage.getItem('kynar_theme') === 'dark') {
-    document.body.classList.add('dark-mode');
+  if (localStorage.getItem("kynar_theme") === "dark") {
+    document.body.classList.add("dark-mode");
   }
 
   themeBtn.onclick = () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('kynar_theme', isDark ? 'dark' : 'light');
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    localStorage.setItem("kynar_theme", isDark ? "dark" : "light");
     if (navigator.vibrate) navigator.vibrate(10);
   };
 }
 
 window.saveToArchive = (id) => {
   // Logic to add to cart without jumping to checkout
-  if (typeof addToCart === 'function') {
+  if (typeof addToCart === "function") {
     addToCart(id);
-    const btn = document.getElementById('save-btn');
+    const btn = document.getElementById("save-btn");
     if (btn) {
       btn.textContent = "Saved to Archive";
       btn.style.borderColor = "var(--accent-gold)";
@@ -352,4 +423,4 @@ window.saveToArchive = (id) => {
   }
 };
 
-
+// #endregion

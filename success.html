@@ -1,93 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>Verification Successful | Kynar Studio Archive</title>
 
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
     <style>
       @keyframes ripple { 
         0% { transform: scale(0.8); opacity: var(--ripple-opacity, 0.4); } 
         100% { transform: scale(1.8); opacity: 0; } 
       }
 
-      .status-card { padding: 24px; background: var(--bg-surface); border: 1px solid rgba(15, 61, 48, 0.08); border-radius: 20px; display: flex; align-items: center; gap: 20px; width: 100%; transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-      .status-card:hover { transform: translateY(-4px); border-color: var(--accent-gold); }
-      .success-icon-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto 30px auto; display: flex; align-items: center; justify-content: center; }
+      .status-card { 
+        padding: 24px; 
+        background: var(--bg-surface); 
+        border: 1px solid rgba(15, 61, 48, 0.08); 
+        border-radius: 20px; 
+        display: flex; 
+        align-items: center; 
+        gap: 20px; 
+        width: 100%; 
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
+      }
+      
+      .status-card:hover { 
+        transform: translateY(-4px); 
+        border-color: var(--accent-gold); 
+      }
+      
+      .success-icon-wrap { 
+        position: relative; 
+        width: 100px; 
+        height: 100px; 
+        margin: 0 auto 30px auto; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+      }
+      
       body.dark-mode { --ripple-opacity: 0.15; }
       body.dark-mode .status-card { border-color: rgba(255, 255, 255, 0.05); }
-
-
     </style>
     
-    <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Archive Entry Verified | Kynar Studio">
-    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
-
+    <meta content="noindex, nofollow" name="robots">
+    <meta content="Archive Entry Verified | Kynar Studio" property="og:title">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
-    <main class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; text-align: center;">
-      <div class="reveal-up" style="max-width: 500px; width: 100%">
+    <main 
+      class="container" 
+      style="
+        align-items: center;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        min-height: 85vh; 
+        text-align: center;
+      "
+    >
+      <div 
+        class="reveal-up" 
+        style="
+          max-width: 500px; 
+          width: 100%;
+        "
+      >
         
         <div class="success-icon-wrap">
-          <div style="position: absolute; inset: 0; border: 2px solid var(--accent-gold); border-radius: 50%; opacity: 0.2; animation: ripple 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          "></div>
-          <div style="font-size: 3.5rem; position: relative; z-index: 2">✨</div>
+          <div 
+            style="
+              animation: ripple 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              border: 2px solid var(--accent-gold); 
+              border-radius: 50%; 
+              inset: 0; 
+              opacity: 0.2; 
+              position: absolute; 
+            "
+          ></div>
+          <div 
+            style="
+              font-size: 3.5rem; 
+              position: relative; 
+              z-index: 2;
+            "
+          >
+            ✨
+          </div>
         </div>
 
-        <span id="success-label" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 15px;">
+        <span 
+          id="success-label" 
+          style="
+            color: var(--accent-gold); 
+            display: block; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            letter-spacing: 0.25em; 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
+          "
+        >
           Signal Verified
         </span>
 
-        <h1 id="success-title" style="margin-bottom: 20px; line-height: 1.1;">
+        <h1 
+          id="success-title" 
+          style="
+            line-height: 1.1;
+            margin-bottom: 20px; 
+          "
+        >
           Welcome to <br><span style="color: var(--ink-medium)">The Archive.</span>
         </h1>
 
-        <p id="success-text" style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
+        <p 
+          id="success-text" 
+          style="
+            color: var(--ink-medium);
+            font-size: 1.1rem; 
+            line-height: 1.6; 
+            margin-bottom: 40px; 
+          "
+        >
           Authorization successful. Your digital profile has been updated. Check your inbox for your welcome package.
         </p>
 
-        <div id="action-stack" style="display: flex; flex-direction: column; gap: 12px; width: 100%">
+        <div 
+          id="action-stack" 
+          style="
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            width: 100%;
+          "
+        >
           <div class="status-card">
             <div style="font-size: 1.5rem">📥</div>
             <div style="text-align: left;">
-              <div style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Primary Action</div>
-              <div id="action-text" style="font-weight: 600; font-size: 0.95rem; color: var(--ink-deep);">Initializing delivery...</div>
+              <div 
+                style="
+                  color: var(--accent-gold); 
+                  font-size: 0.6rem; 
+                  font-weight: 900; 
+                  letter-spacing: 0.1em; 
+                  margin-bottom: 4px;
+                  text-transform: uppercase; 
+                "
+              >
+                Primary Action
+              </div>
+              <div 
+                id="action-text" 
+                style="
+                  color: var(--ink-deep);
+                  font-size: 0.95rem; 
+                  font-weight: 600; 
+                "
+              >
+                Initializing delivery...
+              </div>
             </div>
           </div>
 
-          <a href="contact.html" class="status-card" style="text-decoration: none; color: inherit;">
+          <a 
+            class="status-card" 
+            href="contact.html" 
+            style="
+              color: inherit;
+              text-decoration: none; 
+            "
+          >
             <div style="font-size: 1.5rem">🤝</div>
             <div style="text-align: left;">
-              <div style="font-size: 0.6rem; font-weight: 900; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Concierge</div>
-              <div style="font-weight: 600; font-size: 0.95rem; color: var(--ink-deep);">Need technical help? →</div>
+              <div 
+                style="
+                  color: var(--accent-gold); 
+                  font-size: 0.6rem; 
+                  font-weight: 900; 
+                  letter-spacing: 0.1em; 
+                  margin-bottom: 4px;
+                  text-transform: uppercase; 
+                "
+              >
+                Concierge
+              </div>
+              <div 
+                style="
+                  color: var(--ink-deep);
+                  font-size: 0.95rem; 
+                  font-weight: 600; 
+                "
+              >
+                Need technical help? →
+              </div>
             </div>
           </a>
         </div>
 
-        <a class="btn-primary" href="shop.html" onclick="if(localStorage.getItem('kynar_cart')) localStorage.removeItem('kynar_cart');" style="margin-top: 40px; width: 100%; justify-content: center">
-  Initialize New Session
-</a>
+        <a 
+          class="btn-primary" 
+          href="shop.html" 
+          onclick="if(localStorage.getItem('kynar_cart')) localStorage.removeItem('kynar_cart');" 
+          style="
+            justify-content: center;
+            margin-top: 40px; 
+            width: 100%; 
+          "
+        >
+          Initialize New Session
+        </a>
 
       </div>
     </main>
 
     <footer class="app-footer" id="global-footer"></footer>
 
-    <script src="ui-core.js" defer></script>
+    <script defer src="ui-core.js"></script>
+    
     <script type="module">
       import { getProduct } from './vault.js';
 
       document.addEventListener("DOMContentLoaded", () => {
+        
+        // #region [ 1. PARAMETER PARSING ]
         const params = new URLSearchParams(window.location.search);
         const type = params.get("type");
         const productId = params.get("id");
 
+        // #endregion
+
+        // #region [ 2. DYNAMIC CONTENT LOGIC ]
+        
         if (type === "order") {
           const product = getProduct(productId);
           const pName = product ? product.title : "Digital Assets";
@@ -109,9 +264,12 @@
             document.getElementById("action-stack").after(gatewayBtn);
           }
         }
+        
+        // #endregion
+
+        // #region [ 3. HAPTICS & VISUALS ]
 
         // Kynar "Success Sequence" Haptic
-                // Kynar "Success Sequence" Haptic
         if (navigator.vibrate) {
           setTimeout(() => navigator.vibrate([40, 40, 150]), 600);
         }
@@ -123,6 +281,7 @@
           }, 100);
         });
 
+        // #endregion
       });
     </script>
   </body>

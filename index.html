@@ -1,118 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>Kynar Studio | High-Fidelity Digital Marketplace</title>
+    <link href="https://www.kynaruniverse.co.uk/" rel="canonical" />
+    <link href="assets/images/favicon.png" rel="icon" type="image/png" />
     
     <link href="styles.css" rel="stylesheet" />
-    <link rel="canonical" href="https://www.kynaruniverse.co.uk/" />
-
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-    
-    <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+    <script defer src="ui-core.js"></script>
+    <script defer src="https://assets.lemonsqueezy.com/lemon.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="ui-core.js" defer></script>
     
-    <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.kynaruniverse.co.uk/">
-<meta property="og:title" content="Kynar Studio | Digital Marketplace">
-<meta property="og:description" content="Premium digital assets for the creative elite. Explore the archive.">
-<meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+    <meta content="website" property="og:type">
+    <meta content="https://www.kynaruniverse.co.uk/" property="og:url">
+    <meta content="Kynar Studio | Digital Marketplace" property="og:title">
+    <meta content="Premium digital assets for the creative elite. Explore the archive." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Kynar Studio">
-<meta property="twitter:description" content="Premium digital assets and creative tools.">
-<meta property="twitter:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
-
+    <meta content="summary_large_image" property="twitter:card">
+    <meta content="Kynar Studio" property="twitter:title">
+    <meta content="Premium digital assets and creative tools." property="twitter:description">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="twitter:image">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
     <main class="container">
       
-      <section style="min-height: clamp(80vh, 90vh, 100vh); display: flex; flex-direction: column; justify-content: center; padding: clamp(100px, 15vh, 140px) 0 60px 0;">
-
-
+      <section 
+        style="
+          display: flex; 
+          flex-direction: column; 
+          justify-content: center; 
+          min-height: clamp(80vh, 90vh, 100vh); 
+          padding: clamp(100px, 15vh, 140px) 0 60px 0;
+        "
+      >
         <div class="reveal-up reveal-visible">
-          <span style="font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px">
+          <span 
+            style="
+              color: var(--accent-gold); 
+              display: block; 
+              font-size: 0.8rem; 
+              font-weight: 800; 
+              letter-spacing: 0.25em; 
+              margin-bottom: 20px;
+              text-transform: uppercase; 
+            "
+          >
             Kynar Studio Archive
           </span>
 
-          <h1 style="color: var(--ink-deep); font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1;">
+          <h1 
+            style="
+              color: var(--ink-deep); 
+              font-size: clamp(2.5rem, 8vw, 4.5rem); 
+              line-height: 1.1;
+            "
+          >
             Tools for Every <br />
             <span style="color: var(--ink-medium)">Occasion.</span>
           </h1>
 
-          <p style="margin-top: 25px; font-size: 1.2rem; line-height: 1.6; color: var(--ink-medium); max-width: 550px;">
+          <p 
+            style="
+              color: var(--ink-medium); 
+              font-size: 1.2rem; 
+              line-height: 1.6; 
+              margin-top: 25px; 
+              max-width: 550px;
+            "
+          >
             Premium digital assets engineered for the creative elite. From deep organization to visual systems, find the exact tool to elevate your workflow.
           </p>
 
-          <div style="margin-top: 45px; display: flex; flex-wrap: wrap; gap: 16px">
+          <div 
+            style="
+              display: flex; 
+              flex-wrap: wrap; 
+              gap: 16px;
+              margin-top: 45px; 
+            "
+          >
             <a class="btn-primary" href="shop.html">Browse Archive</a>
             <a class="btn-ghost" href="newsletter.html">Join Community</a>
           </div>
         </div>
       </section>
 
-      <section class="reveal-up" style="margin-bottom: clamp(100px, 15vh, 160px)">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 32px">
-    
-    <a href="shop.html?cat=personal" class="product-card" style="background: var(--pastel-sage); min-height: clamp(320px, 50vh, 400px); padding: 60px 40px; display: flex; flex-direction: column; justify-content: flex-end; border: none; position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;">
-      <div style="position: absolute; top: 40px; right: -20px; font-size: 10rem; opacity: 0.05; font-family: var(--font-display);">01</div>
-      <span style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink-deep); margin-bottom: 20px; display: block;">Archive / 01</span>
-      <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Life & Flow</h3>
-      <p style="font-size: 1rem; color: var(--ink-deep); opacity: 0.7; max-width: 280px;">Deep organization systems for the modern individual.</p>
-    </a>
+      <section 
+        class="reveal-up" 
+        style="margin-bottom: clamp(100px, 15vh, 160px)"
+      >
+        <div 
+          style="
+            display: grid; 
+            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); 
+          "
+        >
+          
+          <a 
+            class="product-card" 
+            href="shop.html?cat=personal" 
+            style="
+              background: var(--pastel-sage); 
+              border: none; 
+              box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+              display: flex; 
+              flex-direction: column; 
+              justify-content: flex-end; 
+              min-height: clamp(320px, 50vh, 400px); 
+              overflow: hidden; 
+              padding: 60px 40px; 
+              position: relative; 
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+            "
+          >
+            <div 
+              style="
+                font-family: var(--font-display); 
+                font-size: 10rem; 
+                opacity: 0.05; 
+                position: absolute; 
+                right: -20px; 
+                top: 40px; 
+              "
+            >01</div>
+            <span 
+              style="
+                color: var(--ink-deep); 
+                display: block; 
+                font-size: 0.7rem; 
+                font-weight: 900; 
+                letter-spacing: 0.3em; 
+                margin-bottom: 20px; 
+                text-transform: uppercase; 
+              "
+            >Archive / 01</span>
+            <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Life & Flow</h3>
+            <p 
+              style="
+                color: var(--ink-deep); 
+                font-size: 1rem; 
+                max-width: 280px;
+                opacity: 0.7; 
+              "
+            >Deep organization systems for the modern individual.</p>
+          </a>
 
-    <a href="shop.html?cat=work" class="product-card" style="background: var(--pastel-clay); min-height: clamp(320px, 50vh, 400px); padding: 60px 40px; display: flex; flex-direction: column; justify-content: flex-end; border: none; position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;">
-      <div style="position: absolute; top: 40px; right: -20px; font-size: 10rem; opacity: 0.05; font-family: var(--font-display);">02</div>
-      <span style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink-deep); margin-bottom: 20px; display: block;">Archive / 02</span>
-      <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Business & Growth</h3>
-      <p style="font-size: 1rem; color: var(--ink-deep); opacity: 0.7; max-width: 280px;">Professional frameworks for high-stakes productivity.</p>
-    </a>
+          <a 
+            class="product-card" 
+            href="shop.html?cat=work" 
+            style="
+              background: var(--pastel-clay); 
+              border: none; 
+              box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+              display: flex; 
+              flex-direction: column; 
+              justify-content: flex-end; 
+              min-height: clamp(320px, 50vh, 400px); 
+              overflow: hidden; 
+              padding: 60px 40px; 
+              position: relative; 
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+            "
+          >
+            <div 
+              style="
+                font-family: var(--font-display); 
+                font-size: 10rem; 
+                opacity: 0.05; 
+                position: absolute; 
+                right: -20px; 
+                top: 40px; 
+              "
+            >02</div>
+            <span 
+              style="
+                color: var(--ink-deep); 
+                display: block; 
+                font-size: 0.7rem; 
+                font-weight: 900; 
+                letter-spacing: 0.3em; 
+                margin-bottom: 20px; 
+                text-transform: uppercase; 
+              "
+            >Archive / 02</span>
+            <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Business & Growth</h3>
+            <p 
+              style="
+                color: var(--ink-deep); 
+                font-size: 1rem; 
+                max-width: 280px;
+                opacity: 0.7; 
+              "
+            >Professional frameworks for high-stakes productivity.</p>
+          </a>
 
-    <a href="shop.html?cat=creative" class="product-card" style="background: var(--pastel-sky); min-height: clamp(320px, 50vh, 400px); padding: 60px 40px; display: flex; flex-direction: column; justify-content: flex-end; border: none; position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;">
-      <div style="position: absolute; top: 40px; right: -20px; font-size: 10rem; opacity: 0.05; font-family: var(--font-display);">03</div>
-      <span style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink-deep); margin-bottom: 20px; display: block;">Archive / 03</span>
-      <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Content & Style</h3>
-      <p style="font-size: 1rem; color: var(--ink-deep); opacity: 0.7; max-width: 280px;">Cinematic visual assets for elite digital storytelling.</p>
-    </a>
+          <a 
+            class="product-card" 
+            href="shop.html?cat=creative" 
+            style="
+              background: var(--pastel-sky); 
+              border: none; 
+              box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+              display: flex; 
+              flex-direction: column; 
+              justify-content: flex-end; 
+              min-height: clamp(320px, 50vh, 400px); 
+              overflow: hidden; 
+              padding: 60px 40px; 
+              position: relative; 
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+            "
+          >
+            <div 
+              style="
+                font-family: var(--font-display); 
+                font-size: 10rem; 
+                opacity: 0.05; 
+                position: absolute; 
+                right: -20px; 
+                top: 40px; 
+              "
+            >03</div>
+            <span 
+              style="
+                color: var(--ink-deep); 
+                display: block; 
+                font-size: 0.7rem; 
+                font-weight: 900; 
+                letter-spacing: 0.3em; 
+                margin-bottom: 20px; 
+                text-transform: uppercase; 
+              "
+            >Archive / 03</span>
+            <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Content & Style</h3>
+            <p 
+              style="
+                color: var(--ink-deep); 
+                font-size: 1rem; 
+                max-width: 280px;
+                opacity: 0.7; 
+              "
+            >Cinematic visual assets for elite digital storytelling.</p>
+          </a>
 
-    <a href="shop.html?cat=education" class="product-card" style="background: var(--pastel-gold); min-height: clamp(320px, 50vh, 400px); padding: 60px 40px; display: flex; flex-direction: column; justify-content: flex-end; border: none; position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;">
-      <div style="position: absolute; top: 40px; right: -20px; font-size: 10rem; opacity: 0.1; font-family: var(--font-display); color: var(--ink-deep);">04</div>
-      <span style="font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink-deep); margin-bottom: 20px; display: block;">Archive / 04</span>
-      <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Learning & Dev</h3>
-      <p style="font-size: 1rem; color: var(--ink-deep); opacity: 0.7; max-width: 280px;">Educational frameworks for the next generation of thinkers.</p>
-    </a>
+          <a 
+            class="product-card" 
+            href="shop.html?cat=education" 
+            style="
+              background: var(--pastel-sage); /* Fallback to sage if gold var missing */
+              border: none; 
+              box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+              display: flex; 
+              flex-direction: column; 
+              justify-content: flex-end; 
+              min-height: clamp(320px, 50vh, 400px); 
+              overflow: hidden; 
+              padding: 60px 40px; 
+              position: relative; 
+              transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+            "
+          >
+            <div 
+              style="
+                color: var(--ink-deep);
+                font-family: var(--font-display); 
+                font-size: 10rem; 
+                opacity: 0.1; 
+                position: absolute; 
+                right: -20px; 
+                top: 40px; 
+              "
+            >04</div>
+            <span 
+              style="
+                color: var(--ink-deep); 
+                display: block; 
+                font-size: 0.7rem; 
+                font-weight: 900; 
+                letter-spacing: 0.3em; 
+                margin-bottom: 20px; 
+                text-transform: uppercase; 
+              "
+            >Archive / 04</span>
+            <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Learning & Dev</h3>
+            <p 
+              style="
+                color: var(--ink-deep); 
+                font-size: 1rem; 
+                max-width: 280px;
+                opacity: 0.7; 
+              "
+            >Educational frameworks for the next generation of thinkers.</p>
+          </a>
 
-  </div>
-</section>
-
-
-
-      <section id="latest-arrivals" style="padding-top: clamp(60px, 10vh, 100px); margin-bottom: clamp(100px, 15vh, 160px);">
-
-        <div style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end;">
-          <div>
-            <h2 class="reveal-up" style="color: var(--ink-deep); font-size: 2.2rem">Latest Arrivals</h2>
-            <div style="width: 50px; height: 3px; background: var(--accent-gold); margin-top: 12px; border-radius: 2px"></div>
-          </div>
-          <a href="shop.html" style="font-size: 0.8rem; font-weight: 800; color: var(--accent-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1.5px solid var(--accent-gold); padding-bottom: 4px;">View Full Shop →</a>
         </div>
-
-        <div class="gallery-grid" id="featured-grid">
-           </div>
       </section>
 
-      <section id="faq" style="padding: 100px 0; border-top: 1px solid rgba(0, 0, 0, 0.05)">
-        <div style="margin-bottom: 50px; text-align: center">
-          <h2 class="reveal-up" style="color: var(--ink-deep); font-size: 2.5rem">Concierge FAQ</h2>
-          <p style="opacity: 0.6; margin-top: 10px;">Common inquiries regarding the Kynar Archive.</p>
+      <section 
+        id="latest-arrivals" 
+        style="
+          margin-bottom: clamp(100px, 15vh, 160px);
+          padding-top: clamp(60px, 10vh, 100px); 
+        "
+      >
+        <div 
+          style="
+            align-items: flex-end; 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 40px; 
+          "
+        >
+          <div>
+            <h2 
+              class="reveal-up" 
+              style="
+                color: var(--ink-deep); 
+                font-size: 2.2rem;
+              "
+            >Latest Arrivals</h2>
+            <div style="background: var(--accent-gold); border-radius: 2px; height: 3px; margin-top: 12px; width: 50px;"></div>
+          </div>
+          <a 
+            href="shop.html" 
+            style="
+              border-bottom: 1.5px solid var(--accent-gold); 
+              color: var(--accent-gold); 
+              font-size: 0.8rem; 
+              font-weight: 800; 
+              letter-spacing: 0.1em; 
+              padding-bottom: 4px;
+              text-decoration: none; 
+              text-transform: uppercase; 
+            "
+          >View Full Shop →</a>
         </div>
 
-        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px">
+        <div class="gallery-grid" id="featured-grid"></div>
+      </section>
+
+      <section 
+        id="faq" 
+        style="
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+          padding: 100px 0; 
+        "
+      >
+        <div style="margin-bottom: 50px; text-align: center">
+          <h2 
+            class="reveal-up" 
+            style="color: var(--ink-deep); font-size: 2.5rem"
+          >Concierge FAQ</h2>
+          <p style="margin-top: 10px; opacity: 0.6;">Common inquiries regarding the Kynar Archive.</p>
+        </div>
+
+        <div 
+          style="
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px;
+            margin: 0 auto; 
+            max-width: 800px; 
+          "
+        >
           <details class="faq-item reveal-up">
             <summary class="faq-question">How is the access delivered?</summary>
             <div class="faq-answer">Immediately following authorization, a secure link is dispatched to your email via Lemon Squeezy. Direct portal access is also available on the success page.</div>
@@ -137,18 +399,21 @@
       import { VAULT } from './vault.js';
 
       document.addEventListener("DOMContentLoaded", () => {
-                // FAQ Physics: Smooth Accordion Handshake
+        
+        // #region [ 1. FAQ HAPTICS ]
         document.querySelectorAll('details').forEach((el) => {
           el.addEventListener('click', (e) => {
             if (navigator.vibrate) navigator.vibrate(8);
           });
         });
+        // #endregion
 
+        // #region [ 2. LATEST ARRIVALS LOGIC ]
         const featuredGrid = document.getElementById('featured-grid');
         
-        // Take only the 3 most recent ACTIVE products
         let latest = [];
         try {
+          // Take only the 3 most recent ACTIVE products
           latest = VAULT.filter(p => p.status === 'active').slice(-3).reverse();
         } catch (e) {
           console.error("Vault Handshake Failed");
@@ -164,22 +429,47 @@
         featuredGrid.innerHTML = latest.map((p, i) => `
           <article class="product-card reveal-up" style="transition-delay: ${i * 0.1}s">
             <span class="tag">${p.tag}</span>
-            <a class="card-image" href="product.html?id=${p.id}" style="background-color: ${p.bg}">
-              <img alt="${p.title}" src="${p.image}" class="product-img" style="opacity: 0; transition: opacity 0.8s ease;" onload="this.style.opacity='1'">
-
+            <a 
+              class="card-image" 
+              href="product.html?id=${p.id}" 
+              style="background-color: ${p.bg}"
+            >
+              <img 
+                alt="${p.title}" 
+                class="product-img" 
+                onload="this.style.opacity='1'"
+                src="${p.image}" 
+                style="opacity: 0; transition: opacity 0.8s ease;" 
+              >
             </a>
             <div class="card-info">
               <h3 class="card-title">${p.title}</h3>
-              <p style="font-size: 0.85rem; line-height: 1.4; color: var(--ink-medium);">${p.shortDesc}</p>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+              <p 
+                style="
+                  color: var(--ink-medium);
+                  font-size: 0.85rem; 
+                  line-height: 1.4; 
+                "
+              >${p.shortDesc}</p>
+              
+              <div 
+                style="
+                  align-items: center; 
+                  display: flex; 
+                  justify-content: space-between; 
+                  margin-top: 15px;
+                "
+              >
                 <span class="card-price">${p.price}</span>
                 <a class="btn-ghost" href="product.html?id=${p.id}">View Details</a>
               </div>
             </div>
           </article>
         `).join('');
+        // #endregion
 
-                        // Execute cinematic reveal only after DOM injection
+        // #region [ 3. CINEMATIC REVEAL ]
+        // Execute only after DOM injection
         requestAnimationFrame(() => {
           const elements = document.querySelectorAll('.reveal-up:not(.reveal-visible)');
           elements.forEach((el, index) => {
@@ -188,10 +478,9 @@
             }, (index + 1) * 150);
           });
         });
-
+        // #endregion
 
       });
     </script>
   </body>
 </html>
-

@@ -1,79 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
+    
     <title>Archive Decryption | Kynar Studio</title>
-    <meta property="og:url" content="https://www.kynaruniverse.co.uk/claim-archived.html">
-
+    
     <link href="styles.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="ui-core.js" defer></script>
-    <style>
-        .vault-icon {
-            font-size: 4rem; 
-            margin-bottom: 25px; 
-            display: inline-block;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
-            animation: float 3s ease-in-out infinite;
-        }
-                @keyframes border-march {
-            to { stroke-dashoffset: -20; }
-        }
-        .security-box.verifying {
-            border-style: dashed;
-            animation: pulse-border 2s infinite;
-        }
-        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-    </style>
+    <script defer src="ui-core.js"></script>
     
-        <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Archive Entry Verified | Kynar Studio">
-    <meta property="og:description" content="Secure decryption gateway for the Kynar Archive.">
-    <meta property="og:image" content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp">
+    <meta content="noindex, nofollow" name="robots">
+    
+    <meta content="Archive Entry Verified | Kynar Studio" property="og:title">
+    <meta content="Secure decryption gateway for the Kynar Archive." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/claim-archived.html" property="og:url">
+    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
 
+    <style>
+      .vault-icon {
+        animation: float 3s ease-in-out infinite;
+        display: inline-block;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+        font-size: 4rem; 
+        margin-bottom: 25px; 
+      }
 
+      @keyframes border-march {
+        to { stroke-dashoffset: -20; }
+      }
+
+      .security-box.verifying {
+        animation: pulse-border 2s infinite;
+        border-style: dashed;
+      }
+      
+      .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+    </style>
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
-    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 85vh; text-align: center;">
-      <div class="reveal-up" style="max-width: 500px; width: 100%">
+    <main 
+      class="container" 
+      style="
+        align-items: center; 
+        display: flex; 
+        justify-content: center; 
+        min-height: 85vh; 
+        text-align: center;
+      "
+    >
+      <div 
+        class="reveal-up" 
+        style="
+          max-width: 500px; 
+          width: 100%;
+        "
+      >
         
         <div class="vault-icon" id="status-icon">📦</div>
 
-        <span id="security-label" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; display: block; margin-bottom: 20px;">
+        <span 
+          id="security-label" 
+          style="
+            color: var(--accent-gold); 
+            display: block; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            letter-spacing: 0.25em; 
+            margin-bottom: 20px;
+            text-transform: uppercase; 
+          "
+        >
           Initialising Gateway
         </span>
 
-        <h1 id="claim-title">Preparing Your <br /><span style="color: var(--ink-medium)">Archive.</span></h1>
+        <h1 id="claim-title">
+          Preparing Your <br /><span style="color: var(--ink-medium)">Archive.</span>
+        </h1>
 
-        <p id="download-meta" style="margin: 25px 0 45px 0; font-size: 1.1rem; line-height: 1.6; color: var(--ink-medium);">
+        <p 
+          id="download-meta" 
+          style="
+            color: var(--ink-medium);
+            font-size: 1.1rem; 
+            line-height: 1.6; 
+            margin: 25px 0 45px 0; 
+          "
+        >
           Verifying security certificates and generating your unique access token...
         </p>
 
-        <div id="action-cluster" style="display: flex; flex-direction: column; gap: 12px; opacity: 0; pointer-events: none; transition: opacity 0.5s ease;">
-          <a class="btn-primary" download href="#" id="downloadBtn" style="width: 100%; justify-content: center; letter-spacing: 0.1em;">
+        <div 
+          id="action-cluster" 
+          style="
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.5s ease;
+          "
+        >
+          <a 
+            class="btn-primary" 
+            download 
+            href="#" 
+            id="downloadBtn" 
+            style="
+              justify-content: center; 
+              letter-spacing: 0.1em;
+              width: 100%; 
+            "
+          >
             Download Package Now
           </a>
-          <a href="shop.html" class="btn-ghost" style="width: 100%; justify-content: center">
+          
+          <a 
+            class="btn-ghost" 
+            href="shop.html" 
+            style="
+              justify-content: center;
+              width: 100%; 
+            "
+          >
             Return to Marketplace
           </a>
         </div>
 
-        <div id="security-box" class="security-box verifying" style="margin-top: 50px; padding: 25px; border-radius: 20px; background: var(--bg-surface); border: 1.5px dashed rgba(15, 61, 48, 0.1);">
-
-           <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5;">
+        <div 
+          class="security-box verifying" 
+          id="security-box" 
+          style="
+            background: var(--bg-surface); 
+            border: 1.5px dashed rgba(15, 61, 48, 0.1);
+            border-radius: 20px; 
+            margin-top: 50px; 
+            padding: 25px; 
+          "
+        >
+           <p 
+             style="
+               font-size: 0.75rem; 
+               line-height: 1.5;
+               opacity: 0.6; 
+             "
+           >
             🔒 <strong>Security Protocol:</strong> Access links are valid for 24 hours. <br> 
-            For technical assistance, <a href="contact.html" style="color: var(--ink-deep); font-weight: 700; text-decoration: underline;">Connect with Support</a>
+            For technical assistance, 
+            <a 
+              href="contact.html" 
+              style="
+                color: var(--ink-deep); 
+                font-weight: 700; 
+                text-decoration: underline;
+              "
+            >Connect with Support</a>
           </p>
         </div>
+
       </div>
     </main>
 
@@ -83,74 +180,82 @@
       import { getProduct } from './vault.js';
 
       document.addEventListener("DOMContentLoaded", () => {
+        // #region [ 1. DOM BINDINGS ]
         const params = new URLSearchParams(window.location.search);
         const productId = params.get("id");
+        
         const metaText = document.getElementById("download-meta");
         const securityLabel = document.getElementById("security-label");
         const claimTitle = document.getElementById("claim-title");
         const actionCluster = document.getElementById("action-cluster");
         const dlBtn = document.getElementById("downloadBtn");
-
         const icon = document.getElementById("status-icon");
-        const securityBox = document.getElementById("security-box"); // Defined globally for this block
+        const securityBox = document.getElementById("security-box"); 
+        // #endregion
 
-        // GATEWAY LOGIC
+        // #region [ 2. GATEWAY SEQUENCE ]
+        // Simulated server verification delay (1800ms)
         setTimeout(() => {
 
-            // Find product or provide the Default Starter Kit if ID is missing/invalid
-                        const product = getProduct(productId);
+            // --- A. VALIDATION CHECK ---
+            const product = getProduct(productId);
             
+            // Allow override for "Starter Pack" manual ID
             if (!product && productId !== 'starter-pack') {
                 securityLabel.textContent = "Access Denied";
                 securityLabel.style.color = "#e63946";
                 claimTitle.innerHTML = `Archive Link <br /><span style="color: var(--ink-medium)">Invalid.</span>`;
                 metaText.textContent = "Security certificates could not be verified for this session.";
                 icon.textContent = "🚫";
-                // Obsidian Protocol: Resolve Visual Physics (Error State)
+                
+                // Visual Physics: Error State
                 securityBox.classList.remove('verifying');
                 securityBox.style.borderStyle = "solid";
                 securityBox.style.borderColor = "#e63946";
-
                 return;
             }
 
+            // --- B. SUCCESS STATE ---
             const activeProduct = product || { title: "Starter Pack", file: "kynar-starter-pack.zip" };
+            const productName = activeProduct.title;
 
-            
-                        const productName = activeProduct.title;
-
-            // UI Transformation
+            // Update UI Elements
             securityLabel.textContent = "Security Verified";
-            securityLabel.style.color = "var(--accent-gold)"; // Obsidian Protocol: Use Accent Gold for success
+            securityLabel.style.color = "var(--accent-gold)";
             claimTitle.innerHTML = `Your Assets Are <br /><span style="color: var(--ink-medium)">Ready.</span>`;
             metaText.innerHTML = `The <strong>${productName}</strong> archive is now decrypted and prepared for download.`;
             icon.textContent = "🔓";
-                        // Obsidian Protocol: Resolve Visual Physics (Success State)
+            
+            // Visual Physics: Success State
             securityBox.classList.remove('verifying');
             securityBox.style.borderStyle = "solid";
             securityBox.style.borderColor = "var(--accent-gold)";
 
-            
-            // Activate Actions
+            // Reveal Actions
             actionCluster.style.opacity = "1";
             actionCluster.style.pointerEvents = "all";
 
-            // Secure Path Injection
+            // Inject File Path
             if (activeProduct.file) {
                 dlBtn.href = `assets/downloads/${activeProduct.file}`;
             }
 
-
+            // Bind Haptic Download Event
             if (dlBtn) {
               dlBtn.onclick = () => {
                 if (navigator.vibrate) navigator.vibrate([100, 30, 100]);
                 dlBtn.style.pointerEvents = "none";
                 dlBtn.textContent = "Download Initialized";
-                setTimeout(() => { dlBtn.style.pointerEvents = "all";
-                  dlBtn.textContent = "Download Package Now"; }, 3000);
+                // Reset button state after 3s
+                setTimeout(() => { 
+                  dlBtn.style.pointerEvents = "all";
+                  dlBtn.textContent = "Download Package Now"; 
+                }, 3000);
               };
             }
+
         }, 1800); 
+        // #endregion
       });
     </script>
   </body>

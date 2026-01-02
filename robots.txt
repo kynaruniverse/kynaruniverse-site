@@ -1,9 +1,14 @@
-# 🏛️ KYNAR STUDIO ARCHIVE - INDEXING PROTOCOL 2026
-# CANONICAL: https://www.kynaruniverse.co.uk
+# ══════════════════════════════════════════════════════════════════════════
+# MODULE: KYNAR ROBOTS PROTOCOL
+# ══════════════════════════════════════════════════════════════════════════
+# Description: Kynar Studio Archive Indexing Protocol 2026.
 # Version: 6.5 - 4-Pillar Synchronized
+# Canonical: https://www.kynaruniverse.co.uk
+# ══════════════════════════════════════════════════════════════════════════
 
-# PHASE 1: SOCIAL MEDIA HANDSHAKE
-# Prioritize high-speed OG image fetching for community sharing
+# [ 1. SOCIAL MEDIA HANDSHAKE ]
+# Prioritize high-speed OG image fetching for community sharing.
+
 User-agent: Twitterbot
 Allow: /
 Crawl-delay: 1
@@ -12,32 +17,34 @@ User-agent: facebookexternalhit
 Allow: /
 Crawl-delay: 1
 
-# PHASE 2: GLOBAL CRAWLER PHYSICS
-# Restrict general bots to prevent fragmented indexing and protect resource depth
+# [ 2. GLOBAL CRAWLER PHYSICS ]
+# Restrict general bots to prevent fragmented indexing and protect resources.
+
 User-agent: *
 Allow: /
 Crawl-delay: 10
 
-# Allow 4-Pillar Discovery
+# Explicit 4-Pillar Discovery
 Allow: /shop.html?cat=personal
 Allow: /shop.html?cat=work
 Allow: /shop.html?cat=creative
 Allow: /shop.html?cat=education
 
-# Shield Internal Component Fragments
+# [ 3. SYSTEM PROTECTION SHIELD ]
+
+# Internal Component Fragments
 Disallow: /components/
 Disallow: /header.html
 Disallow: /footer.html
 
-# Shield Operational & Success Paths
+# Operational & Success Paths (Secure)
 Disallow: /claim-archived.html*
 Disallow: /success.html*
 Disallow: /assets/downloads/
 
-# Shield Temporary State Parameters
+# Temporary State Parameters
 Disallow: /*?search=
 Disallow: /*?cart=
 
-# PHASE 3: CANONICAL DISCOVERY
-# Point to the high-fidelity master sitemap
+# [ 4. CANONICAL DISCOVERY ]
 Sitemap: https://www.kynaruniverse.co.uk/sitemap.xml

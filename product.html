@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>Product Details | Kynar Studio</title>
-    <link href="styles.css" rel="stylesheet" />
+    <meta 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
+      name="viewport" 
+    />
     
-    <script src="ui-core.js" defer></script>
-    <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+    <title>Product Details | Kynar Studio</title>
+    
+    <link href="styles.css" rel="stylesheet" />
+    <script defer src="ui-core.js"></script>
+    <script defer src="https://assets.lemonsqueezy.com/lemon.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <style>
       .product-hero-img {
-        width: 100%;
         display: block;
         opacity: 0;
         transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        width: 100%;
         will-change: opacity;
       }
       body:not(.dark-mode) .product-hero-img { mix-blend-mode: multiply; }
 
       .img-skeleton {
-        min-height: 300px;
-        display: flex;
         align-items: center;
+        display: flex;
         justify-content: center;
+        min-height: 300px;
       }
+      
       /* Ensure the sticky CTA transition is primed */
       .mobile-sticky-cta.visible {
         transform: translateY(0) !important;
       }
     </style>
   
-    <meta property="og:type" content="product">
-    <meta property="og:title" content="Archive Entry | Kynar Studio">
-    <meta property="og:description" content="Secure access to Kynar Studio high-fidelity digital assets.">
-    <meta property="og:url" content="https://www.kynaruniverse.co.uk/product.html">
+    <meta content="product" property="og:type">
+    <meta content="Archive Entry | Kynar Studio" property="og:title">
+    <meta content="Secure access to Kynar Studio high-fidelity digital assets." property="og:description">
+    <meta content="https://www.kynaruniverse.co.uk/product.html" property="og:url">
   </head>
 
   <body>
+
     <header class="app-header" id="global-header"></header>
 
     <main class="container" id="product-content">
-      <div class="reveal-up" style="text-align: center; padding: 120px 0;">
-        <p style="font-family: var(--font-display); letter-spacing: 0.2em; font-size: 0.8rem; opacity: 0.5; text-transform: uppercase;">System Handshake: Initializing...</p>
+      <div 
+        class="reveal-up" 
+        style="
+          padding: 120px 0; 
+          text-align: center;
+        "
+      >
+        <p 
+          style="
+            font-family: var(--font-display); 
+            font-size: 0.8rem; 
+            letter-spacing: 0.2em; 
+            opacity: 0.5; 
+            text-transform: uppercase;
+          "
+        >
+          System Handshake: Initializing...
+        </p>
       </div>
     </main>
 
@@ -52,11 +75,11 @@
     <script type="module">
       import { getProduct } from './vault.js';
 
-      // 1. GLOBAL SCOPE HANDSHAKE 
-      // Functions are bound to window to ensure cross-module compatibility
+      // Global Handshake for Cross-Module Compatibility
       window.renderProduct = renderProduct;
       window.renderWaitlist = renderWaitlist;
 
+      // #region [ 1. INITIALIZATION ]
       document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
         const productId = params.get("id");
@@ -69,76 +92,258 @@
           window.location.href = "shop.html";
         }
       });
+      // #endregion
 
+      // #region [ 2. RENDER ENGINE ]
       function renderProduct(p) {
         const container = document.getElementById("product-content");
         document.title = `${p.title} | Kynar Studio`;
 
         container.innerHTML = `
-          <div class="product-master-layout" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr)); gap: clamp(40px, 8vw, 80px); align-items: start;">
+          <div 
+            class="product-master-layout" 
+            style="
+              align-items: start;
+              display: grid; 
+              gap: clamp(40px, 8vw, 80px); 
+              grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr)); 
+            "
+          >
             
-            <div class="reveal-up img-skeleton" style="position: sticky; top: 100px;">
-              <div style="background: ${p.bg}; border-radius: clamp(24px, 5vw, 40px); width: 100%; padding: 12%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: var(--shadow-depth);">
-                <img src="${p.image}" alt="${p.title}" class="product-hero-img" style="width: 100%; height: 100%; object-fit: contain;" onload="this.style.opacity='1'">
+            <div 
+              class="reveal-up img-skeleton" 
+              style="
+                position: sticky; 
+                top: 100px;
+              "
+            >
+              <div 
+                style="
+                  align-items: center; 
+                  aspect-ratio: 1/1; 
+                  background: ${p.bg}; 
+                  border-radius: clamp(24px, 5vw, 40px); 
+                  box-shadow: var(--shadow-depth);
+                  display: flex; 
+                  justify-content: center; 
+                  overflow: hidden; 
+                  padding: 12%; 
+                  width: 100%; 
+                "
+              >
+                <img 
+                  alt="${p.title}" 
+                  class="product-hero-img" 
+                  onload="this.style.opacity='1'"
+                  src="${p.image}" 
+                  style="
+                    height: 100%; 
+                    object-fit: contain; 
+                    width: 100%; 
+                  " 
+                >
               </div>
             </div>
             
-            <div class="reveal-up" style="padding-bottom: 120px;">
-              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                 <span style="height: 1px; width: 30px; background: var(--accent-gold);"></span>
-                 <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 0.3em;">${p.tag}</span>
+            <div 
+              class="reveal-up" 
+              style="padding-bottom: 120px;"
+            >
+              <div 
+                style="
+                  align-items: center; 
+                  display: flex; 
+                  gap: 12px; 
+                  margin-bottom: 20px;
+                "
+              >
+                 <span style="background: var(--accent-gold); height: 1px; width: 30px;"></span>
+                 <span 
+                   style="
+                     color: var(--accent-gold); 
+                     font-size: 0.75rem; 
+                     font-weight: 800; 
+                     letter-spacing: 0.3em; 
+                     text-transform: uppercase;
+                   "
+                 >${p.tag}</span>
               </div>
               
               <h1 id="product-title" style="margin-bottom: 24px;">${p.title}</h1>
-              <p style="font-size: clamp(1.1rem, 3vw, 1.25rem); line-height: 1.6; margin-bottom: 40px; color: var(--ink-medium);">${p.desc}</p>
+              <p 
+                style="
+                  color: var(--ink-medium);
+                  font-size: clamp(1.1rem, 3vw, 1.25rem); 
+                  line-height: 1.6; 
+                  margin-bottom: 40px; 
+                "
+              >${p.desc}</p>
               
-              <div style="margin-bottom: 48px; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 32px;">
-                <h4 style="font-family: var(--font-display); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; margin-bottom: 24px;">Included in Archive:</h4>
-                <ul style="list-style: none; display: grid; gap: 20px;">
+              <div 
+                style="
+                  border-top: 1px solid rgba(0,0,0,0.06); 
+                  margin-bottom: 48px; 
+                  padding-top: 32px;
+                "
+              >
+                <h4 
+                  style="
+                    font-family: var(--font-display); 
+                    font-size: 0.7rem; 
+                    letter-spacing: 0.1em; 
+                    margin-bottom: 24px;
+                    opacity: 0.5; 
+                    text-transform: uppercase; 
+                  "
+                >Included in Archive:</h4>
+                <ul style="display: grid; gap: 20px; list-style: none;">
                   ${p.features.map(f => `
-                    <li style="display: flex; align-items: center; gap: 16px; font-size: 1rem; color: var(--ink-deep); font-weight: 500;">
-                      <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold);"></div>
+                    <li 
+                      style="
+                        align-items: center; 
+                        color: var(--ink-deep); 
+                        display: flex; 
+                        font-size: 1rem; 
+                        font-weight: 500;
+                        gap: 16px; 
+                      "
+                    >
+                      <div style="background: var(--accent-gold); border-radius: 50%; height: 6px; width: 6px;"></div>
                       ${f}
                     </li>
                   `).join('')}
                 </ul>
               </div>
 
-              <div style="background: var(--bg-surface); padding: clamp(24px, 5vw, 40px); border-radius: 32px; border: 1px solid rgba(0,0,0,0.04); box-shadow: var(--shadow-float);">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px;">
+              <div 
+                style="
+                  background: var(--bg-surface); 
+                  border: 1px solid rgba(0,0,0,0.04); 
+                  border-radius: 32px; 
+                  box-shadow: var(--shadow-float);
+                  padding: clamp(24px, 5vw, 40px); 
+                "
+              >
+                <div 
+                  style="
+                    align-items: flex-start; 
+                    display: flex; 
+                    justify-content: space-between; 
+                    margin-bottom: 32px;
+                  "
+                >
                   <div>
-                    <div class="live-signal" style="margin-bottom: 12px; font-size: 0.6rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent-gold); display: flex; align-items: center; gap: 8px;">
-                      <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); animation: pulse-border 2s infinite;"></div>
+                    <div 
+                      class="live-signal" 
+                      style="
+                        align-items: center; 
+                        color: var(--accent-gold); 
+                        display: flex; 
+                        font-size: 0.6rem; 
+                        font-weight: 900; 
+                        gap: 8px;
+                        letter-spacing: 0.15em; 
+                        margin-bottom: 12px; 
+                      "
+                    >
+                      <div style="animation: pulse-border 2s infinite; background: var(--accent-gold); border-radius: 50%; height: 6px; width: 6px;"></div>
                       ARCHIVE SIGNAL: ACTIVE
                     </div>
-                    <span style="display: block; font-size: 0.65rem; font-weight: 800; opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 4px;">SINGLE USER LICENSE</span>
+                    <span 
+                      style="
+                        display: block; 
+                        font-size: 0.65rem; 
+                        font-weight: 800; 
+                        letter-spacing: 0.1em; 
+                        margin-bottom: 4px;
+                        opacity: 0.4; 
+                      "
+                    >SINGLE USER LICENSE</span>
                     <span style="font-family: var(--font-display); font-size: 2.2rem;">${p.price}</span>
                   </div>
-                  <span style="font-size: 0.7rem; color: var(--accent-gold); font-weight: 800; border: 1px solid var(--accent-gold); padding: 4px 10px; border-radius: 4px;">V6.5 READY</span>
+                  <span 
+                    style="
+                      border: 1px solid var(--accent-gold); 
+                      border-radius: 4px;
+                      color: var(--accent-gold); 
+                      font-size: 0.7rem; 
+                      font-weight: 800; 
+                      padding: 4px 10px; 
+                    "
+                  >V6.5 READY</span>
                 </div>
                 
                 ${p.status === 'coming-soon' ? renderWaitlist(p) : `
                   <div style="display: grid; gap: 12px;">
-                    <a href="${p.checkout}" class="btn-primary" style="height: 64px; font-size: 1rem;">${p.actionLabel || 'Authorize Download'}</a>
-                    <button id="save-btn" onclick="saveToArchive('${p.id}')" class="btn-ghost" style="height: 56px; width: 100%;">Save to Archive</button>
-                    ${p.previewUrl && p.previewUrl !== "#" ? `<a href="${p.previewUrl}" target="_blank" style="text-align: center; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--ink-medium); text-decoration: none; margin-top: 10px; letter-spacing: 0.1em;">Launch Interactive Preview →</a>` : ''}
+                    <a 
+                      class="btn-primary" 
+                      href="${p.checkout}" 
+                      style="font-size: 1rem; height: 64px;"
+                    >${p.actionLabel || 'Authorize Download'}</a>
+                    
+                    <button 
+                      class="btn-ghost" 
+                      id="save-btn" 
+                      onclick="saveToArchive('${p.id}')" 
+                      style="height: 56px; width: 100%;"
+                    >Save to Archive</button>
+                    
+                    ${p.previewUrl && p.previewUrl !== "#" ? `
+                      <a 
+                        href="${p.previewUrl}" 
+                        style="
+                          color: var(--ink-medium); 
+                          font-size: 0.7rem; 
+                          font-weight: 800; 
+                          letter-spacing: 0.1em;
+                          margin-top: 10px; 
+                          text-align: center; 
+                          text-decoration: none; 
+                          text-transform: uppercase; 
+                        " 
+                        target="_blank" 
+                      >Launch Interactive Preview →</a>` : ''}
                   </div>
                 `}
               </div>
             </div>
           </div>
 
-          <div class="mobile-sticky-cta" id="sticky-anchor" style="padding: 16px 24px; background: var(--bg-glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-top: 1px solid rgba(15, 61, 48, 0.08); display: flex; align-items: center; gap: 16px; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 2000; transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
+          <div 
+            class="mobile-sticky-cta" 
+            id="sticky-anchor" 
+            style="
+              align-items: center; 
+              backdrop-filter: blur(25px); 
+              -webkit-backdrop-filter: blur(25px); 
+              background: var(--bg-glass); 
+              border-top: 1px solid rgba(15, 61, 48, 0.08); 
+              bottom: 0; 
+              display: flex; 
+              gap: 16px; 
+              left: 0; 
+              padding: 16px 24px; 
+              position: fixed; 
+              transform: translateY(100%); 
+              transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+              width: 100%; 
+              z-index: 2000; 
+            "
+          >
              <div style="flex-shrink: 0;">
                 <span style="display: block; font-size: 0.55rem; font-weight: 800; opacity: 0.5;">${p.title}</span>
                 <span style="font-family: var(--font-display); font-size: 1.1rem;">${p.price}</span>
              </div>
-             <a href="${p.checkout}" onclick="if(navigator.vibrate) navigator.vibrate([15, 30]);" class="btn-primary" style="flex-grow: 1; height: 50px; font-size: 0.8rem; justify-content: center;">${p.status === 'coming-soon' ? 'Notify Me' : (p.actionLabel || 'Authorize')}</a>
+             <a 
+               class="btn-primary" 
+               href="${p.checkout}" 
+               onclick="if(navigator.vibrate) navigator.vibrate([15, 30]);" 
+               style="flex-grow: 1; font-size: 0.8rem; height: 50px; justify-content: center;"
+             >${p.status === 'coming-soon' ? 'Notify Me' : (p.actionLabel || 'Authorize')}</a>
           </div>
         `;
 
-        // 2. SYNCHRONIZED ENGINE HANDSHAKE
-        // Ensures animations and sticky logic trigger after DOM paint
+        // Synchronized Animation Handshake
         requestAnimationFrame(() => {
           const elements = document.querySelectorAll(".reveal-up");
           elements.forEach((el, i) => {
@@ -149,15 +354,43 @@
           if (typeof window.initStudioHaptics === 'function') window.initStudioHaptics();
         });
       }
+      // #endregion
 
+      // #region [ 3. SUB-COMPONENTS ]
       function renderWaitlist(p) {
         return `
-          <div style="background: var(--bg-surface); padding: 32px; border-radius: 24px; text-align: center; border: 1.5px solid var(--accent-gold); animation: pulse-border 3s infinite;">
-            <p style="font-weight: 900; font-size: 0.7rem; color: var(--accent-gold); letter-spacing: 0.2em; margin-bottom: 12px; text-transform: uppercase;">${p.actionLabel || 'Engineering Mode'}</p>
-            <p style="font-size: 0.9rem; opacity: 0.6; color: var(--ink-deep); font-weight: 500;">Secure encryption in progress. This archive is currently being populated.</p>
+          <div 
+            style="
+              animation: pulse-border 3s infinite;
+              background: var(--bg-surface); 
+              border: 1.5px solid var(--accent-gold); 
+              border-radius: 24px; 
+              padding: 32px; 
+              text-align: center; 
+            "
+          >
+            <p 
+              style="
+                color: var(--accent-gold); 
+                font-size: 0.7rem; 
+                font-weight: 900; 
+                letter-spacing: 0.2em; 
+                margin-bottom: 12px; 
+                text-transform: uppercase;
+              "
+            >${p.actionLabel || 'Engineering Mode'}</p>
+            <p 
+              style="
+                color: var(--ink-deep); 
+                font-size: 0.9rem; 
+                font-weight: 500;
+                opacity: 0.6; 
+              "
+            >Secure encryption in progress. This archive is currently being populated.</p>
           </div>
         `;
       }
+      // #endregion
     </script>
   </body>
 </html>
