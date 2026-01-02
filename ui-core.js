@@ -50,7 +50,11 @@ async function loadHeader() {
     initThemeEngine();
     initSearchEngine();
 
-  } catch (err) { console.error("Header Fault:", err); }
+  } catch (err) { 
+  console.error("Header Fault:", err);
+  headerEl.innerHTML = '<div style="padding:20px; text-align:center;">Handshake Interrupted. <a href="index.html">Reload Archive</a></div>';
+}
+
 }
 
 
@@ -156,7 +160,8 @@ function initCartEngine() {
       list.innerHTML = window.KYNAR_STATE.cart.map(item => `
         <div class="cart-item reveal-up reveal-visible">
           <div class="cart-item-img" style="background: var(--bg-surface); border: 1px solid rgba(0,0,0,0.05);">
-            <img src="${item.image}" style="width:100%; height:100%; object-fit:contain;" loading="lazy">
+            <img src="${item.image}" onerror="this.src='assets/images/placeholder.png'" style="width:100%; height:100%; object-fit:contain;" loading="lazy">
+
           </div>
           <div style="flex-grow:1;">
             <h4 style="font-size:0.85rem; margin-bottom:4px; font-weight:700;">${item.title}</h4>

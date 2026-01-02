@@ -26,7 +26,7 @@
         align-items: center;
         justify-content: center;
       }
-      /* Ensure the sticky CTA is hidden initially and ready for JS */
+      /* Ensure the sticky CTA transition is primed */
       .mobile-sticky-cta.visible {
         transform: translateY(0) !important;
       }
@@ -36,7 +36,6 @@
     <meta property="og:title" content="Archive Entry | Kynar Studio">
     <meta property="og:description" content="Secure access to Kynar Studio high-fidelity digital assets.">
     <meta property="og:url" content="https://www.kynaruniverse.co.uk/product.html">
-  
   </head>
 
   <body>
@@ -45,7 +44,6 @@
     <main class="container" id="product-content">
       <div class="reveal-up" style="text-align: center; padding: 120px 0;">
         <p style="font-family: var(--font-display); letter-spacing: 0.2em; font-size: 0.8rem; opacity: 0.5; text-transform: uppercase;">System Handshake: Initializing...</p>
-
       </div>
     </main>
 
@@ -53,6 +51,11 @@
 
     <script type="module">
       import { getProduct } from './vault.js';
+
+      // 1. GLOBAL SCOPE HANDSHAKE 
+      // Functions are bound to window to ensure cross-module compatibility
+      window.renderProduct = renderProduct;
+      window.renderWaitlist = renderWaitlist;
 
       document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
@@ -62,11 +65,12 @@
         if (product) {
           renderProduct(product);
         } else {
+          // Haptic Recovery: Redirect on invalid ID
           window.location.href = "shop.html";
         }
       });
 
-            function renderProduct(p) {
+      function renderProduct(p) {
         const container = document.getElementById("product-content");
         document.title = `${p.title} | Kynar Studio`;
 
@@ -104,10 +108,9 @@
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px;">
                   <div>
                     <div class="live-signal" style="margin-bottom: 12px; font-size: 0.6rem; font-weight: 900; letter-spacing: 0.15em; color: var(--accent-gold); display: flex; align-items: center; gap: 8px;">
-                <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); animation: pulse-border 2s infinite;"></div>
-                ARCHIVE SIGNAL: ACTIVE
-              </div>
-
+                      <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-gold); animation: pulse-border 2s infinite;"></div>
+                      ARCHIVE SIGNAL: ACTIVE
+                    </div>
                     <span style="display: block; font-size: 0.65rem; font-weight: 800; opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 4px;">SINGLE USER LICENSE</span>
                     <span style="font-family: var(--font-display); font-size: 2.2rem;">${p.price}</span>
                   </div>
@@ -126,26 +129,28 @@
           </div>
 
           <div class="mobile-sticky-cta" id="sticky-anchor" style="padding: 16px 24px; background: var(--bg-glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-top: 1px solid rgba(15, 61, 48, 0.08); display: flex; align-items: center; gap: 16px; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 2000; transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
-
              <div style="flex-shrink: 0;">
                 <span style="display: block; font-size: 0.55rem; font-weight: 800; opacity: 0.5;">${p.title}</span>
                 <span style="font-family: var(--font-display); font-size: 1.1rem;">${p.price}</span>
              </div>
              <a href="${p.checkout}" onclick="if(navigator.vibrate) navigator.vibrate([15, 30]);" class="btn-primary" style="flex-grow: 1; height: 50px; font-size: 0.8rem; justify-content: center;">${p.status === 'coming-soon' ? 'Notify Me' : (p.actionLabel || 'Authorize')}</a>
-
-
           </div>
         `;
 
-        // Animation Handshake
-        setTimeout(() => {
-          document.querySelectorAll(".reveal-up").forEach(el => el.classList.add("reveal-visible"));
-          if (window.initMobileStickyCTA) window.initMobileStickyCTA();
-        }, 100);
+        // 2. SYNCHRONIZED ENGINE HANDSHAKE
+        // Ensures animations and sticky logic trigger after DOM paint
+        requestAnimationFrame(() => {
+          const elements = document.querySelectorAll(".reveal-up");
+          elements.forEach((el, i) => {
+            setTimeout(() => el.classList.add("reveal-visible"), i * 100);
+          });
+          
+          if (typeof window.initMobileStickyCTA === 'function') window.initMobileStickyCTA();
+          if (typeof window.initStudioHaptics === 'function') window.initStudioHaptics();
+        });
       }
 
-
-            function renderWaitlist(p) {
+      function renderWaitlist(p) {
         return `
           <div style="background: var(--bg-surface); padding: 32px; border-radius: 24px; text-align: center; border: 1.5px solid var(--accent-gold); animation: pulse-border 3s infinite;">
             <p style="font-weight: 900; font-size: 0.7rem; color: var(--accent-gold); letter-spacing: 0.2em; margin-bottom: 12px; text-transform: uppercase;">${p.actionLabel || 'Engineering Mode'}</p>
@@ -153,8 +158,6 @@
           </div>
         `;
       }
-
     </script>
   </body>
 </html>
-
