@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 4. Engine Boot Sequence
   initSmoothScroll();
   initStudioHaptics();
+  await loadCartSidebar(); 
   initCartEngine();
 
   // 5. Layout & Experience Services
@@ -163,6 +164,23 @@ function initCartEngine() {
     );
     syncCart();
   };
+  
+  window.initiateCheckout = () => {
+    const cart = window.KYNAR_STATE.cart;
+    if (cart.length === 0) return;
+    
+    // Handshake with Lemon Squeezy Overlay
+    const target = cart[0].checkout;
+    if (target && target !== "#") {
+      LemonSqueezy.Url.Open(target);
+    } else {
+      // Recovery for "Coming Soon" or Missing Links
+      window.location.href = `product.html?id=${cart[0].id}`;
+    }
+    
+    if (navigator.vibrate) navigator.vibrate([30, 50]);
+  };
+
 
   function syncCart() {
     localStorage.setItem(

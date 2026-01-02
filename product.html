@@ -42,6 +42,18 @@
     <meta content="Archive Entry | Kynar Studio" property="og:title">
     <meta content="Secure access to Kynar Studio high-fidelity digital assets." property="og:description">
     <meta content="https://www.kynaruniverse.co.uk/product.html" property="og:url">
+    
+    <script type="module">
+      import { getProduct } from './vault.js';
+      const params = new URLSearchParams(window.location.search);
+      const p = getProduct(params.get("id"));
+      if (p) {
+        document.title = `${p.title} | Kynar Studio Archive`;
+        const metaDesc = document.querySelector('meta[property="og:description"]');
+        if (metaDesc) metaDesc.setAttribute('content', p.shortDesc);
+      }
+    </script>
+
   </head>
 
   <body>
@@ -132,8 +144,10 @@
                 "
               >
                 <img 
+                <img 
                   alt="${p.title}" 
                   class="product-hero-img" 
+                  onerror="this.src='assets/images/og-preview.webp'; this.style.opacity='1'; this.style.filter='blur(10px)';"
                   onload="this.style.opacity='1'"
                   src="${p.image}" 
                   style="
@@ -142,6 +156,7 @@
                     width: 100%; 
                   " 
                 >
+
               </div>
             </div>
             

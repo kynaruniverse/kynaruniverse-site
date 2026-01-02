@@ -173,13 +173,18 @@ p { color: var(--ink-medium); max-width: 60ch; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 24px; }
 
 /* --- Header V6 Architecture --- */
-.app-header {
+.app-header { 
   position: fixed; top: 0; left: 0; width: 100%; height: 70px;
   background: var(--bg-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 20px; z-index: 1000; border-bottom: 1px solid rgba(15, 61, 48, 0.05);
   transition: background var(--transition-main), border var(--transition-main);
 }
+.activity-toast { z-index: 1100; }
+.cart-sidebar { z-index: 10000; } /* Command Center Priority */
+.nav-overlay { z-index: 11000; } /* Navigation Priority */
+#searchOverlay { z-index: 12000; } /* Search Priority */
+
 
 .brand-logo { 
   position: absolute; left: 50%; transform: translateX(-50%); 
@@ -287,11 +292,17 @@ p { color: var(--ink-medium); max-width: 60ch; }
 .filter-bar {
   display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px;
   margin: 0 -20px 40px -20px; scrollbar-width: none; 
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* Kinetic Physics */
   position: sticky; top: 69px; background: var(--bg-bone); 
   margin-top: -1px; z-index: 100;
-  scroll-snap-type: x mandatory; scroll-padding: 20px;
+  scroll-snap-type: x mandatory; 
+  scroll-padding-left: 20px;
 }
+.filter-chip {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
 .filter-bar::-webkit-scrollbar { display: none; }
 
 .filter-chip {

@@ -237,8 +237,13 @@
 
             // Inject File Path
             if (activeProduct.file) {
-                dlBtn.href = `assets/downloads/${activeProduct.file}`;
+                dlBtn.href = `./assets/downloads/${activeProduct.file}`;
+                dlBtn.setAttribute('download', activeProduct.file);
+            } else {
+                dlBtn.style.display = 'none';
+                metaText.textContent = "Archive file path not found. Please contact support.";
             }
+
 
             // Bind Haptic Download Event
             if (dlBtn) {
