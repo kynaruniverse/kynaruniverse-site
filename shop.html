@@ -85,6 +85,10 @@
       /**
        * Renders the product grid based on the selected category filter.
        */
+            /**
+       * Renders the product grid with "Ticket" Layout (Left Image / Right Content).
+       * Fixes: "Coming Soon" persistence and Button Clickability.
+       */
       async function renderGallery(filter = 'all') {
         grid.style.opacity = '0'; 
         
@@ -93,18 +97,26 @@
           
           if (filtered.length === 0) {
             emptyState.style.display = 'block';
-            emptyState.innerHTML = `<h3>No assets found.</h3>`;
+            emptyState.innerHTML = `
+              <div style="text-align: center; padding: 60px; opacity: 0.6;">
+                <div style="font-size: 3rem; margin-bottom: 20px;">🔭</div>
+                <h3 style="font-family: var(--font-display);">Signal Lost</h3>
+                <p>No assets found in this frequency.</p>
+              </div>`;
             grid.innerHTML = '';
           } else {
             emptyState.style.display = 'none';
-            // NEW HORIZONTAL LAYOUT IMPLEMENTATION
+            
+            // --- RENDER CARD HTML ---
             grid.innerHTML = filtered.map((p, i) => `
-              <article class="product-card horizontal reveal-up" style="transition-delay: ${i * 0.05}s">
-
-                
+              <article 
+                class="product-card reveal-up" 
+                style="transition-delay: ${i * 0.05}s"
+                data-status="${p.status === 'coming-soon' ? 'coming-soon' : 'active'}"
+              >
                 <div class="card-left">
                   <div class="card-image" style="background: ${p.accentColor || 'var(--pastel-sage)'};">
-                    <img src="${p.image}" alt="${p.title}" class="product-img" onload="this.style.opacity='1'">
+                    <img src="${p.image}" alt="${p.title}" loading="lazy">
                   </div>
                   <span class="card-price">${p.price}</span>
                 </div>
@@ -114,27 +126,39 @@
                   <p class="card-subtitle">${p.shortDesc}</p>
                   
                   <div class="tag-container">
+                    <span class="horizontal-tag">${p.category}</span>
                     <span class="horizontal-tag">${p.tag}</span>
-                    <span class="horizontal-tag">${p.category}</span> 
                   </div>
 
                   <p class="card-description">
-                    ${p.longDesc || 'Premium digital asset engineered for high-fidelity performance.'}
-                    <span class="read-more-link" onclick="openProductModal('${p.id}')">Read More</span>                  </p>
+                    ${p.longDesc ? p.longDesc.substring(0, 120) + '...' : 'Premium digital asset engineered for high-fidelity performance.'}
+                    <span class="read-more-link" onclick="openProductModal('${p.id}')">Read More</span>
+                  </p>
 
                   <div class="card-actions">
-                    <a href="product.html?id=${p.id}" class="btn-details">View Details</a>
-                    <button id="add-btn-${p.id}" onclick="saveToShop('${p.id}')" class="btn-add">Add To Cart</button>
+                    <button onclick="openProductModal('${p.id}')" class="btn-details">
+                      View Details
+                    </button>
+                    
+                    <button 
+                      id="add-btn-${p.id}" 
+                      onclick="saveToShop('${p.id}')" 
+                      class="btn-add"
+                    >
+                      ${p.status === 'coming-soon' ? 'Locked' : 'Add To Cart'}
+                    </button>
                   </div>
                 </div>
-
-              </article>`).join('');
+              </article>
+            `).join('');
           }
 
+          // Trigger Reveal Animation
           grid.style.opacity = '1';
           document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
         });
       }
+
       // #endregion
 
       // #region [ 3. INTERACTION LOGIC ]

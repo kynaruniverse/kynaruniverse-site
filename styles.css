@@ -258,130 +258,217 @@ p { color: var(--ink-medium); max-width: 60ch; }
 
 /* #endregion */
 
-/* #region 6 [ NEW HORIZONTAL PRODUCT SYSTEM ] */
+/* ══════════════════════════════════════════════════════════════════════════
+   PROTOCOL D12: HORIZONTAL TICKET CARD (MOCKUP ACCURATE)
+   ══════════════════════════════════════════════════════════════════════════ */
 
 .product-card {
   background: var(--bg-surface);
-  border-radius: 30px; /* More aggressive rounding from mockup */
-  overflow: hidden;
+  border-radius: 30px; /* Deep rounding from mockup */
   padding: 30px;
   display: grid;
-  grid-template-columns: 200px 1fr; /* Image on left, Info on right */
-  gap: 30px;
+  /* Left Column (Image+Price) | Right Column (Content) */
+  grid-template-columns: 220px 1fr; 
+  gap: 40px;
   border: 1.5px solid rgba(15, 61, 48, 0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
   position: relative;
-  align-items: center;
+  align-items: start; /* Aligns content to top */
+  min-height: auto; /* Prevents stretching */
 }
 
-/* On Mobile, stack them back up for readability */
-@media (max-width: 600px) {
-  .product-card {
-    grid-template-columns: 1fr;
-    padding: 20px;
-  }
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-float);
 }
 
+/* --- LEFT COLUMN: Image & Price --- */
 .card-left {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 20px;
 }
 
 .card-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background: var(--pastel-sage); /* Dynamic color will go here */
-  border-radius: 20px;
+  aspect-ratio: 1/1; /* Perfect Square */
+  background: var(--pastel-sage); 
+  border-radius: 24px; /* Soft square corners */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15%;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
 }
 
 .card-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+  transition: transform 0.5s ease;
+  mix-blend-mode: multiply;
+}
+
+.product-card:hover .card-image img {
+  transform: scale(1.05);
 }
 
 .card-price {
   font-family: var(--font-display);
-  font-size: 1.8rem; /* Large price as seen in mockup */
+  font-size: 1.8rem; /* Large gold price */
   color: var(--accent-gold);
   font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
+/* --- RIGHT COLUMN: Content --- */
 .card-right {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  justify-content: center; /* Centers text block vertically */
 }
 
 .card-title {
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 5px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   color: var(--ink-deep);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  line-height: 1.1;
 }
 
 .card-subtitle {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--ink-medium);
-  opacity: 0.6;
-  margin-bottom: 15px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .tag-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .horizontal-tag {
-  background: var(--bg-bone);
+  background: transparent;
   border: 1px solid var(--accent-gold);
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: capitalize;
   color: var(--ink-medium);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 .card-description {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--ink-medium);
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  max-width: 95%;
 }
 
+.read-more-link {
+  color: var(--ink-deep);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 0.85rem;
+}
+
+/* --- ACTIONS ROW --- */
 .card-actions {
   display: flex;
-  gap: 12px;
+  gap: 15px;
+  margin-top: auto; /* Pushes buttons to bottom if needed */
 }
 
-/* Mockup specific button styles */
 .btn-details, .btn-add {
-  flex: 1;
-  padding: 12px;
+  padding: 14px 28px;
   border-radius: 50px;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   text-decoration: none;
   text-align: center;
-  border: 1.5px solid var(--ink-deep);
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  flex: 1; /* Make them even width */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-details { background: transparent; color: var(--ink-deep); }
-.btn-add { background: var(--ink-deep); color: #fff; }
+.btn-details {
+  background: transparent;
+  border: 1.5px solid var(--ink-deep);
+  color: var(--ink-deep);
+}
 
-/* #endregion */
+.btn-details:hover {
+  background: rgba(15, 61, 48, 0.05);
+}
 
+.btn-add {
+  background: var(--ink-deep);
+  border: 1.5px solid var(--ink-deep);
+  color: #fff;
+}
+
+.btn-add:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* --- COMING SOON LOGIC --- */
+/* The Banner */
+.product-card[data-status="coming-soon"] .card-image::after {
+  content: "ARRIVING SOON";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  background: var(--accent-gold);
+  color: white;
+  padding: 8px 16px;
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+/* Disable ONLY the Add Button */
+.product-card[data-status="coming-soon"] .btn-add {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--ink-medium);
+  border-color: var(--ink-medium);
+  pointer-events: none; /* Only this button is unclickable */
+}
+
+/* MOBILE STACKING */
+@media (max-width: 768px) {
+  .product-card {
+    grid-template-columns: 1fr; /* Stack vertically */
+    text-align: center;
+    gap: 25px;
+  }
+  .card-left { align-items: center; }
+  .card-right { align-items: center; }
+  .tag-container { justify-content: center; }
+  .card-actions { width: 100%; }
+}
 
 
 /* #region [ 7. SPECIAL STATES ] */
