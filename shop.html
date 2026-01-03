@@ -77,28 +77,36 @@
       // #region [ 2. RENDERERS ]
 
       /**
-       * Injects loading skeletons while the main renderer processes data.
-       */
-      function showSkeletons() {
-        grid.innerHTML = Array(6).fill(0).map(() => `
-          <div 
-            class="product-card" 
-            style="
-              background: var(--bg-surface); 
-              height: 350px; 
-              opacity: 0.5;
-            "
-          >
-            <div 
-              style="
-                animation: pulse-border 2s infinite;
-                background: var(--bg-bone); 
-                height: 60%; 
-                width: 100%; 
-              "
-            ></div>
-          </div>`).join('');
-      }
+ * Injects loading skeletons while the main renderer processes data.
+ * Optimized for Protocol D12 (Full-bleed images)
+ */
+function showSkeletons() {
+  grid.innerHTML = Array(6).fill(0).map(() => `
+    <div class="product-card" 
+      style="
+        background: var(--bg-surface); 
+        height: 420px; 
+        opacity: 0.8;
+        overflow: hidden;
+      "
+    >
+      <div 
+        style="
+          animation: pulse-border 2s infinite;
+          background: var(--bg-bone); 
+          height: 280px; 
+          width: 100%; 
+        "
+      ></div>
+      
+      <div style="padding: 25px 20px;">
+        <div style="height: 12px; width: 60%; background: var(--bg-bone); margin: 0 auto 15px auto; border-radius: 4px; opacity: 0.4;"></div>
+        <div style="height: 10px; width: 80%; background: var(--bg-bone); margin: 0 auto 20px auto; border-radius: 4px; opacity: 0.2;"></div>
+        <div style="height: 40px; width: 100%; background: var(--bg-bone); border-radius: var(--radius-pill); opacity: 0.3;"></div>
+      </div>
+    </div>`).join('');
+}
+
 
       /**
        * Renders the product grid based on the selected category filter.
@@ -124,68 +132,42 @@
           else {
             emptyState.style.display = 'none';
             grid.innerHTML = filtered.map((p, i) => `
-              <article 
-                class="product-card reveal-up" 
-                onclick="window.location.href='product.html?id=${p.id}'"
-                style="transition-delay: ${i * 0.05}s"
-              >
-                <div class="tag">${p.tag}</div>
-                
-                <div 
-                  class="card-image" 
-                  style="background: var(--bg-bone);"
-                >
-                  <img 
-                    alt="${p.title}" 
-                    class="product-img" 
-                    loading="lazy" 
-                    onload="this.style.opacity='1'"
-                    src="${p.image}" 
-                  >
-                </div>
-                
-                <div class="card-info">
-                  <h3 class="card-title">${p.title}</h3>
-                  <p 
-                    style="
-                      font-size: 0.9rem; 
-                      line-height: 1.5; 
-                      opacity: 0.7;
-                    "
-                  >${p.shortDesc}</p>
-                  
-                  <div 
-                    style="
-                      align-items: flex-end; 
-                      display: flex; 
-                      justify-content: space-between; 
-                      margin-top: auto; 
-                      padding-top: 25px;
-                    "
-                  >
-                    <div>
-                      <span 
-                        style="
-                          display: block; 
-                          font-size: 0.6rem; 
-                          font-weight: 800; 
-                          letter-spacing: 0.1em; 
-                          margin-bottom: 4px;
-                          opacity: 0.4; 
-                        "
-                      >INVESTMENT</span>
-                      <span class="card-price">${p.price}</span>
-                    </div>
-                    <div 
-                      class="btn-ghost" 
-                      style="
-                        font-size: 0.65rem;
-                        padding: 8px 16px; 
-                      "
-                    >View Shop</div>
-                  </div>
-                </div>
-              </article>`).join('');
+  <article 
+    class="product-card reveal-up" 
+    onclick="window.location.href='product.html?id=${p.id}'"
+    style="transition-delay: ${i * 0.05}s"
+  >
+    <div class="card-image" 
+    style="background: ${p.accentColor || 'var(--bg-bone)'};">
+      <div class="card-category-tag">${p.tag}</div> <img 
+        alt="${p.title}" 
+        class="product-img" 
+        loading="lazy" 
+        onload="this.style.opacity='1'"
+        src="${p.image}" 
+      >
+    </div>
+    
+    <div class="card-info">
+      <h3 class="card-title">${p.title}</h3>
+      <p style="font-size: 0.9rem; line-height: 1.5; opacity: 0.7;">
+        ${p.shortDesc}
+      </p>
+      
+      <div style="align-items: flex-end; display: flex; justify-content: space-between; margin-top: auto; padding-top: 25px;">
+        <div>
+          <span style="display: block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; margin-bottom: 4px; opacity: 0.4;">
+            INVESTMENT
+          </span>
+          <span class="card-price">${p.price}</span>
+        </div>
+        <div class="btn-ghost" style="font-size: 0.65rem; padding: 8px 16px;">
+          View Shop
+        </div>
+      </div>
+    </div>
+  </article>`).join('');
+
           }
 
           // Animation Reveal

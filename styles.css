@@ -103,6 +103,13 @@ body.dark-mode .theme-toggle .moon-icon {
   transform: rotate(0deg) scale(1);
 }
 
+body.dark-mode .card-category-tag {
+  background: rgba(0, 0, 0, 0.4); /* Darker glass for Obsidian mode */
+  color: var(--accent-gold); /* Gold text for premium feel */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
 /* Hover/Active Feedback */
 .theme-toggle:active { transform: scale(0.9); }
 
@@ -284,14 +291,16 @@ p { color: var(--ink-medium); max-width: 60ch; }
 }
 
 .card-image {
-  aspect-ratio: 1 / 1; /* Symmetric Square Grid */
+  aspect-ratio: 1 / 1;
   background: var(--bg-bone);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12%;
+  padding: 0;
   position: relative;
   overflow: hidden;
+  border-top-left-radius: var(--radius-soft);
+  border-top-right-radius: var(--radius-soft);
 }
 
 .card-image img {
@@ -301,12 +310,31 @@ p { color: var(--ink-medium); max-width: 60ch; }
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.card-category-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.7); /* Translucent frosted look */
+  backdrop-filter: blur(10px); /* 2026 Glassmorphism */
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-deep);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none; /* User clicks through to the product */
+}
+
+
 .product-card:hover .card-image img { transform: scale(1.1); }
 
 .card-info {
-  padding: 20px;
+  padding: 25px 20px;
   background: var(--bg-surface);
-  border-top: 1px solid rgba(15, 61, 48, 0.03);
+  border-top: none;
   text-align: center;
 }
 
@@ -356,9 +384,18 @@ p { color: var(--ink-medium); max-width: 60ch; }
 }
 
 @keyframes pulse-border {
-  0%, 100% { border-color: var(--accent-gold); opacity: 1; }
-  50% { border-color: var(--ink-medium); opacity: 0.7; }
+  0%, 100% { 
+    background-color: var(--bg-bone); 
+    opacity: 1; 
+    border-color: var(--accent-gold); 
+  }
+  50% { 
+    background-color: var(--ink-medium); 
+    opacity: 0.15;
+    border-color: rgba(197, 160, 89, 0.2); 
+  }
 }
+
 
 /* #endregion */
 

@@ -150,11 +150,12 @@
               style="
                 color: var(--ink-deep); 
                 display: block; 
-                font-size: 0.7rem; 
+                font-size: 0.7rem;
                 font-weight: 900; 
                 letter-spacing: 0.3em; 
                 margin-bottom: 20px; 
-                text-transform: uppercase; 
+                text-transform: uppercase;
+                isolation: isolate;
               "
             >Shop / 01</span>
             <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Life & Flow</h3>
@@ -206,6 +207,7 @@
                 letter-spacing: 0.3em; 
                 margin-bottom: 20px; 
                 text-transform: uppercase; 
+                isolation: isolate;
               "
             >Shop / 02</span>
             <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Business & Growth</h3>
@@ -257,6 +259,7 @@
                 letter-spacing: 0.3em; 
                 margin-bottom: 20px; 
                 text-transform: uppercase; 
+                isolation: isolate;
               "
             >Shop / 03</span>
             <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Content & Style</h3>
@@ -308,7 +311,8 @@
                 font-weight: 900; 
                 letter-spacing: 0.3em; 
                 margin-bottom: 20px; 
-                text-transform: uppercase; 
+                text-transform: uppercase;
+                isolation: isolate;
               "
             >Shop / 04</span>
             <h3 style="font-size: 2.2rem; margin-bottom: 16px;">Learning & Dev</h3>
@@ -444,45 +448,35 @@
         }
 
         featuredGrid.innerHTML = latest.map((p, i) => `
-          <article class="product-card reveal-up" style="transition-delay: ${i * 0.1}s">
-            <span class="tag">${p.tag}</span>
-            <a 
-              class="card-image" 
-              href="product.html?id=${p.id}" 
-              style="background-color: ${p.bg}"
-            >
-              <img 
-                alt="${p.title}" 
-                class="product-img" 
-                onload="this.style.opacity='1'"
-                src="${p.image}" 
-                style="opacity: 0; transition: opacity 0.8s ease;" 
-              >
-            </a>
-            <div class="card-info">
-              <h3 class="card-title">${p.title}</h3>
-              <p 
-                style="
-                  color: var(--ink-medium);
-                  font-size: 0.85rem; 
-                  line-height: 1.4; 
-                "
-              >${p.shortDesc}</p>
-              
-              <div 
-                style="
-                  align-items: center; 
-                  display: flex; 
-                  justify-content: space-between; 
-                  margin-top: 15px;
-                "
-              >
-                <span class="card-price">${p.price}</span>
-                <a class="btn-ghost" href="product.html?id=${p.id}">View Details</a>
-              </div>
-            </div>
-          </article>
-        `).join('');
+  <article class="product-card reveal-up" style="transition-delay: ${i * 0.1}s">
+    <a 
+      class="card-image" 
+      href="product.html?id=${p.id}" 
+      style="background-color: ${p.bg || 'var(--bg-bone)'}"
+    >
+      <div class="card-category-tag">${p.tag}</div> 
+      <img 
+        alt="${p.title}" 
+        class="product-img" 
+        onload="this.style.opacity='1'"
+        src="${p.image}" 
+        style="opacity: 0; transition: opacity 0.8s ease;" 
+      >
+    </a>
+    <div class="card-info">
+      <h3 class="card-title">${p.title}</h3>
+      <p style="color: var(--ink-medium); font-size: 0.85rem; line-height: 1.4;">
+        ${p.shortDesc}
+      </p>
+      
+      <div style="align-items: center; display: flex; justify-content: space-between; margin-top: 15px;">
+        <span class="card-price">${p.price}</span>
+        <a class="btn-ghost" href="product.html?id=${p.id}">View Details</a>
+      </div>
+    </div>
+  </article>
+`).join('');
+
         
         // #endregion
         
