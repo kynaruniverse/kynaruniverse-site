@@ -60,12 +60,51 @@ body.dark-mode {
   --logo-brightness: 5;
   --grain-opacity: 0.04;
   --logo-invert: 1;
+  --category-num-opacity: 0.08;
 
 }
 
-/* Dark Mode Toggles */
-body.dark-mode #themeToggle .sun-icon { display: none; opacity: 0; }
-body.dark-mode #themeToggle .moon-icon { display: block; opacity: 1; transform: rotate(-15deg); }
+/* --- Optimized Theme Toggle --- */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 44px;  /* Optimal mobile touch target */
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-deep);
+  transition: transform 0.3s var(--transition-main);
+  padding: 0;
+}
+
+.theme-toggle svg {
+  position: absolute; /* Stack icons on top of each other */
+  transition: 
+    opacity 0.4s ease, 
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+/* Light Mode State (Default) */
+.theme-toggle .sun-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+
+/* Obsidian Mode State */
+body.dark-mode .theme-toggle .sun-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+body.dark-mode .theme-toggle .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Hover/Active Feedback */
+.theme-toggle:active { transform: scale(0.9); }
 
 /* #endregion */
 
@@ -209,31 +248,95 @@ p { color: var(--ink-medium); max-width: 60ch; }
 
 /* #endregion */
 
-/* #region [ 6. PRODUCT CARD SYSTEM ] */
+/* #region [ 6. PRODUCT CARD SYSTEM - 2026 AURA EVOLUTION ] */
 
 .product-card {
-  background: var(--bg-surface); border-radius: 20px; overflow: hidden;
-  box-shadow: var(--shadow-float); position: relative; display: flex;
-  flex-direction: column; border: 1px solid rgba(15, 61, 48, 0.03);
-  transition: transform var(--transition-main), box-shadow var(--transition-main);
+  background: var(--bg-surface);
+  border-radius: var(--radius-soft);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(15, 61, 48, 0.05);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  isolation: isolate;
 }
-.product-card:active { transform: scale(0.98); }
 
-.card-image { aspect-ratio: 16/9; background: var(--bg-bone); display: flex; align-items: center; justify-content: center; padding: 15px; }
-.card-image img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s; }
+/* 2026 Light Sweep Effect */
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  z-index: 5;
+}
 
-.card-info { padding: 24px; flex-grow: 1; display: flex; flex-direction: column; }
-.card-title { font-size: 1.1rem; margin-bottom: 8px; }
-.card-price { font-family: var(--font-display); font-size: 1.2rem; }
+.product-card:hover::before { left: 150%; }
 
-.tag {
-  position: absolute; top: 15px; left: 15px; padding: 6px 14px;
-  background: var(--bg-surface); color: var(--ink-deep);
-  font-size: 0.7rem; font-weight: 800; border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 10;
+.product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-depth);
+  border-color: var(--accent-gold);
+}
+
+.card-image {
+  aspect-ratio: 1 / 1; /* Symmetric Square Grid */
+  background: var(--bg-bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .card-image img { transform: scale(1.1); }
+
+.card-info {
+  padding: 20px;
+  background: var(--bg-surface);
+  border-top: 1px solid rgba(15, 61, 48, 0.03);
+  text-align: center;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  color: var(--ink-deep);
+}
+
+.card-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Floating Action Trigger */
+.product-card .btn-ghost {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.7rem;
+  border-radius: 8px;
 }
 
 /* #endregion */
+
 
 /* #region [ 7. SPECIAL STATES ] */
 

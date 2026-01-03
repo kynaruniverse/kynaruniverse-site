@@ -414,18 +414,27 @@ function initThemeEngine() {
   const themeBtn = document.getElementById("themeToggle");
   if (!themeBtn) return;
 
-  // Sync saved preference
-  if (localStorage.getItem("kynar_theme") === "dark") {
-    document.body.classList.add("dark-mode");
-  }
+  // 1. Initial Sync (Ensuring the UI matches the body class)
+  const isDark = document.body.classList.contains("dark-mode");
+  console.log(`Kynar Theme Handshake: ${isDark ? 'Obsidian' : 'Bone'}`);
 
   themeBtn.onclick = () => {
+    // 2. Trigger Haptic Pulse
+    if (navigator.vibrate) navigator.vibrate(12);
+
+    // 3. Toggle Class
     document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-    localStorage.setItem("kynar_theme", isDark ? "dark" : "light");
-    if (navigator.vibrate) navigator.vibrate(10);
+    const activeDark = document.body.classList.contains("dark-mode");
+    
+    // 4. Persistence
+    localStorage.setItem("kynar_theme", activeDark ? "dark" : "light");
+
+    // 5. 2026 Micro-interaction: Temporary 'switching' state to disable clicks during animation
+    themeBtn.style.pointerEvents = 'none';
+    setTimeout(() => themeBtn.style.pointerEvents = 'all', 500);
   };
 }
+
 
 window.saveToArchive = (id) => {
   // Logic to add to cart without jumping to checkout
