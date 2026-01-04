@@ -19,6 +19,7 @@ export const EVENTS = {
   CART_ADD:      'cart:add',
   CART_REMOVE:   'cart:remove',
   CART_TOGGLE:   'cart:toggle',
+  CHECKOUT_INIT: 'checkout:init',
   FILTER_CHANGE: 'shop:filter',
   MODAL_OPEN:    'modal:open',
   MODAL_CLOSE:   'modal:close',

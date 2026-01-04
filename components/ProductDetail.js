@@ -56,7 +56,8 @@ export function renderProductDetail(p) {
 
           ${isLocked ? renderWaitlist(p) : `
             <div class="grid-col-1 gap-sm">
-              <a href="${p.checkout}" class="btn btn--primary w-full" style="height: 64px; font-size: 1rem;">${btnLabel}</a>
+              <button class="btn btn--primary w-full" style="height: 64px; font-size: 1rem;" data-trigger="checkout:init" data-payload="${p.checkout}?embed=1" > ${btnLabel}</button>
+
               
               <button 
                 class="btn btn--ghost w-full" 
@@ -83,12 +84,9 @@ export function renderProductDetail(p) {
           <span class="text-bold" style="display: block; font-size: 0.55rem; opacity: 0.5;">${p.title}</span>
           <span class="text-display" style="font-size: 1.1rem;">${p.price}</span>
        </div>
-       <a 
-         class="btn btn--primary" 
-         href="${p.checkout}" 
-         onclick="if(navigator.vibrate) navigator.vibrate([15, 30]);" 
-         style="flex-grow: 1; font-size: 0.8rem; height: 50px;"
-       >${isLocked ? 'Notify Me' : 'Authorize'}</a>
+       <button class="btn btn--primary" data-trigger="checkout:init" data-payload="${p.checkout}?embed=1" style="flex-grow: 1; font-size: 0.8rem; height: 50px;" > ${isLocked ? 'Notify Me' : 'Authorize'} 
+       </button>
+
     </div>
   `;
 }

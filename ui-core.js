@@ -5,6 +5,7 @@
 
 import { EventBus, EVENTS } from './src/core/events.js';
 import { initCart } from './src/modules/cart.js';
+import { initCheckout } from './src/modules/checkout.js';
 
 /* --- BOOT SEQUENCE --- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Initialize Modules
   initTheme();
   initCart();
+  initCheckout();
   initUIHandlers();
   
   // 2. Load Partials (Header/Footer)
@@ -32,7 +34,10 @@ document.body.addEventListener('click', (e) => {
   const trigger = e.target.closest('[data-trigger]');
   
   if (trigger) {
-    if (trigger.tagName !== 'A') e.preventDefault();
+    if (trigger.tagName === 'A' && !trigger.dataset.trigger.includes('checkout')) {
+    } else {
+       e.preventDefault();
+    }
     
     const action = trigger.dataset.trigger;
     const payload = trigger.dataset.payload;
@@ -44,6 +49,7 @@ document.body.addEventListener('click', (e) => {
     return;
   }
 });
+
 
 /* --- UI HANDLERS --- */
 function initUIHandlers() {
