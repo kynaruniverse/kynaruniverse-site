@@ -1509,7 +1509,7 @@ body.dark-mode .app-header {
   padding: 10px 20px 16px; /* Reduced top padding, added bottom padding */
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Gap between Nav and Search rows */
+  gap: 8px; /* Gap between Nav and Search rows */
 }
 
 /* 3. Top Row (Nav) */
