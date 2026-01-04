@@ -1,13 +1,17 @@
-# 🏛 KYNAR STUDIO | V7.0 MASTERPIECE ENGINE
+# 🏛 KYNAR STUDIO | V9.0 INDUSTRIAL ENGINE
 
-Kynar Studio is a high-performance, boutique digital marketplace engineered for the creative elite. This repository contains the **V7.0 Engine**, a clinical masterpiece logic synchronized for high-fidelity retail and secure asset delivery.
+Kynar Studio is a high-performance, boutique digital marketplace engineered for the creative elite. This repository contains the **V9.0 Engine**, featuring a fully "Overlay-Lifted" architecture for maximum mobile performance and SEO protection.
 
 ---
 
-## 💎 The V7.0 Philosophy
-Unlike traditional template-based stores, Kynar Studio operates on a **Data-Driven Architecture**. Every product interaction is controlled by a centralized Vault, ensuring that the interface remains lean while the inventory grows.
+## 💎 The V9.0 Philosophy
+Unlike traditional template-based stores, Kynar Studio operates on a **Data-Driven & Event-Wireless Architecture**.
+* **Mobile-First Core:** Overlays (Cart/Nav) are injected at the root level to prevent CSS stacking context traps.
+* **Wireless Logic:** Components communicate via a global `EventBus` rather than direct DOM coupling.
+* **Vault-Sync Discovery:** A real-time search engine that filters through the `vault.js` database without page reloads.
 
 ### **Key Technical Features**
+
 * **Vault-Sync Discovery:** A real-time search engine that filters through the `vault.js` database without page reloads.
 * **Secure Gateway Delivery:** A protocol-driven claim system that decrypts asset paths only after authorization.
 * **Clinical UI Physics:** Powered by Lenis Smooth Scroll and custom haptic feedback for a tactile mobile experience.

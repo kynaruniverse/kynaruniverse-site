@@ -967,6 +967,7 @@ details[open] .faq-question::after {
   overflow-x: hidden;
   padding: 24px 30px;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .cart-sidebar__footer {
@@ -1464,3 +1465,10 @@ details[open] .faq-question::after {
 }
 
 /* #endregion */
+
+/* --- MISSING ANIMATION FIX --- */
+@keyframes pulse-border {
+  0% { border-color: rgba(197, 160, 89, 0.2); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.1); }
+  50% { border-color: rgba(197, 160, 89, 1); box-shadow: 0 0 0 8px rgba(197, 160, 89, 0.05); }
+  100% { border-color: rgba(197, 160, 89, 0.2); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}

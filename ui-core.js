@@ -1,6 +1,5 @@
 /* ==========================================================================
-   KYNAR ENGINE v9.0 | INDUSTRIAL CORE
-   Architecture: Modules -> Event Bus -> Global Delegation
+   KYNAR ENGINE v9.1 | INDUSTRIAL CORE (SAFETY PATCHED)
    ========================================================================== */
 import { EventBus, EVENTS } from './src/core/events.js';
 import { Logger } from './src/core/logger.js';
@@ -11,27 +10,34 @@ import { initCheckout } from './src/modules/checkout.js';
 document.addEventListener("DOMContentLoaded", async () => {
   Logger.log("System: Engine Booting...");
 
-  // 1. Initialize Sync Core
-  initTheme();
-  initCheckout();
-  
-  // 2. Load UI Shell (Critical Path)
-  // We use Promise.all to fetch both concurrently, but we handle them differently
-  await Promise.all([
-    loadComponent('global-header', 'components/header.html'),
-    injectOverlays() // New Global Injection
-  ]);
+  try {
+    // 1. Initialize Sync Core
+    initTheme();
+    initCheckout();
+    
+    // 2. Load UI Shell (Critical Path) with Error Handling
+    await Promise.all([
+      loadComponent('global-header', 'components/header.html'),
+      injectOverlays() 
+    ]);
 
-  // 3. Initialize UI-Dependent Modules (Safe now)
-  initCart();
-  initUIHandlers();
-  loadComponent('global-footer', 'components/footer.html'); // Non-critical
+    // 3. Initialize UI-Dependent Modules
+    initCart();
+    initUIHandlers();
+    
+    // Non-critical load (don't await)
+    loadComponent('global-footer', 'components/footer.html'); 
+
+  } catch (err) {
+    console.error("CRITICAL SYSTEM FAILURE:", err);
+    // Emergency Fallback: If overlays fail, force show content so site isn't blank
+    document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
+  }
 
   // 4. Register Service Worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
-      .then(() => Logger.log('System: Service Worker Secured'))
-      .catch(err => Logger.log('System: SW Failed', err));
+      .catch(err => console.error('SW Failed:', err));
   }
   
   Logger.log("System: Engine Online");
@@ -41,16 +47,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.body.addEventListener('click', (e) => {
   const trigger = e.target.closest('[data-trigger]');
   if (trigger) {
-    // Allow default behavior only for checkout links or specific exclusions
     if (trigger.tagName !== 'A' || trigger.dataset.trigger.includes('prevent')) {
        e.preventDefault();
     }
-    
     const action = trigger.dataset.trigger;
     const payload = trigger.dataset.payload;
     if (navigator.vibrate) navigator.vibrate(10);
-
-    Logger.log(`[ENGINE] Signal: ${action} >> ${payload || 'void'}`);
     EventBus.emit(action, payload);
   }
 });
@@ -59,8 +61,6 @@ document.body.addEventListener('click', (e) => {
 function initUIHandlers() {
   EventBus.on(EVENTS.MENU_TOGGLE, () => {
     document.getElementById('navOverlay')?.classList.toggle('active');
-    document.getElementById('menuTrigger')?.setAttribute('aria-expanded', 
-      document.getElementById('navOverlay')?.classList.contains('active'));
   });
 
   EventBus.on(EVENTS.SEARCH_TOGGLE, () => {
@@ -76,9 +76,7 @@ function initUIHandlers() {
     localStorage.setItem('kynar_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
   });
   
-  EventBus.on(EVENTS.MODAL_OPEN, (id) => {
-    window.location.href = `product.html?id=${id}`;
-  });
+  EventBus.on(EVENTS.MODAL_OPEN, (id) => window.location.href = `product.html?id=${id}`);
 }
 
 /* --- UTILITIES --- */
@@ -90,13 +88,12 @@ function initTheme() {
 async function injectOverlays() {
   try {
     const res = await fetch('components/overlays.html');
-    if (res.ok) {
-      const html = await res.text();
-      document.body.insertAdjacentHTML('beforeend', html);
-      Logger.log("System: Overlays Injected");
-    }
+    if (!res.ok) throw new Error(`HTTP ${res.status} - File not found`);
+    const html = await res.text();
+    document.body.insertAdjacentHTML('beforeend', html);
   } catch (err) {
-    console.error("Critical: Failed to load overlays", err);
+    console.error("Overlay Injection Failed:", err);
+    // If missing, we still want the site to work, just without the cart sidebar
   }
 }
 

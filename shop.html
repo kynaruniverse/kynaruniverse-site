@@ -94,7 +94,8 @@
       const filterBtns = document.querySelectorAll('.filter-chip');
 
       // --- RENDER LOGIC ---
-      function renderGrid(category = 'all') {
+      // --- RENDER LOGIC ---
+function renderGrid(category = 'all') {
   grid.innerHTML = '<div class="flex-center" style="min-height: 300px;"><p class="text-accent">Loading assets...</p></div>';
   
   requestAnimationFrame(() => {
@@ -114,6 +115,8 @@
       document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
     }, 50);
   });
+}
+
 
       // --- FILTER LOGIC ---
       function updateActiveFilter(category) {
