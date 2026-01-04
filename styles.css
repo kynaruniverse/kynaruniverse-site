@@ -60,10 +60,16 @@
   --space-3xl: 60px;
   --space-section: 120px;
 
-  /* --- LAYOUT --- */
-  --header-height: 70px;
+    /* --- LAYOUT --- */
+  --header-height: 125px; 
   --container-max: 1200px;
   --card-media-width: 220px;
+
+  /* 2. THE TUNABLE VARIABLE */
+  /* Change this number to move page content up/down */
+  --content-offset: 50px;
+    /* 50px = Breathing room. 0px = Touching header. */
+
 
   /* --- PHYSICS --- */
   --radius-sm: 8px;
@@ -204,11 +210,15 @@ input, textarea, button {
   width: 100%; 
   max-width: var(--container-max); 
   margin: 0 auto; 
-  padding-top: calc(var(--header-height) + 50px);
+  
+  /* DYNAMIC MATH: Header Height + Tunable Offset */
+  padding-top: calc(var(--header-height) + var(--content-offset));
+  
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px; 
 }
+
 
 .flex-center { display: flex; align-items: center; justify-content: center; }
 .flex-col { display: flex; flex-direction: column; }
@@ -1476,11 +1486,6 @@ details[open] .faq-question::after {
 /* ==========================================================================
    HEADER UPGRADE V9.2 (Stacked Layout)
    ========================================================================== */
-
-:root {
-  /* Increase header height variable so page content pushes down correctly */
-  --header-height: 140px; 
-}
 
 /* 1. Reset the Header Container */
 .app-header {
