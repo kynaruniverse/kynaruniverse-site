@@ -23,7 +23,7 @@ export function initCheckout() {
       return;
     }
 
-    console.log(`[CHECKOUT] Initializing Overlay: ${url}`);
+    Logger.log(`[CHECKOUT] Initializing Overlay: ${url}`);
     if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
 
     loadLemonSqueezy().then(() => {
@@ -55,7 +55,7 @@ function loadLemonSqueezy() {
     script.defer = true;
     
     script.onload = () => {
-      console.log('[SYSTEM] Lemon Squeezy Secured');
+      Logger.log('[SYSTEM] Lemon Squeezy Secured');
       scriptLoaded = true;
       // Initialize LS Settings
       if (window.LemonSqueezy) {

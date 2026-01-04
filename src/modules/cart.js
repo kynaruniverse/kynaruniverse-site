@@ -20,7 +20,7 @@ export function initCart() {
     if (product && !exists) {
       cart.push(product);
       save();
-      console.log(`[CART] Added ${product.title}`);
+      Logger.log(`[CART] Added ${product.title}`);
       if(navigator.vibrate) navigator.vibrate([15, 30]);
     } else {
       if(navigator.vibrate) navigator.vibrate([10, 10]);

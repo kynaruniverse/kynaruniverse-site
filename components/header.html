@@ -1,69 +1,316 @@
-<div class="container flex-between" style="height: 100%; padding-top: 0; padding-bottom: 0;">
+<!-- ==========================================================================
+     COMPONENT: GLOBAL HEADER v8.0
+     Architecture: Accessible + Progressive + Intelligent
+     ========================================================================== -->
+
+<div class="header-inner container flex-between">
   
+  <!-- LEFT CONTROL CLUSTER -->
   <div class="header-controls left">
-    <button aria-label="Menu" class="nav-icon" id="menuTrigger" data-trigger="menu:toggle">
-      <svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+    <button 
+      aria-label="Open navigation menu" 
+      aria-expanded="false"
+      aria-controls="navOverlay"
+      class="nav-icon" 
+      id="menuTrigger" 
+      data-trigger="menu:toggle"
+    >
+      <svg class="menu-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" aria-hidden="true">
+        <line class="menu-line menu-line-1" x1="3" x2="21" y1="6" y2="6"></line>
+        <line class="menu-line menu-line-2" x1="3" x2="21" y1="12" y2="12"></line>
+        <line class="menu-line menu-line-3" x1="3" x2="21" y1="18" y2="18"></line>
+      </svg>
     </button>
     
-    <button aria-label="Search" class="nav-icon" id="searchTrigger" data-trigger="search:toggle">
-      <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+    <button 
+      aria-label="Open search overlay" 
+      aria-expanded="false"
+      aria-controls="searchOverlay"
+      class="nav-icon" 
+      id="searchTrigger" 
+      data-trigger="search:toggle"
+    >
+      <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+      </svg>
     </button>
   </div>
 
-  <a class="brand-logo" href="index.html">KYNAR.</a>
+  <!-- BRAND LOGO -->
+  <a 
+    class="brand-logo" 
+    href="index.html"
+    aria-label="Kynar Studio - Return to homepage"
+  >
+    KYNAR.
+  </a>
 
+  <!-- RIGHT CONTROL CLUSTER -->
   <div class="header-controls right">
-    <button aria-label="Toggle Theme" class="nav-icon" id="themeToggle" data-trigger="theme:toggle">
-      <svg class="sun-icon" fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line></svg>
-      <svg class="moon-icon" fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <button 
+      aria-label="Toggle dark mode" 
+      aria-pressed="false"
+      class="nav-icon" 
+      id="themeToggle" 
+      data-trigger="theme:toggle"
+      title="Toggle theme"
+    >
+      <svg class="sun-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" x2="12" y1="1" y2="3"></line>
+        <line x1="12" x2="12" y1="21" y2="23"></line>
+        <line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
+        <line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+        <line x1="1" x2="3" y1="12" y2="12"></line>
+        <line x1="21" x2="23" y1="12" y2="12"></line>
+        <line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
+        <line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
     </button>
 
-    <div class="cart-wrapper" style="position: relative;">
-      <button aria-label="Cart" class="nav-icon" data-trigger="cart:toggle" data-payload="open">
-        <svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" x2="21" y1="6" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+    <div class="cart-wrapper">
+      <button 
+        aria-label="Open shopping cart" 
+        aria-expanded="false"
+        aria-controls="cartSidebar"
+        class="nav-icon cart-trigger" 
+        id="cartTrigger"
+        data-trigger="cart:toggle" 
+        data-payload="open"
+      >
+        <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+          <line x1="3" x2="21" y1="6" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
       </button>
-      <div id="cart-badge" class="cart-count-badge">0</div>
+      <div 
+        id="cart-badge" 
+        class="cart-count-badge" 
+        aria-live="polite" 
+        aria-atomic="true"
+        role="status"
+      >
+        <span class="sr-only">Cart items: </span>0
+      </div>
     </div>
   </div>
 </div>
 
-<aside class="cart-sidebar" id="cartSidebar">
-  <div class="flex-between" style="margin-bottom: 40px;">
-    <span class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.2em;">Your Selection</span>
-    <button class="nav-icon" data-trigger="cart:toggle" data-payload="close">✕</button>
-  </div>
-  
-  <div id="cart-items" class="flex-col gap-lg" style="flex-grow: 1; overflow-y: auto;">
-    <p class="text-center text-faded text-sm" style="margin-top: 50px;">Your cart is empty.</p>
-  </div>
-
-  <div style="border-top: 1px solid var(--color-border); padding-top: 20px; margin-top: 20px;">
-    <div class="flex-between" style="margin-bottom: 20px;">
-      <span class="text-bold">Total</span>
-      <span class="text-display text-lg" id="cart-total">£0.00</span>
+<!-- ==========================================================================
+     CART SIDEBAR v2.0 - Enhanced with Accessibility & Empty States
+     ========================================================================== -->
+<aside 
+  class="cart-sidebar" 
+  id="cartSidebar"
+  role="dialog"
+  aria-label="Shopping cart"
+  aria-modal="true"
+  aria-hidden="true"
+>
+  <!-- HEADER -->
+  <div class="cart-sidebar__header">
+    <div class="flex-between">
+      <h2 class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.2em; margin: 0;">
+        Your Selection
+      </h2>
+      <button 
+        class="nav-icon" 
+        data-trigger="cart:toggle" 
+        data-payload="close"
+        aria-label="Close cart"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
     
+    <!-- Quick Stats Bar -->
+    <div class="cart-stats" id="cart-stats" style="margin-top: 20px; padding: 12px; background: rgba(197, 160, 89, 0.05); border-radius: 8px; display: none;">
+      <div class="flex-between text-xs">
+        <span class="text-faded">Items</span>
+        <span class="text-bold" id="cart-item-count">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEMS CONTAINER -->
+  <div 
+    id="cart-items" 
+    class="cart-sidebar__body"
+    role="list"
+    aria-label="Cart items"
+  >
+    <!-- Empty State -->
+    <div class="cart-empty-state" id="cart-empty-state">
+      <div style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;">🛒</div>
+      <p class="text-center text-bold" style="margin-bottom: 8px;">Your cart is empty</p>
+      <p class="text-center text-faded text-sm">Add assets to get started</p>
+      <a href="shop.html" class="btn btn--outline" style="margin-top: 24px; width: 100%;">
+        Browse Shop
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER / CHECKOUT -->
+  <div class="cart-sidebar__footer">
+    <!-- Discount Code (Optional Enhancement) -->
+    <details class="discount-toggle" id="discount-section" style="margin-bottom: 20px; display: none;">
+      <summary class="text-xs text-bold text-upper text-faded" style="cursor: pointer; letter-spacing: 0.1em;">
+        Have a code? →
+      </summary>
+      <div style="margin-top: 12px;">
+        <input 
+          type="text" 
+          class="form-input" 
+          placeholder="Enter code..." 
+          id="discount-code-input"
+          style="font-size: 0.85rem; padding: 12px 16px;"
+        >
+        <button class="btn btn--ghost w-full" style="margin-top: 8px; font-size: 0.75rem;">Apply</button>
+      </div>
+    </details>
+
+    <!-- Total Calculation -->
+    <div class="cart-total-section">
+      <div class="flex-between" style="margin-bottom: 12px;">
+        <span class="text-upper text-xs text-faded" style="letter-spacing: 0.1em;">Subtotal</span>
+        <span class="text-bold" id="cart-subtotal">£0.00</span>
+      </div>
+      <div class="flex-between" style="padding-top: 12px; border-top: 1px solid var(--color-border); margin-bottom: 24px;">
+        <span class="text-bold">Total</span>
+        <span class="text-display text-lg" id="cart-total" style="color: var(--color-accent);">£0.00</span>
+      </div>
+    </div>
+    
+    <!-- Checkout CTA -->
     <button 
       class="btn btn--primary w-full"
       id="cart-checkout-btn"
-      disabled 
+      disabled
+      aria-label="Proceed to secure checkout"
     > 
-      Proceed to Checkout 
+      <span>Proceed to Checkout</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
     </button>
+
+    <!-- Trust Badges -->
+    <div class="cart-trust-bar" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border);">
+      <div class="flex-center gap-md text-xs text-faded text-upper" style="letter-spacing: 0.05em;">
+        <span>🔒 Secure</span>
+        <span>•</span>
+        <span>⚡ Instant</span>
+      </div>
+    </div>
   </div>
 </aside>
 
-<div class="nav-overlay" id="navOverlay">
-  <button id="closeMenu" class="nav-icon" data-trigger="menu:toggle">✕</button>
-  <nav class="kinetic-nav">
-    <a class="nav-menu-link" href="index.html">Index</a>
-    <a class="nav-menu-link" href="shop.html">Shop</a>
-    <a class="nav-menu-link" href="newsletter.html">Community</a>
-    <a class="nav-menu-link" href="contact.html">Concierge</a>
+<!-- BACKDROP FOR CART SIDEBAR -->
+<div 
+  class="cart-backdrop" 
+  id="cart-backdrop"
+  aria-hidden="true"
+></div>
+
+<!-- ==========================================================================
+     NAVIGATION OVERLAY v2.0 - Enhanced Animations
+     ========================================================================== -->
+<div 
+  class="nav-overlay" 
+  id="navOverlay"
+  role="dialog"
+  aria-label="Main navigation"
+  aria-modal="true"
+  aria-hidden="true"
+>
+  <button 
+    id="closeMenu" 
+    class="nav-icon close-overlay-btn" 
+    data-trigger="menu:toggle"
+    aria-label="Close navigation menu"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  
+  <nav class="kinetic-nav" role="navigation" aria-label="Main menu">
+    <a class="nav-menu-link" href="index.html" data-nav-item>
+      <span class="nav-link-number">01</span>
+      <span class="nav-link-text">Index</span>
+    </a>
+    <a class="nav-menu-link" href="shop.html" data-nav-item>
+      <span class="nav-link-number">02</span>
+      <span class="nav-link-text">Shop</span>
+    </a>
+    <a class="nav-menu-link" href="newsletter.html" data-nav-item>
+      <span class="nav-link-number">03</span>
+      <span class="nav-link-text">Community</span>
+    </a>
+    <a class="nav-menu-link" href="contact.html" data-nav-item>
+      <span class="nav-link-number">04</span>
+      <span class="nav-link-text">Concierge</span>
+    </a>
   </nav>
+
+  <!-- Navigation Footer -->
+  <div class="nav-overlay-footer">
+    <div class="text-xs text-faded text-upper" style="letter-spacing: 0.15em;">
+      Kynar Studio · 2026
+    </div>
+  </div>
 </div>
 
-<div id="searchOverlay">
-  <button class="nav-icon" data-trigger="search:toggle" style="position: absolute; top: 30px; right: 30px;">✕</button>
-  <input class="form-input" placeholder="Type to search assets..." style="font-size: 2rem; border: none; border-bottom: 2px solid var(--color-accent); background: transparent; padding: 20px 0; text-align: center; max-width: 800px;" type="text">
+<!-- ==========================================================================
+     SEARCH OVERLAY v2.0 - Live Search with Results
+     ========================================================================== -->
+<div 
+  id="searchOverlay"
+  role="dialog"
+  aria-label="Search products"
+  aria-modal="true"
+  aria-hidden="true"
+>
+  <div class="search-overlay-content">
+    <button 
+      class="nav-icon close-overlay-btn" 
+      data-trigger="search:toggle"
+      aria-label="Close search"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="search-input-wrapper">
+      <input 
+        class="search-input" 
+        id="search-input"
+        type="search"
+        placeholder="Search assets..." 
+        aria-label="Search for products"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <div class="search-input-underline"></div>
+    </div>
+
+    <!-- Search Results Container -->
+    <div id="search-results" class="search-results" role="region" aria-live="polite">
+      <div class="search-help text-center text-faded text-sm">
+        <p>Try searching for "finance", "notion", or "planner"</p>
+      </div>
+    </div>
+  </div>
 </div>

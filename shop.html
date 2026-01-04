@@ -2,6 +2,19 @@
 <html lang="en">
   
   <head>
+    <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; 
+  style-src 'self' 'unsafe-inline'; 
+  img-src 'self' data: https:; 
+  font-src 'self';
+  connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;
+">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Kynar Studio">
+    <meta name="keywords" content="digital assets, notion templates, productivity tools, creative resources">
+    <link rel="canonical" href="https://www.kynaruniverse.co.uk/CURRENT_PAGE.html">
+
     <meta charset="UTF-8" />
     <meta 
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
@@ -19,7 +32,7 @@
     if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.body.classList.add("dark-mode"); // Changed from documentElement
     }
-  } catch (e) { console.log('Theme access denied'); }
+  } catch (e) { Logger.log('Theme access denied'); }
 })();
     </script>
 
@@ -82,27 +95,25 @@
 
       // --- RENDER LOGIC ---
       function renderGrid(category = 'all') {
-        grid.style.opacity = '0';
-        
-        requestAnimationFrame(() => {
-          const filtered = category === 'all' 
-            ? VAULT 
-            : VAULT.filter(p => p.category.toLowerCase() === category.toLowerCase());
+  grid.innerHTML = '<div class="flex-center" style="min-height: 300px;"><p class="text-accent">Loading assets...</p></div>';
+  
+  requestAnimationFrame(() => {
+    const filtered = category === 'all' 
+      ? VAULT 
+      : VAULT.filter(p => p.category.toLowerCase() === category.toLowerCase());
 
-          if (filtered.length === 0) {
-            emptyState.style.display = 'block';
-            grid.innerHTML = '';
-          } else {
-            emptyState.style.display = 'none';
-            grid.innerHTML = filtered.map(p => renderCard(p)).join('');
-          }
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+      grid.innerHTML = '';
+    } else {
+      emptyState.style.display = 'none';
+      grid.innerHTML = filtered.map(p => renderCard(p)).join('');
+    }
 
-          grid.style.opacity = '1';
-          setTimeout(() => {
-            document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
-          }, 50);
-        });
-      }
+    setTimeout(() => {
+      document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('reveal-visible'));
+    }, 50);
+  });
 
       // --- FILTER LOGIC ---
       function updateActiveFilter(category) {

@@ -2,6 +2,14 @@
 <html lang="en">
   
   <head>
+    <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; 
+  style-src 'self' 'unsafe-inline'; 
+  img-src 'self' data: https:; 
+  font-src 'self';
+  connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;
+">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Kynar Studio">
     <link rel="canonical" href="https://www.kynaruniverse.co.uk/CURRENT_PAGE.html">
@@ -23,7 +31,7 @@
     if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.body.classList.add("dark-mode"); // Changed from documentElement
     }
-  } catch (e) { console.log('Theme access denied'); }
+  } catch (e) { Logger.log('Theme access denied'); }
 })();
     
 

@@ -9,7 +9,7 @@ import { initCheckout } from './src/modules/checkout.js';
 
 /* --- BOOT SEQUENCE --- */
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("System: Engine Online");
+  Logger.log("System: Engine Online");
 
   // 1. Initialize Modules
   initTheme();
@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Register Service Worker (Scale)
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('System: Service Worker Secured'))
-      .catch(err => console.log('System: SW Failed', err));
+      .then(() => Logger.log('System: Service Worker Secured'))
+      .catch(err => Logger.log('System: SW Failed', err));
   }
 });
 
@@ -44,7 +44,7 @@ document.body.addEventListener('click', (e) => {
 
     if (navigator.vibrate) navigator.vibrate(10);
 
-    console.log(`[ENGINE] Signal: ${action} >> ${payload || 'void'}`);
+    Logger.log(`[ENGINE] Signal: ${action} >> ${payload || 'void'}`);
     EventBus.emit(action, payload);
     return;
   }
