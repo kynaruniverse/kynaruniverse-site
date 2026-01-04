@@ -431,65 +431,92 @@ textarea.form-input { min-height: 150px; resize: none; }
   .product-card__actions { justify-content: center; }
 }
 
-/* --- FILTER BAR (Floating Cloud Pills) --- */
+/* --- FILTER BAR (Premium Matte Ceramic) --- */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Tighter gap */
+  gap: 12px;
   justify-content: center;
-  margin: 30px auto;
-  max-width: 800px; /* Prevents them from spreading too wide */
+  margin: 40px auto;
+  max-width: 900px;
 }
 
 .filter-chip {
   position: relative;
   appearance: none;
-  border: none; /* No Border */
-  border-radius: 50px; /* Full Pill */
-  padding: 10px 24px; /* Smaller, chic sizing */
+  
+  /* 1. Subtle Border (Glassy Edge) */
+  border: 1px solid rgba(255, 255, 255, 0.6); 
+  border-radius: 100px;
+  padding: 12px 32px;
   
   /* Typography */
   font-family: var(--font-body);
-  font-size: 0.75rem; /* Smaller, elegant text */
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink-medium); /* Softer text color */
+  color: var(--color-ink-deep);
   
-  /* 3D Floating Base */
-  background: var(--btn-bg);
+  /* 2. Volume Gradient (Simulates Curve) */
+  /* We layer a white gradient over the base color to create lighting */
+  background-image: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.6) 0%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-color: var(--btn-base);
+  
+  /* 3. Colored Shadow (The "Aura") */
   box-shadow: 
-    0 4px 10px rgba(15, 61, 48, 0.03), /* Soft lift */
-    inset 0 2px 0 rgba(255,255,255,0.8); /* Top highlight (Glassy edge) */
+    0 4px 12px var(--btn-shadow),
+    inset 0 0 0 1px rgba(255,255,255,0.2); /* Subtle inner ring */
     
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* --- WHISPER PASTEL PALETTE (New Softer Colors) --- */
-.filter-chip[data-cat="all"] { --btn-bg: #f7f7f5; }        /* Off-White */
-.filter-chip[data-cat="personal"] { --btn-bg: #edf2e6; }   /* Whisper Sage */
-.filter-chip[data-cat="work"] { --btn-bg: #f5ecec; }       /* Whisper Clay */
-.filter-chip[data-cat="creative"] { --btn-bg: #e8f1f5; }   /* Whisper Sky */
-.filter-chip[data-cat="education"] { --btn-bg: #fffaf0; }  /* Whisper Peach */
+/* --- CERAMIC PALETTE (Base + Colored Glow) --- */
+.filter-chip[data-cat="all"] { 
+  --btn-base: #f0f0f0; 
+  --btn-shadow: rgba(0,0,0,0.05); 
+}
+.filter-chip[data-cat="personal"] { 
+  --btn-base: #e6efe8; /* Soft Sage */
+  --btn-shadow: rgba(42, 157, 143, 0.1); /* Green Glow */
+}
+.filter-chip[data-cat="work"] { 
+  --btn-base: #f2e9e9; /* Soft Clay */
+  --btn-shadow: rgba(230, 57, 70, 0.08); /* Red Glow */
+}
+.filter-chip[data-cat="creative"] { 
+  --btn-base: #e8f0f5; /* Soft Sky */
+  --btn-shadow: rgba(74, 144, 226, 0.1); /* Blue Glow */
+}
+.filter-chip[data-cat="education"] { 
+  --btn-base: #fbf7ec; /* Soft Bone */
+  --btn-shadow: rgba(197, 160, 89, 0.1); /* Gold Glow */
+}
 
-/* --- HOVER STATE (The "Float") --- */
+/* --- HOVER STATE (Lift & Brighten) --- */
 .filter-chip:hover {
-  transform: translateY(-3px); /* Physical lift */
-  color: var(--color-ink-deep); /* Darken text slightly */
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.9);
   box-shadow: 
-    0 10px 20px rgba(15, 61, 48, 0.08), /* Deeper shadow */
-    inset 0 1px 0 rgba(255,255,255,1);
+    0 10px 25px var(--btn-shadow), /* Deeper Glow */
+    inset 0 0 0 1px rgba(255,255,255,0.5);
 }
 
-/* --- ACTIVE STATE (The "Press") --- */
+/* --- ACTIVE STATE (Solid Gold) --- */
 .filter-chip.active {
-  background: var(--color-accent); /* Gold when active */
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.05));
+  background-color: var(--color-accent);
   color: var(--color-white);
+  border-color: var(--color-accent);
   box-shadow: 
-    0 2px 5px rgba(197, 160, 89, 0.4), /* Gold Glow */
-    inset 0 2px 4px rgba(0,0,0,0.1); /* Inner shadow for depth */
-  transform: translateY(0);
+    0 8px 20px rgba(197, 160, 89, 0.3),
+    inset 0 2px 4px rgba(0,0,0,0.1); /* Deep pressed feel */
+  transform: translateY(-1px);
 }
 
 
