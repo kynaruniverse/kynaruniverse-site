@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     
-    <title>Kynar Union | Access Protocol</title>
+    <title>Community Operations | KYNAR</title>
     
     <link href="styles.css" rel="stylesheet" />
 
@@ -32,62 +32,84 @@
 
     <main class="container">
       
-      <div class="newsletter-hero text-center">
-        <span class="tag-pill mb-lg">Frequency: Weekly // Status: Open</span>
-        <h1 class="heading-xl text-upper mb-lg">Join the<br>Kynar Union</h1>
-        <p class="text-lg mx-auto" style="max-width: 50ch;">
-          We don't spam. We signal. Secure your place in the creative elite for early asset drops, studio codes, and high-fidelity design protocols.
+      <div class="dashboard-header text-center">
+        <span class="tag-pill mb-lg">System: Online // User: Guest</span>
+        <h1 class="heading-xl text-upper">Operations Center</h1>
+        <p class="text-lg mx-auto text-faded" style="max-width: 50ch; margin-top: 16px;">
+          The central hub for asset management, comms, and studio requests.
         </p>
       </div>
 
-      <div class="newsletter-terminal">
-        <form class="newsletter-form" action="https://formspree.io/f/mlgekbwb" method="POST">
-          <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=newsletter" />
+      <div class="dashboard-grid">
 
-          <div class="terminal-group">
-            <label for="email" class="sr-only">Email Address</label>
-            <input 
-              type="email" 
-              name="email" 
-              id="email" 
-              class="terminal-input" 
-              placeholder="ENTER_EMAIL_ADDRESS..." 
-              required
-            >
-            <button type="submit" class="btn btn--primary terminal-btn">
-              Initiate Uplink
-            </button>
+        <div class="dash-card full-width main-uplink">
+          <div class="dash-card-header">
+            <span class="dash-icon">📡</span>
+            <h2 class="text-upper text-bold">The Kynar Union</h2>
           </div>
-          <p class="text-xs text-faded mt-sm text-center">
-            *By joining, you accept the creative protocols. Opt-out anytime.
+          <p class="text-sm mb-lg">
+            Initialize uplink to receive weekly asset codes, design protocols, and early access drops. Zero noise.
           </p>
-        </form>
-      </div>
-
-      <div class="community-grid">
-        
-        <div class="benefit-card">
-          <div class="benefit-icon">01</div>
-          <h3 class="text-upper text-bold">Zero Noise</h3>
-          <p class="text-sm">
-            No fluff. Only highly curated design resources, inspiration, and studio updates. If it's not essential, we don't send it.
-          </p>
+          
+          <form class="newsletter-form" action="https://formspree.io/f/mlgekbwb" method="POST">
+            <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=newsletter" />
+            <div class="terminal-group">
+              <input 
+                type="email" 
+                name="email" 
+                class="terminal-input" 
+                placeholder="ENTER_EMAIL_ADDRESS..." 
+                required
+              >
+              <button type="submit" class="btn btn--primary terminal-btn">
+                Connect
+              </button>
+            </div>
+          </form>
         </div>
 
-        <div class="benefit-card">
-          <div class="benefit-icon">02</div>
-          <h3 class="text-upper text-bold">Early Access</h3>
-          <p class="text-sm">
-            Union members get access to new asset packs 24 hours before the public protocol. Secure the goods first.
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <span class="dash-icon">↺</span>
+            <h3 class="text-upper text-bold">Library Access</h3>
+          </div>
+          <p class="text-sm text-faded" style="flex-grow: 1;">
+            Lost your download link? Enter your email to recover your full purchase history.
           </p>
+          <a href="#" class="btn btn--outline w-full mt-auto">Recover Orders</a>
         </div>
 
-        <div class="benefit-card">
-          <div class="benefit-icon">03</div>
-          <h3 class="text-upper text-bold">Studio Codes</h3>
-          <p class="text-sm">
-            Exclusive discount codes and freebie drops that never hit the main shop page. Reserved for the inner circle.
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <span class="dash-icon">⚡</span>
+            <h3 class="text-upper text-bold">Request Asset</h3>
+          </div>
+          <p class="text-sm text-faded" style="flex-grow: 1;">
+            Need a specific tool or mockup? Submit a requisition order directly to the studio.
           </p>
+          <a href="contact.html" class="btn btn--outline w-full mt-auto">Submit Request</a>
+        </div>
+
+        <div class="dash-card highlight-border">
+          <div class="dash-card-header">
+            <span class="dash-icon">🤝</span>
+            <h3 class="text-upper text-bold">Partner Program</h3>
+          </div>
+          <p class="text-sm text-faded">
+            Earn 30% commission on every asset you refer.
+          </p>
+          <a href="#" class="link-arrow mt-auto">Apply for Access</a>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <span class="dash-icon">💬</span>
+            <h3 class="text-upper text-bold">Live Server</h3>
+          </div>
+          <p class="text-sm text-faded">
+            Join 500+ designers in the live channel.
+          </p>
+          <a href="#" class="link-arrow mt-auto">Join Discord</a>
         </div>
 
       </div>
