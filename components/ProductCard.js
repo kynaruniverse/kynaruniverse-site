@@ -1,35 +1,47 @@
 /* ==========================================================================
-   COMPONENT | PRODUCT CARD
+   COMPONENT | PRODUCT CARD (MOCKUP MATCH V1.0)
    ========================================================================== */
 export function renderCard(p) {
   const isLocked = p.status === 'coming-soon';
   const buttonLabel = isLocked ? 'Locked' : 'Add To Cart';
   const modifierClass = isLocked ? 'product-card--locked' : '';
   
+  // Truncate long description for the "Body" text
+  const bodyText = p.longDesc ? p.longDesc.substring(0, 80) + '...' : 'Premium asset description...';
+
   return `
     <article class="product-card ${modifierClass} reveal-up" data-id="${p.id}">
-      <div class="product-card__media">
+      
+      <div class="product-card__col-left">
         <div class="product-card__image-box" style="background: ${p.accentColor || 'var(--color-sage)'}">
           <img src="${p.image}" alt="${p.title}" loading="lazy">
         </div>
-        <span class="product-card__price">${p.price}</span>
+        <div class="product-card__price">${p.price}</div>
       </div>
 
-      <div class="product-card__body">
+      <div class="product-card__col-right">
+        
         <div class="product-card__header">
            <h3 class="product-card__title">${p.title}</h3>
-          <span class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.1em;">${p.tag}</span>
+           <span class="product-card__subtitle">${p.shortDesc}</span>
         </div>
 
-        <p class="card__desc" style="opacity: 0.7; font-size: 0.95rem; margin-bottom: 20px;">${p.shortDesc}</p>
+        <div class="product-card__tags">
+            <span class="tag-pill">${p.tag}</span>
+            <span class="tag-pill">Digital</span>
+        </div>
+
+        <p class="product-card__body-text">
+          ${bodyText} <span class="text-link">Read More</span>
+        </p>
 
         <div class="product-card__actions">
-          <button class="btn btn--ghost" data-trigger="modal:open" data-payload="${p.id}">
-            Details
+          <button class="btn btn--outline btn--sm" data-trigger="modal:open" data-payload="${p.id}">
+            View Details
           </button>
           
           <button 
-            class="btn btn--primary" 
+            class="btn btn--outline btn--sm" 
             data-trigger="cart:add" 
             data-payload="${p.id}"
             ${isLocked ? 'disabled' : ''}
