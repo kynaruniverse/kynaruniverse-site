@@ -1,121 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-  <head>
-    <meta http-equiv="Content-Security-Policy" content="
-  default-src 'self'; 
-  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; 
-  style-src 'self' 'unsafe-inline'; 
-  img-src 'self' data: https:; 
-  font-src 'self';
-  connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;
-">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Kynar Studio">
-    <link rel="canonical" href="https://www.kynaruniverse.co.uk/CURRENT_PAGE.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Access | KYNAR</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    <meta charset="UTF-8" />
-    <meta 
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" 
-      name="viewport" 
-    />
+  <div id="header-placeholder"></div>
+
+  <main class="container">
     
-    <title>Community Shop | Kynar Studio</title>
-    
-    <link href="styles.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <div class="newsletter-hero text-center reveal-up">
+      <span class="tag-pill mb-lg">Frequency: Weekly // Status: Open</span>
+      <h1 class="heading-xl text-upper mb-lg">Join the<br>Kynar Union</h1>
+      <p class="text-lg mx-auto" style="max-width: 50ch;">
+        We don't spam. We signal. Secure your place in the creative elite for early asset drops, studio codes, and high-fidelity design protocols.
+      </p>
+    </div>
 
-<script>
-(function() {
-  try {
-    const savedTheme = localStorage.getItem("kynar_theme");
-    if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.body.classList.add("dark-mode");
-    }
-  } catch (e) { console.log('Theme access denied'); }
-})();
-</script>
-
-<script type="module" src="ui-core.js"></script>
-
-    
-    <meta content="The Community Shop | Kynar Studio" property="og:title">
-    <meta content="Join the network for high-fidelity creative dispatches." property="og:description">
-    <meta content="https://www.kynaruniverse.co.uk/newsletter.html" property="og:url">
-    <meta content="https://www.kynaruniverse.co.uk/assets/images/og-preview.webp" property="og:image">
-  </head>
-
-  <body>
-
-    <header class="app-header" id="global-header"></header>
-
-    <main class="container flex-col flex-center" style="min-height: 85vh;">
-      
-      <div class="reveal-up text-center" style="max-width: 550px; margin-top: 60px;">
-        <div style="font-size: 3.5rem; margin-bottom: 25px;">📜</div>
-        
-        <span class="text-accent text-upper text-bold text-sm" style="letter-spacing: 0.25em;">The Community Shop</span>
-
-        <h1 style="margin: 20px 0;">
-          Join the <br /><span style="color: var(--ink-medium)">Kynar Network.</span>
-        </h1>
-
-        <p style="font-size: 1.15rem; margin-bottom: 45px;">
-          Access high-fidelity insights, exclusive asset drops, and creative strategies delivered weekly to your inbox.
+    <div class="newsletter-terminal reveal-up delay-100">
+      <form class="newsletter-form" action="#" method="POST"> <div class="terminal-group">
+          <label for="email" class="sr-only">Email Address</label>
+          <input type="email" id="email" class="terminal-input" placeholder="ENTER_EMAIL_ADDRESS..." required>
+          <button type="submit" class="btn btn--primary terminal-btn">
+            Initiate Uplink
+          </button>
+        </div>
+        <p class="text-xs text-faded mt-sm text-center">
+          *By joining, you accept the creative protocols. Opt-out anytime.
         </p>
+      </form>
+    </div>
 
-        <div class="product-card newsletter-form-wrap" style="padding: 10px; border-radius: 50px; min-height: auto; grid-template-columns: 1fr; gap: 0; display: flex;">
-          <form action="https://formspree.io/f/mlgekbwb" method="POST" class="w-full flex-row" style="gap: 10px;">
-            <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=newsletter" />
-            
-            <input 
-              class="form-input" 
-              name="email" 
-              placeholder="Shop access email..." 
-              required 
-              style="border: none; box-shadow: none; background: transparent; padding-left: 20px;"
-              type="email" 
-            />
-            
-            <button 
-              class="btn btn--primary" 
-              onclick="if(navigator.vibrate) navigator.vibrate([20, 40]);" 
-              style="border-radius: 40px; white-space: nowrap; flex-shrink: 0;" 
-              type="submit"
-            >
-              Join Now
-            </button>
-          </form>
-        </div>
-
-        <div class="flex-center gap-md text-xs text-upper text-bold text-faded" style="margin-top: 35px; letter-spacing: 0.15em;">
-          <span>🔒 End-to-End Secure</span>
-          <span>•</span>
-          <span>Zero Spam Policy</span>
-        </div>
+    <div class="community-grid reveal-up delay-200">
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">01</div>
+        <h3 class="text-upper text-bold">Zero Noise</h3>
+        <p class="text-sm">
+          No fluff. Only highly curated design resources, inspiration, and studio updates. If it's not essential, we don't send it.
+        </p>
       </div>
 
-      <section class="w-full reveal-up" style="max-width: 800px; margin-top: 120px; margin-bottom: 60px;">
-        <h3 class="text-center text-upper text-faded text-sm" style="letter-spacing: 0.2em; margin-bottom: 40px;">Previous Dispatches</h3>
+      <div class="benefit-card">
+        <div class="benefit-icon">02</div>
+        <h3 class="text-upper text-bold">Early Access</h3>
+        <p class="text-sm">
+          Union members get access to new asset packs 24 hours before the public protocol. Secure the goods first.
+        </p>
+      </div>
 
-        <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-          
-          <article class="card" style="border-left: 4px solid var(--accent-gold);">
-            <span class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.1em;">Dispatch #02</span>
-            <h4 class="text-display" style="font-size: 1.2rem; margin: 12px 0;">The 2026 Asset Economy</h4>
-            <p class="text-sm">Analyzing the shift toward minimalist, high-utility digital products in the creative space.</p>
-          </article>
+      <div class="benefit-card">
+        <div class="benefit-icon">03</div>
+        <h3 class="text-upper text-bold">Studio Codes</h3>
+        <p class="text-sm">
+          Exclusive discount codes and freebie drops that never hit the main shop page. Reserved for the inner circle.
+        </p>
+      </div>
 
-          <article class="card" style="border-left: 4px solid var(--accent-gold);">
-            <span class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.1em;">Dispatch #01</span>
-            <h4 class="text-display" style="font-size: 1.2rem; margin: 12px 0;">Design as a Service</h4>
-            <p class="text-sm">How template creators are moving from one-off sales to recurring community memberships.</p>
-          </article>
+    </div>
 
-        </div>
-      </section>
-    </main>
+  </main>
 
-    <footer id="global-footer"></footer>
-  </body>
+  <div id="footer-placeholder"></div>
+
+  <script src="ui-core.js"></script>
+  <script>
+    // Quick script to handle the header/footer load if you aren't using a static site generator
+    // If you are pasting the header code manually, you can remove this script block.
+    // Ideally, this matches how you are loading header/footer in other pages.
+  </script>
+</body>
 </html>

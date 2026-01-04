@@ -1784,3 +1784,121 @@ body.dark-mode .header-search-bar {
     align-items: flex-start;
   }
 }
+
+/* #region 7. PAGE: NEWSLETTER */
+
+/* ==========================================================================
+   PAGE: NEWSLETTER / COMMUNITY
+   ========================================================================== */
+
+/* 1. Hero Spacing */
+.newsletter-hero {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* 2. The Terminal (Input Field) */
+.newsletter-terminal {
+  max-width: 600px;
+  margin: 0 auto 100px;
+  position: relative;
+}
+
+.terminal-group {
+  display: flex;
+  gap: 10px;
+  background: var(--color-bg-card);
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 100px; /* Pill shape container */
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.terminal-group:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-hover);
+}
+
+.terminal-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  padding-left: 20px;
+  font-family: var(--font-display); /* Using the display font for style */
+  font-size: 1rem;
+  color: var(--color-text-main);
+  outline: none;
+  text-transform: uppercase; /* Makes input look like code */
+  letter-spacing: 0.05em;
+}
+
+.terminal-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.terminal-btn {
+  padding: 12px 24px; /* Slightly tighter than normal buttons */
+  flex-shrink: 0;
+}
+
+/* 3. The Value Grid */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 80px;
+  margin-bottom: 80px;
+}
+
+.benefit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  background: var(--color-bg-card);
+  border-color: var(--color-border);
+  transform: translateY(-5px);
+}
+
+.benefit-icon {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-border); /* Subtle background number */
+  line-height: 1;
+  margin-bottom: -10px;
+  transition: color 0.3s ease;
+}
+
+.benefit-card:hover .benefit-icon {
+  color: var(--color-accent); /* Lights up on hover */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .terminal-group {
+    flex-direction: column;
+    border-radius: var(--radius-md); /* Box shape on mobile */
+    padding: 16px;
+  }
+  
+  .terminal-input {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  
+  .terminal-btn {
+    width: 100%;
+  }
+}
