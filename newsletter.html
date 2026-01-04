@@ -4,7 +4,6 @@
   <head>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Kynar Studio">
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     
@@ -15,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
     <script>
+    /* Dark Mode Check */
     (function() {
       try {
         const savedTheme = localStorage.getItem("kynar_theme");
@@ -24,8 +24,6 @@
       } catch (e) { console.log('Theme access denied'); }
     })();
     </script>
-
-    <script type="module" src="ui-core.js"></script>
   </head>
 
   <body>
@@ -34,7 +32,7 @@
 
     <main class="container">
       
-      <div class="newsletter-hero text-center reveal-up">
+      <div class="newsletter-hero text-center">
         <span class="tag-pill mb-lg">Frequency: Weekly // Status: Open</span>
         <h1 class="heading-xl text-upper mb-lg">Join the<br>Kynar Union</h1>
         <p class="text-lg mx-auto" style="max-width: 50ch;">
@@ -42,9 +40,8 @@
         </p>
       </div>
 
-      <div class="newsletter-terminal reveal-up delay-100">
+      <div class="newsletter-terminal">
         <form class="newsletter-form" action="https://formspree.io/f/mlgekbwb" method="POST">
-          
           <input name="_next" type="hidden" value="https://www.kynaruniverse.co.uk/success.html/?type=newsletter" />
 
           <div class="terminal-group">
@@ -67,7 +64,7 @@
         </form>
       </div>
 
-      <div class="community-grid reveal-up delay-200">
+      <div class="community-grid">
         
         <div class="benefit-card">
           <div class="benefit-icon">01</div>
@@ -98,6 +95,8 @@
     </main>
 
     <footer id="global-footer"></footer>
+    
+    <script type="module" src="ui-core.js"></script>
     
   </body>
 </html>

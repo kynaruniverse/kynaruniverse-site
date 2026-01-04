@@ -107,4 +107,3 @@ async function loadComponent(elementId, path) {
     console.error(`Failed to load ${path}`, err);
   }
 }
-
