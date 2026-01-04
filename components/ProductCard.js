@@ -1,13 +1,15 @@
 /* ==========================================================================
-   COMPONENT | PRODUCT CARD (MOCKUP MATCH V1.0)
+   COMPONENT | PRODUCT CARD (LIST VIEW LAYOUT)
    ========================================================================== */
 export function renderCard(p) {
   const isLocked = p.status === 'coming-soon';
-  const buttonLabel = isLocked ? 'Locked' : 'Add To Cart';
+  const buttonLabel = isLocked ? 'LOCKED' : 'ADD TO CART';
   const modifierClass = isLocked ? 'product-card--locked' : '';
   
-  // Truncate long description for the "Body" text
-  const bodyText = p.longDesc ? p.longDesc.substring(0, 80) + '...' : 'Premium asset description...';
+  // Create a "Read More" snippet
+  const description = p.shortDesc.length > 60 
+    ? p.shortDesc.substring(0, 60) + '...' 
+    : p.shortDesc;
 
   return `
     <article class="product-card ${modifierClass} reveal-up" data-id="${p.id}">
@@ -23,7 +25,7 @@ export function renderCard(p) {
         
         <div class="product-card__header">
            <h3 class="product-card__title">${p.title}</h3>
-           <span class="product-card__subtitle">${p.shortDesc}</span>
+           <span class="product-card__subtitle">Complete wealth management</span>
         </div>
 
         <div class="product-card__tags">
@@ -32,12 +34,12 @@ export function renderCard(p) {
         </div>
 
         <p class="product-card__body-text">
-          ${bodyText} <span class="text-link">Read More</span>
+          ${description} <span class="text-link" data-trigger="modal:open" data-payload="${p.id}">Read More</span>
         </p>
 
         <div class="product-card__actions">
           <button class="btn btn--outline btn--sm" data-trigger="modal:open" data-payload="${p.id}">
-            View Details
+            VIEW DETAILS
           </button>
           
           <button 
