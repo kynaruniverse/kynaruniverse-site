@@ -2026,13 +2026,14 @@ body.dark-mode .header-search-bar {
   color: var(--color-text-main);
 }
 
-/* 4. Action Bar */
+/* 4. Action Bar (Desktop Default) */
 .action-bar {
   display: flex;
   align-items: center;
   gap: 20px;
-  background: var(--color-bg-body); /* Covers content behind it on scroll */
+  background: var(--color-bg-body); 
   padding-top: 20px;
+  margin-top: 20px;
   border-top: 1px solid var(--color-border);
 }
 
@@ -2040,7 +2041,7 @@ body.dark-mode .header-search-bar {
 @media (max-width: 900px) {
   .product-spec-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
   
   .spec-visual {
@@ -2049,25 +2050,27 @@ body.dark-mode .header-search-bar {
 
   .human-note-card {
     margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   
-  /* Mobile Sticky Footer for Action Button */
+  /* CRITICAL: Mobile Sticky Footer Override */
   .action-bar.sticky-bottom {
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
-    padding: 20px;
-    background: var(--color-bg-card);
+    margin: 0; /* Reset margins */
+    padding: 16px 20px; /* Tighter padding for mobile */
+    background: var(--color-bg-card); /* Distinct layer */
     border-top: 1px solid var(--color-border);
-    z-index: 100;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+    z-index: 999; /* Max layer */
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.08); /* Lifted look */
   }
   
-  /* Add padding to page bottom so content isn't hidden behind sticky bar */
+  /* Ensure main content clears the fixed footer */
   main.container {
-    padding-bottom: 100px; 
+    padding-bottom: 120px; 
   }
 }
 /* #endregion */
