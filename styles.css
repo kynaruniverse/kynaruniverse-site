@@ -2074,3 +2074,15 @@ body.dark-mode .header-search-bar {
   }
 }
 /* #endregion */
+
+
+/* SAFETY OVERRIDE: Ensures content is visible if JS fails */
+@media (scripting: none), (max-width: 1px) {
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Temporary Debug: Uncomment the line below if screen is still blank */
+/* .reveal-up { opacity: 1 !important; transform: none !important; } */

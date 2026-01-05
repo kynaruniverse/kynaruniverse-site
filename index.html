@@ -12,16 +12,6 @@
   <link href="styles.css" rel="stylesheet" />
   
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-  <script>
-    (function() {
-      try {
-        const savedTheme = localStorage.getItem("kynar_theme");
-        if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.body.classList.add("dark-mode");
-        }
-      } catch (e) { console.log('Theme access denied'); }
-    })();
-  </script>
 </head>
 
 <body>
@@ -122,6 +112,16 @@
   
   <script type="module" src="ui-core.js"></script>
   
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem("kynar_theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.body.classList.add("dark-mode");
+        }
+      } catch (e) { console.log('Theme access denied'); }
+    })();
+  </script>
 </body>
 
 </html>
