@@ -31,35 +31,33 @@
   text-decoration: none;
   line-height: 1;
   
-  /* CRITICAL FIX: Force the gold color on the link itself */
+  /* Reads the token: Green in Light Mode, Gold in Dark Mode */
   color: var(--color-brand-deep); 
   
   /* Interaction: Smooth press animation */
   transition: transform 0.1s ease-out;
   
-  /* Remove default browser tap highlight (Blue box on mobile) */
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure it STAYS gold when visited, clicked, or hovered */
+/* Ensure color persistence */
 .site-brand:visited,
 .site-brand:hover,
 .site-brand:active,
 .site-brand:focus {
   color: var(--color-brand-deep);
-  text-decoration: none; /* Double safety */
+  text-decoration: none; 
 }
 
-/* The "Pressed" Effect (Subtle shrink) */
+/* The "Pressed" Effect */
 .site-brand:active {
   transform: scale(0.96);
-  opacity: 0.8; /* Optional: tiny fade to feel responsive */
+  opacity: 0.8; 
 }
 
 .brand-main {
   font-family: 'Bantayog', sans-serif;
   font-size: var(--text-2xl);
-  /* Use 'inherit' so it follows the parent link's color rules */
   color: inherit; 
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -68,7 +66,6 @@
 .brand-sub {
   font-family: 'Bantayog', sans-serif;
   font-size: 10px;
-  /* Use 'inherit' so it follows the parent link's color rules */
   color: inherit; 
   letter-spacing: 0.2em;
   text-transform: lowercase;
@@ -117,7 +114,7 @@
   padding-right: 16px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); /* Rounded organic feel */
+  border-radius: var(--radius-lg); 
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--color-text-primary);
@@ -131,17 +128,17 @@
 }
 
 /* ---------------------------------------------------------
-   PREMIUM MOBILE MENU (Updated for KYNAR)
+   PREMIUM MOBILE MENU
    --------------------------------------------------------- */
 .mobile-menu {
   position: fixed;
   inset: 0; /* Full screen */
-  background-color: var(--color-bg); /* Matches site theme */
-  z-index: 990; /* Sits JUST behind the header (Header is 1000) */
+  background-color: var(--color-bg); 
+  z-index: 990; 
   
   /* Layout & Spacing */
   padding: var(--space-4);
-  /* CRITICAL FIX: Push content down to clear the new taller header */
+  /* Push content down to clear the header */
   padding-top: 160px; 
   
   display: flex;
@@ -151,7 +148,7 @@
   /* Animation State: Closed */
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* "Apple-like" smooth ease */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
 }
 
 /* Animation State: Open */
@@ -161,53 +158,59 @@
 }
 
 /* ---------------------------------------------------------
-   MENU LINKS (Typography & Stagger Animation)
+   MENU LINKS (Updated: Cleaner & Smaller)
    --------------------------------------------------------- */
 .mobile-nav-link {
-  /* Typography Upgrade */
+  display: block;
+  
+  /* UPDATED: Smaller, elegant size */
   font-family: 'Bantayog', sans-serif;
-  font-size: 32px; /* Large, cinematic size */
+  font-size: 24px; 
   color: var(--color-text-primary);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--space-2);
   
-  /* Initial State for Animation (Hidden & Lower) */
+  /* UPDATED: Removed border line, added spacing */
+  border-bottom: none;
+  padding: var(--space-1) 0;
+  
+  /* Animation Props */
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
   transition: 
     opacity 0.4s ease-out,
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.2s ease;
+    color 0.2s ease,
+    padding-left 0.2s ease; 
 }
 
-/* Hover State */
+/* Hover State: Shift Right + Brand Color */
 .mobile-nav-link:hover {
-  color: var(--color-brand-deep); /* KYNAR Gold */
-  padding-left: 10px; /* Subtle movement on hover */
+  color: var(--color-brand-deep);
+  padding-left: 12px; /* Visual cue instead of line */
 }
 
 /* ---------------------------------------------------------
    STAGGERED ENTRANCE ANIMATION
-   This makes links float in one-by-one when menu opens
    --------------------------------------------------------- */
 .mobile-menu.is-active .mobile-nav-link {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Delays for each link (1st, 2nd, 3rd...) */
+/* Stagger Delays */
 .mobile-menu.is-active .mobile-nav-link:nth-child(1) { transition-delay: 0.10s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(2) { transition-delay: 0.15s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(3) { transition-delay: 0.20s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(5) { transition-delay: 0.30s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(6) { transition-delay: 0.35s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(7) { transition-delay: 0.40s; }
 
 /* ---------------------------------------------------------
-   MENU FOOTER (Socials / Secondary)
+   MENU FOOTER
    --------------------------------------------------------- */
 .mobile-menu-footer {
-  margin-top: auto; /* Pushes to bottom */
+  margin-top: auto; 
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-border);
   
@@ -219,20 +222,19 @@
 .mobile-menu.is-active .mobile-menu-footer {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.4s; /* Enters last */
+  transition-delay: 0.45s; 
 }
 
 
 /* ---------------------------------------------------------
    2. BUTTON SYSTEM
-   Source: Implementation Bridge Sec. 3
    --------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0 var(--space-4);
-  min-height: 48px; /* Touch-friendly preferred */
+  min-height: 48px;
   
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -250,17 +252,17 @@
   transform: scale(0.98);
 }
 
-/* Primary: Forest Green */
+/* Primary */
 .btn--primary {
   background-color: var(--color-primary);
-  color: var(--color-bg); /* Cream text */
+  color: var(--color-bg); 
 }
 .btn--primary:hover {
   background-color: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
-/* Secondary: Outline */
+/* Secondary */
 .btn--secondary {
   background-color: transparent;
   border: 2px solid var(--color-primary);
@@ -270,7 +272,7 @@
   background-color: var(--color-primary-pale);
 }
 
-/* Accent: Brass Gold (For 'Buy Now' or 'Featured') */
+/* Accent */
 .btn--accent {
   background-color: var(--color-accent);
   color: var(--color-bg);
@@ -280,12 +282,12 @@
   transform: translateY(-1px);
 }
 
-/* Tertiary: Text Link */
+/* Tertiary */
 .btn--tertiary {
   background-color: transparent;
   color: var(--color-text-secondary);
   padding: 0;
-  min-height: 44px; /* Keep touch target valid */
+  min-height: 44px;
   text-decoration: underline;
 }
 .btn--tertiary:hover {
@@ -294,7 +296,6 @@
 
 /* ---------------------------------------------------------
    3. PRODUCT CARD
-   Source: Implementation Bridge Sec. 3
    --------------------------------------------------------- */
 .product-card {
   display: flex;
@@ -304,7 +305,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-base);
-  height: 100%; /* Equal height in grid */
+  height: 100%;
 }
 
 .product-card:hover {
@@ -314,7 +315,7 @@
 
 .product-card__image-wrapper {
   width: 100%;
-  aspect-ratio: 4/3; /* Enforced consistency */
+  aspect-ratio: 4/3; 
   background-color: var(--color-surface-dark);
   overflow: hidden;
 }
@@ -327,7 +328,7 @@
 }
 
 .product-card:hover .product-card__image {
-  transform: scale(1.02); /* Subtle zoom */
+  transform: scale(1.02); 
 }
 
 .product-card__content {
@@ -351,7 +352,6 @@
   color: var(--color-text-secondary);
   margin: 0;
   line-height: var(--leading-relaxed);
-  /* Truncate to 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -359,7 +359,7 @@
 }
 
 .product-card__footer {
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto; 
   padding-top: var(--space-2);
   display: flex;
   justify-content: space-between;
@@ -369,12 +369,11 @@
 .product-card__price {
   font-size: var(--text-xl);
   font-weight: var(--weight-bold);
-  color: var(--color-accent); /* Brass Gold Emphasis */
+  color: var(--color-accent);
 }
 
 /* ---------------------------------------------------------
    4. BADGE SYSTEM
-   Source: Implementation Bridge Sec. 3
    --------------------------------------------------------- */
 .badge {
   display: inline-flex;
@@ -398,7 +397,6 @@
 
 /* ---------------------------------------------------------
    5. CODE PREVIEW BLOCK
-   Source: Implementation Bridge Sec. 3
    --------------------------------------------------------- */
 .code-preview {
   background-color: var(--color-surface);
@@ -413,7 +411,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
-  background-color: var(--color-bg); /* Contrast header */
+  background-color: var(--color-bg); 
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -430,7 +428,7 @@
 .code-preview__content {
   margin: 0;
   padding: var(--space-3);
-  max-height: 300px; /* Constraint */
+  max-height: 300px;
   overflow-y: auto;
   overflow-x: auto;
   
@@ -441,7 +439,7 @@
   color: var(--color-text-primary);
 }
 
-/* Syntax Highlighting (Earth Tone Mapping) */
+/* Syntax Highlighting */
 .token.keyword  { color: var(--color-primary-light); }
 .token.string   { color: var(--color-sage); }
 .token.comment  { color: var(--color-text-muted); font-style: italic; }
@@ -450,7 +448,6 @@
 
 /* ---------------------------------------------------------
    6. FILTER BAR
-   Source: Implementation Bridge Sec. 3
    --------------------------------------------------------- */
 .filter-bar {
   display: flex;
@@ -460,8 +457,6 @@
   -webkit-overflow-scrolling: touch;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  
-  /* Hide scrollbar */
   scrollbar-width: none;
 }
 .filter-bar::-webkit-scrollbar {
@@ -469,7 +464,7 @@
 }
 
 .chip {
-  flex-shrink: 0; /* Prevent squishing */
+  flex-shrink: 0;
   padding: var(--space-2) var(--space-3);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -488,7 +483,6 @@
 
 /* ---------------------------------------------------------
    7. FORM INPUTS
-   Source: Implementation Bridge Sec. 13
    --------------------------------------------------------- */
 .form-field {
   margin-bottom: var(--space-3);
@@ -504,7 +498,7 @@
 
 .input {
   width: 100%;
-  height: 48px; /* Touch target */
+  height: 48px;
   padding: 0 var(--space-3);
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -518,7 +512,6 @@
 .input:focus {
   outline: none;
   border: 2px solid var(--color-primary);
-  /* Adaptive: uses Surface color instead of hardcoded white */
   background-color: var(--color-surface); 
 }
 
@@ -534,7 +527,6 @@
 
 /* ---------------------------------------------------------
    8. SKELETON LOADING
-   Source: Visual Design System Sec. 13
    --------------------------------------------------------- */
 .skeleton {
   background-color: var(--color-surface-dark);
