@@ -1,0 +1,108 @@
+/* css/tokens.css */
+
+:root {
+  /* ---------------------------------------------------------
+     1. COLOR PALETTE (Earth Tones)
+     Source: Implementation Bridge
+     --------------------------------------------------------- */
+  
+  /* Neutrals - Warm/Organic */
+  --color-bg:             #f2f0e9; /* Warm cream (Linen) */
+  --color-surface:        #e8e5dc; /* Slightly darker cream */
+  --color-surface-dark:   #ddd9cd; /* Card hover state */
+  --color-border:         #d4cfc0; /* Subtle borders */
+  
+  --color-text-primary:   #1a1614; /* Near-black with warmth */
+  --color-text-secondary: #5c564d; /* Muted brown-grey */
+  --color-text-muted:     #8a8379; /* Light metadata */
+
+  /* Brand - Primary (Forest Green) */
+  --color-primary:        #0f3d30; /* Deep forest green */
+  --color-primary-hover:  #0a2a21; /* Darker forest */
+  --color-primary-light:  #1a5643; /* Lighter forest */
+  --color-primary-pale:   #d4e5df; /* Very light green tint */
+
+  /* Brand - Accent (Brass Gold) */
+  --color-accent:         #c5a059; /* Warm brass gold */
+  --color-accent-hover:   #b08f4a; /* Deeper gold */
+  --color-accent-light:   #d9b876; /* Lighter gold */
+  --color-accent-pale:    #f4ead5; /* Pale gold tint */
+
+  /* Supporting Earth Tones (Categories/Badges) */
+  --color-sage:           #8b9d83; /* Planners */
+  --color-sage-light:     #c7d4c3;
+  --color-emerald:        #2d6b5f; /* Scripts */
+  --color-emerald-light:  #8db3a9;
+  --color-ochre:          #d9a847; /* Templates */
+  --color-ochre-light:    #f2e5c4;
+  --color-slate:          #5a6a60; /* Business */
+  --color-slate-light:    #c1cbc5;
+  --color-terracotta:     #c17456; /* Lifestyle */
+  --color-terracotta-light: #e5b5a3;
+
+  /* Functional / Status */
+  --color-success:        #4a7c59; /* Earthy green */
+  --color-warning:        #c5a059; /* Uses accent gold */
+  --color-error:          #a6503a; /* Muted terracotta-red */
+  --color-info:           #5a7a6d; /* Muted teal-green */
+
+  /* ---------------------------------------------------------
+     2. SPACING SCALE (8pt System)
+     Source: Implementation Bridge
+     --------------------------------------------------------- */
+  --space-1: 4px;  /* Micro separation */
+  --space-2: 8px;  /* Tight grouping */
+  --space-3: 16px; /* Default component padding */
+  --space-4: 24px; /* Section grouping */
+  --space-5: 32px; /* Major separation */
+  --space-6: 48px; /* Page division */
+
+  /* ---------------------------------------------------------
+     3. TYPOGRAPHY
+     Source: Implementation Bridge
+     --------------------------------------------------------- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Mobile-First Type Scale */
+  --text-xs:   12px;
+  --text-sm:   13px;
+  --text-base: 15px; /* Readable body default */
+  --text-lg:   18px; /* H3 */
+  --text-xl:   22px; /* H2 */
+  --text-2xl:  30px; /* H1 */
+
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --leading-tight:   1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.6;
+
+  /* ---------------------------------------------------------
+     4. SHAPE & MOTION
+     Source: Implementation Bridge
+     --------------------------------------------------------- */
+  --radius-sm: 8px;  /* Badges/Small elements */
+  --radius-md: 12px; /* Inputs/Buttons */
+  --radius-lg: 16px; /* Cards */
+  
+  --transition-fast: 150ms ease-out; /* Hover */
+  --transition-base: 250ms ease-out; /* State change */
+}
+
+/* Dark Mode Strategy: Semantic Remapping 
+   Source: Implementation Bridge */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:             #1a1614; /* Deep warm black */
+    --color-surface:        #2b2621; /* Dark warm grey */
+    --color-surface-dark:   #3a342e; /* Elevated surface */
+    --color-border:         #453f38; /* Darker border */
+    
+    --color-text-primary:   #f2f0e9; /* Light cream text */
+    --color-text-secondary: #c7c1b5; /* Muted light grey */
+  }
+}

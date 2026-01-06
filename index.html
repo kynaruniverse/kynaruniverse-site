@@ -1,127 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;">
-  <meta name="robots" content="index, follow">
-  <meta charset="UTF-8" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-  
-  <title>Kynar Operations | System Architecture for Daily Life</title>
-  
-  <link href="styles.css" rel="stylesheet" />
-  
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-</head>
-
-<body>
-  
-  <header class="app-header" id="global-header"></header>
-  
-  <main class="container">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Marketplace</title>
     
-    <div class="text-center reveal-up" style="padding: 60px 0 80px;">
-      <span class="tag-pill mb-lg">Architecture v10.0 // Ready</span>
-      <h1 class="heading-xl text-upper mb-lg">
-        System Architecture<br>For Daily Life.
-      </h1>
-      <p class="text-lg mx-auto text-faded" style="max-width: 50ch; margin-bottom: 40px;">
-        A modular library of high-fidelity digital assets designed to organize chaos, build structure, and create without friction.
-      </p>
-      
-      <div class="flex-center gap-md">
-        <a href="shop.html" class="btn btn--primary">Access Library</a>
-        <a href="newsletter.html" class="btn btn--ghost">Dashboard Login</a>
-      </div>
-    </div>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
     
-    <div class="section-spacer reveal-up delay-100">
-      <div class="flex-between align-end mb-lg">
-        <h2 class="heading-lg text-upper">Select Objective</h2>
-        <span class="text-xs text-upper text-faded">Identify Protocol</span>
-      </div>
-      
-      <div class="objective-grid">
-        
-        <a href="shop.html" class="objective-card">
-          <div class="obj-icon">◰</div>
-          <div class="obj-content">
-            <h3 class="text-upper text-bold mb-sm">Organize</h3>
-            <p class="text-sm text-faded">
-              Planners, trackers, and financial calculators to reduce entropy.
-            </p>
-          </div>
-          <div class="link-arrow mt-auto">Deploy System</div>
-        </a>
-        
-        <a href="shop.html" class="objective-card">
-          <div class="obj-icon">✎</div>
-          <div class="obj-content">
-            <h3 class="text-upper text-bold mb-sm">Create</h3>
-            <p class="text-sm text-faded">
-              Prompts, scripts, and asset packs for high-output production.
-            </p>
-          </div>
-          <div class="link-arrow mt-auto">Deploy System</div>
-        </a>
-        
-        <a href="shop.html" class="objective-card">
-          <div class="obj-icon">⚡</div>
-          <div class="obj-content">
-            <h3 class="text-upper text-bold mb-sm">Build</h3>
-            <p class="text-sm text-faded">
-              Business logic, templates, and frameworks for growth.
-            </p>
-          </div>
-          <div class="link-arrow mt-auto">Deploy System</div>
-        </a>
-        
-      </div>
-    </div>
-    
-    <div class="section-spacer reveal-up delay-200">
-      <div class="system-showcase">
-        <div class="system-meta">
-          <span class="tag-pill">Featured System</span>
-          <h2 class="heading-lg text-upper mt-sm">The Founder's<br>Protocol</h2>
-          <p class="text-faded mt-sm mb-lg">
-            A complete operating system for solo founders. Includes financial projection sheets, quarterly planner, and the "Day One" legal checklist.
-          </p>
-          
-          <ul class="stack-list">
-            <li><span class="check">✓</span> 1x Master Dashboard (.Notion)</li>
-            <li><span class="check">✓</span> 2x Finance Trackers (.XLS)</li>
-            <li><span class="check">✓</span> 1x Strategy Guide (.PDF)</li>
-          </ul>
-          
-          <a href="product.html?id=sys-001" class="btn btn--outline mt-lg">Secure Asset • £24.00</a>
-
-        </div>
-        
-        <div class="system-visual">
-          <div class="stack-visual-box">
-            <span class="text-display" style="font-size: 8rem; opacity: 0.1;">01</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  </main>
-  
-  <footer id="global-footer"></footer>
-  
-  <script type="module" src="ui-core.js"></script>
-  
-  <script>
-    (function() {
-      try {
-        const savedTheme = localStorage.getItem("kynar_theme");
-        if (savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.body.classList.add("dark-mode");
+    <style>
+        /* Simple utility for layout rhythm not yet in a file */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
         }
-      } catch (e) { console.log('Theme access denied'); }
-    })();
-  </script>
-</body>
+        
+        .section {
+            padding: var(--space-5) 0;
+        }
 
+        .hero {
+            text-align: center;
+            padding: var(--space-6) 0;
+        }
+
+        /* Responsive Grid Logic (Mobile First) */
+        .product-grid {
+            display: grid;
+            gap: var(--space-4);
+            grid-template-columns: 1fr; /* Mobile: 1 col */
+        }
+        
+        @media (min-width: 480px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (min-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="/" class="site-logo">
+            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
+            Marketplace
+        </a>
+        
+        <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="mobile-menu">
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="menu-toggle" id="close-menu" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav style="display: flex; flex-direction: column; gap: var(--space-2);">
+            <a href="#" class="mobile-nav-link">Browse All</a>
+            <a href="#" class="mobile-nav-link">Planners</a>
+            <a href="#" class="mobile-nav-link">Scripts</a>
+            <a href="#" class="mobile-nav-link">Templates</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="section hero">
+            <div class="container">
+                <h1>Digital tools that actually help.</h1>
+                <p>Curated, practical, and built for quality. No filler, just focus.</p>
+                <div style="margin-top: var(--space-4);">
+                    <a href="#browse" class="btn btn--primary">Browse Products</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="filter-bar">
+                <button class="chip is-active">All</button>
+                <button class="chip">Planners</button>
+                <button class="chip">Automation Scripts</button>
+                <button class="chip">Business Systems</button>
+                <button class="chip">Lifestyle</button>
+            </div>
+        </div>
+
+        <section id="browse" class="section">
+            <div class="container">
+                <div class="product-grid">
+                    
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3EProduct Image%3C/text%3E%3C/svg%3E" alt="Planner Preview" class="product-card__image">
+                        </div>
+                        <div class="product-card__content">
+                            <div>
+                                <h3 class="product-card__title">2026 Life OS Planner</h3>
+                                <div style="margin-top: var(--space-2);">
+                                    <span class="badge badge--sage">PDF</span>
+                                    <span class="badge">Beginner</span>
+                                </div>
+                            </div>
+                            <p class="product-card__desc">A complete digital planning system for iPad and tablet users. Includes daily, weekly, and monthly views.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£12</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ECode Preview%3C/text%3E%3C/svg%3E" alt="Script Preview" class="product-card__image">
+                        </div>
+                        <div class="product-card__content">
+                            <div>
+                                <h3 class="product-card__title">Auto-Invoice Generator</h3>
+                                <div style="margin-top: var(--space-2);">
+                                    <span class="badge badge--emerald">Python</span>
+                                    <span class="badge">Intermediate</span>
+                                </div>
+                            </div>
+                            <p class="product-card__desc">Automatically generate PDF invoices from CSV data. Saves 4 hours/week of manual entry.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£24</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </article>
+
+                     <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ETemplate Preview%3C/text%3E%3C/svg%3E" alt="Template Preview" class="product-card__image">
+                        </div>
+                        <div class="product-card__content">
+                            <div>
+                                <h3 class="product-card__title">Freelance Contract Pack</h3>
+                                <div style="margin-top: var(--space-2);">
+                                    <span class="badge badge--ochre">Word</span>
+                                    <span class="badge badge--ochre">Docs</span>
+                                </div>
+                            </div>
+                            <p class="product-card__desc">Rock-solid legal templates for UK freelancers. Includes SOW, Retainer, and NDA.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£29</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <h2>Technical Details</h2>
+                <p>Transparent code. No black boxes.</p>
+                
+                <div class="code-preview" style="margin-top: var(--space-3);">
+                    <div class="code-preview__header">
+                        <span class="badge badge--emerald">Python 3.10</span>
+                        <button class="code-preview__copy">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
+                    </div>
+                    <pre class="code-preview__content"><code><span class="token keyword">import</span> csv
+<span class="token keyword">from</span> fpdf <span class="token keyword">import</span> FPDF
+
+<span class="token comment"># Configuration for invoice output</span>
+<span class="token keyword">def</span> <span class="token function">generate_invoice</span>(data):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font(<span class="token string">"Arial"</span>, size=<span class="token number">12</span>)
+    
+    <span class="token comment"># Iterate through row data</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> data:
+        pdf.cell(<span class="token number">200</span>, <span class="token number">10</span>, txt=row[<span class="token string">'client_name'</span>], ln=<span class="token number">1</span>, align=<span class="token string">'C'</span>)
+        
+    pdf.output(<span class="token string">"invoice.pdf"</span>)</code></pre>
+                </div>
+            </div>
+         </section>
+    </main>
+
+    <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">
+        <div class="container" style="text-align: center; color: var(--color-text-secondary); font-size: var(--text-sm);">
+            <p>&copy; 2026 Digital Marketplace. All rights reserved.</p>
+            <p>VAT Number: GB 123 456 789</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('is-active');
+                const isOpen = mobileMenu.classList.contains('is-active');
+                menuToggle.setAttribute('aria-expanded', isOpen);
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            closeMenu.addEventListener('click', toggleMenu);
+        });
+    </script>
+    
+    <script src="js/main.js"></script>
+
+</body>
 </html>

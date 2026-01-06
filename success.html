@@ -1,149 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://assets.lemonsqueezy.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://formspree.io https://*.lemonsqueezy.com;">
-    <meta name="robots" content="noindex, nofollow"> <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Successful | Digital Marketplace</title>
     
-    <title>System Status: Green | Kynar Operations</title>
-    
-    <link href="styles.css" rel="stylesheet" />
-    
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script type="module" src="ui-core.js"></script>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
 
-    <style>
-      /* Unique Success Animation (System Pulse) */
-      @keyframes pulse-ring { 
-        0% { transform: scale(0.8); opacity: 0.5; } 
-        100% { transform: scale(2.2); opacity: 0; } 
-      }
-      .success-icon-wrap { 
-        position: relative; 
-        width: 100px; 
-        height: 100px; 
-        margin: 0 auto 30px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        background: var(--color-bg-card);
-        border-radius: 50%;
-        box-shadow: var(--shadow-sm);
-      }
-      .ripple-ring { 
-        border: 2px solid var(--color-success); 
-        border-radius: 50%; 
-        inset: 0; 
-        opacity: 0; 
-        position: absolute; 
-        animation: pulse-ring 2.5s infinite; 
-      }
-      .ripple-ring:nth-child(2) { animation-delay: 0.8s; }
-      
-      .status-emoji { font-size: 3rem; line-height: 1; }
-    </style>
-  </head>
-
-  <body>
-    <header class="app-header" id="global-header"></header>
-
-    <main class="container flex-col flex-center text-center" style="min-height: 80vh;">
-      <div class="reveal-up" style="max-width: 500px; width: 100%;">
-        
-        <div class="success-icon-wrap">
-          <div class="ripple-ring"></div>
-          <div class="ripple-ring"></div>
-          <div class="status-emoji" id="status-icon">📡</div>
-        </div>
-
-        <span id="success-label" class="text-accent text-upper text-bold text-xs" style="letter-spacing: 0.25em; display: block; margin-bottom: 15px;">
-          Uplink Established
-        </span>
-
-        <h1 id="success-title" class="heading-lg" style="margin-bottom: 20px;">
-          Signal <br><span class="text-faded">Verified.</span>
-        </h1>
-
-        <p id="success-text" class="text-sm mx-auto" style="margin-bottom: 40px; max-width: 40ch;">
-          You have successfully connected to the Kynar Union. Check your inbox for the welcome protocol.
-        </p>
-
-        <div id="action-stack" class="flex-col gap-sm w-full">
-          
-          <div class="card flex-row gap-md" style="padding: 20px; align-items: center;">
-            <div style="font-size: 1.5rem">📥</div>
-            <div class="text-left">
-              <div class="text-upper text-bold text-xs text-faded" style="letter-spacing: 0.1em; margin-bottom: 4px;">Next Step</div>
-              <div id="action-text" class="text-bold text-sm">Check your email inbox</div>
-            </div>
-          </div>
-
-          <a class="card flex-row gap-md" href="contact.html" style="padding: 20px; align-items: center; text-decoration: none;">
-            <div style="font-size: 1.5rem">🛡️</div>
-            <div class="text-left">
-              <div class="text-upper text-bold text-xs text-faded" style="letter-spacing: 0.1em; margin-bottom: 4px;">Support</div>
-              <div class="text-bold text-sm">Open Connect Channel →</div>
-            </div>
-          </a>
-
-        </div>
-
-        <a class="btn btn--primary w-full" href="index.html" style="margin-top: 40px;">
-          Return to Operations
+    <header class="site-header">
+        <a href="index.html" class="site-logo">
+            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
+            Marketplace
         </a>
+    </header>
 
-      </div>
-    </main>
-
-    <footer id="global-footer"></footer>
-    
-    <script type="module">
-      import { vault } from './vault.js'; // Corrected Path (Root)
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
-        const type = params.get("type");
-        const productId = params.get("id");
-
-        // SCENARIO A: PRODUCT PURCHASE (Order)
-        if (type === "order") {
-          // Find product manually in the array
-          const product = vault.find(p => p.id === productId);
-          const pName = product ? product.title : "Digital Asset";
-          
-          document.getElementById("status-icon").textContent = "🔒"; // Lock Icon
-          document.getElementById("success-label").textContent = "Asset Secured";
-          document.getElementById("success-label").style.color = "var(--color-success)";
-          
-          document.getElementById("success-title").innerHTML = `Transfer <br><span class="text-faded">Complete.</span>`;
-          document.getElementById("success-text").textContent = `The "${pName}" system has been dispatched. Your unique access key is in your email.`;
-          
-          // Clear cart on successful order
-          localStorage.removeItem('kynar_cart');
-
-          setTimeout(() => {
-            document.getElementById("action-text").innerHTML = "Delivery Status: <span style='color:var(--color-success)'>Sent</span>";
-          }, 1500);
-        }
-
-        // SCENARIO B: NEWSLETTER (Default)
-        // No changes needed, HTML defaults are set for this.
-
-        // SCENARIO C: CONTACT FORM
-        if (type === "contact") {
-           document.getElementById("status-icon").textContent = "📨";
-           document.getElementById("success-label").textContent = "Transmission Sent";
-           document.getElementById("success-title").innerHTML = `Message <br><span class="text-faded">Received.</span>`;
-           document.getElementById("success-text").textContent = "We have received your query. A human agent will respond within 24 hours.";
-        }
-
-        // Haptics
-        if (navigator.vibrate) setTimeout(() => navigator.vibrate([40, 40]), 500);
+    <main class="container">
         
-        // Force Reveal
-        setTimeout(() => document.querySelector('.reveal-up').classList.add('reveal-visible'), 100);
-      });
-    </script>
+        <div class="success-card">
+            <div style="width: 64px; height: 64px; background: var(--color-success); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            
+            <h1>Thanks for your order!</h1>
+            <p class="text-secondary">We've sent a receipt and download link to <strong>you@example.com</strong>.</p>
 
-  </body>
+            <div class="download-box">
+                <h3 style="margin-bottom: var(--space-3);">Your Downloads</h3>
+                
+                <div class="file-row">
+                    <div style="display: flex; align-items: center; gap: var(--space-2);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <div>
+                            <div style="font-weight: var(--weight-medium); font-size: var(--text-sm);">invoice_generator_v2.zip</div>
+                            <div style="font-size: var(--text-xs); color: var(--color-text-muted);">2.4 MB</div>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary" style="min-height: 36px; padding: 0 var(--space-3); font-size: var(--text-sm);">Download</button>
+                </div>
+
+                <div class="file-row">
+                    <div style="display: flex; align-items: center; gap: var(--space-2);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        <div>
+                            <div style="font-weight: var(--weight-medium); font-size: var(--text-sm);">Setup_Guide.pdf</div>
+                            <div style="font-size: var(--text-xs); color: var(--color-text-muted);">150 KB</div>
+                        </div>
+                    </div>
+                    <button class="btn btn--secondary" style="min-height: 36px; padding: 0 var(--space-3); font-size: var(--text-sm);">Download</button>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+                <a href="index.html" class="btn btn--tertiary">Return to Homepage</a>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="js/main.js"></script>
+
+
+</body>
 </html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Automation Scripts | Digital Marketplace</title>
+    
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="site-logo">
+            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
+            Marketplace
+        </a>
+        <button class="menu-toggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </header>
+
+    <div class="filter-bar" style="border-bottom: 1px solid var(--color-border);">
+        <button class="chip is-active">All Scripts</button>
+        <button class="chip">Python</button>
+        <button class="chip">Bash</button>
+        <button class="chip">JavaScript</button>
+        <button class="chip">Web Scraping</button>
+    </div>
+
+    <main class="container browse-layout" style="padding-top: var(--space-4);">
+        
+        <aside class="sidebar-filters">
+            <div class="filter-group">
+                <span class="filter-title">Category</span>
+                <label class="filter-row">
+                    <input type="checkbox" checked> All Scripts
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> Web Automation
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> Data Processing
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> System Utils
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <span class="filter-title">Difficulty</span>
+                <label class="filter-row">
+                    <input type="checkbox"> Beginner Friendly
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> Intermediate
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> Advanced
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <span class="filter-title">Price</span>
+                <label class="filter-row">
+                    <input type="checkbox"> Under £10
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> £10 - £25
+                </label>
+                <label class="filter-row">
+                    <input type="checkbox"> £25+
+                </label>
+            </div>
+        </aside>
+
+        <section>
+            <div class="browse-header">
+                <div>
+                    <h1 style="margin-bottom: var(--space-1); font-size: var(--text-xl);">Automation Scripts</h1>
+                    <p class="text-secondary" style="margin: 0; font-size: var(--text-sm);">12 products found</p>
+                </div>
+                
+                <select class="sort-select" aria-label="Sort products">
+                    <option>Newest Arrivals</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Popularity</option>
+                </select>
+            </div>
+
+            <div class="product-grid">
+                
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: inherit; flex-direction: inherit; height: inherit; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 1%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Auto-Invoice Generator</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                            </div>
+                            <p class="product-card__desc">Generate PDF invoices from CSV data instantly.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£24</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__image-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 2%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Social Media Scheduler</h3>
+                        <div style="margin-top: var(--space-2);">
+                            <span class="badge badge--emerald">Python</span>
+                            <span class="badge">Beginner</span>
+                        </div>
+                        <p class="product-card__desc">Schedule posts to Twitter and LinkedIn via API.</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">£18</span>
+                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__image-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 3%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Image Bulk Resizer</h3>
+                        <div style="margin-top: var(--space-2);">
+                            <span class="badge badge--emerald">Bash</span>
+                            <span class="badge">Advanced</span>
+                        </div>
+                        <p class="product-card__desc">Resize thousands of images in seconds using ImageMagick.</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">£10</span>
+                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__image-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 4%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Web Scraper Boilerplate</h3>
+                        <div style="margin-top: var(--space-2);">
+                            <span class="badge badge--emerald">Python</span>
+                            <span class="badge">Intermediate</span>
+                        </div>
+                        <p class="product-card__desc">Clean architecture for scraping static and dynamic sites.</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">£35</span>
+                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div style="margin-top: var(--space-6); text-align: center;">
+                <button class="btn btn--secondary">Load More Products</button>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">
+        <div class="container" style="text-align: center; color: var(--color-text-secondary); font-size: var(--text-sm);">
+            <p>&copy; 2026 Digital Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.createElement('div'); // Reusing existing menu logic required
+            // In a real build, we'd include the same menu HTML as index.html or use a partial
+        });
+    </script>
+</body>
+</html>

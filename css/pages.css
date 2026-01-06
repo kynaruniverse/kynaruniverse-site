@@ -1,0 +1,339 @@
+/* css/pages.css */
+
+/* ---------------------------------------------------------
+   1. PRODUCT GALLERY (CSS Scroll Snap)
+   No JS required. Native touch swipe.
+   --------------------------------------------------------- */
+.gallery-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  
+  /* Hide Scrollbar */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+.gallery-container::-webkit-scrollbar { 
+  display: none; 
+}
+
+.gallery-item {
+  flex: 0 0 100%; /* Mobile: Show 1 full image */
+  scroll-snap-align: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  aspect-ratio: 4/3;
+  background-color: var(--color-surface);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Desktop Gallery Grid */
+@media (min-width: 768px) {
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    overflow: visible;
+  }
+  .gallery-item {
+    aspect-ratio: auto; /* Let natural height work */
+  }
+  .gallery-item:first-child {
+    grid-column: span 2; /* Hero image */
+  }
+}
+
+/* ---------------------------------------------------------
+   2. PDP LAYOUT (Grid)
+   --------------------------------------------------------- */
+.pdp-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .pdp-layout {
+    grid-template-columns: 1.5fr 1fr; /* Gallery | Details */
+    align-items: start;
+  }
+  
+  /* Sticky Sidebar for Desktop */
+  .pdp-sidebar {
+    position: sticky;
+    top: 80px; /* Below header */
+  }
+}
+
+/* ---------------------------------------------------------
+   3. STICKY MOBILE ACTION BAR
+   Business Requirement: Frictionless Checkout
+   --------------------------------------------------------- */
+.mobile-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3);
+  z-index: 900;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+}
+
+/* Hide on Desktop (Move to Sidebar) */
+@media (min-width: 1024px) {
+  .mobile-action-bar {
+    display: none;
+  }
+}
+
+/* Spacer to prevent content being hidden behind bar */
+.mobile-action-spacer {
+  height: 80px;
+}
+@media (min-width: 1024px) {
+  .mobile-action-spacer { display: none; }
+}
+
+/* ---------------------------------------------------------
+   4. TRANSPARENCY SECTIONS
+   "What's Included", "Tech Specs"
+   --------------------------------------------------------- */
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.section-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+/* css/pages.css (Append this) */
+
+/* ---------------------------------------------------------
+   5. BROWSE / CATEGORY LAYOUT
+   Sidebar (Desktop) + Main Content
+   --------------------------------------------------------- */
+.browse-layout {
+  display: block;
+  padding-bottom: var(--space-6);
+}
+
+/* Desktop: 2-Column Grid (Sidebar + Products) */
+@media (min-width: 1024px) {
+  .browse-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr; /* Fixed Sidebar | Flexible Grid */
+    gap: var(--space-5);
+    align-items: start;
+  }
+}
+
+/* ---------------------------------------------------------
+   6. SIDEBAR FILTERS (Desktop Only)
+   --------------------------------------------------------- */
+.sidebar-filters {
+  display: none; /* Hidden on mobile (use horiz bar instead) */
+}
+
+@media (min-width: 1024px) {
+  .sidebar-filters {
+    display: block;
+    position: sticky;
+    top: 80px; /* Below header */
+    padding-right: var(--space-3);
+    border-right: 1px solid var(--color-border);
+  }
+}
+
+.filter-group {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-group:last-child {
+  border-bottom: none;
+}
+
+.filter-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+/* Checkbox Row Styling */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.filter-row input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------------------------------------------------------
+   7. FORMALIZED PRODUCT GRID
+   Moved from inline styles to permanent CSS
+   --------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr; /* Mobile: 1 col */
+}
+
+@media (min-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 col */
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); /* Desktop: 3 col */
+    gap: var(--space-4);
+  }
+}
+
+/* ---------------------------------------------------------
+   8. SORTING HEADER
+   Controls above the grid
+   --------------------------------------------------------- */
+.browse-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .browse-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.sort-select {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+/* css/pages.css (Append this) */
+
+/* ---------------------------------------------------------
+   9. CHECKOUT LAYOUT (Distraction Free)
+   --------------------------------------------------------- */
+.checkout-layout {
+  max-width: 480px; /* Constrained width for focus */
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.checkout-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.order-summary {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+}
+
+/* ---------------------------------------------------------
+   10. SUCCESS / DOWNLOAD PAGE
+   --------------------------------------------------------- */
+.success-card {
+  text-align: center;
+  padding: var(--space-6) var(--space-3);
+}
+
+.download-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: var(--space-5);
+  text-align: left;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.file-row:last-child {
+  border-bottom: none;
+}

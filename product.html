@@ -1,148 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asset Specifications | KYNAR</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-  <script type="module" src="ui-core.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Invoice Generator | Digital Marketplace</title>
+    
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
 
-  <header class="app-header" id="global-header"></header>
+    <header class="site-header">
+        <a href="index.html" class="site-logo">
+            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
+            Marketplace
+        </a>
+        <button class="menu-toggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </header>
 
-  <main class="container" style="padding-top: 140px;">
+    <main class="container pdp-layout" style="padding-top: var(--space-4);">
+        
+        <section>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3EMain Product Image%3C/text%3E%3C/svg%3E" alt="Main View">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3EOutput Example%3C/text%3E%3C/svg%3E" alt="Output Example">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ETerminal Preview%3C/text%3E%3C/svg%3E" alt="Terminal Preview">
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-5);">
+                <h2 class="section-title">What it does</h2>
+                <p>This script eliminates the Sunday evening "admin dread." It scans your project folder for CSV timesheets, calculates totals, and generates professional PDF invoices instantly. It handles VAT calculations automatically.</p>
+                <p>Designed for freelancers who hate manual data entry.</p>
+
+                <h2 class="section-title" style="margin-top: var(--space-5);">Who it's for</h2>
+                <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                    <span class="badge badge--slate">Freelancers</span>
+                    <span class="badge badge--slate">Consultants</span>
+                    <span class="badge badge--slate">Agencies</span>
+                </div>
+            </div>
+        </section>
+
+        <aside class="pdp-sidebar">
+            
+            <div style="margin-bottom: var(--space-4);">
+                <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-2);">
+                    <span class="badge badge--emerald">Python Script</span>
+                    <span class="badge">Intermediate</span>
+                </div>
+                <h1 style="margin-bottom: var(--space-2);">Auto-Invoice Generator</h1>
+                <p class="text-secondary" style="font-size: var(--text-sm);">Version 2.1 • Updated Oct 2025</p>
+            </div>
+
+            <div class="desktop-only" style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-4);">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-3);">
+                    <span style="font-size: var(--text-2xl); font-weight: bold; color: var(--color-accent);">£24</span>
+                    <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">One-time purchase</span>
+                </div>
+                <button class="btn btn--primary" style="width: 100%;">Buy Now</button>
+                <p style="text-align: center; font-size: var(--text-xs); margin-top: var(--space-2); color: var(--color-text-muted);">Secure checkout via Stripe • Instant Download</p>
+            </div>
+
+            <div style="margin-bottom: var(--space-4);">
+                <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); margin-bottom: var(--space-2);">What's Included</h3>
+                <ul class="spec-list">
+                    <li class="spec-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        generator.py (Main Script)
+                    </li>
+                    <li class="spec-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        config.json (Settings)
+                    </li>
+                    <li class="spec-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        Setup_Guide.pdf
+                    </li>
+                </ul>
+            </div>
+
+            <div style="background: var(--color-bg); border: 1px solid var(--color-border); padding: var(--space-3); border-radius: var(--radius-md);">
+                <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); margin-bottom: var(--space-2);">Requirements</h3>
+                <ul style="margin: 0; padding-left: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                    <li>Python 3.8+</li>
+                    <li>Pandas library</li>
+                    <li>FPDF library</li>
+                    <li>Works on: Mac, Windows, Linux</li>
+                </ul>
+            </div>
+
+        </aside>
+
+        <section class="section" style="grid-column: 1 / -1; border-top: 1px solid var(--color-border); margin-top: var(--space-5); padding-top: var(--space-5);">
+            <h2 class="section-title">Pairs well with</h2>
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-card__image-wrapper">
+                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ERelated Product%3C/text%3E%3C/svg%3E" alt="Related" class="product-card__image">
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Client Dashboard Notion</h3>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">£15</span>
+                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="mobile-action-spacer"></div>
+    <div class="mobile-action-bar">
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Total</span>
+            <span style="font-size: var(--text-xl); font-weight: bold; color: var(--color-accent);">£24</span>
+        </div>
+        <button class="btn btn--primary" style="padding: 0 var(--space-5);">Buy Now</button>
+    </div>
     
-    <div class="flex-between mb-lg reveal-up">
-      <a href="shop.html" class="link-arrow">← Return to Archive</a>
-      <span class="tag-pill" id="status-pill">System: Ready</span>
-    </div>
+    <script src="js/main.js"></script>
 
-    <div class="product-spec-grid reveal-up delay-100">
-      
-      <div class="spec-visual">
-        <div class="product-card__image-box" id="product-image-container" style="aspect-ratio: 1/1; background: var(--color-bg-card);">
-          </div>
-        
-        <div class="human-note-card mt-lg">
-          <span class="text-xs text-upper text-accent text-bold">Operator Note:</span>
-          <p class="text-sm mt-sm italic" id="human-note-text">Loading data...</p>
-        </div>
-      </div>
-
-      <div class="spec-data">
-        
-        <div class="mb-lg">
-          <span class="text-xs text-upper text-faded" id="product-id">ID: ---</span>
-          <h1 class="heading-lg text-upper mt-xs" id="product-title">Loading Asset...</h1>
-          <p class="text-lg text-bold mt-sm" id="product-objective" style="line-height: 1.4;">
-            Please select an asset from the Library.
-          </p>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 30px 0;">
-
-        <div class="specs-matrix mb-lg">
-          <div class="spec-item">
-            <span class="spec-label">Deploy Time</span>
-            <span class="spec-value" id="spec-time">---</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Format</span>
-            <span class="spec-value" id="spec-format">---</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Skill Level</span>
-            <span class="spec-value" id="spec-skill">---</span>
-          </div>
-        </div>
-
-        <div class="payload-section mb-xl">
-          <span class="text-xs text-upper text-bold mb-sm display-block">Payload Contents:</span>
-          <ul class="stack-list" id="payload-list"></ul>
-        </div>
-
-        <div class="action-bar sticky-bottom">
-          <div class="text-xl text-display" id="product-price">£---</div>
-          
-          <button class="btn btn--primary w-full" id="purchase-btn" data-trigger="checkout:init" data-payload="#">
-            Secure Asset
-          </button>
-          <div class="text-xs text-center text-faded mt-xs" style="opacity: 0.6; font-family: var(--font-body);">(Secure Checkout • Instant Download)
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <footer id="global-footer"></footer>
-
-  <script type="module">
-    import { vault } from './vault.js';
-
-    // 1. Get ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const targetId = params.get('id');
-
-    // 2. Find Product
-    const product = vault.find(p => p.id === targetId);
-
-    if (product) {
-      // INJECT TEXT
-      document.title = `${product.title} | Kynar Specs`;
-      document.getElementById('product-title').innerText = product.title;
-      document.getElementById('product-id').innerText = `ID: ${product.id.toUpperCase()}`;
-      document.getElementById('product-objective').innerText = product.objective;
-      document.getElementById('human-note-text').innerText = `"${product.human_note}"`;
-      document.getElementById('product-price').innerText = product.price;
-
-      // INJECT SPECS
-      document.getElementById('spec-time').innerText = product.specs.deploy_time;
-      document.getElementById('spec-format').innerText = product.specs.format;
-      document.getElementById('spec-skill').innerText = product.specs.skill_level;
-      
-      // INJECT STATUS PILL
-      const statusPill = document.getElementById('status-pill');
-      if (product.type === 'system') {
-        statusPill.innerText = "System Architecture";
-        statusPill.style.background = "var(--color-accent)";
-        statusPill.style.color = "var(--color-white)";
-      } else {
-        statusPill.innerText = "Single Tool";
-      }
-
-      // INJECT IMAGE
-      const imgContainer = document.getElementById('product-image-container');
-      if (product.image) {
-        imgContainer.innerHTML = `<img src="${product.image}" alt="${product.title}" style="width:100%; height:100%; object-fit:contain;">`;
-      } else {
-        imgContainer.innerHTML = `<span class="text-display" style="font-size:6rem; opacity:0.1;">${product.title[0]}</span>`;
-      }
-
-      // INJECT PAYLOAD
-      const list = document.getElementById('payload-list');
-      product.payload.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span class="check">✓</span> ${item}`;
-        list.appendChild(li);
-      });
-
-      // UPDATE BUTTON (Connects to Checkout Bridge)
-      const btn = document.getElementById('purchase-btn');
-      btn.setAttribute('data-payload', product.link + '?embed=1');
-
-    } else {
-      // 404 State
-      document.getElementById('product-title').innerText = "Asset Not Found";
-      document.getElementById('product-objective').innerText = "This ID does not exist in the vault.";
-      document.getElementById('purchase-btn').style.display = 'none';
-    }
-  </script>
 
 </body>
 </html>

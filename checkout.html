@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Digital Marketplace</title>
+    
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+    <header style="padding: var(--space-3); text-align: center; border-bottom: 1px solid var(--color-border);">
+        <a href="index.html" class="site-logo" style="justify-content: center;">
+            <svg style="background: var(--color-primary); border-radius: 4px; height: 24px; width: 24px;"></svg>
+            Marketplace
+        </a>
+    </header>
+
+    <main class="checkout-layout">
+        
+        <div class="checkout-header">
+            <h1>Secure Checkout</h1>
+            <p class="text-secondary" style="margin: 0;">Complete your purchase to start downloading.</p>
+        </div>
+
+        <div class="order-summary">
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--space-3);">Order Details</h3>
+            
+            <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
+                <div style="width: 64px; height: 64px; background: var(--color-surface-dark); border-radius: var(--radius-sm);"></div>
+                <div>
+                    <div style="font-weight: var(--weight-semibold);">Auto-Invoice Generator</div>
+                    <div style="font-size: var(--text-sm); color: var(--color-text-secondary);">Single License</div>
+                </div>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>£20.00</span>
+            </div>
+            <div class="summary-row">
+                <span>VAT (20%)</span>
+                <span>£4.00</span>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <span style="color: var(--color-accent);">£24.00</span>
+            </div>
+        </div>
+
+        <form action="success.html" method="GET"> <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-3);">Contact Info</h3>
+            
+            <div class="form-field">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="input" placeholder="you@example.com" required>
+                <div style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: var(--space-1);">
+                    We'll send your download link here.
+                </div>
+            </div>
+
+            <h3 style="font-size: var(--text-lg); margin: var(--space-5) 0 var(--space-3) 0;">Payment Method</h3>
+            
+            <div class="form-field">
+                <label for="card" class="form-label">Card Number</label>
+                <input type="text" id="card" class="input" placeholder="0000 0000 0000 0000">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                <div class="form-field">
+                    <label for="expiry" class="form-label">Expiry</label>
+                    <input type="text" id="expiry" class="input" placeholder="MM / YY">
+                </div>
+                <div class="form-field">
+                    <label for="cvc" class="form-label">CVC</label>
+                    <input type="text" id="cvc" class="input" placeholder="123">
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-5);">
+                <button type="submit" class="btn btn--primary" style="width: 100%;">Pay £24.00</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted);">
+                <p>Payments are secure and encrypted. <br> By paying, you agree to our Terms of Service.</p>
+            </div>
+        </form>
+
+    </main>
+    
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* css/base.css */
+
+/* 1. Box Sizing & Defaults */
+*, *::before, *::after {
+  box-sizing: border-box;
+  /* Prevent font inflation on landscape mobile */
+  -webkit-text-size-adjust: 100%; 
+}
+
+/* 2. Global Document Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg); /* Warm Cream */
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  
+  /* Critical: Base font size for readability */
+  font-size: var(--text-base); 
+  
+  /* Font smoothing for better legibility */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--space-3); /* 16px */
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  max-width: 70ch; /* Readability limit */
+}
+
+/* 4. Media & Touch Target Defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Ensure all interactive elements are touch-friendly by default */
+button, input, select, textarea, a {
+  touch-action: manipulation;
+}
+
+/* 5. Focus State Standardization */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
