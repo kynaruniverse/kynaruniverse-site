@@ -73,3 +73,32 @@ button, input, select, textarea, a {
 *:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ---------------------------------------------------------
+   6. PRINT STYLES
+   [span_2](start_span)Source: Implementation Bridge[span_2](end_span)
+   --------------------------------------------------------- */
+@media print {
+  /* Remove navigation and non-essential elements */
+  header, footer, nav, .menu-toggle, #theme-toggle, .mobile-action-bar {
+    display: none !important;
+  }
+
+  /* Optimize for print */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Ensure readability */
+  h1 { font-size: 24pt; page-break-after: avoid; }
+  h2 { font-size: 18pt; page-break-after: avoid; }
+  h3 { font-size: 14pt; page-break-after: avoid; }
+  
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}

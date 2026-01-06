@@ -382,3 +382,19 @@
   font-size: var(--text-xs);
   color: var(--color-error);
 }
+
+/* ---------------------------------------------------------
+   8. SKELETON LOADING
+   Source: Visual Design System Sec. 13
+   --------------------------------------------------------- */
+.skeleton {
+  background-color: var(--color-surface-dark);
+  border-radius: var(--radius-sm);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

@@ -69,6 +69,18 @@
                     <span class="badge badge--slate">Consultants</span>
                     <span class="badge badge--slate">Agencies</span>
                 </div>
+
+                <div style="margin-top: var(--space-5); border-top: 1px solid var(--color-border); padding-top: var(--space-4);">
+                    <details style="cursor: pointer;">
+                        <summary style="font-weight: var(--weight-semibold); color: var(--color-primary);">Preview Setup Instructions</summary>
+                        <div style="padding: var(--space-3) 0; font-size: var(--text-sm); color: var(--color-text-secondary);">
+                            <p><strong>Step 1:</strong> Install dependencies.</p>
+                            <pre style="background: var(--color-surface); padding: var(--space-2); border-radius: var(--radius-sm); font-family: var(--font-code); margin-bottom: var(--space-3);">pip install pandas fpdf</pre>
+                            <p><strong>Step 2:</strong> Add your CSV file to the /input folder.</p>
+                            <p><strong>Step 3:</strong> Run the script using <code>python generator.py</code>.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
         </section>
 
@@ -85,7 +97,10 @@
 
             <div class="desktop-only" style="background: var(--color-surface); padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-4);">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-3);">
-                    <span style="font-size: var(--text-2xl); font-weight: bold; color: var(--color-accent);">£24</span>
+                    <div>
+                        <span style="font-size: var(--text-2xl); font-weight: bold; color: var(--color-accent);">£24</span>
+                        <span style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-left: 4px;">inc. VAT</span>
+                    </div>
                     <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">One-time purchase</span>
                 </div>
                 <a href="checkout.html" class="btn btn--primary" style="width: 100%; text-decoration: none;">Buy Now</a>
@@ -139,14 +154,65 @@
                 </article>
             </div>
         </section>
+        
+        <section class="section" style="grid-column: 1 / -1;">
+            <div class="container">
+                <h2>Technical Preview</h2>
+                <div class="code-preview" style="margin-top: var(--space-3);">
+                    <div class="code-preview__header">
+                        <span class="badge badge--emerald">Python 3.10</span>
+                        <button class="code-preview__copy">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
+                    </div>
+                    <pre class="code-preview__content"><code><span class="token keyword">import</span> csv
+<span class="token keyword">from</span> fpdf <span class="token keyword">import</span> FPDF
+
+<span class="token comment"># Configuration for invoice output</span>
+<span class="token keyword">def</span> <span class="token function">generate_invoice</span>(data):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font(<span class="token string">"Arial"</span>, size=<span class="token number">12</span>)
+    
+    <span class="token comment"># Iterate through row data</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> data:
+        pdf.cell(<span class="token number">200</span>, <span class="token number">10</span>, txt=row[<span class="token string">'client_name'</span>], ln=<span class="token number">1</span>, align=<span class="token string">'C'</span>)
+        
+    pdf.output(<span class="token string">"invoice.pdf"</span>)</code></pre>
+                    <div class="code-preview__footer" style="padding: var(--space-3); border-top: 1px solid var(--color-border); background: var(--color-bg);">
+                        <div style="display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-secondary);">
+                            <span>Works on:</span>
+                            <span class="badge badge--sage">Windows</span>
+                            <span class="badge badge--sage">Mac</span>
+                            <span class="badge badge--sage">Linux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
+
+    <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">
+        <div class="container" style="text-align: center; color: var(--color-text-secondary); font-size: var(--text-sm);">
+            <div style="margin-bottom: var(--space-2);">
+                <a href="legal.html" style="color: inherit; text-decoration: underline; margin: 0 var(--space-2);">Terms & Refunds</a>
+                <a href="legal.html" style="color: inherit; text-decoration: underline; margin: 0 var(--space-2);">Privacy</a>
+            </div>
+            <p>&copy; 2026 Digital Marketplace. All rights reserved.</p>
+            <p>VAT Number: GB 123 456 789</p>
+        </div>
+    </footer>
 
     <div class="mobile-action-spacer"></div>
     <div class="mobile-action-bar">
         <div style="display: flex; flex-direction: column;">
             <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Total</span>
-            <span style="font-size: var(--text-xl); font-weight: bold; color: var(--color-accent);">£24</span>
+            <div>
+                <span style="font-size: var(--text-xl); font-weight: bold; color: var(--color-accent);">£24</span>
+                <span style="font-size: var(--text-xs); color: var(--color-text-secondary);">inc. VAT</span>
+            </div>
         </div>
         <a href="checkout.html" class="btn btn--primary" style="padding: 0 var(--space-5); text-decoration: none;">Buy Now</a>
     </div>
