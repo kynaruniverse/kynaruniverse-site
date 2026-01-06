@@ -17,18 +17,22 @@
             <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
             Marketplace
         </a>
-        <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+        
+        <div style="display: flex; gap: var(--space-2);">
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Dark Mode">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
+            <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
     </header>
 
     <div id="mobile-menu" class="mobile-menu">
         <div style="display: flex; justify-content: flex-end;">
             <button class="menu-toggle" id="close-menu" aria-label="Close menu">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
         <nav style="display: flex; flex-direction: column; gap: var(--space-2);">
@@ -44,13 +48,13 @@
         <section>
             <div class="gallery-container">
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3EMain Product Image%3C/text%3E%3C/svg%3E" alt="Main View">
+                    <img src="assets/images/invoice-main.jpg" alt="Main View" style="background-color: var(--color-surface-dark);">
                 </div>
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3EOutput Example%3C/text%3E%3C/svg%3E" alt="Output Example">
+                    <img src="assets/images/invoice-output.jpg" alt="Output Example" style="background-color: var(--color-surface-dark);">
                 </div>
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ETerminal Preview%3C/text%3E%3C/svg%3E" alt="Terminal Preview">
+                    <img src="assets/images/invoice-terminal.jpg" alt="Terminal Preview" style="background-color: var(--color-surface-dark);">
                 </div>
             </div>
 
@@ -123,7 +127,7 @@
             <div class="product-grid">
                 <article class="product-card">
                     <div class="product-card__image-wrapper">
-                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%238a8379'%3ERelated Product%3C/text%3E%3C/svg%3E" alt="Related" class="product-card__image">
+                         <img src="assets/images/related-product.jpg" alt="Related" class="product-card__image" style="background-color: var(--color-surface-dark);">
                     </div>
                     <div class="product-card__content">
                         <h3 class="product-card__title">Client Dashboard Notion</h3>
@@ -148,7 +152,6 @@
     </div>
     
     <script src="js/main.js"></script>
-
 
 </body>
 </html>

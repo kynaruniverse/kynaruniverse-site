@@ -17,18 +17,22 @@
             <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
             Marketplace
         </a>
-        <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+
+        <div style="display: flex; gap: var(--space-2);">
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Dark Mode">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
+            <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
     </header>
 
     <div id="mobile-menu" class="mobile-menu">
         <div style="display: flex; justify-content: flex-end;">
             <button class="menu-toggle" id="close-menu" aria-label="Close menu">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
         <nav style="display: flex; flex-direction: column; gap: var(--space-2);">
@@ -52,44 +56,16 @@
         <aside class="sidebar-filters">
             <div class="filter-group">
                 <span class="filter-title">Category</span>
-                <label class="filter-row">
-                    <input type="checkbox" checked> All Scripts
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> Web Automation
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> Data Processing
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> System Utils
-                </label>
+                <label class="filter-row"><input type="checkbox" checked> All Scripts</label>
+                <label class="filter-row"><input type="checkbox"> Web Automation</label>
+                <label class="filter-row"><input type="checkbox"> Data Processing</label>
+                <label class="filter-row"><input type="checkbox"> System Utils</label>
             </div>
-
-            <div class="filter-group">
-                <span class="filter-title">Difficulty</span>
-                <label class="filter-row">
-                    <input type="checkbox"> Beginner Friendly
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> Intermediate
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> Advanced
-                </label>
-            </div>
-
             <div class="filter-group">
                 <span class="filter-title">Price</span>
-                <label class="filter-row">
-                    <input type="checkbox"> Under £10
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> £10 - £25
-                </label>
-                <label class="filter-row">
-                    <input type="checkbox"> £25+
-                </label>
+                <label class="filter-row"><input type="checkbox"> Under £10</label>
+                <label class="filter-row"><input type="checkbox"> £10 - £25</label>
+                <label class="filter-row"><input type="checkbox"> £25+</label>
             </div>
         </aside>
 
@@ -99,20 +75,17 @@
                     <h1 style="margin-bottom: var(--space-1); font-size: var(--text-xl);">Automation Scripts</h1>
                     <p class="text-secondary" style="margin: 0; font-size: var(--text-sm);">12 products found</p>
                 </div>
-                
                 <select class="sort-select" aria-label="Sort products">
                     <option>Newest Arrivals</option>
                     <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Popularity</option>
                 </select>
             </div>
 
             <div class="product-grid">
                 <article class="product-card">
-                    <a href="product.html" style="text-decoration: none; display: inherit; flex-direction: inherit; height: inherit; color: inherit;">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
                         <div class="product-card__image-wrapper">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 1%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
+                            <img src="assets/images/invoice-script.jpg" alt="Invoice Generator" class="product-card__image" style="background-color: var(--color-surface-dark);">
                         </div>
                         <div class="product-card__content">
                             <h3 class="product-card__title">Auto-Invoice Generator</h3>
@@ -129,65 +102,48 @@
                 </article>
 
                 <article class="product-card">
-                    <div class="product-card__image-wrapper">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 2%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
-                    </div>
-                    <div class="product-card__content">
-                        <h3 class="product-card__title">Social Media Scheduler</h3>
-                        <div style="margin-top: var(--space-2);">
-                            <span class="badge badge--emerald">Python</span>
-                            <span class="badge">Beginner</span>
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                             <img src="assets/images/social-scheduler.jpg" alt="Social Scheduler" class="product-card__image" style="background-color: var(--color-surface-dark);">
                         </div>
-                        <p class="product-card__desc">Schedule posts to Twitter and LinkedIn via API.</p>
-                        <div class="product-card__footer">
-                            <span class="product-card__price">£18</span>
-                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Social Media Scheduler</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                                <span class="badge">Beginner</span>
+                            </div>
+                            <p class="product-card__desc">Schedule posts to Twitter and LinkedIn via API.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£18</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </article>
 
                 <article class="product-card">
-                    <div class="product-card__image-wrapper">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 3%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
-                    </div>
-                    <div class="product-card__content">
-                        <h3 class="product-card__title">Image Bulk Resizer</h3>
-                        <div style="margin-top: var(--space-2);">
-                            <span class="badge badge--emerald">Bash</span>
-                            <span class="badge">Advanced</span>
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                            <img src="assets/images/image-resizer.jpg" alt="Image Resizer" class="product-card__image" style="background-color: var(--color-surface-dark);">
                         </div>
-                        <p class="product-card__desc">Resize thousands of images in seconds using ImageMagick.</p>
-                        <div class="product-card__footer">
-                            <span class="product-card__price">£10</span>
-                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Image Bulk Resizer</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Bash</span>
+                            </div>
+                            <p class="product-card__desc">Resize thousands of images in seconds using ImageMagick.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£10</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </article>
-
-                <article class="product-card">
-                    <div class="product-card__image-wrapper">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e8e5dc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238a8379'%3EScript 4%3C/text%3E%3C/svg%3E" alt="Product" class="product-card__image">
-                    </div>
-                    <div class="product-card__content">
-                        <h3 class="product-card__title">Web Scraper Boilerplate</h3>
-                        <div style="margin-top: var(--space-2);">
-                            <span class="badge badge--emerald">Python</span>
-                            <span class="badge">Intermediate</span>
-                        </div>
-                        <p class="product-card__desc">Clean architecture for scraping static and dynamic sites.</p>
-                        <div class="product-card__footer">
-                            <span class="product-card__price">£35</span>
-                            <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
-                        </div>
-                    </div>
-                </article>
-
             </div>
-
+            
             <div style="margin-top: var(--space-6); text-align: center;">
                 <button class="btn btn--secondary">Load More Products</button>
             </div>
-
         </section>
     </main>
 

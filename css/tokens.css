@@ -6,11 +6,11 @@
      Source: Implementation Bridge
      --------------------------------------------------------- */
   
- /* Neutrals - Bone White / Organic */
-  --color-bg: #F9F6EE; /* Bone White - Cleaner/Lighter */
-  --color-surface: #F0EBE0; /* Subtle Bone  */
-  --color-surface-dark: #E6DDD0; /* Card hover state */
-  --color-border: #DCD3C5; /* Crisp beige border */
+  /* Neutrals - Bone White / Organic */
+  --color-bg:             #F9F6EE; /* Bone White - Cleaner/Lighter */
+  --color-surface:        #F0EBE0; /* Subtle Bone  */
+  --color-surface-dark:   #E6DDD0; /* Card hover state */
+  --color-border:         #DCD3C5; /* Crisp beige border */
   
   --color-text-primary:   #1a1614; /* Near-black with warmth */
   --color-text-secondary: #5c564d; /* Muted brown-grey */

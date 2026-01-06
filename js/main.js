@@ -8,35 +8,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
+    initThemeToggle(); // Initialize this early to prevent flash
     initCodeCopy();
     initFormValidation();
     initFilterChips();
-    initThemeToggle(); // New Feature
 });
 
 /* ---------------------------------------------------------
    1. GLOBAL MOBILE MENU
    --------------------------------------------------------- */
 function initMobileMenu() {
-    const menuToggle = document.querySelectorAll('.menu-toggle');
+    // CRITICAL FIX: Exclude the #theme-toggle button so it doesn't trigger the menu
+    const allToggles = document.querySelectorAll('.menu-toggle');
+    const menuToggles = Array.from(allToggles).filter(btn => btn.id !== 'theme-toggle');
+    
     const mobileMenu = document.getElementById('mobile-menu');
     
-    if (!menuToggle.length || !mobileMenu) return;
+    if (!menuToggles.length || !mobileMenu) return;
 
     const toggleMenu = () => {
         const isClosed = !mobileMenu.classList.contains('is-active');
         mobileMenu.classList.toggle('is-active');
         document.body.style.overflow = isClosed ? 'hidden' : '';
-        menuToggle.forEach(btn => btn.setAttribute('aria-expanded', isClosed));
+        
+        // Update ARIA only on the menu buttons
+        menuToggles.forEach(btn => btn.setAttribute('aria-expanded', isClosed));
     };
 
-    menuToggle.forEach(btn => {
+    menuToggles.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleMenu();
         });
     });
 
+    // Close when clicking outside content
     mobileMenu.addEventListener('click', (e) => {
         if (e.target === mobileMenu) {
             toggleMenu();
@@ -51,21 +57,22 @@ function initThemeToggle() {
     const themeBtn = document.getElementById('theme-toggle');
     const html = document.documentElement;
     
-    // Check saved preference or system preference
+    // Check saved preference
     const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // Default to light if no preference, unless system is dark
-    // BUT: Business vision prefers Light Mode, so we default to Light if unsaved.
+    // STRATEGY: Force "Bone White" Light Mode on first visit (Business Vision)
+    // We only enable dark mode if the user has explicitly saved 'dark' in the past.
     if (savedTheme === 'dark') {
         html.setAttribute('data-theme', 'dark');
     } else {
-        html.removeAttribute('data-theme'); // Force Light Mode default
+        html.removeAttribute('data-theme'); 
     }
 
     if (!themeBtn) return;
 
-    themeBtn.addEventListener('click', () => {
+    themeBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent bubbling issues
+        
         const currentTheme = html.getAttribute('data-theme');
         if (currentTheme === 'dark') {
             html.removeAttribute('data-theme');
@@ -92,6 +99,8 @@ function initCodeCopy() {
         try {
             await navigator.clipboard.writeText(codeBlock.textContent);
             const originalText = copyBtn.innerHTML;
+            
+            // Visual Feedback
             copyBtn.innerHTML = `
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Copied!

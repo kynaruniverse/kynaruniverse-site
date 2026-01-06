@@ -369,7 +369,8 @@
 .input:focus {
   outline: none;
   border: 2px solid var(--color-primary);
-  background-color: #ffffff; /* Brighten on focus */
+  /* Adaptive: uses Surface color instead of hardcoded white */
+  background-color: var(--color-surface); 
 }
 
 .input--error {

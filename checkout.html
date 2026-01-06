@@ -14,7 +14,7 @@
 
     <header style="padding: var(--space-3); text-align: center; border-bottom: 1px solid var(--color-border);">
         <a href="index.html" class="site-logo" style="justify-content: center;">
-            <svg style="background: var(--color-primary); border-radius: 4px; height: 24px; width: 24px;"></svg>
+            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
             Marketplace
         </a>
     </header>
@@ -30,7 +30,8 @@
             <h3 style="font-size: var(--text-base); margin-bottom: var(--space-3);">Order Details</h3>
             
             <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-3);">
-                <div style="width: 64px; height: 64px; background: var(--color-surface-dark); border-radius: var(--radius-sm);"></div>
+                <img src="assets/images/invoice-script.jpg" alt="Auto-Invoice Generator" style="width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; background-color: var(--color-surface-dark);">
+                
                 <div>
                     <div style="font-weight: var(--weight-semibold);">Auto-Invoice Generator</div>
                     <div style="font-size: var(--text-sm); color: var(--color-text-secondary);">Single License</div>
@@ -51,7 +52,8 @@
             </div>
         </div>
 
-        <form action="success.html" method="GET"> <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-3);">Contact Info</h3>
+        <form action="success.html" method="GET"> 
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-3);">Contact Info</h3>
             
             <div class="form-field">
                 <label for="email" class="form-label">Email Address</label>
@@ -91,7 +93,6 @@
     </main>
     
     <script src="js/main.js"></script>
-
 
 </body>
 </html>
