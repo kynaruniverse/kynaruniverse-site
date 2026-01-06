@@ -103,36 +103,98 @@
   background-color: var(--color-bg);
 }
 
-/* --- RESTORED: Mobile Menu Overlay (Slide-in Sheet) --- */
+/* ---------------------------------------------------------
+   PREMIUM MOBILE MENU (Updated for KYNAR)
+   --------------------------------------------------------- */
 .mobile-menu {
   position: fixed;
   inset: 0; /* Full screen */
-  background-color: var(--color-bg);
-  z-index: 999;
-  padding: var(--space-4);
+  background-color: var(--color-bg); /* Matches site theme */
+  z-index: 990; /* Sits JUST behind the header (Header is 1000) */
   
-  /* Hidden state */
-  transform: translateX(100%);
-  transition: transform var(--transition-base);
+  /* Layout & Spacing */
+  padding: var(--space-4);
+  /* CRITICAL FIX: Push content down to clear the new taller header */
+  padding-top: 160px; 
   
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  
+  /* Animation State: Closed */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* "Apple-like" smooth ease */
 }
 
-/* Javascript will toggle this class */
+/* Animation State: Open */
 .mobile-menu.is-active {
-  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
+/* ---------------------------------------------------------
+   MENU LINKS (Typography & Stagger Animation)
+   --------------------------------------------------------- */
 .mobile-nav-link {
-  font-size: var(--text-xl);
-  font-weight: var(--weight-semibold);
+  /* Typography Upgrade */
+  font-family: 'Bantayog', sans-serif;
+  font-size: 32px; /* Large, cinematic size */
   color: var(--color-text-primary);
   text-decoration: none;
-  padding: var(--space-2) 0;
   border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
+  
+  /* Initial State for Animation (Hidden & Lower) */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.4s ease-out,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.2s ease;
 }
+
+/* Hover State */
+.mobile-nav-link:hover {
+  color: var(--color-brand-deep); /* KYNAR Gold */
+  padding-left: 10px; /* Subtle movement on hover */
+}
+
+/* ---------------------------------------------------------
+   STAGGERED ENTRANCE ANIMATION
+   This makes links float in one-by-one when menu opens
+   --------------------------------------------------------- */
+.mobile-menu.is-active .mobile-nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays for each link (1st, 2nd, 3rd...) */
+.mobile-menu.is-active .mobile-nav-link:nth-child(1) { transition-delay: 0.10s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(3) { transition-delay: 0.20s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.is-active .mobile-nav-link:nth-child(5) { transition-delay: 0.30s; }
+
+/* ---------------------------------------------------------
+   MENU FOOTER (Socials / Secondary)
+   --------------------------------------------------------- */
+.mobile-menu-footer {
+  margin-top: auto; /* Pushes to bottom */
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease-out;
+}
+
+.mobile-menu.is-active .mobile-menu-footer {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s; /* Enters last */
+}
+
 
 /* ---------------------------------------------------------
    2. BUTTON SYSTEM
