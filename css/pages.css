@@ -374,3 +374,82 @@
        but for now we keep it explicit. */
     .hero h1 { font-size: 48px; }
 }
+
+/* ---------------------------------------------------------
+   12. DEPARTMENT GATEWAY (New Homepage Architecture)
+   --------------------------------------------------------- */
+.dept-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .dept-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns on Desktop */
+  }
+}
+
+.dept-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  min-height: 280px; /* Tall, substantial cards */
+  position: relative;
+  overflow: hidden;
+}
+
+.dept-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+  border-color: var(--color-primary);
+}
+
+.dept-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+}
+
+.dept-title {
+  font-family: var(--font-heading); /* Bantayog */
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.dept-desc {
+  font-family: var(--font-body); /* Glacial */
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  max-width: 90%;
+}
+
+/* THEME VARIANTS (Based on your tokens) */
+
+/* TECH: Emerald / Code / Structure */
+.dept-card--tech {
+  background: linear-gradient(to bottom right, var(--color-surface), var(--color-primary-pale));
+}
+.dept-card--tech .dept-icon { color: var(--color-emerald); }
+
+/* LIFE: Sage / Balance / Calm */
+.dept-card--life {
+  background: linear-gradient(to bottom right, var(--color-surface), #edf2ed); /* Subtle Sage Tint */
+}
+.dept-card--life .dept-icon { color: var(--color-sage); }
+
+/* FAMILY: Terracotta / Warmth / Fun */
+.dept-card--family {
+  background: linear-gradient(to bottom right, var(--color-surface), #fdf2ee); /* Subtle Terracotta Tint */
+}
+.dept-card--family .dept-icon { color: var(--color-terracotta); }

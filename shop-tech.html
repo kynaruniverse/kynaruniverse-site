@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYNAR Tech | Automation & Scripts</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-top">
+            <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+            <a href="index.html" class="site-brand">
+                <span class="brand-main">KYNAR</span>
+                <span class="brand-sub">universe</span>
+            </a>
+
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Dark Mode">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
+        <div class="header-search">
+            <div class="search-input-wrapper">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search scripts, templates..." class="search-input">
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="mobile-menu">
+        <nav style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <a href="shop-tech.html" class="mobile-nav-link" style="color: var(--color-emerald);">KYNAR Tech</a>
+            <a href="shop-life.html" class="mobile-nav-link" style="color: var(--color-sage);">KYNAR Life</a>
+            <a href="shop-family.html" class="mobile-nav-link" style="color: var(--color-terracotta);">KYNAR Family</a>
+            <div style="height: 1px; background: var(--color-border); margin: var(--space-2) 0;"></div>
+            <a href="legal.html" class="mobile-nav-link" style="font-size: var(--text-lg);">Help & Support</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2);">&copy; 2026 KYNAR Universe</p>
+        </div>
+    </div>
+
+    <section class="section hero" style="padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-border);">
+        <div class="container">
+            <div style="display: flex; justify-content: center; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Universe</a>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                <span style="color: var(--color-emerald); font-weight: bold;">Tech</span>
+            </div>
+            <h1>Automate the boring stuff.</h1>
+            <p>Production-ready scripts, workflow templates, and development tools.</p>
+        </div>
+    </section>
+
+    <div class="filter-bar" style="border-bottom: 1px solid var(--color-border);">
+        <button class="chip is-active" style="border-color: var(--color-emerald); background-color: var(--color-emerald); color: white;">All Tech</button>
+        <button class="chip">Python Scripts</button>
+        <button class="chip">Shell / Bash</button>
+        <button class="chip">Web Scraping</button>
+        <button class="chip">Notion Templates</button>
+    </div>
+
+    <main class="container browse-layout" style="padding-top: var(--space-5);">
+        
+        <aside class="sidebar-filters">
+            <div class="filter-group">
+                <span class="filter-title">Language</span>
+                <label class="filter-row"><input type="checkbox" checked> All</label>
+                <label class="filter-row"><input type="checkbox"> Python 3.10+</label>
+                <label class="filter-row"><input type="checkbox"> Bash / Shell</label>
+                <label class="filter-row"><input type="checkbox"> JavaScript / Node</label>
+            </div>
+            <div class="filter-group">
+                <span class="filter-title">Use Case</span>
+                <label class="filter-row"><input type="checkbox"> File Management</label>
+                <label class="filter-row"><input type="checkbox"> Data Processing</label>
+                <label class="filter-row"><input type="checkbox"> Web Automation</label>
+                <label class="filter-row"><input type="checkbox"> Business Systems</label>
+            </div>
+            <div class="filter-group">
+                <span class="filter-title">Price</span>
+                <label class="filter-row"><input type="checkbox"> Under £10</label>
+                <label class="filter-row"><input type="checkbox"> £10 - £30</label>
+                <label class="filter-row"><input type="checkbox"> £30+</label>
+            </div>
+        </aside>
+
+        <section>
+            <div class="browse-header">
+                <div>
+                    <h2 style="margin-bottom: var(--space-1); font-size: var(--text-xl);">Featured Scripts</h2>
+                    <p class="text-secondary" style="margin: 0; font-size: var(--text-sm);">Showing curated tools for developers.</p>
+                </div>
+                <select class="sort-select" aria-label="Sort products">
+                    <option>Recommended</option>
+                    <option>Newest Arrivals</option>
+                    <option>Price: Low to High</option>
+                </select>
+            </div>
+
+            <div class="product-grid">
+                
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                            <img src="assets/images/invoice-script.jpg" alt="Invoice Generator" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Auto-Invoice Generator</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                                <span class="badge">Business</span>
+                            </div>
+                            <p class="product-card__desc">Generate PDF invoices from CSV data instantly. Includes VAT calculation logic.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£24</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                             <img src="assets/images/file-organizer.jpg" alt="File Organizer" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Desktop Cleaner & Organizer</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                                <span class="badge">Utility</span>
+                            </div>
+                            <p class="product-card__desc">Automatically sorts desktop files into folders by extension (Images, Docs, Installers).</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£8</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                            <img src="assets/images/image-resizer.jpg" alt="Image Resizer" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Bulk Image Resizer CLI</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Bash</span>
+                                <span class="badge">Media</span>
+                            </div>
+                            <p class="product-card__desc">Resize, compress, and convert thousands of images in seconds using ImageMagick.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£10</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                             <img src="assets/images/social-scheduler.jpg" alt="Social Scheduler" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Social Media API Scheduler</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                                <span class="badge">API</span>
+                            </div>
+                            <p class="product-card__desc">Schedule text and image posts to Twitter/X and LinkedIn via API. No monthly fees.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£18</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                             <img src="assets/images/web-scraper.jpg" alt="Web Scraper" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Universal Web Scraper</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--emerald">Python</span>
+                                <span class="badge">Data</span>
+                            </div>
+                            <p class="product-card__desc">Extract tables, prices, or text lists from any URL and export to clean CSV format.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£35</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                 
+                 <article class="product-card">
+                    <a href="product.html" style="text-decoration: none; display: contents; color: inherit;">
+                        <div class="product-card__image-wrapper">
+                             <img src="assets/images/client-dashboard.jpg" alt="Dashboard" class="product-card__image" style="background-color: var(--color-surface-dark);">
+                        </div>
+                        <div class="product-card__content">
+                            <h3 class="product-card__title">Freelance Client Dashboard</h3>
+                            <div style="margin-top: var(--space-2);">
+                                <span class="badge badge--slate">Notion</span>
+                                <span class="badge">System</span>
+                            </div>
+                            <p class="product-card__desc">A complete Notion OS for managing freelance clients, invoices, and project timelines.</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">£15</span>
+                                <button class="btn btn--secondary" style="padding: 0 var(--space-2); min-height: 40px;">View</button>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+            </div>
+            
+            <div style="margin-top: var(--space-6); text-align: center;">
+                <button class="btn btn--secondary">Load More Tech</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">
+        <div class="container" style="text-align: center; color: var(--color-text-secondary); font-size: var(--text-sm);">
+            <div style="margin-bottom: var(--space-2);">
+                <a href="legal.html" style="color: inherit; text-decoration: underline; margin: 0 var(--space-2);">Terms & Refunds</a>
+                <a href="legal.html" style="color: inherit; text-decoration: underline; margin: 0 var(--space-2);">Privacy</a>
+            </div>
+            <p>&copy; 2026 KYNAR Universe. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
