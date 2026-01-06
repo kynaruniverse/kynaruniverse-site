@@ -30,25 +30,52 @@
   justify-content: center;
   text-decoration: none;
   line-height: 1;
+  
+  /* CRITICAL FIX: Force the gold color on the link itself */
+  color: var(--color-brand-deep); 
+  
+  /* Interaction: Smooth press animation */
+  transition: transform 0.1s ease-out;
+  
+  /* Remove default browser tap highlight (Blue box on mobile) */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure it STAYS gold when visited, clicked, or hovered */
+.site-brand:visited,
+.site-brand:hover,
+.site-brand:active,
+.site-brand:focus {
+  color: var(--color-brand-deep);
+  text-decoration: none; /* Double safety */
+}
+
+/* The "Pressed" Effect (Subtle shrink) */
+.site-brand:active {
+  transform: scale(0.96);
+  opacity: 0.8; /* Optional: tiny fade to feel responsive */
 }
 
 .brand-main {
-  font-family: 'Bantayog', sans-serif; /* Fallback to sans if font fails */
-  font-size: var(--text-2xl); /* Adjust size as needed */
-  color: var(--color-brand-deep);
+  font-family: 'Bantayog', sans-serif;
+  font-size: var(--text-2xl);
+  /* Use 'inherit' so it follows the parent link's color rules */
+  color: inherit; 
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .brand-sub {
   font-family: 'Bantayog', sans-serif;
-  font-size: 10px; /* Small subtitle */
-  color: var(--color-brand-deep);
-  letter-spacing: 0.2em; /* Wide spacing looks cinematic */
+  font-size: 10px;
+  /* Use 'inherit' so it follows the parent link's color rules */
+  color: inherit; 
+  letter-spacing: 0.2em;
   text-transform: lowercase;
-  margin-top: 0; /* The 1px gap you requested */
+  margin-top: 1px;
   opacity: 0.9;
 }
+
 
 /* Menu & Theme Toggles */
 .menu-toggle {
