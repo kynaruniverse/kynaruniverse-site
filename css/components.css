@@ -46,7 +46,7 @@
   color: var(--color-brand-deep);
   letter-spacing: 0.2em; /* Wide spacing looks cinematic */
   text-transform: lowercase;
-  margin-top: 1px; /* The 1px gap you requested */
+  margin-top: 0; /* The 1px gap you requested */
   opacity: 0.9;
 }
 
