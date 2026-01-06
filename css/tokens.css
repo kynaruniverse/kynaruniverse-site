@@ -46,8 +46,9 @@
   --color-error:          #a6503a; /* Muted terracotta-red */
   --color-info:           #5a7a6d; /* Muted teal-green */
   
-  /* BRAND IDENTITY: KYNAR Gold */
-  --color-brand-deep:     #9D7B38; 
+    /* BRAND IDENTITY: Forest Green (Light Mode) */
+  --color-brand-deep:     #0f3d30; 
+
 
   /* ---------------------------------------------------------
      2. SPACING SCALE (8pt System)
@@ -116,4 +117,7 @@
   
   --color-primary:        #10b981; /* Brighter Emerald */
   --color-primary-hover:  #059669;
+  
+  --color-brand-deep:     #9D7B38; 
 }
+

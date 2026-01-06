@@ -1,29 +1,39 @@
 /* js/main.js */
 
+/**
+ * DIGITAL MARKETPLACE - MAIN LOGIC
+ * Architecture: Vanilla JS, Event Delegation, DOMContentLoaded
+ * Budget: < 5KB
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initThemeToggle();
     initCodeCopy();
     initFormValidation();
     initFilterChips();
-    highlightCurrentPage(); // NEW: Highlights the active link
+    highlightCurrentPage(); // NEW: Visual indicator for active page
 });
 
 /* ---------------------------------------------------------
    1. GLOBAL MOBILE MENU
    --------------------------------------------------------- */
 function initMobileMenu() {
+    // Exclude the theme toggle from menu triggers
     const allToggles = document.querySelectorAll('.menu-toggle');
     const menuToggles = Array.from(allToggles).filter(btn => btn.id !== 'theme-toggle');
+    
     const mobileMenu = document.getElementById('mobile-menu');
-    // NEW: Select links inside the menu
+    // Select links inside to close menu on click
     const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
     
     if (!menuToggles.length || !mobileMenu) return;
 
     const toggleMenu = (forceClose = false) => {
         const isClosed = !mobileMenu.classList.contains('is-active');
-        if (forceClose && isClosed) return; // Already closed
+        
+        // If we want to force close and it's already closed, do nothing
+        if (forceClose && isClosed) return;
 
         if (forceClose) {
             mobileMenu.classList.remove('is-active');
@@ -51,18 +61,20 @@ function initMobileMenu() {
         }
     });
 
-    // NEW: Close menu when a link is clicked
+    // Close when clicking a link inside
     menuLinks.forEach(link => {
         link.addEventListener('click', () => toggleMenu(true));
     });
 }
 
 /* ---------------------------------------------------------
-   2. THEME TOGGLE
+   2. THEME TOGGLE (Light/Dark Mode)
    --------------------------------------------------------- */
 function initThemeToggle() {
     const themeBtn = document.getElementById('theme-toggle');
     const html = document.documentElement;
+    
+    // Check saved preference
     const savedTheme = localStorage.getItem('theme');
     
     if (savedTheme === 'dark') {
@@ -74,7 +86,8 @@ function initThemeToggle() {
     if (!themeBtn) return;
 
     themeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+        e.stopPropagation(); 
+        
         const currentTheme = html.getAttribute('data-theme');
         if (currentTheme === 'dark') {
             html.removeAttribute('data-theme');
@@ -101,6 +114,8 @@ function initCodeCopy() {
         try {
             await navigator.clipboard.writeText(codeBlock.textContent);
             const originalText = copyBtn.innerHTML;
+            
+            // Visual Feedback
             copyBtn.innerHTML = `
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Copied!
@@ -114,7 +129,8 @@ function initCodeCopy() {
                 copyBtn.style.borderColor = '';
             }, 2000);
         } catch (err) {
-            console.error('Failed to copy: ', err);
+            console.error('Failed to copy text: ', err);
+            copyBtn.textContent = 'Error';
         }
     });
 }
@@ -124,6 +140,7 @@ function initCodeCopy() {
    --------------------------------------------------------- */
 function initFormValidation() {
     const inputs = document.querySelectorAll('.input');
+
     inputs.forEach(input => {
         input.addEventListener('blur', () => validateInput(input));
         input.addEventListener('input', () => {
@@ -204,7 +221,7 @@ function highlightCurrentPage() {
         if (href === filename) {
             // Add a visual indicator
             link.style.fontWeight = 'bold';
-            // If it's a mobile link, maybe add a left border or color shift
+            // If it's a mobile link, add a left border
             if (link.classList.contains('mobile-nav-link')) {
                 link.style.borderLeft = '4px solid currentColor';
                 link.style.paddingLeft = '12px';
