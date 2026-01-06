@@ -180,16 +180,28 @@
         pdf.cell(<span class="token number">200</span>, <span class="token number">10</span>, txt=row[<span class="token string">'client_name'</span>], ln=<span class="token number">1</span>, align=<span class="token string">'C'</span>)
         
     pdf.output(<span class="token string">"invoice.pdf"</span>)</code></pre>
+                    
                     <div class="code-preview__footer" style="padding: var(--space-3); border-top: 1px solid var(--color-border); background: var(--color-bg);">
-                        <div style="display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-secondary);">
-                            <span>Works on:</span>
-                            <span class="badge badge--sage">Windows</span>
-                            <span class="badge badge--sage">Mac</span>
-                            <span class="badge badge--sage">Linux</span>
+                        <div style="display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
+                            <span style="font-weight: var(--weight-medium);">Compatible with:</span>
+                            
+                            <div style="display: flex; align-items: center; gap: 4px;" title="Windows">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20M2 2h20v20H2z"></path></svg>
+                                <span style="font-size: var(--text-xs);">Win</span>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 4px;" title="macOS">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                                <span style="font-size: var(--text-xs);">Mac</span>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 4px;" title="Linux">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H2a10 10 0 0 0 10-10z"></path></svg>
+                                <span style="font-size: var(--text-xs);">Linux</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> </div>
         </section>
 
     </main>
