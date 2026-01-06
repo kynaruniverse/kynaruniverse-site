@@ -12,12 +12,30 @@
 </head>
 <body>
 
-    <header style="padding: var(--space-3); text-align: center; border-bottom: 1px solid var(--color-border);">
-        <a href="index.html" class="site-logo" style="justify-content: center;">
-            <svg style="background: var(--color-primary); border-radius: 4px;"></svg>
-            Marketplace
+    <header class="site-header">
+    <div class="header-top">
+        <button class="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="site-brand">
+            <span class="brand-main">KYNAR</span>
+            <span class="brand-sub">studios</span>
         </a>
-    </header>
+
+        <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Dark Mode">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+    </div>
+
+    <div class="header-search">
+        <div class="search-input-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Search tools..." class="search-input">
+        </div>
+    </div>
+</header>
+
 
     <main class="checkout-layout">
         

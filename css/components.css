@@ -1,49 +1,109 @@
 /* css/components.css */
 
 /* ---------------------------------------------------------
-   1. NAVIGATION (Derived from Visual Design System Sec. 5)
+   1. NAVIGATION & HEADER
    --------------------------------------------------------- */
 .site-header {
-  height: 64px; /* VDS: 56-64px */
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  padding: 0 var(--space-3);
-  
+  padding: var(--space-2) var(--space-3);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.site-logo {
-  font-weight: var(--weight-bold);
-  font-size: var(--text-lg);
-  color: var(--color-text-primary);
+/* --- Top Row: Grid Layout for Perfect Centering --- */
+.header-top {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px; /* Left Button | Center Logo | Right Button */
+  align-items: center;
+}
+
+/* Brand Logic */
+.site-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
+  line-height: 1;
 }
 
-.site-logo svg {
-  height: 32px; /* VDS: Max height 32px */
-  width: 32px;
+.brand-main {
+  font-family: 'Bantayog', sans-serif; /* Fallback to sans if font fails */
+  font-size: var(--text-2xl); /* Adjust size as needed */
+  color: var(--color-brand-deep);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-/* Mobile Menu Trigger */
+.brand-sub {
+  font-family: 'Bantayog', sans-serif;
+  font-size: 10px; /* Small subtitle */
+  color: var(--color-brand-deep);
+  letter-spacing: 0.2em; /* Wide spacing looks cinematic */
+  text-transform: lowercase;
+  margin-top: 1px; /* The 1px gap you requested */
+  opacity: 0.9;
+}
+
+/* Menu & Theme Toggles */
 .menu-toggle {
   background: transparent;
   border: none;
-  padding: var(--space-2);
+  padding: 0;
   cursor: pointer;
   color: var(--color-text-primary);
-  min-height: 44px; /* Touch target */
-  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
 }
 
-/* Mobile Menu Overlay (Slide-in Sheet) */
+/* --- Bottom Row: Search Bar --- */
+.header-search {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 40px;
+  padding-left: 40px; /* Space for icon */
+  padding-right: 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); /* Rounded organic feel */
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-bg);
+}
+
+/* --- RESTORED: Mobile Menu Overlay (Slide-in Sheet) --- */
 .mobile-menu {
   position: fixed;
   inset: 0; /* Full screen */

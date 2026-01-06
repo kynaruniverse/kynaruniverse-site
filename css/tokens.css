@@ -45,6 +45,9 @@
   --color-warning:        #c5a059; /* Uses accent gold */
   --color-error:          #a6503a; /* Muted terracotta-red */
   --color-info:           #5a7a6d; /* Muted teal-green */
+  
+  /* NEW TOKEN: Deep Gold for KYNAR Header */
+  --color-brand-deep: #9D7B38;
 
   /* ---------------------------------------------------------
      2. SPACING SCALE (8pt System)
