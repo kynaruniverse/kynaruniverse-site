@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Hub | Guides & Resources</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="preload" href="assets/fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
+
     
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
@@ -37,14 +39,18 @@
     </header>
 
     <div id="mobile-menu" class="mobile-menu">
-        <nav style="display: flex; flex-direction: column; gap: var(--space-3);">
+                <nav style="display: flex; flex-direction: column; gap: var(--space-3);">
             <a href="shop-tech.html" class="mobile-nav-link" style="color: var(--color-emerald);">KYNAR Tech</a>
             <a href="shop-life.html" class="mobile-nav-link" style="color: var(--color-sage);">KYNAR Life</a>
             <a href="shop-family.html" class="mobile-nav-link" style="color: var(--color-terracotta);">KYNAR Family</a>
-            <div style="height: 1px; background: var(--color-border); margin: var(--space-2) 0;"></div>
-            <a href="hub.html" class="mobile-nav-link" style="color: var(--color-accent);">The Hub</a>
-            <a href="legal.html" class="mobile-nav-link" style="font-size: var(--text-lg);">Help & Support</a>
+            
+            <div style="margin-top: var(--space-2);"></div>
+            
+            <a href="hub.html" class="mobile-nav-link">The Hub</a>
+            <a href="account.html" class="mobile-nav-link">My Library</a>
+            <a href="legal.html" class="mobile-nav-link">Help & Support</a>
         </nav>
+
         <div class="mobile-menu-footer">
             <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2);">&copy; 2026 KYNAR Universe</p>
         </div>

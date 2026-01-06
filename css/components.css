@@ -162,14 +162,10 @@
    --------------------------------------------------------- */
 .mobile-nav-link {
   display: block;
-  
-  /* UPDATED: Smaller, elegant size */
   font-family: 'Bantayog', sans-serif;
   font-size: 24px; 
   color: var(--color-text-primary);
   text-decoration: none;
-  
-  /* UPDATED: Removed border line, added spacing */
   border-bottom: none;
   padding: var(--space-1) 0;
   
@@ -177,10 +173,10 @@
   opacity: 0;
   transform: translateY(10px);
   transition: 
-    opacity 0.4s ease-out,
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.2s ease,
-    padding-left 0.2s ease; 
+  opacity 0.4s ease-out,
+  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  color 0.2s ease,
+  padding-left 0.2s ease; 
 }
 
 /* Hover State: Shift Right + Brand Color */
