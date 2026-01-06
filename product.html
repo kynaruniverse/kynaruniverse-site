@@ -170,55 +170,7 @@
             </div>
         </section>
         
-        <section class="section" style="grid-column: 1 / -1;">
-            <div class="container">
-                <h2>Technical Preview</h2>
-                <div class="code-preview" style="margin-top: var(--space-3);">
-                    <div class="code-preview__header">
-                        <span class="badge badge--emerald">Python 3.10</span>
-                        <button class="code-preview__copy">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            Copy
-                        </button>
-                    </div>
-                    <pre class="code-preview__content"><code><span class="token keyword">import</span> csv
-<span class="token keyword">from</span> fpdf <span class="token keyword">import</span> FPDF
-
-<span class="token comment"># Configuration for invoice output</span>
-<span class="token keyword">def</span> <span class="token function">generate_invoice</span>(data):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font(<span class="token string">"Arial"</span>, size=<span class="token number">12</span>)
-    
-    <span class="token comment"># Iterate through row data</span>
-    <span class="token keyword">for</span> row <span class="token keyword">in</span> data:
-        pdf.cell(<span class="token number">200</span>, <span class="token number">10</span>, txt=row[<span class="token string">'client_name'</span>], ln=<span class="token number">1</span>, align=<span class="token string">'C'</span>)
         
-    pdf.output(<span class="token string">"invoice.pdf"</span>)</code></pre>
-                    
-                    <div class="code-preview__footer" style="padding: var(--space-3); border-top: 1px solid var(--color-border); background: var(--color-bg);">
-                        <div style="display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
-                            <span style="font-weight: var(--weight-medium);">Compatible with:</span>
-                            
-                            <div style="display: flex; align-items: center; gap: 4px;" title="Windows">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20M2 2h20v20H2z"></path></svg>
-                                <span style="font-size: var(--text-xs);">Win</span>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 4px;" title="macOS">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                                <span style="font-size: var(--text-xs);">Mac</span>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 4px;" title="Linux">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H2a10 10 0 0 0 10-10z"></path></svg>
-                                <span style="font-size: var(--text-xs);">Linux</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> </div>
-        </section>
-
     </main>
 
     <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">

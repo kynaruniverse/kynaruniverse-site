@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Product Marketplace</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <meta name="description" content="Curated digital tools, python scripts, and planners for professionals. Instant download, VAT included. UK-based marketplace.">
     <meta property="og:image" content="assets/images/social-share.jpg"> 
 
@@ -41,24 +40,18 @@
 
 
     <div id="mobile-menu" class="mobile-menu">
-    <nav style="display: flex; flex-direction: column; gap: var(--space-3);">
-        <a href="browse.html" class="mobile-nav-link">Browse All</a>
-        <a href="browse.html" class="mobile-nav-link">Planners</a>
-        <a href="browse.html" class="mobile-nav-link">Scripts</a>
-        <a href="browse.html" class="mobile-nav-link">Templates</a>
-    </nav>
-
-    <div class="mobile-menu-footer">
-        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2);">
-            &copy; 2026 KYNAR Studios
-        </p>
-        <div style="display: flex; gap: var(--space-3); color: var(--color-brand-deep);">
-            <a href="#" style="color: inherit; text-decoration: none; font-size: var(--text-sm);">Instagram</a>
-            <a href="#" style="color: inherit; text-decoration: none; font-size: var(--text-sm);">Support</a>
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="menu-toggle" id="close-menu" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
         </div>
+        <nav style="display: flex; flex-direction: column; gap: var(--space-2);">
+            <a href="browse.html" class="mobile-nav-link">Browse All</a>
+            <a href="browse.html" class="mobile-nav-link">Planners</a>
+            <a href="browse.html" class="mobile-nav-link">Scripts</a>
+            <a href="browse.html" class="mobile-nav-link">Templates</a>
+        </nav>
     </div>
-</div>
-
 
     <main>
         <section class="section hero">
@@ -179,37 +172,6 @@
                 </div>
             </div>
         </section>
-        
-        <section class="section">
-            <div class="container">
-                <h2>Technical Details</h2>
-                <p>Transparent code. No black boxes.</p>
-                
-                <div class="code-preview" style="margin-top: var(--space-3);">
-                    <div class="code-preview__header">
-                        <span class="badge badge--emerald">Python 3.10</span>
-                        <button class="code-preview__copy">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            Copy
-                        </button>
-                    </div>
-                    <pre class="code-preview__content"><code><span class="token keyword">import</span> csv
-<span class="token keyword">from</span> fpdf <span class="token keyword">import</span> FPDF
-
-<span class="token comment"># Configuration for invoice output</span>
-<span class="token keyword">def</span> <span class="token function">generate_invoice</span>(data):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font(<span class="token string">"Arial"</span>, size=<span class="token number">12</span>)
-    
-    <span class="token comment"># Iterate through row data</span>
-    <span class="token keyword">for</span> row <span class="token keyword">in</span> data:
-        pdf.cell(<span class="token number">200</span>, <span class="token number">10</span>, txt=row[<span class="token string">'client_name'</span>], ln=<span class="token number">1</span>, align=<span class="token string">'C'</span>)
-        
-    pdf.output(<span class="token string">"invoice.pdf"</span>)</code></pre>
-                </div>
-            </div>
-         </section>
     </main>
 
     <footer class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-6);">
@@ -219,6 +181,7 @@
                 <a href="legal.html" style="color: inherit; text-decoration: underline; margin: 0 var(--space-2);">Privacy</a>
             </div>
             <p>&copy; 2026 KYNAR Studios. All rights reserved.</p>
+
             <p>VAT Number: GB 123 456 789</p>
         </div>
     </footer>
