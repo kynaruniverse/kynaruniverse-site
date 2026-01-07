@@ -445,13 +445,13 @@
 
 /* LIFE: Sage / Balance / Calm */
 .dept-card--life {
-  background: linear-gradient(to bottom right, var(--color-surface), #edf2ed); /* Subtle Sage Tint */
+  background: linear-gradient(to bottom right, var(--color-surface), var(--color-sage-light)); 
 }
 .dept-card--life .dept-icon { color: var(--color-sage); }
 
 /* FAMILY: Terracotta / Warmth / Fun */
 .dept-card--family {
-  background: linear-gradient(to bottom right, var(--color-surface), #fdf2ee); /* Subtle Terracotta Tint */
+  background: linear-gradient(to bottom right, var(--color-surface), var(--color-terracotta-light));
 }
 .dept-card--family .dept-icon { color: var(--color-terracotta); }
 

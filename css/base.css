@@ -146,3 +146,24 @@ button, input, select, textarea, a {
     content: " (" attr(href) ")";
   }
 }
+
+/* css/base.css - Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* Simplify the mobile menu entrance */
+  .mobile-nav-link {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+

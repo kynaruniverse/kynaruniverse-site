@@ -100,6 +100,11 @@
   
   --transition-fast: 150ms ease-out;
   --transition-base: 250ms ease-out;
+  /* css/tokens.css - Add to :root */
+  --size-interactive: 44px; /* Minimum Apple/Android tap target */
+  --size-interactive-lg: 48px; /* Standard button height */
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
 /* ---------------------------------------------------------
