@@ -223,7 +223,6 @@
   display: grid;
   gap: var(--space-4);
   grid-template-columns: 1fr;
-  /* Define 4 rows per card: Image, Title/Badges, Description, Footer */
   grid-auto-rows: auto auto auto auto; 
 }
 
@@ -370,8 +369,15 @@
 }
 
 .section {
-  padding: var(--space-5) 0;
+  padding: var(--space-6) 0; /* Standardized vertical rhythm */
 }
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-8) 0; /* Increased breathing room on desktop */
+  }
+}
+
 
 .hero {
   text-align: center;

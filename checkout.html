@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Secure Checkout | Digital Marketplace</title>
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">     <link rel="icon" type="image/png" sizes="512x512" href="assets/images/icon-512.png">
     <link rel="preload" href="assets/fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
@@ -56,46 +56,97 @@
             </div>
         </div>
 
-        <form action="success.html" method="POST"> 
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-3);">Contact Info</h3>
-            
+        <form action="success.html" method="POST">
+            <div id="form-error-summary" role="alert" style="color: var(--color-error); font-size: var(--text-sm); margin-bottom: var(--space-3);"></div> 
+            <h3 style="font-size:
+        var(--text-lg); margin-bottom:
+        var(--space-3);">Contact Info</h3>
+        
             <div class="form-field">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" id="email" class="input" placeholder="you@example.com" required aria-describedby="email-help">
-                <div id="email-help" style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: var(--space-1);">
-        We'll send your download link here.
+                <label for="email"
+        class="form-label">Email Address</label>
+                <input type="email" 
+        id="email" name="email"
+        class="input"
+                    placeholder=
+        "you@example.com" required
+                    autocomplete="email" 
+        aria-describedby="email-error">
+                <div id="email-error"
+                class="input-error-msg"
+                style="display: none;">
+                    Please enter a valid email.
                 </div>
             </div>
-
-
-            <h3 style="font-size: var(--text-lg); margin: var(--space-5) 0 var(--space-3) 0;">Payment Method</h3>
             
+            <h3 style="font-size:
+        var(--text-lg); margin: 
+        var(--space-5) 0 var(--space-3) 
+        0;">Payment Method</h3>
+        
             <div class="form-field">
-                <label for="card" class="form-label">Card Number</label>
-                <input type="text" id="card" class="input" placeholder="0000 0000 0000 0000" required inputmode="numeric">
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
-                <div class="form-field">
-                    <label for="expiry" class="form-label">Expiry</label>
-                    <input type="text" id="expiry" class="input" placeholder="MM / YY" required inputmode="numeric">
-                </div>
-                <div class="form-field">
-                    <label for="cvc" class="form-label">CVC</label>
-                    <input type="text" id="cvc" class="input" placeholder="123" required inputmode="numeric">
-                </div>
-            </div>
-
-            <div style="margin-top: var(--space-5);">
-                <button type="submit" class="btn btn--primary" style="width: 100%;">Pay £24.00</button>
+                <label for="card"
+        class="form-label">Card Number</label>
+                <input type="text"
+        id="card" name="cc-number"
+        class="input" 
+                    placeholder=
+        "0000 0000 0000 0000" required 
+                    inputmode="numeric"
+        autocomplete="cc-number">
             </div>
             
-            <div style="text-align: center; margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px dashed var(--color-border); font-size: var(--text-xs); color: var(--color-text-muted);">
-                <p style="margin-bottom: var(--space-2); color: var(--color-text-primary); font-weight: bold;">The KYNAR Guarantee</p>
+            <div style="display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: var(--space-3);">
+                <div class="form-field">
+                    <label for="expiry" 
+        class="form-label">Expiry</label>
+                    <input type="text" 
+        id="expiry" name="cc-exp"
+        class="input" 
+        
+        placeholder="MM / YY" required 
+        inputmode="numeric"
+        
+        autocomplete="cc-exp">
+                </div>
+            
+                <div class="form-field">
+                    <label for="cvc"
+        class="form-label">CVC</label>
+                    <input type="text" 
+        id="cvc" name="cc-csc"
+        class="input" 
+                   
+        placeholder="123" required 
+        inputmode="numeric" 
+                   
+        autocomplete="cc-csc">
+                </div>
+            </div>
+
+            <div style="margin-top:
+        var(--space-5);">
+                <button type="submit" 
+        class="btn btn--primary" 
+        style="width: 100%;">Pay £24.00</button>
+            </div>
+    
+            <div style="text-align: 
+        center; margin-top: 
+        var(--space-4); padding-top: 
+        var(--space-3); border-top: 1px dashed var(--color-border); 
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);">
+                <p style="margin-bottom: 
+        var(--space-2); color: 
+        var(--color-text-primary);
+        font-weight: bold;">The KYNAR Guarantee</p>
                 <p>We reject digital filler. Every tool in our marketplace is vetted for usability and quality. Payments are secure and encrypted.</p>
             </div>
-
         </form>
+
 
     </main>
     

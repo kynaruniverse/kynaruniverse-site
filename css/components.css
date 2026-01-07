@@ -9,20 +9,21 @@
   z-index: 1000;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  padding: var(--space-2) var(--space-3);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  /* Phase 5 Step 3: Viewport-fit support */
+  padding-top: calc(var(--space-2) + env(safe-area-inset-top));
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
-/* --- Top Row: Grid Layout for Perfect Centering --- */
 .header-top {
   display: grid;
-  grid-template-columns: 44px 1fr 44px; /* Left Button | Center Logo | Right Button */
+  grid-template-columns: 44px 1fr 44px; 
   align-items: center;
 }
 
-/* Brand Logic */
 .site-brand {
   display: flex;
   flex-direction: column;
@@ -30,26 +31,11 @@
   justify-content: center;
   text-decoration: none;
   line-height: 1;
-  
-  /* Reads the token: Green in Light Mode, Gold in Dark Mode */
   color: var(--color-brand-deep); 
-  
-  /* Interaction: Smooth press animation */
   transition: transform 0.1s ease-out;
-  
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure color persistence */
-.site-brand:visited,
-.site-brand:hover,
-.site-brand:active,
-.site-brand:focus {
-  color: var(--color-brand-deep);
-  text-decoration: none; 
-}
-
-/* The "Pressed" Effect */
 .site-brand:active {
   transform: scale(0.96);
   opacity: 0.8; 
@@ -73,8 +59,6 @@
   opacity: 0.9;
 }
 
-
-/* Menu & Theme Toggles */
 .menu-toggle {
   background: transparent;
   border: none;
@@ -88,7 +72,6 @@
   width: var(--size-interactive);
 }
 
-/* --- Bottom Row: Search Bar --- */
 .header-search {
   width: 100%;
 }
@@ -110,7 +93,7 @@
 .search-input {
   width: 100%;
   height: var(--size-interactive-lg);
-  padding-left: 40px; /* Space for icon */
+  padding-left: 40px; 
   padding-right: 16px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -132,85 +115,57 @@
    --------------------------------------------------------- */
 .mobile-menu {
   position: fixed;
-  inset: 0; /* Full screen */
+  inset: 0; 
   background-color: var(--color-bg); 
   z-index: 990; 
-  
-  /* Layout & Spacing */
   padding: var(--space-4);
-  /* Push content down to clear the header */
   padding-top: 160px; 
-  
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  
-  /* Animation State: Closed */
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   contain: paint;
 }
 
-/* Animation State: Open */
 .mobile-menu.is-active {
   opacity: 1;
   visibility: visible;
 }
 
-/* ---------------------------------------------------------
-   MENU LINKS (Updated: Cleaner & Smaller)
-   --------------------------------------------------------- */
 .mobile-nav-link {
   display: block;
   font-family: 'Bantayog', sans-serif;
   font-size: 24px; 
   color: var(--color-text-primary);
   text-decoration: none;
-  border-bottom: none;
   padding: var(--space-1) 0;
-  
-  /* Animation Props */
   opacity: 0;
   transform: translateY(10px);
-  transition: 
-  opacity 0.4s ease-out,
-  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-  color 0.2s ease,
-  padding-left 0.2s ease; 
+  transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, padding-left 0.2s ease; 
 }
 
-/* Hover State: Shift Right + Brand Color */
 .mobile-nav-link:hover {
   color: var(--color-brand-deep);
-  padding-left: 12px; /* Visual cue instead of line */
+  padding-left: 12px;
 }
 
-/* ---------------------------------------------------------
-   STAGGERED ENTRANCE ANIMATION
-   --------------------------------------------------------- */
 .mobile-menu.is-active .mobile-nav-link {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Stagger Delays */
 .mobile-menu.is-active .mobile-nav-link:nth-child(1) { transition-delay: 0.10s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(2) { transition-delay: 0.15s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(3) { transition-delay: 0.20s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
 .mobile-menu.is-active .mobile-nav-link:nth-child(5) { transition-delay: 0.30s; }
-.mobile-menu.is-active .mobile-nav-link:nth-child(6) { transition-delay: 0.35s; }
-.mobile-menu.is-active .mobile-nav-link:nth-child(7) { transition-delay: 0.40s; }
 
-/* ---------------------------------------------------------
-   MENU FOOTER
-   --------------------------------------------------------- */
 .mobile-menu-footer {
   margin-top: auto; 
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-border);
-  
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.4s ease-out;
@@ -222,7 +177,6 @@
   transition-delay: 0.45s; 
 }
 
-
 /* ---------------------------------------------------------
    2. BUTTON SYSTEM
    --------------------------------------------------------- */
@@ -232,11 +186,9 @@
   justify-content: center;
   padding: 0 var(--space-4);
   min-height: var(--size-interactive-lg);
-  
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
-  
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
@@ -246,40 +198,21 @@
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+  filter: brightness(0.9);
 }
 
-/* Primary */
 .btn--primary {
   background-color: var(--color-primary);
   color: var(--color-bg); 
 }
-.btn--primary:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
 
-/* Secondary */
 .btn--secondary {
   background-color: transparent;
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
 }
-.btn--secondary:hover {
-  background-color: var(--color-primary-pale);
-}
 
-/* Accent */
-.btn--accent {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
-}
-.btn--accent:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-1px);
-}
-
-/* Tertiary */
 .btn--tertiary {
   background-color: transparent;
   color: var(--color-text-secondary);
@@ -287,19 +220,14 @@
   min-height: 44px;
   text-decoration: underline;
 }
-.btn--tertiary:hover {
-  color: var(--color-primary);
-}
 
 /* ---------------------------------------------------------
-   3. PRODUCT CARD (Subgrid-Ready)
+   3. PRODUCT CARD (Phase 8 Step 12: Search Animations)
    --------------------------------------------------------- */
 .product-card {
   display: grid;
-  /* Subgrid pulls row definitions from .product-grid in pages.css */
   grid-template-rows: subgrid;
   grid-row: span 4; 
-  
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -308,17 +236,23 @@
   height: 100%;
   text-decoration: none;
   color: inherit;
+  /* Phase 8 Step 12: Fade in for search utility */
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .product-card:hover {
   transform: translateY(-4px);
   background-color: var(--color-surface-dark);
-  border-color: var(--color-primary-light);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
 .product-card__image-wrapper {
-  grid-row: 1; /* Occupies first subgrid row */
+  grid-row: 1;
   width: 100%;
   aspect-ratio: 4/3; 
   background-color: var(--color-surface-dark);
@@ -332,17 +266,12 @@
   transition: transform var(--transition-slow);
 }
 
-.product-card:hover .product-card__image {
-  transform: scale(1.05); 
-}
+.product-card:hover .product-card__image { transform: scale(1.05); }
 
-.product-card__content {
-  /* Flattening the container so children can snap to the subgrid */
-  display: contents; 
-}
+.product-card__content { display: contents; }
 
 .product-card__title {
-  grid-row: 2; /* Occupies second subgrid row */
+  grid-row: 2;
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   color: var(--color-text-primary);
@@ -352,14 +281,12 @@
 }
 
 .product-card__desc {
-  grid-row: 3; /* Occupies third subgrid row */
+  grid-row: 3;
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   margin: 0;
   padding: var(--space-2) var(--space-3);
   line-height: var(--leading-relaxed);
-  
-  /* Modern Line Clamping */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -367,7 +294,7 @@
 }
 
 .product-card__footer {
-  grid-row: 4; /* Occupies fourth subgrid row */
+  grid-row: 4;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -380,9 +307,24 @@
   color: var(--color-accent);
 }
 
+/* Phase 5 Step 2: Product Status Badge */
+.badge--coming-soon {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: var(--color-surface-dark);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: var(--space-2);
+    vertical-align: middle;
+}
 
 /* ---------------------------------------------------------
-   4. BADGE SYSTEM
+   4. BADGE & CHIP SYSTEM
    --------------------------------------------------------- */
 .badge {
   display: inline-flex;
@@ -397,67 +339,10 @@
   line-height: 1;
 }
 
-/* Category Variants */
 .badge--sage       { background: var(--color-sage);       color: var(--color-bg); border-color: var(--color-sage); }
 .badge--emerald    { background: var(--color-emerald);    color: var(--color-bg); border-color: var(--color-emerald); }
-.badge--ochre      { background: var(--color-ochre);      color: var(--color-bg); border-color: var(--color-ochre); }
-.badge--slate      { background: var(--color-slate);      color: var(--color-bg); border-color: var(--color-slate); }
 .badge--terracotta { background: var(--color-terracotta); color: var(--color-bg); border-color: var(--color-terracotta); }
 
-/* ---------------------------------------------------------
-   5. CODE PREVIEW BLOCK
-   --------------------------------------------------------- */
-.code-preview {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  margin-bottom: var(--space-4);
-}
-
-.code-preview__header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  background-color: var(--color-bg); 
-  border-bottom: 1px solid var(--color-border);
-}
-
-.code-preview__copy {
-  margin-left: auto;
-  font-size: var(--text-xs);
-  padding: 4px 8px;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-}
-
-.code-preview__content {
-  margin: 0;
-  padding: var(--space-3);
-  max-height: 300px;
-  overflow-y: auto;
-  overflow-x: auto;
-  
-  font-family: var(--font-code);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
-}
-
-/* Syntax Highlighting */
-.token.keyword  { color: var(--color-primary-light); }
-.token.string   { color: var(--color-sage); }
-.token.comment  { color: var(--color-text-muted); font-style: italic; }
-.token.function { color: var(--color-ochre); }
-.token.number   { color: var(--color-accent); }
-
-/* ---------------------------------------------------------
-   6. FILTER BAR
-   --------------------------------------------------------- */
 .filter-bar {
   display: flex;
   gap: var(--space-3);
@@ -468,13 +353,13 @@
   border-bottom: 1px solid var(--color-border);
   scrollbar-width: none;
 }
-.filter-bar::-webkit-scrollbar {
-  display: none;
-}
 
 .chip {
   flex-shrink: 0;
-  padding: var(--space-2) var(--space-3);
+  min-height: var(--size-interactive); 
+  padding: 0 var(--space-3);
+  display: inline-flex;
+  align-items: center;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -484,27 +369,28 @@
   transition: all var(--transition-fast);
 }
 
+.chip:active { transform: scale(0.95); }
+
 .chip:hover, .chip.is-active {
   background-color: var(--color-primary);
   color: var(--color-bg);
   border-color: var(--color-primary);
 }
 
-/* 7. FORM INPUTS (Enhanced Feedback) */
-
+/* ---------------------------------------------------------
+   5. FORM INPUTS & VALIDATION
+   --------------------------------------------------------- */
 .form-field {
   margin-bottom: var(--space-3);
-  padding: var(--space-2) var(--space-3); /* Added horizontal padding for the highlight */
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-md);
-  border: 1px solid transparent; /* Prepare for the border transition */
-  background-color: transparent;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
 }
 
-/* High-End Row Highlight Logic */
 .form-field:focus-within {
-  background-color: var(--color-surface); /* Subtle tint */
-  border-color: var(--color-primary-light); /* Branded border */
+  background-color: var(--color-surface);
+  border-color: var(--color-primary-light);
 }
 
 .form-label {
@@ -513,14 +399,7 @@
   font-weight: var(--weight-medium);
   margin-bottom: var(--space-1);
   color: var(--color-text-primary);
-  transition: color var(--transition-fast);
 }
-
-/* Label color shift on focus */
-.form-field:focus-within .form-label {
-  color: var(--color-primary); /* Dark mode: uses brighter emerald */
-}
-
 
 .input {
   width: 100%;
@@ -541,89 +420,76 @@
   background-color: var(--color-surface); 
 }
 
+/* Phase 7: Error Haptics */
 .input--error {
-  border-color: var(--color-error);
+  border-color: var(--color-error) !important;
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
 }
-.input-error-msg {
-  display: block;
-  margin-top: var(--space-1);
-  font-size: var(--text-xs);
-  color: var(--color-error);
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
 }
 
 /* ---------------------------------------------------------
-   8. SKELETON LOADING
-   --------------------------------------------------------- */
-.skeleton {
-  background-color: var(--color-surface-dark);
-  border-radius: var(--radius-sm);
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-/* ---------------------------------------------------------
-   9. COOKIE CONSENT BANNER
+   6. COOKIE CONSENT BANNER
    --------------------------------------------------------- */
 .cookie-banner {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
   z-index: 2000;
-  
-  display: none; /* Controlled by KynarApp.UI.initCookieBanner in main.js */
+  display: none; 
+  opacity: 0;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
   flex-wrap: wrap;
-  
-  background-color: var(--color-bg);
-  padding: var(--space-3);
-  border-top: 1px solid var(--color-border);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-  
-  /* Performance Optimization */
-  contain: paint; 
+  background-color: var(--color-surface);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Phase 6 Step 6: Animated entrance */
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s var(--transition-base);
 }
 
-.cookie-banner__text {
-  margin: 0;
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  max-width: 700px;
+.cookie-banner.is-visible {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.cookie-banner__link {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-/* --- PDP Collision Logic --- */
-/* If the cookie banner is on a page with a mobile action bar, shift it up */
 body:has(.mobile-action-bar) .cookie-banner {
-  bottom: calc(var(--space-3) + 80px + env(safe-area-inset-bottom));
+  bottom: calc(var(--space-4) + 80px + env(safe-area-inset-bottom));
 }
 
-/* --- TRANSACTION OVERLAY --- */
+/* ---------------------------------------------------------
+   7. TRANSACTION OVERLAY & FEEDBACK
+   --------------------------------------------------------- */
 .transaction-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(13, 19, 18, 0.85); /* Deep Forest tint */
+  background-color: rgba(13, 19, 18, 0.85); 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 3000; /* Above everything including the menu */
+  z-index: 3000; 
   color: var(--color-bg);
   backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
+}
+
+/* Phase 8 Step 11: Text transition for progressive feedback */
+#tx-status {
+  transition: color 0.3s ease;
 }
 
 .transaction-overlay.is-active {
@@ -644,5 +510,3 @@ body:has(.mobile-action-bar) .cookie-banner {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
-

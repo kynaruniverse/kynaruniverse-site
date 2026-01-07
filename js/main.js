@@ -1,237 +1,127 @@
-/* js/main.js */
-/**
- * KYNAR UNIVERSE - MODULAR CORE
- * Version: 1.5 (Global Layout Injection Engine)
- */
-
+/* js/main.js - KYNAR UNIVERSE CORE V1.12 (Final Production) */
 const KynarApp = {
-    // We make init async so it can wait for the layout to load
-    async init() {
-        // 1. Load the shell first
-        await this.Layout.loadShell();
-        
-        // 2. Initialize UI components (now that they exist in the DOM)
-        this.UI.initMobileMenu();
-        this.UI.initThemeToggle();
-        this.UI.initFilterChips();
-        this.UI.initCopyright();
-        this.UI.initCookieBanner();
-        this.UI.highlightCurrentPage();
-        
-        // 3. Initialize Commerce & Utils
-        this.Commerce.initCheckoutFormatting();
-        this.Commerce.initFormValidation();
-        this.Utils.initCodeCopy();
-    },
-
-    /* --- LAYOUT INJECTION MODULE --- */
-    Layout: {
-        async loadShell() {
-            try {
-                // Perform all fetches simultaneously
-                const [header, nav, footer] = await Promise.all([
-                    fetch('header-content.html').then(res => res.text()),
-                    fetch('nav-content.html').then(res => res.text()),
-                    fetch('footer-content.html').then(res => res.text())
-                ]);
-
-                // Targeted Injection with Safety Checks
-                const headerEl = document.getElementById('global-header');
-                const navEl = document.getElementById('mobile-menu');
-                const footerEl = document.getElementById('global-footer');
-
-                if (headerEl) headerEl.innerHTML = header;
-                if (navEl) navEl.innerHTML = nav;
-                if (footerEl) footerEl.innerHTML = footer;
-
-                console.log("KYNAR Shell: Injected Successfully.");
-            } catch (err) {
-                console.warn("KYNAR Shell: Some elements skipped or fetch failed.", err);
-            }
-        }
-    },
-    
-    /* --- UI & INTERACTION MODULE --- */
-    UI: {
-        initMobileMenu() {
-            const allToggles = document.querySelectorAll('.menu-toggle');
-            const menuToggles = Array.from(allToggles).filter(btn => btn.id !== 'theme-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
-            
-            if (!menuToggles.length || !mobileMenu) return;
-            
-            const toggle = (forceClose = false) => {
-                const isActive = mobileMenu.classList.contains('is-active');
-                if (forceClose && !isActive) return;
-                
-                mobileMenu.classList.toggle('is-active', !forceClose ? !isActive : false);
-                const nowActive = mobileMenu.classList.contains('is-active');
-                document.body.style.overflow = nowActive ? 'hidden' : '';
-                menuToggles.forEach(btn => btn.setAttribute('aria-expanded', nowActive));
-                
-                if (nowActive) {
-                    const firstLink = mobileMenu.querySelector('a');
-                    if (firstLink) firstLink.focus();
-                }
-            };
-            
-            menuToggles.forEach(btn => btn.addEventListener('click', (e) => { 
-                e.stopPropagation();
-                toggle(); 
-            }));
-            mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) toggle(true); });
-            menuLinks.forEach(link => link.addEventListener('click', () => toggle(true)));
-        },
-        
-        initThemeToggle() {
-            const themeBtn = document.getElementById('theme-toggle');
-            const html = document.documentElement;
-            if (localStorage.getItem('theme') === 'dark') html.setAttribute('data-theme', 'dark');
-            if (!themeBtn) return;
-            
-            themeBtn.addEventListener('click', () => {
-                const isDark = html.getAttribute('data-theme') === 'dark';
-                html.toggleAttribute('data-theme', !isDark);
-                localStorage.setItem('theme', !isDark ? 'dark' : 'light');
-            });
-        },
-        
-        initCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            const btn = document.getElementById('accept-cookies');
-            if (!localStorage.getItem('cookiesAccepted') && banner) {
-                setTimeout(() => {
-                    banner.style.display = 'flex';
-                    if (btn) btn.focus();
-                }, 2000);
-            }
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    localStorage.setItem('cookiesAccepted', 'true');
-                    banner.style.display = 'none';
-                });
-            }
-        },
-        
-        highlightCurrentPage() {
-            const filename = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.mobile-nav-link, .dept-card, .dash-link').forEach(link => {
-                if (link.getAttribute('href') === filename) {
-                    link.style.fontWeight = 'bold';
-                    if (link.classList.contains('mobile-nav-link')) link.style.borderLeft = '4px solid currentColor';
-                }
-            });
-        },
-        
-        initCopyright() {
-            const el = document.getElementById('year');
-            if (el) el.textContent = new Date().getFullYear();
-        },
-        
-        initFilterChips() {
-            const container = document.querySelector('.filter-bar');
-            if (!container) return;
-            container.addEventListener('click', (e) => {
-                const chip = e.target.closest('.chip');
-                if (chip) {
-                    container.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
-                    chip.classList.add('is-active');
-                }
-            });
-        }
-    },
-    
-    /* --- COMMERCE & FORMS MODULE --- */
-    Commerce: {
-        initCheckoutFormatting() {
-            const card = document.getElementById('card');
-            const expiry = document.getElementById('expiry');
-            const cvc = document.getElementById('cvc');
-            
-            if (card) card.addEventListener('input', (e) => {
-                let val = e.target.value.replace(/\D/g, '').substring(0, 16);
-                e.target.value = val.match(/.{1,4}/g)?.join(' ') || val;
-            });
-            if (expiry) expiry.addEventListener('input', (e) => {
-                let val = e.target.value.replace(/\D/g, '').substring(0, 4);
-                if (val.length >= 3) val = val.substring(0, 2) + ' / ' + val.substring(2);
-                e.target.value = val;
-            });
-            if (cvc) cvc.addEventListener('input', (e) => e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4));
-        },
-        
-        initFormValidation() {
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.querySelectorAll('.input').forEach(input => {
-                    input.addEventListener('input', () => {
-                        input.classList.remove('input--error');
-                    });
-                });
-
-                form.addEventListener('submit', (e) => {
-                    let isValid = true;
-                    form.querySelectorAll('.input[required]').forEach(input => {
-                        if (!input.checkValidity()) {
-                            input.classList.add('input--error');
-                            isValid = false;
-                        }
-                    });
-                    
-                    if (!isValid) {
-                        e.preventDefault();
-                    } else {
-                        e.preventDefault();
-                        const btn = form.querySelector('button[type=\"submit\"]');
-                        const overlay = document.createElement('div');
-                        overlay.className = 'transaction-overlay';
-                        overlay.innerHTML = `
-                            <div class="spinner"></div>
-                            <p style=\"font-family: var(--font-heading); letter-spacing: 1px;\">SECURE HANDSHAKE...</p>
-                            <p style=\"font-size: var(--text-sm); opacity: 0.8;\">Verifying with KYNAR Vault</p>
-                        `;
-                        document.body.appendChild(overlay);
-                        
-                        setTimeout(() => overlay.classList.add('is-active'), 10);
-                        
-                        if (btn) {
-                            btn.setAttribute('aria-live', 'polite');
-                            btn.textContent ="Processing...";
-                            btn.disabled = true;
-                        }
-                        
-                        setTimeout(() => {
-                            form.reset();
-                            window.location.href = form.getAttribute('action') || 'success.html';
-                        }, 1800);
-                    }
-                });
-            });
-        }
-    },
-    
-    /* --- UTILITIES MODULE --- */
-    Utils: {
-        initCodeCopy() {
-            document.addEventListener('click', async (e) => {
-                const btn = e.target.closest('.code-preview__copy');
-                if (!btn) return;
-                const code = btn.closest('.code-preview').querySelector('code').textContent;
-                try {
-                    await navigator.clipboard.writeText(code);
-                    const oldHtml = btn.innerHTML;
-                    btn.setAttribute('aria-live', 'polite');
-                    btn.innerHTML = 'Copied!';
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = oldHtml;
-                        btn.removeAttribute('aria-live');
-                    }, 2000);
-                } catch (err) { console.error('Copy failed', err); }
-            });
-        }
-    }
+ async init() {
+  await this.Layout.loadShell();
+  this.UI.updateHeaderHeight(); // Phase 8
+  window.addEventListener('resize', () => this.UI.updateHeaderHeight());
+  this.UI.initMobileMenu(); this.UI.initThemeToggle(); this.UI.initFilterChips();
+  this.UI.initCopyright(); this.UI.initCookieBanner(); this.UI.highlightCurrentPage();
+  this.Commerce.initCheckoutFormatting(); this.Commerce.initFormValidation();
+  this.Utils.initCodeCopy(); this.Utils.initSearch(); // Phase 8
+ },
+ Layout: {
+  async loadShell() {
+   try {
+    const [h, n, f] = await Promise.all([
+     fetch('header-content.html').then(r => r.text()),
+     fetch('nav-content.html').then(r => r.text()),
+     fetch('footer-content.html').then(r => r.text())
+    ]);
+    if (document.getElementById('global-header')) document.getElementById('global-header').innerHTML = h;
+    if (document.getElementById('mobile-menu')) document.getElementById('mobile-menu').innerHTML = n;
+    if (document.getElementById('global-footer')) document.getElementById('global-footer').innerHTML = f;
+   } catch (e) { console.warn("Shell failed", e); }
+  }
+ },
+ UI: {
+  updateHeaderHeight() {
+   const h = document.getElementById('global-header');
+   if (h) document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+  },
+  initMobileMenu() {
+   const btns = Array.from(document.querySelectorAll('.menu-toggle')).filter(b => b.id !== 'theme-toggle');
+   const menu = document.getElementById('mobile-menu');
+   if (!btns.length || !menu) return;
+   const toggle = (close = false) => {
+    const active = menu.classList.contains('is-active');
+    if (close && !active) return;
+    menu.classList.toggle('is-active', !close ? !active : false);
+    const now = menu.classList.contains('is-active');
+    document.body.classList.toggle('is-scroll-locked', now); // Phase 7
+    btns.forEach(b => b.setAttribute('aria-expanded', now));
+    if (now && menu.querySelector('a')) menu.querySelector('a').focus();
+   };
+   btns.forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); toggle(); }));
+   menu.addEventListener('click', (e) => { if (e.target === menu) toggle(true); });
+   menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => toggle(true)));
+  },
+  initThemeToggle() {
+   const btn = document.getElementById('theme-toggle'), html = document.documentElement;
+   if (localStorage.getItem('theme') === 'dark') html.setAttribute('data-theme', 'dark');
+   if (btn) btn.addEventListener('click', () => {
+    const dark = html.getAttribute('data-theme') === 'dark';
+    html.toggleAttribute('data-theme', !dark);
+    localStorage.setItem('theme', !dark ? 'dark' : 'light');
+   });
+  },
+  initCookieBanner() {
+   const b = document.getElementById('cookie-banner'), btn = document.getElementById('accept-cookies');
+   if (b) b.setAttribute('role', 'status'); // Phase 7
+   if (!localStorage.getItem('cookiesAccepted') && b) {
+    setTimeout(() => { b.style.display = 'flex'; requestAnimationFrame(() => { b.classList.add('is-visible'); if (btn) btn.focus(); }); }, 2000);
+   }
+   if (btn) btn.addEventListener('click', () => { localStorage.setItem('cookiesAccepted', 'true'); b.classList.remove('is-visible'); setTimeout(() => b.style.display = 'none', 500); });
+  },
+  highlightCurrentPage() {
+   const file = window.location.pathname.split('/').pop() || 'index.html';
+   document.querySelectorAll('.mobile-nav-link, .dept-card, .dash-link').forEach(l => {
+    if (l.getAttribute('href') === file) { l.style.fontWeight = 'bold'; if (l.classList.contains('mobile-nav-link')) l.style.borderLeft = '4px solid currentColor'; }
+   });
+  },
+  initCopyright() { if (document.getElementById('year')) document.getElementById('year').textContent = new Date().getFullYear(); },
+  initFilterChips() {
+   const bar = document.querySelector('.filter-bar');
+   if (bar) bar.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) { bar.querySelectorAll('.chip').forEach(x => x.classList.remove('is-active')); c.classList.add('is-active'); } });
+  }
+ },
+ Commerce: {
+  initCheckoutFormatting() {
+   const c = document.getElementById('card'), e = document.getElementById('expiry'), v = document.getElementById('cvc');
+   if (c) c.addEventListener('input', (x) => { let val = x.target.value.replace(/\D/g, '').substring(0, 16); x.target.value = val.match(/.{1,4}/g)?.join(' ') || val; });
+   if (e) e.addEventListener('input', (x) => { let val = x.target.value.replace(/\D/g, '').substring(0, 4); if (val.length >= 3) val = val.substring(0, 2) + ' / ' + val.substring(2); x.target.value = val; });
+   if (v) v.addEventListener('input', (x) => x.target.value = x.target.value.replace(/\D/g, '').substring(0, 4));
+  },
+  initFormValidation() {
+   document.querySelectorAll('form').forEach(form => {
+    form.querySelectorAll('.input').forEach(i => i.addEventListener('input', () => i.classList.remove('input--error')));
+    form.addEventListener('submit', (e) => {
+     let valid = true, firstErr = null;
+     form.querySelectorAll('.input[required]').forEach(i => { if (!i.checkValidity()) { i.classList.add('input--error'); valid = false; if (!firstErr) firstErr = i; } });
+     if (!valid) { 
+      e.preventDefault(); const s = document.getElementById('form-error-summary'); 
+      if (s) s.textContent = "Please correct errors."; 
+      if (firstErr) { firstErr.focus(); firstErr.scrollIntoView({ behavior: 'smooth', block: 'start' }); } // Phase 7
+     } else {
+      e.preventDefault(); const btn = form.querySelector('button[type="submit"]'), ov = document.createElement('div');
+      ov.className = 'transaction-overlay';
+      ov.innerHTML = `<div class="spinner"></div><p id="tx-status" style="font-family:var(--font-heading);letter-spacing:1px;">SECURE HANDSHAKE...</p><p id="tx-sub" style="font-size:var(--text-sm);opacity:0.8;">Verifying with KYNAR Vault</p>`;
+      document.body.appendChild(ov); const st = ov.querySelector('#tx-status'), sb = ov.querySelector('#tx-sub');
+      setTimeout(() => { ov.classList.add('is-active'); document.body.classList.add('is-scroll-locked'); }, 10);
+      if (btn) { btn.setAttribute('aria-live', 'polite'); btn.textContent = "Processing..."; btn.disabled = true; }
+      setTimeout(() => { if(st) st.textContent="AUTHORIZING..."; if(sb) sb.textContent="Syncing keys"; }, 800); // Phase 8
+      setTimeout(() => { if(st) { st.textContent="SUCCESS"; st.style.color="var(--color-emerald)"; } if(sb) sb.textContent="Redirecting..."; }, 1500); // Phase 8
+      setTimeout(() => { form.reset(); document.body.classList.remove('is-scroll-locked'); window.location.href = form.getAttribute('action') || 'success.html'; }, 2200);
+     }
+    });
+   });
+  }
+ },
+ Utils: {
+  initCodeCopy() {
+   document.addEventListener('click', async (e) => {
+    const b = e.target.closest('.code-preview__copy'); if (!b) return;
+    const c = b.closest('.code-preview').querySelector('code').textContent;
+    try { await navigator.clipboard.writeText(c); const old = b.innerHTML; b.setAttribute('aria-live', 'polite'); b.innerHTML = 'Copied!'; setTimeout(() => { b.innerHTML = old; b.removeAttribute('aria-live'); }, 2000); } catch (err) { console.error('Copy failed', err); }
+   });
+  },
+  initSearch() { // Phase 8
+   const i = document.querySelector('.search-input'), s = document.getElementById('search-status');
+   if (i) i.addEventListener('input', (e) => {
+    const t = e.target.value.toLowerCase(), cards = document.querySelectorAll('.product-card'); let count = 0;
+    cards.forEach(c => { const match = c.querySelector('.product-card__title').textContent.toLowerCase().includes(t); c.style.display = match ? '' : 'none'; if (match) count++; });
+    if (s && t) s.textContent = `${count} products found for ${t}`;
+   });
+  }
+ }
 };
-
 document.addEventListener('DOMContentLoaded', () => KynarApp.init());

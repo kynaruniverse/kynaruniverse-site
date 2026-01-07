@@ -48,9 +48,8 @@
 
 /* 2. Global Document Styles */
 html {
-  /* Fixes the sticky header overlap for anchor links */
-  scroll-padding-top: 120px; 
-  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth; /* Native smooth scrolling for anchor links */
 }
 
 body {
@@ -62,28 +61,39 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.is-scroll-locked {
+  overflow: hidden !important;
+  /* Prevents layout shift on desktop browsers with scrollbars */
+  touch-action: none; 
+}
 
 
 /* 3. Typography Defaults */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, .section-title {
   margin-top: 0;
   margin-bottom: var(--space-3);
-  
-  /* SWITCH TO BANTAYOG */
   font-family: var(--font-heading); 
-  
-  font-weight: normal; /* Bantayog is naturally bold, doesn't need bold weight */
+  font-weight: normal; /* Bantayog is naturally bold */
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
-  letter-spacing: 0.02em; /* Bantayog looks better slightly spaced */
+  /* Refinement: Tighten tracking for large editorial text */
+  letter-spacing: -0.025em; 
 }
 
-h1 { font-size: var(--text-3xl); } /* Bigger hero text */
+h3, .product-card__title {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+  line-height: var(--leading-tight);
+  /* Subtle tightening for mid-sized headers */
+  letter-spacing: -0.01em; 
+}
+
+h1 { font-size: var(--text-3xl); }
 h2 { font-size: var(--text-2xl); }
 h3 { font-size: var(--text-xl); }
 
 p, input, button, a {
-  /* SWITCH TO GLACIAL INDIFFERENCE */
   font-family: var(--font-body);
 }
 
@@ -91,7 +101,9 @@ p {
   margin-top: 0;
   margin-bottom: var(--space-3);
   max-width: 70ch;
+  line-height: var(--leading-relaxed); /* Improves readability */
 }
+
 
 
 /* 4. Media & Touch Target Defaults */
@@ -162,5 +174,18 @@ button, input, select, textarea, a {
     opacity: 1 !important;
     transition: none !important;
   }
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 

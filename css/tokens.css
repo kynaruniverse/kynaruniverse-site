@@ -59,6 +59,7 @@
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 48px;
+  --header-height: 120px; /* Default fallback */
 
   /* ---------------------------------------------------------
      3. TYPOGRAPHY (Updated: KYNAR Universe System)
