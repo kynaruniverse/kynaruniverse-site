@@ -218,25 +218,39 @@
    7. FORMALIZED PRODUCT GRID
    Moved from inline styles to permanent CSS
    --------------------------------------------------------- */
+/* Update the Master Grid to define rows */
 .product-grid {
   display: grid;
-  gap: var(--space-3);
-  grid-template-columns: 1fr; /* Mobile: 1 col */
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  /* Define 4 rows per card: Image, Title/Badges, Description, Footer */
+  grid-auto-rows: auto auto auto auto; 
 }
 
 @media (min-width: 480px) {
   .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 col */
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
   .product-grid {
-    grid-template-columns: repeat(3, 1fr); /* Desktop: 3 col */
-    gap: var(--space-4);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Update the Card to inherit the grid rows */
+.product-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4; /* Spans the 4 rows we defined in the master grid */
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 100%;
+}
+
 
 /* ---------------------------------------------------------
    8. SORTING HEADER
@@ -365,16 +379,19 @@
 }
 
 /* Ensure Hero Text scales on mobile */
+/* Ensure Hero Text scales fluidly */
 .hero h1 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-2xl); /* Mobile Default */
     line-height: var(--leading-tight);
     margin-bottom: var(--space-3);
 }
+
 @media (min-width: 768px) {
-    /* CLEANUP: Converted magic number 48px to a calc or token logic would be better, 
-       but for now we keep it explicit. */
-    .hero h1 { font-size: 48px; }
+    .hero h1 { 
+        font-size: var(--text-hero); /* Replaced 48px with Fluid Token */
+    }
 }
+
 
 /* ---------------------------------------------------------
    12. DEPARTMENT GATEWAY (New Homepage Architecture)

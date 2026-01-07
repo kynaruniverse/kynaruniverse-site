@@ -47,25 +47,22 @@
 
 
 /* 2. Global Document Styles */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+html {
+  /* Fixes the sticky header overlap for anchor links */
+  scroll-padding-top: 120px; 
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg); /* Reads from your new Bone White token */
+  background-color: var(--color-bg);
   color: var(--color-text-primary);
   line-height: var(--leading-relaxed);
-  
-  /* Critical: Base font size for readability */
   font-size: var(--text-base); 
-  
-  /* Font smoothing for better legibility */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 /* 3. Typography Defaults */
 h1, h2, h3, h4, h5, h6 {

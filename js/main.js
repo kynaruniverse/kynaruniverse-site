@@ -1,12 +1,16 @@
 /* js/main.js */
-
 /**
  * KYNAR UNIVERSE - MODULAR CORE
- * Architecture: Organized Module Pattern
+ * Version: 1.5 (Global Layout Injection Engine)
  */
 
 const KynarApp = {
-    init() {
+    // We make init async so it can wait for the layout to load
+    async init() {
+        // 1. Load the shell first
+        await this.Layout.loadShell();
+        
+        // 2. Initialize UI components (now that they exist in the DOM)
         this.UI.initMobileMenu();
         this.UI.initThemeToggle();
         this.UI.initFilterChips();
@@ -14,10 +18,37 @@ const KynarApp = {
         this.UI.initCookieBanner();
         this.UI.highlightCurrentPage();
         
+        // 3. Initialize Commerce & Utils
         this.Commerce.initCheckoutFormatting();
         this.Commerce.initFormValidation();
-        
         this.Utils.initCodeCopy();
+    },
+
+    /* --- LAYOUT INJECTION MODULE --- */
+    Layout: {
+        async loadShell() {
+            try {
+                // Perform all fetches simultaneously
+                const [header, nav, footer] = await Promise.all([
+                    fetch('header-content.html').then(res => res.text()),
+                    fetch('nav-content.html').then(res => res.text()),
+                    fetch('footer-content.html').then(res => res.text())
+                ]);
+
+                // Targeted Injection with Safety Checks
+                const headerEl = document.getElementById('global-header');
+                const navEl = document.getElementById('mobile-menu');
+                const footerEl = document.getElementById('global-footer');
+
+                if (headerEl) headerEl.innerHTML = header;
+                if (navEl) navEl.innerHTML = nav;
+                if (footerEl) footerEl.innerHTML = footer;
+
+                console.log("KYNAR Shell: Injected Successfully.");
+            } catch (err) {
+                console.warn("KYNAR Shell: Some elements skipped or fetch failed.", err);
+            }
+        }
     },
     
     /* --- UI & INTERACTION MODULE --- */
@@ -39,15 +70,16 @@ const KynarApp = {
                 document.body.style.overflow = nowActive ? 'hidden' : '';
                 menuToggles.forEach(btn => btn.setAttribute('aria-expanded', nowActive));
                 
-                // Accessibility: Focus management
                 if (nowActive) {
                     const firstLink = mobileMenu.querySelector('a');
                     if (firstLink) firstLink.focus();
                 }
             };
             
-            menuToggles.forEach(btn => btn.addEventListener('click', (e) => { e.stopPropagation();
-                toggle(); }));
+            menuToggles.forEach(btn => btn.addEventListener('click', (e) => { 
+                e.stopPropagation();
+                toggle(); 
+            }));
             mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) toggle(true); });
             menuLinks.forEach(link => link.addEventListener('click', () => toggle(true)));
         },
@@ -71,8 +103,7 @@ const KynarApp = {
             if (!localStorage.getItem('cookiesAccepted') && banner) {
                 setTimeout(() => {
                     banner.style.display = 'flex';
-                    // Accessibility: Focus management
-                    btn.focus();
+                    if (btn) btn.focus();
                 }, 2000);
             }
             if (btn) {
@@ -133,6 +164,12 @@ const KynarApp = {
         initFormValidation() {
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
+                form.querySelectorAll('.input').forEach(input => {
+                    input.addEventListener('input', () => {
+                        input.classList.remove('input--error');
+                    });
+                });
+
                 form.addEventListener('submit', (e) => {
                     let isValid = true;
                     form.querySelectorAll('.input[required]').forEach(input => {
@@ -142,23 +179,32 @@ const KynarApp = {
                         }
                     });
                     
-                    if (!isValid) e.preventDefault();
-                    else {
+                    if (!isValid) {
                         e.preventDefault();
-                        const btn = form.querySelector('button[type="submit"]');
+                    } else {
+                        e.preventDefault();
+                        const btn = form.querySelector('button[type=\"submit\"]');
+                        const overlay = document.createElement('div');
+                        overlay.className = 'transaction-overlay';
+                        overlay.innerHTML = `
+                            <div class="spinner"></div>
+                            <p style=\"font-family: var(--font-heading); letter-spacing: 1px;\">SECURE HANDSHAKE...</p>
+                            <p style=\"font-size: var(--text-sm); opacity: 0.8;\">Verifying with KYNAR Vault</p>
+                        `;
+                        document.body.appendChild(overlay);
+                        
+                        setTimeout(() => overlay.classList.add('is-active'), 10);
+                        
                         if (btn) {
-                            // Accessibility: Aria-Live Notification
                             btn.setAttribute('aria-live', 'polite');
-                            btn.textContent = "Processing Securely...";
+                            btn.textContent ="Processing...";
                             btn.disabled = true;
-                            btn.style.opacity = "0.7";
-                            
-                            // Form Field Reset: Clear sensitive data before navigation
-                            setTimeout(() => {
-                                form.reset();
-                                window.location.href = form.getAttribute('action') || 'success.html';
-                            }, 1800);
                         }
+                        
+                        setTimeout(() => {
+                            form.reset();
+                            window.location.href = form.getAttribute('action') || 'success.html';
+                        }, 1800);
                     }
                 });
             });
@@ -175,11 +221,14 @@ const KynarApp = {
                 try {
                     await navigator.clipboard.writeText(code);
                     const oldHtml = btn.innerHTML;
-                    // Accessibility: Aria-Live
                     btn.setAttribute('aria-live', 'polite');
                     btn.innerHTML = 'Copied!';
-                    setTimeout(() => btn.innerHTML = oldHtml, 2000);
-                } catch (err) { console.error(err); }
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = oldHtml;
+                        btn.removeAttribute('aria-live');
+                    }, 2000);
+                } catch (err) { console.error('Copy failed', err); }
             });
         }
     }

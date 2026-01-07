@@ -89,7 +89,10 @@
 
   --leading-tight:   1.2;
   --leading-normal:  1.5;
-  --leading-relaxed: 1.7; 
+  --leading-relaxed: 1.7;
+    /* RESPONSIVE SCALE */
+  --text-hero: clamp(2rem, 8vw, 4rem); /* Scales between 32px and 64px */
+
 
   /* ---------------------------------------------------------
      4. SHAPE & MOTION
