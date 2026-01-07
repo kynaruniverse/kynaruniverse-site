@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Private Pages (Do not index)
+Disallow: /checkout.html
+Disallow: /success.html
+Disallow: /account.html
+Disallow: /404.html
+
+# Sitemap Location
+Sitemap: https://kynaruniverse.co.uk/sitemap.xml

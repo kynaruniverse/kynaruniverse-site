@@ -12,27 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     initCodeCopy();
     initFormValidation();
     initFilterChips();
-    highlightCurrentPage(); // NEW: Visual indicator for active page
+    initCheckoutFormatting(); // NEW: Smart inputs for checkout
+    highlightCurrentPage();
 });
 
 /* ---------------------------------------------------------
    1. GLOBAL MOBILE MENU
    --------------------------------------------------------- */
 function initMobileMenu() {
-    // Exclude the theme toggle from menu triggers
     const allToggles = document.querySelectorAll('.menu-toggle');
     const menuToggles = Array.from(allToggles).filter(btn => btn.id !== 'theme-toggle');
     
     const mobileMenu = document.getElementById('mobile-menu');
-    // Select links inside to close menu on click
     const menuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
     
     if (!menuToggles.length || !mobileMenu) return;
 
     const toggleMenu = (forceClose = false) => {
         const isClosed = !mobileMenu.classList.contains('is-active');
-        
-        // If we want to force close and it's already closed, do nothing
         if (forceClose && isClosed) return;
 
         if (forceClose) {
@@ -54,27 +51,21 @@ function initMobileMenu() {
         });
     });
 
-    // Close when clicking outside content
     mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            toggleMenu(true);
-        }
+        if (e.target === mobileMenu) toggleMenu(true);
     });
 
-    // Close when clicking a link inside
     menuLinks.forEach(link => {
         link.addEventListener('click', () => toggleMenu(true));
     });
 }
 
 /* ---------------------------------------------------------
-   2. THEME TOGGLE (Light/Dark Mode)
+   2. THEME TOGGLE
    --------------------------------------------------------- */
 function initThemeToggle() {
     const themeBtn = document.getElementById('theme-toggle');
     const html = document.documentElement;
-    
-    // Check saved preference
     const savedTheme = localStorage.getItem('theme');
     
     if (savedTheme === 'dark') {
@@ -86,8 +77,7 @@ function initThemeToggle() {
     if (!themeBtn) return;
 
     themeBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        
+        e.stopPropagation();
         const currentTheme = html.getAttribute('data-theme');
         if (currentTheme === 'dark') {
             html.removeAttribute('data-theme');
@@ -100,13 +90,48 @@ function initThemeToggle() {
 }
 
 /* ---------------------------------------------------------
-   3. CODE SNIPPET COPY
+   3. CHECKOUT FORMATTING (NEW)
+   --------------------------------------------------------- */
+function initCheckoutFormatting() {
+    const cardInput = document.getElementById('card');
+    const expiryInput = document.getElementById('expiry');
+    const cvcInput = document.getElementById('cvc');
+
+    if (cardInput) {
+        cardInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            value = value.substring(0, 16); // Limit to 16 digits
+            // Add space every 4 digits
+            let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formatted;
+        });
+    }
+
+    if (expiryInput) {
+        expiryInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 4); // Limit MMYY
+            if (value.length >= 3) {
+                value = value.substring(0, 2) + ' / ' + value.substring(2);
+            }
+            e.target.value = value;
+        });
+    }
+
+    if (cvcInput) {
+        cvcInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
+        });
+    }
+}
+
+/* ---------------------------------------------------------
+   4. CODE COPY
    --------------------------------------------------------- */
 function initCodeCopy() {
     document.addEventListener('click', async (e) => {
         const copyBtn = e.target.closest('.code-preview__copy');
         if (!copyBtn) return;
-
         const container = copyBtn.closest('.code-preview');
         const codeBlock = container.querySelector('code');
         if (!codeBlock) return;
@@ -114,33 +139,26 @@ function initCodeCopy() {
         try {
             await navigator.clipboard.writeText(codeBlock.textContent);
             const originalText = copyBtn.innerHTML;
-            
-            // Visual Feedback
             copyBtn.innerHTML = `
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Copied!
             `;
             copyBtn.style.color = 'var(--color-success)';
             copyBtn.style.borderColor = 'var(--color-success)';
-
             setTimeout(() => {
                 copyBtn.innerHTML = originalText;
                 copyBtn.style.color = '';
                 copyBtn.style.borderColor = '';
             }, 2000);
-        } catch (err) {
-            console.error('Failed to copy text: ', err);
-            copyBtn.textContent = 'Error';
-        }
+        } catch (err) { console.error('Copy failed', err); }
     });
 }
 
 /* ---------------------------------------------------------
-   4. FORM VALIDATION
+   5. FORM VALIDATION
    --------------------------------------------------------- */
 function initFormValidation() {
     const inputs = document.querySelectorAll('.input');
-
     inputs.forEach(input => {
         input.addEventListener('blur', () => validateInput(input));
         input.addEventListener('input', () => {
@@ -154,6 +172,8 @@ function initFormValidation() {
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', (e) => {
+            // Note: We don't preventDefault if action is set (like checkout)
+            // unless validation fails.
             let isValid = true;
             const formInputs = form.querySelectorAll('.input[required]');
             formInputs.forEach(input => {
@@ -191,12 +211,11 @@ function removeErrorMsg(input) {
 }
 
 /* ---------------------------------------------------------
-   5. FILTER CHIPS
+   6. FILTER CHIPS
    --------------------------------------------------------- */
 function initFilterChips() {
     const chipContainer = document.querySelector('.filter-bar');
     if (!chipContainer) return;
-
     chipContainer.addEventListener('click', (e) => {
         const chip = e.target.closest('.chip');
         if (!chip) return;
@@ -207,24 +226,23 @@ function initFilterChips() {
 }
 
 /* ---------------------------------------------------------
-   6. ACTIVE LINK HIGHLIGHTER (NEW)
+   7. ACTIVE LINK HIGHLIGHTER
    --------------------------------------------------------- */
 function highlightCurrentPage() {
     const currentPath = window.location.pathname;
     const filename = currentPath.split('/').pop() || 'index.html';
-    
-    // Select both mobile links and desktop department cards
-    const links = document.querySelectorAll('.mobile-nav-link, .dept-card');
+    const links = document.querySelectorAll('.mobile-nav-link, .dept-card, .dash-link');
 
     links.forEach(link => {
         const href = link.getAttribute('href');
         if (href === filename) {
-            // Add a visual indicator
             link.style.fontWeight = 'bold';
-            // If it's a mobile link, add a left border
             if (link.classList.contains('mobile-nav-link')) {
                 link.style.borderLeft = '4px solid currentColor';
                 link.style.paddingLeft = '12px';
+            }
+            if (link.classList.contains('dash-link')) {
+                link.classList.add('is-active');
             }
         }
     });
