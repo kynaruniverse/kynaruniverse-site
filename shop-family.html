@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0a0a0a">
     <title>KYNAR Family | Kids & Household</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
@@ -23,20 +23,21 @@
 
     <header id="global-header" class="site-header">
         <div class="container header-top">
-            <button class="menu-toggle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+            <button class="menu-toggle" aria-label="Open menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
             <a href="index.html" class="site-brand">
                 <span class="brand-main">KYNAR</span>
                 <span class="brand-sub" style="color: var(--color-family);">FAMILY</span>
             </a>
-            <button id="theme-toggle" class="menu-toggle"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Theme"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
         </div>
         <div class="container" style="padding-bottom: var(--space-2);">
             <div class="search-input-wrapper">
                 <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="search-input" placeholder="Search activities...">
+                <input type="text" class="search-input" placeholder="Search the universe...">
             </div>
         </div>
     </header>
+
 
     <main class="container section browse-layout">
         <aside class="sidebar-filters">
@@ -46,6 +47,9 @@
                 <label class="filter-row"><input type="checkbox"> Primary (6-9)</label>
                 <label class="filter-row"><input type="checkbox"> Parents</label>
             </div>
+            <button id="apply-filters" class="btn btn--primary" style="width: 100%; margin-top: var(--space-4); font-size: var(--text-xs);"> APPLY_FILTERS
+            </button>
+
         </aside>
 
         <section>
@@ -60,11 +64,12 @@
 
             <div class="product-grid">
 
-                <article class="product-card" style="--glow-color: var(--color-family);">
+                <article id="fam-preschool" class="product-card" style="--glow-color: var(--color-family);">
                     <a href="product-preschool.html" style="text-decoration: none; display: contents; color: inherit;">
                         <div class="product-card__image-wrapper">
-                            <img src="assets/images/product-family-1.jpg" alt="Preschool Bundle" class="product-card__image" loading="lazy">
+                            <img src="assets/images/product-family-1.jpg" width="400" height="400" alt="Preschool Bundle" class="product-card__image" loading="lazy">
                         </div>
+
                         <div class="product-card__content">
                             <h3 class="product-card__title">Ultimate Preschool Bundle</h3>
                             <div class="product-card__desc">
@@ -79,11 +84,12 @@
                     </a>
                 </article>
 
-                <article class="product-card" style="--glow-color: var(--color-family);">
+                <article id="fam-chores" class="product-card" style="--glow-color: var(--color-family);">
                     <a href="#" style="text-decoration: none; display: contents; color: inherit;">
                         <div class="product-card__image-wrapper">
-                            <img src="assets/images/product-family-2.jpg" alt="Chore System" class="product-card__image" loading="lazy">
+                            <img src="assets/images/product-family-2.jpg" width="400" height="400" alt="Chore System" class="product-card__image" loading="lazy">
                         </div>
+
                         <div class="product-card__content">
                             <h3 class="product-card__title">Household Chore System</h3>
                             <div class="product-card__desc">
@@ -98,11 +104,12 @@
                     </a>
                 </article>
 
-                <article class="product-card" style="--glow-color: var(--color-family);">
+                <article id="fam-meal" class="product-card" style="--glow-color: var(--color-family);">
                     <a href="#" style="text-decoration: none; display: contents; color: inherit;">
                         <div class="product-card__image-wrapper">
-                            <img src="assets/images/product-family-3.jpg" alt="Meal Planner" class="product-card__image" loading="lazy">
+                            <img src="assets/images/product-family-3.jpg" width="400" height="400" alt="Meal Planner" class="product-card__image" loading="lazy">
                         </div>
+
                         <div class="product-card__content">
                             <h3 class="product-card__title">Meal Action Plan</h3>
                             <div class="product-card__desc">
@@ -117,11 +124,12 @@
                     </a>
                 </article>
 
-                <article class="product-card" style="--glow-color: var(--color-family);">
+                <article id="fam-coloring" class="product-card" style="--glow-color: var(--color-family);">
                     <a href="#" style="text-decoration: none; display: contents; color: inherit;">
                         <div class="product-card__image-wrapper">
-                            <img src="assets/images/product-family-4.jpg" alt="Coloring Book" class="product-card__image" loading="lazy">
+                            <img src="assets/images/product-family-4.jpg" width="400" height="400" alt="Coloring Book" class="product-card__image" loading="lazy">
                         </div>
+
                         <div class="product-card__content">
                             <h3 class="product-card__title">Stress-Relief Coloring</h3>
                             <div class="product-card__desc">

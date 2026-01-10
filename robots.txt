@@ -1,13 +1,21 @@
+# robots.txt - KYNAR Universe Navigation Logic v2.0
+# Updated: 2026-01-10
+
 User-agent: *
 Allow: /
+Allow: /assets/images/*.jpg
+Allow: /assets/images/*.png
 
-# 1. Private User Flows
+# 1. Private User Flows (Security & UX)
 Disallow: /account.html
 Disallow: /404.html
 
-# 2. System Fragments (Prevent broken page indexing)
+# 2. Resource Protection (Prevent Standalone Indexing)
+Disallow: /css/
+Disallow: /js/
+Disallow: /site.webmanifest
 Disallow: /footer-content.html
 Disallow: /nav-content.html
 
-# Sitemap
+# 3. Dedicated Sitemap Reference
 Sitemap: https://kynaruniverse.co.uk/sitemap.xml

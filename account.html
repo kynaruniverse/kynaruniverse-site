@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0a0a0a">
     <title>My Library | KYNAR Universe</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
@@ -21,14 +21,21 @@
 
     <header id="global-header" class="site-header">
         <div class="container header-top">
-            <button class="menu-toggle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+            <button class="menu-toggle" aria-label="Open menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
             <a href="index.html" class="site-brand">
                 <span class="brand-main">KYNAR</span>
                 <span class="brand-sub">ACCOUNT</span>
             </a>
-            <button id="theme-toggle" class="menu-toggle"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Theme"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
+        </div>
+        <div class="container" style="padding-bottom: var(--space-2);">
+            <div class="search-input-wrapper">
+                <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" class="search-input" placeholder="Search the universe...">
+            </div>
         </div>
     </header>
+
 
     <main class="container section">
         <h1 style="margin-bottom: var(--space-5);">My Library</h1>
@@ -51,9 +58,9 @@
             </nav>
 
             <div>
-                <div class="dash-card">
+                <div class="dash-card" style="border-bottom: 2px solid var(--color-border);">
                     <div class="dash-card-info">
-                        <img src="assets/images/product-tech-1.jpg" alt="Invoice Generator" class="dash-thumb">
+                        <img src="assets/images/product-tech-1.jpg" width="48" height="48" alt="Invoice Generator" class="dash-thumb">
                         <div>
                             <strong style="display: block; font-size: var(--text-base);">Auto-Invoice Generator</strong>
                             <div class="text-mono" style="font-size: 10px; color: var(--color-tech);">LICENSE: ACTIVE</div>
@@ -62,9 +69,9 @@
                     <button class="btn btn--secondary" style="min-height: 36px; font-size: var(--text-sm);">Download v2.4</button>
                 </div>
 
-                <div class="dash-card">
+                <div class="dash-card" style="border-bottom: 2px solid var(--color-border);">
                     <div class="dash-card-info">
-                        <img src="assets/images/product-life-1.jpg" alt="Life Planner" class="dash-thumb">
+                        <img src="assets/images/product-life-1.jpg" width="48" height="48" alt="Life Planner" class="dash-thumb">
                         <div>
                             <strong style="display: block; font-size: var(--text-base);">2026 Life OS Planner</strong>
                             <div class="text-mono" style="font-size: 10px; color: var(--color-life);">LICENSE: ACTIVE</div>
@@ -72,6 +79,7 @@
                     </div>
                     <button class="btn btn--secondary" style="min-height: 36px; font-size: var(--text-sm);">Download PDF</button>
                 </div>
+
 
                 <div class="vitro-matte" style="text-align: center; margin-top: var(--space-4);">
                     <p style="margin-bottom: var(--space-3); font-size: var(--text-sm);">

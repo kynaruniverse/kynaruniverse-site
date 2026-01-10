@@ -1,10 +1,24 @@
+<div id="newsletter-toast" class="newsletter-toast">
+    <button id="newsletter-close" class="close-btn" aria-label="Close">&times;</button>
+    <h3 class="text-mono" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">JOIN_THE_UNIVERSE</h3>
+    <p style="font-size: 11px; margin-bottom: var(--space-3); opacity: 0.8;">Get notified when the Tech, Life, and Family sectors go live.</p>
+    
+    <form id="newsletter-form">
+        <input type="email" id="newsletter-email" name="fields[email]" placeholder="email@example.com" required 
+               style="width: 100%; padding: var(--space-2); margin-bottom: var(--space-2); background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); color: white; font-size: 12px;">
+        <button type="submit" class="btn btn--primary" style="width: 100%; font-size: 10px; padding: var(--space-2);">SUBSCRIBE</button>
+    </form>
+    
+    <div id="newsletter-status" class="text-mono" style="margin-top: var(--space-2); font-size: 9px; display: none;"></div>
+</div>
+
 <div class="container" style="padding-bottom: var(--space-6);">
     
     <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-5);">
-        <span class="text-mono" style="font-size: 10px; color: var(--color-text-muted);">KYNAR_UNIVERSE // V2.0</span>
-        <div style="display: flex; align-items: center; gap: 6px;">
-            <span style="width: 6px; height: 6px; background-color: var(--color-success); border-radius: 50%; display: block;"></span>
-            <span class="text-mono" style="font-size: 10px; color: var(--color-text-secondary);">SECURE</span>
+        <span class="text-mono" style="font-size: 10px; color: var(--color-text-muted);">KYNAR_UNIVERSE // V2.5</span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="status-dot" style="width: 6px; height: 6px; background-color: var(--color-text-muted); border-radius: 50%; display: block;"></span>
+            <span class="status-text text-mono" style="font-size: 10px; color: var(--color-text-secondary);">CONNECTION_PENDING</span>
         </div>
     </div>
 
@@ -12,20 +26,22 @@
         
         <div style="display: flex; flex-direction: column; gap: var(--space-3);">
             <strong class="text-mono" style="font-size: 10px; color: var(--color-text-muted);">SECTORS</strong>
-            <a href="shop-tech.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">Tech</a>
-            <a href="shop-life.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">Life</a>
-            <a href="shop-family.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">Family</a>
+            <a href="shop-tech.html" class="footer-link">Tech</a>
+            <a href="shop-life.html" class="footer-link">Life</a>
+            <a href="shop-family.html" class="footer-link">Family</a>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: var(--space-3);">
             <strong class="text-mono" style="font-size: 10px; color: var(--color-text-muted);">PROTOCOL</strong>
-            <a href="account.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">Library</a>
-            <a href="hub.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">The Hub</a>
-            <a href="legal.html" style="color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); transition: color 0.2s;">Legal</a>
+            <a href="account.html" class="footer-link">Library</a>
+            <a href="hub.html" class="footer-link">The Hub</a>
+            <a href="legal.html" class="footer-link">Legal</a>
         </div>
+
     </div>
 
     <div class="text-mono" style="font-size: 10px; color: var(--color-text-muted); text-align: center; opacity: 0.5;">
-        &copy; 2026 KYNAR UNIVERSE.<br>ESTABLISHED IN THE ETHER.
+        &copy; <span id="year">2026</span> KYNAR UNIVERSE.<br>ESTABLISHED IN THE ETHER.
     </div>
+
 </div>

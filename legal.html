@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0a0a0a">
     <title>Legal & Support | KYNAR Universe</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="css/tokens.css">
@@ -15,21 +16,23 @@
 <body>
 
     <div class="vitro-background" aria-hidden="true">
-        <div class="vitro-blob blob-1" style="opacity: 0.2; filter: blur(100px);"></div>
-        <div class="vitro-blob blob-2" style="opacity: 0.1;"></div>
+        <div class="vitro-blob blob-1" style="background: var(--color-pro); opacity: 0.3;"></div>
+        <div class="vitro-blob blob-2" style="background: var(--color-pro); opacity: 0.2;"></div>
     </div>
+
     <div class="vitro-noise" style="opacity: 0.02;"></div>
 
     <header id="global-header" class="site-header">
         <div class="container header-top">
-            <button class="menu-toggle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+            <button class="menu-toggle" aria-label="Open menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
             <a href="index.html" class="site-brand">
                 <span class="brand-main">KYNAR</span>
                 <span class="brand-sub">LEGAL</span>
             </a>
-            <button id="theme-toggle" class="menu-toggle"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
+            <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Theme"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg></button>
         </div>
     </header>
+
 
     <main class="container section">
         
@@ -46,7 +49,7 @@
             <section style="margin-bottom: var(--space-6);">
                 <h2 style="font-size: var(--text-xl); color: var(--color-pro);">Personal License</h2>
                 <p>When you purchase a file from KYNAR Universe, you are buying a <strong>Personal License</strong>.</p>
-                <ul style="padding-left: var(--space-4); color: var(--color-text-secondary); line-height: 1.6;">
+                <ul style="padding-left: var(--space-4);">
                     <li><strong>Allowed:</strong> Use the files for your own projects, business, or household.</li>
                     <li><strong>Allowed:</strong> Modify the scripts/templates to fit your needs.</li>
                     <li><strong>Not Allowed:</strong> Resell, redistribute, or share the raw files publicly.</li>
@@ -56,11 +59,12 @@
             <section>
                 <h2 style="font-size: var(--text-xl); color: var(--color-pro);">Privacy & Data (GDPR)</h2>
                 <p>We respect your data. We do not sell your email address. We only use your data to:</p>
-                <ul style="padding-left: var(--space-4); color: var(--color-text-secondary); line-height: 1.6;">
+                <ul style="padding-left: var(--space-4);">
                     <li>Process your payment (via Lemon Squeezy).</li>
                     <li>Deliver your download links.</li>
                     <li>Send product updates (if you opt-in).</li>
                 </ul>
+
                 <p class="text-mono" style="margin-top: var(--space-3); opacity: 0.5;">VAT_REG: PENDING // ICO_COMPLIANT</p>
             </section>
             

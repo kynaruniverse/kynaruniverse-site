@@ -10,7 +10,7 @@
     <link rel="canonical" href="https://kynaruniverse.co.uk/hub.html">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
@@ -40,10 +40,11 @@
         <div class="header-search">
             <div class="search-input-wrapper">
                 <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" class="search-input" placeholder="Search guides...">
+                <input type="text" class="search-input" placeholder="Search the universe...">
             </div>
         </div>
     </header>
+
 
     <div id="mobile-menu" class="mobile-menu"></div>
 
@@ -69,8 +70,9 @@
         
         <article class="pdp-price-card" style="border-left: none; display: grid; gap: var(--space-4); margin-bottom: var(--space-6); grid-template-columns: 1fr;">
             <div style="background-color: var(--color-surface-dark); border-radius: var(--radius-sm); aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--color-border);">
-                <img src="assets/images/setup-guide-cover.jpg" alt="Featured Guide" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;" loading="lazy">
+                <img src="assets/images/setup-guide-cover.jpg" width="800" height="450" alt="Featured Guide" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;" loading="lazy">
             </div>
+
             <div>
                 <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-2);">
                     <span class="badge badge--emerald">Tech</span>
@@ -86,7 +88,7 @@
             
             <a href="#" class="article-card">
                 <div class="article-image-wrapper">
-                    <img src="assets/images/morning-routine.jpg" alt="Morning Routine" loading="lazy">
+                    <img src="assets/images/morning-routine.jpg" width="400" height="225" alt="Morning Routine" loading="lazy">
                 </div>
                 <span class="badge badge--sage" style="align-self: start; margin-bottom: 8px;">Life</span>
                 <h3 class="article-title">Design a Morning Routine</h3>
@@ -95,27 +97,30 @@
 
             <a href="#" class="article-card">
                 <div class="article-image-wrapper">
-                    <img src="assets/images/rainy-day.jpg" alt="Rainy Day" loading="lazy">
+                    <img src="assets/images/rainy-day.jpg" width="400" height="225" alt="Rainy Day" loading="lazy">
                 </div>
                 <span class="badge badge--terracotta" style="align-self: start; margin-bottom: 8px;">Family</span>
+
                 <h3 class="article-title">10 Screen-Free Activities</h3>
                 <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: 8px;">Keep them entertained without the iPad on rainy days.</p>
             </a>
 
             <a href="#" class="article-card">
                 <div class="article-image-wrapper">
-                    <img src="assets/images/web-scraping-guide.jpg" alt="Web Scraping" loading="lazy">
+                    <img src="assets/images/web-scraping-guide.jpg" width="400" height="225" alt="Web Scraping" loading="lazy">
                 </div>
                 <span class="badge badge--emerald" style="align-self: start; margin-bottom: 8px;">Tech</span>
+
                 <h3 class="article-title">Is Web Scraping Legal?</h3>
                 <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: 8px;">Understanding `robots.txt` and ethical data collection.</p>
             </a>
 
             <a href="#" class="article-card">
                 <div class="article-image-wrapper">
-                    <img src="assets/images/freelance-tips.jpg" alt="Freelance" loading="lazy">
+                    <img src="assets/images/freelance-tips.jpg" width="400" height="225" alt="Freelance" loading="lazy">
                 </div>
                 <span class="badge badge--slate" style="align-self: start; margin-bottom: 8px;">Business</span>
+                
                 <h3 class="article-title">Client Onboarding 101</h3>
                 <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: 8px;">Look professional and save 5 hours per client with Notion.</p>
             </a>
@@ -135,23 +140,7 @@
 
     <footer id="global-footer" class="section site-footer"></footer>
     <div id="cookie-banner" class="cookie-banner"></div>
-
-    <div id="newsletter-toast" class="newsletter-toast">
-        <div class="newsletter-header">
-            <strong style="font-family: var(--font-heading); font-size: var(--text-lg);">Join the Universe</strong>
-            <button id="newsletter-close" class="newsletter-close" aria-label="Close notification">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-        </div>
-        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3);">
-            Get one high-value resource delivered to your inbox weekly. No filler, just utility.
-        </p>
-        <div style="display: flex; gap: var(--space-2);">
-            <input type="email" placeholder="Email address" class="input" style="height: 40px; font-size: var(--text-sm);">
-            <button class="btn btn--primary" style="min-height: 40px; padding: 0 var(--space-3); font-size: var(--text-sm);">Join</button>
-        </div>
-    </div>
-    
     <script src="js/main.js"></script>
+
 </body>
 </html>

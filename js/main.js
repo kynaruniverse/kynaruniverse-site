@@ -1,10 +1,8 @@
-/* js/main.js - KYNAR UNIVERSE CORE V2.1 (Kinetic Vitro Final) */
+/* js/main.js - KYNAR UNIVERSE CORE V2.5 (Kinetic Vitro Optimized) */
 const KynarApp = {
     async init() {
         await this.Layout.loadShell();
         
-        this.Utils.loadSearchIndex();
-
         // UI Core
         requestAnimationFrame(() => this.UI.updateHeaderHeight()); 
         window.addEventListener('resize', () => this.UI.updateHeaderHeight());
@@ -24,10 +22,22 @@ const KynarApp = {
         this.Utils.handleRecentProducts();
         this.Utils.handleRelatedProducts();
         this.Utils.handleNewsletter();
-        
+        this.Utils.handleFilters();
+
         // KINETIC VITRO PHYSICS
-        this.Utils.initKineticVitro(); // Parallax
-        this.Utils.initImagePulse();   // Skeleton Loading
+        this.Utils.initKineticVitro(); 
+        this.Utils.initImagePulse();   
+
+        // PWA: Service Worker Registration & Secure Handshake
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => {
+                    console.log('Vitro Service Worker: Active');
+                    // Trigger the secure handshake check
+                    this.Utils.checkSecureStatus();
+                })
+                .catch(err => console.warn('SW Failed', err));
+        }
     },
 
     Layout: {
@@ -150,71 +160,72 @@ const KynarApp = {
                     matches.forEach(match => {
                         const row = document.createElement('a');
                         row.href = match.url; row.className = 'search-result-row';
-                        row.innerHTML = `<div><div class="search-result-title">${match.title}</div><div class="search-result-meta">${match.category}</div></div><div class="search-result-price">${match.price}</div>`;
+                        row.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                                <img src="${match.image}" alt="" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover; background: var(--color-surface-dark);">
+                                <div style="flex: 1;">
+                                    <div class="search-result-title">${match.title}</div>
+                                    <div class="search-result-meta">${match.category}</div>
+                                </div>
+                                <div class="search-result-price">${match.price}</div>
+                            </div>`;
                         resultsBox.appendChild(row);
                     });
                 } else { resultsBox.hidden = false; resultsBox.innerHTML = `<div class="search-result-empty">No results found for "${term}"</div>`; }
+
             });
         },
 
-        // --- KINETIC VITRO: Pulse Skeleton ---
         initImagePulse() {
-            // Inject dynamic Pulse Keyframes
             if (!document.getElementById('vitro-pulse-style')) {
                 const style = document.createElement('style');
                 style.id = 'vitro-pulse-style';
-                style.textContent = `
-                    @keyframes vitroPulse { 
-                        0% { background-color: var(--color-surface-dark); opacity: 0.5; } 
-                        50% { background-color: var(--glow-color, var(--color-tech)); opacity: 0.15; } 
-                        100% { background-color: var(--color-surface-dark); opacity: 0.5; } 
-                    }
-                    .vitro-loading { animation: vitroPulse 2s infinite ease-in-out; }
-                `;
+                style.textContent = `@keyframes vitroPulse { 0% { background-color: var(--color-surface-dark); opacity: 0.5; } 50% { background-color: var(--glow-color, var(--color-tech)); opacity: 0.15; } 100% { background-color: var(--color-surface-dark); opacity: 0.5; } } .vitro-loading { animation: vitroPulse 2s infinite ease-in-out; }`;
                 document.head.appendChild(style);
             }
-
             const images = document.querySelectorAll('img');
             images.forEach(img => {
-                if (img.complete) return;
-                
-                // Find parent wrapper or card to grab the glow color
+                if (img.complete && img.naturalHeight !== 0) return;
                 const wrapper = img.closest('.product-card__image-wrapper') || img.parentElement;
                 const card = img.closest('.product-card, .dept-card');
-                
-                // Inherit color from the card's CSS variable (or default to tech)
                 if (card && wrapper) {
                     const glow = card.style.getPropertyValue('--glow-color') || 'var(--color-tech)';
                     wrapper.style.setProperty('--glow-color', glow);
                     wrapper.classList.add('vitro-loading');
                 }
-
-                img.addEventListener('load', () => {
-                    if(wrapper) wrapper.classList.remove('vitro-loading');
-                });
+                const removeLoader = () => { if(wrapper) wrapper.classList.remove('vitro-loading'); };
+                img.addEventListener('load', removeLoader);
+                img.addEventListener('error', removeLoader);
             });
         },
 
-        // --- KINETIC VITRO: Physics Engine ---
         initKineticVitro() {
             const blobs = document.querySelectorAll('.vitro-blob');
-            if (!blobs.length) return;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!blobs.length || prefersReducedMotion) return;
             let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
             const ease = 0.05;
+            let animationFrameId, isRunning = false;
             window.addEventListener('mousemove', (e) => {
                 targetX = (e.clientX / window.innerWidth) - 0.5;
                 targetY = (e.clientY / window.innerHeight) - 0.5;
             });
             const animate = () => {
-                currentX += (targetX - currentX) * ease;
-                currentY += (targetY - currentY) * ease;
-                blobs.forEach((blob, i) => {
-                    const depth = (i + 1) * 30; 
-                    blob.style.transform = `translate3d(${currentX * depth * -1}px, ${currentY * depth * -1}px, 0)`;
-                });
-                requestAnimationFrame(animate);
+                const deltaX = (targetX - currentX) * ease;
+                const deltaY = (targetY - currentY) * ease;
+                currentX += deltaX; currentY += deltaY;
+                if (Math.abs(deltaX) > 0.0001 || Math.abs(deltaY) > 0.0001) {
+                    blobs.forEach((blob, i) => {
+                        const depth = (i + 1) * 30; 
+                        blob.style.transform = `translate3d(${currentX * depth * -1}px, ${currentY * depth * -1}px, 0)`;
+                    });
+                }
+                if (isRunning) animationFrameId = requestAnimationFrame(animate);
             };
-            animate();
+            const startEngine = () => { if (!isRunning) { isRunning = true; animate(); } };
+            const stopEngine = () => { isRunning = false; if (animationFrameId) cancelAnimationFrame(animationFrameId); };
+            document.addEventListener('visibilitychange', () => { document.hidden ? stopEngine() : startEngine(); });
+            startEngine();
         },
 
         handleRecentProducts() {
@@ -223,9 +234,9 @@ const KynarApp = {
             if (document.querySelector('.pdp-layout')) {
                 const titleEl = document.querySelector('h1');
                 const imgEl = document.querySelector('.gallery-item img');
-                const priceEl = document.querySelector('.mobile-action-bar span[style*="font-weight: bold"]'); 
+                const priceEl = document.querySelector('.price-display-xl') || document.querySelector('.price-display-lg'); 
                 if (titleEl && imgEl) {
-                    const product = { url: currentPath, title: titleEl.textContent, image: imgEl.getAttribute('src'), price: priceEl ? priceEl.textContent : 'View', timestamp: Date.now() };
+                    const product = { url: currentPath, title: titleEl.textContent, image: imgEl.getAttribute('src'), price: priceEl ? priceEl.textContent.trim() : 'View', timestamp: Date.now() };
                     let recent = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
                     recent = recent.filter(p => p.url !== currentPath); 
                     recent.unshift(product); 
@@ -244,18 +255,7 @@ const KynarApp = {
                         let glowColor = 'var(--color-tech)';
                         if (p.url.includes('life')) glowColor = 'var(--color-life)';
                         if (p.url.includes('family')) glowColor = 'var(--color-family)';
-                        return `
-                        <article class="product-card" style="--glow-color: ${glowColor}">
-                            <a href="${p.url}" style="text-decoration: none; display: contents; color: inherit;">
-                                <div class="product-card__image-wrapper">
-                                    <img src="${p.image}" alt="${p.title}" class="product-card__image">
-                                </div>
-                                <div class="product-card__content">
-                                    <h3 class="product-card__title">${p.title}</h3>
-                                    <div class="product-card__footer"><span class="product-card__price">${p.price}</span><span class="btn btn--secondary" style="padding:0 var(--space-2); min-height:32px; font-size:var(--text-xs);">View</span></div>
-                                </div>
-                            </a>
-                        </article>`;
+                        return `<article class="product-card" style="--glow-color: ${glowColor}"><a href="${p.url}" style="text-decoration: none; display: contents; color: inherit;"><div class="product-card__image-wrapper"><img src="${p.image}" alt="${p.title}" class="product-card__image"></div><div class="product-card__content"><h3 class="product-card__title">${p.title}</h3><div class="product-card__footer"><span class="product-card__price">${p.price}</span><span class="btn btn--secondary" style="padding:0 var(--space-2); min-height:32px; font-size:var(--text-xs);">View</span></div></div></a></article>`;
                     }).join('');
                 }
             }
@@ -276,31 +276,109 @@ const KynarApp = {
                     let glowColor = 'var(--color-tech)';
                     if (p.category === 'Life') glowColor = 'var(--color-life)';
                     if (p.category === 'Family') glowColor = 'var(--color-family)';
-                    return `
-                    <article class="product-card" style="--glow-color: ${glowColor}">
-                        <a href="${p.url}" style="text-decoration: none; display: contents; color: inherit;">
-                            <div class="product-card__image-wrapper">
-                                <img src="assets/images/related-product.jpg" alt="${p.title}" class="product-card__image">
-                            </div>
-                            <div class="product-card__content">
-                                <h3 class="product-card__title">${p.title}</h3>
-                                <div class="product-card__footer"><span class="product-card__price">${p.price}</span><span class="btn btn--secondary" style="padding:0 var(--space-2); min-height:32px; font-size:var(--text-xs);">View</span></div>
-                            </div>
-                        </a>
-                    </article>`;
+                    return `<article class="product-card" style="--glow-color: ${glowColor}"><a href="${p.url}" style="text-decoration: none; display: contents; color: inherit;"><div class="product-card__image-wrapper"><img src="${p.image}" alt="${p.title}" class="product-card__image"></div><div class="product-card__content"><h3 class="product-card__title">${p.title}</h3><div class="product-card__footer"><span class="product-card__price">${p.price}</span><span class="btn btn--secondary" style="padding:0 var(--space-2); min-height:32px; font-size:var(--text-xs);">View</span></div></div></a></article>`;
                 }).join('');
             } else { const section = container.closest('section'); if(section) section.style.display = 'none'; }
         },
 
         handleNewsletter() {
-            if (!window.location.pathname.includes('hub.html')) return;
             const toast = document.getElementById('newsletter-toast');
-            const closeBtn = document.getElementById('newsletter-close');
+            const form = document.getElementById('newsletter-form');
+            const status = document.getElementById('newsletter-status');
             const STORAGE_KEY = 'kynar_newsletter_seen';
+
             if (!toast || sessionStorage.getItem(STORAGE_KEY)) return;
-            setTimeout(() => { toast.classList.add('is-visible'); sessionStorage.setItem(STORAGE_KEY, 'true'); }, 4000);
-            if (closeBtn) { closeBtn.addEventListener('click', () => { toast.classList.remove('is-visible'); }); }
+
+            // Show toast after 4 seconds
+            setTimeout(() => {
+                toast.classList.add('is-visible');
+                sessionStorage.setItem(STORAGE_KEY, 'true');
+            }, 4000);
+
+            // Close Handler
+            document.getElementById('newsletter-close')?.addEventListener('click', () => {
+                toast.classList.remove('is-visible');
+            });
+
+            // Submission Handler
+            form?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // IMPORTANT: Ensure this URL is your specific subscribe link
+                const MAILERLITE_URL = 'https://assets.mailerlite.com/jsonp/2029228/forms/176215388525168382/subscribe';
+
+                if (status) {
+                    status.style.display = 'block';
+                    status.style.color = 'var(--color-tech)';
+                    status.textContent = 'TRANSMITTING...';
+                }
+
+                try {
+                    await fetch(MAILERLITE_URL, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        mode: 'no-cors'
+                    });
+
+                    if (status) {
+                        status.style.color = '#00ff88';
+                        status.textContent = 'SYSTEM_SYNC_COMPLETE';
+                    }
+                    setTimeout(() => toast.classList.remove('is-visible'), 2000);
+                } catch (err) {
+                    if (status) {
+                        status.style.color = 'var(--color-error)';
+                        status.textContent = 'SYNC_FAILED_RETRY';
+                    }
+                }
+            });
+        },
+
+        handleFilters() {
+            const filterBtn = document.getElementById('apply-filters');
+            if (!filterBtn) return;
+
+            filterBtn.addEventListener('click', () => {
+                const activeFilters = Array.from(document.querySelectorAll('.sidebar-filters input[type="checkbox"]:checked'))
+                    .map(cb => cb.parentElement.textContent.trim().toLowerCase());
+
+                const products = document.querySelectorAll('.product-card');
+
+                products.forEach(card => {
+                    const badges = Array.from(card.querySelectorAll('.badge'))
+                        .map(b => b.textContent.trim().toLowerCase());
+
+                    if (activeFilters.length === 0) {
+                        card.style.display = '';
+                    } else {
+                        const hasMatch = activeFilters.some(filter => badges.includes(filter));
+                        card.style.display = hasMatch ? '' : 'none';
+                    }
+                });
+            });
+        },
+
+        checkSecureStatus() {
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.querySelector('.status-text');
+            
+            if (!navigator.serviceWorker.controller || !statusDot) return;
+
+            const messageChannel = new MessageChannel();
+            
+            messageChannel.port1.onmessage = (event) => {
+                if (event.data && event.data.status === 'SECURE_CONNECTION_ACTIVE') {
+                    statusDot.classList.add('is-secure');
+                    if (statusText) statusText.textContent = 'SECURE';
+                }
+            };
+
+            navigator.serviceWorker.controller.postMessage(
+                { type: 'CHECK_SECURE_STATUS' },
+                [messageChannel.port2]
+            );
         }
-    }
-};
+    } // End Utils
+}; // End KynarApp
+
 document.addEventListener('DOMContentLoaded', () => KynarApp.init());

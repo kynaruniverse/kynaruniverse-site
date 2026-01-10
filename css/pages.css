@@ -214,10 +214,16 @@
   padding: var(--space-4);
   margin-bottom: var(--space-4);
   
-  /* Neon Accent Border instead of solid color */
+  /* Neon Accent Border */
   border-left: 2px solid var(--color-tech); 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  
+  /* UPGRADE: Tactile Glass Lip + Drop Shadow */
+  box-shadow: 
+      inset 1px 1px 0px rgba(255,255,255,0.08), 
+      inset -1px -1px 0px rgba(0,0,0,0.5),
+      0 20px 40px rgba(0,0,0,0.3);
 }
+
 
 .price-display-lg {
   font-family: var(--font-heading);
@@ -388,28 +394,21 @@
   .dept-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Note: Visual styles for .dept-card are handled in components.css */
 .dept-card {
   display: flex; flex-direction: column; justify-content: space-between;
+  
+  /* Layout specifics for the Grid */
   padding: var(--space-5) var(--space-4);
-  border-radius: var(--radius-universal);
-  border: 1px solid var(--color-border);
-  
-  /* Glass Upgrade */
-  background-color: var(--color-surface);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  
-  text-decoration: none;
-  transition: all var(--transition-base);
   min-height: 280px; 
+  text-decoration: none;
   position: relative;
   overflow: hidden;
 }
 
-/* Category Glows */
-.dept-card--tech:hover { box-shadow: 0 0 30px rgba(0, 209, 255, 0.2); border-color: var(--color-tech); }
-.dept-card--life:hover { box-shadow: 0 0 30px rgba(112, 0, 255, 0.2); border-color: var(--color-life); }
-.dept-card--family:hover { box-shadow: 0 0 30px rgba(255, 107, 74, 0.2); border-color: var(--color-family); }
+/* Hover behaviors are inherited from components.css */
+
+
 
 .dept-icon {
   width: 48px; height: 48px;
@@ -449,11 +448,17 @@
 
 .order-summary {
   background-color: var(--color-surface);
+  
+  /* UPGRADE: Glass Physics */
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  
   border: 1px solid var(--color-border);
   border-radius: var(--radius-universal);
   padding: var(--space-4);
   margin-bottom: var(--space-5);
 }
+
 
 .summary-row {
   display: flex; justify-content: space-between;
@@ -477,12 +482,18 @@
 
 .download-box {
   background-color: var(--color-surface);
+  
+  /* UPGRADE: Glass Physics */
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  
   border: 1px solid var(--color-border);
   border-radius: var(--radius-universal);
   padding: var(--space-4);
   margin-top: var(--space-5);
   text-align: left;
 }
+
 
 .file-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -531,7 +542,11 @@
   padding: var(--space-4);
   margin-bottom: var(--space-3);
   display: flex; flex-direction: column; gap: var(--space-3);
+
+  /* UPGRADE: Subtle Tactile Lip */
+  box-shadow: inset 1px 1px 0px rgba(255,255,255,0.05), inset -1px -1px 0px rgba(0,0,0,0.2);
 }
+
 @media (min-width: 640px) {
   .dash-card { flex-direction: row; align-items: center; justify-content: space-between; }
 }
@@ -591,11 +606,17 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   
-  padding: var(--space-5);
+  /* OPTIMIZATION: Responsive Padding */
+  padding: var(--space-4);
   margin-top: var(--space-5);
   position: relative;
   z-index: var(--z-grid);
 }
+
+@media (min-width: 768px) {
+  .vitro-matte { padding: var(--space-5); }
+}
+
 
 /* Reader Typography Overrides */
 .vitro-matte h1, .vitro-matte h2 {

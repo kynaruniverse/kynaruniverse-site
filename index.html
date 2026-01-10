@@ -10,15 +10,23 @@
     
     <link rel="manifest" href="site.webmanifest">
     <link rel="canonical" href="https://kynaruniverse.co.uk/">
-    
     <link rel="preload" href="assets/fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <link rel="stylesheet" href="css/tokens.css">     <link rel="stylesheet" href="css/base.css">       <link rel="stylesheet" href="css/components.css"> <link rel="stylesheet" href="css/pages.css">      </head>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
 <body>
 
     <div class="vitro-background" aria-hidden="true">
-        <div class="vitro-blob blob-1"></div> <div class="vitro-blob blob-2"></div> <div class="vitro-blob blob-3"></div> </div>
-    <div class="vitro-noise"></div> <header id="global-header" class="site-header">
+        <div class="vitro-blob blob-1"></div>
+        <div class="vitro-blob blob-2"></div>
+        <div class="vitro-blob blob-3"></div>
+    </div>
+    <div class="vitro-noise"></div>
+
+    <header id="global-header" class="site-header">
         <div class="container header-top">
             <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
@@ -47,18 +55,22 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" class="search-input" placeholder="Search the universe..." aria-label="Search">
+                <input type="text" id="global-search" class="search-input" placeholder="Search the universe..." aria-label="Search">
             </div>
         </div>
+
     </header>
 
     <main class="container section">
+        <h1 class="sr-only">KYNAR Universe - Digital Marketplace for Tech, Life, and Family</h1>
+        
         
         <div class="vitro-grid">
 
-            <article class="dept-card dept-card--tech col-span-2 row-span-2" style="--glow-color: var(--color-tech)">
+            <article class="dept-card dept-card--tech col-span-2 row-span-2" style="--glow-color: var(--color-tech); border-bottom: 2px solid var(--color-border);">
                 <a href="shop-tech.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: var(--space-4);">
+
                         <div class="dept-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -71,13 +83,17 @@
                     </div>
                     
                     <div class="vitro-meta">
-                        <span>IDX_01 // SYSTEM_ROOT</span>
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 6px; height: 6px; background-color: var(--color-tech); border-radius: 50%; box-shadow: 0 0 8px var(--color-tech);"></span>
+                            SYSTEM_ONLINE
+                        </span>
                         <span>[ENTER]</span>
                     </div>
                 </a>
             </article>
 
-            <article class="dept-card dept-card--life row-span-2" style="--glow-color: var(--color-life)">
+            <article class="dept-card dept-card--life row-span-2" style="--glow-color: var(--color-life); border-bottom: 2px solid var(--color-border);">
+
                 <a href="shop-life.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-4);">
                         <div class="dept-icon">
@@ -97,12 +113,13 @@
                 </a>
             </article>
 
-            <article class="dept-card dept-card--family" style="--glow-color: var(--color-family)">
+            <article class="dept-card dept-card--family" style="--glow-color: var(--color-family); border-bottom: 2px solid var(--color-border);">
                 <a href="shop-family.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div style="flex: 1; padding: var(--space-4);">
-                        <h3 class="dept-title" style="font-size: var(--text-xl);">FAMILY</h3>
+                        <h2 class="dept-title" style="font-size: var(--text-xl);">KYNAR FAMILY</h2>
                         <p class="dept-desc" style="font-size: var(--text-xs);">Creative logic.</p>
                     </div>
+
                     <div class="vitro-meta">
                         <span>IDX_03</span>
                         <span>100+ PG</span>
@@ -110,7 +127,8 @@
                 </a>
             </article>
 
-            <article class="dept-card" style="--glow-color: var(--color-pro)">
+            <article class="dept-card" style="--glow-color: var(--color-pro); border-bottom: 2px solid var(--color-border);">
+
                 <a href="hub.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
                     <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-pro);">

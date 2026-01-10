@@ -106,8 +106,9 @@
   
   /* Layering Stack */
   --z-negative:  -1;
-  --z-noise:      0;    /* New: Grain Texture */
-  --z-background: 1;    /* New: Blobs */
+  --z-background: 0;    /* New: Blobs (Base Layer) */
+  --z-noise:      1;    /* New: Grain Texture (Overlay) */
+
   --z-grid:       10;   /* Main Content */
   --z-hover:      20;   /* Lifted Card */
   --z-sticky:     100;
@@ -126,12 +127,13 @@
   --color-bg-rgb:         245, 245, 247;
   
   --color-surface:        rgba(255, 255, 255, 0.4); /* Frosted Ice */
-  --color-surface-dark:   rgba(255, 255, 255, 0.6);
-  --color-border:         rgba(0, 0, 0, 0.05);
-
-  --color-text-primary:   #1a1a1a;
+  --color-surface-dark: rgba(255, 255, 255, 0.6);
+  --color-border: rgba(0, 0, 0, 0.08);
+  /* Darkened for Tactile Lip visibility */
+  
+  --color-text-primary: #1a1a1a;
   --color-text-secondary: #5a5a5a;
-  --color-text-muted:     #8a8379;
+  --color-text-muted: #8a8379;
 
   --glass-blur:           35px; /* Higher blur for light mode */
   --glass-saturation:     140%;
