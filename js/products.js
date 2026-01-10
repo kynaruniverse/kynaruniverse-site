@@ -1,4 +1,5 @@
-/* js/products.js - KYNAR UNIVERSE PRODUCT DATABASE V2.7 (Unified Sync) */
+/* js/products.js - KYNAR UNIVERSE PRODUCT DATABASE V3.0 (Complete Inventory) */
+
 const KynarDatabase = {
     // --- KYNAR FAMILY SECTOR ---
     "preschool-bundle": {
@@ -16,7 +17,7 @@ const KynarDatabase = {
         image: "assets/images/product-family-1.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/PRESCHOOL_ID",
         files: ["Tracing_Pack.pdf", "Logic_Puzzles.pdf", "Counting_Games.pdf"],
-        related: ["chore-system", "mood-journal"]
+        related: ["chore-system", "meal-plan"]
     },
 
     "chore-system": {
@@ -32,6 +33,36 @@ const KynarDatabase = {
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/CHORE_ID",
         files: ["Chore_Chart.pdf", "Icon_Pack.pdf", "Instructions.pdf"],
         related: ["preschool-bundle", "meal-plan"]
+    },
+
+    "meal-plan": {
+        title: "Meal & Grocery Action Plan",
+        tagline: "Nutritional Logistics.",
+        price: "£9",
+        category: "Family",
+        badgeType: "Printable",
+        badgeLevel: "System",
+        meta: "Weekly Grid • Inventory Tracker",
+        description: "<p>Reduce food waste and decision fatigue. This visual system aligns your inventory with your weekly nutritional requirements.</p>",
+        image: "assets/images/product-family-3.jpg",
+        lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/MEAL_ID",
+        files: ["Meal_Planner.pdf", "Shopping_List.pdf"],
+        related: ["chore-system", "coloring-book"]
+    },
+
+    "coloring-book": {
+        title: "Stress-Relief Coloring",
+        tagline: "Analog Decompression.",
+        price: "£7",
+        category: "Family",
+        badgeType: "Printable",
+        badgeLevel: "Creative",
+        meta: "High Resolution • Adult/Teen",
+        description: "<p>Complex geometric patterns designed to lower cortisol levels. Print as needed for analog downtime.</p>",
+        image: "assets/images/product-family-4.jpg",
+        lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/COLOR_ID",
+        files: ["Pattern_Book.pdf"],
+        related: ["preschool-bundle", "mood-journal"]
     },
 
     // --- KYNAR LIFE SECTOR ---
@@ -50,7 +81,7 @@ const KynarDatabase = {
         image: "assets/images/product-life-1.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/PLANNER_ID",
         files: ["Life_OS_2026.pdf", "User_Guide.pdf"],
-        related: ["finance-dashboard", "mood-journal"]
+        related: ["finance-dashboard", "routine-architect"]
     },
 
     "finance-dashboard": {
@@ -68,6 +99,21 @@ const KynarDatabase = {
         related: ["life-os-planner", "routine-architect"]
     },
 
+    "routine-architect": {
+        title: "Routine Architect",
+        tagline: "Habit Stack Construction.",
+        price: "£9",
+        category: "Life",
+        badgeType: "Notion",
+        badgeLevel: "Template",
+        meta: "Notion Sync • Mobile Ready",
+        description: "<p>Build and track high-performance daily loops. This Notion template uses database logic to visualize your consistency streaks.</p>",
+        image: "assets/images/product-life-3.jpg",
+        lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/ROUTINE_ID",
+        files: ["Template_Link.txt", "Guide.pdf"],
+        related: ["mood-journal", "life-os-planner"]
+    },
+
     "mood-journal": {
         title: "Mood & Gratitude Journal",
         tagline: "Calibrate Clarity.",
@@ -80,7 +126,7 @@ const KynarDatabase = {
         image: "assets/images/product-life-4.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/MOOD_ID",
         files: ["Daily_Journal.pdf"],
-        related: ["life-os-planner", "routine-architect"]
+        related: ["life-os-planner", "coloring-book"]
     },
 
     // --- KYNAR TECH SECTOR ---
@@ -115,5 +161,35 @@ const KynarDatabase = {
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/CLEANER_ID",
         files: ["cleaner.py", "rules.json"],
         related: ["auto-invoice", "bulk-resizer"]
+    },
+
+    "bulk-resizer": {
+        title: "Bulk Image Resizer CLI",
+        tagline: "Media Pipeline Optimization.",
+        price: "£10",
+        category: "Tech",
+        badgeType: "Bash/Python",
+        badgeLevel: "Media",
+        meta: "Lossless Compression • Batch",
+        description: "<p>Process thousands of assets in minutes. Resize, compress, and rename image directories via simple CLI commands.</p>",
+        image: "assets/images/product-tech-3.jpg",
+        lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/RESIZER_ID",
+        files: ["resizer.sh", "requirements.txt"],
+        related: ["auto-invoice", "desktop-cleaner"]
+    },
+
+    "social-scheduler": {
+        title: "Social API Scheduler",
+        tagline: "Headless Content Deployment.",
+        price: "£18",
+        category: "Tech",
+        badgeType: "API Tool",
+        badgeLevel: "Marketing",
+        meta: "Cron Jobs • JSON Config",
+        description: "<p>A lightweight bot to schedule tweets and posts via API, bypassing bloated social media dashboards.</p>",
+        image: "assets/images/product-tech-4.jpg",
+        lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/SOCIAL_ID",
+        files: ["bot.py", "cron_setup.txt"],
+        related: ["auto-invoice", "routine-architect"]
     }
 };

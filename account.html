@@ -3,36 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#F5F5F7"> <title>My Library | KYNAR Universe</title>
+    <meta name="theme-color" content="#F5F5F7"> 
+    <title>My Library | KYNAR Universe</title>
     
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preload" href="assets/fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin> <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    
+    <link rel="preload" href="assets/fonts/Bantayog.woff2" as="font" type="font/woff2" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
-<body>
+
+<body data-sector="hub">
 
     <div class="vitro-background" aria-hidden="true">
         <div class="vitro-blob blob-3" style="opacity: 0.15; background: var(--color-pro);"></div>
+        <div class="vitro-blob blob-1" style="opacity: 0.05; background: var(--color-text-primary);"></div>
     </div>
     <div class="vitro-noise"></div>
 
     <header id="global-header" class="site-header">
         <div class="header-inner">
             <div class="header-top-row">
-                <button class="menu-toggle" aria-label="Open menu" style="background:none; border:none; padding:0; color:var(--color-text-primary);">
+                <button class="menu-toggle" aria-label="Open menu">
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                 </button>
 
-                <a href="index.html" class="site-brand" style="text-align: center; text-decoration: none;">
-                    <div class="brand-main" style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.15em; color: var(--color-text-primary); line-height:1;">KYNAR</div>
-                    <div class="brand-sub" style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4em; color: var(--color-text-muted); margin-top: 2px;">ACCOUNT</div>
+                <a href="index.html" class="site-brand" aria-label="KYNAR Home">
+                    <div class="brand-main">KYNAR</div>
+                    <div class="brand-sub" style="color: var(--color-text-muted); letter-spacing: 0.2em;">ACCOUNT</div>
                 </a>
 
-                <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Theme" style="background:none; border:none; padding:0; color:var(--color-text-primary);">
+                <button id="theme-toggle" class="menu-toggle" aria-label="Toggle Theme">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
                 </button>
             </div>
@@ -47,11 +53,11 @@
     <div id="mobile-menu" class="mobile-menu"></div>
 
     <main class="container section">
-        <h1 style="margin-bottom: var(--space-5); font-family: var(--font-heading);">My Library</h1>
+        <h1 style="margin-bottom: var(--space-5);">My Library</h1>
 
         <div class="dashboard-layout">
             
-            <nav class="dash-nav" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border);">
+            <nav class="dash-nav">
                 <a href="#" class="dash-link is-active">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     Downloads
@@ -67,26 +73,27 @@
             </nav>
 
             <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                
                 <div class="dash-card">
                     <div class="dash-card-info">
-                        <img src="assets/images/product-tech-1.jpg" width="64" height="64" alt="Invoice Generator" class="dash-thumb" style="border: 1px solid var(--color-border);">
+                        <img src="assets/images/product-tech-1.jpg" width="64" height="64" alt="Invoice Generator" class="dash-thumb">
                         <div>
                             <strong style="display: block; font-size: var(--text-base); color: var(--color-text-primary);">Auto-Invoice Generator</strong>
                             <div class="text-mono" style="font-size: 9px; color: var(--color-tech); font-weight: bold; margin-top: 4px;">LICENSE: ACTIVE // v2.4</div>
                         </div>
                     </div>
-                    <button class="btn btn--secondary" style="min-height: 40px; font-size: var(--text-sm); border-color: var(--color-tech);">Download Script</button>
+                    <button class="btn btn--secondary" style="min-height: 40px; font-size: var(--text-sm); border-color: var(--color-tech); color: var(--color-tech);">Download Script</button>
                 </div>
 
                 <div class="dash-card">
                     <div class="dash-card-info">
-                        <img src="assets/images/product-life-1.jpg" width="64" height="64" alt="Life Planner" class="dash-thumb" style="border: 1px solid var(--color-border);">
+                        <img src="assets/images/product-life-1.jpg" width="64" height="64" alt="Life Planner" class="dash-thumb">
                         <div>
                             <strong style="display: block; font-size: var(--text-base); color: var(--color-text-primary);">2026 Life OS Planner</strong>
                             <div class="text-mono" style="font-size: 9px; color: var(--color-life); font-weight: bold; margin-top: 4px;">LICENSE: ACTIVE // DIGITAL_PDF</div>
                         </div>
                     </div>
-                    <button class="btn btn--secondary" style="min-height: 40px; font-size: var(--text-sm); border-color: var(--color-life);">Download PDF</button>
+                    <button class="btn btn--secondary" style="min-height: 40px; font-size: var(--text-sm); border-color: var(--color-life); color: var(--color-life);">Download PDF</button>
                 </div>
 
                 <div class="vitro-matte" style="text-align: center; margin-top: var(--space-4); border-style: dashed; opacity: 0.8;">
@@ -100,8 +107,8 @@
     </main>
 
     <footer id="global-footer" class="section site-footer"></footer>
-    <div id="mobile-menu" class="mobile-menu"></div>
     <div id="cookie-banner" class="cookie-banner"></div>
+
     <script src="js/main.js"></script>
 </body>
 </html>

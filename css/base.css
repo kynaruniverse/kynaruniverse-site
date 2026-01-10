@@ -1,4 +1,4 @@
-/* css/base.css - KYNAR UNIVERSE CORE V2.7 (Physics & Handshake Sync) */
+/* css/base.css - KYNAR UNIVERSE CORE V3.0 (Physics & Base Reset) */
 
 /* ---------------------------------------------------------
    0. FONT REGISTRATION
@@ -50,19 +50,25 @@ html {
 }
 
 body {
-  font-family: var(--font-body), 'Glacial Indifference', sans-serif;
+  /* SUPREMACY TYPE STACK: Geometric Precision */
+  font-family: var(--font-body); /* Enforcing Inter/System */
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   line-height: var(--leading-relaxed);
   font-size: var(--text-base);
+  
+  /* Rendering Physics */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Optimized for Light/Dark Mode Handshake */
-  transition: background-color var(--transition-base), color var(--transition-base);
+  /* Removal of color transition for instant snap feel */
+  transition: none; 
 }
+
 
 main {
   flex: 1;
@@ -76,7 +82,7 @@ main {
    --------------------------------------------------------- */
 h1, h2, h3, .section-title {
   margin-bottom: var(--space-3);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); /* Crucial for Sector Identity */
   font-weight: normal;
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
@@ -127,13 +133,13 @@ button, input, select, textarea {
 
 /* Accessibility: High-Tech Focus Ring */
 *:focus-visible {
-  outline: 2px solid var(--color-tech);
+  outline: 2px solid var(--color-primary); /* Updated to match Sector Color */
   outline-offset: 4px;
 }
 
 ::selection {
-  background: var(--color-tech);
-  color: #000;
+  background: var(--color-primary);
+  color: #fff;
 }
 
 /* ---------------------------------------------------------
@@ -175,13 +181,13 @@ button, input, select, textarea {
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.15; /* Subtler for Light Mode transparency */
-  animation: drift var(--fluid-speed) infinite alternate ease-in-out;
+  opacity: 0.15;
   will-change: transform;
+  /* Animation handled by JS for Parallax, CSS fallback below */
 }
 
 [data-theme="dark"] .vitro-blob {
-  opacity: 0.3; /* Increased presence for Dark Mode neon */
+  opacity: 0.3; 
 }
 
 .blob-1 {
@@ -194,14 +200,12 @@ button, input, select, textarea {
   bottom: -5%; right: -5%;
   width: 65vw; height: 65vw;
   background: var(--color-life);
-  animation-delay: -8s;
 }
 
 .blob-3 {
   top: 30%; left: 35%;
   width: 45vw; height: 45vw;
   background: var(--color-family);
-  animation-delay: -15s;
 }
 
 .vitro-noise {
@@ -211,11 +215,6 @@ button, input, select, textarea {
   pointer-events: none;
   opacity: var(--noise-grain);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-@keyframes drift {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(60px, -40px, 0) scale(1.15); }
 }
 
 /* ---------------------------------------------------------
@@ -246,24 +245,5 @@ button, input, select, textarea {
   *, *::before, *::after {
     animation-duration: 0.001s !important;
     transition-duration: 0.001s !important;
-  }
-}
-
-@media (prefers-reduced-transparency) {
-  *, *::before, *::after {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-  
-  .site-header, .mobile-menu, .product-card, .dept-card, .pdp-price-card, 
-  .cookie-banner, .newsletter-toast, .search-results, .chip {
-    background-color: var(--color-bg) !important; 
-    border-color: var(--color-border);
-  }
-
-  .vitro-blob {
-    filter: blur(20px) !important;
-    opacity: 0.05 !important;
-    animation: none !important;
   }
 }
