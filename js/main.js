@@ -23,6 +23,8 @@ const KynarApp = {
         this.Utils.handleRelatedProducts();
         this.Utils.handleNewsletter();
         this.Utils.handleFilters();
+        this.Utils.loadProductTemplate();
+
 
         // KINETIC VITRO PHYSICS
         this.Utils.initKineticVitro(); 
@@ -82,12 +84,10 @@ const KynarApp = {
             menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => close()));
         },
         
-        // FIXED: Now defaults to Light Mode (no attribute) unless Dark is saved
         initThemeToggle() {
             const btn = document.getElementById('theme-toggle');
             const html = document.documentElement;
             
-            // Check for saved dark preference
             if (localStorage.getItem('theme') === 'dark') {
                 html.setAttribute('data-theme', 'dark');
             }
@@ -142,7 +142,12 @@ const KynarApp = {
                 const script = document.createElement('script');
                 script.src = 'https://assets.lemonsqueezy.com/lemon.js';
                 script.defer = true;
+                script.onload = () => {
+                    if (window.createLemonSqueezy) window.createLemonSqueezy();
+                };
                 document.head.appendChild(script);
+            } else {
+                if (window.createLemonSqueezy) window.createLemonSqueezy();
             }
         }
     },
@@ -410,6 +415,61 @@ const KynarApp = {
                 { type: 'CHECK_SECURE_STATUS' },
                 [messageChannel.port2]
             );
+        },
+
+        loadProductTemplate() {
+            if (!document.getElementById('pdp-title')) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const p = KynarDatabase[productId];
+
+            if (!p) {
+                console.warn("Product not found in database.");
+                return;
+            }
+
+            document.title = `${p.title} | KYNAR UNIVERSE`;
+            document.getElementById('pdp-title').textContent = p.title;
+            document.getElementById('pdp-tagline').textContent = p.tagline || "Product Overview";
+            document.getElementById('pdp-long-description').innerHTML = p.description;
+            document.getElementById('pdp-price').textContent = p.price;
+            document.getElementById('pdp-mobile-price').textContent = p.price;
+            document.getElementById('pdp-meta-info').textContent = p.meta || "";
+            document.getElementById('pdp-badge-type').textContent = p.badgeType || "Digital";
+            document.getElementById('pdp-badge-level').textContent = p.badgeLevel || "Instant";
+            
+            const mainImg = document.getElementById('pdp-main-image');
+            if (mainImg) mainImg.src = p.image;
+
+            const buyBtn = document.getElementById('pdp-buy-btn');
+            const mobileBuyBtn = document.getElementById('pdp-mobile-buy-btn');
+            if (buyBtn) buyBtn.href = `${p.lsLink}?embed=1`;
+            if (mobileBuyBtn) mobileBuyBtn.href = `${p.lsLink}?embed=1`;
+
+            const bgBlob = document.getElementById('pdp-bg-blob');
+            const backLink = document.getElementById('pdp-back-link');
+            
+            if (p.category === 'Family') {
+                if (bgBlob) bgBlob.style.background = 'var(--color-family)';
+                if (backLink) { backLink.href = 'shop-family.html'; backLink.textContent = '← Back to KYNAR Family'; }
+            } else if (p.category === 'Life') {
+                if (bgBlob) bgBlob.style.background = 'var(--color-life)';
+                if (backLink) { backLink.href = 'shop-life.html'; backLink.textContent = '← Back to KYNAR Life'; }
+            } else {
+                if (bgBlob) bgBlob.style.background = 'var(--color-tech)';
+                if (backLink) { backLink.href = 'shop-tech.html'; backLink.textContent = '← Back to KYNAR Tech'; }
+            }
+
+            const fileList = document.getElementById('pdp-file-list');
+            if (fileList && p.files) {
+                fileList.innerHTML = p.files.map(file => `
+                    <li class="spec-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                        ${file}
+                    </li>
+                `).join('');
+            }
         }
     }
 };

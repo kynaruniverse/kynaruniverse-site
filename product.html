@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0a0a0a">
-    <title>Auto-Invoice Generator (Python) | KYNAR Tech</title>
-    <meta name="description" content="Generate professional PDF invoices from CSV data instantly. Includes VAT calculation logic.">
+    <meta name="theme-color" content="#F5F5F7"> <title>Loading Product... | KYNAR UNIVERSE</title>
+    <meta name="description" id="pdp-meta-desc" content="Premium Digital Scripts and Planners.">
     
-    <link rel="canonical" href="https://kynaruniverse.co.uk/product.html">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="assets/images/favicon.ico" sizes="any">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,11 +14,12 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages.css">
 </head>
+
 <body>
 
     <div class="vitro-background" aria-hidden="true">
-        <div class="vitro-blob blob-1" style="background: var(--color-tech); opacity: 0.5;"></div>
-        <div class="vitro-blob blob-3" style="background: var(--color-tech); opacity: 0.2;"></div>
+        <div id="pdp-bg-blob" class="vitro-blob blob-1" style="background: var(--color-tech); opacity: 0.5;"></div>
+        <div class="vitro-blob blob-3" style="opacity: 0.2;"></div>
     </div>
     <div class="vitro-noise"></div>
 
@@ -42,7 +41,6 @@
                 <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 <input type="text" class="search-input" placeholder="Search the universe...">
             </div>
-
         </div>
     </header>
 
@@ -51,44 +49,30 @@
     <main class="container pdp-layout u-pt-4">
 
         <nav class="breadcrumb" style="grid-column: 1 / -1; margin-bottom: var(--space-2);">
-            <a href="shop-tech.html" class="btn btn--tertiary" style="padding-left: 0; font-size: var(--text-sm);">← Back to KYNAR Tech</a>
+            <a href="#" id="pdp-back-link" class="btn btn--tertiary" style="padding-left: 0; font-size: var(--text-sm);">← Back to Shop</a>
         </nav>
 
         <section>
-            <div class="gallery-container">
+            <div id="pdp-gallery" class="gallery-container">
                 <div class="gallery-item">
-                    <img src="assets/images/invoice-main.jpg" width="800" height="600" alt="Main View" style="background-color: var(--color-surface-dark);">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/invoice-output.jpg" width="800" height="600" alt="Output Example" style="background-color: var(--color-surface-dark);" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/invoice-terminal.jpg" width="800" height="600" alt="Terminal Preview" style="background-color: var(--color-surface-dark);" loading="lazy">
+                    <img id="pdp-main-image" src="" width="800" height="600" alt="Product Image" style="background-color: var(--color-surface-dark);">
                 </div>
             </div>
 
-
             <div style="margin-top: var(--space-5);">
-                <h2 class="section-title">What it does</h2>
-                <p>This script eliminates the Sunday evening "admin dread." It scans your project folder for CSV timesheets, calculates totals, and generates professional PDF invoices instantly. It handles VAT calculations automatically.</p>
-                <p>Designed for freelancers who hate manual data entry.</p>
+                <h2 id="pdp-tagline" class="section-title">--</h2>
+                <div id="pdp-long-description">
+                    </div>
 
-                <h3 style="margin-top: var(--space-5); font-size: var(--text-lg);">Who it's for</h3>
-                <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4);">
-                    <span class="badge badge--emerald">Freelancers</span>
-                    <span class="badge badge--emerald">Consultants</span>
-                    <span class="badge badge--emerald">Agencies</span>
-                </div>
+                <h3 id="pdp-features-title" style="margin-top: var(--space-5); font-size: var(--text-lg);">Key Protocols</h3>
+                <div id="pdp-badges" style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4);">
+                    </div>
 
-                <div style="border-top: 1px solid var(--color-border); padding-top: var(--space-4);">
+                <div id="pdp-extra-info" style="border-top: 1px solid var(--color-border); padding-top: var(--space-4);">
                     <details style="cursor: pointer;">
-                        <summary style="font-weight: var(--weight-bold); color: var(--color-text-primary);">Preview Setup Instructions</summary>
-                        <div style="padding: var(--space-3) 0; font-size: var(--text-sm); color: var(--color-text-secondary);">
-                            <p><strong>Step 1:</strong> Install dependencies.</p>
-                            <pre style="background: var(--color-surface); padding: var(--space-2); border-radius: var(--radius-sm); font-family: var(--font-mono); margin-bottom: var(--space-3); font-size: 12px;">pip install pandas fpdf</pre>
-                            <p><strong>Step 2:</strong> Add your CSV file to the /input folder.</p>
-                            <p><strong>Step 3:</strong> Run the script using <code>python generator.py</code>.</p>
-                        </div>
+                        <summary id="pdp-details-summary" style="font-weight: var(--weight-bold); color: var(--color-text-primary);">System Specs</summary>
+                        <div id="pdp-details-content" style="padding: var(--space-3) 0; font-size: var(--text-sm); color: var(--color-text-secondary);">
+                            </div>
                     </details>
                 </div>
             </div>
@@ -97,77 +81,60 @@
         <aside class="pdp-sidebar">
             <div style="margin-bottom: var(--space-4);">
                 <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-2);">
-                    <span class="badge badge--emerald">Python Script</span>
-                    <span class="badge">Intermediate</span>
+                    <span id="pdp-badge-type" class="badge">--</span>
+                    <span id="pdp-badge-level" class="badge">--</span>
                 </div>
-                <h1 style="margin-bottom: var(--space-2);">Auto-Invoice Generator</h1>
-                <p class="text-secondary" style="font-size: var(--text-sm);">Version 2.1 • Updated Oct 2025</p>
+                <h1 id="pdp-title" style="margin-bottom: var(--space-2);">--</h1>
+                <p id="pdp-meta-info" style="font-size: var(--text-sm); color: var(--color-text-secondary);">--</p>
             </div>
 
-            <div class="pdp-price-card" style="border-left: 2px solid var(--color-tech);">
+            <div id="pdp-price-card" class="pdp-price-card">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-3);">
                     <div>
-                        <span class="price-display-lg">£24</span>
+                        <span id="pdp-price" class="price-display-lg">--</span>
                         <span class="text-label-sm" style="margin-left: 4px;">inc. VAT</span>
                     </div>
-                    <span class="text-label-sm">One-time purchase</span>
                 </div>
                 
-                <a href="#" class="lemonsqueezy-button btn btn--primary" style="width: 100%; text-decoration: none;">Buy Now</a>
+                <a href="#" id="pdp-buy-btn" class="lemonsqueezy-button btn btn--primary" style="width: 100%; text-decoration: none;">INITIALIZE_PURCHASE</a>
 
-                <p class="text-tiny-muted" style="text-align: center; margin-top: var(--space-2);">Secure checkout via Lemon Squeezy</p>
+                <p id="pdp-secure-note" class="text-tiny-muted" style="text-align: center; margin-top: var(--space-2);">Secure Handshake via Lemon Squeezy</p>
             </div>
 
             <div style="margin-bottom: var(--space-4);">
-                <h3 style="font-size: var(--text-base); font-weight: var(--weight-bold); margin-bottom: var(--space-2);">What's Included</h3>
-                <ul class="spec-list">
-                    <li class="spec-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                        generator.py (Main Script)
-                    </li>
-                    <li class="spec-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                        config.json (Settings)
-                    </li>
-                    <li class="spec-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        Setup_Guide.pdf
-                    </li>
-                </ul>
+                <h3 style="font-size: var(--text-base); font-weight: var(--weight-bold); margin-bottom: var(--space-2);">Included Files</h3>
+                <ul id="pdp-file-list" class="spec-list">
+                    </ul>
             </div>
         </aside>
 
         <section class="section" style="grid-column: 1 / -1; border-top: 1px solid var(--color-border); margin-top: var(--space-5); padding-top: var(--space-5);">
             <h2 class="section-title">Pairs well with</h2>
-            <div id="related-products-grid" class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));"></div>
+            <div id="related-products-grid" class="product-grid"></div>
         </section>
         
         <section id="recently-viewed-container" class="section" style="grid-column: 1 / -1; border-top: 1px solid var(--color-border); margin-top: var(--space-5); padding-top: var(--space-5);">
             <h2 class="section-title">Recently Viewed</h2>
-            <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));"></div>
+            <div class="product-grid"></div>
         </section>
         
     </main>
 
     <footer id="global-footer" class="section site-footer"></footer>
 
-    <div class="mobile-action-spacer"></div>
     <div class="mobile-action-bar">
         <div style="display: flex; flex-direction: column;">
             <span class="text-label-sm">Total</span>
             <div>
-                <span class="price-display-xl">£24</span>
-                <span class="text-label-sm" style="font-size: var(--text-xs);">inc. VAT</span>
-                <p class="text-tiny-muted">Secure Vault Enabled</p>
+                <span id="pdp-mobile-price" class="price-display-xl">--</span>
             </div>
         </div>
-            </div>
-        </div>
-        <a href="#" class="lemonsqueezy-button btn btn--primary" style="padding: 0 var(--space-5); text-decoration: none;">Buy Now</a>
+        <a href="#" id="pdp-mobile-buy-btn" class="lemonsqueezy-button btn btn--primary" style="padding: 0 var(--space-5); text-decoration: none;">Buy Now</a>
     </div>
     
     <div id="cookie-banner" class="cookie-banner"></div>
 
+    <script src="js/products.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
