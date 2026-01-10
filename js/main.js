@@ -1,4 +1,4 @@
-/* js/main.js - KYNAR UNIVERSE CORE V2.5 (Kinetic Vitro Optimized) */
+/* js/main.js - KYNAR UNIVERSE CORE V2.5 (Physics & Handshake Sync) */
 const KynarApp = {
     async init() {
         await this.Layout.loadShell();
@@ -33,7 +33,6 @@ const KynarApp = {
             navigator.serviceWorker.register('service-worker.js')
                 .then(() => {
                     console.log('Vitro Service Worker: Active');
-                    // Trigger the secure handshake check
                     this.Utils.checkSecureStatus();
                 })
                 .catch(err => console.warn('SW Failed', err));
@@ -82,15 +81,31 @@ const KynarApp = {
             menu.addEventListener('click', (e) => { if (e.target === menu) history.back(); });
             menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => close()));
         },
+        
+        // FIXED: Now defaults to Light Mode (no attribute) unless Dark is saved
         initThemeToggle() {
-            const btn = document.getElementById('theme-toggle'), html = document.documentElement;
-            if (localStorage.getItem('theme') === 'dark') html.setAttribute('data-theme', 'dark');
-            if (btn) btn.addEventListener('click', () => {
-                const dark = html.getAttribute('data-theme') === 'dark';
-                html.toggleAttribute('data-theme', !dark);
-                localStorage.setItem('theme', !dark ? 'dark' : 'light');
-            });
+            const btn = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            
+            // Check for saved dark preference
+            if (localStorage.getItem('theme') === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            }
+
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    if (isDark) {
+                        html.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            }
         },
+
         initCookieBanner() {
             const b = document.getElementById('cookie-banner'), btn = document.getElementById('accept-cookies');
             if (b) b.setAttribute('role', 'status'); 
@@ -102,13 +117,22 @@ const KynarApp = {
         highlightCurrentPage() {
             const file = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.mobile-nav-link, .dept-card, .dash-link').forEach(l => {
-                if (l.getAttribute('href') === file) { l.style.fontWeight = 'bold'; if (l.classList.contains('mobile-nav-link')) l.style.borderLeft = '4px solid currentColor'; }
+                if (l.getAttribute('href') === file) { 
+                    l.style.fontWeight = 'bold'; 
+                    if (l.classList.contains('mobile-nav-link')) l.style.borderLeft = '4px solid currentColor'; 
+                }
             });
         },
         initCopyright() { if (document.getElementById('year')) document.getElementById('year').textContent = new Date().getFullYear(); },
         initFilterChips() {
             const bar = document.querySelector('.filter-bar');
-            if (bar) bar.addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) { bar.querySelectorAll('.chip').forEach(x => x.classList.remove('is-active')); c.classList.add('is-active'); } });
+            if (bar) bar.addEventListener('click', (e) => { 
+                const c = e.target.closest('.chip'); 
+                if (c) { 
+                    bar.querySelectorAll('.chip').forEach(x => x.classList.remove('is-active')); 
+                    c.classList.add('is-active'); 
+                } 
+            });
         }
     },
 
@@ -126,18 +150,25 @@ const KynarApp = {
     Utils: {
         async loadSearchIndex() {
             if (window.KynarSearchIndex) return; 
-            try {
+            return new Promise((resolve) => {
                 const script = document.createElement('script');
                 script.src = 'js/search-index.js';
+                script.onload = resolve;
                 document.body.appendChild(script);
-            } catch (e) { console.warn("Search index failed", e); }
+            });
         },
 
         initCodeCopy() {
             document.addEventListener('click', async (e) => {
                 const b = e.target.closest('.code-preview__copy'); if (!b) return;
                 const c = b.closest('.code-preview').querySelector('code').textContent;
-                try { await navigator.clipboard.writeText(c); const old = b.innerHTML; b.setAttribute('aria-live', 'polite'); b.innerHTML = 'Copied!'; setTimeout(() => { b.innerHTML = old; b.removeAttribute('aria-live'); }, 2000); } catch (err) { console.error('Copy failed', err); }
+                try { 
+                    await navigator.clipboard.writeText(c); 
+                    const old = b.innerHTML; 
+                    b.setAttribute('aria-live', 'polite'); 
+                    b.innerHTML = 'Copied!'; 
+                    setTimeout(() => { b.innerHTML = old; b.removeAttribute('aria-live'); }, 2000); 
+                } catch (err) { console.error('Copy failed', err); }
             });
         },
 
@@ -145,16 +176,23 @@ const KynarApp = {
             const input = document.querySelector('.search-input');
             const wrapper = document.querySelector('.search-input-wrapper');
             if (!input || !wrapper) return;
+            
             let resultsBox = document.createElement('div');
             resultsBox.className = 'search-results'; resultsBox.hidden = true;
             wrapper.appendChild(resultsBox);
-            document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) { resultsBox.hidden = true; } });
-            input.addEventListener('input', (e) => {
+            
+            document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) resultsBox.hidden = true; });
+            
+            input.addEventListener('input', async (e) => {
                 const term = e.target.value.toLowerCase().trim();
                 resultsBox.innerHTML = '';
                 if (term.length < 2) { resultsBox.hidden = true; return; }
+                
+                await KynarApp.Utils.loadSearchIndex();
+                
                 if (typeof KynarSearchIndex === 'undefined') return;
                 const matches = KynarSearchIndex.filter(item => item.title.toLowerCase().includes(term) || item.tags.includes(term)).slice(0, 5);
+                
                 if (matches.length > 0) {
                     resultsBox.hidden = false;
                     matches.forEach(match => {
@@ -171,8 +209,10 @@ const KynarApp = {
                             </div>`;
                         resultsBox.appendChild(row);
                     });
-                } else { resultsBox.hidden = false; resultsBox.innerHTML = `<div class="search-result-empty">No results found for "${term}"</div>`; }
-
+                } else { 
+                    resultsBox.hidden = false; 
+                    resultsBox.innerHTML = `<div class="search-result-empty">No results found for "${term}"</div>`; 
+                }
             });
         },
 
@@ -289,22 +329,17 @@ const KynarApp = {
 
             if (!toast || sessionStorage.getItem(STORAGE_KEY)) return;
 
-            // Show toast after 4 seconds
             setTimeout(() => {
                 toast.classList.add('is-visible');
                 sessionStorage.setItem(STORAGE_KEY, 'true');
             }, 4000);
 
-            // Close Handler
             document.getElementById('newsletter-close')?.addEventListener('click', () => {
                 toast.classList.remove('is-visible');
             });
 
-            // Submission Handler
             form?.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                // IMPORTANT: Ensure this URL is your specific subscribe link
                 const MAILERLITE_URL = 'https://assets.mailerlite.com/jsonp/2029228/forms/176215388525168382/subscribe';
 
                 if (status) {
@@ -361,11 +396,9 @@ const KynarApp = {
         checkSecureStatus() {
             const statusDot = document.querySelector('.status-dot');
             const statusText = document.querySelector('.status-text');
-            
             if (!navigator.serviceWorker.controller || !statusDot) return;
 
             const messageChannel = new MessageChannel();
-            
             messageChannel.port1.onmessage = (event) => {
                 if (event.data && event.data.status === 'SECURE_CONNECTION_ACTIVE') {
                     statusDot.classList.add('is-secure');
@@ -378,7 +411,7 @@ const KynarApp = {
                 [messageChannel.port2]
             );
         }
-    } // End Utils
-}; // End KynarApp
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => KynarApp.init());

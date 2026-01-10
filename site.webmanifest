@@ -1,64 +1,50 @@
 {
-    "name": "KYNAR Universe",
-    "short_name": "KYNAR",
-    "description": "The premier marketplace for digital essentials. Tools for Tech, Life, and Family.",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#0a0a0a",
-    "theme_color": "#0a0a0a",
-    "orientation": "portrait-primary",
-    "categories": ["productivity", "utilities", "shopping"],
-    "icons": [
-        {
-            "src": "assets/images/icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "assets/images/icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-        }
-    ],
-    "shortcuts": [
-        {
-            "name": "Tech Sector",
-            "short_name": "Tech",
-            "description": "Access Python scripts and automation tools",
-            "url": "/shop-tech.html",
-            "icons": [{ "src": "assets/images/shortcut-tech.png", "sizes": "192x192" }]
-        },
-        {
-            "name": "Life Sector",
-            "short_name": "Life",
-            "description": "Access planners and organization tools",
-            "url": "/shop-life.html",
-            "icons": [{ "src": "assets/images/shortcut-life.png", "sizes": "192x192" }]
-        },
-        {
-            "name": "Family Sector",
-            "short_name": "Family",
-            "description": "Access educational bundles and household tools",
-            "url": "/shop-family.html",
-            "icons": [{ "src": "assets/images/shortcut-family.png", "sizes": "192x192" }]
-        }
-    ],
-    "screenshots": [
-        {
-            "src": "assets/images/screenshot-mobile.jpg",
-            "sizes": "1170x2532",
-            "type": "image/jpg",
-            "form_factor": "narrow",
-            "label": "The Department Store Grid"
-        },
-        {
-            "src": "assets/images/screenshot-desktop.jpg",
-            "sizes": "2880x1800",
-            "type": "image/jpg",
-            "form_factor": "wide",
-            "label": "The Product Gallery"
-        }
-    ]
+  "name": "KYNAR UNIVERSE",
+  "short_name": "KYNAR",
+  "description": "Premium Digital Scripts, Planners, and Printables.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/screenshot-mobile.jpg",
+      "sizes": "1170x2532",
+      "type": "image/jpg",
+      "form_factor": "narrow",
+      "label": "Kynar Universe Mobile"
+    },
+    {
+      "src": "/assets/images/screenshot-desktop.jpg",
+      "sizes": "2880x1800",
+      "type": "image/jpg",
+      "form_factor": "wide",
+      "label": "Kynar Universe Desktop"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tech Sector",
+      "url": "/shop-tech.html",
+      "icons": [{ "src": "/assets/images/shortcut-tech.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Life Sector",
+      "url": "/shop-life.html",
+      "icons": [{ "src": "/assets/images/shortcut-life.png", "sizes": "192x192" }]
+    }
+  ]
 }

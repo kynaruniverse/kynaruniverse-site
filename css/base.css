@@ -1,11 +1,8 @@
-/* css/base.css - KINETIC VITRO v2.0 */
+/* css/base.css - KINETIC VITRO v2.5 (Physics & Handshake Sync) */
 
 /* ---------------------------------------------------------
    0. FONT REGISTRATION
    --------------------------------------------------------- */
-/* NOTE: JetBrains Mono should now be linked in HTML <head> for performance */
-
-/* 1. BRAND FONT: Bantayog (Headings - Retained) */
 @font-face {
   font-family: 'Bantayog';
   src: url('../assets/fonts/Bantayog.woff2') format('woff2');
@@ -14,7 +11,6 @@
   font-display: swap;
 }
 
-/* 2. BODY FONT: Glacial Indifference (UI Text - Retained) */
 @font-face {
   font-family: 'Glacial Indifference';
   src: url('../assets/fonts/GlacialIndifference-Regular.woff2') format('woff2');
@@ -45,7 +41,6 @@
 html {
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
-  /* Prevent horizontal drift from parallax animations */
   overflow-x: hidden; 
 }
 
@@ -55,25 +50,20 @@ body {
   color: var(--color-text-primary);
   line-height: var(--leading-relaxed);
   font-size: var(--text-base);
-  
-  /* Text Rendering: Crisp for High Contrast */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* Flex Layout for Sticky Footer */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
-  /* Transition for Theme Switching */
-  transition: background-color var(--transition-base), color var(--transition-base);
+  /* Faster transition for snappier UI feel during theme toggle */
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 main {
   flex: 1;
   width: 100%;
   position: relative;
-  z-index: var(--z-grid); /* Sit above background blobs */
+  z-index: var(--z-grid); 
 }
 
 /* ---------------------------------------------------------
@@ -86,7 +76,7 @@ h1, h2, .section-title {
   font-weight: normal;
   line-height: var(--leading-tight);
   color: var(--color-text-primary);
-  letter-spacing: 0.02em; /* Slightly wider for Bantayog in Neon */
+  letter-spacing: 0.02em;
 }
 
 h3, .product-card__title {
@@ -110,10 +100,9 @@ p {
   margin-bottom: var(--space-3);
   max-width: 65ch;
   line-height: var(--leading-relaxed);
-  color: var(--color-text-secondary); /* Soften body text */
+  color: var(--color-text-secondary);
 }
 
-/* New: Industrial Metadata Class */
 .text-mono {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   letter-spacing: -0.05em;
@@ -131,17 +120,11 @@ button, input, select, textarea, a {
   touch-action: manipulation;
 }
 
-/* Neon Focus State */
 *:focus-visible {
   outline: 2px solid var(--color-tech);
   outline-offset: 4px;
 }
 
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Selection Highlight (Cyberpunk Feel) */
 ::selection {
   background: var(--color-tech);
   color: #000;
@@ -183,85 +166,56 @@ button, input, select, textarea, a {
   border: 0;
 }
 
-.u-pt-4 { padding-top: var(--space-4); }
-.u-pt-5 { padding-top: var(--space-5); }
-
-/* Layout Centered (404 / Auth) */
-.layout-centered {
-  min-height: 70vh;
-  padding-top: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 /* ---------------------------------------------------------
    7. KINETIC VITRO: AMORPHOUS CORE & PHYSICS
    --------------------------------------------------------- */
-
 .vitro-background {
   position: fixed;
   inset: 0;
-  z-index: var(--z-background); /* Layer 0 (Base) */
+  z-index: var(--z-background);
   overflow: hidden;
   background: var(--color-bg);
-  pointer-events: none; /* Allow clicks to pass through to grid */
+  pointer-events: none;
 }
-
 
 .vitro-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px); /* The "Soft Light" Effect */
+  filter: blur(80px);
   opacity: 0.6;
   animation: drift var(--fluid-speed) infinite alternate ease-in-out;
   will-change: transform;
 }
 
-/* Blob 1: Tech (Cyan) - Top Left */
 .blob-1 {
-  top: -10%;
-  left: -10%;
-  width: 50vw;
-  height: 50vw;
+  top: -10%; left: -10%;
+  width: 50vw; height: 50vw;
   background: var(--color-tech);
-  animation-delay: 0s;
 }
 
-/* Blob 2: Life (Purple) - Bottom Right */
 .blob-2 {
-  bottom: -10%;
-  right: -10%;
-  width: 60vw;
-  height: 60vw;
+  bottom: -10%; right: -10%;
+  width: 60vw; height: 60vw;
   background: var(--color-life);
   animation-delay: -10s;
 }
 
-/* Blob 3: Family (Amber) - Center/Floating */
 .blob-3 {
-  top: 40%;
-  left: 40%;
-  width: 40vw;
-  height: 40vw;
+  top: 40%; left: 40%;
+  width: 40vw; height: 40vw;
   background: var(--color-family);
   animation-delay: -20s;
 }
 
-/* The Tactile Frosting (Noise Overlay) */
 .vitro-noise {
   position: fixed;
   inset: 0;
-  z-index: var(--z-noise); /* Layer 1 (Overlay) */
+  z-index: var(--z-noise);
   pointer-events: none;
   opacity: var(--noise-grain);
-
-  /* Embedded SVG Noise Filter for "Milled Aluminum" feel */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* The "Drifting" Animation */
 @keyframes drift {
   0% { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(50px, -50px, 0) scale(1.1); }
@@ -272,13 +226,7 @@ button, input, select, textarea, a {
    --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  
-  .vitro-blob {
-    animation: none !important;
-    /* Static positions to ensure blobs are still visible but still */
-    transform: none !important;
-  }
-  
+  .vitro-blob { animation: none !important; transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.001s !important;
     transition-duration: 0.001s !important;
@@ -286,33 +234,49 @@ button, input, select, textarea, a {
 }
 
 /* ---------------------------------------------------------
-   9. MOBILE PERFORMANCE GUARD (iOS Low Power Mode)
+   9. PERFORMANCE GUARD (iOS/Low Power Mode Optimized)
    --------------------------------------------------------- */
 @media (prefers-reduced-transparency) {
-  /* 1. Kill expensive glass calculations globally */
   *, *::before, *::after {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
   
-  /* 2. Fallback for Glass Components: Solid Backgrounds */
-  .site-header,
-  .mobile-menu,
-  .product-card,
-  .dept-card,
-  .pdp-price-card,
-  .cookie-banner,
-  .newsletter-toast,
-  .search-results,
-  .chip {
-    background-color: #0a0a0a !important; /* Solid Void */
+  /* FIXED: Use var(--color-bg) instead of hardcoded dark color to support Light Mode */
+  .site-header, .mobile-menu, .product-card, .dept-card, .pdp-price-card, 
+  .cookie-banner, .newsletter-toast, .search-results, .chip {
+    background-color: var(--color-bg) !important; 
     border-color: var(--color-border);
   }
 
-  /* 3. Optimize Amorphous Blobs (Reduce GPU load) */
   .vitro-blob {
-    filter: blur(20px) !important; /* Reduce radius from 80px */
-    opacity: 0.2 !important;
-    animation-duration: 0s !important; /* Stop movement */
+    filter: blur(20px) !important;
+    opacity: 0.1 !important;
+    animation: none !important;
   }
+}
+
+/* ---------------------------------------------------------
+   10. SECURE STATUS ANIMATIONS (V2.5 Sync)
+   --------------------------------------------------------- */
+.status-dot.is-secure {
+    /* Pulses in the theme-specific success color */
+    background-color: var(--color-success) !important;
+    box-shadow: 0 0 10px var(--color-success);
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.status-dot.is-secure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: var(--color-success);
+    animation: securePulse 2s infinite ease-out;
+}
+
+@keyframes securePulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(3.5); opacity: 0; }
 }

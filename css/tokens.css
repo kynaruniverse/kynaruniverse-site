@@ -1,48 +1,49 @@
-/* css/tokens.css - KINETIC VITRO v2.0 (The Physics Engine) */
+/* css/tokens.css - KINETIC VITRO v2.5 (Light Mode Default Setup) */
 
 :root {
   /* ---------------------------------------------------------
-     1. KINETIC PALETTE (Industrial Neon - Dark Mode Default)
+     1. KINETIC PALETTE (Laboratory Clean - LIGHT MODE DEFAULT)
      --------------------------------------------------------- */
   
-  /* The Void (Backgrounds) */
-  --color-bg:             #0a0a0a;       /* Deepest Charcoal */
-  --color-bg-rgb:         10, 10, 10;    /* For glass calculations */
-  --color-surface:        rgba(255, 255, 255, 0.03); /* Raw Glass */
-  --color-surface-dark:   rgba(0, 0, 0, 0.2);        /* Recessed areas */
-  --color-border:         rgba(255, 255, 255, 0.1);  /* Machined edge */
+  /* The Laboratory (Backgrounds) */
+  --color-bg:             #F5F5F7; 
+  --color-bg-rgb:         245, 245, 247;
+  
+  /* Frosted Material */
+  --color-surface:        rgba(255, 255, 255, 0.7); 
+  --color-surface-dark:   rgba(0, 0, 0, 0.03);
+  --color-border:         rgba(0, 0, 0, 0.1); 
+  
+  /* High-Contrast Text */
+  --color-text-primary:   #121212;
+  --color-text-secondary: #4a4a4a;
+  --color-text-muted:     #86868b;
 
-  /* Text & Contrast */
-  --color-text-primary:   #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-text-muted:     rgba(255, 255, 255, 0.4);
+  /* Wayfinding Refinement (Legibility Optimized) */
+  --color-tech:           #0071E3; /* San Francisco Blue */
+  --color-life:           #5E00D0; /* Deep Purple */
+  --color-family:         #E34D2F; /* Rich Terracotta */
+  --color-edu:            #C98A00; /* Dark Amber */
+  --color-pro:            #0056B3; /* Deep Royal */
 
-  /* Wayfinding Light (Category Neons) */
-  --color-tech:           #00D1FF; /* Cyan - Automation */
-  --color-life:           #7000FF; /* Purple - Life OS */
-  --color-family:         #FF6B4A; /* Kinetic Orange (Evolved Terracotta) */
-  --color-edu:            #FFBD00; /* Amber - Education */
-  --color-pro:            #007BFF; /* Royal Blue - Utilities */
+  /* Adjusted Status Colors */
+  --color-success:        #00a86b; /* Jade Green */
+  --color-warning:        #C98A00;
+  --color-error:          #d70015; /* Alert Red */
   
   /* Brand Identity */
-  --color-primary:        var(--color-tech); /* Default to Tech Cyan */
+  --color-primary:        var(--color-tech); 
   --color-accent:         var(--color-life);
-  --color-brand-deep:     #ffffff; /* Logo is now pure light */
-
-  /* Functional Status */
-  --color-success:        #00ff9d; /* Matrix Green */
-  --color-warning:        #ffbd00;
-  --color-error:          #ff4a4a;
+  --color-brand-deep:     #000000;
 
   /* ---------------------------------------------------------
-     2. GLASS PHYSICS & MATERIAL
+     2. GLASS PHYSICS & MATERIAL (Light Mode Adjusted)
      --------------------------------------------------------- */
-  --glass-blur:           25px;
-  --glass-refraction:     1.05; /* Scale factor for lens effect */
-  --glass-saturation:     120%;
-  --noise-grain:          0.04; /* Texture opacity */
+  --glass-blur:           40px; 
+  --glass-refraction:     1.05; 
+  --glass-saturation:     150%;
+  --noise-grain:          0.04; 
   
-  /* Liquid Mercury Borders */
   --mercury-speed:        4s;
   --fluid-speed:          40s;
 
@@ -50,8 +51,6 @@
      3. GEOMETRY & PRECISION
      --------------------------------------------------------- */
   --radius-universal:     16px;
-  
-  /* Mapping legacy radii to Universal for backward compatibility */
   --radius-sm:            8px;
   --radius-md:            12px;
   --radius-lg:            var(--radius-universal); 
@@ -59,15 +58,15 @@
   --grid-gap:             20px;
   --machined-stroke:      1px;
 
-  /* Spacing Scale (Aligned to 4px grid) */
+  /* Spacing Scale */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 16px;
-  --space-4: 24px; /* Matches Grid Gap roughly */
+  --space-4: 24px; 
   --space-5: 32px;
-  --space-6: 64px; /* Doubled for dramatic Hero spacing */
+  --space-6: 64px; 
   
-  --header-height:        100px; /* Slightly tighter */
+  --header-height:        100px; 
 
   /* ---------------------------------------------------------
      4. TYPOGRAPHY (The Industrial Stack)
@@ -76,7 +75,7 @@
   --font-body:    'Glacial Indifference', 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-  /* Fluid Type Scale (Retained) */
+  /* Fluid Type Scale */
   --text-xs:   12px;
   --text-sm:   clamp(0.875rem, 0.85rem + 0.2vw, 1rem);
   --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
@@ -91,26 +90,20 @@
   --weight-semibold: 700;
   --weight-bold:     700;
 
-  --leading-tight:   1.1;
-  --leading-normal:  1.5;
-  --leading-relaxed: 1.6;
-
   /* ---------------------------------------------------------
      5. ANIMATION & Z-INDEX
      --------------------------------------------------------- */
   --transition-fast: 150ms ease-out;
-  --transition-base: 300ms cubic-bezier(0.2, 0.8, 0.2, 1); /* Snappy industrial feel */
+  --transition-base: 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
 
   --size-interactive: 44px;
   
-  /* Layering Stack */
   --z-negative:  -1;
-  --z-background: 0;    /* New: Blobs (Base Layer) */
-  --z-noise:      1;    /* New: Grain Texture (Overlay) */
-
-  --z-grid:       10;   /* Main Content */
-  --z-hover:      20;   /* Lifted Card */
+  --z-background: 0;   
+  --z-noise:      1;   
+  --z-grid:       10;  
+  --z-hover:      20;  
   --z-sticky:     100;
   --z-header:     1000;
   --z-dropdown:   1100;
@@ -120,23 +113,35 @@
 }
 
 /* ---------------------------------------------------------
-   LIGHT MODE OVERRIDE (Laboratory Clean)
+   6. DARK MODE OVERRIDE (Industrial Neon)
    --------------------------------------------------------- */
-[data-theme="light"] {
-  --color-bg:             #F5F5F7; /* Lab White */
-  --color-bg-rgb:         245, 245, 247;
-  
-  --color-surface:        rgba(255, 255, 255, 0.4); /* Frosted Ice */
-  --color-surface-dark: rgba(255, 255, 255, 0.6);
-  --color-border: rgba(0, 0, 0, 0.08);
-  /* Darkened for Tactile Lip visibility */
-  
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #5a5a5a;
-  --color-text-muted: #8a8379;
+[data-theme="dark"] {
+  /* The Void (Backgrounds) */
+  --color-bg:             #0a0a0a;
+  --color-bg-rgb:         10, 10, 10;
+  --color-surface:        rgba(255, 255, 255, 0.03);
+  --color-surface-dark:   rgba(0, 0, 0, 0.2);
+  --color-border:         rgba(255, 255, 255, 0.1);
 
-  --glass-blur:           35px; /* Higher blur for light mode */
-  --glass-saturation:     140%;
-  
-  --color-brand-deep:     #000000;
+  /* Text & Contrast */
+  --color-text-primary:   #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-muted:     rgba(255, 255, 255, 0.4);
+
+  /* Wayfinding Light (Category Neons) */
+  --color-tech:           #00D1FF; 
+  --color-life:           #7000FF; 
+  --color-family:         #FF6B4A; 
+  --color-edu:            #FFBD00; 
+  --color-pro:            #007BFF; 
+
+  /* Functional Status */
+  --color-success:        #00ff9d; 
+  --color-warning:        #ffbd00;
+  --color-error:          #ff4a4a;
+
+  /* Physics Reset */
+  --glass-blur:           25px;
+  --glass-saturation:     120%;
+  --color-brand-deep:     #ffffff;
 }
