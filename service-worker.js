@@ -1,7 +1,8 @@
 /* service-worker.js - KYNAR UNIVERSE CORE V2.6 (Dynamic Sync) */
 
-const CACHE_NAME = 'kynar-core-v2.6';
-const IMAGE_CACHE = 'kynar-images-v1.1';
+const CACHE_NAME = 'KYNAR_SUPREMACY_V1.0';
+const IMAGE_CACHE = 'KYNAR_ASSETS_V1.0';
+
 
 // 1. Expanded Asset List for Full Offline Sector Support
 const ASSETS_TO_CACHE = [
@@ -35,7 +36,8 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (evt) => {
     evt.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('Vitro_Cache: Initializing_Sector_Data...');
+            console.log('SUPREMACY_PROTOCOL: OVERWRITING_LEGACY_CACHE...');
+
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );

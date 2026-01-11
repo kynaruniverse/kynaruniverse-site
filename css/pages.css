@@ -43,9 +43,17 @@
 .hero-bento-supreme {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
   padding: var(--space-4) 0;
 }
+
+/* Mobile-Specific Tweaks */
+@media (max-width: 767px) {
+  .bento-dominant .dept-title { font-size: 2.5rem !important; }
+  .bento-dominant { min-height: 380px; }
+  .dept-card { min-height: 200px; }
+}
+
 
 /* Desktop: Golden Ratio Asymmetry */
 @media (min-width: 768px) {
@@ -164,15 +172,32 @@
   }
 }
 
+/* SECTOR COMMAND BAR (Supremacy Upgrade) */
 .browse-header {
   display: flex; flex-direction: column; gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  background: rgba(15, 22, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--color-primary); /* Saffron Indicator */
+  border-radius: 4px;
+  backdrop-filter: blur(20px);
 }
 @media (min-width: 768px) {
   .browse-header {
     flex-direction: row; justify-content: space-between; align-items: center;
   }
 }
+/* Force Supremacy Typography on Shop Titles */
+.browse-header h1, .section-title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--text-2xl);
+  color: #FFFFFF;
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
 
 /* ---------------------------------------------------------
    5. GRIDS (Product & Department)
@@ -236,23 +261,33 @@
 }
 
 .dash-nav {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-universal);
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .dash-link {
   display: flex; align-items: center; gap: var(--space-3);
-  padding: var(--space-3);
+  padding: var(--space-4);
   text-decoration: none;
-  color: var(--color-text-secondary);
-  border-bottom: 1px solid var(--color-border);
+  color: #8FA3BF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
-  font-size: var(--text-sm);
+  font-size: 13px; letter-spacing: 0.05em; font-weight: 500;
 }
-.dash-link:hover { background-color: var(--color-surface-dark); color: var(--color-text-primary); }
-.dash-link.is-active { background-color: var(--color-tech); color: #fff; }
+.dash-link:hover { 
+  background-color: rgba(255, 255, 255, 0.05); 
+  color: #FFFFFF; 
+  padding-left: 24px; /* Kinetic Indent */
+}
+.dash-link.is-active { 
+  background-color: rgba(244, 196, 48, 0.1); 
+  color: var(--color-primary); 
+  border-left: 2px solid var(--color-primary);
+}
+
 
 /* ---------------------------------------------------------
    7. READER / ARTICLE MODE

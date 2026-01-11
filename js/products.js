@@ -1,146 +1,146 @@
 /* js/products.js - KYNAR UNIVERSE PRODUCT DATABASE V3.0 (Complete Inventory) */
 
 const KynarDatabase = {
-    // --- KYNAR FAMILY SECTOR ---
+    // --- KYNAR FAMILY SECTOR (SECTOR_03) ---
     "preschool-bundle": {
-        title: "Ultimate Preschool Bundle",
-        tagline: "Educational Logic for Early Years.",
+        title: "EARLY_LOGIC_INITIATION_KIT",
+        tagline: "Cognitive Pattern Recognition // Ages 3-5",
         price: "£18",
         category: "Family",
-        badgeType: "Printable",
-        badgeLevel: "Ages 3-5",
-        meta: "100+ PAGE_REGISTRY • INSTANT_DOWNLOAD",
+        badgeType: "PRINTABLE_PDF",
+        badgeLevel: "LEVEL_1",
+        meta: "100+ PAGES • INSTANT_DEPLOY",
         description: `
-            <p>Eliminate screen fatigue with over 100 pages of educational logic. Designed by early-years specialists to develop motor skills, pattern recognition, and numeracy.</p>
-            <p>Physical engagement for the modern household. Simply download, print, and initiate learning protocols.</p>
+            <p><strong>[OBJECTIVE]</strong> Eliminate screen dependency. Establish neural pathways for pattern recognition, numeracy, and fine motor control.</p>
+            <p><strong>[EXECUTION]</strong> 100+ pages of high-contrast logic puzzles. Download, print, and initiate early-years training protocols.</p>
         `,
         image: "assets/images/product-family-1.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/PRESCHOOL_ID",
-        files: ["Tracing_Pack.pdf", "Logic_Puzzles.pdf", "Counting_Games.pdf"],
+        files: ["Logic_Core.pdf", "Pattern_Recognition.pdf", "Counting_Matrix.pdf"],
         related: ["chore-system", "meal-plan"]
     },
 
     "chore-system": {
-        title: "Household Chore System",
-        tagline: "Systematize Responsibility.",
+        title: "DOMESTIC_OPS_GRID",
+        tagline: "Visual Responsibility Matrix.",
         price: "£6",
         category: "Family",
-        badgeType: "Printable",
-        badgeLevel: "Visual OS",
-        meta: "Interactive Chart • Habit Builder",
-        description: "<p>A visual command center for household tasks. Reward logic integrated to turn chores into habit-forming achievements.</p>",
+        badgeType: "VISUAL_OS",
+        badgeLevel: "SYSTEM",
+        meta: "HABIT_BUILDER • CHART_LOGIC",
+        description: "<p><strong>[SYSTEM]</strong> A visual command center for household logistics. Gamify maintenance tasks to increase compliance and habit retention.</p>",
         image: "assets/images/product-family-2.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/CHORE_ID",
-        files: ["Chore_Chart.pdf", "Icon_Pack.pdf", "Instructions.pdf"],
+        files: ["Ops_Chart.pdf", "Icon_Pack_V2.pdf", "Protocol_Guide.pdf"],
         related: ["preschool-bundle", "meal-plan"]
     },
 
     "meal-plan": {
-        title: "Meal & Grocery Action Plan",
-        tagline: "Nutritional Logistics.",
+        title: "NUTRITION_LOGISTICS_PLAN",
+        tagline: "Inventory & Caloric Management.",
         price: "£9",
         category: "Family",
-        badgeType: "Printable",
-        badgeLevel: "System",
-        meta: "Weekly Grid • Inventory Tracker",
-        description: "<p>Reduce food waste and decision fatigue. This visual system aligns your inventory with your weekly nutritional requirements.</p>",
+        badgeType: "SYSTEM_PDF",
+        badgeLevel: "LOGISTICS",
+        meta: "WEEKLY_GRID • ZERO_WASTE",
+        description: "<p><strong>[OPTIMIZATION]</strong> Eliminate decision fatigue. Align inventory with nutritional requirements using this weekly tactical grid.</p>",
         image: "assets/images/product-family-3.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/MEAL_ID",
-        files: ["Meal_Planner.pdf", "Shopping_List.pdf"],
+        files: ["Meal_Grid.pdf", "Inventory_Tracker.pdf"],
         related: ["chore-system", "coloring-book"]
     },
 
     "coloring-book": {
-        title: "Stress-Relief Coloring",
-        tagline: "Analog Decompression.",
+        title: "ANALOG_DECOMPRESSION_KIT",
+        tagline: "Cortisol Reduction Patterns.",
         price: "£7",
         category: "Family",
-        badgeType: "Printable",
-        badgeLevel: "Creative",
-        meta: "High Resolution • Adult/Teen",
-        description: "<p>Complex geometric patterns designed to lower cortisol levels. Print as needed for analog downtime.</p>",
+        badgeType: "CREATIVE",
+        badgeLevel: "RESTORE",
+        meta: "GEOMETRIC • HIGH_RES",
+        description: "<p><strong>[RECOVERY]</strong> Complex geometric data for analog processing. Lower stress levels through manual color application.</p>",
         image: "assets/images/product-family-4.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/COLOR_ID",
-        files: ["Pattern_Book.pdf"],
+        files: ["Pattern_Matrix.pdf"],
         related: ["preschool-bundle", "mood-journal"]
     },
 
-    // --- KYNAR LIFE SECTOR ---
+    // --- KYNAR LIFE SECTOR (SECTOR_02) ---
     "life-os-planner": {
-        title: "2026 Life OS Planner",
-        tagline: "Master the 2026 Timeline.",
+        title: "LIFE_OS_2026_CORE",
+        tagline: "Timeline Architecture & Command.",
         price: "£12",
         category: "Life",
-        badgeType: "Digital PDF",
-        badgeLevel: "Hyperlinked",
-        meta: "JAN_DEC 2026 • 450+ PAGES",
+        badgeType: "DIGITAL_PDF",
+        badgeLevel: "HYPERLINKED",
+        meta: "JAN_DEC 2026 • 450+ NODES",
         description: `
-            <p>The 2026 Life OS is a high-performance command center. Built with precision-engineered hyperlinked tabs for instantaneous navigation between yearly vision and daily execution.</p>
-            <p>Optimized for iPad and Tablet users requiring a tactile, focused organization protocol.</p>
+            <p><strong>[COMMAND]</strong> The 2026 Life OS is a high-performance navigation tool. Instant hyperlink jumps between yearly vision and daily execution.</p>
+            <p><strong>[SPECS]</strong> Optimized for iPad/Tablet. Zero-lag navigation. Distraction-free grid.</p>
         `,
         image: "assets/images/product-life-1.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/PLANNER_ID",
-        files: ["Life_OS_2026.pdf", "User_Guide.pdf"],
+        files: ["Life_OS_2026.pdf", "Install_Guide.pdf"],
         related: ["finance-dashboard", "routine-architect"]
     },
 
     "finance-dashboard": {
-        title: "Personal Finance Dashboard",
-        tagline: "Wealth Management Protocol.",
+        title: "WEALTH_DASHBOARD_XLS",
+        tagline: "Capital Flow Visualization.",
         price: "£15",
         category: "Life",
-        badgeType: "Spreadsheet",
-        badgeLevel: "Automated",
-        meta: "Excel / Google Sheets Compatible",
-        description: "<p>A robust financial architecture to track assets, liabilities, and monthly cash flow. Automated formulas provide a real-time health check of your economy.</p>",
+        badgeType: "XLS / SHEETS",
+        badgeLevel: "AUTOMATED",
+        meta: "MACRO_VBA • REAL_TIME",
+        description: "<p><strong>[FINANCE]</strong> A robust architecture for asset tracking. Automated formulas provide a real-time health check of your economic engine.</p>",
         image: "assets/images/product-life-2.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/FINANCE_ID",
-        files: ["Finance_Dashboard.xlsx", "Documentation.pdf"],
+        files: ["Finance_Core.xlsx", "Documentation.pdf"],
         related: ["life-os-planner", "routine-architect"]
     },
 
     "routine-architect": {
-        title: "Routine Architect",
-        tagline: "Habit Stack Construction.",
+        title: "HABIT_STACK_ARCHITECT",
+        tagline: "Consistency Algorithms.",
         price: "£9",
         category: "Life",
-        badgeType: "Notion",
-        badgeLevel: "Template",
-        meta: "Notion Sync • Mobile Ready",
-        description: "<p>Build and track high-performance daily loops. This Notion template uses database logic to visualize your consistency streaks.</p>",
+        badgeType: "NOTION",
+        badgeLevel: "TEMPLATE",
+        meta: "SYNC_ENABLED • DATABASE",
+        description: "<p><strong>[LOGIC]</strong> Build high-performance daily loops. Use database logic to visualize and enforce consistency streaks.</p>",
         image: "assets/images/product-life-3.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/ROUTINE_ID",
-        files: ["Template_Link.txt", "Guide.pdf"],
+        files: ["Template_Access.txt", "Guide.pdf"],
         related: ["mood-journal", "life-os-planner"]
     },
 
     "mood-journal": {
-        title: "Mood & Gratitude Journal",
-        tagline: "Calibrate Clarity.",
+        title: "CLARITY_LOG_V1",
+        tagline: "Emotional Data Logging.",
         price: "£8",
         category: "Life",
         badgeType: "PDF",
-        badgeLevel: "Wellness",
-        meta: "Daily Reflection • Digital_Native",
-        description: "<p>A minimalist interface for emotional data logging. Track daily intentions and long-term mental trends with zero clutter.</p>",
+        badgeLevel: "WELLNESS",
+        meta: "DAILY_REFLECT • MINIMAL",
+        description: "<p><strong>[INPUT]</strong> A minimalist terminal for emotional data. Track intentions and mental trends with zero UI clutter.</p>",
         image: "assets/images/product-life-4.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/MOOD_ID",
-        files: ["Daily_Journal.pdf"],
+        files: ["Daily_Log.pdf"],
         related: ["life-os-planner", "coloring-book"]
     },
 
-    // --- KYNAR TECH SECTOR ---
+    // --- KYNAR TECH SECTOR (SECTOR_01) ---
     "auto-invoice": {
-        title: "Auto-Invoice Generator",
-        tagline: "Automated Billing Protocol.",
+        title: "AUTO_INVOICE_GEN_V2",
+        tagline: "Automated Revenue Capture.",
         price: "£24",
         category: "Tech",
-        badgeType: "Python Script",
-        badgeLevel: "Core Utility",
-        meta: "VERSION 2.1 • CLI_OPTIMIZED",
+        badgeType: "PYTHON_CLI",
+        badgeLevel: "UTILITY",
+        meta: "CLI_OPTIMIZED • CSV_PARSE",
         description: `
-            <p>Eliminate administrative friction. This Python script parses local CSV timesheets, calculates totals, and generates professional PDF invoices in seconds.</p>
-            <p>Engineered for developers and freelancers who prioritize work over paperwork.</p>
+            <p><strong>[AUTOMATION]</strong> Eliminate administrative friction. Parses local timesheets and compiles PDF invoices in < 0.4s.</p>
+            <p><strong>[TARGET]</strong> Developers and Freelancers prioritizing code over paperwork.</p>
         `,
         image: "assets/images/product-tech-1.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/INVOICE_ID",
@@ -149,14 +149,14 @@ const KynarDatabase = {
     },
 
     "desktop-cleaner": {
-        title: "Desktop Cleaner & Organizer",
-        tagline: "Restore Workspace Order.",
+        title: "SYSTEM_CLEANER_SCRIPT",
+        tagline: "Workspace Entropy Reduction.",
         price: "£8",
         category: "Tech",
-        badgeType: "Python",
-        badgeLevel: "Utility",
-        meta: "One-Click Cleanup • Cross_Platform",
-        description: "<p>A high-speed utility script that categorizes and organizes cluttered directories instantly. Keep your dev environment pristine with a single command.</p>",
+        badgeType: "PYTHON",
+        badgeLevel: "MAINTENANCE",
+        meta: "ONE_CLICK • RECURSIVE",
+        description: "<p><strong>[CLEANUP]</strong> Categorize and organize cluttered directories instantly. Keep your dev environment pristine with a single command.</p>",
         image: "assets/images/product-tech-2.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/CLEANER_ID",
         files: ["cleaner.py", "rules.json"],
@@ -164,14 +164,14 @@ const KynarDatabase = {
     },
 
     "bulk-resizer": {
-        title: "Bulk Image Resizer CLI",
-        tagline: "Media Pipeline Optimization.",
+        title: "MEDIA_OPTIMIZER_CLI",
+        tagline: "Batch Asset Processing.",
         price: "£10",
         category: "Tech",
-        badgeType: "Bash/Python",
-        badgeLevel: "Media",
-        meta: "Lossless Compression • Batch",
-        description: "<p>Process thousands of assets in minutes. Resize, compress, and rename image directories via simple CLI commands.</p>",
+        badgeType: "BASH / PY",
+        badgeLevel: "MEDIA",
+        meta: "LOSSLESS • BATCH_OPS",
+        description: "<p><strong>[PIPELINE]</strong> Process thousands of assets. Resize, compress, and rename image directories via simple terminal commands.</p>",
         image: "assets/images/product-tech-3.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/RESIZER_ID",
         files: ["resizer.sh", "requirements.txt"],
@@ -179,17 +179,18 @@ const KynarDatabase = {
     },
 
     "social-scheduler": {
-        title: "Social API Scheduler",
-        tagline: "Headless Content Deployment.",
+        title: "HEADLESS_SOCIAL_BOT",
+        tagline: "API Content Deployment.",
         price: "£18",
         category: "Tech",
-        badgeType: "API Tool",
-        badgeLevel: "Marketing",
-        meta: "Cron Jobs • JSON Config",
-        description: "<p>A lightweight bot to schedule tweets and posts via API, bypassing bloated social media dashboards.</p>",
+        badgeType: "API_TOOL",
+        badgeLevel: "MARKETING",
+        meta: "CRON_JOBS • JSON_CONFIG",
+        description: "<p><strong>[DEPLOY]</strong> A lightweight bot to schedule broadcasts via API. Bypass bloated dashboards and GUIs.</p>",
         image: "assets/images/product-tech-4.jpg",
         lsLink: "https://kynar.lemonsqueezy.com/checkout/buy/SOCIAL_ID",
         files: ["bot.py", "cron_setup.txt"],
         related: ["auto-invoice", "routine-architect"]
     }
 };
+

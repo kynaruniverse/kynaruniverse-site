@@ -52,26 +52,29 @@
 
     <div id="mobile-menu" class="mobile-menu"></div>
 
-    <main class="container layout-centered" style="min-height: calc(100vh - var(--header-height) - 100px);">
+    <main class="container layout-centered" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
         <div style="text-align: center; max-width: 500px; position: relative;">
             
-            <div class="text-mono" style="font-size: 11px; color: var(--color-error); letter-spacing: 0.3em; margin-bottom: var(--space-2); text-transform: uppercase;">
-                // signal_lost // sector_not_found
+            <div class="text-mono" style="font-size: 11px; color: var(--color-error); letter-spacing: 0.3em; margin-bottom: var(--space-3); text-transform: uppercase; text-shadow: 0 0 10px var(--color-error);">
+                // SYSTEM_CRITICAL // SIGNAL_LOST
             </div>
 
-            <div style="font-family: var(--font-heading); font-size: clamp(6rem, 20vw, 12rem); color: var(--color-surface); -webkit-text-stroke: 1px var(--color-border); line-height: 0.9; margin-bottom: var(--space-3); user-select: none;">
+            <div style="font-family: var(--font-heading); font-size: clamp(6rem, 15vw, 10rem); color: transparent; -webkit-text-stroke: 2px var(--color-error); line-height: 0.8; margin-bottom: var(--space-4); user-select: none; opacity: 0.8;">
                 404
             </div>
 
-            <h1 style="margin-bottom: var(--space-3); font-size: var(--text-2xl);">Drifting in space?</h1>
-            <p style="margin-bottom: var(--space-5); color: var(--color-text-secondary);">The coordinates you requested do not exist in this sector of the universe.</p>
+            <h1 style="margin-bottom: var(--space-3); font-size: var(--text-2xl); color: #fff;">COORDINATES INVALID</h1>
+            <p style="margin-bottom: var(--space-5); color: var(--color-text-secondary); font-family: var(--font-mono); font-size: 12px;">
+                The requested sector has been de-compiled or does not exist in this timeline.
+            </p>
             
             <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
-                <a href="index.html" class="btn btn--primary" style="box-shadow: 0 0 20px var(--color-error); background-color: var(--color-error); color: white;">Return to Base</a>
-                <a href="hub.html" class="btn btn--secondary">Visit the Hub</a>
+                <a href="index.html" class="btn btn--primary" style="background: var(--color-error); border-color: var(--color-error); box-shadow: 0 0 20px rgba(255, 61, 113, 0.4); color: #fff;">EXECUTE_RETURN</a>
+                <a href="hub.html" class="btn btn--secondary">ACCESS_HUB</a>
             </div>
         </div>
     </main>
+
 
     <footer id="global-footer" class="section site-footer"></footer>
     <div id="cookie-banner" class="cookie-banner"></div>
