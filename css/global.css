@@ -105,6 +105,9 @@ h1, h2, h3 {
   border-left: 4px solid var(--pal-home-accent); /* Blue Accent */
 }
 
+.card[data-variant="hub"] {
+  border-left: 4px solid var(--pal-hub-green); 
+}
 
 /* MOTION SYSTEM UTILITIES */
 .scroll-fade-item {

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide | Kynar Universe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-theme="hub">
+
+  <main class="container stack-xl" style="padding-top: var(--space-section); padding-bottom: var(--space-section);">
+    
+    <nav class="breadcrumb">
+      <a href="../index.html" class="btn-tertiary" style="padding-left:0;">Home</a>
+      <span>/</span>
+      <a href="hub/index.html" class="btn-tertiary" style="padding-left:0;">The Hub</a>
+      <span>/</span>
+      <span class="text-micro" id="breadcrumb-title">Loading...</span>
+    </nav>
+
+    <header class="stack-md animate-enter" style="max-width: 800px;">
+      <div style="display: flex; gap: var(--space-sm); align-items: center;">
+        <span class="tag" style="background-color: var(--pal-hub-blue); color: var(--pal-hub-ink);">Guide</span>
+        <span class="text-micro" id="guide-readtime">...</span>
+      </div>
+      <h1 class="text-h1" id="guide-title">Loading Article...</h1>
+      <p class="text-micro" style="opacity: 0.6;" id="guide-date">...</p>
+    </header>
+
+    <article id="guide-content" class="stack-md animate-enter delay-1" style="max-width: 65ch; line-height: 1.8;">
+      </article>
+
+    <footer style="margin-top: var(--space-xl); opacity: 0.6; border-top: 1px solid var(--border-subtle); padding-top: var(--space-lg);">
+      <a href="hub/index.html" class="btn-tertiary" style="padding-left:0;">← Back to Hub</a>
+    </footer>
+
+  </main>
+
+  <script src="../js/app.js"></script>
+  <script type="module" src="../js/loader.js"></script>
+</body>
+</html>

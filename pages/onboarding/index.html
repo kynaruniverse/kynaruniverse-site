@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Kynar Universe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <style>
+    /* Wizard Specific Styles */
+    .step { display: none; }
+    .step.active { display: flex; animation: fadeIn 0.5s ease-out; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-subtle); transition: background 0.3s; }
+    .dot.active { background: var(--accent-primary); }
+  </style>
+</head>
+<body data-theme="home">
+
+  <main class="container" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; max-width: 500px;">
+
+    <div id="step-1" class="step active stack-lg" style="text-align: center; align-items: center;">
+      <span style="font-size: 3rem;">👋</span>
+      <div class="stack-sm">
+        <h1 class="text-h1">Welcome, Traveler.</h1>
+        <p class="text-body">Let's get you settled into the space.</p>
+      </div>
+      <button onclick="nextStep(2)" class="btn btn-primary" style="width: 100%;">Begin Journey</button>
+    </div>
+
+    <div id="step-2" class="step stack-lg">
+      <div class="stack-sm">
+        <span class="tag">Step 1 of 3</span>
+        <h2 class="text-h2">What brings you here?</h2>
+        <p class="text-body">This helps us guide you to the right tools.</p>
+      </div>
+      
+      <div class="stack-sm">
+        <button class="card" onclick="selectOption(this)" style="text-align: left; width: 100%; cursor: pointer;">
+          <h3 class="text-h3" style="margin:0;">Building & Creating</h3>
+          <p class="text-micro">I need tools to work better.</p>
+        </button>
+        <button class="card" onclick="selectOption(this)" style="text-align: left; width: 100%; cursor: pointer;">
+          <h3 class="text-h3" style="margin:0;">Growth & Wellness</h3>
+          <p class="text-micro">I want to slow down and learn.</p>
+        </button>
+        <button class="card" onclick="selectOption(this)" style="text-align: left; width: 100%; cursor: pointer;">
+          <h3 class="text-h3" style="margin:0;">Family & Home</h3>
+          <p class="text-micro">I'm organizing my home life.</p>
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button onclick="nextStep(1)" class="btn-tertiary">Back</button>
+        <button onclick="nextStep(3)" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+
+    <div id="step-3" class="step stack-lg">
+      <div class="stack-sm">
+        <span class="tag">Step 2 of 3</span>
+        <h2 class="text-h2">Set your intent.</h2>
+        <p class="text-body">What is one thing you want to achieve?</p>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" class="input" placeholder="e.g., Start a morning routine...">
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button onclick="nextStep(2)" class="btn-tertiary">Back</button>
+        <button onclick="nextStep(4)" class="btn btn-primary">Continue</button>
+      </div>
+    </div>
+
+    <div id="step-4" class="step stack-lg" style="text-align: center; align-items: center;">
+      <span style="font-size: 3rem;">✨</span>
+      <div class="stack-sm">
+        <h1 class="text-h2">You're all set.</h1>
+        <p class="text-body">Your path continues. The world is open to you.</p>
+      </div>
+      <a href="../../index.html" class="btn btn-primary" style="width: 100%;">Enter Kynar Universe</a>
+    </div>
+
+    <div style="display: flex; gap: 8px; justify-content: center; margin-top: var(--space-xl);">
+      <div id="dot-1" class="dot active"></div>
+      <div id="dot-2" class="dot"></div>
+      <div id="dot-3" class="dot"></div>
+      <div id="dot-4" class="dot"></div>
+    </div>
+
+  </main>
+
+  <script src="../../js/app.js"></script>
+  <script>
+    // Simple Wizard Logic
+    function nextStep(stepNum) {
+      // Hide all steps
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.dot').forEach(el => el.classList.remove('active'));
+      
+      // Show target step
+      document.getElementById(`step-${stepNum}`).classList.add('active');
+      document.getElementById(`dot-${stepNum}`).classList.add('active');
+    }
+
+    function selectOption(btn) {
+      // Visual selection feedback
+      btn.style.borderColor = 'var(--accent-primary)';
+      btn.style.backgroundColor = 'var(--bg-page)';
+    }
+  </script>
+</body>
+</html>

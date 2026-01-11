@@ -87,7 +87,17 @@
   --neutral-white: #FFFFFF;
   --neutral-ink: #2A2D32;
   --neutral-ink-weak: #585C63;
+  
+  /* HUB PALETTE (Community/Guides) */
+  --pal-hub-base: #E4FFF5;
+  --pal-hub-neutral: #DDE3EA;
+  --pal-hub-ink: #2A2D32;
+  --pal-hub-green: #8ED9A1;
+  --pal-hub-blue: #BEE4FF;
+  --pal-hub-pink: #FFD9E8;
+
 }
+
 
 /* =========================================
    5. SEMANTIC THEME ENGINE
@@ -163,4 +173,15 @@
     --text-main: #1A1C1F;
     --accent-primary: #6FBF8A;
   }
+  
+  /* THEME: HUB */
+  [data-theme="hub"] {
+    --bg-page: var(--pal-hub-base);
+    --bg-surface: var(--neutral-white);
+    --text-main: var(--pal-hub-ink);
+    --accent-primary: var(--pal-hub-green);
+    --accent-highlight: var(--pal-hub-pink);
+    --border-subtle: rgba(42, 45, 50, 0.08);
+  }
+
 }

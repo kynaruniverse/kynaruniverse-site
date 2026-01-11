@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account | Kynar Universe</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="../../css/tokens.css">
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/components.css">
@@ -32,11 +28,11 @@
         </p>
       </header>
 
-      <form class="stack-md" onsubmit="event.preventDefault();">
+      <form class="stack-md" onsubmit="event.preventDefault(); window.location.href='collections.html';">
         
         <div class="form-group">
           <label for="email" class="label">Email Address</label>
-          <input type="email" id="email" class="input" placeholder="traveler@example.com" autocomplete="email">
+          <input type="email" id="email" class="input" placeholder="traveler@example.com">
         </div>
 
         <div class="form-group">
@@ -44,29 +40,34 @@
             <label for="password" class="label">Password</label>
             <a href="#" class="text-micro" style="text-transform: none; opacity: 0.6;">Forgot?</a>
           </div>
-          <input type="password" id="password" class="input" placeholder="••••••••" autocomplete="current-password">
+          <input type="password" id="password" class="input" placeholder="••••••••">
         </div>
 
         <div class="stack-sm" style="margin-top: var(--space-sm);">
           <button type="submit" class="btn btn-primary" style="width: 100%;">Enter The Archive</button>
-          <button type="button" class="btn btn-secondary" style="width: 100%;">Create Account</button>
         </div>
 
       </form>
 
-      <p class="text-micro" style="text-align: center; opacity: 0.5; margin-top: var(--space-sm);">
-        Secure access. Your space is safe.
-      </p>
+      <div style="text-align: center; border-top: 1px solid var(--border-subtle); padding-top: var(--space-md);">
+        <p class="text-micro" style="opacity: 0.5; margin-bottom: var(--space-sm);">New to the world?</p>
+        <a href="collections.html" class="btn-tertiary">View Demo Collections →</a>
+      </div>
+      
+      <div style="text-align: center; border-top: 1px solid var(--border-subtle); padding-top: var(--space-md);">
+        <p class="text-micro" style="opacity: 0.5; margin-bottom: var(--space-sm);">New to the world?</p>
+        <div style="display: flex; gap: var(--space-sm); justify-content: center;">
+           <a href="../onboarding/index.html" class="btn-tertiary">Start Journey</a>
+           <span style="opacity: 0.3;">|</span>
+           <a href="collections.html" class="btn-tertiary">Demo Archive</a>
+        </div>
+      </div>
+      
 
     </div>
-    <footer style="margin-top: var(--space-xl); opacity: 0.6;">
-      <p class="text-micro">The path continues.</p>
-    </footer>
-
 
   </main>
   
   <script src="../../js/app.js"></script>
-
 </body>
 </html>
